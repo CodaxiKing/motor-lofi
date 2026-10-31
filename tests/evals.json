@@ -1,0 +1,11 @@
+{
+  "skill": "serie-lofi-interativa",
+  "descricao": "Casos de teste para conferir se a skill continua entregando roteiros no padrão depois de cada atualização. Rodar com a skill skill-creator (modo de avaliação) ou manualmente: executar o prompt e passar o roteiro em tests/validar_roteiro.py.",
+  "casos": [
+    {"id": "roteiro-meio", "prompt": "/serie-continuar dia-zero 2 B", "espera": ["GANCHO", "A MAIORIA ESCOLHEU: TELHADO", "12 a 20 cenas", "A) e B)", "CONTINUA NO EPISÓDIO 4", "narração ElevenLabs por personagem", "validar_roteiro.py sem erros"]},
+    {"id": "roteiro-final", "prompt": "/serie-continuar dia-zero 4 A", "espera": ["desfecho do FINAL A", "FIM", "sem pergunta A/B", "validar_roteiro.py --final sem erros"]},
+    {"id": "voto-invalido", "prompt": "/serie-continuar dia-zero 2 C", "espera": ["avisa que C não é uma opção", "não gera roteiro"]},
+    {"id": "planejar", "prompt": "/serie-planejar ideia: um grupo de amigos preso numa escola durante uma tempestade, 5 episódios", "espera": ["bíblia em series/<nome>/biblia.md", "ficha visual com campos do motor", "dois finais", "capa 1080x1920"]},
+    {"id": "montagem-check", "prompt": "/serie-montar (com áudios de teste)", "espera": ["python3 -m lofi.check sem ERRO antes do render", "revisor independente aprovou a folha _revisao.png", "MP4 de 2–3 min", "teaser e capa gerados"]}
+  ]
+}

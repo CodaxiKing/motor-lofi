@@ -97,3 +97,44 @@ Cada série vive dentro do zip em `series/<nome-da-serie>/`:
 - `epNN_roteiro.md` — roteiro completo do episódio NN (cenas, narração limpa, sons).
 - `epNN.json` — roteiro técnico usado na montagem.
 Os comandos leem e atualizam esses arquivos e devolvem o zip atualizado.
+
+## Recursos v3
+**Personagens**
+- Vista `"view": "3q"` (meio perfil; use `facing` 1/-1).
+- Poses novas: `jump` (use com `"lift": [[t, px]]` para subir), `hide` (agachado protegendo a cabeça), `open_door`, `remove_bag`, `fallen` (deitado; gira sozinho), `crawl` (rastejando; gira sozinho). `"rot": graus` gira qualquer pose.
+- Correr: `"walk": true, "run": true`. Tremer de medo: `"tremble": 0–1`.
+- Emoções novas: `cry` (lágrimas escorrendo), `panting` (ofegante: ombros e boca no ritmo).
+- Corpos: em `characters`, `"body": "child" | "old" | "tall" | "fat" | "thin"`.
+- Objetos na mão: `"prop": "radio" | "flashlight" | "phone" | "key" | "bag"` (combine com `pose: hold/phone/reach/remove_bag`).
+- Zumbis: `zombie`, `zombie_corredor` (use run), `zombie_rastejante` (use pose crawl), `zombie_enfermeiro`, `zombie_policial`; `"sniff": true` = farejando o som.
+
+**Luz**
+- `"dark": 0–1` no plano → breu; só a lanterna (`flashlight` no ator) e `"lights": [[x, y, raio]]` iluminam. Personagens ficam levemente visíveis.
+- `"wall_shadow": {"light": [x, y], "alpha": 0.5}` → sombra projetada na parede atrás dos personagens.
+
+**Cenários vivos e clima**
+- apartamento: ventilador girando (`fan`), `"tv": "static"` (chiado), `"wind": 0–1` (cortina balançando).
+- Nuvens se movendo e poças com ondinhas nos externos.
+- No plano: `"rain": "forte" | "normal" | "fraca" | "nenhuma"`, `"fog": 0–1`, `"snow": 0–1`, `"time": "dia" | "entardecer" | "amanhecer" | "madrugada" | "noite"` (aceita keyframes, transição suave).
+- Novos lugares: `escola`, `delegacia` (sirene), `posto`, `floresta`, `carro` (limpador animado), `esgoto`, `igreja`.
+
+**Câmera e pós**
+- Plano de detalhe: `{"type": "detail", "subject": "macaneta|olho|celular|chave|relogio", "params": {...}}`
+  (macaneta: `turn`, `light` · olho: `pupil`, `look`, `blink_at`, `reflect`, `tear`, `brow` · celular: `text`, `notifs`, `signal`, `type_dur` · chave: `turn` · relogio: `minutes`).
+- `camera.handheld: px` (câmera na mão) · `camera.vertigo: [1.0, 1.3]` (dolly zoom) · `"slowmo": 0.4` (câmera lenta) ·
+  `"scare": [t]` (susto: tremor + aberração de cor + impacto) · `"lens_drops": true` (gotas na lente) · brilho nas luzes automático (`"bloom": false` desliga).
+- Estilo: `"style": "desenho"` (traço de nanquim + papel) e `"tint": [r, g, b, força]` (cor do episódio; também por plano).
+
+**Anteriormente em…**: `{"type": "recap", "from": "ep02.json", "times": [12, 40, 75], "label": "ANTERIORMENTE EM DIA ZERO", "lines": ["...", "...", "..."]}`
+(usa as cenas do episódio anterior direto do roteiro técnico; 4–6 s).
+
+## Qualidade
+- `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
+  + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.
+- `python3 tests/validar_roteiro.py epNN_roteiro.md [--final]` → confere gancho, 12–20 cenas, A/B, ElevenLabs.
+- `tests/evals.json` → casos de teste da skill.
+
+## Extras
+- `python3 -m lofi.extras teaser epNN.json epNN.mp4` → teaser de ~15 s para Stories (gancho + 3 melhores momentos + cartela).
+- `python3 -m lofi.extras capa epNN.json [tempo]` → capa 1080×1920 do episódio (usa `series_title`, `episode`, `episodes_total`, `episode_title`).
+- `python3 -m lofi.extras temporada saida.mp4 "TÍTULO" ep1.mp4 ep2.mp4 ...` → compilação 16:9 para o YouTube + capítulos.

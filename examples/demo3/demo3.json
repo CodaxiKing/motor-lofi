@@ -1,0 +1,71 @@
+{
+  "out": "demo_v3.mp4", "fps": 30, "total": 25.0, "crf": 27,
+  "series_title": "DIA ZERO", "episode": 3, "episodes_total": 5, "episode_title": "Ninguém escuta",
+  "style": "desenho", "tint": [90, 120, 200, 0.10],
+  "voices": {"roberta": "roberta.mp3", "rafa": "rafa.mp3"},
+  "speakers": {"rafa": {"label": "RAFA", "color": [190, 240, 190]}},
+  "hud": {"place": "HOSPITAL CENTRAL", "days": [[0, "DIA 3", "22:40"]]},
+  "lightning": [9.6],
+  "clips": [
+    {"voice": "rafa", "src": [0.00, 1.70], "at": 7.3},
+    {"voice": "roberta", "src": [14.35, 15.98], "at": 9.0},
+    {"voice": "roberta", "src": [20.40, 22.80], "at": 13.6},
+    {"voice": "rafa", "src": [2.15, 3.08], "at": 19.3},
+    {"voice": "roberta", "src": [40.45, 41.95], "at": 22.6}
+  ],
+  "subs": [
+    {"voice": "rafa", "src": [0.00, 1.51], "text": ["POR QUE", "VOCÊ DEMOROU?"]},
+    {"voice": "roberta", "src": [14.44, 15.88], "text": ["EU NÃO SABIA", "SE ERA GENTE."]},
+    {"voice": "roberta", "src": [20.48, 22.70], "text": ["ELES NÃO ENXERGAM...", "SEGUEM O SOM."]},
+    {"voice": "rafa", "src": [2.35, 2.75], "text": ["OLHA."]},
+    {"voice": "roberta", "src": [40.51, 41.90], "text": ["COMENTA A OU B."]}
+  ],
+  "shots": [
+    {"start": 0, "end": 2.0, "scene": "escola", "hook": {"text": "NÃO FAÇA\nBARULHO", "y": 760}, "dark": 0.85,
+     "camera": {"zoom": [1.0, 1.12], "handheld": 8},
+     "actors": [{"char": "roberta", "x": 420, "y": 1700, "view": "3q", "facing": 1, "emotion": "fear", "pose": "hold", "flashlight": 345},
+                {"char": "zombie_policial", "x": 760, "y": 1330, "pose": "forward", "sniff": true}]},
+    {"start": 2.0, "end": 5.0, "type": "recap", "from": "ep_anterior.json", "times": [5.5, 9.5, 14.5],
+     "label": "ANTERIORMENTE EM DIA ZERO", "lines": ["ELA DEMOROU A ABRIR", "O RAFA NÃO PERDOOU", "ELES SEGUEM O SOM"]},
+    {"start": 5.0, "end": 7.0, "type": "title", "title": "EPISÓDIO 3/5", "subtitle": "DIA ZERO", "transition": "glitch",
+     "stamp": {"t": 5.6, "top": "A MAIORIA ESCOLHEU", "word": "TELHADO"}},
+    {"start": 7.0, "end": 11.0, "scene": "telhado", "rain": "forte", "lens_drops": true, "transition": "whip",
+     "camera": {"handheld": 12, "zoom": 1.1, "cy": 0.6},
+     "actors": [
+       {"char": "rafa", "x": 330, "y": 1640, "view": "3q", "facing": 1, "emotion": [[0, "angry"], [2.0, "panting"]], "pose": "idle"},
+       {"char": "roberta", "x": [[0, 180], [2.4, 420], [3.2, 760]], "y": 1660, "view": [[0, "3q"], [2.4, "side"]], "facing": 1,
+        "walk": [[0, false], [2.4, true], [3.3, false]], "run": true, "lift": [[0, 0], [2.5, 0], [2.85, 230], [3.25, 0]],
+        "pose": [[0, "idle"], [2.5, "jump"], [3.25, "crouch"], [3.6, "idle"]], "emotion": [[0, "sad"], [2.3, "determined"]]}
+     ]},
+    {"start": 11.0, "end": 13.0, "type": "detail", "subject": "macaneta", "params": {"turn": [0, 70], "light": true}, "transition": "flash",
+     "scare": [12.4]},
+    {"start": 13.0, "end": 17.0, "scene": "hospital", "dark": 0.9, "transition": "cut",
+     "wall_shadow": {"light": [700, 300], "alpha": 0.55},
+     "camera": {"x": [40, -40], "handheld": 6},
+     "actors": [
+       {"char": "roberta", "x": [260, 420], "y": 1720, "view": "3q", "facing": 1, "walk": true, "pose": "hold", "flashlight": 352, "emotion": "fear", "tremble": 0.6},
+       {"char": "zombie_rastejante", "x": [900, 760], "y": 1600, "pose": "crawl", "facing": -1},
+       {"char": "zombie_enfermeiro", "x": 640, "y": 1260, "view": "back", "sniff": true}
+     ]},
+    {"start": 17.0, "end": 19.0, "type": "detail", "subject": "olho", "params": {"pupil": [0.2, 0.95], "reflect": true, "blink_at": 0.5, "brow": 20},
+     "scare": [18.3], "camera": {"zoom": [1.0, 1.25]}},
+    {"start": 19.0, "end": 22.0, "scene": "rua", "slowmo": 0.4, "rain": "fraca", "transition": "flash",
+     "camera": {"vertigo": [1.0, 1.3], "zoom": 1.15, "cy": 0.65},
+     "actors": [
+       {"char": "zombie_corredor", "x": [700, 600], "y": [1380, 1560], "view": "front", "walk": true, "run": true, "pose": "forward"},
+       {"char": "rafa", "x": 260, "y": 1780, "view": "3q", "facing": 1, "emotion": "shock", "pose": [[0, "idle"], [0.3, "point"]]}
+     ]},
+    {"start": 22.0, "end": 25.0, "type": "choice", "transition": "zoom",
+     "a": {"label": "HOSPITAL", "scene": "hospital", "actors": [{"char": "lia", "x": 540, "y": 1500, "emotion": "determined", "view": "3q"}]},
+     "b": {"label": "PONTE", "scene": "ponte", "actors": [{"char": "soldado", "x": 540, "y": 1350, "pose": "hold", "prop": "flashlight"}]},
+     "end_card": {"t": 24.0, "text": "CONTINUA NO EPISÓDIO 4"}}
+  ],
+  "sfx": [
+    {"t": 0.0, "name": "heartbeat", "dur": 2.0}, {"t": 0.6, "name": "growl", "gain": 0.6},
+    {"t": 9.4, "name": "step"}, {"t": 9.6, "name": "step"}, {"t": 10.3, "name": "impact", "gain": 0.5},
+    {"t": 11.2, "name": "click"}, {"t": 11.6, "name": "door_open"},
+    {"t": 13.2, "name": "echo_step"}, {"t": 14.0, "name": "echo_step"}, {"t": 15.5, "name": "growl"},
+    {"t": 17.0, "name": "breath", "dur": 2.0}, {"t": 19.0, "name": "growl", "gain": 1.2}, {"t": 22.0, "name": "heartbeat", "dur": 3.0}
+  ],
+  "music": [{"start": 0, "end": 2.0, "gain": [0.08, 0.12], "tense": 1.0}, {"start": 7.0, "end": 22.0, "gain": [0.05, 0.11], "tense": 0.7}]
+}

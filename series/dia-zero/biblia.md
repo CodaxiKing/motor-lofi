@@ -1,6 +1,9 @@
 # DIA ZERO — O COMEÇO DO FIM
 5 episódios · Suspense · Todas as idades · Cidade, tempos atuais · Duração por episódio: 2 a 3 min
-Elemento fixo: contador "DIA X · HH:MM" · Som assinatura: bipe duplo de alerta de emergência
+Elemento fixo: contador "DIA X · HH:MM" · Som assinatura: bipe duplo de alerta de emergência · Estilo do traço: desenho
+
+## Cor de cada episódio (tint)
+- EP 1: azul frio [90, 120, 200, 0.10] · EP 2: cinza chuvoso [140, 150, 170, 0.10] · EP 3: azul profundo [70, 90, 190, 0.12] · EP 4: vermelho [200, 70, 60, 0.12] · EP 5: laranja amanhecer [240, 150, 90, 0.12]
 
 ## Resumo
 Roberta acorda numa cidade em silêncio, com o celular cheio de alertas e uma voz no rádio repetindo um único aviso. Ela tem 5 dias para chegar à ponte antes que a cidade seja fechada, e cada escolha muda quem vai com ela.

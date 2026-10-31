@@ -195,3 +195,98 @@ def stamp(img, t, start, top="A MAIORIA ESCOLHEU", word="ESPIAR", y=1200, color=
     st = st.resize((int(st.width * sc), int(st.height * sc)), Image.BILINEAR)
     img.paste(st, (int(W / 2 - st.width / 2 + jitter), int(y - st.height / 2)), st)
     return img
+
+# ======================= v3: luz, lente, estilo, clima =======================
+def handheld(t, amp=10.0):
+    """Balanço suave de câmera na mão (dx, dy, rot)."""
+    dx = (math.sin(t * 1.3) + 0.6 * math.sin(t * 2.9 + 1.1) + 0.3 * math.sin(t * 5.3)) * amp * 0.5
+    dy = (math.sin(t * 1.7 + 0.4) + 0.5 * math.sin(t * 3.7 + 2.0)) * amp * 0.4
+    return dx, dy, math.sin(t * 1.1) * amp * 0.03
+
+def bloom(img, threshold=170, strength=0.6, radius=18):
+    br = img.point(lambda v: int(max(0, v - threshold) * 255 / max(1, 255 - threshold) * strength))
+    return ImageChops.add(img, br.filter(ImageFilter.GaussianBlur(radius)))
+
+def chromatic(img, amount=8):
+    r, g, b = img.split()
+    return Image.merge("RGB", (ImageChops.offset(r, int(amount), 0), g, ImageChops.offset(b, -int(amount), 0)))
+
+def scare_amount(t, times, dur=0.35):
+    v = 0.0
+    for s in times:
+        dt = t - s
+        if 0 <= dt < dur: v = max(v, 1 - dt / dur)
+    return v
+
+_DROPS = [(random.Random(k).uniform(40, W - 40), random.Random(k + 50).uniform(0, H), random.Random(k + 90).uniform(10, 34),
+           random.Random(k + 130).uniform(4, 22)) for k in range(26)]
+def lens_drops(img, t, strength=1.0):
+    """Gotas de chuva escorrendo na lente."""
+    for (x, y0, r, sp) in _DROPS:
+        y = (y0 + t * sp) % (H + 80) - 40
+        box = (int(x - r), int(y - r), int(x + r), int(y + r))
+        if box[0] < 0 or box[1] < 0 or box[2] > W or box[3] > H: continue
+        reg = img.crop(box).transpose(Image.FLIP_TOP_BOTTOM).filter(ImageFilter.GaussianBlur(1.5))
+        m = Image.new("L", reg.size, 0); ImageDraw.Draw(m).ellipse([0, 0, reg.width - 1, reg.height - 1], fill=int(200 * strength))
+        img.paste(reg, box[:2], m)
+        d = ImageDraw.Draw(img)
+        d.arc([box[0] + 3, box[1] + 3, box[2] - 3, box[3] - 3], 200, 290, fill=(235, 240, 255), width=2)
+        d.arc([box[0], box[1], box[2], box[3]], 20, 160, fill=(20, 24, 32), width=2)
+    return img
+
+def _paper():
+    r = np.random.default_rng(7)
+    big = Image.fromarray((r.random((60, 34)) * 255).astype("uint8")).resize((W, H), Image.BICUBIC)
+    fine = Image.fromarray((r.normal(128, 30, (H // 2, W // 2))).clip(0, 255).astype("uint8")).resize((W, H))
+    m = ImageChops.add(big.point(lambda v: v // 2), fine.point(lambda v: v // 2))
+    return m.filter(ImageFilter.GaussianBlur(0.6))
+PAPER = None
+def hand_drawn(img, strength=1.0):
+    """Textura de papel + traço de nanquim leve nas bordas (cara de desenhado à mão)."""
+    global PAPER
+    if PAPER is None: PAPER = _paper()
+    g = img.convert("L").filter(ImageFilter.FIND_EDGES).point(lambda v: 255 if v > 38 else 0).filter(ImageFilter.GaussianBlur(0.7))
+    img.paste((12, 10, 16), (0, 0), g.point(lambda v: int(v * 0.32 * strength)))
+    shade = PAPER.point(lambda v: int(abs(v - 128) * 0.45 * strength))
+    img.paste((230, 220, 200), (0, 0), shade.point(lambda v: v // 3))
+    img.paste((0, 0, 0), (0, 0), shade.point(lambda v: v // 4))
+    return img
+
+def tint(img, color, amount):
+    if amount <= 0: return img
+    return Image.blend(img, ImageChops.multiply(img, Image.new("RGB", img.size, tuple(color))).point(lambda v: min(255, int(v * 1.5))), amount)
+
+TIMES = {"noite": None, "dia": ((255, 250, 235), 0.22, 1.18), "entardecer": ((255, 150, 90), 0.28, 1.05),
+         "amanhecer": ((255, 200, 180), 0.22, 1.08), "madrugada": ((90, 110, 200), 0.3, 0.8)}
+def time_of_day(img, name):
+    p = TIMES.get(name)
+    if not p: return img
+    col, amt, bright = p
+    img = tint(img, col, amt)
+    if bright != 1.0: img = img.point(lambda v: min(255, int(v * bright)))
+    return img
+
+_SNOW = [(random.Random(k).uniform(0, W), random.Random(k + 7).uniform(0, H), random.Random(k + 9).uniform(2, 6),
+          random.Random(k + 11).uniform(40, 120), random.Random(k + 13).uniform(0, 6.28)) for k in range(260)]
+def snow(img, t, density=1.0):
+    d = ImageDraw.Draw(img)
+    for i, (x0, y0, r, sp, ph) in enumerate(_SNOW):
+        if i > len(_SNOW) * density: break
+        y = (y0 + t * sp) % H; x = x0 + math.sin(t * 0.8 + ph) * 26
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(235, 240, 250))
+
+def darkness(img, amount, beams=(), circles=(), soft=40, soft_circles=()):
+    """Breu com áreas iluminadas: beams = [(origem, ângulo, comprimento, abertura)], circles = [(x, y, raio)]."""
+    if amount <= 0: return img
+    m = Image.new("L", img.size, 0); d = ImageDraw.Draw(m)
+    for (o, ang, ln, spread) in beams:
+        a1, a2 = math.radians(ang - spread * 1.15), math.radians(ang + spread * 1.15)
+        d.polygon([o, (o[0] + math.cos(a1) * ln, o[1] + math.sin(a1) * ln), (o[0] + math.cos(a2) * ln, o[1] + math.sin(a2) * ln)], fill=255)
+        d.ellipse([o[0] - 70, o[1] - 70, o[0] + 70, o[1] + 70], fill=200)
+    for (x, y, r) in circles:
+        d.ellipse([x - r, y - r, x + r, y + r], fill=255)
+    for (x, y, r) in soft_circles:
+        d.ellipse([x - r, y - r, x + r, y + r], fill=110)
+    m = m.filter(ImageFilter.GaussianBlur(soft))
+    dark = Image.blend(img, Image.new("RGB", img.size, (2, 3, 8)), amount)
+    return Image.composite(img, dark, m)

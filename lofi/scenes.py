@@ -56,8 +56,20 @@ class Scene:
     def crop(self, layer, camx, depth):
         off = int(M - camx * depth); off = max(0, min(2 * M, off))
         return layer.crop((off, 0, off + W, H))
+    clouds = None            # (y_min, y_max, cor) para nuvens se movendo
+    ripples = None           # lista de (x, y, w) de poças com ondinhas
+    def sky(self, img, t, camx):
+        if not self.clouds: return
+        y0, y1, col = self.clouds
+        lay = Image.new("L", img.size, 0); d = ImageDraw.Draw(lay); r = random.Random(17)
+        for k in range(7):
+            w = r.uniform(260, 520); y = r.uniform(y0, y1); sp = r.uniform(6, 14)
+            x = (r.uniform(-300, W) + t * sp - camx * 0.1) % (W + 700) - 400
+            for j in range(4): d.ellipse([x + j * w * 0.22, y - w * 0.08 - r.uniform(0, 30), x + j * w * 0.22 + w * 0.45, y + w * 0.1], fill=120)
+        img.paste(col, (0, 0), lay.filter(ImageFilter.GaussianBlur(22)))
     def render_back(self, t, camx, props):
         img = self.crop(self.back, camx, self.depths[0]).convert("RGB")
+        self.sky(img, t, camx)
         for (x0, y0, x1, y1) in self.rain_boxes:
             dx = int(-camx * self.depths[0])
             fx.rain(img, t, (max(0, x0 + dx), y0, min(W, x1 + dx), y1), self.rain_strength, near=False)
@@ -66,6 +78,12 @@ class Scene:
         self.dynamic(img, t, camx, props)
         return img
     def render_front(self, img, t, camx, props, flashes):
+        if self.ripples and self.rain_full and self.rain_strength > 0:
+            d = ImageDraw.Draw(img); dx = -camx * self.depths[1]
+            for k, (x, y, w) in enumerate(self.ripples):
+                for j in range(2):
+                    ph = ((t * 1.3 + k * 0.37 + j * 0.5) % 1.0); rr = w * 0.15 + w * 0.6 * ph
+                    d.ellipse([x + dx - rr, y - rr * 0.22, x + dx + rr, y + rr * 0.22], outline=(150, 170, 210), width=2) if ph < 0.85 else None
         if self.fog_cfg: fx.fog(img, t, **self.fog_cfg)
         if self.front is not None:
             f = self.crop(self.front, camx, self.depths[2]); img.paste(f, (0, 0), f)
@@ -144,8 +162,32 @@ class Apartamento(Scene):
         front = front.filter(ImageFilter.GaussianBlur(9 * S))
         return down(back), down(mid), down(front)
     def dynamic(self, img, t, camx, props):
-        if props.get("tv"):
-            dx = int(-camx * self.depths[1])
+        dx = int(-camx * self.depths[1]); d = ImageDraw.Draw(img)
+        if props.get("fan", True):
+            cx, cy = 540 + dx, 240
+            for k in range(3):
+                a = t * 7 + k * 2 * math.pi / 3
+                ex, ey = cx + math.cos(a) * 230, cy + math.sin(a) * 30
+                pa, pb = a + 0.18, a - 0.18
+                d.polygon([(cx, cy), (cx + math.cos(pa) * 230, cy + math.sin(pa) * 30), (cx + math.cos(pb) * 230, cy + math.sin(pb) * 30)], fill=(10, 12, 18))
+            d.ellipse([cx - 34, cy - 18, cx + 34, cy + 18], fill=(14, 16, 22))
+        if props.get("wind"):
+            for side in (-1, 1):
+                pts = []
+                bx = 240 if side < 0 else 860
+                for k in range(12):
+                    y = 730 + k * 46; sw = math.sin(t * 2.4 + k * 0.5) * 22 * props["wind"] + 40
+                    pts.append((bx + dx - side * (sw + 30), y))
+                pts += [(bx + dx + side * 6, 1250), (bx + dx + side * 6, 730)]
+                d.polygon(pts, fill=(60, 50, 70))
+        if props.get("tv") == "static":
+            import numpy as _np
+            n = _np.random.default_rng(int(t * 24)).integers(40, 220, (60, 40)).astype("uint8")
+            st = Image.fromarray(n).resize((150, 240)).convert("RGB")
+            m = Image.new("L", (150, 240), 0); ImageDraw.Draw(m).polygon([(12, 4), (150, 20), (150, 236), (12, 254)], fill=255)
+            img.paste(st, (12 + dx, 1052), m)
+            img.paste(add_light(img, (-200 + dx, 900, 520 + dx, 1750), (90, 90, 110), 110, 120))
+        elif props.get("tv"):
             flick = 0.75 + 0.25 * math.sin(t * 17) * math.sin(t * 5.3)
             d = ImageDraw.Draw(img)
             d.polygon([(22 + dx, 1056), (160 + dx, 1072), (160 + dx, 1288), (22 + dx, 1306)], fill=(int(110 * flick), int(170 * flick), 255))
@@ -228,6 +270,8 @@ class Corredor(Scene):
 # ======================= RUA =======================
 class Rua(Scene):
     name = "rua"; light = "night"; grade = "noite"
+    clouds = (60, 520, (60, 50, 70))
+    ripples = [(300, 1560, 120), (760, 1700, 150), (520, 1420, 90)]
     ground = (1250, 1900, 0.35, 1.6)
     rain_full = True; wet = True; amb = "chuva_fora"
     lightning_full = True
@@ -326,6 +370,8 @@ class Escada(Scene):
 # ======================= TELHADO =======================
 class Telhado(Scene):
     name = "telhado"; light = "night"; grade = "frio"
+    clouds = (40, 500, (40, 50, 80))
+    ripples = [(160, 1500, 130), (380, 1700, 100), (860, 1600, 110)]
     ground = (1060, 1900, 0.65, 1.6)
     rain_full = True; lightning_full = True; wet = True; amb = "chuva_fora"
     fog_cfg = dict(y=1000, height=500, alpha=0.35, col=(60, 70, 100), speed=22)
@@ -353,6 +399,7 @@ class Telhado(Scene):
 # ======================= PONTE =======================
 class Ponte(Scene):
     name = "ponte"; light = "dawn"; grade = "amanhecer"
+    clouds = (80, 700, (230, 170, 160))
     ground = (1200, 1900, 0.4, 1.5)
     rain_full = True; rain_strength = 0.5; wet = True; amb = "vento"
     fog_cfg = dict(y=1180, height=600, alpha=0.6, col=(150, 140, 150), speed=12)
@@ -540,7 +587,196 @@ class Metro(Scene):
             r_ = 30 + 300 * tr
             img.paste(add_light(img, (540 - r_, 1010 - r_, 540 + r_, 1010 + r_), (255, 240, 200), 40 + 60 * tr, int(80 + 170 * tr)))
 
-REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, Janela, Escada, Telhado, Ponte, Radio, Hospital, Mercado, Metro)}
+# ======================= ESCOLA (corredor com armários) =======================
+class Escola(Scene):
+    name = "escola"; light = "dark"; grade = "frio"
+    ground = (1100, 1900, 0.4, 1.5); amb = "zumbido"
+    def build(self):
+        back = canvas((0, 0, 0)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 1920)), fill=(150, 156, 170))
+        d.polygon(PS((-M, 1920), (W + M, 1920), (640, 1100), (440, 1100)), fill=(110, 96, 80))
+        for k in range(12):
+            y = 1100 + (k / 12) ** 1.7 * 820; d.line(PS((-M, y), (W + M, y)), fill=(96, 84, 70), width=2 * S)
+        d.polygon(PS((-M, 0), (W + M, 0), (640, 720), (440, 720)), fill=(190, 196, 206))
+        for side in (-1, 1):
+            for k in range(7):
+                f0, f1 = k / 7, (k + 1) / 7
+                xa = lerp(540 + side * 100, 540 + side * 760, f0 ** 1.4); xb = lerp(540 + side * 100, 540 + side * 760, f1 ** 1.4)
+                ta, tb = lerp(830, 300, f0 ** 1.2), lerp(830, 300, f1 ** 1.2); ba, bb = lerp(1100, 1920, f0 ** 1.4), lerp(1100, 1920, f1 ** 1.4)
+                col = [(60, 110, 160), (200, 80, 60), (230, 180, 60)][k % 3]
+                d.polygon(PS((xa, ta), (xb, tb), (xb, bb * 0.86 + ta * 0.14), (xa, ba * 0.86 + ta * 0.14)), fill=col, outline=(30, 34, 40))
+                d.line(PS(((xa + xb) / 2, lerp(ta, tb, 0.5) + 30), ((xa + xb) / 2, lerp(ta, tb, 0.5) + 60)), fill=(30, 30, 34), width=3 * S)
+        d.rectangle(PS((440, 720), (640, 1100)), fill=(100, 106, 120)); d.rectangle(PS((480, 860), (600, 1100)), fill=(60, 60, 70))
+        d.rectangle(PS((460, 760), (620, 820)), fill=(30, 110, 60)); d.text(P(478, 762), "SAÍDA", font=font("title", 40 * S), fill=(230, 255, 230))
+        for (x, y) in [(540, 250), (540, 560)]: d.rectangle(PS((x - 90, y), (x + 90, y + 14)), fill=(240, 250, 255))
+        # papéis no chão
+        r = random.Random(3)
+        for _ in range(16):
+            x, y = r.uniform(200, 900), r.uniform(1250, 1850); d.polygon(PS((x, y), (x + 30, y - 8), (x + 36, y + 14), (x + 4, y + 20)), fill=(230, 230, 220))
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        on = random.Random(int(t * 10) * 7).random() > props.get("flicker", 0.12)
+        if not on: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.6))
+        props["_lamp_on"] = on
+
+# ======================= DELEGACIA =======================
+class Delegacia(Scene):
+    name = "delegacia"; light = "dark"; grade = "frio"
+    ground = (1300, 1900, 0.8, 1.5); amb = "zumbido"
+    def build(self):
+        back = canvas((40, 44, 54)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 1300)), fill=(70, 80, 96)); d.rectangle(PS((-M, 1300), (W + M, 1920)), fill=(56, 58, 64))
+        for k in range(14): d.line(PS((-M + k * 100, 1300), (-M + k * 100 - 200, 1920)), fill=(48, 50, 56), width=2 * S)
+        # celas ao fundo
+        d.rectangle(PS((560, 520), (1040, 1300)), fill=(30, 32, 40))
+        for x in range(580, 1040, 44): d.line(PS((x, 520), (x, 1300)), fill=(140, 146, 156), width=8 * S)
+        d.line(PS((560, 760), (1040, 760)), fill=(140, 146, 156), width=10 * S)
+        # balcão
+        d.rectangle(PS((-M, 1080), (480, 1360)), fill=(90, 70, 54)); d.rectangle(PS((-M, 1060), (500, 1090)), fill=(120, 96, 72))
+        d.rectangle(PS((60, 960), (210, 1062)), fill=(30, 30, 36)); d.rectangle(PS((72, 972), (198, 1048)), fill=(50, 90, 140))
+        # quadro de avisos e bandeira
+        d.rectangle(PS((60, 560), (440, 860)), fill=(150, 120, 80))
+        r = random.Random(5)
+        for _ in range(8):
+            x, y = r.uniform(80, 380), r.uniform(580, 800); d.rectangle(PS((x, y), (x + 50, y + 60)), fill=(230, 230, 220))
+        d.rectangle(PS((380, 300), (680, 360)), fill=(30, 60, 140)); d.text(P(398, 300), "POLÍCIA", font=font("title", 50 * S), fill=(240, 240, 250))
+        back = add_light(back, PS((300, 100), (800, 900)), (40, 50, 70), 80 * S, 100)
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        if props.get("siren", True):
+            k = (math.sin(t * 6) + 1) / 2
+            img.paste(add_light(img, (-200, 0, 600, 900), (180, 20, 20), 120, int(90 * k)))
+            img.paste(add_light(img, (500, 0, 1300, 900), (20, 40, 200), 120, int(90 * (1 - k))))
+
+# ======================= POSTO DE GASOLINA =======================
+class Posto(Scene):
+    name = "posto"; light = "warm"; grade = "noite"
+    ground = (1300, 1900, 0.5, 1.5); rain_full = True; wet = True; amb = "chuva_fora"
+    clouds = (60, 500, (50, 40, 60)); ripples = [(300, 1600, 120), (800, 1750, 140)]
+    def build(self):
+        back = canvas()
+        sky = skyline(CWX * S, 1250 * S, 55, sky=((10, 12, 26), (40, 24, 40)), hmin=0.15, hmax=0.4, lit=0.15)
+        back.paste(sky.filter(ImageFilter.GaussianBlur(2 * S)), (0, 0))
+        mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
+        d.rectangle(PS((-M, 1250), (W + M, 1920)), fill=(40, 40, 46, 255))
+        d.rectangle(PS((-M, 520), (W + M, 600)), fill=(220, 40, 40, 255)); d.rectangle(PS((-M, 600), (W + M, 630)), fill=(240, 240, 240, 255))
+        for x in (120, 960): d.rectangle(PS((x - 20, 630), (x + 20, 1260)), fill=(220, 220, 220, 255))
+        for x in (340, 740):
+            d.rounded_rectangle(PS((x - 70, 980), (x + 70, 1270)), 12 * S, fill=(200, 40, 40, 255))
+            d.rectangle(PS((x - 50, 1010), (x + 50, 1080)), fill=(30, 40, 50, 255))
+            d.line(PS((x + 70, 1100), (x + 110, 1200)), fill=(20, 20, 20, 255), width=6 * S)
+        d.text(P(330, 534), "POSTO 24H", font=font("title", 56 * S), fill=(255, 255, 255, 255))
+        for x in range(60, 1080, 160): d.rectangle(PS((x, 630), (x + 100, 646)), fill=(255, 250, 230, 255))
+        mid = add_light(mid, PS((-200, 600), (1300, 1500)), (180, 160, 120), 100 * S, 150)
+        return down(back), down(mid), None
+    def dynamic(self, img, t, camx, props):
+        if random.Random(int(t * 8)).random() < 0.06: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.5))
+
+# ======================= FLORESTA / PARQUE =======================
+class Floresta(Scene):
+    name = "floresta"; light = "night"; grade = "frio"
+    ground = (1250, 1900, 0.4, 1.5); amb = "vento"
+    fog_cfg = dict(y=1250, height=700, alpha=0.6, col=(90, 100, 120), speed=10)
+    clouds = (40, 400, (60, 70, 90))
+    def build(self):
+        back = canvas()
+        sky = grad(CWX * S, 1300 * S, (12, 16, 30), (40, 50, 70)); back.paste(sky, (0, 0)); d = ImageDraw.Draw(back)
+        d.ellipse(PS((700, 200), (840, 340)), fill=(220, 220, 210))
+        r = random.Random(8)
+        for layer, (col, n, hmin) in enumerate([((30, 38, 52), 18, 500), ((20, 26, 36), 12, 700)]):
+            for _ in range(n):
+                x = r.uniform(-M, W + M); w = r.uniform(80, 160) * (1 + layer * 0.5); top = r.uniform(hmin, hmin + 300)
+                d.polygon(PS((x, top), (x - w, 1300), (x + w, 1300)), fill=col)
+        d.rectangle(PS((-M, 1250), (W + M, 1920)), fill=(24, 30, 26))
+        mid = canvas(alpha=True); md = ImageDraw.Draw(mid)
+        for x, w in [(60, 50), (980, 60), (300, 26), (760, 30)]:
+            md.rectangle(PS((x - w, 0), (x + w, 1920)), fill=(14, 16, 18, 255))
+        for _ in range(40):
+            x, y = r.uniform(-M, W + M), r.uniform(1300, 1900); md.ellipse(PS((x - 40, y - 10), (x + 40, y + 10)), fill=(30, 40, 30, 255))
+        return down(back), down(mid), None
+
+# ======================= INTERIOR DE CARRO =======================
+class Carro(Scene):
+    name = "carro"; light = "night"; grade = "noite"
+    ground = (1500, 1700, 1.3, 1.3); amb = "chuva_dentro"
+    rain_boxes = [(60, 300, 1020, 1000)]; lightning_boxes = [(60, 300, 1020, 1000)]
+    def build(self):
+        back = canvas((10, 12, 20))
+        road = skyline(1000 * S, 720 * S, 61, hmin=0.2, hmax=0.5); back.paste(road.filter(ImageFilter.GaussianBlur(4 * S)), P(40, 290))
+        mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
+        d.rectangle(PS((-M, 0), (W + M, 300)), fill=(30, 32, 40, 255))
+        d.polygon(PS((-M, 300), (60, 300), (-M, 1100)), fill=(30, 32, 40, 255)); d.polygon(PS((W + M, 300), (1020, 300), (W + M, 1100)), fill=(30, 32, 40, 255))
+        d.rectangle(PS((-M, 1000), (W + M, 1920)), fill=(24, 26, 32, 255))
+        d.polygon(PS((-M, 1000), (W + M, 1000), (W + M, 1180), (-M, 1180)), fill=(40, 42, 50, 255))
+        d.ellipse(PS((120, 1060), (520, 1460)), outline=(14, 14, 18, 255), width=40 * S); d.line(PS((320, 1260), (320, 1460)), fill=(14, 14, 18, 255), width=30 * S)
+        d.rounded_rectangle(PS((620, 1050), (940, 1150)), 14 * S, fill=(20, 22, 28, 255)); d.rectangle(PS((640, 1070), (920, 1130)), fill=(40, 120, 160, 255))
+        d.rectangle(PS((430, 320), (650, 380)), fill=(20, 20, 26, 255))
+        return down(back), down(mid), None
+    def dynamic(self, img, t, camx, props):
+        if props.get("wipers", True):
+            d = ImageDraw.Draw(img)
+            for base in ((300, 1000), (720, 1000)):
+                a = math.radians(200 + 70 * (0.5 + 0.5 * math.sin(t * 3)))
+                d.line([base, (base[0] + math.cos(a) * 520, base[1] + math.sin(a) * 520)], fill=(10, 10, 12), width=12)
+
+# ======================= ESGOTO =======================
+class Esgoto(Scene):
+    name = "esgoto"; light = "dark"; grade = "frio"
+    ground = (1250, 1900, 0.45, 1.5); amb = "eco"
+    def build(self):
+        back = canvas((8, 10, 10)); d = ImageDraw.Draw(back)
+        for k in range(9):
+            f = k / 9; w = lerp(820, 110, f); c = int(lerp(46, 14, f))
+            d.ellipse(PS((540 - w, 1000 - w * 1.05), (540 + w, 1000 + w * 1.05)), fill=(c, c + 6, c), outline=(c - 6, c, c - 6), width=int(lerp(12, 2, f) * S))
+        d.ellipse(PS((470, 930), (610, 1070)), fill=(4, 6, 6))
+        d.polygon(PS((300, 1920), (780, 1920), (560, 1060), (520, 1060)), fill=(40, 60, 46))
+        for side in (-1, 1): d.polygon(PS((540 + side * 260, 1920), (540 + side * 780, 1920), (540 + side * 90, 1060), (540 + side * 30, 1060)), fill=(54, 58, 52))
+        for k in range(6):
+            x = 540 + (k - 3) * 140; d.line(PS((x, 300), (x + 10, 520)), fill=(30, 34, 30), width=4 * S)
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        d = ImageDraw.Draw(img)
+        for k in range(8):
+            y = 1150 + ((t * 60 + k * 90) % 760); w = lerp(20, 200, (y - 1060) / 860)
+            d.line([(540 - w, y), (540 + w, y)], fill=(70, 100, 80), width=2)
+        for k in range(3):
+            dy = (t * 300 + k * 400) % 900
+            d.ellipse([420 + k * 120, 300 + dy, 428 + k * 120, 312 + dy], fill=(90, 120, 100))
+
+# ======================= IGREJA =======================
+class Igreja(Scene):
+    name = "igreja"; light = "warm"; grade = "quente"
+    ground = (1150, 1900, 0.45, 1.5); amb = "eco"
+    def build(self):
+        back = canvas((20, 16, 20)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 1920)), fill=(44, 34, 32))
+        d.polygon(PS((-M, 1920), (W + M, 1920), (660, 1150), (420, 1150)), fill=(70, 50, 40))
+        d.polygon(PS((440, 1920), (640, 1920), (560, 1150), (520, 1150)), fill=(120, 30, 34))
+        # vitral
+        d.rounded_rectangle(PS((420, 300), (660, 900)), 120 * S, fill=(30, 30, 50))
+        r = random.Random(2)
+        for _ in range(40):
+            x, y = r.uniform(430, 650), r.uniform(330, 890); c = r.choice([(200, 60, 60), (60, 120, 200), (230, 190, 60), (80, 160, 90)])
+            d.polygon(PS((x, y), (x + 30, y + 10), (x + 10, y + 40)), fill=c)
+        d.line(PS((540, 300), (540, 900)), fill=(20, 20, 30), width=6 * S); d.line(PS((420, 600), (660, 600)), fill=(20, 20, 30), width=6 * S)
+        back = add_light(back, PS((300, 200), (780, 1300)), (160, 100, 60), 90 * S, 130)
+        d = ImageDraw.Draw(back)
+        # bancos
+        for side in (-1, 1):
+            for k in range(7):
+                f = k / 7; y = lerp(1180, 1850, f ** 1.4); x0 = 540 + side * lerp(60, 160, f); x1 = 540 + side * lerp(380, 900, f)
+                d.rectangle(PS((min(x0, x1), y - lerp(30, 120, f)), (max(x0, x1), y)), fill=(60, 40, 30), outline=(30, 20, 16))
+        # velas
+        for x in (380, 700):
+            d.rectangle(PS((x - 6, 1020), (x + 6, 1080)), fill=(240, 230, 210))
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        for x in (380, 700):
+            f = 0.8 + 0.2 * math.sin(t * 13 + x)
+            img.paste(add_light(img, (x - 80, 920, x + 80, 1100), (255, 170, 80), 30, int(180 * f)))
+
+REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, Janela, Escada, Telhado, Ponte, Radio, Hospital, Mercado, Metro,
+                                     Escola, Delegacia, Posto, Floresta, Carro, Esgoto, Igreja)}
 _inst = {}
 def get(name):
     if name not in _inst: _inst[name] = REGISTRY[name]()

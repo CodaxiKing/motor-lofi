@@ -1,0 +1,76 @@
+{
+  "out": "demo_v2.mp4",
+  "fps": 30,
+  "total": 22.0,
+  "voices": {"roberta": "roberta.mp3", "rafa": "rafa.mp3", "lia": "lia.mp3"},
+  "speakers": {"rafa": {"label": "RAFA", "color": [190, 240, 190]}, "lia": {"label": "RÁDIO", "color": [255, 226, 120]}},
+  "hud": {"place": "RUA AUGUSTA", "days": [[0, "DIA 3", "21:10"]]},
+  "lightning": [13.2],
+  "clips": [
+    {"voice": "rafa", "src": [0.00, 1.70], "at": 4.9},
+    {"voice": "roberta", "src": [14.35, 15.98], "at": 8.8},
+    {"voice": "lia", "src": [0.00, 3.40], "at": 11.8, "radio": true},
+    {"voice": "roberta", "src": [20.40, 22.80], "at": 14.6},
+    {"voice": "rafa", "src": [2.15, 3.08], "at": 17.4},
+    {"voice": "roberta", "src": [40.45, 41.95], "at": 19.6}
+  ],
+  "subs": [
+    {"voice": "rafa", "src": [0.00, 1.51], "text": ["POR QUE", "VOCÊ DEMOROU?"]},
+    {"voice": "roberta", "src": [14.44, 15.88], "text": ["EU NÃO SABIA", "SE ERA GENTE."]},
+    {"voice": "lia", "src": [0.00, 0.89], "text": ["A PONTE..."]},
+    {"voice": "lia", "src": [1.95, 3.11], "text": ["ANTES DO DIA 5."]},
+    {"voice": "roberta", "src": [20.48, 22.70], "text": ["ELES NÃO ENXERGAM...", "SEGUEM O SOM."]},
+    {"voice": "rafa", "src": [2.35, 2.75], "text": ["OLHA."]},
+    {"voice": "roberta", "src": [40.51, 41.90], "text": ["COMENTA A OU B."]}
+  ],
+  "shots": [
+    {"start": 0, "end": 2.0, "scene": "rua", "hook": {"text": "ELES ESTÃO\nOUVINDO", "y": 820},
+     "camera": {"zoom": [1.0, 1.15]},
+     "crowd": {"count": 9, "area": [80, 1330, 1000, 1520], "dir": -1, "speed": 60, "seed": 4},
+     "actors": [{"char": "roberta", "x": 540, "y": 1760, "view": "front", "emotion": "shock", "pose": "scared"}]},
+
+    {"start": 2.0, "end": 4.4, "type": "title", "title": "EPISÓDIO 3/5", "subtitle": "DIA ZERO", "transition": "glitch",
+     "stamp": {"t": 2.9, "top": "A MAIORIA ESCOLHEU", "word": "TELHADO"}},
+
+    {"start": 4.4, "end": 8.4, "scene": "apartamento", "transition": "fade", "props": {"tv": true},
+     "camera": {"zoom": 1.35, "cx": 0.62, "cy": 0.62, "focus": 1},
+     "actors": [
+       {"char": "roberta", "fg": true, "view": "back", "x": 260, "y": 2380, "scale": 3.4, "blur": 6},
+       {"char": "rafa", "x": 720, "y": 1700, "view": "front", "emotion": [[0, "suspicious"], [0.6, "angry"]], "pose": [[0, "idle"], [0.6, "cross"]], "look": -12}
+     ]},
+
+    {"start": 8.4, "end": 11.4, "scene": "apartamento", "transition": "cut", "props": {"tv": true},
+     "camera": {"close": 0, "close_zoom": 2.8, "close_in": 0.5},
+     "actors": [
+       {"char": "roberta", "x": 600, "y": 1690, "view": "front", "emotion": [[0, "fear"], [0.9, "sad"]], "look": 10},
+       {"char": "rafa", "x": 240, "y": 1650, "view": "front", "emotion": "angry", "pose": "cross"}
+     ]},
+
+    {"start": 11.4, "end": 17.2, "scene": "rua", "transition": "whip", "cold": true,
+     "camera": {"follow": 0, "zoom": 1.25, "cy": 0.62},
+     "crowd": {"count": 7, "area": [0, 1290, 1080, 1340], "dir": 1, "speed": 30, "seed": 9},
+     "actors": [
+       {"char": "roberta", "x": [200, 760], "y": 1720, "view": "side", "facing": 1, "walk": true, "flashlight": 14,
+        "emotion": [[0, "fear"], [3.0, "determined"]]},
+       {"char": "rafa", "x": [60, 600], "y": 1760, "view": "side", "facing": 1, "walk": true, "emotion": "fear"}
+     ]},
+
+    {"start": 17.2, "end": 19.0, "scene": "metro", "transition": "flash", "props": {"train": [0.1, 0.8]},
+     "camera": {"close": 0, "close_zoom": 2.4, "close_in": 0.35},
+     "shake": [17.3],
+     "actors": [{"char": "rafa", "x": 820, "y": 1640, "view": "front", "emotion": "shock", "pose": [[0, "idle"], [0.15, "point"]], "facing": -1}]},
+
+    {"start": 19.0, "end": 22.0, "type": "choice", "transition": "zoom",
+     "a": {"label": "HOSPITAL", "scene": "hospital", "actors": [{"char": "lia", "x": 540, "y": 1500, "emotion": "determined"}], "crop_x": 270},
+     "b": {"label": "PONTE", "scene": "ponte", "actors": [{"char": "soldado", "x": 540, "y": 1350, "pose": "hold"}], "crop_x": 270},
+     "end_card": {"t": 20.9, "text": "CONTINUA NO EPISÓDIO 4"}}
+  ],
+  "sfx": [
+    {"t": 0.2, "name": "growl"}, {"t": 0.9, "name": "growl", "gain": 0.7}, {"t": 0.0, "name": "crowd", "dur": 2.0},
+    {"t": 11.4, "name": "step"}, {"t": 11.9, "name": "step"}, {"t": 12.4, "name": "step"}, {"t": 12.9, "name": "step"},
+    {"t": 13.4, "name": "step"}, {"t": 13.9, "name": "step"}, {"t": 14.4, "name": "step"}, {"t": 14.9, "name": "step"},
+    {"t": 11.6, "name": "static", "dur": 4.0, "gain": 0.5},
+    {"t": 17.25, "name": "impact", "gain": 0.8}, {"t": 19.0, "name": "heartbeat", "dur": 3.0}
+  ],
+  "music": [{"start": 0, "end": 2.0, "gain": [0.08, 0.12], "tense": 1.0}, {"start": 4.4, "end": 19.0, "gain": [0.05, 0.1], "tense": 0.6}]
+}

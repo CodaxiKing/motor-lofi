@@ -13,7 +13,7 @@ from .core import OUT
 # ---------------- fichas de personagem ----------------
 BASE = dict(skin=(236, 236, 230), top=(200, 200, 205), top_style="shirt", legs=(50, 60, 90), shoes=(30, 30, 36),
             hat=None, hat_color=(30, 42, 72), hat_band=(44, 60, 98), hat_stripe=(220, 220, 226),
-            hair=None, hair_color=(56, 36, 28), scarf=None, backpack=None, glasses=False, infected=False, scale=1.0,
+            hair=None, hair_color=(56, 36, 28), scarf=None, backpack=None, glasses=False, infected=False, scale=1.0, body="normal",
             eye=(14, 14, 18))
 CHARS = {
     "roberta": dict(top=(232, 233, 238), top_style="puffer", legs=(52, 70, 110), hat="beanie", scarf=(214, 120, 52),
@@ -26,6 +26,12 @@ CHARS = {
                    hair="short", hair_color=(170, 170, 170), infected=True),
     "zombie": dict(skin=(146, 154, 150), top=(90, 96, 92), top_style="torn", legs=(64, 66, 72), shoes=(36, 34, 34),
                    infected=True, scale=0.95),
+    "zombie_corredor": dict(skin=(150, 150, 146), top=(110, 70, 66), top_style="torn", legs=(60, 60, 70), shoes=(30, 30, 30), infected=True),
+    "zombie_rastejante": dict(skin=(140, 148, 144), top=(80, 86, 80), top_style="torn", legs=(56, 58, 62), shoes=(30, 30, 30), infected=True, body="thin"),
+    "zombie_enfermeiro": dict(skin=(148, 156, 152), top=(120, 150, 150), top_style="scrubs", legs=(120, 150, 150), shoes=(200, 200, 200),
+                              hair="bun", hair_color=(90, 80, 70), infected=True),
+    "zombie_policial": dict(skin=(146, 152, 150), top=(50, 60, 92), top_style="uniform", legs=(40, 46, 70), shoes=(20, 20, 24),
+                            hat="cap", hat_color=(40, 48, 74), infected=True),
     "soldado": dict(top=(84, 98, 64), top_style="uniform", legs=(74, 86, 56), shoes=(30, 28, 24), hat="helmet",
                     hat_color=(70, 82, 52)),
 }
@@ -65,8 +71,14 @@ POSES = {
     "sit":     ((-14, 40), (14, -40)),
     "crouch":  ((-30, 60), (30, -60)),
     "run":     ((-8, 6), (8, -6)),
+    "jump":    ((-150, 10), (150, -10)),
+    "hide":    ((-150, -95), (150, 95)),
+    "open_door": ((-8, 6), (80, -8)),
+    "remove_bag": ((-8, 6), (24, -30)),
+    "fallen":  ((-20, 10), (20, -10)),
+    "crawl":   ((-60, 0), (60, 0)),
 }
-EMOTIONS = ("neutral", "fear", "shock", "angry", "sad", "determined", "happy", "suspicious")
+EMOTIONS = ("neutral", "fear", "shock", "angry", "sad", "determined", "happy", "suspicious", "cry", "panting")
 
 CW, CH = 480, 760          # tela 2x
 HIP_Y, FEET_Y = 480, 690
@@ -76,6 +88,7 @@ def _seg(p, ang, L):
 
 def _limb(d, pts, col, w):
     """Membro grosso com contorno e juntas arredondadas."""
+    w = int(round(w))
     for c, ww in ((OUT, w + 9), (col + (255,), w)):
         d.line(pts, fill=c, width=ww, joint="curve")
         for p in (pts[0], pts[-1]):
@@ -94,7 +107,7 @@ def _backout(x, c=1.6):
     x = max(0.0, min(1.0, x)); return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
 
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
-          pose_prev=None, pk=1.0, blink_force=False):
+          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
 
@@ -102,20 +115,32 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     skin, top = cd["skin"], cd["top"]
     inf = cd["infected"]
     cx = CW / 2
+    bt = cd.get("body", "normal")
+    TWK = {"fat": 1.36, "thin": 0.8, "child": 0.92, "tall": 0.96}.get(bt, 1.0)
+    LEGK = {"tall": 1.2, "child": 0.7, "old": 0.94}.get(bt, 1.0)
+    HEADK = {"child": 1.16}.get(bt, 1.0)
+    LIMBK = {"thin": 0.8, "fat": 1.18, "child": 0.92}.get(bt, 1.0)
+    HUNCH_ADD = {"old": 26}.get(bt, 0)
+    q3 = view == "3q"
+    if q3: view = "front"
+    if sniff: look = math.sin(t * 2.3 + seed) * 22
     # --- ciclo de caminhada / corrida / respiração ---
     amp = 1.0 if not walk else (1.0 if not run else 1.6)
     ph = (t * (1.9 if run else 1.25) + seed * 0.13) % 1.0 if walk else 0.0
     s = math.sin(2 * math.pi * ph)
     bob = -abs(math.cos(2 * math.pi * ph)) * (14 if run else 8) if walk else 0
-    breath = math.sin(t * 2 * math.pi / (3.2 if not inf else 2.4) + seed) * breath_k
-    hunch = 14 if inf else 0
-    sit = draw_pose == "sit"; crouch = draw_pose == "crouch"
-    hip_y = HIP_Y + bob + (110 if sit else 0) + (70 if crouch else 0)
+    pant = emotion == "panting"
+    breath = math.sin(t * 2 * math.pi / ((3.2 if not inf else 2.4) if not pant else 0.8) + seed) * breath_k * (3.2 if pant else 1)
+    hunch = (14 if inf else 0) + HUNCH_ADD
+    sit = draw_pose == "sit"; crouch = draw_pose in ("crouch", "hide"); jump = draw_pose == "jump"
+    hip_y = HIP_Y + bob + (1 - LEGK) * 202 + (110 if sit else 0) + (70 if crouch else 0) + (50 if jump else 0)
     torso_top = hip_y - 238 + hunch - breath * 4
     sh_y = torso_top + 52
     neck = (cx + (hunch * 0.8 if view == "side" else 0), torso_top + 6)
     head_c = (neck[0] + (6 * math.sin(t * 1.3 + seed) if inf else 0), neck[1] - 74 + bob * 0.2 - breath * 2)
     if view == "side": head_c = (head_c[0] + 18 + hunch * 0.6, head_c[1])
+    if q3: head_c = (head_c[0] + 14, head_c[1])
+    if sniff: head_c = (head_c[0] + math.sin(t * 2.3 + seed) * 16, head_c[1] - 8 - abs(math.sin(t * 4.6)) * 6)
     if talk > 0: head_c = (head_c[0] + math.sin(t * 6.3 + seed) * 6 * talk, head_c[1] - abs(math.sin(t * 8.1)) * 6 * talk)
     # --- pernas ---
     if view == "side":
@@ -133,20 +158,22 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             kn = (hp[0] + (-46 if i == 0 else 46) * (0.3 if view != "side" else 0) + (60 if view == "side" else 0), hp[1] + 24)
             ft = (kn[0] + (0 if view != "side" else 10), kn[1] + 96)
         elif crouch:
-            kn = (hp[0] + (-50 if i == 0 else 50), hp[1] + 60); ft = (hp[0] + (-28 if i == 0 else 28), hp[1] + 140)
+            kn = (hp[0] + (-50 if i == 0 else 50), hp[1] + 60 * LEGK); ft = (hp[0] + (-28 if i == 0 else 28), hp[1] + 140 * LEGK)
+        elif jump:
+            kn = (hp[0] + (-44 if i == 0 else 44), hp[1] + 66 * LEGK); ft = (hp[0] + (-18 if i == 0 else 18), hp[1] + 118 * LEGK)
         else:
             if view == "side":
-                kn = _seg(hp, legA[i], 102); ft = _seg(kn, legA[i] - kneeB[i], 100)
+                kn = _seg(hp, legA[i], 102 * LEGK); ft = _seg(kn, legA[i] - kneeB[i], 100 * LEGK)
             else:
                 lift = (max(0, s if i == 0 else -s) * 22) if walk else 0
-                kn = _seg(hp, legA[i], 102 - lift * 0.4); ft = _seg(kn, legA[i], 100 - lift)
+                kn = _seg(hp, legA[i], 102 * LEGK - lift * 0.4); ft = _seg(kn, legA[i], 100 * LEGK - lift)
         leg_pts.append((hp, kn, ft))
     # --- braços ---
     pa = POSES.get(pose, POSES["idle"])
     if pose_prev and pk < 1.0:
         pb = POSES.get(pose_prev, POSES["idle"]); bk = _backout(pk)
         pa = tuple((pb[i][0] + (pa[i][0] - pb[i][0]) * bk, pb[i][1] + (pa[i][1] - pb[i][1]) * bk) for i in range(2))
-    sh = [(cx - 76, sh_y), (cx + 76, sh_y)] if view != "side" else [(cx + hunch * 0.6, sh_y), (cx + hunch * 0.6, sh_y)]
+    sh = ([(cx - 76 * TWK, sh_y), (cx + 76 * TWK, sh_y)] if not q3 else [(cx - 58 * TWK, sh_y), (cx + 70 * TWK, sh_y)]) if view != "side" else [(cx + hunch * 0.6, sh_y), (cx + hunch * 0.6, sh_y)]
     arms = []
     for i in range(2):
         a_sh, a_el = pa[i]
@@ -169,20 +196,20 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     dark = lambda c, k=0.75: tuple(int(v * k) for v in c)
 
     # --- itens atrás do corpo ---
-    hr = 84
+    hr = 84 * HEADK
     if cd["hat"] == "hood" and not back:
         d.ellipse([head_c[0] - 100, head_c[1] - 100, head_c[0] + 100, head_c[1] + 100], fill=dark(topc, 0.88) + (255,), outline=OUT, width=6)
     if cd["hair"] == "ponytail" and not back:
         sw = math.sin(t * 2.6 + seed) * 10 * sway_k + (s * 10 if walk else 0)
-        px = head_c[0] + (66 if not side else -70)
+        px = head_c[0] + ((66 if not side else -70) if not q3 else -64)
         d.ellipse([px - 24 + sw * 0.3, head_c[1] - 10, px + 26 + sw, head_c[1] + 110], fill=cd["hair_color"] + (255,), outline=OUT, width=5)
     if cd["hair"] == "long" and not back:
         d.rounded_rectangle([head_c[0] - 96, head_c[1] - 40, head_c[0] + 96, head_c[1] + 130], 50, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
     if cd["backpack"] and side:
         d.rounded_rectangle([cx - 110, torso_top + 30, cx - 30, torso_top + 200], 26, fill=cd["backpack"] + (255,), outline=OUT, width=6)
     # braço de trás (lado)
-    if side:
-        a = arms[0]; _limb(d, [a[0], a[1], a[2]], dark(topc), 42); _hand(d, a[2], dark(skin, 0.85))
+    if side or (q3 and draw_pose not in ("cross", "forward")):
+        a = arms[0]; _limb(d, [a[0], a[1], a[2]], dark(topc), 42 * LIMBK); _hand(d, a[2], dark(skin, 0.85))
     if back or (not side and pose not in ("cross", "forward")):
         pass
     # --- pernas ---
@@ -190,13 +217,13 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     for i in order:
         hp, kn, ft = leg_pts[i]
         col = legc if not (side and i == 0) else dark(legc)
-        _limb(d, [hp, kn, ft], col, 50)
+        _limb(d, [hp, kn, ft], col, 50 * LIMBK)
         fx = 26 if side else 0
         d.rounded_rectangle([ft[0] - 36 + fx * 0.3, ft[1] - 16, ft[0] + 36 + fx, ft[1] + 22], 18,
                             fill=(shoe if not (side and i == 0) else dark(shoe)) + (255,), outline=OUT, width=6)
     # --- tronco ---
-    tw = 164 if not side else 124
-    tx0 = cx - tw / 2 + (hunch * 0.5 if side else 0)
+    tw = (164 if not side else 124) * TWK * (0.9 if q3 else 1.0)
+    tx0 = cx - tw / 2 + (hunch * 0.5 if side else 0) - (6 if q3 else 0)
     sq = breath * 3
     d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=topc + (255,), outline=OUT, width=6)
     st = cd["top_style"]
@@ -232,13 +259,32 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             _limb(d, [(sx, sh_y), (ex, sh_y + 46)], topc, 46)
             _hand(d, (ex + (8 if ex > cx else -8), sh_y + 60), skin, 25)
     else:
-        rng_arms = [1] if side else [0, 1]
+        rng_arms = [1] if (side or q3) else [0, 1]
         for i in rng_arms:
-            a = arms[i]; _limb(d, [a[0], a[1], a[2]], topc, 44); _hand(d, a[2], skin)
-            if draw_pose == "phone" and i == 1:
-                d.rounded_rectangle([a[2][0] - 18, a[2][1] - 40, a[2][0] + 18, a[2][1] + 20], 6, fill=(20, 20, 26, 255), outline=OUT, width=3)
-            if draw_pose == "hold" and i == 1:
-                d.rounded_rectangle([a[2][0] - 12, a[2][1] - 10, a[2][0] + 46, a[2][1] + 12], 6, fill=(60, 60, 66, 255), outline=OUT, width=3)
+            a = arms[i]; _limb(d, [a[0], a[1], a[2]], topc, 44 * LIMBK); _hand(d, a[2], skin)
+    # --- objeto na mão ---
+    pr = prop or ("phone" if draw_pose == "phone" else ("flashlight" if draw_pose == "hold" else ("bag" if draw_pose == "remove_bag" else None)))
+    if pr and not back and draw_pose not in ("cross", "forward"):
+        hx_, hy_ = arms[1][2]
+        if pr == "phone":
+            d.rounded_rectangle([hx_ - 19, hy_ - 44, hx_ + 19, hy_ + 22], 7, fill=(20, 20, 26, 255), outline=OUT, width=3)
+            d.rounded_rectangle([hx_ - 13, hy_ - 38, hx_ + 13, hy_ + 14], 4, fill=(170, 200, 255, 255))
+        elif pr == "flashlight":
+            d.rounded_rectangle([hx_ - 10, hy_ - 13, hx_ + 54, hy_ + 13], 7, fill=(70, 72, 80, 255), outline=OUT, width=3)
+            d.ellipse([hx_ + 46, hy_ - 16, hx_ + 62, hy_ + 16], fill=(255, 240, 180, 255), outline=OUT, width=3)
+        elif pr == "radio":
+            d.line([(hx_ + 30, hy_ - 30), (hx_ + 48, hy_ - 86)], fill=(160, 160, 165, 255), width=5)
+            d.rounded_rectangle([hx_ - 34, hy_ - 32, hx_ + 40, hy_ + 22], 9, fill=(120, 80, 54, 255), outline=OUT, width=4)
+            for k in range(3): d.line([(hx_ - 24, hy_ - 20 + k * 12), (hx_ + 4, hy_ - 20 + k * 12)], fill=(60, 40, 28, 255), width=4)
+            d.ellipse([hx_ + 14, hy_ - 14, hx_ + 30, hy_ + 2], fill=(230, 210, 160, 255))
+        elif pr == "key":
+            d.ellipse([hx_ - 6, hy_ - 30, hx_ + 18, hy_ - 6], outline=(230, 190, 70, 255), width=6)
+            d.line([(hx_ + 6, hy_ - 8), (hx_ + 6, hy_ + 26)], fill=(230, 190, 70, 255), width=6)
+            d.line([(hx_ + 6, hy_ + 18), (hx_ + 16, hy_ + 18)], fill=(230, 190, 70, 255), width=5)
+        elif pr == "bag":
+            bc = cd["backpack"] or (236, 196, 50)
+            d.rounded_rectangle([hx_ - 34, hy_ + 2, hx_ + 40, hy_ + 104], 22, fill=bc + (255,), outline=OUT, width=5)
+            d.line([(hx_, hy_ + 4), (hx_ - 4, hy_ - 14)], fill=bc + (255,), width=10)
     # --- cachecol ---
     if cd["scarf"]:
         sc = cd["scarf"]
@@ -290,7 +336,8 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     # --- rosto ---
     if not back:
         fx = hx + look + (34 if side else 0)
-        eyes = [(fx - 30, hy + 16), (fx + 30, hy + 16)] if not side else [(fx + 6, hy + 16)]
+        if q3: fx += 18
+        eyes = ([(fx - 30, hy + 16), (fx + 30, hy + 16)] if not q3 else [(fx - 22, hy + 16), (fx + 26, hy + 16)]) if not side else [(fx + 6, hy + 16)]
         blink = (_blink(t, seed) or blink_force) and not inf
         if inf:
             glow = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); gd = ImageDraw.Draw(glow)
@@ -300,7 +347,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.line([(hx - 40, hy + 50), (hx - 10, hy + 46), (hx + 10, hy + 54), (hx + 36, hy + 48)], fill=(80, 86, 84, 255), width=5)
         else:
             ew, eh = {"neutral": (10, 13), "fear": (12, 16), "shock": (14, 17), "angry": (10, 8), "sad": (9, 11),
-                      "determined": (10, 10), "happy": (10, 10), "suspicious": (10, 7)}.get(emotion, (10, 13))
+                      "determined": (10, 10), "happy": (10, 10), "suspicious": (10, 7), "cry": (10, 5), "panting": (10, 12)}.get(emotion, (10, 13))
             ec = cd["eye"]
             for i, (x, y) in enumerate(eyes):
                 if blink:
@@ -314,7 +361,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                 # sobrancelhas
                 side_k = -1 if (i == 0 and not side) else 1
                 by = y - 27
-                if emotion == "fear" or emotion == "sad":
+                if emotion in ("fear", "sad", "cry"):
                     p0, p1 = (x - 16 * side_k * -1, by + 6), (x + 16 * side_k * -1, by - 6)
                     p0, p1 = ((x - 16, by + (6 if side_k > 0 else -6)), (x + 16, by + (-6 if side_k > 0 else 6)))
                     p0, p1 = ((x - 16, by - 6), (x + 16, by + 6)) if side_k < 0 else ((x - 16, by + 6), (x + 16, by - 6))
@@ -347,6 +394,13 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                 d.arc([mx - 16, my - 14, mx + 16, my + 10], 20, 160, fill=ec + (255,), width=5)
             elif emotion == "angry":
                 d.line([(mx - 12, my + 2), (mx + 12, my + 2)], fill=ec + (255,), width=5)
+            elif emotion == "cry":
+                d.arc([mx - 16, my - 2, mx + 16, my + 18], 200, 340, fill=ec + (255,), width=5)
+                for (x, y) in eyes:
+                    d.line([(x - 2, y + 6), (x - 6, y + 46)], fill=(140, 190, 245, 255), width=6)
+                    dy = (t * 70 + x) % 60
+                    d.ellipse([x - 12, y + 30 + dy, x - 2, y + 42 + dy], fill=(140, 190, 245, 255))
+            if pant: mouth = max(mouth, 0.35 + 0.25 * math.sin(t * 2 * math.pi / 0.8))
             if mouth > 0.06:
                 mh = 5 + 22 * mouth; mw = 13 + 7 * mouth
                 d.ellipse([mx - mw, my - mh * 0.45, mx + mw, my + mh * 0.55], fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
@@ -381,17 +435,17 @@ def _shade(im, light):
 _CACHE = {}
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
-                blink_force=False):
+                blink_force=False, sniff=False, prop=None):
     """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés."""
     cd = char_def(name, custom)
     seed = seed if seed is not None else (sum(map(ord, name)) % 97)
     light = light or LIGHTS["night"]
     qt = round(t * 15) / 15 if (walk or sway or breath) else 0
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force)
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop)
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
-                    pose_prev, round(pk * 10) / 10, blink_force)
+                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop)
     k = 0.5 * scale * cd["scale"]
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)
