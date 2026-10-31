@@ -9,6 +9,7 @@ Elemento fixo: contador "DIA X · HH:MM" · Som assinatura: bipe duplo de alerta
 Roberta acorda numa cidade em silêncio, com o celular cheio de alertas e uma voz no rádio repetindo um único aviso. Ela tem 5 dias para chegar à ponte antes que a cidade seja fechada, e cada escolha muda quem vai com ela.
 
 ## Personagens (motor)
+Fichas travadas em `personagens.json` (mesma pasta). Elas valem para todos os episódios; não redefinir no roteiro.
 - roberta — protagonista (pronta no motor). Cor: laranja (cachecol).
 - rafa — garoto do 12º andar (pronto). Cor: verde.
 - lia — irmã de Roberta, enfermeira; voz do rádio (pronta).

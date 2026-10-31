@@ -39,6 +39,10 @@ def check(path, frames=True):
                 vals = [x[1] for x in v] if isinstance(v, list) else ([v] if v else [])
                 for x in vals:
                     if x not in allowed: err(f"{key} inválida '{x}' para {a['char']} ({s['start']}s)")
+    for name, ficha in sp.get("characters", {}).items():
+        if name in ep.locked and ficha != ep.locked[name]:
+            warn(f"'{name}' foi redefinido no roteiro, mas a ficha travada em personagens.json é que vale (remova do roteiro)")
+    if not ep.locked: warn("série sem personagens.json: os personagens podem variar entre episódios")
     for v, pth in ep.voices.items():
         if not os.path.exists(pth): err(f"áudio não encontrado: {pth}")
     for s in sp.get("subs", []):

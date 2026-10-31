@@ -1,0 +1,265 @@
+{
+ "_leia": "Fichas travadas da série Dia Zero. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito.",
+ "roberta": {
+  "top": [
+   232,
+   233,
+   238
+  ],
+  "top_style": "puffer",
+  "legs": [
+   52,
+   70,
+   110
+  ],
+  "hat": "beanie",
+  "scarf": [
+   214,
+   120,
+   52
+  ],
+  "hair": "ponytail",
+  "hair_color": [
+   56,
+   36,
+   28
+  ]
+ },
+ "rafa": {
+  "top": [
+   70,
+   140,
+   92
+  ],
+  "top_style": "hoodie",
+  "hat": "hood",
+  "legs": [
+   40,
+   50,
+   80
+  ],
+  "shoes": [
+   200,
+   50,
+   44
+  ],
+  "backpack": [
+   236,
+   196,
+   50
+  ],
+  "scale": 0.84
+ },
+ "lia": {
+  "top": [
+   96,
+   168,
+   178
+  ],
+  "top_style": "scrubs",
+  "legs": [
+   96,
+   168,
+   178
+  ],
+  "shoes": [
+   230,
+   230,
+   230
+  ],
+  "hair": "bun",
+  "hair_color": [
+   40,
+   28,
+   24
+  ]
+ },
+ "valter": {
+  "skin": [
+   150,
+   158,
+   154
+  ],
+  "top": [
+   112,
+   86,
+   66
+  ],
+  "top_style": "torn",
+  "legs": [
+   80,
+   84,
+   90
+  ],
+  "shoes": [
+   40,
+   36,
+   34
+  ],
+  "hair": "short",
+  "hair_color": [
+   170,
+   170,
+   170
+  ],
+  "infected": true
+ },
+ "zombie": {
+  "skin": [
+   146,
+   154,
+   150
+  ],
+  "top": [
+   90,
+   96,
+   92
+  ],
+  "top_style": "torn",
+  "legs": [
+   64,
+   66,
+   72
+  ],
+  "shoes": [
+   36,
+   34,
+   34
+  ],
+  "infected": true,
+  "scale": 0.95
+ },
+ "zombie_corredor": {
+  "skin": [
+   150,
+   150,
+   146
+  ],
+  "top": [
+   110,
+   70,
+   66
+  ],
+  "top_style": "torn",
+  "legs": [
+   60,
+   60,
+   70
+  ],
+  "shoes": [
+   30,
+   30,
+   30
+  ],
+  "infected": true
+ },
+ "zombie_rastejante": {
+  "skin": [
+   140,
+   148,
+   144
+  ],
+  "top": [
+   80,
+   86,
+   80
+  ],
+  "top_style": "torn",
+  "legs": [
+   56,
+   58,
+   62
+  ],
+  "shoes": [
+   30,
+   30,
+   30
+  ],
+  "infected": true,
+  "body": "thin"
+ },
+ "zombie_enfermeiro": {
+  "skin": [
+   148,
+   156,
+   152
+  ],
+  "top": [
+   120,
+   150,
+   150
+  ],
+  "top_style": "scrubs",
+  "legs": [
+   120,
+   150,
+   150
+  ],
+  "shoes": [
+   200,
+   200,
+   200
+  ],
+  "hair": "bun",
+  "hair_color": [
+   90,
+   80,
+   70
+  ],
+  "infected": true
+ },
+ "zombie_policial": {
+  "skin": [
+   146,
+   152,
+   150
+  ],
+  "top": [
+   50,
+   60,
+   92
+  ],
+  "top_style": "uniform",
+  "legs": [
+   40,
+   46,
+   70
+  ],
+  "shoes": [
+   20,
+   20,
+   24
+  ],
+  "hat": "cap",
+  "hat_color": [
+   40,
+   48,
+   74
+  ],
+  "infected": true
+ },
+ "soldado": {
+  "top": [
+   84,
+   98,
+   64
+  ],
+  "top_style": "uniform",
+  "legs": [
+   74,
+   86,
+   56
+  ],
+  "shoes": [
+   30,
+   28,
+   24
+  ],
+  "hat": "helmet",
+  "hat_color": [
+   70,
+   82,
+   52
+  ]
+ }
+}

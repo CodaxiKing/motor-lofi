@@ -161,3 +161,9 @@ Personagens prontos além da série zumbi: `detetive`, `cientista`, `estudante`,
 Para variar um pronto: `"characters": {"detetive": {"skin": "escuro", "hat_color": [30, 30, 30]}}`.
 Para criar um novo: `"characters": {"marina": {"top_style": "leather", "top": [120, 30, 40], "hair": "braids", "skin": "moreno", "acc": ["earrings"]}}`
 e use `"char": "marina"` nos atores.
+
+## Personagens travados da série
+`series/<serie>/personagens.json` guarda a ficha de cada personagem da série (mesmos campos do guarda-roupa).
+O motor carrega esse arquivo sozinho (da pasta do roteiro ou da pasta acima) e ele **sempre vence** o campo `characters`
+do roteiro e o `custom` dos atores. O verificador avisa quando um roteiro tenta redefinir um personagem travado e quando
+a série não tem `personagens.json`. Chaves que começam com `_` são comentários.

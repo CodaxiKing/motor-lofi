@@ -52,7 +52,12 @@ class Episode:
         self.total = sp.get("total", max(s["end"] for s in self.shots))
         self.voices = {k: os.path.join(self.base, v) for k, v in sp.get("voices", {}).items()}
         self.speakers = {k: {"label": v.get("label"), "color": tuple(v.get("color", (250, 250, 248)))} for k, v in sp.get("speakers", {}).items()}
-        self.custom = sp.get("characters", {})
+        # personagens travados da série: personagens.json na pasta do roteiro (ou na pasta acima) sempre vence
+        self.locked = {}
+        for cand in (os.path.join(self.base, "personagens.json"), os.path.join(os.path.dirname(self.base), "personagens.json")):
+            if os.path.exists(cand):
+                self.locked = {k: v for k, v in json.load(open(cand, encoding="utf-8")).items() if not k.startswith("_")}; break
+        self.custom = {**sp.get("characters", {}), **self.locked}
         self.clips = sp.get("clips", [])
         self.subs = text.split_subs([(s["voice"], s["src"][0], s["src"][1], s["text"]) for s in sp.get("subs", [])], self.to_video)
         self.flashes = sp.get("lightning", [])
@@ -148,7 +153,8 @@ class Episode:
         facing = val(a.get("facing", 1), rel, norm)
         spr, anc = render_char(a["char"], view=view, emotion=emo, pose=pose, t=t * a.get("_limp", 1.0), scale=scale, light=light,
                                walk=bool(walk), run=bool(val(a.get("run", False), rel, norm)), look=val(a.get("look", 0), rel, norm),
-                               facing=facing, custom=a.get("custom") or self.custom.get(a["char"]), seed=a.get("seed"),
+                               facing=facing, custom=({**(a.get("custom") or {}), **self.locked[a["char"]]} if a["char"] in self.locked
+                                                      else (a.get("custom") or self.custom.get(a["char"]))), seed=a.get("seed"),
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
                                pk=c01(pose_dt / 0.32) if pose_prev else 1.0, blink_force=emo_dt < 0.1,
                                sniff=bool(val(a.get("sniff", False), rel, norm)), prop=val(a.get("prop"), rel, norm))
