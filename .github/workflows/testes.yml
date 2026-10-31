@@ -1,0 +1,41 @@
+name: testes
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  motor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependências
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install pillow numpy scipy
+
+      - name: Zips das skills em dia
+        run: python3 tools/empacotar_skills.py --checar
+
+      - name: CATALOGO.md em dia com o código
+        run: |
+          python3 -m lofi.catalogo --md CATALOGO.md
+          git diff --exit-code CATALOGO.md || (echo "::error::rode python3 -m lofi.catalogo --md CATALOGO.md" && exit 1)
+
+      - name: Validador de roteiro
+        run: |
+          python3 tests/validar_roteiro.py tests/fixtures/roteiro_valido.md
+          if python3 tests/validar_roteiro.py tests/fixtures/roteiro_nomes_errados.md; then
+            echo "::error::o validador deveria recusar nomes inexistentes"; exit 1
+          fi
+          for f in series/*/ep*_roteiro.md; do
+            [ -e "$f" ] || continue
+            python3 tests/validar_roteiro.py "$f" || echo "::warning::$f tem erros no validador"
+          done
+
+      - name: Teste de fumaça (quadros, verificador e render do demo4)
+        run: python3 tests/smoke.py --video

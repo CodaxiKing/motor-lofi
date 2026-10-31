@@ -90,7 +90,8 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 ## Uso direto pelo terminal
 
 ```bash
-pip install --break-system-packages pillow numpy scipy soundfile sherpa-onnx   # ffmpeg também é necessário
+pip install --break-system-packages pillow numpy scipy          # obrigatório, + ffmpeg
+pip install --break-system-packages soundfile sherpa-onnx       # opcional (sem eles: scipy no áudio e transcrição só com tempos)
 
 python3 -m lofi.transcribe roberta.mp3 rafa.mp3                # tempo de cada fala (baixa o Whisper na 1ª vez)
 python3 tests/validar_roteiro.py series/dia-zero/ep03_roteiro.md   # confere o roteiro
@@ -102,7 +103,7 @@ python3 -m lofi.extras capa   series/dia-zero/ep03.json
 python3 -m lofi.extras temporada temporada.mp4 "DIA ZERO" ep1.mp4 ep2.mp4 ep3.mp4
 ```
 
-O formato completo do roteiro técnico (planos, câmera, atores, guarda-roupa, sons) está em **[SPEC.md](SPEC.md)**. Exemplos: [`examples/exemplo_roteiro.json`](examples/exemplo_roteiro.json) e [`examples/demo3/demo3.json`](examples/demo3/demo3.json).
+O formato completo do roteiro técnico (planos, câmera, atores, guarda-roupa, sons) está em **[SPEC.md](SPEC.md)**; a lista de todos os nomes aceitos pelo motor está em **[CATALOGO.md](CATALOGO.md)**, gerada do código. Exemplos: [`examples/exemplo_roteiro.json`](examples/exemplo_roteiro.json) e [`examples/demo3/demo3.json`](examples/demo3/demo3.json).
 
 ## Estrutura
 
@@ -119,8 +120,12 @@ lofi/          código do motor
   check.py       verificador de montagem
   extras.py      teaser, capa e temporada
   transcribe.py  transcrição das vozes
+  catalogo.py    lista de nomes aceitos (gera o CATALOGO.md)
+  wavio.py       leitura/escrita de áudio sem dependências extras
 series/        uma pasta por série (bíblia, personagens travados, roteiros)
-skills/        as 5 skills do Claude (SKILL.md + .zip)
+skills/        as 5 skills do Claude (SKILL.md + .zip gerado)
+tools/         empacotar_skills.py (gera os .zip das skills)
+.github/       CI: confere zips, catálogo, validador e verificador a cada push
 tests/         validador de roteiro e casos de teste
 examples/      roteiros de exemplo e imagens
 ```

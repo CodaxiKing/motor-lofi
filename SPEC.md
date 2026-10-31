@@ -2,7 +2,9 @@
 
 Rodar: `python3 -m lofi.render episodio.json` (teste de quadros: `--test 3 12.5`).
 Transcrever vozes: `python3 -m lofi.transcribe roberta.mp3 rafa.mp3` → mostra cada frase com tempo.
-Dependências: `pip install --break-system-packages pillow numpy scipy soundfile sherpa-onnx` + ffmpeg.
+Dependências obrigatórias: `pip install --break-system-packages pillow numpy scipy` + ffmpeg.
+Opcionais: `soundfile` (o motor usa o `scipy` quando ele falta) e `sherpa-onnx` (texto na transcrição; sem ele,
+`lofi.transcribe` entrega só os tempos de cada trecho, e as falas são casadas com o roteiro pela ordem).
 
 ## Campos principais
 ```json
@@ -49,16 +51,11 @@ Valores animáveis (x, y, zoom, emoção, pose, view, walk...): número fixo · 
 `[[t, valor], ...]` (t em segundos desde o início do plano).
 
 ## Biblioteca
-- **Cenários:** apartamento (props: tv), entrada (door 0–1, locks 0–2, dark, under_door_light, feet), corredor (flicker),
-  rua, janela (vista de cima), escada (luz de emergência), telhado, ponte, radio (on, level: "auto" = segue a voz).
-- **Personagens prontos:** roberta, rafa, lia, valter, zombie, soldado. Novos via `characters`
-  (campos: skin, top, top_style [puffer|hoodie|shirt|torn|scrubs|uniform], legs, shoes, hat [beanie|cap|helmet|hood],
-  hair [ponytail|bun|short|long], hair_color, scarf, backpack, glasses, infected, scale).
-- **Vistas:** front, back, side (+ facing 1/-1). **Poses:** idle, point, reach, pull, knock, phone, hold, scared, hands_up,
-  wave, cross, forward, sit, crouch. **Emoções:** neutral, fear, shock, angry, sad, determined, happy, suspicious.
-- **Transições:** cut, whip, flash, fade, zoom, glitch, dip. **Efeitos:** peephole, shake, lightning.
-- **Sons:** beep, stamp, whoosh, step, shuffle, echo_step, door_open, door_close, lock, bang, knock, glass, impact, thunder,
-  no_service, notif, vibe, click, growl, car_alarm, siren, heartbeat(dur), breath(dur), static(dur), crowd(dur).
+A lista completa e sempre atualizada de cenários, personagens prontos, poses, emoções, vistas, sons, transições,
+planos de detalhe e acústicas está em **[CATALOGO.md](CATALOGO.md)**, gerado do código (`python3 -m lofi.catalogo`).
+O validador de roteiro usa esse mesmo catálogo, então um nome que não está lá dá erro antes da montagem.
+- Novos personagens via `characters` (todos os campos na seção "Guarda-roupa" abaixo).
+- Efeitos de plano: `effect: "peephole"`, `shake: [t]`, `lightning` na raiz.
 - Legenda: faixa fixa no terço inferior; desvia sozinha do rosto dos personagens.
 
 ## Recursos v2 (nativos)
@@ -84,19 +81,19 @@ Valores animáveis (x, y, zoom, emoção, pose, view, walk...): número fixo · 
 - Novos cenários: `hospital` (flicker), `mercado` (flicker), `metro` (props: `train` 0–1 = farol chegando).
 
 **Gancho (primeiros 2 s)**: plano com `"hook": {"text": "ELES ESTÃO\nOUVINDO", "y": 820}` antes do título. O título seguinte com `"transition": "glitch"`.
-Render: ~10 s de processamento por segundo de vídeo.
 
 ## Episódios longos (2–3 min)
-- Render em paralelo: `python3 -m lofi.render episodio.json --jobs 2` (≈7 s de processamento por segundo de vídeo; rode em segundo plano).
+- Render em paralelo: `python3 -m lofi.render episodio.json --jobs 2` (rode em segundo plano; velocidade na seção "Velocidade" no fim).
 - Compressão: `"crf": 28` (padrão) deixa ~60–80 MB para 3 min. Use 30 se precisar de arquivo menor.
 
-## Pasta da série (continuidade sem copiar e colar)
-Cada série vive dentro do zip em `series/<nome-da-serie>/`:
-- `biblia.md` — mapa da série, fichas dos personagens (campos do motor), cenários, regras, tabela de episódios
-  (nº, status: planejado/roteiro/montado, pergunta A/B, voto vencedor) e os resumos de cada episódio.
+## Pasta da série (continuidade)
+Cada série vive no repositório em `series/<nome-da-serie>/`:
+- `biblia.md` — mapa da série, regras, cor de cada episódio, tabela de episódios
+  (nº, status: planejado/roteiro/montado, pergunta A/B, voto vencedor e placar) e os resumos de cada episódio.
+- `personagens.json` — fichas travadas (seção "Personagens travados").
 - `epNN_roteiro.md` — roteiro completo do episódio NN (cenas, narração limpa, sons).
-- `epNN.json` — roteiro técnico usado na montagem.
-Os comandos leem e atualizam esses arquivos e devolvem o zip atualizado.
+- `epNN.json` — roteiro técnico usado na montagem. **Um episódio só fica "montado" com o `epNN.json` versionado**:
+  é dele que o próximo episódio tira o "Anteriormente em…".
 
 ## Recursos v3
 **Personagens**
@@ -127,6 +124,10 @@ Os comandos leem e atualizam esses arquivos e devolvem o zip atualizado.
 
 **Anteriormente em…**: `{"type": "recap", "from": "ep02.json", "times": [12, 40, 75], "label": "ANTERIORMENTE EM DIA ZERO", "lines": ["...", "...", "..."]}`
 (usa as cenas do episódio anterior direto do roteiro técnico; 4–6 s).
+Se o `epNN.json` anterior não estiver no repositório, descreva os momentos no próprio plano com `moments`
+(um por frase, mesmos campos de um plano de cena):
+`"moments": [{"scene": "entrada", "actors": [{"char": "roberta", "x": 540, "y": 1650, "view": "back", "emotion": "fear"}]}, ...]`.
+Sem arquivo e sem `moments`, o verificador dá ERRO (o render mostra só as frases sobre chiado de TV).
 
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
@@ -211,3 +212,4 @@ Desligar: `"gestures": false` no ator ou na raiz. Gesto manual: `"gesture": "nod
 Exemplo completo: [`examples/demo4/demo4.json`](examples/demo4/demo4.json).
 
 **Velocidade.** ~3,5 s de processamento por segundo de vídeo com `--jobs 2` (episódio de 3 min ≈ 10–11 min).
+Esse é o único valor de referência; os números de versões antigas (7 s, 10 s) não valem mais.

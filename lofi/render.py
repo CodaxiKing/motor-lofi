@@ -431,16 +431,26 @@ class Episode:
 
     def recap_frame(self, shot, t):
         rel = t - shot["start"]; dur = shot["end"] - shot["start"]
-        path = os.path.join(self.base, shot["from"])
-        if path not in self._recap_cache: self._recap_cache[path] = Episode(path)
-        other = self._recap_cache[path]
-        times = shot.get("times", [5.0]); seg = dur / len(times); i = min(len(times) - 1, int(rel / seg))
-        to = times[i] + (rel - i * seg) * 0.7
-        oshot = next((s for s in other.shots if s["start"] <= to < s["end"] and s.get("type", "scene") == "scene"), None)
-        if oshot is None: img = Image.new("RGB", (W, H), (10, 10, 14))
-        else:
-            other._heads = []; other._beams = []; other._treal = to
-            img = other.scene_frame(oshot, to)
+        path = os.path.join(self.base, shot.get("from", ""))
+        moments = shot.get("moments")  # alternativa sem o arquivo do episódio anterior: [{"scene": ..., "actors": [...]}, ...]
+        n = len(moments) if moments and not os.path.isfile(path) else len(shot.get("times", [5.0]))
+        seg = dur / n; i = min(n - 1, int(rel / seg))
+        if moments and not os.path.isfile(path):
+            m0 = shot["start"] + i * seg
+            mshot = dict(moments[i], start=m0, end=m0 + seg)
+            mshot.setdefault("camera", {"zoom": [1.0, 1.06]})
+            img = self.scene_frame(mshot, t)
+        elif os.path.isfile(path):
+            if path not in self._recap_cache: self._recap_cache[path] = Episode(path)
+            other = self._recap_cache[path]
+            to = shot.get("times", [5.0])[i] + (rel - i * seg) * 0.7
+            oshot = next((s for s in other.shots if s["start"] <= to < s["end"] and s.get("type", "scene") == "scene"), None)
+            if oshot is None: img = Image.new("RGB", (W, H), (10, 10, 14))
+            else:
+                other._heads = []; other._beams = []; other._treal = to
+                img = other.scene_frame(oshot, to)
+        else:  # sem arquivo e sem momentos: fundo de TV com chiado e só as frases
+            img = Image.fromarray(np.random.default_rng(int(t * 30)).integers(10, 60, (H // 4, W // 4, 1), dtype=np.uint8).repeat(3, 2)).resize((W, H))
         img = ImageEnhance.Color(img).enhance(0.3)
         img = fx.apply_camera(img, 1.04 + 0.04 * ((rel - i * seg) / seg))
         d = ImageDraw.Draw(img)

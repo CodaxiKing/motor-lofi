@@ -1,5 +1,5 @@
 # DIA ZERO — O COMEÇO DO FIM
-5 episódios · Suspense · Todas as idades · Cidade, tempos atuais · Duração por episódio: 2 a 3 min
+5 episódios · Suspense · Classificação: todas as idades (sem sangue) · Cidade, tempos atuais · Duração por episódio: 2 a 3 min
 Elemento fixo: contador "DIA X · HH:MM" · Som assinatura: bipe duplo de alerta de emergência · Estilo do traço: desenho
 
 ## Cor de cada episódio (tint)
@@ -28,13 +28,17 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 1. Infectados são cegos e seguem qualquer som · 2. Lentos de dia, rápidos à noite · 3. Sobreviventes: 3 batidas ritmadas · 4. Sem celular desde o Dia 2; só rádio · 5. Ponte fecha às 6h do Dia 5 · 6. Sem cura nesta temporada · 7. Sem sangue
 
 ## Episódios
-| Nº | Dia | Fase | Status | Pergunta | Voto |
-|---|---|---|---|---|---|
-| 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR |
-| 2 | 2 | complicação | montado | A) Escada · B) Telhado | (aguardando) |
-| 3 | 3 | reviravolta | planejado | A) Buscar Lia no hospital · B) Ir direto pra ponte | |
-| 4 | 4 | clímax | planejado | A) Fazer barulho · B) Esperar em silêncio | |
-| 5 | 5 | final | planejado | — | |
+| Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
+|---|---|---|---|---|---|---|
+| 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | — |
+| 2 | 2 | complicação | montado | A) Escada · B) Telhado | (aguardando) | |
+| 3 | 3 | reviravolta | planejado | A) Buscar Lia no hospital · B) Ir direto pra ponte | | |
+| 4 | 4 | clímax | planejado | A) Fazer barulho · B) Esperar em silêncio | | |
+| 5 | 5 | final | planejado | — | | |
+
+> Os arquivos `ep01_roteiro.md`, `ep01.json`, `ep02_roteiro.md` e `ep02.json` não estão no repositório.
+> Se forem encontrados, versione-os nesta pasta. Enquanto isso, o "Anteriormente em…" do ep. 3 usa `moments` montados
+> a partir do resumo do ep. 2 (ver `SPEC.md`).
 
 ## Resumos
 - EP 1: Roberta acordou no Dia 1 com 37 alertas pedindo silêncio. No corredor, o vizinho seu Válter virou a cabeça, com olhos brancos, quando um copo caiu. No rádio, uma voz feminina que Roberta acha familiar disse: "Cheguem à ponte antes do Dia 5. Três batidas." Às 23h40, alguém bateu 3 vezes na porta.

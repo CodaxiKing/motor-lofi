@@ -3,7 +3,7 @@ name: "serie-lofi-interativa"
 description: "Planejar, roteirizar e montar episódios de séries interativas em vídeo vertical (estilo lo-fi, \"escolha o caminho\") com o motor lo-fi do GitHub, a partir das vozes do usuário."
 ---
 
-# Série lo-fi interativa (v6)
+# Série lo-fi interativa (v7)
 
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
@@ -14,10 +14,13 @@ O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempr
 - Cada série vive em `series/<nome-da-serie>/`: `biblia.md` (mapa, regras, cor de cada episódio, tabela de episódios com status e votos, resumos), **`personagens.json`** (fichas travadas), `epNN_roteiro.md`, `epNN.json`.
 - **Continuidade:** `personagens.json` é a fonte única do visual de cada personagem e sempre vence o roteiro. Nunca redefina um personagem travado em `characters` do episódio; para mudar o visual de propósito, edite só esse arquivo.
 - Ao terminar uma etapa: `git add` dos arquivos da série (e do motor, se mudou), commit com mensagem curta em português terminando com as linhas de atribuição da sessão, `git fetch` + `git pull --rebase` e `git push`. Nunca versione áudios, vídeos ou arquivos temporários.
+- **Um episódio só vira "montado" com o `epNN.json` (e o `epNN_roteiro.md`) commitados.** Antes de marcar o status, confira com `git ls-files series/<serie>/`. É desse arquivo que o próximo episódio tira o "Anteriormente em…".
+- Se o `epNN.json` do episódio anterior não estiver no repositório (caso dos eps. 1 e 2 de `dia-zero`), monte o recap com `moments` (ver `SPEC.md`), a partir dos resumos da bíblia, e avise em uma linha.
 - Se o GitHub falhar, avise em uma linha, entregue os arquivos atualizados (bíblia em texto) e siga com o trabalho.
-- Se esta skill ou os comandos forem atualizados, atualize também a cópia em `skills/` no repositório (SKILL.md e .zip de cada uma).
+- Se esta skill ou os comandos forem atualizados, edite o `SKILL.md` em `skills/` e rode `python3 tools/empacotar_skills.py` para regerar os `.zip` (o CI recusa zip desatualizado).
 
 ## Recursos do motor (use sempre que fizer sentido; detalhes em `SPEC.md`)
+Os nomes válidos de cenários, poses, emoções, sons, transições e planos de detalhe estão em **`CATALOGO.md`** (gerado do código). Use só nomes de lá: o validador de roteiro recusa os outros.
 - **Guarda-roupa (qualquer gênero):** tons de pele (palido, claro, medio, moreno, escuro, oliva, verde, azul); roupas `shirt`, `tshirt`, `puffer`, `hoodie`, `sweater`, `leather`, `suit`, `trench`, `labcoat`, `scrubs`, `uniform`, `chef`, `dress`, `torn`; manga curta; calça, shorts, saia com meia-calça; cabelos `short`, `long`, `ponytail`, `bun`, `bob`, `curly`, `afro`, `braids`, `pigtails`, `spiky`, `mohawk`, `bald`; barba, bigode, barba por fazer; chapéus `beanie`, `cap`, `helmet`, `hood`, `fedora`, `cowboy`, `tophat`, `crown`, `witch`, `chef`, `headband`, `bandana_hat`; acessórios `sunglasses`, `eyepatch`, `mask`, `earrings`, `bow`, `headphones`, `necklace`, `badge`, `stethoscope`, `tie`, `bowtie`, `bandana`; capa, óculos, cachecol, mochila; `ghost` (translúcido).
 - **Personagens prontos:** roberta, rafa, lia, valter, soldado, zumbis (zombie, zombie_corredor, zombie_rastejante, zombie_enfermeiro, zombie_policial) e, para outros gêneros, detetive, cientista, estudante, estudante2, executiva, executivo, medica, policial, roqueiro, vovo, vovo2, crianca, bruxa, rainha, chef, cowboy, fantasma, dj, pirata. Qualquer um pode ser ajustado ou criado em `characters`.
 - **Atuação:** boca com formatos de vogal (A, E, O, U, M) lidos da voz, transições de pose com antecipação, troca de emoção com piscada.
@@ -47,10 +50,11 @@ Quando o usuário mandar a ideia, entregue:
 5. Ficha visual de cada personagem (vai para `personagens.json`) com os campos do guarda-roupa (skin, top_style, top, inner, sleeves, bottom, skirt, tights, legs, shoes, hair, hair_color, facial, hat, hat_color, acc, glasses, scarf, backpack, cape, body, ghost, scale), partindo de um personagem pronto quando fizer sentido. Cada personagem com uma silhueta e uma cor de destaque únicas; varie tons de pele, corpos e cabelos no elenco.
 6. Cenários da biblioteca que serão usados — se precisar de um novo, ele será criado no motor
 7. Som assinatura e regras do universo
+8. Classificação: "todas as idades" (padrão: sem sangue, sustos sem violência explícita) ou "14+" (violência leve, sem gore). Registre na primeira linha da bíblia e respeite em todos os roteiros.
 Salve tudo em `series/<nome>/biblia.md` (formato de `series/dia-zero/biblia.md`) e as fichas em `series/<nome>/personagens.json` (formato de `series/dia-zero/personagens.json`) e faça push.
 
 ## 2. Roteiro do episódio
-Use a bíblia e o resultado da votação. Estrutura obrigatória:
+Use a bíblia, a classificação da série e o resultado da votação. Estrutura obrigatória:
 - **CENA 0 · GANCHO (0–2 s):** flash-forward do momento mais forte do episódio + frase curta de impacto em caixa alta (máx. 4 palavras por linha). Sem contador.
 - **ANTERIORMENTE EM… (4–6 s, a partir do episódio 2):** 3 momentos do episódio anterior com uma frase curta cada.
 - **ABERTURA:** "EPISÓDIO X/Y" + carimbo "A MAIORIA ESCOLHEU: ..." (transição glitch).
@@ -64,20 +68,21 @@ Use a bíblia e o resultado da votação. Estrutura obrigatória:
   - LEGENDA em CAIXA ALTA, máx. 4 palavras por pedaço
   - SOM com tempo (nomes do motor: bang, knock, lock, door_open, door_close, step, shuffle, echo_step, glass, impact, thunder, no_service, notif, vibe, click, growl, car_alarm, siren, heartbeat, breath, static, crowd, beep, stamp, whoosh)
 - **FINAL:** pergunta A/B em tela dividida + "CONTINUA NO EPISÓDIO X"; último episódio fecha com "FIM".
+**Nomes do motor entre crases** nas linhas CENÁRIO, PERSONAGENS, PLANO, LUZ E DETALHES e SOM (ex.: CENÁRIO: `escada` · SOM: `bang` 32 s). O validador confere cada um. Modelo de formato: `tests/fixtures/roteiro_valido.md`.
 Regras de linguagem: plano de detalhe antes de um susto ou revelação; close no rosto em revelações; por cima do ombro em diálogos; câmera na mão em perseguições; câmera lenta só no pico; silêncio de 1 s antes dos sustos; pelo menos 1 som por cena. Adapte o tom ao gênero (luz, cor, trilha e ritmo).
 Entregue depois: narração limpa (versão CapCut e versão ElevenLabs v3 com tags em inglês, um bloco por voz), as duas opções e o resumo de 2–3 linhas.
-**Antes de entregar:** salve `epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Corrija até não haver ERRO. Depois faça push.
+**Antes de entregar:** salve `epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Ele confere a estrutura e também se cada cenário, som, pose, emoção e personagem citado existe no motor (ou em `personagens.json`). Corrija até não haver ERRO. Depois faça push.
 
 ## 3. Montagem (quando chegarem as vozes)
 O usuário anexa só os áudios: um por personagem (o nome do arquivo indica o personagem).
-1. Clone/atualize o repositório e instale: `pip install --break-system-packages pillow numpy scipy soundfile sherpa-onnx`.
+1. Clone/atualize o repositório e instale: `pip install --break-system-packages pillow numpy scipy` (obrigatório) e tente `soundfile sherpa-onnx` (opcional; se falhar, siga: o motor usa o scipy e a transcrição entrega só os tempos, que você casa com as falas do roteiro pela ordem).
 2. Copie as vozes para `series/<serie>/epNN/` com o nome do personagem e transcreva: `python3 -m lofi.transcribe ...`. Mapeie cada frase do roteiro aos tempos.
 3. Escreva `series/<serie>/epNN.json` seguindo `SPEC.md` (sem redefinir os personagens travados; inclua `series_title`, `episode`, `episodes_total`, `episode_title`, `tint` do episódio e o plano `recap` apontando para `ep(NN-1).json`).
 4. **Verificador:** `python3 -m lofi.check series/<serie>/epNN.json`. Corrija todos os ERROS e os avisos relevantes.
 5. **Revisor independente:** use a ferramenta Agent (subagent general-purpose) com um prompt autocontido: o caminho de `_revisao.png`, o roteiro do episódio, as fichas visuais dos personagens e a lista do que conferir (rosto coberto pela legenda, personagem cortado ou fora do quadro, roupa diferente da ficha, legenda errada ou fora de hora, cena que não corresponde ao roteiro, texto ilegível, contador encobrindo algo). Ele não viu a montagem e deve devolver uma lista objetiva de problemas com o tempo de cada um. Corrija, rode o verificador de novo e só então renderize.
 6. Renderize em segundo plano com `--jobs 2` (≈3,5 s por segundo de vídeo; episódio de 3 min ≈ 10–11 min). Confira duração, áudio e tamanho (crf 28 padrão; 30 se passar de 90 MB).
 7. **Extras:** `python3 -m lofi.extras teaser ...` (15 s para Stories) e `python3 -m lofi.extras capa ...`.
-8. Envie o MP4, o teaser, a capa e a legenda do post; registre o resumo e o status "montado" na bíblia e faça push.
+8. Envie o MP4, o teaser, a capa e a legenda do post; faça commit do `epNN.json`, registre o resumo e o status "montado" na bíblia e faça push (nessa ordem: sem o `epNN.json` no repositório, o status não muda).
 9. No último episódio, ofereça a compilação da temporada para o YouTube (`python3 -m lofi.extras temporada ...`), pedindo os MP4s dos episódios.
 
 ## 4. Legenda do post

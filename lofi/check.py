@@ -31,7 +31,13 @@ def check(path, frames=True):
         typ = s.get("type", "scene")
         if typ == "scene" and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")
         if typ == "detail" and s.get("subject") not in detail.SUBJECTS: err(f"plano de detalhe inexistente: {s.get('subject')}")
-        if typ == "recap" and not os.path.exists(os.path.join(ep.base, s.get("from", ""))): err(f"recap aponta para arquivo inexistente: {s.get('from')}")
+        if typ == "recap" and not os.path.isfile(os.path.join(ep.base, s.get("from", ""))):
+            if s.get("moments"):
+                warn(f"recap: {s.get('from')} não está no repositório; usando os 'moments' do próprio plano")
+                for m in s["moments"]:
+                    if m.get("scene") not in scenes.REGISTRY: err(f"recap: cenário inexistente nos moments: {m.get('scene')}")
+            else:
+                err(f"recap aponta para arquivo inexistente: {s.get('from')} (versione o epNN.json anterior ou use 'moments')")
         for a in s.get("actors", []) + sum(([s[k]] if False else s.get(k, {}).get("actors", []) for k in ("a", "b")), []):
             if a["char"] not in CHARS and a["char"] not in ep.custom: err(f"personagem desconhecido: {a['char']} ({s['start']}s)")
             for key, allowed in (("pose", POSES), ("emotion", EMOTIONS)):

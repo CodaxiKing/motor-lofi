@@ -10,3 +10,6 @@ _partes.txt
 *.mp4
 *.wav
 *.png
+*.mp3.json
+*.m4a.json
+*.wav.json

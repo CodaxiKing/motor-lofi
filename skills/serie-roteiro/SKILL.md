@@ -11,13 +11,14 @@ Responda em português do Brasil.
 ## Dados
 1. Anexe e clone o repositório (`add_repo`: CodaxiKing / motor-lofi, access push) ou `git pull`; leia `series/*/biblia.md`. Se houver mais de uma série, pergunte qual (AskUserQuestion).
 2. Episódio: o primeiro da tabela com status "planejado".
-3. Pergunte o voto com AskUserQuestion usando as duas opções do episódio anterior registradas na bíblia. Se o usuário já disse o voto, não pergunte. No episódio 1 não há voto.
+3. Pergunte o voto com AskUserQuestion usando as duas opções do episódio anterior registradas na bíblia. Se o usuário já disse o voto, não pergunte. No episódio 1 não há voto. Se o usuário informar o placar (ex.: 62% ou 340x210), registre também.
 
 ## Regras
 - 2 a 3 minutos, 12 a 20 cenas de 6 a 14 s, pelo menos 3 momentos de tensão.
 - Estrutura: gancho (0–2 s) → "Anteriormente em…" (a partir do ep. 2) → abertura com carimbo do voto → consequência da escolha → algo novo e estranho → plano de detalhe + susto → revelação com close → escalada → pergunta A/B → "CONTINUA NO EPISÓDIO X". Último episódio: desfecho conforme os finais e escolhas, "FIM".
 - Use os recursos do motor: vista 3/4, ações (correr, pular, esconder, abrir porta, cair), breu com lanterna, sombras na parede, clima e hora, câmera na mão, vertigo, câmera lenta, cor do episódio.
-- Mantenha as consequências das escolhas anteriores registradas na bíblia.
+- Mantenha as consequências das escolhas anteriores registradas na bíblia e respeite a classificação da série.
+- Use só nomes de cenário, som, pose, emoção e personagem que estão em `CATALOGO.md` ou em `personagens.json`.
 
 ## Entregar
 1. Roteiro completo por cena.

@@ -1,7 +1,8 @@
 
 """Biblioteca de efeitos sonoros sintetizados + mixagem de vozes, efeitos, ambiente e trilha."""
 import subprocess
-import numpy as np, soundfile as sf
+import numpy as np
+from . import wavio as sf
 from scipy.signal import butter, sosfilt
 
 SR = 44100

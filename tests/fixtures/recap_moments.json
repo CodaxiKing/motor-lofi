@@ -1,0 +1,55 @@
+{
+ "out": "_recap_moments.mp4",
+ "fps": 30,
+ "total": 12,
+ "voices": {},
+ "subs": [],
+ "clips": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 6,
+   "type": "recap",
+   "from": "ep02.json",
+   "label": "ANTERIORMENTE EM DIA ZERO",
+   "lines": [
+    "ROBERTA ESPIOU",
+    "RAFA ENTROU"
+   ],
+   "moments": [
+    {
+     "scene": "entrada",
+     "actors": [
+      {
+       "char": "roberta",
+       "x": 540,
+       "y": 1650,
+       "view": "back",
+       "emotion": "fear"
+      }
+     ]
+    },
+    {
+     "scene": "apartamento",
+     "actors": [
+      {
+       "char": "rafa",
+       "x": 540,
+       "y": 1650,
+       "emotion": "suspicious"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "start": 6,
+   "end": 12,
+   "type": "recap",
+   "from": "nada.json",
+   "lines": [
+    "SÓ TEXTO"
+   ]
+  }
+ ]
+}
