@@ -15,7 +15,7 @@ O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempr
 - **Continuidade:** `personagens.json` é a fonte única do visual de cada personagem e sempre vence o roteiro. Nunca redefina um personagem travado em `characters` do episódio; para mudar o visual de propósito, edite só esse arquivo.
 - Ao terminar uma etapa: `git add` dos arquivos da série (e do motor, se mudou), commit com mensagem curta em português terminando com as linhas de atribuição da sessão, `git fetch` + `git pull --rebase` e `git push`. Nunca versione áudios, vídeos ou arquivos temporários.
 - **Um episódio só vira "montado" com o `epNN.json` (e o `epNN_roteiro.md`) commitados.** Antes de marcar o status, confira com `git ls-files series/<serie>/`. É desse arquivo que o próximo episódio tira o "Anteriormente em…".
-- Se o `epNN.json` do episódio anterior não estiver no repositório (caso dos eps. 1 e 2 de `dia-zero`), monte o recap com `moments` (ver `SPEC.md`), a partir dos resumos da bíblia, e avise em uma linha.
+- Se o `epNN.json` do episódio anterior não estiver no repositório, monte o recap com `moments` (ver `SPEC.md`), a partir dos resumos da bíblia, e avise em uma linha. Episódios antigos reconstruídos têm `"legado": true` e servem normalmente de base para o recap (ex.: `dia-zero/ep02.json`; os tempos sugeridos estão na bíblia).
 - Se o GitHub falhar, avise em uma linha, entregue os arquivos atualizados (bíblia em texto) e siga com o trabalho.
 - Se esta skill ou os comandos forem atualizados, edite o `SKILL.md` em `skills/` e rode `python3 tools/empacotar_skills.py` para regerar os `.zip` (o CI recusa zip desatualizado).
 
