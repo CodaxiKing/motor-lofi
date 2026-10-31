@@ -36,9 +36,9 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 | 4 | 4 | clímax | planejado | A) Fazer barulho · B) Esperar em silêncio | | |
 | 5 | 5 | final | planejado | — | | |
 
-> Os arquivos `ep01_roteiro.md`, `ep01.json`, `ep02_roteiro.md` e `ep02.json` não estão no repositório.
-> Se forem encontrados, versione-os nesta pasta. Enquanto isso, o "Anteriormente em…" do ep. 3 usa `moments` montados
-> a partir do resumo do ep. 2 (ver `SPEC.md`).
+> Eps. 1 e 2 foram publicados na versão antiga do motor (~1 min cada). Os roteiros e os `epNN.json` desta pasta foram
+> reconstruídos a partir dos vídeos publicados (marcados como `legado`). Para o "Anteriormente em…" do ep. 3, use
+> `"from": "ep02.json", "times": [7, 25, 37]` (Rafa no olho mágico · Rafa e Roberta no apartamento · rua cheia no Dia 2).
 
 ## Resumos
 - EP 1: Roberta acordou no Dia 1 com 37 alertas pedindo silêncio. No corredor, o vizinho seu Válter virou a cabeça, com olhos brancos, quando um copo caiu. No rádio, uma voz feminina que Roberta acha familiar disse: "Cheguem à ponte antes do Dia 5. Três batidas." Às 23h40, alguém bateu 3 vezes na porta.

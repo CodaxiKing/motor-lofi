@@ -16,17 +16,20 @@ def check(path, frames=True):
     ep = Episode(path); sp = ep.spec; probs = []
     def err(m): probs.append(("ERRO", m))
     def warn(m): probs.append(("AVISO", m))
+    legado = sp.get("legado", False)  # episódio antigo reconstruído: regras de formato atuais viram só informação
+    def regra(m): probs.append(("INFO" if legado else "ERRO", m + (" (episódio legado)" if legado else "")))
+    def regra_aviso(m): probs.append(("INFO" if legado else "AVISO", m + (" (episódio legado)" if legado else "")))
     shots = ep.shots
     # ---------- estrutura ----------
-    if not (115 <= ep.total <= 185): warn(f"duração {ep.total:.0f}s fora do padrão de 2–3 min")
-    if not any(s.get("hook") and s["start"] < 0.5 for s in shots): err("falta o gancho (plano com 'hook' no início)")
+    if not (115 <= ep.total <= 185): regra_aviso(f"duração {ep.total:.0f}s fora do padrão de 2–3 min")
+    if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
     if not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
     final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
     if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
     for a, b in zip(shots, shots[1:]):
         if abs(a["end"] - b["start"]) > 0.05: err(f"buraco/sobreposição entre planos em {a['end']:.2f}s e {b['start']:.2f}s")
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
-    if n_scene < 12: warn(f"só {n_scene} cenas (padrão 12–20)")
+    if n_scene < 12: regra_aviso(f"só {n_scene} cenas (padrão 12–20)")
     for s in shots:
         typ = s.get("type", "scene")
         if typ == "scene" and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")

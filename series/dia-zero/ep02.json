@@ -1,0 +1,415 @@
+{
+ "_nota": "Reconstruído em 31/10/2026 a partir do vídeo publicado (versão antiga do motor), no motor atual e sem as vozes. Serve para o 'Anteriormente em…' e para a compilação da temporada; os tempos seguem o vídeo original.",
+ "legado": true,
+ "out": "ep02.mp4",
+ "fps": 30,
+ "total": 60.5,
+ "voices": {},
+ "series_title": "DIA ZERO",
+ "episode": 2,
+ "episodes_total": 5,
+ "episode_title": "TRÊS BATIDAS",
+ "tint": [
+  140,
+  150,
+  170,
+  0.1
+ ],
+ "style": "desenho",
+ "hud": {
+  "place": "APTO 904",
+  "days": [
+   [
+    0,
+    "DIA 1",
+    "23:40"
+   ],
+   [
+    33.0,
+    "DIA 2",
+    "06:00"
+   ]
+  ],
+  "sec_per_min": 8
+ },
+ "shots": [
+  {
+   "start": 0,
+   "end": 4,
+   "type": "title",
+   "title": "EPISÓDIO 2/5",
+   "subtitle": "DIA ZERO",
+   "stamp": {
+    "t": 1.8,
+    "top": "A MAIORIA ESCOLHEU",
+    "word": "ESPIAR"
+   }
+  },
+  {
+   "start": 4,
+   "end": 11,
+   "scene": "corredor",
+   "transition": "glitch",
+   "effect": "peephole",
+   "props": {
+    "flicker": true
+   },
+   "actors": [
+    {
+     "char": "rafa",
+     "x": 500,
+     "y": 1300,
+     "scale": 0.75,
+     "view": "front",
+     "emotion": "fear",
+     "pose": "scared"
+    },
+    {
+     "char": "valter",
+     "x": 600,
+     "y": 1150,
+     "scale": 0.45,
+     "view": "front",
+     "enter": 3.5,
+     "sniff": true
+    }
+   ]
+  },
+  {
+   "start": 11,
+   "end": 19,
+   "scene": "entrada",
+   "transition": "cut",
+   "props": {
+    "door": [
+     [
+      0,
+      1
+     ],
+     [
+      1.6,
+      0
+     ]
+    ],
+    "locks": [
+     [
+      1.6,
+      0
+     ],
+     [
+      2.2,
+      2
+     ]
+    ]
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 600,
+     "y": 1720,
+     "view": "3q",
+     "facing": -1,
+     "pose": [
+      [
+       0,
+       "pull"
+      ],
+      [
+       1.6,
+       "idle"
+      ]
+     ],
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       2,
+       "sad"
+      ]
+     ]
+    },
+    {
+     "char": "rafa",
+     "x": [
+      700,
+      300
+     ],
+     "y": 1680,
+     "view": "3q",
+     "facing": -1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.5,
+       false
+      ]
+     ],
+     "emotion": "panting"
+    }
+   ]
+  },
+  {
+   "start": 19,
+   "end": 28,
+   "scene": "apartamento",
+   "transition": "cut",
+   "props": {
+    "tv": "static"
+   },
+   "actors": [
+    {
+     "char": "rafa",
+     "x": 260,
+     "y": 1680,
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "angry"
+      ],
+      [
+       5,
+       "determined"
+      ]
+     ],
+     "pose": [
+      [
+       0,
+       "cross"
+      ],
+      [
+       5.5,
+       "point"
+      ]
+     ]
+    },
+    {
+     "char": "roberta",
+     "x": 680,
+     "y": 1700,
+     "view": "3q",
+     "facing": -1,
+     "emotion": [
+      [
+       0,
+       "sad"
+      ],
+      [
+       4,
+       "fear"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 28,
+   "end": 33,
+   "scene": "corredor",
+   "transition": "cut",
+   "effect": "peephole",
+   "props": {
+    "flicker": true
+   },
+   "actors": [
+    {
+     "char": "valter",
+     "x": [
+      540,
+      560
+     ],
+     "y": [
+      1250,
+      1120
+     ],
+     "scale": [
+      0.6,
+      0.4
+     ],
+     "view": "back",
+     "walk": true
+    }
+   ]
+  },
+  {
+   "start": 33,
+   "end": 41,
+   "scene": "janela",
+   "transition": "whip",
+   "time": "amanhecer",
+   "rain": "fraca",
+   "crowd": {
+    "count": 14,
+    "area": [
+     60,
+     1200,
+     1020,
+     1500
+    ],
+    "dir": 0,
+    "speed": 20,
+    "seed": 2
+   },
+   "overlay": [
+    {
+     "type": "phone",
+     "text": [
+      "SEM",
+      "SERVIÇO"
+     ],
+     "t": [
+      35,
+      38
+     ]
+    }
+   ],
+   "actors": []
+  },
+  {
+   "start": 41,
+   "end": 47,
+   "scene": "radio",
+   "transition": "cut",
+   "props": {
+    "on": 1,
+    "level": 0.7
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 300,
+     "y": 1720,
+     "view": "3q",
+     "facing": 1,
+     "pose": "hold",
+     "emotion": "determined"
+    }
+   ]
+  },
+  {
+   "start": 47,
+   "end": 50,
+   "scene": "escada",
+   "transition": "cut",
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 470,
+     "y": 1600,
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear",
+     "flashlight": 20
+    },
+    {
+     "char": "rafa",
+     "x": 600,
+     "y": 1620,
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 50,
+   "end": 53,
+   "scene": "telhado",
+   "transition": "cut",
+   "rain": "forte",
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 470,
+     "y": 1650,
+     "view": "front",
+     "emotion": "determined"
+    },
+    {
+     "char": "rafa",
+     "x": 610,
+     "y": 1660,
+     "view": "front",
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 53,
+   "end": 60.5,
+   "type": "choice",
+   "transition": "zoom",
+   "a": {
+    "label": "ESCADA",
+    "scene": "escada",
+    "actors": [
+     {
+      "char": "roberta",
+      "x": 540,
+      "y": 1600,
+      "emotion": "fear"
+     }
+    ],
+    "crop_x": 270
+   },
+   "b": {
+    "label": "TELHADO",
+    "scene": "telhado",
+    "actors": [
+     {
+      "char": "roberta",
+      "x": 540,
+      "y": 1650,
+      "emotion": "determined"
+     }
+    ],
+    "crop_x": 270
+   },
+   "end_card": {
+    "t": 58.5,
+    "text": "CONTINUA NO EPISÓDIO 3"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 2.8,
+   "name": "stamp"
+  },
+  {
+   "t": 11.2,
+   "name": "door_close"
+  },
+  {
+   "t": 12.6,
+   "name": "lock"
+  },
+  {
+   "t": 15.5,
+   "name": "bang"
+  },
+  {
+   "t": 16.4,
+   "name": "bang"
+  },
+  {
+   "t": 33.2,
+   "name": "whoosh"
+  },
+  {
+   "t": 35,
+   "name": "no_service"
+  },
+  {
+   "t": 41,
+   "name": "static",
+   "dur": 1.0
+  }
+ ]
+}

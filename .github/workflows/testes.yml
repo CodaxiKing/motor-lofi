@@ -34,6 +34,7 @@ jobs:
           fi
           for f in series/*/ep*_roteiro.md; do
             [ -e "$f" ] || continue
+            grep -q "Registro reconstruído" "$f" && continue   # episódios legados, formato antigo
             python3 tests/validar_roteiro.py "$f" || echo "::warning::$f tem erros no validador"
           done
 

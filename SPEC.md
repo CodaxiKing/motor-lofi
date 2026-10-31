@@ -129,6 +129,9 @@ Se o `epNN.json` anterior não estiver no repositório, descreva os momentos no 
 `"moments": [{"scene": "entrada", "actors": [{"char": "roberta", "x": 540, "y": 1650, "view": "back", "emotion": "fear"}]}, ...]`.
 Sem arquivo e sem `moments`, o verificador dá ERRO (o render mostra só as frases sobre chiado de TV).
 
+**Episódio legado**: `"legado": true` na raiz marca um roteiro técnico reconstruído de um episódio publicado num formato
+antigo. O verificador passa a tratar as regras de formato atuais (gancho, 12–20 cenas, 2–3 min) como informação.
+
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.
