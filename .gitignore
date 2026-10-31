@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+_*.png
+_*.wav
+_*.mp4
+_partes.txt
+*.44.wav
+*.16k.wav
+*.mp3
+*.mp4
+*.wav
