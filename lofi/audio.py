@@ -156,6 +156,67 @@ def load_voice(path):
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", path, "-ar", str(SR), "-ac", "1", tmp], check=True)
     x, _ = sf.read(tmp); return x
 
+# ------------------- acústica por ambiente -------------------
+ACOUSTICS = {
+    "grande":  dict(decay=1.25, length=2.6, wet=0.34, pre=0.035, lp=5200),   # escada, igreja, esgoto, metrô
+    "media":   dict(decay=0.45, length=1.1, wet=0.22, pre=0.015, lp=6500),   # corredor, hospital, escola, mercado
+    "sala":    dict(decay=0.16, length=0.45, wet=0.12, pre=0.006, lp=7000),  # apartamento, entrada
+}
+_IR = {}
+def _ir(kind):
+    if kind not in _IR:
+        a = ACOUSTICS[kind]; r = np.random.default_rng(11)
+        n = int(a["length"] * SR); t = np.arange(n) / SR
+        ir = r.standard_normal(n) * np.exp(-t / a["decay"] * 3)
+        ir = lp(ir, a["lp"], 2)
+        pre = int(a["pre"] * SR); ir = np.concatenate([np.zeros(pre), ir])
+        for k, g in enumerate([0.5, 0.35, 0.25]):     # primeiras reflexões
+            i = pre + int((0.011 + 0.017 * k) * SR * (2 if kind == "grande" else 1))
+            if i < len(ir): ir[i] += g * 6
+        _IR[kind] = ir / (np.sqrt(np.sum(ir ** 2)) + 1e-9)
+    return _IR[kind]
+
+def acoustic(seg, kind):
+    """Aplica o som do lugar na voz: eco (grande/media/sala) ou 'abafado' (dentro do carro)."""
+    if not kind or kind == "aberto": return seg
+    if kind == "abafado":
+        out = lp(seg, 1700, 4) * 1.3 + bp(seg, 120, 400, 2) * 0.5
+        return np.concatenate([out, np.zeros(int(0.05 * SR))])
+    from scipy.signal import fftconvolve
+    wet = fftconvolve(seg, _ir(kind))[: len(seg) + len(_ir(kind))]
+    dry = np.concatenate([seg, np.zeros(len(wet) - len(seg))])
+    a = ACOUSTICS[kind]["wet"]
+    return dry * (1 - a * 0.4) + wet * a * 1.6
+
+VIS = {"rest": 0, "M": 1, "A": 2, "E": 3, "O": 4, "U": 5}
+def visemes(buf, step):
+    """Formato de boca por quadro a partir do espectro da voz: 0 repouso, 1 M (fechada), 2 A, 3 E, 4 O, 5 U.
+    Os limites são relativos a cada voz (percentis), então funciona com vozes graves e agudas."""
+    n = len(buf) // step
+    out = np.zeros(n, dtype=np.int8)
+    if n == 0: return out
+    win = 2048; freqs = np.fft.rfftfreq(win, 1 / SR); hann = np.hanning(win)
+    lvl = np.array([np.sqrt(np.mean(buf[i * step: i * step + step] ** 2)) for i in range(n)])
+    if not np.any(lvl > 1e-4): return out
+    lv = lvl / (np.percentile(lvl[lvl > 1e-4], 90) + 1e-9)
+    talk = np.where(lv >= 0.22)[0]
+    feats = {}
+    for i in talk:
+        a = max(0, i * step + step // 2 - win // 2); seg = buf[a: a + win]
+        if len(seg) < win: seg = np.pad(seg, (0, win - len(seg)))
+        sp = np.abs(np.fft.rfft(seg * hann)) ** 2; tot = sp.sum() + 1e-12
+        feats[i] = (sp[(freqs > 650) & (freqs < 1500)].sum() / tot, sp[freqs > 2200].sum() / tot)
+    if feats:
+        mids = np.array([f[0] for f in feats.values()]); highs = np.array([f[1] for f in feats.values()])
+        m_cut, h_cut = np.percentile(mids, 55), np.percentile(highs, 78)
+        for i, (m, h) in feats.items():
+            out[i] = 3 if h >= h_cut else 2 if m >= m_cut else (4 if lv[i] > 0.6 else 5)
+    for i in range(n):   # M: lábios fecham na passagem fala -> silêncio e nos vales curtos
+        if out[i] == 0 and lv[i] >= 0.06: out[i] = 1
+    sm = out.copy()
+    for i in range(1, n - 1): sm[i] = sorted((out[i - 1], out[i], out[i + 1]))[1]
+    return sm
+
 def radio_filter(seg):
     seg = bp(seg, 350, 3200, 6); seg = np.tanh(seg * 4) / 2.0
     return seg + bp(noise(len(seg) / SR), 800, 5000) * 0.02
@@ -175,9 +236,10 @@ def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30):
         seg = fadeio(x[int(a * SR): int(b * SR)])
         act = seg[np.abs(seg) > 0.005]
         if len(act): seg = seg * min(3.0, 0.09 / (np.sqrt(np.mean(act ** 2)) + 1e-9))
+        PV.setdefault(c["voice"], np.zeros(N)); add(PV[c["voice"]], seg, c["at"])   # voz seca: boca não segue o eco
         if c.get("radio"): seg = radio_filter(seg) * 1.6
+        if c.get("acoustic"): seg = acoustic(seg, c["acoustic"])
         add(V, seg * c.get("gain", 1.0), c["at"])
-        PV.setdefault(c["voice"], np.zeros(N)); add(PV[c["voice"]], seg, c["at"])
     for e in sfx:
         fn = SFX[e["name"]]
         sig = fn(e["dur"]) if e["name"] in DURATION_SFX and "dur" in e else fn()
@@ -197,6 +259,7 @@ def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30):
     sf.write(out_path, out, SR)
     step = SR // fps
     env_ = {"_all": lp(np.abs(V), 12, 2)[::step]}
+    for v, buf in PV.items(): env_["_vis_" + v] = visemes(buf, step)
     for v, buf in PV.items():
         e = lp(np.abs(buf), 14, 2)[::step]; mx = np.percentile(e[e > 1e-4], 95) if np.any(e > 1e-4) else 1
         env_[v] = np.clip(e / (mx + 1e-9), 0, 1.2)

@@ -3,7 +3,7 @@
 import math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
-from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp
+from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, fast_blur, crop_zoom
 
 # ---------- chuva ----------
 def _rain_tex(n, lmin, lmax, amin, amax, width, seed):
@@ -130,12 +130,12 @@ def shake_offset(t, times, amp=16, dur=0.35):
             dx += math.sin(dt * 95) * amp * k; dy += math.cos(dt * 77) * amp * 0.6 * k
     return dx, dy
 def apply_camera(img, zoom=1.0, cx=0.5, cy=0.5, dx=0, dy=0, rot=0.0):
-    if zoom == 1.0 and dx == 0 and dy == 0 and rot == 0: return img
-    if rot: img = img.rotate(rot, resample=Image.BILINEAR)
+    if zoom == 1.0 and dx == 0 and dy == 0: return img
+    zoom = max(zoom, 1.02) if (dx or dy) else zoom
     cw, ch = W / zoom, H / zoom
     x0 = (W - cw) * cx - dx; y0 = (H - ch) * cy - dy
-    x0 = max(-40, min(W - cw + 40, x0)); y0 = max(-40, min(H - ch + 40, y0))
-    return img.transform((W, H), Image.EXTENT, (x0, y0, x0 + cw, y0 + ch), Image.BILINEAR)
+    x0 = max(0, min(W - cw, x0)); y0 = max(0, min(H - ch, y0))
+    return crop_zoom(img, x0, y0, x0 + cw, y0 + ch)
 
 # ---------- transições ----------
 def motion_blur_h(img, amount):
@@ -203,9 +203,12 @@ def handheld(t, amp=10.0):
     dy = (math.sin(t * 1.7 + 0.4) + 0.5 * math.sin(t * 3.7 + 2.0)) * amp * 0.4
     return dx, dy, math.sin(t * 1.1) * amp * 0.03
 
+_BLOOM_LUT = {}
 def bloom(img, threshold=170, strength=0.6, radius=18):
-    br = img.point(lambda v: int(max(0, v - threshold) * 255 / max(1, 255 - threshold) * strength))
-    return ImageChops.add(img, br.filter(ImageFilter.GaussianBlur(radius)))
+    key = (threshold, strength)
+    if key not in _BLOOM_LUT: _BLOOM_LUT[key] = [int(max(0, v - threshold) * 255 / max(1, 255 - threshold) * strength) for v in range(256)] * 3
+    small = img.resize((W // 4, H // 4), Image.BILINEAR).point(_BLOOM_LUT[key]).filter(ImageFilter.GaussianBlur(radius / 4))
+    return ImageChops.add(img, small.resize((W, H), Image.BILINEAR))
 
 def chromatic(img, amount=8):
     r, g, b = img.split()
@@ -241,20 +244,33 @@ def _paper():
     m = ImageChops.add(big.point(lambda v: v // 2), fine.point(lambda v: v // 2))
     return m.filter(ImageFilter.GaussianBlur(0.6))
 PAPER = None
+_PAPER_LAYERS = {}
 def hand_drawn(img, strength=1.0):
     """Textura de papel + traço de nanquim leve nas bordas (cara de desenhado à mão)."""
     global PAPER
-    if PAPER is None: PAPER = _paper()
-    g = img.convert("L").filter(ImageFilter.FIND_EDGES).point(lambda v: 255 if v > 38 else 0).filter(ImageFilter.GaussianBlur(0.7))
-    img.paste((12, 10, 16), (0, 0), g.point(lambda v: int(v * 0.32 * strength)))
-    shade = PAPER.point(lambda v: int(abs(v - 128) * 0.45 * strength))
-    img.paste((230, 220, 200), (0, 0), shade.point(lambda v: v // 3))
-    img.paste((0, 0, 0), (0, 0), shade.point(lambda v: v // 4))
+    if strength not in _PAPER_LAYERS:
+        if PAPER is None: PAPER = _paper()
+        shade = PAPER.point(lambda v: int(abs(v - 128) * 0.45 * strength))
+        light = shade.point(lambda v: v // 3); dark = shade.point(lambda v: v // 4)
+        lay = Image.new("RGB", (W, H), (230, 220, 200)); lay2 = Image.new("RGB", (W, H), (0, 0, 0))
+        _PAPER_LAYERS[strength] = (lay, light, lay2, dark)
+    half = img.convert("L").resize((W // 2, H // 2), Image.BILINEAR)
+    g = half.filter(ImageFilter.FIND_EDGES).point(lambda v: int(82 * strength) if v > 30 else 0).resize((W, H), Image.BILINEAR)
+    img.paste((12, 10, 16), (0, 0), g)
+    lay, light, lay2, dark = _PAPER_LAYERS[strength]
+    img.paste(lay, (0, 0), light); img.paste(lay2, (0, 0), dark)
     return img
 
+_TINT = {}
 def tint(img, color, amount):
     if amount <= 0: return img
-    return Image.blend(img, ImageChops.multiply(img, Image.new("RGB", img.size, tuple(color))).point(lambda v: min(255, int(v * 1.5))), amount)
+    key = (tuple(color), round(amount, 3))
+    if key not in _TINT:
+        lut = []
+        for c in color[:3]:
+            lut += [int(min(255, v * (1 - amount) + min(255, v * c / 255 * 1.5) * amount)) for v in range(256)]
+        _TINT[key] = lut
+    return img.point(_TINT[key])
 
 TIMES = {"noite": None, "dia": ((255, 250, 235), 0.22, 1.18), "entardecer": ((255, 150, 90), 0.28, 1.05),
          "amanhecer": ((255, 200, 180), 0.22, 1.08), "madrugada": ((90, 110, 200), 0.3, 0.8)}
@@ -287,6 +303,6 @@ def darkness(img, amount, beams=(), circles=(), soft=40, soft_circles=()):
         d.ellipse([x - r, y - r, x + r, y + r], fill=255)
     for (x, y, r) in soft_circles:
         d.ellipse([x - r, y - r, x + r, y + r], fill=110)
-    m = m.filter(ImageFilter.GaussianBlur(soft))
+    m = fast_blur(m, soft)
     dark = Image.blend(img, Image.new("RGB", img.size, (2, 3, 8)), amount)
     return Image.composite(img, dark, m)

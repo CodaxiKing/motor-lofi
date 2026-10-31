@@ -1,0 +1,28 @@
+{
+  "out": "demo4.mp4", "fps": 30, "total": 14.0, "crf": 28,
+  "series_title": "DIA ZERO", "episode": 0, "episodes_total": 5, "episode_title": "Atuação",
+  "voices": {"roberta": "../demo3/roberta.mp3", "rafa": "../demo3/rafa.mp3"},
+  "speakers": {"rafa": {"label": "RAFA", "color": [190, 240, 190]}},
+  "hud": {"place": "ESCADA B", "days": [[0, "DIA 3", "23:10"]]},
+  "clips": [{"voice": "rafa", "src": [0.0, 1.7], "at": 0.6}, {"voice": "roberta", "src": [14.35, 15.98], "at": 3.6},
+            {"voice": "roberta", "src": [20.4, 22.8], "at": 7.4}, {"voice": "rafa", "src": [2.15, 3.08], "at": 11.0}],
+  "subs": [{"voice": "rafa", "src": [0.0, 1.51], "text": ["POR QUE", "VOCÊ DEMOROU?"]},
+           {"voice": "roberta", "src": [14.44, 15.88], "text": ["EU NÃO SABIA", "SE ERA GENTE."]},
+           {"voice": "roberta", "src": [20.48, 22.7], "text": ["ELES NÃO ENXERGAM...", "SEGUEM O SOM."]}],
+  "shots": [
+    {"start": 0, "end": 3.4, "scene": "escada", "camera": {"zoom": 1.15},
+     "actors": [{"char": "rafa", "x": 380, "y": 1650, "view": "3q", "facing": 1},
+                {"char": "roberta", "x": 700, "y": 1650, "view": "3q", "facing": -1, "emotion": "sad"}]},
+    {"start": 3.4, "end": 7.2, "scene": "escada", "camera": {"close": 0},
+     "actors": [{"char": "roberta", "x": 540, "y": 1700, "view": "front"}]},
+    {"start": 7.2, "end": 10.6, "scene": "corredor", "camera": {"x": [30, -30]},
+     "actors": [{"char": "roberta", "x": [200, 460], "y": 1700, "view": "side", "facing": 1, "walk": true, "hold": "rafa"},
+                {"char": "rafa", "x": [380, 640], "y": 1700, "view": "side", "facing": 1, "walk": true}]},
+    {"start": 10.6, "end": 12.4, "scene": "igreja",
+     "actors": [{"char": "roberta", "x": 470, "y": 1700, "view": "3q", "facing": 1, "pose": "hug"},
+                {"char": "rafa", "x": 610, "y": 1700, "view": "3q", "facing": -1, "pose": "hug"}]},
+    {"start": 12.4, "end": 14.0, "scene": "rua", "rain": "fraca",
+     "actors": [{"char": "rafa", "x": [300, 600], "y": 1700, "view": "side", "facing": 1, "walk": true, "pose": "carry"},
+                {"char": "roberta", "carried_by": "rafa", "emotion": "panting"}]}
+  ]
+}

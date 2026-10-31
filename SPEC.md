@@ -167,3 +167,47 @@ e use `"char": "marina"` nos atores.
 O motor carrega esse arquivo sozinho (da pasta do roteiro ou da pasta acima) e ele **sempre vence** o campo `characters`
 do roteiro e o `custom` dos atores. O verificador avisa quando um roteiro tenta redefinir um personagem travado e quando
 a série não tem `personagens.json`. Chaves que começam com `_` são comentários.
+
+## Atuação e som (v5)
+
+**Eco por ambiente (automático).** Cada fala recebe a acústica do cenário do plano em que ela começa:
+
+| Acústica | Cenários | Efeito |
+|---|---|---|
+| `grande` | escada, igreja, esgoto, metrô | reverberação longa |
+| `media` | corredor, hospital, escola, mercado, delegacia | eco curto |
+| `sala` | apartamento, entrada, rádio | ambiente leve |
+| `abafado` | carro | voz fechada, sem agudos |
+| `aberto` | rua, telhado, ponte, floresta… | seca |
+
+Para trocar: `"acoustic": "grande"` no plano ou no clipe (`null` desliga só ali). `"acoustics": false` na raiz desliga tudo.
+A boca segue a voz seca, então o eco não deixa o personagem "falando" depois da frase.
+
+**Boca com vogais (automático).** O motor lê o espectro de cada voz e escolhe o formato da boca quadro a quadro:
+A (aberta), E (larga, com dentes), O (redonda), U (biquinho), M (lábios fechados) e repouso. Os limites se ajustam a cada voz.
+
+**Gestos ligados à fala (automático).** Quando o ator está em `idle` e a palavra da legenda é dita:
+
+| Palavras | Gesto |
+|---|---|
+| ali, lá, olha, aquele, aquela, aquilo, veja | aponta |
+| eu, meu, minha, mim, comigo, juro | mão no peito |
+| sim, isso, claro, certo | acena com a cabeça |
+| não, nunca, jamais, nada | balança a cabeça |
+| desculpa, perdão, sinto, morreu, sozinha | cabeça baixa e rosto triste |
+
+Desligar: `"gestures": false` no ator ou na raiz. Gesto manual: `"gesture": "nod" | "shake" | "down"` (aceita keyframes).
+
+**Interações entre personagens**
+
+| Campo / pose | O que faz |
+|---|---|
+| `"hold": "rafa"` | os dois andam de mãos dadas (poses e mãos unidas automáticas) |
+| `"carried_by": "rafa"` | o ator vai no colo de Rafa (posição, rotação e sombra automáticas); use `"pose": "carry"` em quem carrega |
+| `"pose": "hug"` | abraço — ponha os dois em `view: "3q"`, virados um para o outro, a ~140 px |
+| `"pose": "push"` | empurrar |
+| `"pose": "chest"` / `"hand_r"` / `"hand_l"` / `"reach_l"` | mão no peito, mão estendida para a direita/esquerda |
+
+Exemplo completo: [`examples/demo4/demo4.json`](examples/demo4/demo4.json).
+
+**Velocidade.** ~3,5 s de processamento por segundo de vídeo com `--jobs 2` (episódio de 3 min ≈ 10–11 min).

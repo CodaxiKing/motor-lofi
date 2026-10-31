@@ -2,7 +2,7 @@
 """Partículas e luzes práticas: poeira no ar, respingos nos personagens, bafo de frio, feixe de lanterna."""
 import math, random
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
-from .core import W, H
+from .core import W, H, fast_blur
 
 def dust(img, t, box=(0, 0, W, H), n=60, col=(255, 236, 200), seed=3, alpha=150):
     """Poeira flutuando (fica bonita dentro de feixes de luz)."""
@@ -37,7 +37,7 @@ def breath_fog(img, t, mouth_xy, facing=1, period=2.6, seed=0, strength=1.0):
         cx = x + facing * (10 + 70 * kk) + math.sin(t * 3 + j) * 6; cy = y - 10 - 50 * kk
         r = 8 + 34 * kk
         d.ellipse([cx - r, cy - r * 0.7, cx + r, cy + r * 0.7], fill=int(170 * (1 - kk) * strength))
-    img.paste((225, 232, 245), (0, 0), lay.filter(ImageFilter.GaussianBlur(10)))
+    img.paste((225, 232, 245), (0, 0), fast_blur(lay, 10))
 
 def flashlight(img, t, origin, angle_deg, length=900, spread=22, color=(255, 240, 200), alpha=150, flicker=True):
     """Feixe de lanterna (cone de luz aditivo) com poeira dentro. angle 0 = para a direita, 90 = para baixo."""
@@ -48,7 +48,7 @@ def flashlight(img, t, origin, angle_deg, length=900, spread=22, color=(255, 240
     m = Image.new("L", img.size, 0); md = ImageDraw.Draw(m)
     md.polygon([origin, p1, p2], fill=int(alpha * f))
     md.ellipse([ox - 18, oy - 18, ox + 18, oy + 18], fill=230)
-    m = m.filter(ImageFilter.GaussianBlur(24))
+    m = fast_blur(m, 24)
     out = ImageChops.add(img, Image.composite(Image.new("RGB", img.size, color), Image.new("RGB", img.size, 0), m))
     img.paste(out)
     # poeira no feixe

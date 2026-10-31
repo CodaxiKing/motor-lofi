@@ -47,6 +47,7 @@ class Scene:
     lightning_boxes = []; lightning_full = False
     wet = False; fog_cfg = None; amb = "chuva_dentro"
     depths = (0.25, 0.6, 1.25)               # fundo, meio, frente
+    acoustic = "aberto"                      # som do lugar na voz: aberto, sala, media, grande, abafado
     def __init__(self):
         self.back, self.mid, self.front = self.build()
     def build(self): raise NotImplementedError
@@ -98,7 +99,7 @@ class Scene:
 
 # ======================= APARTAMENTO (sala) =======================
 class Apartamento(Scene):
-    name = "apartamento"; light = "night"; grade = "noite"
+    name = "apartamento"; acoustic = "sala"; light = "night"; grade = "noite"
     ground = (1420, 1800, 1.05, 1.5)
     rain_boxes = [(240, 730, 860, 1240)]; lightning_boxes = [(240, 730, 860, 1240)]
     def build(self):
@@ -195,7 +196,7 @@ class Apartamento(Scene):
 
 # ======================= ENTRADA (porta do apê) =======================
 class Entrada(Scene):
-    name = "entrada"; light = "night"; grade = "noite"
+    name = "entrada"; acoustic = "sala"; light = "night"; grade = "noite"
     ground = (1500, 1900, 1.0, 1.5)
     def build(self):
         back = canvas((20, 26, 40)); d = ImageDraw.Draw(back)
@@ -242,7 +243,7 @@ class Entrada(Scene):
 
 # ======================= CORREDOR =======================
 class Corredor(Scene):
-    name = "corredor"; light = "warm"; grade = "quente"
+    name = "corredor"; acoustic = "media"; light = "warm"; grade = "quente"
     ground = (1080, 1900, 0.3, 1.5)
     amb = "zumbido"
     def build(self):
@@ -340,7 +341,7 @@ class Janela(Scene):
 
 # ======================= ESCADA =======================
 class Escada(Scene):
-    name = "escada"; light = "red"; grade = "emergencia"
+    name = "escada"; acoustic = "grande"; light = "red"; grade = "emergencia"
     ground = (700, 1800, 0.55, 1.3)
     amb = "eco"
     def build(self):
@@ -434,7 +435,7 @@ class Ponte(Scene):
 
 # ======================= RÁDIO (close) =======================
 class Radio(Scene):
-    name = "radio"; light = "warm"; grade = "quente"
+    name = "radio"; acoustic = "sala"; light = "warm"; grade = "quente"
     ground = (1500, 1900, 1.0, 1.0)
     rain_boxes = [(140, 300, 940, 1000)]; lightning_boxes = [(140, 300, 940, 1000)]
     def build(self):
@@ -475,7 +476,7 @@ class Radio(Scene):
 
 # ======================= HOSPITAL (corredor) =======================
 class Hospital(Scene):
-    name = "hospital"; light = "dawn"; grade = "frio"
+    name = "hospital"; acoustic = "media"; light = "dawn"; grade = "frio"
     ground = (1100, 1900, 0.4, 1.5)
     amb = "zumbido"
     def build(self):
@@ -513,7 +514,7 @@ class Hospital(Scene):
 
 # ======================= MERCADO =======================
 class Mercado(Scene):
-    name = "mercado"; light = "dark"; grade = "frio"
+    name = "mercado"; acoustic = "media"; light = "dark"; grade = "frio"
     ground = (1150, 1900, 0.45, 1.5)
     amb = "zumbido"
     def build(self):
@@ -555,7 +556,7 @@ class Mercado(Scene):
 
 # ======================= METRÔ =======================
 class Metro(Scene):
-    name = "metro"; light = "dark"; grade = "frio"
+    name = "metro"; acoustic = "grande"; light = "dark"; grade = "frio"
     ground = (1250, 1900, 0.5, 1.5)
     amb = "eco"
     def build(self):
@@ -589,7 +590,7 @@ class Metro(Scene):
 
 # ======================= ESCOLA (corredor com armários) =======================
 class Escola(Scene):
-    name = "escola"; light = "dark"; grade = "frio"
+    name = "escola"; acoustic = "media"; light = "dark"; grade = "frio"
     ground = (1100, 1900, 0.4, 1.5); amb = "zumbido"
     def build(self):
         back = canvas((0, 0, 0)); d = ImageDraw.Draw(back)
@@ -621,7 +622,7 @@ class Escola(Scene):
 
 # ======================= DELEGACIA =======================
 class Delegacia(Scene):
-    name = "delegacia"; light = "dark"; grade = "frio"
+    name = "delegacia"; acoustic = "media"; light = "dark"; grade = "frio"
     ground = (1300, 1900, 0.8, 1.5); amb = "zumbido"
     def build(self):
         back = canvas((40, 44, 54)); d = ImageDraw.Draw(back)
@@ -697,7 +698,7 @@ class Floresta(Scene):
 
 # ======================= INTERIOR DE CARRO =======================
 class Carro(Scene):
-    name = "carro"; light = "night"; grade = "noite"
+    name = "carro"; acoustic = "abafado"; light = "night"; grade = "noite"
     ground = (1500, 1700, 1.3, 1.3); amb = "chuva_dentro"
     rain_boxes = [(60, 300, 1020, 1000)]; lightning_boxes = [(60, 300, 1020, 1000)]
     def build(self):
@@ -721,7 +722,7 @@ class Carro(Scene):
 
 # ======================= ESGOTO =======================
 class Esgoto(Scene):
-    name = "esgoto"; light = "dark"; grade = "frio"
+    name = "esgoto"; acoustic = "grande"; light = "dark"; grade = "frio"
     ground = (1250, 1900, 0.45, 1.5); amb = "eco"
     def build(self):
         back = canvas((8, 10, 10)); d = ImageDraw.Draw(back)
@@ -745,7 +746,7 @@ class Esgoto(Scene):
 
 # ======================= IGREJA =======================
 class Igreja(Scene):
-    name = "igreja"; light = "warm"; grade = "quente"
+    name = "igreja"; acoustic = "grande"; light = "warm"; grade = "quente"
     ground = (1150, 1900, 0.45, 1.5); amb = "eco"
     def build(self):
         back = canvas((20, 16, 20)); d = ImageDraw.Draw(back)

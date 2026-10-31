@@ -8,7 +8,7 @@
 import sys, os, json, math, subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
-from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe
+from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
 from . import fx, scenes, text, audio, particles, detail
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
 
@@ -31,15 +31,30 @@ def change(v, rel):
         elif rel >= tk: cur = val_
     return cur, prev, rel - ts
 
+_ROT = {}
 def rotate_about(spr, anc, deg):
     """Gira o sprite em torno do ponto de apoio (pés)."""
     if not deg: return spr, anc
+    key = (id(spr), round(deg))
+    if key in _ROT and _ROT[key][0] is spr: return _ROT[key][1]
+    res = _rotate_about(spr, anc, round(deg))
+    if len(_ROT) > 600: _ROT.clear()
+    _ROT[key] = (spr, res)
+    return res
+
+def _rotate_about(spr, anc, deg):
     R = int(math.hypot(spr.width, spr.height)) + 4
     big = Image.new("RGBA", (2 * R, 2 * R), (0, 0, 0, 0))
     big.paste(spr, (int(R - anc[0]), int(R - anc[1])), spr)
-    big = big.rotate(-deg, center=(R, R), resample=Image.BICUBIC)
+    big = big.rotate(-deg, center=(R, R), resample=Image.BILINEAR)
     bb = big.getbbox() or (0, 0, 2, 2)
     return big.crop(bb), (R - bb[0], R - bb[1])
+
+GEST_POINT = {"ali", "lá", "la", "olha", "olhe", "aquele", "aquela", "aquilo", "ali!", "acolá", "veja"}
+GEST_CHEST = {"eu", "meu", "minha", "mim", "comigo", "juro"}
+GEST_YES = {"sim", "isso", "claro", "certo", "beleza"}
+GEST_NO = {"não", "nao", "nunca", "jamais", "nada"}
+GEST_DOWN = {"desculpa", "desculpe", "perdão", "perdi", "morreu", "sinto", "triste", "sozinha", "sozinho"}
 
 class Episode:
     def __init__(self, spec_path):
@@ -90,7 +105,16 @@ class Episode:
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
         self.mix_path = os.path.join(self.base, "_mix.wav")
-        self.env = audio.mix(self.total, self.clips, self.voices, sfx, self.spec.get("music", []), amb, self.mix_path, self.fps) or {}
+        clips = []
+        for c in self.clips:
+            c = dict(c)
+            if "acoustic" not in c and self.spec.get("acoustics", True):
+                sh = next((s for s in self.shots if s["start"] <= c["at"] + 0.3 < s["end"]), None)
+                if sh and sh.get("type", "scene") == "scene" and sh.get("scene") in scenes.REGISTRY:
+                    c["acoustic"] = sh.get("acoustic", scenes.REGISTRY[sh["scene"]].acoustic)
+                elif sh and sh.get("type") == "choice": c["acoustic"] = None
+            clips.append(c)
+        self.env = audio.mix(self.total, clips, self.voices, sfx, self.spec.get("music", []), amb, self.mix_path, self.fps) or {}
 
     def level(self, voice, t, smooth=0):
         e = self.env.get(voice)
@@ -100,6 +124,25 @@ class Episode:
             a, b = max(0, i - smooth), min(len(e), i + smooth + 1)
             return float(np.mean(e[a:b])) if b > a else 0.0
         return float(e[min(len(e) - 1, i)])
+
+    def viseme(self, voice, t):
+        e = self.env.get("_vis_" + voice)
+        if e is None or len(e) == 0: return 0
+        return int(e[min(len(e) - 1, int(t * self.fps))])
+
+    def speech_gesture(self, voice, t):
+        """Gesto automático pela palavra que está sendo dita: (pose, gesto de cabeça, emoção) ou None."""
+        for a, b, txt, v in self.subs:
+            if v != voice or not (a <= t < b): continue
+            for w, wa, wb in text._word_times(txt, a, b):
+                if not (wa - 0.15 <= t < wb + 0.55): continue
+                k = w.lower().strip(".,!?…:;\"'()—-")
+                if k in GEST_POINT: return ("point", None, None)
+                if k in GEST_CHEST: return ("chest", None, None)
+                if k in GEST_YES: return (None, "nod", None)
+                if k in GEST_NO: return (None, "shake", None)
+                if k in GEST_DOWN: return (None, "down", "sad")
+        return None
 
     # ---------------- HUD ----------------
     def hud_state(self, t):
@@ -131,6 +174,49 @@ class Episode:
         if fx.flash_amount(t, self.flashes) > 0.5: name = "flash"
         return name, LIGHTS.get(name, LIGHTS["night"])
 
+    def link_actors(self, actors, sc, rel, norm):
+        """Interações: 'hold' (mãos dadas) e 'carried_by' (no colo de alguém). Referência por nome do personagem."""
+        by = {a["char"]: a for a in actors}
+        out = []
+        for a in actors:
+            a = dict(a)
+            cb = val(a.get("carried_by"), rel, norm) if a.get("carried_by") else None
+            if cb and cb in by:
+                c = by[cb]; cx, cy, cs = self.actor_state(c, sc, rel, norm)
+                f = val(c.get("facing", 1), rel, norm) or 1
+                a["x"] = cx + 34 * cs * f; a["y"] = cy + 1; a["scale"] = cs * 0.92
+                a["_carried"] = 80 * f; a["walk"] = False; a["shadow"] = False
+                a["_zbias"] = 1; a.setdefault("pose", "idle")
+            h = val(a.get("hold"), rel, norm) if a.get("hold") else None
+            if h and h in by:
+                ox = val(by[h].get("x", 540), rel, norm); mx = val(a.get("x", 540), rel, norm)
+                a["_hold_pose"] = "hand_r" if ox > mx else "hand_l"; a["_hold_with"] = h
+            out.append(a)
+        held = {a["_hold_with"]: a["char"] for a in out if a.get("_hold_with")}
+        for a in out:
+            if a["char"] in held and not a.get("_hold_pose"):
+                o = by[held[a["char"]]]
+                a["_hold_pose"] = "hand_r" if val(o.get("x", 540), rel, norm) > val(a.get("x", 540), rel, norm) else "hand_l"
+                a["_hold_with"] = held[a["char"]]
+        return out
+
+    def paint_holds(self, img, prepared):
+        d = None; done = set()
+        P_by = {P["a"]["char"]: P for P in prepared}
+        for P in prepared:
+            o = P_by.get(P["a"].get("_hold_with"))
+            if not o or frozenset((P["a"]["char"], o["a"]["char"])) in done: continue
+            done.add(frozenset((P["a"]["char"], o["a"]["char"])))
+            l, r = (P, o) if P["sx"] < o["sx"] else (o, P)
+            y = (l["sy"] + r["sy"]) / 2 - l["spr"].height * 0.42
+            x0 = l["sx"] + l["spr"].width * 0.18; x1 = r["sx"] - r["spr"].width * 0.18
+            if x1 - x0 > 8:
+                d = d or ImageDraw.Draw(img)
+                d.line([(x0, y), (x1, y)], fill=(30, 30, 40), width=max(6, int(14 * l["scale"])))
+            mx = (l["sx"] + r["sx"]) / 2; rr = max(6, 11 * l["scale"])
+            d = d or ImageDraw.Draw(img)
+            d.ellipse([mx - rr, y - rr, mx + rr, y + rr], fill=(222, 200, 180), outline=(30, 30, 40), width=3)
+
     def prepare_actor(self, a, sc, shot, t, rel, norm, camx, cam, light, focus_on, idx):
         x, y, base_scale = self.actor_state(a, sc, rel, norm)
         z, x0, y0 = cam
@@ -146,6 +232,14 @@ class Episode:
         scale = base_scale * z * pop
         voice = a.get("voice", a["char"])
         lips = a.get("lipsync", True)
+        gesture = val(a.get("gesture"), rel, norm)
+        if lips and a.get("gestures", self.spec.get("gestures", True)) and pose == "idle" and not a.get("_crowd"):
+            g = self.speech_gesture(voice, self._treal)
+            if g:
+                if g[0]: pose = g[0]
+                gesture = gesture or g[1]
+                if g[2] and emo == "neutral": emo = g[2]
+        if a.get("_hold_pose") and pose in ("idle", "walk"): pose = a["_hold_pose"]
         talk = min(1.0, self.level(voice, self._treal, smooth=4) * 1.3) if lips else 0.0
         mouth = min(1.0, self.level(voice, self._treal) * 1.25) if lips else 0.0
         walk = val(a.get("walk", False), rel, norm)
@@ -156,10 +250,12 @@ class Episode:
                                facing=facing, custom=({**(a.get("custom") or {}), **self.locked[a["char"]]} if a["char"] in self.locked
                                                       else (a.get("custom") or self.custom.get(a["char"]))), seed=a.get("seed"),
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
+                               viseme=self.viseme(voice, self._treal) if lips and view != "back" else 0, gesture=gesture,
                                pk=c01(pose_dt / 0.32) if pose_prev else 1.0, blink_force=emo_dt < 0.1,
                                sniff=bool(val(a.get("sniff", False), rel, norm)), prop=val(a.get("prop"), rel, norm))
         rot = val(a.get("rot"), rel, norm)
         if rot is None: rot = {"fallen": 86, "crawl": 72}.get(pose, 0) * (1 if facing >= 0 else -1)
+        if a.get("_carried"): rot = a["_carried"]
         if rot: spr, anc = rotate_about(spr, anc, rot)
         blur = a.get("blur", 0)
         if focus_on is not None and focus_on != idx and not a.get("_crowd"): blur = max(blur, 4)
@@ -232,7 +328,7 @@ class Episode:
         hh = val(cam.get("handheld"), rel, norm)
         if hh:
             hx_, hy_, hr_ = fx.handheld(t, hh if not isinstance(hh, bool) else 10)
-            dx += hx_; dy += hy_; rot += hr_
+            dx += hx_; dy += hy_
         x0 -= dx / z; y0 -= dy / z
         x0 = max(-30, min(W - W / z + 30, x0)); y0 = max(-30, min(H - H / z + 30, y0))
         return camx, (z, x0, y0), rot
@@ -260,26 +356,35 @@ class Episode:
         vz = val(shot.get("camera", {}).get("vertigo"), rel, norm)
         if vz and vz != 1.0:
             cw, ch = W / vz, H / vz
-            img = img.transform((W, H), Image.EXTENT, ((W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2), Image.BILINEAR)
+            img = crop_zoom(img, (W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2)
         focus_on = val(shot.get("camera", {}).get("focus"), rel, norm)
         if z != 1.0 or x0 or y0:
-            img = img.transform((W, H), Image.EXTENT, (x0, y0, x0 + W / z, y0 + H / z), Image.BILINEAR)
+            img = crop_zoom(img, max(0, x0), max(0, y0), min(W, x0 + W / z), min(H, y0 + H / z))
             dof = shot.get("camera", {}).get("dof", 1.0) * max(0.0, (z - 1.15) * 2.2)
             if focus_on is not None: dof = max(dof, 2.5)
-            if dof > 0.3: img = img.filter(ImageFilter.GaussianBlur(dof))
+            if dof > 0.3: img = fast_blur(img, dof) if dof >= 6 else img.filter(ImageFilter.BoxBlur(dof * 0.8))
         light_name, light = self.resolve_light(shot, sc, t_anim)
         actors = list(shot.get("actors", []))
         crowd = shot.get("crowd")
         if crowd:
             for cs in (crowd if isinstance(crowd, list) else [crowd]): actors += particles.crowd_actors(cs, rel * (t_anim - shot["start"]) / max(1e-6, rel) if rel else 0)
         self._beams = []; self._lit = []; self._lit_soft = []
-        order = sorted([(i, a) for i, a in enumerate(actors) if not a.get("fg")], key=lambda ia: self.actor_state(ia[1], sc, rel, norm)[1])
+        actors = self.link_actors(actors, sc, rel, norm)
+        order = sorted([(i, a) for i, a in enumerate(actors) if not a.get("fg")], key=lambda ia: self.actor_state(ia[1], sc, rel, norm)[1] + ia[1].get("_zbias", 0))
         prepared = []
         for i, a in order:
             if rel < a.get("enter", -1e9) or rel > a.get("exit", 1e9): continue
             prepared.append(self.prepare_actor(a, sc, shot, t_anim, rel, norm, camx, cam, light, focus_on, i))
+        for P in prepared:   # quem está no colo: centro do corpo sobre os braços de quem carrega
+            cb = P["a"].get("carried_by")
+            C = next((Q for Q in prepared if Q["a"]["char"] == cb), None) if P["a"].get("_carried") else None
+            if C:
+                ch = C["spr"].height
+                P["sx"] = C["sx"] + C["facing"] * ch * 0.12 - (P["spr"].width / 2 - P["anc"][0])
+                P["sy"] = C["sy"] - ch * 0.5 + (P["anc"][1] - P["spr"].height / 2); P["floor_y"] = C["floor_y"]
         self.wall_shadows(img, prepared, shot)
         for P in prepared: self.paint_actor(img, P, sc, shot, t_anim, light)
+        self.paint_holds(img, prepared)
         for (o, ang, ln, sp) in self._beams: particles.flashlight(img, t_anim, o, ang, ln, spread=sp)
         if shot.get("dust"): particles.dust(img, t_anim, n=shot["dust"] if isinstance(shot["dust"], int) else 60)
         img = sc.render_front(img, t_anim, camx, props, self.flashes)
@@ -305,7 +410,7 @@ class Episode:
             img = cur
         if shot.get("effect") == "peephole": img = fx.peephole(img)
         rot += val(shot.get("camera", {}).get("rot", 0.0), rel, norm, 0.0)
-        if rot: img = img.rotate(rot, resample=Image.BILINEAR, fillcolor=(0, 0, 0)).transform((W, H), Image.EXTENT, (W * 0.012, H * 0.012, W * 0.988, H * 0.988))
+        if abs(rot) > 0.25: img = crop_zoom(img.rotate(rot, resample=Image.NEAREST, fillcolor=(0, 0, 0)), W * 0.012, H * 0.012, W * 0.988, H * 0.988)
         sc.rain_strength, sc.rain_full, sc.fog_cfg = saved
         return img
 

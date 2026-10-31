@@ -5,6 +5,7 @@ Motor de animação para séries curtas no formato **"escolha o caminho"** (Reel
 Tudo é desenhado e animado por código, no estilo lo-fi flat: personagens expressivos com boca sincronizada à voz, câmera de cinema, cenários com luz e clima, legendas palavra por palavra, efeitos sonoros e trilha. Serve para qualquer gênero: suspense, terror, mistério, comédia, romance, fantasia, policial.
 
 ![Personagens prontos](examples/guarda_roupa.png)
+![Bocas e atuação](examples/atuacao.png)
 
 ---
 
@@ -54,7 +55,9 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 **Personagens**
 - 4 vistas (frente, costas, lado e **3/4**) e ações: andar, correr, pular, esconder, abrir porta, cair, rastejar, tremer
 - 10 emoções com sobrancelhas, olhos e boca: neutro, medo, choque, raiva, tristeza, determinação, alegria, desconfiança, choro (com lágrimas) e ofegante
-- Boca sincronizada com a voz, gestos de cabeça e mão ao falar, piscar, respiração, cabelo e cachecol balançando
+- Boca sincronizada com a voz **em formatos de vogal** (A, E, O, U, M), piscar, respiração, cabelo e cachecol balançando
+- **Gestos automáticos pela fala**: aponta quando diz "ali", mão no peito em "eu", acena no "sim", balança a cabeça no "não", cabeça baixa em "desculpa"
+- **Interações**: mãos dadas andando, carregar alguém no colo, abraço, empurrão
 - Corpos: criança, idoso, alto, gordo, magro · objetos na mão: rádio, lanterna, celular, chave, mochila
 - **Guarda-roupa** completo: 8 tons de pele, 14 tipos de roupa, saia/shorts/calça, 12 cabelos, barba e bigode, 12 chapéus, 12 acessórios, capa e modo fantasma
 - **29 personagens prontos**: Roberta, Rafa, Lia, zumbis variados, soldado, detetive, cientista, estudantes, executivos, médica, policial, roqueiro, avós, criança, bruxa, rainha, chef, cowboy, fantasma, DJ, pirata
@@ -73,6 +76,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 - Gancho de 2 s antes do título, "Anteriormente em…" com cenas do episódio anterior, carimbo "A MAIORIA ESCOLHEU", tela dividida A/B
 - Legendas estilo Reels (palavra por palavra, destaque amarelo) que desviam do rosto dos personagens
 - 25 efeitos sonoros sintetizados, ambiente automático por cenário e trilha de suspense
+- **Eco por ambiente**: a voz reverbera na escada e na igreja, fica abafada dentro do carro
 
 **Qualidade**
 - Validador de roteiro (gancho, 12–20 cenas, A/B) e verificador de montagem (legenda no rosto, personagem cortado, ficha desrespeitada)
@@ -92,7 +96,7 @@ python3 -m lofi.transcribe roberta.mp3 rafa.mp3                # tempo de cada f
 python3 tests/validar_roteiro.py series/dia-zero/ep03_roteiro.md   # confere o roteiro
 python3 -m lofi.check  series/dia-zero/ep03.json               # verificador + folha _revisao.png
 python3 -m lofi.render series/dia-zero/ep03.json --test 2 9    # quadros de teste
-python3 -m lofi.render series/dia-zero/ep03.json --jobs 2      # vídeo final (~10 s de processamento por s de vídeo)
+python3 -m lofi.render series/dia-zero/ep03.json --jobs 2      # vídeo final (~3,5 s por s de vídeo: episódio de 3 min ≈ 10–11 min)
 python3 -m lofi.extras teaser series/dia-zero/ep03.json ep03.mp4
 python3 -m lofi.extras capa   series/dia-zero/ep03.json
 python3 -m lofi.extras temporada temporada.mp4 "DIA ZERO" ep1.mp4 ep2.mp4 ep3.mp4

@@ -122,6 +122,13 @@ POSES = {
     "remove_bag": ((-8, 6), (24, -30)),
     "fallen":  ((-20, 10), (20, -10)),
     "crawl":   ((-60, 0), (60, 0)),
+    "chest":   ((-8, 6), (-35, -75)),       # mão no peito
+    "hand_r":  ((-8, 6), (45, -5)),         # mão dada com quem está à direita
+    "hand_l":  ((-45, 5), (8, -6)),         # mão dada com quem está à esquerda
+    "reach_l": ((-72, -14), (8, -6)),
+    "hug":     ((80, -10), (100, -20)),     # abraço (use vista 3q de frente um para o outro)
+    "carry":   ((70, -40), (85, -45)),      # carregando alguém no colo
+    "push":    ((85, 0), (95, 0)),          # empurrando
 }
 EMOTIONS = ("neutral", "fear", "shock", "angry", "sad", "determined", "happy", "suspicious", "cry", "panting")
 
@@ -152,7 +159,7 @@ def _backout(x, c=1.6):
     x = max(0.0, min(1.0, x)); return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
 
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
-          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None):
+          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
 
@@ -186,6 +193,9 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if view == "side": head_c = (head_c[0] + 18 + hunch * 0.6, head_c[1])
     if q3: head_c = (head_c[0] + 14, head_c[1])
     if sniff: head_c = (head_c[0] + math.sin(t * 2.3 + seed) * 16, head_c[1] - 8 - abs(math.sin(t * 4.6)) * 6)
+    if gesture == "nod": head_c = (head_c[0], head_c[1] + abs(math.sin(t * 9)) * 12)
+    elif gesture == "shake": head_c = (head_c[0] + math.sin(t * 13) * 14, head_c[1]); look = math.sin(t * 13) * 18
+    elif gesture == "down": head_c = (head_c[0], head_c[1] + 14)
     if talk > 0: head_c = (head_c[0] + math.sin(t * 6.3 + seed) * 6 * talk, head_c[1] - abs(math.sin(t * 8.1)) * 6 * talk)
     # --- pernas ---
     if view == "side":
@@ -531,6 +541,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if not back:
         fx = hx + look + (34 if side else 0)
         if q3: fx += 18
+        if gesture == "down": hy += 6
         eyes = ([(fx - 30, hy + 16), (fx + 30, hy + 16)] if not q3 else [(fx - 22, hy + 16), (fx + 26, hy + 16)]) if not side else [(fx + 6, hy + 16)]
         blink = (_blink(t, seed) or blink_force) and not inf
         if inf:
@@ -595,8 +606,21 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                     dy = (t * 70 + x) % 60
                     d.ellipse([x - 12, y + 30 + dy, x - 2, y + 42 + dy], fill=(140, 190, 245, 255))
             if pant: mouth = max(mouth, 0.35 + 0.25 * math.sin(t * 2 * math.pi / 0.8))
-            if mouth > 0.06:
-                mh = 5 + 22 * mouth; mw = 13 + 7 * mouth
+            vis = viseme if mouth > 0.04 or viseme == 1 else 0
+            if vis == 1:      # M/B/P: lábios fechados apertados
+                d.line([(mx - 16, my + 2), (mx + 16, my + 2)], fill=ec + (255,), width=7)
+            elif vis == 3:    # E/I: boca larga e baixa, dentes
+                mw = 20 + 6 * mouth; mh = 6 + 10 * mouth
+                d.rounded_rectangle([mx - mw, my - mh * 0.5, mx + mw, my + mh * 0.6], 8, fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
+                d.rectangle([mx - mw + 5, my - mh * 0.5 + 3, mx + mw - 5, my - mh * 0.5 + 3 + mh * 0.35], fill=(245, 245, 240, 255))
+            elif vis == 4:    # O: redonda
+                r_ = 9 + 12 * mouth
+                d.ellipse([mx - r_ * 0.85, my - r_, mx + r_ * 0.85, my + r_], fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
+            elif vis == 5:    # U: biquinho
+                r_ = 6 + 5 * mouth
+                d.ellipse([mx - r_, my - r_, mx + r_, my + r_], fill=(40, 18, 22, 255), outline=ec + (255,), width=6)
+            elif mouth > 0.06:  # A (padrão)
+                mh = 5 + 24 * mouth; mw = 13 + 7 * mouth
                 d.ellipse([mx - mw, my - mh * 0.45, mx + mw, my + mh * 0.55], fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
                 if mouth > 0.45: d.chord([mx - mw + 5, my + mh * 0.05, mx + mw - 5, my + mh * 0.5], 0, 180, fill=(190, 80, 90, 255))
             fcol = (cd["facial_color"] or cd["hair_color"]) + (255,)
@@ -647,8 +671,9 @@ def _shade(im, light):
     key = np.array(light.get("key", (1, 1, 1)))
     arr[..., :3] *= shade[..., None] * key
     # borda
-    a_img = Image.fromarray((A * 255).astype("uint8"))
-    er = np.asarray(a_img.filter(ImageFilter.MinFilter(7))).astype(np.float32) / 255.0
+    er = A.copy()
+    for dx_, dy_ in ((3, 0), (-3, 0), (0, 3), (0, -3)):
+        er = np.minimum(er, np.roll(np.roll(A, dx_, axis=1), dy_, axis=0))
     edge = np.clip(A - er, 0, 1)
     edge = np.asarray(Image.fromarray((edge * 255).astype("uint8")).filter(ImageFilter.GaussianBlur(1.2))).astype(np.float32) / 255.0
     side = np.clip(light.get("rim_side", 1) * xs * 1.4 + 0.2, 0, 1)
@@ -660,17 +685,17 @@ def _shade(im, light):
 _CACHE = {}
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
-                blink_force=False, sniff=False, prop=None):
+                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None):
     """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés."""
     cd = char_def(name, custom)
     seed = seed if seed is not None else (sum(map(ord, name)) % 97)
     light = light or LIGHTS["night"]
     qt = round(t * 15) / 15 if (walk or sway or breath) else 0
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop)
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture)
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
-                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop)
+                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture)
     k = 0.5 * scale * cd["scale"]
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)
@@ -681,17 +706,21 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
         im = Image.merge("RGBA", (r_.point(lambda v: min(255, int(v * 0.9 + 30))), g_.point(lambda v: min(255, int(v * 0.95 + 30))), b_.point(lambda v: min(255, v + 50)), a_))
     if facing < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     res = (im, (nw / 2, anc[1] * k))
-    if len(_CACHE) > 4000: _CACHE.clear()
+    if len(_CACHE) > 1500: _CACHE.clear()
     _CACHE[key] = res
     return res
 
+_SHADOWS = {}
 def shadow(frame, x, y, width, alpha=110, dx=0, stretch=1.0):
     """Sombra projetada no chão (elipse desfocada)."""
     w = width * stretch; h = width * 0.18
-    m = Image.new("L", (int(w * 2 + 60), int(h * 2 + 60)), 0)
-    ImageDraw.Draw(m).ellipse([30, 30, 30 + w * 2, 30 + h * 2], fill=alpha)
-    m = m.filter(ImageFilter.GaussianBlur(max(2, width * 0.08)))
-    frame.paste((0, 0, 0), (int(x - w - 30 + dx), int(y - h - 30)), m)
+    key = (int(w / 3), int(alpha / 10))
+    if key not in _SHADOWS:
+        m = Image.new("L", (int(w * 2 + 60), int(h * 2 + 60)), 0)
+        ImageDraw.Draw(m).ellipse([30, 30, 30 + w * 2, 30 + h * 2], fill=alpha)
+        _SHADOWS[key] = m.filter(ImageFilter.GaussianBlur(max(2, width * 0.08)))
+    m = _SHADOWS[key]
+    frame.paste((0, 0, 0), (int(x - m.width / 2 + dx), int(y - m.height / 2)), m)
 
 def reflection(frame, spr, anchor, x, y, alpha=0.28, blur=3):
     """Reflexo no chão molhado."""

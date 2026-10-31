@@ -51,12 +51,25 @@ def grad(w, h, top, bot, horizontal=False):
     arr = (np.array(top) + (np.array(bot) - np.array(top)) * a) * np.ones((h, w, 1) if horizontal else (1, w, 1))
     return Image.fromarray(np.clip(arr, 0, 255).astype("uint8"))
 
+def fast_blur(img, r):
+    """Desfoque gaussiano rápido: em raios grandes, desfoca em resolução reduzida e amplia."""
+    if r < 6: return img.filter(ImageFilter.GaussianBlur(r))
+    f = 4 if r >= 16 else 2
+    w, h = img.size
+    small = img.resize((max(1, w // f), max(1, h // f)), Image.BILINEAR).filter(ImageFilter.GaussianBlur(r / f))
+    return small.resize((w, h), Image.BILINEAR)
+
+def crop_zoom(img, x0, y0, x1, y1, size=None):
+    """Recorta e amplia (mais rápido que transform EXTENT)."""
+    size = size or img.size
+    return img.resize(size, Image.BILINEAR, box=(x0, y0, x1, y1))
+
 def add_light(img, box, color, blur, alpha=120, shape="ellipse"):
     """Brilho aditivo (luz) em forma de elipse/polígono desfocado."""
     m = Image.new("L", img.size, 0); md = ImageDraw.Draw(m)
     if shape == "polygon": md.polygon(box, fill=alpha)
     else: getattr(md, shape)(box, fill=alpha)
-    m = m.filter(ImageFilter.GaussianBlur(blur))
+    m = fast_blur(m, blur)
     layer = Image.composite(Image.new("RGB", img.size, color), Image.new("RGB", img.size, 0), m)
     if img.mode == "RGBA":
         rgb = ImageChops.add(img.convert("RGB"), layer); rgb.putalpha(img.split()[3]); return rgb
@@ -66,7 +79,7 @@ def darken(img, box, alpha=120, blur=40, shape="ellipse"):
     m = Image.new("L", img.size, 0); md = ImageDraw.Draw(m)
     if shape == "polygon": md.polygon(box, fill=alpha)
     else: getattr(md, shape)(box, fill=alpha)
-    m = m.filter(ImageFilter.GaussianBlur(blur))
+    m = fast_blur(m, blur)
     img.paste((0, 0, 0), (0, 0), m)
     return img
 
