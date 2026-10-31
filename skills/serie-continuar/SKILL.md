@@ -1,0 +1,24 @@
+---
+name: "serie-continuar"
+description: "Comando curto para seguir a série lo-fi: /serie-continuar [episódio que terminou] [A ou B] registra o voto e gera o roteiro do próximo episódio sem perguntas."
+---
+
+# /serie-continuar
+
+Atalho para avançar a série com uma linha, sem anexar nada. Exemplos:
+- `/serie-continuar 2 B` → o episódio 2 terminou e a opção B venceu → gera o roteiro do episódio 3.
+- `/serie-continuar B` → usa o último episódio com status "montado" na bíblia.
+- `/serie-continuar 2 telhado` → aceita o nome da opção no lugar da letra.
+- `/serie-continuar dia-zero 2 B` → quando houver mais de uma série.
+Responda em português do Brasil.
+
+## O que fazer
+1. Leia os argumentos: série (opcional), número do episódio que terminou (opcional) e a escolha vencedora (A, B ou o nome da opção). O número sempre se refere ao episódio cuja votação fechou; o roteiro gerado é o do seguinte.
+2. Anexe o repositório (`add_repo`: CodaxiKing / motor-lofi, access push), clone ou `git pull`, e leia `series/*/biblia.md`. Se houver mais de uma série e o argumento não disser qual, use a que tem episódio "montado" aguardando voto; se ainda houver dúvida, pergunte.
+3. Confira a escolha com a pergunta registrada na bíblia para aquele episódio. Se a letra ou o nome não baterem com nenhuma opção, ou se o episódio pedido for o último da série, avise em uma linha e pare. Não faça nenhuma outra pergunta.
+4. Registre o voto na tabela da bíblia e escreva o roteiro do próximo episódio seguindo a skill **serie-lofi-interativa** (seção 2: gancho, "Anteriormente em…", carimbo, 12–20 cenas com planos de detalhe, ações, luz e clima do motor, consequências das escolhas anteriores, cor do episódio).
+5. Se o próximo episódio for o último, escreva o desfecho conforme os finais da bíblia e todas as escolhas registradas, terminando com "FIM" (sem pergunta A/B).
+6. Salve `series/<serie>/epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Corrija até não haver ERRO.
+7. Entregue: roteiro por cena; **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz); versão CapCut; as duas opções finais e o que acontece em cada uma.
+8. Marque o episódio como "roteiro" na bíblia, commit e push.
+9. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-montar com os áudios".
