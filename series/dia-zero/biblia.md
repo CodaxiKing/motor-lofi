@@ -23,6 +23,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - B — O SILÊNCIO (voto B no ep. 4): portão trava antes de Roberta; ela fica e assume o rádio: "Dia 6. Agora sou eu quem transmite."
 - Ep. 1 (ESPIAR) → Rafa desconfiado; hesita no momento decisivo, a não ser que Roberta recupere a confiança dele.
 - Ep. 3: buscar Lia → Lia no final; ir direto → Lia só pelo rádio.
+- Ep. 3 (roteiro): Roberta segurou Rafa no pulo entre os prédios → a confiança dele começa a voltar.
 
 ## Regras do universo
 1. Infectados são cegos e seguem qualquer som · 2. Lentos de dia, rápidos à noite · 3. Sobreviventes: 3 batidas ritmadas · 4. Sem celular desde o Dia 2; só rádio · 5. Ponte fecha às 6h do Dia 5 · 6. Sem cura nesta temporada · 7. Sem sangue
@@ -31,8 +32,8 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
 | 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | — |
-| 2 | 2 | complicação | montado | A) Escada · B) Telhado | (aguardando) | |
-| 3 | 3 | reviravolta | planejado | A) Buscar Lia no hospital · B) Ir direto pra ponte | | |
+| 2 | 2 | complicação | montado | A) Escada · B) Telhado | TELHADO | |
+| 3 | 3 | reviravolta | roteiro | A) Buscar Lia no hospital · B) Ir direto pra ponte | (aguardando) | |
 | 4 | 4 | clímax | planejado | A) Fazer barulho · B) Esperar em silêncio | | |
 | 5 | 5 | final | planejado | — | | |
 
