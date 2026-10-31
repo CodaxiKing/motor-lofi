@@ -138,3 +138,26 @@ Os comandos leem e atualizam esses arquivos e devolvem o zip atualizado.
 - `python3 -m lofi.extras teaser epNN.json epNN.mp4` → teaser de ~15 s para Stories (gancho + 3 melhores momentos + cartela).
 - `python3 -m lofi.extras capa epNN.json [tempo]` → capa 1080×1920 do episódio (usa `series_title`, `episode`, `episodes_total`, `episode_title`).
 - `python3 -m lofi.extras temporada saida.mp4 "TÍTULO" ep1.mp4 ep2.mp4 ...` → compilação 16:9 para o YouTube + capítulos.
+
+## Guarda-roupa (v4)
+Todos os campos vão em `characters` no roteiro (ou na ficha da bíblia). Cores em `[r, g, b]`.
+
+| Campo | Opções |
+|---|---|
+| `skin` | `palido`, `claro`, `medio`, `moreno`, `escuro`, `oliva`, `verde`, `azul` ou `[r, g, b]` |
+| `top_style` | `shirt`, `tshirt`, `puffer`, `hoodie`, `sweater`, `leather`, `suit` (com gravata), `trench` (sobretudo), `labcoat` (jaleco), `scrubs`, `uniform`, `chef`, `dress` (vestido), `torn` |
+| `top`, `inner`, `tie` | cor da roupa, da camisa por baixo do casaco/jaleco, da gravata |
+| `sleeves` | `long`, `short` |
+| `bottom` | `pants`, `shorts`, `skirt` (com `skirt` = cor e `tights` = meia-calça) |
+| `legs`, `shoes` | cor da calça/shorts e do sapato |
+| `hair` | `short`, `long`, `ponytail`, `bun`, `bob`, `curly`, `afro`, `braids`, `pigtails`, `spiky`, `mohawk`, `bald` (+ `hair_color`) |
+| `facial` | `beard`, `mustache`, `stubble` (+ `facial_color`) |
+| `hat` | `beanie`, `cap`, `helmet`, `hood`, `fedora`, `cowboy`, `tophat`, `crown`, `witch`, `chef`, `headband`, `bandana_hat` (+ `hat_color`) |
+| `acc` (lista) | `sunglasses`, `eyepatch`, `mask`, `earrings`, `bow`, `headphones`, `necklace`, `badge`, `stethoscope`, `tie`, `bowtie`, `bandana` |
+| outros | `glasses`, `scarf` (cor), `backpack` (cor), `cape` (cor, balança), `body`, `ghost: true` (translúcido), `scale` |
+
+Personagens prontos além da série zumbi: `detetive`, `cientista`, `estudante`, `estudante2`, `executiva`, `executivo`, `medica`,
+`policial`, `roqueiro`, `vovo`, `vovo2`, `crianca`, `bruxa`, `rainha`, `chef`, `cowboy`, `fantasma`, `dj`, `pirata`.
+Para variar um pronto: `"characters": {"detetive": {"skin": "escuro", "hat_color": [30, 30, 30]}}`.
+Para criar um novo: `"characters": {"marina": {"top_style": "leather", "top": [120, 30, 40], "hair": "braids", "skin": "moreno", "acc": ["earrings"]}}`
+e use `"char": "marina"` nos atores.

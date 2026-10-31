@@ -14,7 +14,10 @@ from .core import OUT
 BASE = dict(skin=(236, 236, 230), top=(200, 200, 205), top_style="shirt", legs=(50, 60, 90), shoes=(30, 30, 36),
             hat=None, hat_color=(30, 42, 72), hat_band=(44, 60, 98), hat_stripe=(220, 220, 226),
             hair=None, hair_color=(56, 36, 28), scarf=None, backpack=None, glasses=False, infected=False, scale=1.0, body="normal",
-            eye=(14, 14, 18))
+            eye=(14, 14, 18), bottom="pants", skirt=None, tights=None, sleeves="long", inner=(235, 235, 235), facial=None,
+            facial_color=None, acc=(), ghost=False, cape=None, tie=(170, 40, 40))
+SKINS = {"palido": (236, 236, 230), "claro": (244, 216, 192), "medio": (220, 176, 138), "moreno": (176, 122, 86),
+         "escuro": (112, 74, 52), "oliva": (198, 164, 116), "verde": (150, 190, 130), "azul": (150, 170, 230)}
 CHARS = {
     "roberta": dict(top=(232, 233, 238), top_style="puffer", legs=(52, 70, 110), hat="beanie", scarf=(214, 120, 52),
                     hair="ponytail", hair_color=(56, 36, 28)),
@@ -32,12 +35,54 @@ CHARS = {
                               hair="bun", hair_color=(90, 80, 70), infected=True),
     "zombie_policial": dict(skin=(146, 152, 150), top=(50, 60, 92), top_style="uniform", legs=(40, 46, 70), shoes=(20, 20, 24),
                             hat="cap", hat_color=(40, 48, 74), infected=True),
+    # ---------- presets para outros gêneros ----------
+    "detetive": dict(top=(150, 120, 80), top_style="trench", inner=(220, 220, 210), legs=(60, 60, 70), hat="fedora", hat_color=(70, 60, 50),
+                     hair="short", hair_color=(60, 44, 34), facial="stubble", skin="claro"),
+    "cientista": dict(top=(240, 242, 245), top_style="labcoat", inner=(90, 130, 170), legs=(70, 70, 80), hair="curly", hair_color=(80, 60, 50),
+                      glasses=True, skin="medio"),
+    "estudante": dict(top=(240, 240, 240), top_style="tshirt", sleeves="short", legs=(40, 60, 110), backpack=(200, 60, 60), hair="spiky",
+                      hair_color=(30, 26, 24), skin="moreno", scale=0.9),
+    "estudante2": dict(top=(60, 90, 160), top_style="sweater", bottom="skirt", skirt=(70, 70, 90), tights=(30, 30, 40), hair="pigtails",
+                       hair_color=(140, 80, 50), acc=("bow",), skin="claro", scale=0.88),
+    "executiva": dict(top=(50, 54, 70), top_style="suit", bottom="skirt", skirt=(50, 54, 70), tights=(60, 50, 50), hair="bob",
+                      hair_color=(30, 24, 22), acc=("earrings", "necklace"), skin="escuro"),
+    "executivo": dict(top=(44, 48, 60), top_style="suit", legs=(44, 48, 60), hair="short", hair_color=(40, 30, 26), facial="beard", skin="oliva"),
+    "medica": dict(top=(240, 242, 245), top_style="labcoat", inner=(96, 168, 178), legs=(96, 168, 178), hair="long", hair_color=(90, 50, 30),
+                   acc=("stethoscope",), skin="medio"),
+    "policial": dict(top=(50, 60, 92), top_style="uniform", legs=(40, 46, 70), hat="cap", hat_color=(40, 48, 74), acc=("badge",), skin="moreno"),
+    "roqueiro": dict(top=(30, 30, 34), top_style="leather", legs=(40, 40, 60), hair="mohawk", hair_color=(200, 40, 60), acc=("sunglasses", "earrings"),
+                     skin="claro"),
+    "vovo": dict(top=(170, 110, 130), top_style="sweater", bottom="skirt", skirt=(90, 70, 80), tights=(200, 180, 170), hair="bun",
+                 hair_color=(220, 220, 225), glasses=True, body="old", skin="claro"),
+    "vovo2": dict(top=(120, 100, 70), top_style="sweater", legs=(80, 70, 60), hair="bald", facial="mustache", facial_color=(220, 220, 225),
+                  body="old", hat="tophat", hat_color=(40, 34, 30), skin="medio"),
+    "crianca": dict(top=(240, 190, 60), top_style="tshirt", sleeves="short", bottom="shorts", legs=(60, 90, 150), hair="afro", hair_color=(30, 22, 18),
+                    body="child", skin="escuro"),
+    "bruxa": dict(top=(60, 40, 80), top_style="dress", hat="witch", hat_color=(40, 26, 56), hair="long", hair_color=(30, 30, 30),
+                  cape=(30, 20, 40), skin="verde"),
+    "rainha": dict(top=(170, 40, 60), top_style="dress", hat="crown", hat_color=(230, 190, 60), hair="braids", hair_color=(60, 36, 26),
+                   cape=(120, 20, 40), acc=("necklace",), skin="moreno"),
+    "chef": dict(top=(245, 245, 245), top_style="chef", legs=(40, 40, 46), hat="chef", hat_color=(245, 245, 245), facial="mustache", skin="claro"),
+    "cowboy": dict(top=(170, 80, 60), top_style="shirt", legs=(60, 80, 130), hat="cowboy", hat_color=(130, 90, 50), facial="beard",
+                   facial_color=(90, 60, 40), acc=("bandana",), skin="claro"),
+    "fantasma": dict(top=(220, 230, 250), top_style="dress", skin=(230, 238, 255), ghost=True, eye=(40, 60, 120)),
+    "dj": dict(top=(120, 60, 200), top_style="hoodie", legs=(30, 30, 40), hair="braids", hair_color=(20, 18, 16), acc=("headphones",), skin="escuro"),
+    "pirata": dict(top=(240, 230, 210), top_style="shirt", legs=(60, 40, 30), hat="bandana_hat", hat_color=(180, 30, 30), facial="beard",
+                   facial_color=(40, 30, 20), acc=("eyepatch", "earrings"), skin="oliva"),
     "soldado": dict(top=(84, 98, 64), top_style="uniform", legs=(74, 86, 56), shoes=(30, 28, 24), hat="helmet",
                     hat_color=(70, 82, 52)),
 }
+def _col(v, default=None):
+    if v is None: return default
+    if isinstance(v, str): return SKINS.get(v, default)
+    return tuple(int(x) for x in v)
 def char_def(name, custom=None):
     d = dict(BASE); d.update(CHARS.get(name, {}))
     if custom: d.update(custom)
+    d["skin"] = _col(d["skin"], (236, 236, 230))
+    for k in ("top", "legs", "shoes", "hat_color", "hair_color", "scarf", "backpack", "skirt", "tights", "inner", "facial_color", "cape", "tie", "eye"):
+        if d.get(k) is not None and not isinstance(d[k], str): d[k] = tuple(int(x) for x in d[k])
+    d["acc"] = tuple(d.get("acc") or ())
     return d
 
 # ---------------- luz por ambiente ----------------
@@ -203,21 +248,42 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         sw = math.sin(t * 2.6 + seed) * 10 * sway_k + (s * 10 if walk else 0)
         px = head_c[0] + ((66 if not side else -70) if not q3 else -64)
         d.ellipse([px - 24 + sw * 0.3, head_c[1] - 10, px + 26 + sw, head_c[1] + 110], fill=cd["hair_color"] + (255,), outline=OUT, width=5)
+    if cd["cape"] and draw_pose not in ("fallen", "crawl"):
+        cw_ = math.sin(t * 2.2 + seed) * 16 * sway_k + (s * 22 if walk else 0)
+        d.polygon([(cx - 80, torso_top + 4), (cx + 80, torso_top + 4), (cx + 120 + cw_, FEET_Y - 30), (cx - 120 + cw_ * 0.6, FEET_Y - 30)],
+                  fill=cd["cape"] + (255,), outline=OUT)
+    if cd["hair"] == "afro":
+        d.ellipse([head_c[0] - 122, head_c[1] - 132, head_c[0] + 122, head_c[1] + 70], fill=cd["hair_color"] + (255,), outline=OUT, width=6)
+    if cd["hair"] in ("long", "braids") and back:
+        d.rounded_rectangle([head_c[0] - 90, head_c[1] - 20, head_c[0] + 90, head_c[1] + 170], 50, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
     if cd["hair"] == "long" and not back:
         d.rounded_rectangle([head_c[0] - 96, head_c[1] - 40, head_c[0] + 96, head_c[1] + 130], 50, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
     if cd["backpack"] and side:
         d.rounded_rectangle([cx - 110, torso_top + 30, cx - 30, torso_top + 200], 26, fill=cd["backpack"] + (255,), outline=OUT, width=6)
     # braço de trás (lado)
+    def arm(a, col, w, sk):
+        if cd["sleeves"] == "short":
+            _limb(d, [a[0], a[1], a[2]], sk, w * 0.9)
+            mid = (a[0][0] + (a[1][0] - a[0][0]) * 0.55, a[0][1] + (a[1][1] - a[0][1]) * 0.55)
+            _limb(d, [a[0], mid], col, w)
+        else:
+            _limb(d, [a[0], a[1], a[2]], col, w)
+        _hand(d, a[2], sk)
     if side or (q3 and draw_pose not in ("cross", "forward")):
-        a = arms[0]; _limb(d, [a[0], a[1], a[2]], dark(topc), 42 * LIMBK); _hand(d, a[2], dark(skin, 0.85))
+        arm(arms[0], dark(topc), 42 * LIMBK, dark(skin, 0.85))
     if back or (not side and pose not in ("cross", "forward")):
         pass
     # --- pernas ---
     order = [0, 1] if not side else [0, 1]
     for i in order:
         hp, kn, ft = leg_pts[i]
-        col = legc if not (side and i == 0) else dark(legc)
-        _limb(d, [hp, kn, ft], col, 50 * LIMBK)
+        bot = cd["bottom"] if cd["top_style"] != "dress" else "dress"
+        base_leg = legc if bot == "pants" else (cd["tights"] or skin)
+        col = base_leg if not (side and i == 0) else dark(base_leg)
+        _limb(d, [hp, kn, ft], col, (50 if bot == "pants" else 40) * LIMBK)
+        if bot == "shorts":
+            mid = (hp[0] + (kn[0] - hp[0]) * 0.75, hp[1] + (kn[1] - hp[1]) * 0.75)
+            _limb(d, [hp, mid], legc if not (side and i == 0) else dark(legc), 54 * LIMBK)
         fx = 26 if side else 0
         d.rounded_rectangle([ft[0] - 36 + fx * 0.3, ft[1] - 16, ft[0] + 36 + fx, ft[1] + 22], 18,
                             fill=(shoe if not (side and i == 0) else dark(shoe)) + (255,), outline=OUT, width=6)
@@ -225,8 +291,24 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     tw = (164 if not side else 124) * TWK * (0.9 if q3 else 1.0)
     tx0 = cx - tw / 2 + (hunch * 0.5 if side else 0) - (6 if q3 else 0)
     sq = breath * 3
-    d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=topc + (255,), outline=OUT, width=6)
     st = cd["top_style"]
+    coat = st in ("trench", "labcoat")
+    d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=(cd["inner"] if coat and not back else topc) + (255,), outline=OUT, width=6)
+    bot = cd["bottom"] if st != "dress" else "dress"
+    if bot in ("skirt", "dress") and draw_pose not in ("sit", "fallen", "crawl"):
+        sc_ = cd["skirt"] or (topc if bot == "dress" else legc); ln_ = 86 if bot == "skirt" else 150
+        fl = 26 + (s * 8 if walk else 0)
+        d.polygon([(tx0 + 4, hip_y - 14), (tx0 + tw - 4, hip_y - 14), (tx0 + tw + fl, hip_y + ln_), (tx0 - fl, hip_y + ln_)], fill=sc_ + (255,), outline=OUT)
+        for k in (1, 2, 3): d.line([(tx0 + tw * k / 4, hip_y - 6), (tx0 + tw * k / 4 + (k - 2) * 18, hip_y + ln_ - 4)], fill=dark(sc_, 0.82) + (255,), width=3)
+    if coat:
+        ln_ = 170 if st == "trench" else 150
+        for sgn in (-1, 1):
+            xa = cx + sgn * 16; xb = cx + sgn * (tw / 2 + 4)
+            d.polygon([(xa, torso_top + 30), (xb, torso_top + 10), (xb + sgn * 22, hip_y + ln_), (xa + sgn * 6, hip_y + ln_)], fill=topc + (255,), outline=OUT)
+        if not back:
+            d.polygon([(cx - 16, torso_top + 30), (cx - 50, torso_top), (cx - 40, torso_top + 90)], fill=dark(topc, 0.85) + (255,), outline=OUT)
+            d.polygon([(cx + 16, torso_top + 30), (cx + 50, torso_top), (cx + 40, torso_top + 90)], fill=dark(topc, 0.85) + (255,), outline=OUT)
+        if st == "trench": d.rectangle([tx0 - 10, hip_y - 30, tx0 + tw + 10, hip_y - 14], fill=dark(topc, 0.7) + (255,))
     if st == "puffer":
         for k in range(3):
             y = torso_top + 62 + k * 52
@@ -244,6 +326,47 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         d.polygon([(cx - 40, torso_top + 4), (cx, torso_top + 60), (cx + 40, torso_top + 4)], fill=dark(topc, 0.8) + (255,))
     elif st == "uniform":
         d.rectangle([tx0 + 20, torso_top + 80, tx0 + tw - 20, torso_top + 96], fill=dark(topc, 0.7) + (255,))
+    elif st == "suit" and not back:
+        d.polygon([(cx - 30, torso_top + 4), (cx, torso_top + 110), (cx + 30, torso_top + 4)], fill=(235, 235, 235, 255))
+        d.polygon([(cx - 8, torso_top + 20), (cx + 8, torso_top + 20), (cx + 12, torso_top + 104), (cx, torso_top + 120), (cx - 12, torso_top + 104)], fill=cd["tie"] + (255,))
+        for sgn in (-1, 1): d.polygon([(cx + sgn * 30, torso_top + 2), (cx + sgn * 6, torso_top + 116), (cx + sgn * 56, torso_top + 50)], fill=dark(topc, 0.8) + (255,), outline=OUT)
+        for k in range(2): d.ellipse([cx - 6, hip_y - 70 + k * 30, cx + 6, hip_y - 58 + k * 30], fill=(20, 20, 20, 255))
+    elif st == "tshirt" and not back:
+        d.arc([cx - 34, torso_top - 20, cx + 34, torso_top + 28], 20, 160, fill=dark(topc, 0.75) + (255,), width=5)
+        d.ellipse([cx - 30, torso_top + 70, cx + 30, torso_top + 130], fill=dark(topc, 0.78) + (255,))
+    elif st == "leather":
+        for sgn in (-1, 1): d.polygon([(cx + sgn * 20, torso_top + 4), (cx + sgn * 70, torso_top - 6), (cx + sgn * 40, torso_top + 70)], fill=dark(topc, 1.5) + (255,), outline=OUT)
+        d.line([(cx + 12, torso_top + 30), (cx + 12, hip_y + 8)], fill=(180, 180, 190, 255), width=4)
+    elif st == "sweater":
+        d.rectangle([tx0 + 4, hip_y - 22, tx0 + tw - 4, hip_y + 8], fill=dark(topc, 0.82) + (255,))
+        for xx in range(int(tx0) + 14, int(tx0 + tw) - 8, 14): d.line([(xx, hip_y - 20), (xx, hip_y + 6)], fill=dark(topc, 0.65) + (255,), width=2)
+        d.arc([cx - 40, torso_top - 24, cx + 40, torso_top + 30], 20, 160, fill=dark(topc, 0.75) + (255,), width=8)
+    elif st == "chef" and not back:
+        for k in range(3):
+            for sgn in (-1, 1): d.ellipse([cx + sgn * 26 - 6, torso_top + 40 + k * 44, cx + sgn * 26 + 6, torso_top + 52 + k * 44], fill=(60, 60, 60, 255))
+    elif st == "dress" and not back:
+        d.arc([cx - 40, torso_top - 24, cx + 40, torso_top + 34], 20, 160, fill=dark(topc, 0.75) + (255,), width=6)
+        d.line([(tx0 + 6, hip_y - 16), (tx0 + tw - 6, hip_y - 16)], fill=dark(topc, 0.7) + (255,), width=8)
+    # acessórios no peito
+    if not back:
+        acc = cd["acc"]
+        if "necklace" in acc:
+            d.arc([cx - 46, torso_top - 30, cx + 46, torso_top + 50], 30, 150, fill=(230, 200, 80, 255), width=4)
+            d.ellipse([cx - 9, torso_top + 40, cx + 9, torso_top + 58], fill=(230, 200, 80, 255))
+        if "badge" in acc:
+            bx, by = cx - 46, torso_top + 70
+            d.polygon([(bx + 16 * math.cos(math.radians(a_ * 72 - 90)) * (1 if k_ % 2 == 0 else 0.45), by + 16 * math.sin(math.radians(a_ * 72 - 90)) * (1 if k_ % 2 == 0 else 0.45))
+                       for k_, a_ in enumerate([i * 0.5 for i in range(10)])], fill=(230, 190, 60, 255), outline=OUT)
+        if "stethoscope" in acc:
+            d.arc([cx - 50, torso_top - 20, cx + 50, torso_top + 120], 10, 170, fill=(40, 40, 50, 255), width=6)
+            d.ellipse([cx + 34, torso_top + 104, cx + 56, torso_top + 126], fill=(180, 180, 190, 255), outline=OUT, width=3)
+        if "bowtie" in acc:
+            d.polygon([(cx, torso_top + 14), (cx - 24, torso_top + 2), (cx - 24, torso_top + 26)], fill=cd["tie"] + (255,), outline=OUT)
+            d.polygon([(cx, torso_top + 14), (cx + 24, torso_top + 2), (cx + 24, torso_top + 26)], fill=cd["tie"] + (255,), outline=OUT)
+        if "tie" in acc and st != "suit":
+            d.polygon([(cx - 8, torso_top + 10), (cx + 8, torso_top + 10), (cx + 12, torso_top + 110), (cx, torso_top + 126), (cx - 12, torso_top + 110)], fill=cd["tie"] + (255,), outline=OUT)
+        if "bandana" in acc:
+            d.polygon([(cx - 60, torso_top - 10), (cx + 60, torso_top - 10), (cx, torso_top + 50)], fill=(180, 40, 40, 255), outline=OUT)
     if cd["backpack"]:
         if back:
             d.rounded_rectangle([cx - 70, torso_top + 22, cx + 70, torso_top + 214], 34, fill=cd["backpack"] + (255,), outline=OUT, width=6)
@@ -261,7 +384,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     else:
         rng_arms = [1] if (side or q3) else [0, 1]
         for i in rng_arms:
-            a = arms[i]; _limb(d, [a[0], a[1], a[2]], topc, 44 * LIMBK); _hand(d, a[2], skin)
+            arm(arms[i], topc, 44 * LIMBK, skin)
     # --- objeto na mão ---
     pr = prop or ("phone" if draw_pose == "phone" else ("flashlight" if draw_pose == "hold" else ("bag" if draw_pose == "remove_bag" else None)))
     if pr and not back and draw_pose not in ("cross", "forward"):
@@ -312,8 +435,39 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if cd["hair"] == "bun":
         d.chord([hx - hr, hy - hr, hx + hr, hy + hr * 0.4], 180, 360, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
         d.ellipse([hx - 34, hy - hr - 46, hx + 34, hy - hr + 18], fill=cd["hair_color"] + (255,), outline=OUT, width=5)
-    if back and cd["hair"] in ("ponytail", "long", "bun", "short"):
-        d.ellipse([hx - hr + 8, hy - hr + 8, hx + hr - 8, hy + hr - 8], fill=cd["hair_color"] + (255,))
+    hc_ = cd["hair_color"] + (255,)
+    hs = cd["hair"]
+    if hs in ("curly", "afro") and not back:
+        for k in range(9):
+            a_ = math.pi + k * math.pi / 8
+            bx_, by_ = hx + math.cos(a_) * hr * 0.92, hy + math.sin(a_) * hr * 0.92
+            d.ellipse([bx_ - 26, by_ - 26, bx_ + 26, by_ + 26], fill=hc_, outline=OUT, width=4)
+    elif hs == "bob":
+        d.chord([hx - hr - 8, hy - hr - 6, hx + hr + 8, hy + hr * 0.9], 160, 380, fill=hc_, outline=OUT, width=5)
+        if not back: d.chord([hx - hr * 0.8, hy - hr * 0.2, hx + hr * 0.8, hy + hr * 1.6], 180, 360, fill=skin + (255,))
+    elif hs == "spiky":
+        for k in range(6):
+            x_ = hx - hr + k * hr * 0.4
+            d.polygon([(x_ - 16, hy - hr * 0.55), (x_ + 4, hy - hr - 34 - (k % 2) * 12), (x_ + 24, hy - hr * 0.55)], fill=hc_, outline=OUT)
+        d.chord([hx - hr, hy - hr, hx + hr, hy + hr * 0.3], 180, 360, fill=hc_)
+    elif hs == "mohawk":
+        for k in range(5):
+            y_ = hy - hr + 10 + k * 8
+            d.polygon([(hx - 16, y_ + 20), (hx - 4 + k * 3, y_ - 56), (hx + 16, y_ + 20)], fill=hc_, outline=OUT)
+    elif hs in ("braids", "pigtails"):
+        d.chord([hx - hr, hy - hr, hx + hr, hy + hr * 0.35], 180, 360, fill=hc_, outline=OUT, width=5)
+        if not back:
+            for sgn in (-1, 1):
+                sw_ = math.sin(t * 2.4 + seed + sgn) * 6 * sway_k
+                if hs == "pigtails":
+                    d.ellipse([hx + sgn * hr - 26 + sw_, hy - 30, hx + sgn * hr + 26 + sw_, hy + 70], fill=hc_, outline=OUT, width=4)
+                else:
+                    for k in range(5):
+                        d.ellipse([hx + sgn * (hr - 10) - 14 + sw_, hy + k * 28 - 6, hx + sgn * (hr - 10) + 14 + sw_, hy + k * 28 + 26], fill=hc_, outline=OUT, width=3)
+    elif hs == "long" and not back:
+        d.chord([hx - hr, hy - hr, hx + hr, hy + hr * 0.35], 180, 360, fill=hc_, outline=OUT, width=5)
+    if back and hs in ("ponytail", "long", "bun", "short", "curly", "bob", "spiky", "braids", "pigtails"):
+        d.ellipse([hx - hr + 8, hy - hr + 8, hx + hr - 8, hy + hr - 8], fill=hc_)
     # chapéus
     if cd["hat"] == "beanie":
         d.chord([hx - 92, hy - 120, hx + 92, hy + 44], 180, 360, fill=cd["hat_color"] + (255,), outline=OUT, width=6)
@@ -327,9 +481,49 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     elif cd["hat"] == "helmet":
         d.chord([hx - 96, hy - 116, hx + 96, hy + 28], 180, 360, fill=cd["hat_color"] + (255,), outline=OUT, width=6)
         d.rectangle([hx - 100, hy - 48, hx + 100, hy - 34], fill=tuple(int(v * 0.7) for v in cd["hat_color"]) + (255,))
+    elif cd["hat"] == "fedora":
+        hcol = cd["hat_color"] + (255,)
+        d.ellipse([hx - 130, hy - 70, hx + 130, hy - 34], fill=hcol, outline=OUT, width=5)
+        d.rounded_rectangle([hx - 76, hy - 146, hx + 76, hy - 50], 30, fill=hcol, outline=OUT, width=5)
+        d.rectangle([hx - 76, hy - 80, hx + 76, hy - 62], fill=(30, 26, 22, 255))
+    elif cd["hat"] == "cowboy":
+        hcol = cd["hat_color"] + (255,)
+        d.chord([hx - 150, hy - 110, hx + 150, hy - 20], 0, 180, fill=hcol, outline=OUT, width=5)
+        d.ellipse([hx - 150, hy - 76, hx + 150, hy - 40], fill=hcol, outline=OUT, width=5)
+        d.rounded_rectangle([hx - 70, hy - 160, hx + 70, hy - 56], 34, fill=hcol, outline=OUT, width=5)
+    elif cd["hat"] == "tophat":
+        hcol = cd["hat_color"] + (255,)
+        d.ellipse([hx - 110, hy - 74, hx + 110, hy - 44], fill=hcol, outline=OUT, width=5)
+        d.rectangle([hx - 64, hy - 220, hx + 64, hy - 58], fill=hcol, outline=OUT, width=5)
+        d.rectangle([hx - 64, hy - 90, hx + 64, hy - 70], fill=(150, 30, 30, 255))
+    elif cd["hat"] == "crown":
+        hcol = cd["hat_color"] + (255,)
+        pts_ = [(hx - 70, hy - 60)]
+        for k in range(5): pts_ += [(hx - 70 + k * 35 + 17, hy - 130), (hx - 70 + (k + 1) * 35, hy - 84)]
+        pts_ += [(hx + 70, hy - 60)]
+        d.polygon(pts_, fill=hcol, outline=OUT)
+        for k in range(3): d.ellipse([hx - 44 + k * 38, hy - 84, hx - 32 + k * 38, hy - 72], fill=(200, 40, 60, 255))
+    elif cd["hat"] == "witch":
+        hcol = cd["hat_color"] + (255,)
+        d.ellipse([hx - 150, hy - 76, hx + 150, hy - 36], fill=hcol, outline=OUT, width=5)
+        tip = math.sin(t * 1.5 + seed) * 12
+        d.polygon([(hx - 76, hy - 60), (hx + 76, hy - 60), (hx + 40 + tip, hy - 260)], fill=hcol, outline=OUT)
+        d.rectangle([hx - 72, hy - 88, hx + 72, hy - 70], fill=(140, 90, 200, 255))
+    elif cd["hat"] == "chef":
+        hcol = cd["hat_color"] + (255,)
+        d.rectangle([hx - 76, hy - 110, hx + 76, hy - 50], fill=hcol, outline=OUT, width=5)
+        for k in range(3): d.ellipse([hx - 96 + k * 64, hy - 200, hx - 96 + k * 64 + 66, hy - 100], fill=hcol, outline=OUT, width=5)
+    elif cd["hat"] in ("headband", "bandana_hat"):
+        hcol = cd["hat_color"] + (255,)
+        if cd["hat"] == "bandana_hat": d.chord([hx - hr, hy - hr - 4, hx + hr, hy + hr * 0.2], 180, 360, fill=hcol, outline=OUT, width=5)
+        d.rounded_rectangle([hx - hr - 2, hy - 54, hx + hr + 2, hy - 34], 8, fill=hcol, outline=OUT, width=4)
+        if not back: d.polygon([(hx + hr - 6, hy - 46), (hx + hr + 40, hy - 20), (hx + hr + 20, hy - 6)], fill=hcol, outline=OUT)
     elif cd["hat"] == "hood":
         if back: d.ellipse([hx - 92, hy - 92, hx + 92, hy + 92], fill=topc + (255,), outline=OUT, width=6)
         else: d.arc([hx - 98, hy - 98, hx + 98, hy + 98], 160, 380, fill=dark(topc, 0.88) + (255,), width=24)
+    if "headphones" in cd["acc"]:
+        d.arc([hx - hr - 6, hy - hr - 10, hx + hr + 6, hy + hr - 20], 180, 360, fill=(30, 30, 36, 255), width=12)
+        for sgn in (-1, 1): d.rounded_rectangle([hx + sgn * hr - 18, hy - 20, hx + sgn * hr + 18, hy + 34], 12, fill=(200, 40, 60, 255), outline=OUT, width=4)
     if cd["hair"] == "ponytail" and back:
         sw = math.sin(t * 2.6 + seed) * 12 * sway_k + (s * 12 if walk else 0)
         d.ellipse([hx - 28 + sw * 0.4, hy + 24, hx + 28 + sw, hy + 150], fill=cd["hair_color"] + (255,), outline=OUT, width=5)
@@ -405,6 +599,37 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                 mh = 5 + 22 * mouth; mw = 13 + 7 * mouth
                 d.ellipse([mx - mw, my - mh * 0.45, mx + mw, my + mh * 0.55], fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
                 if mouth > 0.45: d.chord([mx - mw + 5, my + mh * 0.05, mx + mw - 5, my + mh * 0.5], 0, 180, fill=(190, 80, 90, 255))
+            fcol = (cd["facial_color"] or cd["hair_color"]) + (255,)
+            if cd["facial"] == "beard":
+                d.chord([hx - hr + 6, hy - 10, hx + hr - 6, hy + hr + 10], 0, 180, fill=fcol, outline=OUT, width=4)
+                if mouth > 0.06 or emotion in ("shock", "happy"): d.ellipse([mx - 14, my - 6, mx + 14, my + 10 + 12 * mouth], fill=(40, 18, 22, 255))
+            elif cd["facial"] == "mustache":
+                d.chord([mx - 34, my - 22, mx + 2, my + 6], 180, 360, fill=fcol, outline=OUT, width=3)
+                d.chord([mx - 2, my - 22, mx + 34, my + 6], 180, 360, fill=fcol, outline=OUT, width=3)
+            elif cd["facial"] == "stubble":
+                r_ = random.Random(seed)
+                for _ in range(40):
+                    a_ = r_.uniform(0.15, 2.99); rr_ = r_.uniform(hr * 0.55, hr * 0.92)
+                    px_, py_ = hx + math.cos(a_) * rr_, hy + 6 + math.sin(a_) * rr_ * 0.95
+                    d.ellipse([px_ - 2, py_ - 2, px_ + 2, py_ + 2], fill=dark(fcol[:3], 0.8) + (255,))
+            acc = cd["acc"]
+            if "sunglasses" in acc:
+                for (x, y) in eyes: d.rounded_rectangle([x - 26, y - 18, x + 26, y + 16], 10, fill=(14, 14, 20, 255), outline=OUT, width=4)
+                if len(eyes) == 2: d.line([(eyes[0][0] + 26, eyes[0][1] - 6), (eyes[1][0] - 26, eyes[1][1] - 6)], fill=OUT, width=5)
+                for (x, y) in eyes: d.line([(x - 14, y - 8), (x - 4, y - 12)], fill=(200, 200, 220, 255), width=3)
+            if "eyepatch" in acc:
+                x, y = eyes[-1]
+                d.line([(hx - hr + 10, hy - 40), (hx + hr - 10, hy - 20)], fill=OUT, width=6)
+                d.ellipse([x - 22, y - 20, x + 22, y + 20], fill=(14, 14, 18, 255))
+            if "mask" in acc:
+                d.rounded_rectangle([hx - 52 + (fx - hx), hy + 34, hx + 52 + (fx - hx), hy + 84], 18, fill=(150, 200, 220, 255), outline=OUT, width=4)
+                d.line([(hx - 52 + (fx - hx), hy + 46), (hx - hr + 4, hy + 20)], fill=(150, 200, 220, 255), width=4)
+            if "earrings" in acc:
+                for sgn in ((-1, 1) if not side else (-1,)): d.ellipse([hx + sgn * (hr - 4) - 7, hy + 30, hx + sgn * (hr - 4) + 7, hy + 44], fill=(230, 200, 80, 255))
+            if "bow" in acc:
+                bx_, by_ = hx + hr * 0.6, hy - hr * 0.75
+                d.polygon([(bx_, by_), (bx_ - 34, by_ - 22), (bx_ - 34, by_ + 22)], fill=(220, 70, 110, 255), outline=OUT)
+                d.polygon([(bx_, by_), (bx_ + 34, by_ - 22), (bx_ + 34, by_ + 22)], fill=(220, 70, 110, 255), outline=OUT)
             if cd["glasses"]:
                 for (x, y) in eyes: d.ellipse([x - 22, y - 20, x + 22, y + 20], outline=OUT, width=5)
                 if len(eyes) == 2: d.line([(eyes[0][0] + 22, eyes[0][1]), (eyes[1][0] - 22, eyes[1][1])], fill=OUT, width=5)
@@ -450,6 +675,10 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)
     im = _shade(im, light)
+    if cd.get("ghost"):
+        r_, g_, b_, a_ = im.split()
+        a_ = a_.point(lambda v: int(v * 0.58))
+        im = Image.merge("RGBA", (r_.point(lambda v: min(255, int(v * 0.9 + 30))), g_.point(lambda v: min(255, int(v * 0.95 + 30))), b_.point(lambda v: min(255, v + 50)), a_))
     if facing < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     res = (im, (nw / 2, anc[1] * k))
     if len(_CACHE) > 4000: _CACHE.clear()
