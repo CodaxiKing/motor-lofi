@@ -42,7 +42,7 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 ## Episódios
 | Nº | Noite | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 1 | início | planejado | A) Atender · B) Dizer que está fechado | | |
+| 1 | 1 | início | roteiro | A) Atender · B) Dizer que está fechado | — | |
 | 2 | 2 | complicação | planejado | A) Abrir a câmara fria · B) Ligar pra gerente | | |
 | 3 | 3 | reviravolta | planejado | A) Confiar na Sônia · B) Confiar no Ivo | | |
 | 4 | 4 | clímax | planejado | A) Religar o gerador · B) Ficar parado no escuro | | |
