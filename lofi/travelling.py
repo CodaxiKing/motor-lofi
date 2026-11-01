@@ -21,10 +21,10 @@ CHAO = 1540        # onde a parede/fachada encontra o chão
 TEMA = {"rua": "cidade", "rua_amanhecer": "cidade", "entrada_metro": "cidade", "posto": "cidade", "telhado": "cidade",
         "janela": "cidade", "portao": "cidade", "beco": "cidade", "viaduto": "ponte", "estacionamento": "tunel", "vagao": "interno", "floresta": "mata", "metro": "tunel", "esgoto": "esgoto", "ponte": "ponte",
         "corredor": "interno", "hospital": "interno", "escola": "interno", "delegacia": "interno", "mercado": "interno",
-        "igreja": "interno", "apartamento": "interno", "entrada": "interno", "escada": "interno"}
+        "igreja": "interno", "loja": "interno", "deposito": "interno", "camara_fria": "interno", "apartamento": "interno", "entrada": "interno", "escada": "interno"}
 PAREDE = {"hospital": (150, 176, 160), "escola": (176, 160, 126), "delegacia": (120, 132, 150), "mercado": (170, 170, 160),
           "igreja": (150, 130, 110), "corredor": (120, 110, 96), "apartamento": (110, 100, 120), "entrada": (110, 100, 120),
-          "escada": (120, 70, 66)}
+          "escada": (120, 70, 66), "loja": (112, 122, 112), "deposito": (96, 92, 84), "camara_fria": (110, 140, 158)}
 
 
 def _k(col, k): return tuple(max(0, min(255, int(c * k))) for c in col[:3]) + tuple(col[3:])

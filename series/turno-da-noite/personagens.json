@@ -1,0 +1,21 @@
+{
+ "_leia": "Fichas travadas da série Turno da Noite. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito.",
+ "davi": {"skin": "moreno", "top_style": "uniform", "top": [36, 104, 98], "legs": [36, 40, 56], "shoes": [235, 235, 230],
+          "hair": "short", "hair_color": [24, 20, 18], "facial": "stubble", "facial_color": [30, 24, 20],
+          "hat": "cap", "hat_color": [238, 186, 40], "acc": ["badge"], "body": "thin"},
+ "sonia": {"skin": "claro", "top_style": "trench", "top": [176, 150, 110], "inner": [236, 236, 230], "legs": [40, 40, 44],
+           "shoes": [120, 30, 30], "hair": "bob", "hair_color": [150, 150, 156], "glasses": true,
+           "scarf": [150, 30, 44], "acc": ["badge", "earrings"], "body": "tall"},
+ "ivo": {"skin": [176, 192, 204], "top_style": "uniform", "top": [74, 112, 108], "legs": [50, 54, 66], "shoes": [190, 190, 186],
+         "hair": "short", "hair_color": [220, 220, 224], "facial": "beard", "facial_color": [230, 230, 234],
+         "hat": "cap", "hat_color": [176, 158, 96], "acc": ["badge"], "body": "old"},
+ "cliente": {"skin": [228, 226, 220], "top_style": "suit", "top": [16, 16, 20], "inner": [238, 238, 234], "tie": [16, 16, 20],
+             "legs": [16, 16, 20], "shoes": [10, 10, 10], "hat": "fedora", "hat_color": [14, 14, 16],
+             "body": "thin", "infected": true, "scale": 1.18},
+ "bento": {"skin": "escuro", "top_style": "shirt", "top": [170, 52, 44], "legs": [50, 60, 90], "shoes": [90, 60, 40],
+           "hat": "cap", "hat_color": [40, 70, 140], "facial": "mustache", "facial_color": [30, 26, 24], "hair": "short",
+           "hair_color": [30, 26, 24], "body": "fat"},
+ "duplo": {"skin": "moreno", "top_style": "uniform", "top": [36, 104, 98], "legs": [36, 40, 56], "shoes": [235, 235, 230],
+           "hair": "short", "hair_color": [24, 20, 18], "facial": "stubble", "facial_color": [30, 24, 20],
+           "hat": "cap", "hat_color": [238, 186, 40], "acc": ["badge"], "body": "thin", "infected": true}
+}

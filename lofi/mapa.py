@@ -203,6 +203,27 @@ MAPA["_travelling"] = {
                "frente": {"x": 540, "y": 1840, "nota": "na beira da calçada, perto da câmera"}},
 }
 
+# Loja de conveniência 24h (lofi/scenes_loja.py)
+MAPA["loja"] = {
+    "chao": [(0, 1190), (1080, 1190), (1080, 1900), (0, 1900)],
+    "marcas": {"caixa": {"x": 210, "y": 1420, "nota": "atrás do balcão do caixa (o balcão tapa da cintura para baixo)"},
+               "balcao": {"x": 590, "y": 1470, "facing": -1, "nota": "cliente na frente do balcão, à direita dele"},
+               "porta": {"x": 630, "y": 1200, "nota": "entrando pela porta de vidro (pequeno, no fundo)"},
+               "geladeira": {"x": 800, "y": 1560, "nota": "na frente das geladeiras, à direita"},
+               "centro": {"x": 620, "y": 1650}, "frente": {"x": 600, "y": 1820, "nota": "perto da câmera"}}}
+MAPA["deposito"] = {
+    "chao": [(0, 1270), (1080, 1270), (1080, 1900), (0, 1900)],
+    "marcas": {"porta_camara": {"x": 720, "y": 1330, "view": "back", "nota": "colado na porta da câmara fria, de costas"},
+               "frente_porta": {"x": 720, "y": 1600, "nota": "de frente, diante da porta da câmara fria"},
+               "gerador": {"x": 430, "y": 1330, "nota": "ao lado do gerador"},
+               "centro": {"x": 540, "y": 1650}, "frente": {"x": 540, "y": 1820}}}
+MAPA["camara_fria"] = {
+    "chao": [(420, 1230), (660, 1230), (1040, 1900), (40, 1900)],
+    "marcas": {"fundo": {"x": 540, "y": 1280, "nota": "lá no fundo, perto da porta"}, "meio": {"x": 540, "y": 1500},
+               "frente": {"x": 540, "y": 1800}}}
+MAPA["cftv"] = {"chao": None, "marcas": {}}
+LUGAR.update({"loja": "loja", "deposito": "loja", "camara_fria": "loja", "cftv": "loja"})
+
 
 def lugar(cena):
     """Lugar de um cenário (o próprio nome quando não há grupo). None = não muda o lugar (ex.: rádio portátil)."""
