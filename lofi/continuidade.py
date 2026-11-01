@@ -85,7 +85,7 @@ def percorrer(txt, mundo, inicio=None):
     est = json.loads(json.dumps(inicio or {}))
     inv = {k: list(v) for k, v in est.get("inventario", {}).items()}
     atual = est.get("lugar"); relogio = _minutos(est["dia"], est["hora"]) if est.get("dia") and est.get("hora") else None
-    viu_relogio = False; primeira = True; dia_hora = (est.get("dia"), est.get("hora"))
+    mais_tarde = None; viu_relogio = False; primeira = True; dia_hora = (est.get("dia"), est.get("hora"))
     for n, corpo in cenas(txt):
         if n == 0: continue                                                        # gancho é flash-forward
         for quem, item in re.findall(r"PEGA\s*:\s*`?(\w+)`?\s+`?(\w+)`?", corpo, re.I):
@@ -103,6 +103,7 @@ def percorrer(txt, mundo, inicio=None):
                     erros.append(f"CENA {n}: pulo de {(t - relogio) // 60} h sem mostrar o tempo passando. Ponha antes um "
                                  f"PLANO DE DETALHE `relogio` (ou a linha \"O TEMPO PASSA\")")
             if not insercao: relogio = t; dia_hora = (int(d), f"{int(h):02d}:{mi}"); viu_relogio = False
+            elif relogio is None or t > (mais_tarde[0] if mais_tarde else relogio): mais_tarde = (t, (int(d), f"{int(h):02d}:{mi}"))
         m = re.search(r"CEN[AÁ]RIO[^:\n]*:\**\s*`([^`]+)`", corpo, re.I)
         if not m: continue
         cena = m.group(1).strip()
@@ -127,6 +128,7 @@ def percorrer(txt, mundo, inicio=None):
                              f"mostre a passagem por {', '.join(r[1:-1])}")
         atual = novo; primeira = False
     fim = {"lugar": atual, "inventario": inv}
+    if mais_tarde and (relogio is None or mais_tarde[0] > relogio): dia_hora = mais_tarde[1]   # o dia chegou numa inserção
     if dia_hora[0]: fim["dia"], fim["hora"] = dia_hora
     return erros, fim
 

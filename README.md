@@ -36,6 +36,15 @@ O repositório vem com **8 skills** (pasta [`skills/`](skills/)) que fazem todo 
 
 ---
 
+
+### Novidades: continuidade e produção
+- **Mapa da cidade** (`series/<serie>/mundo.json`): o roteiro só anda por caminhos que existem, começa onde o episódio anterior
+  parou, o relógio nunca volta e os objetos só aparecem se alguém carrega (`python3 -m lofi.continuidade ...`).
+- **Travelling:** o cenário passa de lado, de frente ou por trás, com chegada automática ao destino.
+- **Prévia do roteiro** antes de gravar: `python3 -m lofi.previa series/<serie>/epNN_roteiro.md`.
+- **Render com cache:** ajustes refazem só os planos alterados.
+- **Fim de temporada:** `python3 -m lofi.extras escolhas series/<serie>` (todas as escolhas do público).
+
 ## Continuidade: os personagens não mudam
 
 Cada série tem uma pasta própria em `series/<nome-da-serie>/`:

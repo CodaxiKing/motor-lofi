@@ -43,3 +43,14 @@ def test_relogio():
     assert any("sem mostrar o tempo" in x for x in e)
     rot = _rot(("posto", "DIA 4 · 06:00", ""), ("posto", "DIA 4 · 22:00", "PLANO DE DETALHE: `relogio`"))
     assert not C.percorrer(rot, MUNDO, INICIO)[0]
+
+
+def test_escolhas_da_biblia(tmp_path):
+    from lofi.extras import ler_escolhas
+    b = tmp_path / "biblia.md"
+    b.write_text("| Nº | Dia | Fase | Status | Pergunta | Voto | Placar |\n|---|---|---|---|---|---|---|\n"
+                 "| 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | 340x210 |\n"
+                 "| 2 | 2 | x | montado | A) Escada · B) Telhado | ESCADA | 62% |\n| 3 | 3 | x | montado | A) X · B) Y | (aguardando) | |\n",
+                 encoding="utf-8")
+    r = ler_escolhas(str(b))
+    assert r[0][3] == "B" and r[0][4] == 62 and r[1] == (2, "Escada", "Telhado", "A", 62, 38) and len(r) == 2

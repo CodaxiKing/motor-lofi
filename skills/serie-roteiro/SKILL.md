@@ -18,7 +18,7 @@ Responda em português do Brasil.
 - Estrutura: gancho (0–2 s) → "Anteriormente em…" (a partir do ep. 2) → abertura com carimbo do voto → consequência da escolha → algo novo e estranho → plano de detalhe + susto → revelação com close → escalada → pergunta A/B → "CONTINUA NO EPISÓDIO X". Último episódio: desfecho conforme os finais e escolhas, "FIM".
 - Use os recursos do motor: vista 3/4, ações (correr, pular, esconder, abrir porta, cair), breu com lanterna, sombras na parede, clima e hora, câmera na mão, vertigo, câmera lenta, cor do episódio.
 - **Movimento:** quando alguém anda ou corre por um trajeto, escreva PLANO: `travelling` (o cenário passa: postes, prédios, portas) e uma cena curta de chegada.
-- **Continuidade:** sem pulos de lugar. Toda mudança de lugar tem `LIGAÇÃO:` (como eles chegam lá) e, se der, uma cena de passagem; corte para outro lugar sem os personagens é `INSERÇÃO:`. Objetos combinam com o lugar: `radio` só em casa, `radio_carro` no carro, `radio_portatil` fora; `chave` com `"onde": "carro"` é a ignição. Se faltar um cenário de passagem, crie no motor.
+- **Continuidade:** começa onde o episódio anterior terminou (`mundo.json`) e só anda por ligações do mapa da cidade; relógio só para frente; objetos só se alguém carrega (`PEGA:`/`LARGA:`). Sem pulos de lugar. Toda mudança de lugar tem `LIGAÇÃO:` (como eles chegam lá) e, se der, uma cena de passagem; corte para outro lugar sem os personagens é `INSERÇÃO:`. Objetos combinam com o lugar: `radio` só em casa, `radio_carro` no carro, `radio_portatil` fora; `chave` com `"onde": "carro"` é a ignição. Se faltar um cenário de passagem, crie no motor.
 - Mantenha as consequências das escolhas anteriores registradas na bíblia e respeite a classificação da série.
 - Use só nomes de cenário, som, pose, emoção e personagem que estão em `CATALOGO.md` ou em `personagens.json`.
 
@@ -27,5 +27,5 @@ Tudo **escrito na própria resposta do chat** (não só como arquivo anexado): o
 1. Roteiro completo por cena.
 2. Narração para o ElevenLabs v3: um bloco por personagem (nome no título), tags em inglês, dica de voz; versão CapCut.
 3. As duas opções finais e o que acontece em cada uma.
-4. Salve `series/<serie>/epNN_roteiro.md`, rode `python3 tests/validar_roteiro.py` (`--final` no último) e corrija até não haver ERRO; registre o voto e o status "roteiro" na bíblia, commit e push.
+4. Salve `series/<serie>/epNN_roteiro.md`, rode `python3 tests/validar_roteiro.py` (`--final` no último) e corrija até não haver ERRO; rode o revisor de continuidade (Agent) e a prévia (`python3 -m lofi.previa ...`, envie a imagem) e grave o fim com `python3 -m lofi.continuidade fechar ...`; registre o voto e o status "roteiro" na bíblia, commit e push.
 5. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-montar com os áudios".

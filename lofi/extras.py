@@ -9,7 +9,7 @@
 """
 import sys, os, json, subprocess, tempfile
 from PIL import Image, ImageDraw, ImageFilter
-from .core import W, H, RED, CREAM, font, text_center
+from .core import W, H, RED, CREAM, font, text_center, ease
 from . import fx
 
 def _run(cmd): subprocess.run(cmd, check=True)
@@ -184,6 +184,65 @@ def temporada(out, title, videos):
     ch = os.path.splitext(out)[0] + "_capitulos.txt"; open(ch, "w").write("\n".join(chapters) + "\n")
     print("temporada:", out, "| capítulos:", ch); return out, ch
 
+def ler_escolhas(biblia):
+    """Linhas da tabela de episódios da bíblia: [(nº, opção A, opção B, voto, placar A, placar B)]."""
+    import re
+    out = []
+    for linha in open(biblia, encoding="utf-8"):
+        c = [x.strip() for x in linha.strip().strip("|").split("|")]
+        if len(c) < 6 or not c[0].isdigit(): continue
+        m = re.match(r"A\)\s*(.+?)\s*·\s*B\)\s*(.+)", c[4])
+        if not m or not c[5] or c[5].startswith("("): continue
+        a, b = m.group(1), m.group(2); voto = c[5].upper(); pa = pb = None
+        pl = c[6] if len(c) > 6 else ""
+        mx = re.match(r"(\d+)\s*[xX×]\s*(\d+)", pl); mp = re.match(r"(\d+)\s*%", pl)
+        venceu_a = voto in a.upper() or a.upper() in voto
+        if mx: va, vb = int(mx.group(1)), int(mx.group(2)); pa = round(100 * va / max(1, va + vb)); pb = 100 - pa
+        elif mp: w = int(mp.group(1)); pa, pb = (w, 100 - w) if venceu_a else (100 - w, w)
+        out.append((int(c[0]), a, b, "A" if venceu_a else "B", pa, pb))
+    return out
+
+
+def escolhas(serie_dir, out=None, titulo=None):
+    """Vídeo vertical "todas as escolhas do público": cada episódio com a pergunta, as duas opções e o voto vencedor
+    (com barras de porcentagem quando o placar está na bíblia), e no fim o gancho da próxima temporada."""
+    biblia = os.path.join(serie_dir, "biblia.md"); itens = ler_escolhas(biblia)
+    if not itens: raise SystemExit("nenhum voto registrado na tabela da bíblia")
+    titulo = titulo or os.path.basename(os.path.abspath(serie_dir)).replace("-", " ").upper()
+    out = out or os.path.join(serie_dir, "escolhas.mp4"); fps = 30
+    cenas = [("intro", 2.5)] + [(it, 3.6) for it in itens] + [("fim", 3.5)]
+    total = sum(d for _, d in cenas)
+    p = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "-",
+                          "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", f"{total:.2f}", "-c:v", "libx264", "-crf", "24",
+                          "-pix_fmt", "yuv420p", "-c:a", "aac", "-shortest", "-movflags", "+faststart", out], stdin=subprocess.PIPE)
+    fundo = Image.new("RGB", (W, H), (14, 12, 18)); dd = ImageDraw.Draw(fundo)
+    for y in range(0, H, 6): dd.line((0, y, W, y), fill=(18, 16, 24))
+    f_t, f_m, f_s = font("title", 120), font("title", 74), font("title", 52)
+    for cena, dur in cenas:
+        for i in range(int(dur * fps)):
+            t = i / fps; k = min(1.0, t / 0.5); im = fundo.copy(); d = ImageDraw.Draw(im)
+            if cena == "intro":
+                text_center(d, titulo, W // 2, 760, f_t, CREAM); text_center(d, "VOCÊS ESCOLHERAM", W // 2, 940, f_m, RED)
+                text_center(d, "TODAS AS DECISÕES DA TEMPORADA", W // 2, 1060, f_s, CREAM)
+            elif cena == "fim":
+                text_center(d, "TEMPORADA 2?", W // 2, 820, f_t, RED)
+                text_center(d, "COMENTA O QUE VOCÊ", W // 2, 1000, f_m, CREAM); text_center(d, "QUER VER", W // 2, 1090, f_m, CREAM)
+            else:
+                n, a, b, v, pa, pb = cena
+                text_center(d, f"EPISÓDIO {n}", W // 2, 560, f_m, RED)
+                for j, (lab, op, pc) in enumerate((("A", a, pa), ("B", b, pb))):
+                    y = 760 + j * 300; ganhou = lab == v; cor = RED if ganhou else (90, 86, 96)
+                    larg = 860 * ((pc or (78 if ganhou else 22)) / 100) * ease(min(1, max(0, (t - 0.4) / 1.2)))
+                    d.rounded_rectangle((110, y, 970, y + 170), 26, fill=(30, 28, 36))
+                    d.rounded_rectangle((110, y, 110 + max(52, larg), y + 170), 26, fill=cor)
+                    d.text((150, y + 30), f"{lab}) {op.upper()}"[:26], font=f_s, fill=CREAM)
+                    if pc is not None: d.text((150, y + 100), f"{pc * min(1, max(0, (t - 0.4) / 1.2)):.0f}%", font=font("title", 44), fill=CREAM)
+                if t > 1.8: text_center(d, "A MAIORIA ESCOLHEU", W // 2, 1420, f_s, CREAM); text_center(d, (a if v == "A" else b).upper(), W // 2, 1510, f_m, RED)
+            if k < 1: im = Image.blend(Image.new("RGB", (W, H)), im, k)
+            p.stdin.write(fx.grain(im).tobytes())
+    p.stdin.close(); p.wait(); print("escolhas:", out); return out
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "teaser": teaser(sys.argv[2], sys.argv[3])
@@ -191,6 +250,7 @@ if __name__ == "__main__":
         args = [a for a in sys.argv[2:] if not a.startswith("--")]
         plats = [p for p in PLATAFORMAS if f"--{p}" in sys.argv] or list(PLATAFORMAS)
         for p in plats: capa(args[0], float(args[1]) if len(args) > 1 else None, plataforma=p, guias="--guias" in sys.argv)
+    elif cmd == "escolhas": escolhas(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
     elif cmd == "pacote":
         args = [a for a in sys.argv[2:] if not a.startswith("--")]
         if len(args) < 2 or not args[1].endswith(".mp4"):   # vídeo omitido: usa o "out" do episódio

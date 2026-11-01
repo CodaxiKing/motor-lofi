@@ -182,9 +182,35 @@ eles atravessarem um fundo parado:
   luz vêm do cenário original (`rain`, `fog`, `time`, `dark` continuam valendo).
 - Personagens ficam no lugar: marcas próprias do travelling `esq`, `centro`, `dir`, `fundo`, `frente` (chão de y 1560 a 1900).
   Quem persegue entra com `crowd` (`dir` no mesmo sentido) ou com x/y animado.
-- Para chegar a algum lugar (o carro, a porta), corte para um plano curto sem travelling com a chegada.
+- **Chegada:** `{"speed": 400, "chegada": "carro", "para": 1.5, "chegada_x": 760}` desacelera nos últimos `para` segundos e
+  o destino (`carro`, `porta`, `escada`, `portao`) entra no quadro e para em `chegada_x`; os personagens param de andar sozinhos.
+- **De frente / de costas:** `{"speed": 400, "dir": "frente"}` = eles correm na direção da câmera (`"view": "front"`) e o caminho
+  vai ficando para trás; `"dir": "fundo"` = a câmera segue por trás (`"view": "back"`) e o caminho vem. Rua com prédios e postes,
+  mata, túnel e corredores em perspectiva.
 - Verificador: ERRO para valor inválido ou travelling fora de plano de cenário; AVISO para personagem parado (vai deslizar) ou
   virado contra o movimento.
+
+## Mapa da cidade, objetos e relógio (`series/<serie>/mundo.json`)
+```json
+{"lugares": {"rua": {"cenarios": ["rua", "rua_amanhecer", "beco", "entrada_metro"]}, "metro": {"cenarios": ["metro", "vagao"]}},
+ "ligacoes": [["rua", "metro", "pela escada da estação Sé"]],
+ "fim": {"4": {"lugar": "carro", "dia": 5, "hora": "05:20", "inventario": {"roberta": ["radio", "lanterna"]}}}}
+```
+- O validador de roteiro (via `lofi/continuidade.py`) confere: o episódio começa onde o anterior terminou (`fim`), cada mudança de
+  lugar segue uma ligação do mapa (senão mostra a rota: "posto → rua → metro"), o relógio só anda para frente e pulo de mais de 3 h
+  precisa de `relogio` ou "O TEMPO PASSA", e objetos usados estão com alguém (`radio_portatil` precisa de "radio", `flashlight`
+  de "lanterna"). No roteiro, `PEGA: roberta lanterna` / `LARGA: roberta radio` mudam o inventário.
+- `python3 -m lofi.continuidade fechar epNN_roteiro.md` grava o `fim` do episódio; `... rota series/x posto ponte` mostra o caminho.
+- O `lofi.check` também recusa relógio do HUD voltando no tempo ou começando antes do fim do episódio anterior.
+- Cenários de passagem: `portao` (frente do prédio), `beco`, `viaduto`, `estacionamento`, `vagao` (por dentro).
+
+## Prévia, cache e fim de temporada
+- `python3 -m lofi.previa epNN_roteiro.md` → `epNN_previa.png`: um quadro por cena a partir do texto do roteiro (cenário, hora,
+  personagens nas marcas, LIGAÇÃO/INSERÇÃO e lugar do mapa), antes de gravar as vozes.
+- `python3 -m lofi.render ep.json --jobs 2` guarda cada plano em `series/<serie>/_cache/` e só renderiza de novo os planos que mudaram
+  (o plano, o que é global ao vídeo, as vozes, as fichas ou o código do motor). `--sem-cache` renderiza tudo como antes.
+- `python3 -m lofi.extras escolhas series/<serie>` → vídeo vertical "vocês escolheram": cada episódio com as duas opções, barras com
+  o placar da bíblia (quando houver) e "TEMPORADA 2?" no fim.
 
 ## Continuidade de lugar e objetos
 A história não pode pular de lugar. `lofi/mapa.py` agrupa os cenários em lugares (`LUGAR`: `apartamento`/`entrada`/`radio`/`janela` = casa;

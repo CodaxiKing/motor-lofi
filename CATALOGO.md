@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (23): `apartamento`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`
+**Cenários** (28): `apartamento`, `beco`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `vagao`, `viaduto`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
@@ -55,6 +55,11 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **entrada_metro:** `calcada_esq` (na calçada, à esquerda), `frente` (na calçada, perto da câmera), `escada_topo` (no primeiro degrau, perto da câmera (prestes a descer ou acabando de subir)), `escada_baixo` (lá embaixo na escada, entrando na estação (pequeno, longe)), `longe` (lá no fundo da calçada)
 - **radio_carro:** 
 - **radio_portatil:** 
+- **portao:** `portao` (no portão, saindo ou entrando no prédio), `calcada_esq`, `calcada_dir`, `frente` (na calçada, perto da câmera)
+- **beco:** `fundo` (no fim do beco (pequeno)), `meio`, `frente`, `lixeira` (escondido atrás da lixeira)
+- **viaduto:** `longe` (lá no fim do viaduto, perto da ponte), `meio`, `frente`, `mureta` (junto à mureta, olhando a cidade)
+- **estacionamento:** `fundo`, `meio`, `frente`, `pilar` (escondido atrás do pilar)
+- **vagao:** `porta` (na porta do fundo), `meio`, `frente`, `banco_esq` (perto do banco da esquerda), `banco_dir`
 - **travelling (qualquer cenário com "travelling"):** `esq` (atrás na corrida (quem persegue/segue)), `centro`, `dir` (à frente na corrida), `fundo` (junto à parede/fachada), `frente` (na beira da calçada, perto da câmera)
 
 ## Travelling lateral (o cenário passa)

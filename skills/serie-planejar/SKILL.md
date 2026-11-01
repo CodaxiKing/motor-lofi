@@ -9,7 +9,7 @@ Primeiro passo de uma série nova, sem anexar nada. Siga a skill **serie-lofi-in
 Responda em português do Brasil.
 
 ## Padrões
-Duração por episódio: no mínimo 2 minutos, sem limite máximo · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
+Mapa da cidade em `mundo.json` (lugares, cenários de cada lugar, ligações e o que cada um carrega no início; formato de `series/dia-zero/mundo.json`) · duração por episódio: no mínimo 2 minutos, sem limite máximo · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
 
 ## Coletar os dados
 1. Se o usuário já escreveu os dados junto com o comando, use-os e pergunte só o que faltar.
