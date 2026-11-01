@@ -1,6 +1,6 @@
 
 """Biblioteca de efeitos sonoros sintetizados + mixagem de vozes, efeitos, ambiente e trilha."""
-import subprocess
+import os, subprocess
 import numpy as np
 from . import wavio as sf
 from scipy.signal import butter, sosfilt
@@ -153,9 +153,12 @@ def drone(d, base=55.0, tense=0.0):
 
 # ------------------- mixagem -------------------
 def load_voice(path):
-    tmp = path + ".44.wav"
+    tmp = f"{path}.{os.getpid()}.44.wav"     # um arquivo por processo: blocos em paralelo não se atropelam
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", path, "-ar", str(SR), "-ac", "1", tmp], check=True)
-    x, _ = sf.read(tmp); return x
+    try:
+        x, _ = sf.read(tmp); return x
+    finally:
+        if os.path.exists(tmp): os.remove(tmp)
 
 # ------------------- acústica por ambiente -------------------
 ACOUSTICS = {
