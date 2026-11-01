@@ -68,49 +68,41 @@
    "voice": "roberta",
    "src": [
     0.0,
-    2.16
+    3.45
    ],
    "at": 11.0
   },
   {
    "voice": "roberta",
    "src": [
-    2.65,
-    5.64
+    4.07,
+    6.69
    ],
    "at": 19.6
   },
   {
    "voice": "roberta",
    "src": [
-    6.07,
-    7.8
+    7.14,
+    8.78
    ],
    "at": 24.0
   },
   {
    "voice": "roberta",
    "src": [
-    8.1,
-    9.8
+    9.24,
+    10.94
    ],
    "at": 28.8
   },
   {
    "voice": "roberta",
    "src": [
-    10.25,
-    12.36
-   ],
-   "at": 32.6
-  },
-  {
-   "voice": "roberta",
-   "src": [
-    12.84,
+    11.35,
     14.18
    ],
-   "at": 38.6
+   "at": 32.6
   },
   {
    "voice": "roberta",
@@ -118,47 +110,39 @@
     14.54,
     17.03
    ],
-   "at": 44.0
+   "at": 38.6
   },
   {
    "voice": "roberta",
    "src": [
     17.38,
-    19.2
+    20.71
+   ],
+   "at": 44.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    21.14,
+    23.31
    ],
    "at": 53.0
   },
   {
    "voice": "roberta",
    "src": [
-    19.56,
-    20.71
+    23.59,
+    24.88
    ],
    "at": 56.4
   },
   {
    "voice": "roberta",
    "src": [
-    21.14,
-    24.88
-   ],
-   "at": 64.0
-  },
-  {
-   "voice": "roberta",
-   "src": [
     25.31,
-    26.11
-   ],
-   "at": 72.4
-  },
-  {
-   "voice": "roberta",
-   "src": [
-    26.59,
     27.5
    ],
-   "at": 80.6
+   "at": 64.0
   },
   {
    "voice": "roberta",
@@ -166,28 +150,44 @@
     27.84,
     29.87
    ],
-   "at": 89.8
+   "at": 72.4
   },
   {
    "voice": "roberta",
    "src": [
     30.3,
-    35.48
+    31.89
+   ],
+   "at": 80.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    32.18,
+    34.58
+   ],
+   "at": 89.8
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    34.85,
+    38.44
    ],
    "at": 102.4
   },
   {
    "voice": "roberta",
    "src": [
-    35.86,
-    38.44
+    38.89,
+    41.82
    ],
    "at": 110.6
   },
   {
    "voice": "roberta",
    "src": [
-    38.89,
+    42.12,
     44.36
    ],
    "at": 117.4
@@ -198,7 +198,7 @@
     0.0,
     0.95
    ],
-   "at": 14.4
+   "at": 14.9
   },
   {
    "voice": "rafa",
@@ -244,53 +244,87 @@
    ],
    "text": [
     "DOIS METROS ATÉ O",
-    "PRÉDIO AO LADO.",
-    "TALVEZ TRÊS."
+    "PRÉDIO AO LADO."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     2.65,
+    3.45
+   ],
+   "text": [
+    "TALVEZ TRÊS."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    4.07,
     5.64
    ],
    "text": [
-    "NÃO PENSEI.",
-    "SÓ CORRI."
+    "NÃO PENSEI."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     6.07,
+    6.69
+   ],
+   "text": [
+    "SÓ CORRI."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    7.14,
     7.8
    ],
    "text": [
-    "EU TE PEGO.",
-    "CONFIA EM MIM."
+    "EU TE PEGO."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     8.1,
+    8.78
+   ],
+   "text": [
+    "CONFIA EM MIM."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    9.24,
     9.8
    ],
    "text": [
-    "ELE PULOU.",
-    "E EU SEGUREI."
+    "ELE PULOU."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     10.25,
+    10.94
+   ],
+   "text": [
+    "E EU SEGUREI."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    11.35,
     12.36
    ],
    "text": [
-    "DESCEMOS DEVAGAR.",
-    "UM DEGRAU DE",
-    "CADA VEZ."
+    "DESCEMOS DEVAGAR."
    ]
   },
   {
@@ -300,31 +334,48 @@
     14.18
    ],
    "text": [
-    "À NOITE ELES CORREM.",
-    "ENTÃO ESPERAMOS."
+    "UM DEGRAU DE",
+    "CADA VEZ."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     14.54,
+    15.56
+   ],
+   "text": [
+    "À NOITE ELES CORREM."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    16.08,
     17.03
    ],
    "text": [
-    "DE DIA, ELES",
-    "SÃO LENTOS.",
-    "MAS CONTINUAM OUVINDO."
+    "ENTÃO ESPERAMOS."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     17.38,
+    17.86
+   ],
+   "text": [
+    "DE DIA,"
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    18.23,
     19.2
    ],
    "text": [
-    "UM CACO DE VIDRO.",
-    "FOI O SUFICIENTE."
+    "ELES SÃO LENTOS."
    ]
   },
   {
@@ -334,19 +385,47 @@
     20.71
    ],
    "text": [
-    "CORRE!",
-    "PRO POSTO!"
+    "MAS CONTINUAM OUVINDO."
    ]
   },
   {
    "voice": "roberta",
    "src": [
     21.14,
+    22.02
+   ],
+   "text": [
+    "UM CACO DE VIDRO."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    22.39,
+    23.31
+   ],
+   "text": [
+    "FOI O SUFICIENTE."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    23.59,
+    24.0
+   ],
+   "text": [
+    "CORRE!"
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    24.22,
     24.88
    ],
    "text": [
-    "NINGUÉM RESPIRA.",
-    "NINGUÉM SE MEXE."
+    "PRO POSTO!"
    ]
   },
   {
@@ -356,8 +435,7 @@
     26.11
    ],
    "text": [
-    "AÍ O RÁDIO CHIOU.",
-    "NA MINHA MÃO."
+    "NINGUÉM RESPIRA."
    ]
   },
   {
@@ -367,6 +445,36 @@
     27.5
    ],
    "text": [
+    "NINGUÉM SE MEXE."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    27.84,
+    28.8
+   ],
+   "text": [
+    "AÍ O RÁDIO CHIOU."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    29.32,
+    29.87
+   ],
+   "text": [
+    "NA MINHA MÃO."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    30.3,
+    31.89
+   ],
+   "text": [
     "ELA DISSE O",
     "MEU NOME."
    ]
@@ -374,23 +482,50 @@
   {
    "voice": "roberta",
    "src": [
-    27.84,
-    29.87
+    32.18,
+    33.26
    ],
    "text": [
-    "A MINHA IRMÃ...",
+    "A MINHA IRMÃ..."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    33.61,
+    34.58
+   ],
+   "text": [
     "ELA TÁ VIVA."
    ]
   },
   {
    "voice": "roberta",
    "src": [
-    30.3,
+    34.85,
     35.48
    ],
    "text": [
-    "A PONTE.",
-    "DOIS DIAS.",
+    "A PONTE."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    35.86,
+    36.6
+   ],
+   "text": [
+    "DOIS DIAS."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    36.92,
+    38.44
+   ],
+   "text": [
     "E O EXÉRCITO",
     "NÃO ESPERA NINGUÉM."
    ]
@@ -398,11 +533,20 @@
   {
    "voice": "roberta",
    "src": [
-    35.86,
-    38.44
+    38.89,
+    39.63
    ],
    "text": [
-    "E O HOSPITAL...",
+    "E O HOSPITAL..."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    39.96,
+    41.82
+   ],
+   "text": [
     "ERA DE ONDE TODOS",
     "ELES TINHAM SAÍDO."
    ]
@@ -410,11 +554,20 @@
   {
    "voice": "roberta",
    "src": [
-    38.89,
+    42.12,
+    42.98
+   ],
+   "text": [
+    "BUSCO A MINHA IRMÃ..."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    43.26,
     44.36
    ],
    "text": [
-    "BUSCO A MINHA IRMÃ...",
     "OU CORRO PRA PONTE?"
    ]
   },
@@ -432,11 +585,20 @@
    "voice": "rafa",
    "src": [
     1.43,
-    4.98
+    3.26
    ],
    "text": [
     "A PONTE FECHA DAQUI",
-    "A DOIS DIAS.",
+    "A DOIS DIAS."
+   ]
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    3.6,
+    4.98
+   ],
+   "text": [
     "O HOSPITAL É",
     "PRO OUTRO LADO."
    ]
@@ -456,10 +618,19 @@
    "voice": "lia",
    "src": [
     0.0,
+    1.04
+   ],
+   "text": [
+    "ROBERTA..."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    1.58,
     3.13
    ],
    "text": [
-    "ROBERTA...",
     "SE VOCÊ ESTIVER OUVINDO..."
    ]
   },
@@ -467,11 +638,29 @@
    "voice": "lia",
    "src": [
     3.47,
+    4.72
+   ],
+   "text": [
+    "SOU EU, A LIA."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    5.14,
+    6.42
+   ],
+   "text": [
+    "ESTOU NO HOSPITAL CENTRAL."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    6.92,
     8.12
    ],
    "text": [
-    "SOU EU, A LIA.",
-    "ESTOU NO HOSPITAL CENTRAL.",
     "TRÊS BATIDAS."
    ]
   }

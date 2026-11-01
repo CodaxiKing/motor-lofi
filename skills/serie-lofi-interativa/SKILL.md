@@ -75,10 +75,10 @@ Entregue depois: narração limpa (versão CapCut e versão ElevenLabs v3 com ta
 
 ## 3. Montagem (quando chegarem as vozes)
 O usuário anexa só os áudios: um por personagem (o nome do arquivo indica o personagem).
-1. Clone/atualize o repositório e instale: `pip install --break-system-packages pillow numpy scipy` (obrigatório) e tente `soundfile sherpa-onnx` (opcional; se falhar, siga: o motor usa o scipy e a transcrição entrega só os tempos, que você casa com as falas do roteiro pela ordem).
-2. Copie as vozes para `series/<serie>/epNN/` com o nome do personagem e transcreva: `python3 -m lofi.transcribe ...`. Mapeie cada frase do roteiro aos tempos.
+1. Clone/atualize o repositório e instale: `pip install --break-system-packages pillow numpy scipy` (obrigatório) e tente `soundfile sherpa-onnx` (opcionais; se falharem, siga: o motor usa o scipy no áudio e roda o Whisper só com onnxruntime).
+2. Copie as vozes para `series/<serie>/epNN/` com o nome do personagem e transcreva: `python3 -m lofi.transcribe ...`. Case cada frase do roteiro pelo **texto** transcrito (nunca pela ordem ou duração); um trecho pode juntar várias falas, então divida-o nas micropausas quando elas forem para cenas diferentes e use uma legenda por frase.
 3. Escreva `series/<serie>/epNN.json` seguindo `SPEC.md` (sem redefinir os personagens travados; inclua `series_title`, `episode`, `episodes_total`, `episode_title`, `tint` do episódio e o plano `recap` apontando para `ep(NN-1).json`).
-4. **Verificador:** `python3 -m lofi.check series/<serie>/epNN.json`. Corrija todos os ERROS e os avisos relevantes.
+4. **Verificador:** `python3 -m lofi.check series/<serie>/epNN.json`. Corrija todos os ERROS e os avisos relevantes. Confira o áudio com `python3 -m lofi.transcribe --conferir series/<serie>/epNN.json` (fala de cada cena) e corrija falas fora de lugar.
 5. **Revisor independente:** use a ferramenta Agent (subagent general-purpose) com um prompt autocontido: o caminho de `_revisao.png`, o roteiro do episódio, as fichas visuais dos personagens e a lista do que conferir (rosto coberto pela legenda, personagem cortado ou fora do quadro, roupa diferente da ficha, legenda errada ou fora de hora, cena que não corresponde ao roteiro, texto ilegível, contador encobrindo algo). Ele não viu a montagem e deve devolver uma lista objetiva de problemas com o tempo de cada um. Corrija, rode o verificador de novo e só então renderize.
 6. Renderize em segundo plano com `--jobs 2` (≈3,5 s por segundo de vídeo; episódio de 3 min ≈ 10–11 min). Confira duração, áudio e tamanho (crf 28 padrão; 30 se passar de 90 MB).
 7. **Extras:** `python3 -m lofi.extras teaser ...` (15 s para Stories) e `python3 -m lofi.extras capa ...`.
