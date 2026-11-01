@@ -24,6 +24,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - Ep. 1 (ESPIAR) → Rafa desconfiado; hesita no momento decisivo, a não ser que Roberta recupere a confiança dele.
 - Ep. 3: buscar Lia → Lia no final; ir direto → Lia só pelo rádio.
 - Ep. 3 (roteiro): Roberta segurou Rafa no pulo entre os prédios → a confiança dele começa a voltar.
+- Ep. 3 (voto PONTE): Lia fica só pelo rádio; no ep. 4 ela se despede ("o hospital caiu") e Roberta promete atravessar. Rafa passa a confiar nela: no ep. 4 é ele quem tem a ideia do alarme e diz "eu confio em você" → no final ele não hesita.
 
 ## Regras do universo
 1. Infectados são cegos e seguem qualquer som · 2. Lentos de dia, rápidos à noite · 3. Sobreviventes: 3 batidas ritmadas · 4. Sem celular desde o Dia 2; só rádio · 5. Ponte fecha às 6h do Dia 5 · 6. Sem cura nesta temporada · 7. Sem sangue
@@ -33,8 +34,8 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 |---|---|---|---|---|---|---|
 | 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | — |
 | 2 | 2 | complicação | montado | A) Escada · B) Telhado | TELHADO | |
-| 3 | 3 | reviravolta | montado | A) Buscar Lia no hospital · B) Ir direto pra ponte | (aguardando) | |
-| 4 | 4 | clímax | planejado | A) Fazer barulho · B) Esperar em silêncio | | |
+| 3 | 3 | reviravolta | montado | A) Buscar Lia no hospital · B) Ir direto pra ponte | PONTE | |
+| 4 | 4 | clímax | roteiro | A) Fazer barulho · B) Esperar em silêncio | (aguardando) | |
 | 5 | 5 | final | planejado | — | | |
 
 > Eps. 1 e 2 foram publicados na versão antiga do motor (~1 min cada). Os roteiros e os `epNN.json` desta pasta foram

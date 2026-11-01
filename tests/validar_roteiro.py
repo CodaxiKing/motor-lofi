@@ -41,12 +41,14 @@ def carregar_nomes(caminho_roteiro):
     clima = set(c["clima"]["rain"]) | set(c["clima"]["time"])
     from lofi.mapa import MAPA
     marcas = {n for m in MAPA.values() for n in m["marcas"]}
+    from lofi.partes import POSICOES
+    maos = {"hand", "of", "at"} | {n for ps in POSICOES.values() for n in ps}
     personagens = set(c["personagens"]) | locked
     nomes = {
-        "CENARIO": set(c["cenarios"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima,
+        "CENARIO": set(c["cenarios"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima | maos | personagens,
         "PERSONAGENS": personagens | set(c["poses"]) | set(c["emocoes"]) | set(c["vistas"]) | set(c["objetos"])
-                       | set(c["corpos"]) | CAMPOS_ATOR | marcas | {"mark"},
-        "PLANO": set(c["transicoes"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima | personagens | set(c["acusticas"]),
+                       | set(c["corpos"]) | CAMPOS_ATOR | marcas | {"mark"} | maos,
+        "PLANO": set(c["transicoes"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima | personagens | set(c["acusticas"]) | maos,
         "SOM": set(c["sons"]),
     }
     nomes["LUZ"] = nomes["PLANO"] | {"flashlight"}
