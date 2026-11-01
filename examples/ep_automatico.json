@@ -1,0 +1,110 @@
+{
+  "out": "ep01.mp4",
+  "fps": 30,
+  "total": 11.28,
+  "series_title": "NOVA SÉRIE",
+  "episode": 1,
+  "episode_title": "NOVA SÉRIE",
+  "visual_profile": "cartoon_dark",
+  "voices": {},
+  "clips": [],
+  "subs": [],
+  "shots": [
+    {
+      "start": 0.0,
+      "end": 3.09,
+      "scene": "apartamento",
+      "camera": {
+        "zoom": 1.12
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "neutral"
+        }
+      ],
+      "director_notes": {
+        "text": "Acordei com o celular vibrando.",
+        "shot": "detail",
+        "reason": "Close no objeto importante",
+        "sound_cue": null
+      }
+    },
+    {
+      "start": 3.09,
+      "end": 6.18,
+      "scene": "rua",
+      "camera": {
+        "zoom": 1.0,
+        "x": [
+          -18,
+          18
+        ]
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "neutral"
+        }
+      ],
+      "director_notes": {
+        "text": "A cidade estava em silêncio.",
+        "shot": "wide",
+        "reason": "Mostre a escala do ambiente",
+        "sound_cue": null
+      }
+    },
+    {
+      "start": 6.18,
+      "end": 9.27,
+      "scene": "corredor",
+      "camera": {
+        "zoom": 1.12
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "neutral"
+        }
+      ],
+      "director_notes": {
+        "text": "Ouvi três batidas na porta.",
+        "shot": "detail",
+        "reason": "Close no objeto importante",
+        "sound_cue": "impact"
+      }
+    },
+    {
+      "start": 9.27,
+      "end": 11.28,
+      "scene": "corredor",
+      "camera": {
+        "zoom": 1.28
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "fear"
+        }
+      ],
+      "director_notes": {
+        "text": "Senti medo.",
+        "shot": "close",
+        "reason": "Aproxime a câmera para enfatizar a emoção",
+        "sound_cue": null
+      }
+    }
+  ]
+}

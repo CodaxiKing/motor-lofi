@@ -10,6 +10,8 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
 from . import fx, scenes, text, audio, particles, detail, partes
+from .visual_profiles import resolve_profile, apply_profile
+from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
 
 HEAD_FRAC = 0.215
@@ -60,7 +62,8 @@ class Episode:
     def __init__(self, spec_path):
         self.spec_path = os.path.abspath(spec_path)
         self.base = os.path.dirname(self.spec_path)
-        self.spec = json.load(open(spec_path))
+        self.spec = json.load(open(spec_path, encoding="utf-8"))
+        self.visual_profile = resolve_profile(self.spec.get("visual_profile", "lofi_classic"), self.spec.get("visual_overrides"))
         sp = self.spec
         self.fps = sp.get("fps", 30)
         from .mapa import resolver_plano
@@ -582,6 +585,9 @@ class Episode:
         elif typ == "detail": img = self.detail_frame(shot, t, t_anim)
         elif typ == "recap": img = self.recap_frame(shot, t)
         else: img = self.scene_frame(shot, t, t_anim)
+        if shot.get("layers"):
+            progress = max(0.0, min(1.0, (t-shot["start"])/max(0.001, shot["end"]-shot["start"])))
+            img = composite_layers(img, shot["layers"], self.base, progress)
         self.draw_overlays(img, shot, t)
         if shot.get("bloom", self.spec.get("bloom", True)) and typ in ("scene", "detail"): img = fx.bloom(img)
         if shot.get("lens_drops"): img = fx.lens_drops(img, t)
@@ -601,6 +607,7 @@ class Episode:
             sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else None)
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)
         if t > self.total - 0.6: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))
+        img = apply_profile(img, self.visual_profile)
         return img
 
     # ---------------- saída ----------------

@@ -1,0 +1,154 @@
+{
+  "out": "ep01.mp4",
+  "fps": 30,
+  "total": 12.71,
+  "series_title": "NOVA SÉRIE",
+  "episode": 1,
+  "episode_title": "NOVA SÉRIE",
+  "visual_profile": "horror_illustrated",
+  "voices": {},
+  "clips": [],
+  "subs": [],
+  "shots": [
+    {
+      "start": 0.0,
+      "end": 3.09,
+      "scene": "corredor",
+      "camera": {
+        "zoom": 1.12
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "tense",
+          "pose": "knock",
+          "walk": false,
+          "run": false,
+          "look": 0
+        }
+      ],
+      "director_notes": {
+        "text": "Ouvi três batidas na porta.",
+        "shot": "detail",
+        "reason": "Close no objeto importante",
+        "sound_cue": "impact",
+        "performance": {
+          "pose": "knock",
+          "movement": "idle",
+          "emotion": "tense",
+          "look": 0,
+          "intensity": "normal"
+        }
+      }
+    },
+    {
+      "start": 3.09,
+      "end": 6.53,
+      "scene": "corredor",
+      "camera": {
+        "zoom": 1.28
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "fear",
+          "pose": "walk",
+          "walk": true,
+          "run": false,
+          "look": 0
+        }
+      ],
+      "director_notes": {
+        "text": "Ela caminhou pelo corredor com medo.",
+        "shot": "close",
+        "reason": "Aproxime a câmera para enfatizar a emoção",
+        "sound_cue": null,
+        "performance": {
+          "pose": "walk",
+          "movement": "walk",
+          "emotion": "fear",
+          "look": 0,
+          "intensity": "high"
+        }
+      }
+    },
+    {
+      "start": 6.53,
+      "end": 9.62,
+      "scene": "corredor",
+      "camera": {
+        "zoom": 1.12
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "neutral",
+          "pose": "phone",
+          "walk": false,
+          "run": false,
+          "look": 0
+        }
+      ],
+      "director_notes": {
+        "text": "O celular tocou no silêncio.",
+        "shot": "detail",
+        "reason": "Close no objeto importante",
+        "sound_cue": null,
+        "performance": {
+          "pose": "phone",
+          "movement": "idle",
+          "emotion": "neutral",
+          "look": 0,
+          "intensity": "normal"
+        }
+      }
+    },
+    {
+      "start": 9.62,
+      "end": 12.71,
+      "scene": "rua",
+      "camera": {
+        "zoom": 1.0,
+        "x": [
+          0,
+          45
+        ]
+      },
+      "actors": [
+        {
+          "char": "roberta",
+          "x": 540,
+          "y": 1650,
+          "view": "front",
+          "emotion": "fear",
+          "pose": "run",
+          "walk": true,
+          "run": true,
+          "look": 0
+        }
+      ],
+      "director_notes": {
+        "text": "Ele correu para a rua.",
+        "shot": "tracking",
+        "reason": "Acompanhe o movimento do personagem",
+        "sound_cue": null,
+        "performance": {
+          "pose": "run",
+          "movement": "run",
+          "emotion": "fear",
+          "look": 0,
+          "intensity": "high"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "visual_style": "horror_illustrated",
+  "scenes": [
+    {
+      "id": "corredor",
+      "suggested_filename": "assets/backgrounds/corredor.png",
+      "prompt": "2D cartoon background, corredor, horror_illustrated, vertical 9:16, no text, no characters",
+      "status": "optional"
+    },
+    {
+      "id": "rua",
+      "suggested_filename": "assets/backgrounds/rua.png",
+      "prompt": "2D cartoon background, rua, horror_illustrated, vertical 9:16, no text, no characters",
+      "status": "optional"
+    }
+  ],
+  "characters": [
+    {
+      "id": "roberta",
+      "status": "rendered_by_builtin_rig",
+      "reference_prompt": "Character design sheet of roberta, horror_illustrated, consistent proportions, no text"
+    }
+  ]
+}

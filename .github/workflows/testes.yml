@@ -16,7 +16,7 @@ jobs:
       - name: Dependências
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install pillow numpy scipy
+          pip install pillow numpy scipy pytest
 
       - name: Zips das skills em dia
         run: python3 tools/empacotar_skills.py --checar
@@ -37,6 +37,9 @@ jobs:
             grep -q "Registro reconstruído" "$f" && continue   # episódios legados, formato antigo
             python3 tests/validar_roteiro.py "$f" || echo "::warning::$f tem erros no validador"
           done
+
+      - name: Testes unitários (Studio, diretor, perfis visuais, pipeline)
+        run: python3 -m pytest -q tests/
 
       - name: Teste de fumaça (quadros, verificador e render do demo4)
         run: python3 tests/smoke.py --video
