@@ -1,6 +1,6 @@
 ---
 name: "serie-montar"
-description: "Comando para montar o vídeo do episódio de uma série lo-fi interativa: recebe só as vozes, verifica com revisor independente, renderiza e entrega o MP4, teaser, capa e legenda do post."
+description: "Comando para montar o vídeo do episódio de uma série lo-fi interativa: recebe só as vozes, verifica com revisor independente, renderiza e entrega o MP4, teaser, capa do TikTok, capa do Instagram e legenda do post."
 ---
 
 # /serie-montar
@@ -22,8 +22,8 @@ Responda em português do Brasil.
 5. **Revisor independente:** chame a ferramenta Agent (subagent general-purpose) com um prompt autocontido: caminho de `series/<serie>/_revisao.png`, o texto do roteiro e o que conferir (rosto coberto pela legenda, personagem cortado/fora do quadro, legenda errada ou fora de hora, cena diferente do roteiro, texto ilegível, contador encobrindo algo). Peça uma lista objetiva de problemas com o tempo de cada um. Corrija, rode o verificador de novo; repita no máximo 2 vezes.
 6. Renderize em segundo plano: `python3 -m lofi.render series/<serie>/epNN.json --jobs 2` (≈3,5 s por segundo de vídeo, episódio de 3 min ≈ 10–11 min; avise o tempo estimado antes e mande um aviso curto quando terminar).
 7. Confira duração, áudio e tamanho (crf 28 padrão; use 30 se passar de 90 MB).
-8. Extras: `python3 -m lofi.extras teaser series/<serie>/epNN.json <mp4>` e `python3 -m lofi.extras capa series/<serie>/epNN.json`.
-9. Entregue o MP4, o teaser, a capa e a legenda do post (e uma linha para o teaser).
+8. Extras, sempre os três: `python3 -m lofi.extras pacote series/<serie>/epNN.json <mp4>` gera o **teaser** (15 s), a **capa do TikTok** (`epNN_capa_tiktok.png`) e a **capa do Instagram** (`epNN_capa_instagram.png`), as duas 1080×1920 com título, selo e nome do episódio dentro da área segura de cada rede e o mesmo quadro (rostos inteiros, sem legenda nem contador). Abra as duas capas e confira antes de entregar; se o quadro escolhido não for bom, rode de novo passando o tempo (`... pacote ep.json ep.mp4 42.5`).
+9. **Entrega padrão (sempre os quatro arquivos):** o vídeo, o teaser, a capa do TikTok e a capa do Instagram, cada um com uma linha dizendo para onde vai, mais a legenda do post (e uma linha para o teaser). Se algum não puder ser gerado, diga qual e por quê.
 10. Commit do `epNN.json` e do `epNN_roteiro.md`; só depois atualize a bíblia (resumo de 2–3 linhas, status "montado") e faça novo commit e push (sem áudios, vídeos ou imagens temporárias). Confira com `git ls-files series/<serie>/` que o `epNN.json` está lá.
 11. Se for o último episódio, ofereça a compilação da temporada para o YouTube (peça os MP4s e use `python3 -m lofi.extras temporada ...`).
 12. Linha final: "Quando a votação fechar: /serie-continuar [episódio] [A ou B]".

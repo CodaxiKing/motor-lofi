@@ -18,7 +18,7 @@ O repositório vem com **8 skills** (pasta [`skills/`](skills/)) que fazem todo 
 | `/serie-planejar` | A ideia da história | Plano da série, capa, bíblia e personagens travados |
 | `/serie-roteiro` | Nada (o voto é escolhido por toque) | Roteiro de 2–3 min + narração pronta para o ElevenLabs |
 | `/serie-continuar 2 B` | Só o comando (episódio que terminou + opção vencedora) | Voto registrado + roteiro do próximo episódio |
-| `/serie-montar` | Um áudio por personagem | Vídeo, teaser de 15 s, capa e legenda do post |
+| `/serie-montar` | Um áudio por personagem | Vídeo, teaser de 15 s, capa do TikTok, capa do Instagram e legenda do post |
 | `/motor-lofi-studio` | A história (texto) | Série iniciada, roteiro técnico, manifesto de assets e relatório de qualidade (Studio 4.0) |
 | `/serie-producao-ia` | Roteiro + perfil visual (voz local ou API, só com autorização) | Episódio preparado, narração e render |
 | `/serie-comentarios` | Comentários dos seguidores (texto ou print) e, depois, a voz | Personagem respondendo os comentários, com o cartão do comentário na tela (30–75 s) |
@@ -88,7 +88,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 - Folha de revisão para um revisor independente aprovar antes do render
 - Casos de teste das skills em [`tests/evals.json`](tests/evals.json)
 
-**Extras automáticos**: teaser de 15 s para Stories, capa de cada episódio e compilação da temporada em 16:9 para o YouTube, com capítulos.
+**Extras automáticos** (`python3 -m lofi.extras pacote`): teaser de 15 s para Stories, capa do TikTok e capa do Instagram de cada episódio (texto dentro da área segura de cada rede) e compilação da temporada em 16:9 para o YouTube, com capítulos.
 
 ---
 
@@ -104,6 +104,7 @@ python3 -m lofi.check  series/dia-zero/ep03.json               # verificador + f
 python3 -m lofi.render series/dia-zero/ep03.json --test 2 9    # quadros de teste
 python3 -m lofi.render series/dia-zero/ep03.json --jobs 2      # vídeo final (~3,5 s por s de vídeo: episódio de 3 min ≈ 10–11 min)
 python3 -m lofi.extras teaser series/dia-zero/ep03.json ep03.mp4
+python3 -m lofi.extras pacote series/dia-zero/ep03.json ep03.mp4   # teaser + capa TikTok + capa Instagram
 python3 -m lofi.extras capa   series/dia-zero/ep03.json
 python3 -m lofi.extras temporada temporada.mp4 "DIA ZERO" ep1.mp4 ep2.mp4 ep3.mp4
 ```

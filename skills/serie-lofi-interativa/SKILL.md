@@ -81,8 +81,8 @@ O usuário anexa só os áudios: um por personagem (o nome do arquivo indica o p
 4. **Verificador:** `python3 -m lofi.check series/<serie>/epNN.json`. Corrija todos os ERROS e os avisos relevantes. Confira o áudio com `python3 -m lofi.transcribe --conferir series/<serie>/epNN.json` (fala de cada cena) e corrija falas fora de lugar.
 5. **Revisor independente:** use a ferramenta Agent (subagent general-purpose) com um prompt autocontido: o caminho de `_revisao.png`, o roteiro do episódio, as fichas visuais dos personagens e a lista do que conferir (rosto coberto pela legenda, personagem cortado ou fora do quadro, roupa diferente da ficha, legenda errada ou fora de hora, cena que não corresponde ao roteiro, texto ilegível, contador encobrindo algo). Ele não viu a montagem e deve devolver uma lista objetiva de problemas com o tempo de cada um. Corrija, rode o verificador de novo e só então renderize.
 6. Renderize em segundo plano com `--jobs 2` (≈3,5 s por segundo de vídeo; episódio de 3 min ≈ 10–11 min). Confira duração, áudio e tamanho (crf 28 padrão; 30 se passar de 90 MB).
-7. **Extras:** `python3 -m lofi.extras teaser ...` (15 s para Stories) e `python3 -m lofi.extras capa ...`.
-8. Envie o MP4, o teaser, a capa e a legenda do post; faça commit do `epNN.json`, registre o resumo e o status "montado" na bíblia e faça push (nessa ordem: sem o `epNN.json` no repositório, o status não muda).
+7. **Extras:** `python3 -m lofi.extras pacote series/<serie>/epNN.json <mp4>` → teaser (15 s), capa do TikTok e capa do Instagram (áreas seguras de cada rede; confira as duas imagens).
+8. **Sempre entregue os quatro:** vídeo, teaser, capa do TikTok e capa do Instagram, e a legenda do post; faça commit do `epNN.json`, registre o resumo e o status "montado" na bíblia e faça push (nessa ordem: sem o `epNN.json` no repositório, o status não muda).
 9. No último episódio, ofereça a compilação da temporada para o YouTube (`python3 -m lofi.extras temporada ...`), pedindo os MP4s dos episódios.
 
 ## 4. Legenda do post

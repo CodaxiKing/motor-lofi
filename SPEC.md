@@ -182,7 +182,12 @@ Usado pela skill `serie-comentarios`: um personagem responde comentários dos se
 
 ## Extras
 - `python3 -m lofi.extras teaser epNN.json epNN.mp4` → teaser de ~15 s para Stories (gancho + 3 melhores momentos + cartela).
-- `python3 -m lofi.extras capa epNN.json [tempo]` → capa 1080×1920 do episódio (usa `series_title`, `episode`, `episodes_total`, `episode_title`).
+- `python3 -m lofi.extras pacote epNN.json epNN.mp4 [tempo]` → **entrega padrão**: teaser + capa do TikTok + capa do Instagram.
+- `python3 -m lofi.extras capa epNN.json [tempo] [--tiktok|--instagram] [--guias]` → `epNN_capa_tiktok.png` e `epNN_capa_instagram.png`
+  (1080×1920; usam `series_title`, `episode`, `episodes_total`, `episode_title`). Texto dentro da área segura de cada rede:
+  TikTok evita o topo (~200 px), a base (~480 px, legenda e música) e a coluna direita (~150 px, botões); Instagram mantém
+  tudo no recorte 3:4 do grid do perfil (y 240–1680) e no 4:5 do feed. O quadro escolhido tem todos os rostos inteiros,
+  sem legenda e sem contador. `--guias` desenha as áreas seguras (só para conferir).
 - `python3 -m lofi.extras temporada saida.mp4 "TÍTULO" ep1.mp4 ep2.mp4 ...` → compilação 16:9 para o YouTube + capítulos.
 
 ## Guarda-roupa (v4)

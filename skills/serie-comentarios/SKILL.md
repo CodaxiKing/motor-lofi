@@ -46,7 +46,7 @@ Duas etapas, decididas pelo que vier anexado:
    - `hud` com o dia/hora do ponto atual da história e `place` "RESPONDENDO".
 3. Verificador: `python3 -m lofi.check series/<serie>/comentarios/cNN.json` (ele conhece o formato e acusa cartão cobrindo rosto). Confira o áudio: `python3 -m lofi.transcribe --conferir series/<serie>/comentarios/cNN.json`. Corrija até não haver ERRO e até cada resposta estar no bloco do seu comentário.
 4. Revisor independente (ferramenta Agent, subagent general-purpose) com a folha `_revisao.png`, o roteiro e a lista: cartão legível e com o @ certo, cartão sem cobrir rosto, resposta no bloco certo, legenda sem cobrir o cartão, nenhum spoiler na fala ou na tela. Corrija e só então renderize: `python3 -m lofi.render series/<serie>/comentarios/cNN.json --jobs 2` (≈3,5 s por segundo de vídeo; avise o tempo antes).
-5. Confira duração, áudio e tamanho. Entregue o MP4 e a legenda do post.
+5. Confira duração, áudio e tamanho. Gere as capas (`python3 -m lofi.extras capa series/<serie>/comentarios/cNN.json`, que cria a do TikTok e a do Instagram) e entregue o MP4, as duas capas e a legenda do post.
 6. Commit do `cNN.json` e do roteiro; atualize a bíblia (status "montado") e faça push. Nunca versione áudios ou vídeos.
 
 ## Legenda do post
