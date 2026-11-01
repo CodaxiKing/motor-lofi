@@ -1,0 +1,1623 @@
+{
+ "out": "ep03.mp4",
+ "fps": 30,
+ "total": 132.0,
+ "crf": 28,
+ "series_title": "DIA ZERO",
+ "episode": 3,
+ "episodes_total": 5,
+ "episode_title": "A VOZ DO RÁDIO",
+ "tint": [
+  70,
+  90,
+  190,
+  0.12
+ ],
+ "style": "desenho",
+ "voices": {
+  "roberta": "ep03/roberta.mp3",
+  "rafa": "ep03/rafa.mp3",
+  "lia": "ep03/lia.mp3"
+ },
+ "speakers": {
+  "rafa": {
+   "label": "RAFA",
+   "color": [
+    190,
+    240,
+    190
+   ]
+  },
+  "lia": {
+   "label": "RÁDIO",
+   "color": [
+    255,
+    226,
+    120
+   ]
+  }
+ },
+ "hud": {
+  "place": "RUMO À PONTE",
+  "days": [
+   [
+    0,
+    "DIA 2",
+    "06:10"
+   ],
+   [
+    37.0,
+    "DIA 2",
+    "18:00"
+   ],
+   [
+    41.0,
+    "DIA 3",
+    "05:40"
+   ]
+  ],
+  "sec_per_min": 8
+ },
+ "lightning": [
+  0.6,
+  19.8,
+  25.5
+ ],
+ "clips": [
+  {
+   "voice": "roberta",
+   "src": [
+    0.0,
+    2.16
+   ],
+   "at": 11.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    2.65,
+    5.64
+   ],
+   "at": 19.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    6.07,
+    7.8
+   ],
+   "at": 24.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    8.1,
+    9.8
+   ],
+   "at": 28.8
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    10.25,
+    12.36
+   ],
+   "at": 32.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    12.84,
+    14.18
+   ],
+   "at": 38.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    14.54,
+    17.03
+   ],
+   "at": 44.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    17.38,
+    19.2
+   ],
+   "at": 53.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    19.56,
+    20.71
+   ],
+   "at": 56.4
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    21.14,
+    24.88
+   ],
+   "at": 64.0
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    25.31,
+    26.11
+   ],
+   "at": 72.4
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    26.59,
+    27.5
+   ],
+   "at": 80.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    27.84,
+    29.87
+   ],
+   "at": 89.8
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    30.3,
+    35.48
+   ],
+   "at": 102.4
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    35.86,
+    38.44
+   ],
+   "at": 110.6
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    38.89,
+    44.36
+   ],
+   "at": 117.4
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    0.0,
+    0.95
+   ],
+   "at": 14.4
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    1.43,
+    4.98
+   ],
+   "at": 93.8
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    5.66,
+    7.47
+   ],
+   "at": 98.6
+  },
+  {
+   "voice": "lia",
+   "src": [
+    0.0,
+    3.13
+   ],
+   "at": 76.0,
+   "radio": true
+  },
+  {
+   "voice": "lia",
+   "src": [
+    3.47,
+    8.12
+   ],
+   "at": 84.0,
+   "radio": true
+  }
+ ],
+ "subs": [
+  {
+   "voice": "roberta",
+   "src": [
+    0.0,
+    2.16
+   ],
+   "text": [
+    "DOIS METROS ATÉ O",
+    "PRÉDIO AO LADO.",
+    "TALVEZ TRÊS."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    2.65,
+    5.64
+   ],
+   "text": [
+    "NÃO PENSEI.",
+    "SÓ CORRI."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    6.07,
+    7.8
+   ],
+   "text": [
+    "EU TE PEGO.",
+    "CONFIA EM MIM."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    8.1,
+    9.8
+   ],
+   "text": [
+    "ELE PULOU.",
+    "E EU SEGUREI."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    10.25,
+    12.36
+   ],
+   "text": [
+    "DESCEMOS DEVAGAR.",
+    "UM DEGRAU DE",
+    "CADA VEZ."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    12.84,
+    14.18
+   ],
+   "text": [
+    "À NOITE ELES CORREM.",
+    "ENTÃO ESPERAMOS."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    14.54,
+    17.03
+   ],
+   "text": [
+    "DE DIA, ELES",
+    "SÃO LENTOS.",
+    "MAS CONTINUAM OUVINDO."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    17.38,
+    19.2
+   ],
+   "text": [
+    "UM CACO DE VIDRO.",
+    "FOI O SUFICIENTE."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    19.56,
+    20.71
+   ],
+   "text": [
+    "CORRE!",
+    "PRO POSTO!"
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    21.14,
+    24.88
+   ],
+   "text": [
+    "NINGUÉM RESPIRA.",
+    "NINGUÉM SE MEXE."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    25.31,
+    26.11
+   ],
+   "text": [
+    "AÍ O RÁDIO CHIOU.",
+    "NA MINHA MÃO."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    26.59,
+    27.5
+   ],
+   "text": [
+    "ELA DISSE O",
+    "MEU NOME."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    27.84,
+    29.87
+   ],
+   "text": [
+    "A MINHA IRMÃ...",
+    "ELA TÁ VIVA."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    30.3,
+    35.48
+   ],
+   "text": [
+    "A PONTE.",
+    "DOIS DIAS.",
+    "E O EXÉRCITO",
+    "NÃO ESPERA NINGUÉM."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    35.86,
+    38.44
+   ],
+   "text": [
+    "E O HOSPITAL...",
+    "ERA DE ONDE TODOS",
+    "ELES TINHAM SAÍDO."
+   ]
+  },
+  {
+   "voice": "roberta",
+   "src": [
+    38.89,
+    44.36
+   ],
+   "text": [
+    "BUSCO A MINHA IRMÃ...",
+    "OU CORRO PRA PONTE?"
+   ]
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    0.0,
+    0.95
+   ],
+   "text": [
+    "VOCÊ VAI PRIMEIRO."
+   ]
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    1.43,
+    4.98
+   ],
+   "text": [
+    "A PONTE FECHA DAQUI",
+    "A DOIS DIAS.",
+    "O HOSPITAL É",
+    "PRO OUTRO LADO."
+   ]
+  },
+  {
+   "voice": "rafa",
+   "src": [
+    5.66,
+    7.47
+   ],
+   "text": [
+    "VOCÊ IA ME",
+    "LARGAR DE NOVO?"
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    0.0,
+    3.13
+   ],
+   "text": [
+    "ROBERTA...",
+    "SE VOCÊ ESTIVER OUVINDO..."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    3.47,
+    8.12
+   ],
+   "text": [
+    "SOU EU, A LIA.",
+    "ESTOU NO HOSPITAL CENTRAL.",
+    "TRÊS BATIDAS."
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "telhado",
+   "hook": {
+    "text": "NÃO OLHA\nPRA BAIXO",
+    "y": 760
+   },
+   "rain": "forte",
+   "slowmo": 0.35,
+   "lens_drops": true,
+   "camera": {
+    "zoom": [
+     1.05,
+     1.15
+    ]
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      420,
+      600
+     ],
+     "y": 1650,
+     "view": "side",
+     "facing": 1,
+     "pose": "jump",
+     "lift": [
+      [
+       0,
+       160
+      ],
+      [
+       2,
+       220
+      ]
+     ],
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 2,
+   "end": 7,
+   "type": "recap",
+   "from": "ep02.json",
+   "times": [
+    7,
+    25,
+    37
+   ],
+   "label": "ANTERIORMENTE EM DIA ZERO",
+   "lines": [
+    "ERA O RAFA",
+    "ELES SEGUEM O SOM",
+    "A RUA ENCHEU"
+   ]
+  },
+  {
+   "start": 7,
+   "end": 10,
+   "type": "title",
+   "title": "EPISÓDIO 3/5",
+   "subtitle": "DIA ZERO",
+   "transition": "glitch",
+   "stamp": {
+    "t": 8.0,
+    "top": "A MAIORIA ESCOLHEU",
+    "word": "TELHADO"
+   }
+  },
+  {
+   "start": 10,
+   "end": 17,
+   "scene": "telhado",
+   "transition": "whip",
+   "rain": "forte",
+   "lens_drops": true,
+   "camera": {
+    "zoom": 1.3,
+    "cx": 0.6,
+    "cy": 0.62,
+    "focus": [
+     [
+      0,
+      0
+     ],
+     [
+      4.2,
+      1
+     ]
+    ]
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "fg": true,
+     "view": "back",
+     "x": 260,
+     "y": 2380,
+     "scale": 3.4,
+     "blur": 6
+    },
+    {
+     "char": "rafa",
+     "x": 720,
+     "y": 1690,
+     "view": "3q",
+     "facing": -1,
+     "emotion": "suspicious",
+     "pose": "cross"
+    }
+   ]
+  },
+  {
+   "start": 17,
+   "end": 23,
+   "scene": "telhado",
+   "transition": "cut",
+   "rain": "forte",
+   "camera": {
+    "follow": 0,
+    "zoom": 1.2
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      [
+       0,
+       160
+      ],
+      [
+       1.8,
+       520
+      ],
+      [
+       3.6,
+       900
+      ]
+     ],
+     "y": 1660,
+     "view": "side",
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       3.6,
+       false
+      ]
+     ],
+     "run": true,
+     "pose": [
+      [
+       0,
+       "run"
+      ],
+      [
+       1.8,
+       "jump"
+      ],
+      [
+       3.6,
+       "crouch"
+      ],
+      [
+       4.6,
+       "idle"
+      ]
+     ],
+     "lift": [
+      [
+       0,
+       0
+      ],
+      [
+       1.8,
+       0
+      ],
+      [
+       2.7,
+       230
+      ],
+      [
+       3.6,
+       0
+      ]
+     ],
+     "emotion": "determined"
+    }
+   ]
+  },
+  {
+   "start": 23,
+   "end": 31,
+   "scene": "telhado",
+   "transition": "cut",
+   "rain": "forte",
+   "lens_drops": true,
+   "camera": {
+    "close": 0,
+    "close_zoom": [
+     2.2,
+     1.2
+    ],
+    "close_in": 0.6
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      [
+       0,
+       640
+      ],
+      [
+       4.5,
+       640
+      ],
+      [
+       5.5,
+       600
+      ]
+     ],
+     "y": 1690,
+     "view": "3q",
+     "facing": -1,
+     "pose": [
+      [
+       0,
+       "hand_l"
+      ],
+      [
+       5.2,
+       "hug"
+      ]
+     ],
+     "emotion": "determined"
+    },
+    {
+     "char": "rafa",
+     "x": [
+      [
+       0,
+       200
+      ],
+      [
+       3.6,
+       200
+      ],
+      [
+       4.6,
+       470
+      ]
+     ],
+     "y": 1690,
+     "view": "3q",
+     "facing": 1,
+     "pose": [
+      [
+       0,
+       "scared"
+      ],
+      [
+       3.6,
+       "jump"
+      ],
+      [
+       4.6,
+       "hug"
+      ]
+     ],
+     "lift": [
+      [
+       0,
+       0
+      ],
+      [
+       3.6,
+       0
+      ],
+      [
+       4.1,
+       160
+      ],
+      [
+       4.6,
+       0
+      ]
+     ],
+     "tremble": [
+      [
+       0,
+       0.6
+      ],
+      [
+       4.6,
+       0
+      ]
+     ],
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       4.6,
+       "panting"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 31,
+   "end": 37,
+   "scene": "escada",
+   "transition": "fade",
+   "dark": 0.7,
+   "camera": {
+    "handheld": 10,
+    "zoom": [
+     1.0,
+     1.1
+    ]
+   },
+   "wall_shadow": {
+    "light": [
+     300,
+     900
+    ],
+    "alpha": 0.45
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      480,
+      620
+     ],
+     "y": [
+      1560,
+      1680
+     ],
+     "view": "back",
+     "walk": true,
+     "flashlight": 200,
+     "hold": "rafa"
+    },
+    {
+     "char": "rafa",
+     "x": [
+      360,
+      500
+     ],
+     "y": [
+      1520,
+      1640
+     ],
+     "view": "back",
+     "walk": true
+    }
+   ]
+  },
+  {
+   "start": 37,
+   "end": 42,
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes": [
+     1080,
+     1780
+    ]
+   },
+   "transition": "cut",
+   "grade": "noite"
+  },
+  {
+   "start": 42,
+   "end": 49,
+   "scene": "rua",
+   "transition": "whip",
+   "time": "amanhecer",
+   "fog": 0.5,
+   "cold": true,
+   "camera": {
+    "zoom": [
+     1.0,
+     1.08
+    ]
+   },
+   "crowd": {
+    "count": 7,
+    "area": [
+     60,
+     1300,
+     1020,
+     1360
+    ],
+    "dir": 1,
+    "speed": 12,
+    "seed": 5
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      260,
+      620
+     ],
+     "y": 1720,
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "hold": "rafa",
+     "emotion": "fear"
+    },
+    {
+     "char": "rafa",
+     "x": [
+      140,
+      500
+     ],
+     "y": 1740,
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 49,
+   "end": 56,
+   "scene": "rua",
+   "transition": "cut",
+   "time": "amanhecer",
+   "fog": 0.4,
+   "scare": [
+    51.0
+   ],
+   "camera": {
+    "close": 1,
+    "close_zoom": [
+     1.0,
+     2.4
+    ],
+    "close_in": 1.8
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 600,
+     "y": 1720,
+     "view": "3q",
+     "facing": -1,
+     "emotion": [
+      [
+       0,
+       "neutral"
+      ],
+      [
+       2,
+       "fear"
+      ]
+     ]
+    },
+    {
+     "char": "rafa",
+     "x": 380,
+     "y": 1730,
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "neutral"
+      ],
+      [
+       2,
+       "shock"
+      ]
+     ]
+    },
+    {
+     "char": "zombie",
+     "x": 880,
+     "y": 1420,
+     "scale": 0.7,
+     "sniff": true,
+     "pose": "forward"
+    },
+    {
+     "char": "zombie_corredor",
+     "x": 150,
+     "y": 1400,
+     "scale": 0.65,
+     "sniff": true
+    }
+   ]
+  },
+  {
+   "start": 56,
+   "end": 62,
+   "scene": "rua",
+   "transition": "whip",
+   "time": "amanhecer",
+   "fog": 0.3,
+   "camera": {
+    "follow": 0,
+    "zoom": 1.2,
+    "handheld": 18
+   },
+   "crowd": {
+    "count": 9,
+    "area": [
+     -160,
+     1600,
+     170,
+     1700
+    ],
+    "dir": 1,
+    "speed": 92,
+    "seed": 8
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": [
+      300,
+      900
+     ],
+     "y": 1720,
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "hold": "rafa",
+     "emotion": "panting"
+    },
+    {
+     "char": "rafa",
+     "x": [
+      180,
+      780
+     ],
+     "y": 1740,
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 62,
+   "end": 69,
+   "scene": "posto",
+   "transition": "cut",
+   "dark": 0.6,
+   "lights": [
+    [
+     860,
+     1100,
+     380
+    ]
+   ],
+   "wall_shadow": {
+    "light": [
+     860,
+     1100
+    ],
+    "alpha": 0.4
+   },
+   "camera": {
+    "zoom": [
+     1.1,
+     1.2
+    ],
+    "handheld": 4
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 520,
+     "y": 1700,
+     "view": "3q",
+     "facing": 1,
+     "pose": "hide",
+     "emotion": "panting"
+    },
+    {
+     "char": "rafa",
+     "x": 360,
+     "y": 1710,
+     "view": "3q",
+     "facing": 1,
+     "pose": "hide",
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 69,
+   "end": 75,
+   "scene": "posto",
+   "transition": "cut",
+   "dark": 0.7,
+   "lights": [
+    [
+     640,
+     1500,
+     260
+    ]
+   ],
+   "camera": {
+    "close": 0,
+    "close_zoom": 2.4,
+    "close_in": 0.8
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 600,
+     "y": 1700,
+     "view": "3q",
+     "facing": -1,
+     "pose": "hold",
+     "prop": "radio",
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       1.5,
+       "shock"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 75,
+   "end": 83,
+   "scene": "radio",
+   "transition": "zoom",
+   "props": {
+    "on": 1,
+    "level": "auto",
+    "level_voice": "lia"
+   },
+   "camera": {
+    "vertigo": [
+     1.0,
+     1.3
+    ]
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 300,
+     "y": 1720,
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "shock"
+      ],
+      [
+       5.5,
+       "cry"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 83,
+   "end": 93,
+   "scene": "posto",
+   "transition": "cut",
+   "dark": 0.5,
+   "lights": [
+    [
+     600,
+     1450,
+     300
+    ]
+   ],
+   "camera": {
+    "close": 0,
+    "close_zoom": [
+     1.6,
+     2.6
+    ],
+    "close_in": 1.5
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 600,
+     "y": 1700,
+     "view": "front",
+     "pose": [
+      [
+       0,
+       "hold"
+      ],
+      [
+       6.2,
+       "chest"
+      ]
+     ],
+     "prop": "radio",
+     "emotion": [
+      [
+       0,
+       "shock"
+      ],
+      [
+       6,
+       "cry"
+      ]
+     ]
+    },
+    {
+     "char": "rafa",
+     "x": 330,
+     "y": 1710,
+     "view": "3q",
+     "facing": 1,
+     "emotion": "shock"
+    }
+   ]
+  },
+  {
+   "start": 93,
+   "end": 101,
+   "scene": "posto",
+   "transition": "cut",
+   "dark": 0.5,
+   "camera": {
+    "zoom": 1.3,
+    "cx": 0.6,
+    "cy": 0.62,
+    "focus": 1
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "fg": true,
+     "view": "back",
+     "x": 260,
+     "y": 2380,
+     "scale": 3.4,
+     "blur": 6
+    },
+    {
+     "char": "rafa",
+     "x": 720,
+     "y": 1690,
+     "view": "3q",
+     "facing": -1,
+     "pose": [
+      [
+       0,
+       "cross"
+      ],
+      [
+       4.8,
+       "idle"
+      ]
+     ],
+     "emotion": [
+      [
+       0,
+       "suspicious"
+      ],
+      [
+       5,
+       "sad"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 101,
+   "end": 109,
+   "scene": "ponte",
+   "transition": "fade",
+   "fog": 0.6,
+   "time": "dia",
+   "camera": {
+    "zoom": [
+     1.0,
+     1.15
+    ]
+   },
+   "actors": [
+    {
+     "char": "soldado",
+     "x": 560,
+     "y": 1450,
+     "scale": 0.7,
+     "pose": "hold"
+    },
+    {
+     "char": "soldado",
+     "x": 700,
+     "y": 1460,
+     "scale": 0.7,
+     "pose": "hold",
+     "facing": -1
+    }
+   ]
+  },
+  {
+   "start": 109,
+   "end": 116,
+   "scene": "hospital",
+   "transition": "whip",
+   "dark": 0.5,
+   "fog": 0.2,
+   "camera": {
+    "handheld": 10,
+    "zoom": [
+     1.0,
+     1.2
+    ]
+   },
+   "actors": [
+    {
+     "char": "zombie_enfermeiro",
+     "x": 540,
+     "y": 1450,
+     "scale": 0.75,
+     "sniff": true,
+     "pose": "forward"
+    }
+   ]
+  },
+  {
+   "start": 116,
+   "end": 124,
+   "scene": "posto",
+   "transition": "cut",
+   "dark": 0.5,
+   "lights": [
+    [
+     600,
+     1450,
+     300
+    ]
+   ],
+   "camera": {
+    "close": 0,
+    "close_zoom": [
+     1.8,
+     2.7
+    ],
+    "close_in": 2.0
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "x": 600,
+     "y": 1700,
+     "view": "front",
+     "pose": "hold",
+     "prop": "radio",
+     "emotion": [
+      [
+       0,
+       "sad"
+      ],
+      [
+       3,
+       "determined"
+      ]
+     ]
+    },
+    {
+     "char": "rafa",
+     "x": 330,
+     "y": 1710,
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 124,
+   "end": 132,
+   "type": "choice",
+   "transition": "zoom",
+   "a": {
+    "label": "BUSCAR LIA",
+    "scene": "hospital",
+    "actors": [
+     {
+      "char": "roberta",
+      "x": 540,
+      "y": 1600,
+      "emotion": "determined",
+      "flashlight": 10
+     }
+    ],
+    "crop_x": 270
+   },
+   "b": {
+    "label": "IR PRA PONTE",
+    "scene": "ponte",
+    "actors": [
+     {
+      "char": "roberta",
+      "x": 500,
+      "y": 1500,
+      "emotion": "fear"
+     },
+     {
+      "char": "rafa",
+      "x": 600,
+      "y": 1510,
+      "emotion": "fear"
+     }
+    ],
+    "crop_x": 270
+   },
+   "end_card": {
+    "t": 130,
+    "text": "CONTINUA NO EPISÓDIO 4"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.0,
+   "name": "heartbeat",
+   "dur": 2
+  },
+  {
+   "t": 0.5,
+   "name": "thunder"
+  },
+  {
+   "t": 2.0,
+   "name": "static",
+   "dur": 0.6
+  },
+  {
+   "t": 8.0,
+   "name": "stamp"
+  },
+  {
+   "t": 13.5,
+   "name": "breath",
+   "dur": 2
+  },
+  {
+   "t": 17.3,
+   "name": "step"
+  },
+  {
+   "t": 18.0,
+   "name": "step"
+  },
+  {
+   "t": 19.0,
+   "name": "whoosh"
+  },
+  {
+   "t": 20.6,
+   "name": "impact"
+  },
+  {
+   "t": 25.0,
+   "name": "heartbeat",
+   "dur": 3
+  },
+  {
+   "t": 26.8,
+   "name": "whoosh"
+  },
+  {
+   "t": 27.6,
+   "name": "impact"
+  },
+  {
+   "t": 31.5,
+   "name": "echo_step"
+  },
+  {
+   "t": 33.6,
+   "name": "echo_step"
+  },
+  {
+   "t": 35.4,
+   "name": "echo_step"
+  },
+  {
+   "t": 37.5,
+   "name": "growl"
+  },
+  {
+   "t": 39.5,
+   "name": "crowd",
+   "dur": 2.5
+  },
+  {
+   "t": 43.0,
+   "name": "shuffle"
+  },
+  {
+   "t": 46.5,
+   "name": "step"
+  },
+  {
+   "t": 51.0,
+   "name": "glass"
+  },
+  {
+   "t": 51.6,
+   "name": "growl"
+  },
+  {
+   "t": 56.0,
+   "name": "crowd",
+   "dur": 6
+  },
+  {
+   "t": 57.0,
+   "name": "step"
+  },
+  {
+   "t": 58.6,
+   "name": "car_alarm"
+  },
+  {
+   "t": 62.4,
+   "name": "shuffle"
+  },
+  {
+   "t": 63.0,
+   "name": "heartbeat",
+   "dur": 5
+  },
+  {
+   "t": 67.6,
+   "name": "breath",
+   "dur": 1.4
+  },
+  {
+   "t": 70.5,
+   "name": "static",
+   "dur": 1.8
+  },
+  {
+   "t": 75.2,
+   "name": "static",
+   "dur": 0.6
+  },
+  {
+   "t": 77.5,
+   "name": "heartbeat",
+   "dur": 3
+  },
+  {
+   "t": 83.2,
+   "name": "static",
+   "dur": 0.5
+  },
+  {
+   "t": 93.3,
+   "name": "click"
+  },
+  {
+   "t": 99.8,
+   "name": "growl"
+  },
+  {
+   "t": 101.5,
+   "name": "siren"
+  },
+  {
+   "t": 111.5,
+   "name": "growl"
+  },
+  {
+   "t": 113.5,
+   "name": "heartbeat",
+   "dur": 2.5
+  },
+  {
+   "t": 122.5,
+   "name": "beep"
+  },
+  {
+   "t": 124.4,
+   "name": "beep"
+  },
+  {
+   "t": 129.0,
+   "name": "stamp"
+  }
+ ],
+ "music": [
+  {
+   "start": 10,
+   "end": 49,
+   "gain": [
+    0.04,
+    0.08
+   ],
+   "tense": 0.5
+  },
+  {
+   "start": 49,
+   "end": 101,
+   "gain": [
+    0.06,
+    0.11
+   ],
+   "tense": 0.8
+  },
+  {
+   "start": 101,
+   "end": 132,
+   "gain": [
+    0.05,
+    0.1
+   ],
+   "tense": 0.6
+  }
+ ]
+}
