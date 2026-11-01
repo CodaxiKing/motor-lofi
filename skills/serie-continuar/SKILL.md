@@ -23,3 +23,5 @@ Responda em português do Brasil.
 7. Entregue **escrito na própria resposta do chat** (não só como arquivo; o arquivo vai junto, mas o usuário lê e copia daqui): roteiro por cena; **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz); versão CapCut; as duas opções finais e o que acontece em cada uma.
 8. Marque o episódio como "roteiro" na bíblia, commit e push.
 9. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-montar com os áudios".
+
+**As falas do ElevenLabs vão na resposta do chat, sempre:** um bloco de código por personagem (nome e dica de voz em cima do bloco, fora dele), só com as falas e as tags em inglês, na ordem do episódio, para o usuário copiar e colar direto. Não basta deixar no arquivo do roteiro.
