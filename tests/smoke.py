@@ -40,7 +40,7 @@ def main():
             for s in ep.shots: ep.frame((s["start"] + s["end"]) / 2)
             probs = check(path, frames=False)
             inesperados = [m for l, m in probs if l == "ERRO" and not any(
-                k in m for k in ("escolha A/B", "gancho", "título", "recap aponta"))]
+                k in m for k in ("escolha A/B", "gancho", "título", "recap aponta", "no mínimo 2 min"))]
             if inesperados: falhas.append(f"{ex}: " + "; ".join(inesperados))
             print(f"ok  {ex} ({len(ep.shots)} planos)")
         except Exception:

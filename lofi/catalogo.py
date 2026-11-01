@@ -51,7 +51,12 @@ def markdown(c):
             "Imagem com todas: [`examples/mapa_cenarios.png`](examples/mapa_cenarios.png).", ""]
     for cena, m in MAPA.items():
         itens = [f"`{n}`" + (f" ({v['nota']})" if v.get("nota") else "") for n, v in m["marcas"].items()]
-        out += [f"- **{cena}:** " + ", ".join(itens)]
+        out += [f"- **{cena if cena != '_travelling' else 'travelling (qualquer cenário com \"travelling\")'}:** " + ", ".join(itens)]
+    out += ["", "## Travelling lateral (o cenário passa)", "",
+            "No plano: `\"travelling\": 320` (px/s; positivo = eles vão para a direita) ou `{\"speed\": 320, \"frente\": true}`. "
+            "Os personagens ficam no lugar correndo/andando (`walk`, `run`, `facing` no sentido do movimento) e o cenário rola: "
+            "cidade (rua, rua_amanhecer, entrada_metro, posto, telhado), mata (floresta), túnel (metro), esgoto, ponte e "
+            "interno (corredor, hospital, escola, delegacia, mercado, igreja, casa). Use as marcas de travelling acima.", ""]
     out += ["", "## Partes do corpo (mão e braço do personagem)", "",
             "Em rádio e planos de detalhe, `\"hand\": \"roberta\"` desenha o braço com a manga e a pele da ficha do personagem; "
             "`{\"of\": \"rafa\", \"at\": \"antena\"}` escolhe a posição; `false` tira a mão. No `olho`, a pele em volta é a do personagem.", ""]

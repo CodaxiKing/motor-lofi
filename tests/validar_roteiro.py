@@ -2,8 +2,8 @@
 
     python3 tests/validar_roteiro.py series/dia-zero/ep03_roteiro.md [--final]
 
-Estrutura: gancho no início, abertura com carimbo, 12–20 cenas, pergunta A/B + "CONTINUA NO EPISÓDIO"
-(ou "FIM" no último), narração ElevenLabs por personagem, legendas com até 4 palavras por pedaço, duração 2–3 min.
+Estrutura: gancho no início, abertura com carimbo, 12 cenas ou mais, pergunta A/B + "CONTINUA NO EPISÓDIO"
+(ou "FIM" no último), narração ElevenLabs por personagem, legendas com até 4 palavras por pedaço, duração mínima de 2 min (sem máximo).
 
 Nomes do motor: nas linhas CENÁRIO, PERSONAGENS, PLANO/TRANSIÇÃO, LUZ e SOM, todo nome entre crases (`bang`, `escada`,
 `fear`...) precisa existir no motor (CATALOGO.md) ou em personagens.json da série. Nome errado é ERRO, com sugestão.
@@ -17,7 +17,7 @@ sys.path.insert(0, RAIZ)
 # Campos e valores do roteiro técnico que podem aparecer entre crases nas linhas de direção (SPEC.md).
 CAMPOS_ATOR = {"crowd", "walk", "run", "tremble", "hold", "carried_by", "flashlight", "fg", "lift", "rot", "gesture", "nod", "shake",
                "down", "look", "facing", "enter", "exit", "sniff", "breath", "prop", "scale", "blur", "voice", "lipsync", "gestures"}
-CAMPOS_PLANO = {"close", "follow", "focus", "handheld", "vertigo", "slowmo", "scare", "lens_drops", "dark", "wall_shadow", "lights",
+CAMPOS_PLANO = {"close", "travelling", "follow", "focus", "handheld", "vertigo", "slowmo", "scare", "lens_drops", "dark", "wall_shadow", "lights",
                 "cold", "dust", "crowd", "fog", "rain", "snow", "time", "tint", "peephole", "shake", "lightning", "hook", "bloom",
                 "style", "desenho", "acoustic", "detail", "recap", "moments", "choice", "title", "effect", "camera", "zoom",
                 "flicker", "tv", "static", "fan", "wind", "train", "door", "locks", "under_door_light", "feet", "on", "level"}
@@ -119,7 +119,7 @@ def validar(txt, final=False, caminho=None):
     if "GANCHO" not in up: erros.append("falta a CENA 0 · GANCHO")
     if "A MAIORIA ESCOLHEU" not in up and "EPISÓDIO 1/" not in up: erros.append("falta o carimbo 'A MAIORIA ESCOLHEU'")
     cenas = set(int(n) for n in re.findall(r"^[#\s*\-]*CENA\s+(\d+)", up, re.M) if int(n) > 0)
-    if not (12 <= len(cenas) <= 20): erros.append(f"{len(cenas)} cenas (padrão 12–20)")
+    if len(cenas) < 12: erros.append(f"{len(cenas)} cenas (mínimo 12)")
     elif sorted(cenas) != list(range(1, max(cenas) + 1)): avisos.append(f"numeração das cenas com falhas: {sorted(cenas)}")
     if final:
         if "FIM" not in up: erros.append("último episódio sem 'FIM'")
@@ -133,7 +133,7 @@ def validar(txt, final=False, caminho=None):
         for piece in re.split(r"\s*/\s*", m.group(1)):
             if len(piece.split()) > 4: avisos.append(f"legenda com mais de 4 palavras: '{piece.strip()}'")
     tempos = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*s\b", re.sub(r"(\d),(\d)", r"\1.\2", txt))]
-    if tempos and not (110 <= max(tempos) <= 190): avisos.append(f"maior tempo citado {max(tempos):.0f}s (esperado 120–180 s)")
+    if tempos and max(tempos) < 120: erros.append(f"maior tempo citado {max(tempos):.0f}s: o episódio precisa ter no mínimo 2 min")
     cat, motivo = carregar_nomes(caminho or ".")
     if cat is None: avisos.append(motivo)
     else:

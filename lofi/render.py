@@ -341,9 +341,15 @@ class Episode:
     # ---------------- planos ----------------
     def scene_frame(self, shot, t, t_anim=None):
         t_anim = t if t_anim is None else t_anim
-        sc = scenes.get(shot["scene"])
+        trav = shot.get("travelling")
+        sc = scenes.get(shot["scene"], bool(trav))
         rel = t - shot["start"]; norm = c01(rel / max(1e-6, shot["end"] - shot["start"]))
         props = {k: val(v, rel, norm) for k, v in shot.get("props", {}).items()}
+        if trav:
+            tv = trav if isinstance(trav, dict) else {"speed": trav}
+            sp = tv.get("speed", 300)
+            if sp is True: sp = 300 * (shot.get("actors") or [{}])[0].get("facing", 1)
+            props["_scroll"] = float(sp) * rel; props["_frente"] = bool(tv.get("frente"))
         if props.get("level") == "auto": props["level"] = min(1.0, self.level(props.get("level_voice", "_all"), t) * 0.9)
         props["_hand"] = partes.resolver(False if props.get("hand") is False else shot.get("hand"), sc.name, self.locked, self.custom)
         props["_avoid"] = self._avoid

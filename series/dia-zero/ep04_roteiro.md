@@ -1,7 +1,7 @@
 # DIA ZERO · EPISÓDIO 4/5 — O ÚLTIMO QUARTEIRÃO
 
 5 episódios · Suspense · Todas as idades (sem sangue) · Fase: clímax · Cor do episódio (`tint`): vermelho [200, 70, 60, 0.12]
-Voto do ep. 3: **B) IR DIRETO PRA PONTE**. Duração: ~2 min 17 s · 17 cenas (cada mudança de lugar mostra o caminho: posto → estação → plataforma → rua da estação → carro).
+Voto do ep. 3: **B) IR DIRETO PRA PONTE**. Duração: ~2 min 19 s · 18 cenas (cada mudança de lugar mostra o caminho: posto → estação → plataforma → rua da estação → carro).
 
 **Consequências em jogo**
 - Ep. 1 (ESPIAR): Rafa ainda guarda a desconfiança.
@@ -53,8 +53,8 @@ LEGENDA: PELOS TRILHOS / NINGUÉM ANDA / LÁ EMBAIXO
 ## CENA 3 — 26 s a 30 s · A plataforma
 LIGAÇÃO: chegam à plataforma, no fim da escada
 CENÁRIO: `metro`
-PERSONAGENS: `roberta` e `rafa` (`hold`) andando da marca `plataforma_longe` até `plataforma`, `flashlight`
-PLANO: travelling `follow` 0, `handheld` · TRANSIÇÃO: `cut`
+PERSONAGENS: `roberta` e `rafa` (`hold`) andando pela plataforma, de lado, `flashlight`
+PLANO: `travelling` (os pilares e as luzes do túnel passando), `handheld` · TRANSIÇÃO: `cut`
 LUZ E DETALHES: `dark` 0.7, lanterna, `dust`
 SOM: `echo_step` 26 s · `echo_step` 28 s
 
@@ -103,91 +103,97 @@ SOM: `growl` 59 s · `crowd` 59 s
 NARRAÇÃO (Roberta): [scared] O megafone. Todos ouviram.
 LEGENDA: O MEGAFONE / TODOS OUVIRAM
 
-## CENA 9 — 64 s a 70 s · O carro
-LIGAÇÃO: correm pela calçada até um carro parado na mesma rua
-CENÁRIO: `rua`
-PERSONAGENS: `roberta` puxando `rafa` (`hold`), correndo (`run`) da marca `calcada_dir` até `carro` · horda vindo atrás
-PLANO: `handheld`, `follow` 0 · TRANSIÇÃO: `whip`
-LUZ E DETALHES: `crowd` correndo atrás deles
-SOM: `step` 64 s · `door_open` 68 s · `door_close` 69 s
+## CENA 9 — 64 s a 70 s · A corrida
+LIGAÇÃO: correm pela calçada da rua da estação, com a horda atrás
+CENÁRIO: `rua` · chuva forte
+PERSONAGENS: `roberta` puxando `rafa` (`hold`), correndo (`run`) de lado · horda (`crowd`) vindo atrás
+PLANO: `travelling` (prédios, postes e lixeiras passando), `handheld` · TRANSIÇÃO: `whip`
+LUZ E DETALHES: `rain` `forte`
+SOM: `step` 64 s · `step` 66 s
 ROBERTA: [shouting] Entra! Entra no carro!
 LEGENDA: ENTRA! / ENTRA NO CARRO!
 
-## CENA 10 — 70 s a 77 s · Dentro do carro
+## CENA 10 — 70 s a 72 s · O carro
+CENÁRIO: `rua` (o carro parado na mesma rua)
+PERSONAGENS: `roberta` e `rafa` (`hold`) chegando correndo da marca `calcada_esq` até `carro`
+PLANO: aberto, `handheld` · TRANSIÇÃO: `cut`
+SOM: `door_open` 71 s · `door_close` 72 s
+
+## CENA 11 — 72 s a 80 s · Dentro do carro
 LIGAÇÃO: entram no carro e fecham as portas
 CENÁRIO: `carro` · chuva forte
 PERSONAGENS: `roberta` na marca `motorista` · `rafa` na marca `carona` · `zombie` colado no para-brisa, `sniff`
 PLANO: aberto, câmera parada · TRANSIÇÃO: `cut`
 LUZ E DETALHES: `dark` 0.35, `lens_drops`
-SOM: `breath` 70 s · `growl` 73 s · `heartbeat` 74 s
+SOM: `breath` 72 s · `growl` 75 s · `heartbeat` 76 s
 NARRAÇÃO (Roberta): [whispers] Eles cercaram o carro. Ninguém respira.
 LEGENDA: ELES CERCARAM / O CARRO / NINGUÉM RESPIRA
 
-## CENA 11 — 77 s a 83 s · O rádio do carro
+## CENA 12 — 80 s a 86 s · O rádio do carro
 CENÁRIO: `radio_carro` · a mão da Roberta (`hand` roberta, posição `dial`) liga o rádio do painel
 PERSONAGENS: só a mão de `roberta`
 PLANO: close no painel, `zoom` lento · TRANSIÇÃO: `cut`
 LUZ E DETALHES: o display acende
-SOM: `click` 77 s · `static` 78 s
+SOM: `click` 79 s · `static` 80 s
 NARRAÇÃO (Roberta): [whispers] Liguei o rádio no volume mínimo. Eu precisava ouvir ela.
 LEGENDA: VOLUME MÍNIMO / EU PRECISAVA / OUVIR ELA
 
-## CENA 12 — 83 s a 93 s · A despedida
+## CENA 13 — 86 s a 95 s · A despedida
 CENÁRIO: `radio_carro` · `hand` roberta no `dial`
 PERSONAGENS: só a mão de `roberta`
 PLANO: `vertigo` · TRANSIÇÃO: `zoom`
 LUZ E DETALHES: barras do display acompanhando a voz
-SOM: `static` 83 s · `heartbeat` 88 s
+SOM: `static` 85 s · `heartbeat` 90 s
 LIA (rádio): [sad] Roberta... o hospital caiu. Eu não vou conseguir sair.
 LIA (rádio): [crying] Atravessa. Por mim. Promete.
 LEGENDA: O HOSPITAL CAIU / NÃO VOU / CONSEGUIR SAIR / ATRAVESSA. / POR MIM.
 
-## CENA 13 — 93 s a 99 s · Promessa
+## CENA 14 — 95 s a 101 s · Promessa
 PLANO DE DETALHE: `olho` da Roberta (`hand` roberta), lágrima escorrendo
-SOM: `breath` 93 s
+SOM: `breath` 95 s
 ROBERTA: [crying] Eu prometo.
 NARRAÇÃO (Roberta): [whispers] E o rádio ficou mudo.
 LEGENDA: EU PROMETO / E O RÁDIO / FICOU MUDO
 
-## CENA 14 — 99 s a 107 s · A ideia do Rafa
+## CENA 15 — 101 s a 109 s · A ideia do Rafa
 CENÁRIO: `carro`
 PERSONAGENS: `rafa` na marca `carona`, aponta para o painel (`reach_l`), emoção `determined` · `roberta` na marca `motorista`
 PLANO: aberto · TRANSIÇÃO: `cut`
 LUZ E DETALHES: `dark` 0.35, luz do painel
-SOM: `click` 99 s
+SOM: `click` 101 s
 RAFA: [whispers] Esse carro tem alarme. Se tocar, eles vêm todos pra cá.
 RAFA: [firm] E a gente sai pelo outro lado.
 LEGENDA: ESSE CARRO / TEM ALARME / ELES VÊM / TODOS PRA CÁ
 
-## CENA 15 — 107 s a 113 s · A ignição
+## CENA 16 — 109 s a 115 s · A ignição
 PLANO DE DETALHE: `chave` na ignição do carro (variante do carro), `hand` roberta girando devagar até ACC
-SOM: `click` 107 s · `heartbeat` 108 s
+SOM: `click` 109 s · `heartbeat` 110 s
 NARRAÇÃO (Roberta): [whispers] Se o alarme tocasse, a gente teria segundos. Só segundos.
 LEGENDA: TERIA SEGUNDOS / SÓ SEGUNDOS
 
-## CENA 16 — 113 s a 121 s · O dia chegando
+## CENA 17 — 115 s a 123 s · O dia chegando
 INSERÇÃO: o mesmo carro visto de fora, cercado, enquanto o céu clareia
 CENÁRIO: `rua_amanhecer` · `fog` 0.6 · DIA 5 · 05:20
 PERSONAGENS: horda parada e lenta (`crowd`) em volta do carro estacionado
 PLANO: aberto, `zoom` lento · TRANSIÇÃO: `fade`
 LUZ E DETALHES: `fog`, céu clareando
-SOM: `shuffle` 113 s · `siren` 117 s
+SOM: `shuffle` 115 s · `siren` 119 s
 NARRAÇÃO (Roberta): [whispers] Ou esperar o dia. De dia, eles ficam lentos. Mas a ponte fecha às seis.
 LEGENDA: OU ESPERAR O DIA / ELES FICAM LENTOS / A PONTE FECHA / ÀS SEIS
 
-## CENA 17 — 121 s a 129 s · A mão
+## CENA 18 — 123 s a 131 s · A mão
 CENÁRIO: `carro`
 PERSONAGENS: `rafa` na marca `carona`, estende a mão para ela (`hand_l`) · `roberta` na marca `motorista` (`hand_r`)
 PLANO: aberto, `zoom` lento · TRANSIÇÃO: `cut`
 LUZ E DETALHES: primeira luz do dia no para-brisa
-SOM: `heartbeat` 121 s · `beep` 128 s
+SOM: `heartbeat` 123 s · `beep` 130 s
 RAFA: [firm] Eu confio em você. Você decide.
 NARRAÇÃO (Roberta): [nervous] Faço barulho... ou espero em silêncio?
 LEGENDA: EU CONFIO / EM VOCÊ / FAÇO BARULHO... / OU ESPERO?
 
 ---
 
-## FINAL (129–137 s)
+## FINAL (131–139 s)
 Tela dividida: A) FAZER BARULHO (cenário `rua`, os dois correndo) · B) ESPERAR EM SILÊNCIO (cenário `rua_amanhecer`, horda parada na névoa)
 TRANSIÇÃO: `zoom`
 SOM: `beep` 151 s · `stamp` 156 s

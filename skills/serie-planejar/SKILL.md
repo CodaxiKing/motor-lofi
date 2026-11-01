@@ -9,14 +9,14 @@ Primeiro passo de uma série nova, sem anexar nada. Siga a skill **serie-lofi-in
 Responda em português do Brasil.
 
 ## Padrões
-Duração por episódio 2 a 3 minutos · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
+Duração por episódio: no mínimo 2 minutos, sem limite máximo · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
 
 ## Coletar os dados
 1. Se o usuário já escreveu os dados junto com o comando, use-os e pergunte só o que faltar.
 2. Senão, faça as perguntas de escolha com AskUserQuestion (uma única chamada):
    - Quantos episódios? (5 (Recomendado) · 3 · 8 · 10)
    - Gênero? (Suspense/Terror · Mistério/Policial · Comédia/Romance · Fantasia) — o usuário pode digitar outro
-   - Duração por episódio? (2–3 min (Recomendado) · 1–2 min · 3–4 min)
+   - Duração por episódio? (2–3 min (Recomendado) · 3–4 min · 4 min ou mais); nunca menos de 2 min
    - Estilo do traço? (Desenhado à mão (Recomendado) · Liso)
 3. Na mesma resposta, peça em texto livre, numa lista curta: **ideia da história** (obrigatório), protagonista (nome, jeito, roupa marcante, tipo de corpo), cenário/época, elemento fixo na tela e classificação ("todas as idades" ou "14+") (opcionais; o que ficar em branco você decide).
 4. Não pergunte nada além disso. Se o usuário não estiver presente, decida e diga o que decidiu.

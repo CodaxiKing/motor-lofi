@@ -906,6 +906,11 @@ class RuaAmanhecer(Rua):
 REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, RuaAmanhecer, Janela, Escada, Telhado, Ponte, Radio, RadioCarro, RadioPortatil, EntradaMetro, Hospital, Mercado, Metro,
                                      Escola, Delegacia, Posto, Floresta, Carro, Esgoto, Igreja)}
 _inst = {}
-def get(name):
+def get(name, travelling=False):
+    """Cenário pronto (cacheado). travelling=True devolve a versão lateral que rola (lofi/travelling.py)."""
     if name not in _inst: _inst[name] = REGISTRY[name]()
-    return _inst[name]
+    if not travelling: return _inst[name]
+    if name + "@trav" not in _inst:
+        from .travelling import make
+        _inst[name + "@trav"] = make(_inst[name])
+    return _inst[name + "@trav"]

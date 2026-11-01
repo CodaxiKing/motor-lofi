@@ -55,6 +55,12 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **entrada_metro:** `calcada_esq` (na calçada, à esquerda), `frente` (na calçada, perto da câmera), `escada_topo` (no primeiro degrau, perto da câmera (prestes a descer ou acabando de subir)), `escada_baixo` (lá embaixo na escada, entrando na estação (pequeno, longe)), `longe` (lá no fundo da calçada)
 - **radio_carro:** 
 - **radio_portatil:** 
+- **travelling (qualquer cenário com "travelling"):** `esq` (atrás na corrida (quem persegue/segue)), `centro`, `dir` (à frente na corrida), `fundo` (junto à parede/fachada), `frente` (na beira da calçada, perto da câmera)
+
+## Travelling lateral (o cenário passa)
+
+No plano: `"travelling": 320` (px/s; positivo = eles vão para a direita) ou `{"speed": 320, "frente": true}`. Os personagens ficam no lugar correndo/andando (`walk`, `run`, `facing` no sentido do movimento) e o cenário rola: cidade (rua, rua_amanhecer, entrada_metro, posto, telhado), mata (floresta), túnel (metro), esgoto, ponte e interno (corredor, hospital, escola, delegacia, mercado, igreja, casa). Use as marcas de travelling acima.
+
 
 ## Partes do corpo (mão e braço do personagem)
 

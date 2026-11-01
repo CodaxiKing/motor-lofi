@@ -32,6 +32,7 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Corpos:** child, old, tall, fat, thin. **Objetos na mão:** radio, flashlight, phone, key, bag.
 - **Luz:** breu de verdade (`dark`) iluminado só pela lanterna e por `lights`; sombras projetadas na parede (`wall_shadow`); bloom automático.
 - **Cenários (23):** apartamento (ventilador, TV com chiado, cortina ao vento), entrada, corredor, rua, rua_amanhecer (rua de dia/madrugada clara; `time` não tira a lua da `rua`), janela, escada, telhado, ponte, radio (o rádio **de casa**), radio_carro (o rádio **do painel do carro**, com para-brisa e chuva), radio_portatil (rádio de pilha na mão, em qualquer lugar), entrada_metro (calçada com a escada da estação: liga rua ↔ metrô), hospital, mercado, metro, escola, delegacia, posto, floresta, carro, esgoto, igreja. Plano de detalhe `chave` com `"onde": "carro"` vira a ignição. Nuvens e poças animadas nos externos. Novos lugares são criados conforme a história.
+- **Travelling lateral (o cenário passa):** `"travelling": 400` no plano faz a rua, mata, túnel, corredor ou ponte rolar atrás de quem anda/corre (personagens no lugar com `walk`/`run` e `facing` no sentido do movimento; marcas `esq`, `centro`, `dir`, `fundo`, `frente`). Use sempre que alguém correr ou caminhar por um trajeto, em vez de atravessar um fundo parado.
 - **Clima e hora:** `rain` forte/fraca/nenhuma, `fog`, `snow`, `time` dia/entardecer/amanhecer/madrugada/noite (com transição).
 - **Câmera:** close no rosto, por cima do ombro, travelling, foco seletivo, paralaxe, câmera na mão (`handheld`), vertigo, câmera lenta (`slowmo`), susto (`scare`), gotas na lente (`lens_drops`).
 - **Planos de detalhe:** `type: detail` com maçaneta, olho, celular, chave, relógio. **Partes do corpo:** `"hand": "roberta"` mostra o braço e a mão do personagem certo (rádio, chave, maçaneta, celular; no olho, a pele).
@@ -39,7 +40,7 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Legendas estilo Reels**, gancho (`hook`), **"Anteriormente em…"** (`type: recap`).
 
 ## Padrão de duração
-Episódios de **2 a 3 minutos**, com 12 a 20 cenas de 6 a 14 s e pelo menos 3 momentos de tensão (ou de virada, em comédia e romance) ao longo do episódio.
+Episódios de **no mínimo 2 minutos, sem limite máximo** (a história pede o tamanho), com pelo menos 12 cenas de 6 a 14 s e pelo menos 3 momentos de tensão (ou de virada, em comédia e romance) ao longo do episódio.
 
 ## 1. Planejamento da série (uma vez por história)
 Quando o usuário mandar a ideia, entregue:
@@ -58,7 +59,7 @@ Use a bíblia, a classificação da série e o resultado da votação. Estrutura
 - **CENA 0 · GANCHO (0–2 s):** flash-forward do momento mais forte do episódio + frase curta de impacto em caixa alta (máx. 4 palavras por linha). Sem contador.
 - **ANTERIORMENTE EM… (4–6 s, a partir do episódio 2):** 3 momentos do episódio anterior com uma frase curta cada.
 - **ABERTURA:** "EPISÓDIO X/Y" + carimbo "A MAIORIA ESCOLHEU: ..." (transição glitch).
-- **CENAS** (12 a 20), cada uma com:
+- **CENAS** (12 ou mais), cada uma com:
   - CENA nº — início s a fim s
   - CENÁRIO + props + clima/hora (ou PLANO DE DETALHE: maçaneta, olho, celular, chave, relógio)
   - PERSONAGENS: quem, posição, vista (frente/costas/lado/3-4), pose, emoção e mudanças durante a fala, se anda/corre/pula, objeto na mão, interação (mãos dadas, abraço, carregar, empurrar)
@@ -70,7 +71,7 @@ Use a bíblia, a classificação da série e o resultado da votação. Estrutura
 - **FINAL:** pergunta A/B em tela dividida + "CONTINUA NO EPISÓDIO X"; último episódio fecha com "FIM".
 **Nomes do motor entre crases** nas linhas CENÁRIO, PERSONAGENS, PLANO, LUZ E DETALHES e SOM (ex.: CENÁRIO: `escada` · SOM: `bang` 32 s). O validador confere cada um. Modelo de formato: `tests/fixtures/roteiro_valido.md`.
 **Continuidade (obrigatório):** a história anda sem saltos. Os personagens só aparecem num lugar novo se o roteiro mostrar como chegaram: toda mudança de lugar ganha uma linha `LIGAÇÃO:` (ex.: "saem do posto e descem a escada da estação") e, quando possível, uma cena curta de passagem (`entrada_metro`, `escada`, `corredor`, `rua`, corrida até o carro). Corte para outro lugar sem os personagens irem até lá (a ponte vista de longe, a Lia do outro lado do rádio) é marcado como `INSERÇÃO:` e não muda onde eles estão. Objetos pertencem ao lugar: dentro do carro o rádio é `radio_carro`; na rua/posto/metrô é `radio_portatil`; `radio` só em casa. O tempo também é contínuo (use `relogio` ou o contador do HUD para pular horas). O validador recusa pulo de lugar sem LIGAÇÃO/INSERÇÃO e objeto fora do lugar; o `lofi.check` recusa o mesmo no JSON (plano com `"insercao": true` é a exceção).
-Regras de linguagem: plano de detalhe antes de um susto ou revelação; close no rosto em revelações; por cima do ombro em diálogos; câmera na mão em perseguições; câmera lenta só no pico; silêncio de 1 s antes dos sustos; pelo menos 1 som por cena. Adapte o tom ao gênero (luz, cor, trilha e ritmo).
+Regras de linguagem: plano de detalhe antes de um susto ou revelação; close no rosto em revelações; por cima do ombro em diálogos; câmera na mão em perseguições; corrida ou caminhada por um trajeto = travelling (o cenário passa) e um plano curto de chegada; câmera lenta só no pico; silêncio de 1 s antes dos sustos; pelo menos 1 som por cena. Adapte o tom ao gênero (luz, cor, trilha e ritmo).
 Entregue depois: narração limpa (versão CapCut e versão ElevenLabs v3 com tags em inglês, um bloco por voz), as duas opções e o resumo de 2–3 linhas.
 **Antes de entregar:** salve `epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Ele confere a estrutura e também se cada cenário, som, pose, emoção e personagem citado existe no motor (ou em `personagens.json`). Corrija até não haver ERRO. Depois faça push.
 

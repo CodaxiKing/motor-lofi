@@ -1,7 +1,7 @@
 {
  "out": "ep04.mp4",
  "fps": 30,
- "total": 136.91,
+ "total": 139.11,
  "crf": 28,
  "series_title": "DIA ZERO",
  "episode": 4,
@@ -65,7 +65,7 @@
     "22:10"
    ],
    [
-    112.91,
+    115.11,
     "DIA 5",
     "05:20"
    ]
@@ -221,7 +221,7 @@
     23.08,
     24.08
    ],
-   "at": 71.77
+   "at": 73.97
   },
   {
    "voice": "roberta",
@@ -229,7 +229,7 @@
     24.58,
     25.52
    ],
-   "at": 73.12
+   "at": 75.32
   },
   {
    "voice": "roberta",
@@ -237,7 +237,7 @@
     25.96,
     27.57
    ],
-   "at": 77.87
+   "at": 80.07
   },
   {
    "voice": "roberta",
@@ -245,7 +245,7 @@
     27.95,
     29.26
    ],
-   "at": 79.83
+   "at": 82.03
   },
   {
    "voice": "lia",
@@ -253,7 +253,7 @@
     0.0,
     0.88
    ],
-   "at": 84.07,
+   "at": 86.27,
    "radio": true
   },
   {
@@ -262,7 +262,7 @@
     1.55,
     2.52
    ],
-   "at": 85.3,
+   "at": 87.5,
    "radio": true
   },
   {
@@ -271,7 +271,7 @@
     3.06,
     4.38
    ],
-   "at": 86.62,
+   "at": 88.82,
    "radio": true
   },
   {
@@ -280,7 +280,7 @@
     4.83,
     7.22
    ],
-   "at": 88.29,
+   "at": 90.49,
    "radio": true
   },
   {
@@ -289,7 +289,7 @@
     7.59,
     8.52
    ],
-   "at": 91.03,
+   "at": 93.23,
    "radio": true
   },
   {
@@ -298,7 +298,7 @@
     29.61,
     30.75
    ],
-   "at": 93.91
+   "at": 96.11
   },
   {
    "voice": "roberta",
@@ -306,7 +306,7 @@
     31.2,
     32.31
    ],
-   "at": 95.4
+   "at": 97.6
   },
   {
    "voice": "rafa",
@@ -314,7 +314,7 @@
     3.55,
     4.71
    ],
-   "at": 99.71
+   "at": 101.91
   },
   {
    "voice": "rafa",
@@ -322,7 +322,7 @@
     5.18,
     7.15
    ],
-   "at": 101.22
+   "at": 103.42
   },
   {
    "voice": "rafa",
@@ -330,7 +330,7 @@
     7.54,
     9.04
    ],
-   "at": 103.54
+   "at": 105.74
   },
   {
    "voice": "roberta",
@@ -338,7 +338,7 @@
     32.74,
     36.55
    ],
-   "at": 107.91
+   "at": 110.11
   },
   {
    "voice": "roberta",
@@ -346,7 +346,7 @@
     36.9,
     37.91
    ],
-   "at": 113.91
+   "at": 116.11
   },
   {
    "voice": "roberta",
@@ -354,7 +354,7 @@
     38.33,
     40.03
    ],
-   "at": 115.27
+   "at": 117.47
   },
   {
    "voice": "roberta",
@@ -362,7 +362,7 @@
     40.35,
     41.74
    ],
-   "at": 117.32
+   "at": 119.52
   },
   {
    "voice": "rafa",
@@ -370,7 +370,7 @@
     9.38,
     10.28
    ],
-   "at": 121.71
+   "at": 123.91
   },
   {
    "voice": "rafa",
@@ -378,7 +378,7 @@
     10.64,
     11.65
    ],
-   "at": 122.96
+   "at": 125.16
   },
   {
    "voice": "roberta",
@@ -386,7 +386,7 @@
     42.21,
     44.83
    ],
-   "at": 124.32
+   "at": 126.52
   }
  ],
  "subs": [
@@ -1008,26 +1008,17 @@
   {
    "scene": "metro",
    "transition": "cut",
-   "dark": 0.7,
+   "dark": 0.3,
    "dust": 50,
+   "travelling": 230,
    "camera": {
-    "follow": 0,
-    "zoom": 1.15,
-    "handheld": 8
+    "handheld": 6
    },
    "actors": [
     {
      "char": "roberta",
-     "mark": [
-      [
-       0,
-       "plataforma_longe"
-      ],
-      [
-       3.8,
-       "plataforma"
-      ]
-     ],
+     "mark": "centro",
+     "dx": 60,
      "view": "side",
      "facing": 1,
      "walk": true,
@@ -1036,17 +1027,8 @@
     },
     {
      "char": "rafa",
-     "mark": [
-      [
-       0,
-       "plataforma_longe"
-      ],
-      [
-       3.8,
-       "plataforma"
-      ]
-     ],
-     "dx": -110,
+     "mark": "centro",
+     "dx": -60,
      "view": "side",
      "facing": 1,
      "walk": true
@@ -1320,22 +1302,54 @@
    "scene": "rua",
    "transition": "whip",
    "rain": "forte",
+   "travelling": 420,
    "camera": {
-    "follow": 0,
-    "zoom": 1.15,
-    "handheld": 16
+    "handheld": 14
    },
    "crowd": {
-    "count": 8,
+    "count": 7,
     "area": [
-     1150,
-     1600,
-     1500,
-     1720
+     -420,
+     1700,
+     -120,
+     1780
     ],
-    "dir": -1,
-    "speed": 70,
+    "dir": 1,
+    "speed": 45,
     "seed": 8
+   },
+   "actors": [
+    {
+     "char": "roberta",
+     "mark": "dir",
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "hold": "rafa",
+     "emotion": "panting"
+    },
+    {
+     "char": "rafa",
+     "mark": "centro",
+     "dx": 20,
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "emotion": "fear"
+    }
+   ],
+   "start": 64.27,
+   "end": 70.27
+  },
+  {
+   "scene": "rua",
+   "transition": "cut",
+   "rain": "forte",
+   "camera": {
+    "zoom": 1.1,
+    "handheld": 10
    },
    "actors": [
     {
@@ -1343,16 +1357,26 @@
      "mark": [
       [
        0,
-       "calcada_dir"
+       "calcada_esq"
       ],
       [
-       5,
+       1.4,
        "carro"
       ]
      ],
+     "dx": 40,
      "view": "side",
-     "facing": -1,
-     "walk": true,
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.4,
+       false
+      ]
+     ],
      "run": true,
      "hold": "rafa",
      "emotion": "panting"
@@ -1362,23 +1386,32 @@
      "mark": [
       [
        0,
-       "calcada_dir"
+       "calcada_esq"
       ],
       [
-       5,
+       1.4,
        "carro"
       ]
      ],
-     "dx": 110,
+     "dx": -60,
      "view": "side",
-     "facing": -1,
-     "walk": true,
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.4,
+       false
+      ]
+     ],
      "run": true,
      "emotion": "fear"
     }
    ],
-   "start": 64.27,
-   "end": 70.27
+   "start": 70.27,
+   "end": 72.47
   },
   {
    "scene": "carro",
@@ -1427,8 +1460,8 @@
      "blur": 0
     }
    ],
-   "start": 70.27,
-   "end": 77.27
+   "start": 72.47,
+   "end": 79.47
   },
   {
    "scene": "radio_carro",
@@ -1454,8 +1487,8 @@
      1.08
     ]
    },
-   "start": 77.27,
-   "end": 83.27
+   "start": 79.47,
+   "end": 85.47
   },
   {
    "scene": "radio_carro",
@@ -1473,8 +1506,8 @@
      1.25
     ]
    },
-   "start": 83.27,
-   "end": 92.91
+   "start": 85.47,
+   "end": 95.11
   },
   {
    "type": "detail",
@@ -1491,8 +1524,8 @@
    },
    "transition": "cut",
    "slowmo": 0.7,
-   "start": 92.91,
-   "end": 98.91
+   "start": 95.11,
+   "end": 101.11
   },
   {
    "scene": "carro",
@@ -1534,8 +1567,8 @@
      ]
     }
    ],
-   "start": 98.91,
-   "end": 106.91
+   "start": 101.11,
+   "end": 109.11
   },
   {
    "type": "detail",
@@ -1549,8 +1582,8 @@
     "onde": "carro"
    },
    "transition": "cut",
-   "start": 106.91,
-   "end": 112.91
+   "start": 109.11,
+   "end": 115.11
   },
   {
    "scene": "rua_amanhecer",
@@ -1575,8 +1608,8 @@
     "speed": 5,
     "seed": 11
    },
-   "start": 112.91,
-   "end": 120.91
+   "start": 115.11,
+   "end": 123.11
   },
   {
    "scene": "carro",
@@ -1615,12 +1648,12 @@
      "pose": "hand_l"
     }
    ],
-   "start": 120.91,
-   "end": 128.91
+   "start": 123.11,
+   "end": 131.11
   },
   {
-   "start": 128.91,
-   "end": 136.91,
+   "start": 131.11,
+   "end": 139.11,
    "type": "choice",
    "transition": "zoom",
    "hud": false,
@@ -1682,7 +1715,7 @@
     ]
    },
    "end_card": {
-    "t": 134.91,
+    "t": 137.11,
     "text": "CONTINUA NO EPISÓDIO 5"
    }
   }
@@ -1792,87 +1825,91 @@
    "name": "step"
   },
   {
-   "t": 68.47,
+   "t": 66.27,
+   "name": "step"
+  },
+  {
+   "t": 71.57,
    "name": "door_open"
   },
   {
-   "t": 69.27,
+   "t": 72.17,
    "name": "door_close"
   },
   {
-   "t": 70.57,
+   "t": 72.77,
    "name": "breath",
    "dur": 1.2
   },
   {
-   "t": 73.27,
+   "t": 75.47,
    "name": "growl"
   },
   {
-   "t": 74.27,
+   "t": 76.47,
    "name": "heartbeat",
    "dur": 3
   },
   {
-   "t": 77.47,
+   "t": 79.67,
    "name": "click"
   },
   {
-   "t": 77.77,
+   "t": 79.97,
    "name": "static",
    "dur": 0.8
   },
   {
-   "t": 83.47,
+   "t": 85.67,
    "name": "static",
    "dur": 0.6
   },
   {
-   "t": 88.27,
+   "t": 90.47,
    "name": "heartbeat",
    "dur": 3
   },
   {
-   "t": 93.21,
+   "t": 95.41,
    "name": "breath",
    "dur": 1.0
   },
   {
-   "t": 99.50999999999999,
+   "t": 101.71,
    "name": "click"
   },
   {
-   "t": 107.31,
+   "t": 109.51,
    "name": "click"
   },
   {
-   "t": 108.11,
+   "t": 110.31,
    "name": "heartbeat",
    "dur": 4
   },
   {
-   "t": 113.41,
+   "t": 115.61,
    "name": "shuffle"
   },
   {
-   "t": 116.91,
+   "t": 119.11,
    "name": "siren"
   },
   {
-   "t": 121.41,
+   "t": 123.61,
    "name": "heartbeat",
    "dur": 5
   },
   {
-   "t": 128.31,
+   "t": 130.51000000000002,
    "name": "beep"
   },
   {
-   "t": 129.21,
+   "t": 131.41000000000003,
    "name": "beep"
   },
   {
-   "t": 134.91,
+   "t": 137.11,
    "name": "stamp"
   }
  ],
@@ -1888,7 +1925,7 @@
   },
   {
    "start": 43.27,
-   "end": 83.27,
+   "end": 85.47,
    "gain": [
     0.06,
     0.11
@@ -1896,8 +1933,8 @@
    "tense": 0.85
   },
   {
-   "start": 83.27,
-   "end": 136.91,
+   "start": 85.47,
+   "end": 139.11,
    "gain": [
     0.05,
     0.1

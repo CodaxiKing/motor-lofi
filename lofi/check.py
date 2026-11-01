@@ -31,7 +31,7 @@ def check(path, frames=True):
             for o in s.get("overlay", []):
                 if o.get("type") == "comment" and not o.get("text", "").strip(): err(f"comentário vazio em {s['start']}s")
     else:
-        if not (115 <= ep.total <= 185): regra_aviso(f"duração {ep.total:.0f}s fora do padrão de 2–3 min")
+        if ep.total < 120: regra(f"duração {ep.total:.0f}s: o episódio precisa ter no mínimo 2 min (sem limite máximo)")
         if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
         if not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
         final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
@@ -39,7 +39,7 @@ def check(path, frames=True):
     for a, b in zip(shots, shots[1:]):
         if abs(a["end"] - b["start"]) > 0.05: err(f"buraco/sobreposição entre planos em {a['end']:.2f}s e {b['start']:.2f}s")
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
-    if formato != "comentarios" and n_scene < 12: regra_aviso(f"só {n_scene} cenas (padrão 12–20)")
+    if formato != "comentarios" and n_scene < 12: regra_aviso(f"só {n_scene} cenas (mínimo 12)")
     for s in shots:
         typ = s.get("type", "scene")
         if typ == "scene" and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")
@@ -110,11 +110,26 @@ def check(path, frames=True):
                     x = val(a.get("x", 540), rel, rel / dur); y = val(a.get("y"), rel, rel / dur)
                 except Exception: continue
                 if y is None or x is None: continue
-                if not mapa.no_chao(s["scene"], min(1080, max(0, x)), y): ruins.append(f"x={x:.0f} y={y:.0f}")  # x fora da tela = entrando/saindo
+                if not mapa.no_chao("_travelling" if s.get("travelling") else s["scene"], min(1080, max(0, x)), y): ruins.append(f"x={x:.0f} y={y:.0f}")  # x fora da tela = entrando/saindo
             if ruins:
                 ms = ", ".join(mapa.marcas(s["scene"]))
                 err(f"{a['char']} fora do chão de '{s['scene']}' em {s['start']}s ({ruins[0]}): vai parecer flutuando ou dentro da parede. "
                     f"Use uma marca ({ms}), ajuste x/y (veja python3 -m lofi.mapa {s['scene']}) ou, se for de propósito (fantasma voando), \"livre\": true")
+    for s in shots:   # travelling: quem está no plano tem que andar/correr no sentido do movimento
+        tv = s.get("travelling")
+        if not tv: continue
+        sp = (tv.get("speed", 300) if isinstance(tv, dict) else tv)
+        if sp is True: sp = 300
+        try: sp = float(sp)
+        except (TypeError, ValueError): err(f"travelling inválido em {s['start']}s: use um número (px/s) ou {{\"speed\": 300}}"); continue
+        if s.get("type", "scene") != "scene": err(f"travelling só vale em plano de cenário ({s['start']}s)")
+        for a in s.get("actors", []):
+            if a.get("fg") or a.get("carried_by") or a.get("livre"): continue
+            w = a.get("walk"); anda = any(v for _, v in w) if isinstance(w, list) else bool(w)
+            if not anda: warn(f"{a['char']} parado num travelling em {s['start']}s: vai parecer deslizando (use \"walk\": true / \"run\": true)")
+            f = a.get("facing", 1)
+            if isinstance(f, (int, float)) and sp and (f > 0) != (sp > 0):
+                warn(f"{a['char']} virado contra o movimento do travelling em {s['start']}s (facing {f}, speed {sp:+.0f})")
     # ---------- quadros ----------
     sheet_frames = []
     if frames:

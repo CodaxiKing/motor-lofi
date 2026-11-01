@@ -16,7 +16,7 @@ O repositório vem com **8 skills** (pasta [`skills/`](skills/)) que fazem todo 
 | Comando | O que você manda | O que recebe |
 |---|---|---|
 | `/serie-planejar` | A ideia da história | Plano da série, capa, bíblia e personagens travados |
-| `/serie-roteiro` | Nada (o voto é escolhido por toque) | Roteiro de 2–3 min + narração pronta para o ElevenLabs |
+| `/serie-roteiro` | Nada (o voto é escolhido por toque) | Roteiro de 2 min ou mais + narração pronta para o ElevenLabs |
 | `/serie-continuar 2 B` | Só o comando (episódio que terminou + opção vencedora) | Voto registrado + roteiro do próximo episódio |
 | `/serie-montar` | Um áudio por personagem | Vídeo, teaser de 15 s, capa do TikTok, capa do Instagram e legenda do post |
 | `/motor-lofi-studio` | A história (texto) | Série iniciada, roteiro técnico, manifesto de assets e relatório de qualidade (Studio 4.0) |
@@ -84,7 +84,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 **Qualidade**
 - Partes do corpo do personagem certo: quando a cena mostra só a mão (rádio, chave, maçaneta, celular), a manga e a pele são as da ficha de quem age, e a legenda desvia do braço
 - Mapa de cada cenário com chão e marcas de posição (porta, sofá, parapeito…): os personagens são posicionados por nome e o verificador acusa quem fica flutuando ou dentro da parede ([`examples/mapa_cenarios.png`](examples/mapa_cenarios.png))
-- Validador de roteiro (gancho, 12–20 cenas, A/B) e verificador de montagem (legenda no rosto, personagem cortado, ficha desrespeitada)
+- Validador de roteiro (gancho, 12+ cenas, mínimo 2 min, A/B) e verificador de montagem (legenda no rosto, personagem cortado, ficha desrespeitada)
 - Folha de revisão para um revisor independente aprovar antes do render
 - Casos de teste das skills em [`tests/evals.json`](tests/evals.json)
 

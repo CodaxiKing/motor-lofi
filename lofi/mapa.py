@@ -171,6 +171,16 @@ LUGAR = {
 OBJETO_DO_LUGAR = {"radio": "casa", "radio_carro": "carro"}   # rádio de mesa só em casa; rádio do painel só no carro
 
 
+# Travelling lateral (lofi/travelling.py): o chão é a faixa da calçada/piso, igual em todos os cenários.
+MAPA["_travelling"] = {
+    "chao": [(-200, 1560), (1280, 1560), (1280, 1900), (-200, 1900)],
+    "marcas": {"esq": {"x": 330, "y": 1740, "nota": "atrás na corrida (quem persegue/segue)"},
+               "centro": {"x": 540, "y": 1740}, "dir": {"x": 750, "y": 1740, "nota": "à frente na corrida"},
+               "fundo": {"x": 540, "y": 1620, "nota": "junto à parede/fachada"},
+               "frente": {"x": 540, "y": 1840, "nota": "na beira da calçada, perto da câmera"}},
+}
+
+
 def lugar(cena):
     """Lugar de um cenário (o próprio nome quando não há grupo). None = não muda o lugar (ex.: rádio portátil)."""
     return LUGAR.get(cena, cena)
@@ -232,9 +242,11 @@ def resolver(ator, cena):
 
 
 def resolver_plano(shot):
-    """Aplica as marcas em todos os atores de um plano (e dos lados A/B de uma escolha). Não altera o original."""
+    """Aplica as marcas em todos os atores de um plano (e dos lados A/B de uma escolha). Não altera o original.
+    Plano com "travelling" usa as marcas do travelling lateral (TRAVELLING), iguais em qualquer cenário."""
     s = dict(shot)
-    if "actors" in s: s["actors"] = [resolver(a, s.get("scene")) for a in s["actors"]]
+    cena = "_travelling" if s.get("travelling") else s.get("scene")
+    if "actors" in s: s["actors"] = [resolver(a, cena) for a in s["actors"]]
     for lado in ("a", "b"):
         if isinstance(s.get(lado), dict) and "actors" in s[lado]:
             s[lado] = dict(s[lado]); s[lado]["actors"] = [resolver(a, s[lado].get("scene")) for a in s[lado]["actors"]]

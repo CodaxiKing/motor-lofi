@@ -82,7 +82,7 @@ O validador de roteiro usa esse mesmo catálogo, então um nome que não está l
 
 **Gancho (primeiros 2 s)**: plano com `"hook": {"text": "ELES ESTÃO\nOUVINDO", "y": 820}` antes do título. O título seguinte com `"transition": "glitch"`.
 
-## Episódios longos (2–3 min)
+## Episódios longos (mínimo 2 min, sem máximo)
 - Render em paralelo: `python3 -m lofi.render episodio.json --jobs 2` (rode em segundo plano; velocidade na seção "Velocidade" no fim).
 - Compressão: `"crf": 28` (padrão) deixa ~60–80 MB para 3 min. Use 30 se precisar de arquivo menor.
 
@@ -131,7 +131,7 @@ Se o `epNN.json` anterior não estiver no repositório, descreva os momentos no 
 Sem arquivo e sem `moments`, o verificador dá ERRO (o render mostra só as frases sobre chiado de TV).
 
 **Episódio legado**: `"legado": true` na raiz marca um roteiro técnico reconstruído de um episódio publicado num formato
-antigo. O verificador passa a tratar as regras de formato atuais (gancho, 12–20 cenas, 2–3 min) como informação.
+antigo. O verificador passa a tratar as regras de formato atuais (gancho, 12+ cenas, mínimo 2 min) como informação.
 
 ## Mapa dos cenários: marcas de posição e chão
 Cada cenário tem em `lofi/mapa.py` a **área de chão** (onde os pés podem ficar) e **marcas nomeadas**. Prefira marcas a x/y soltos:
@@ -164,6 +164,28 @@ Quando a cena mostra só uma parte do corpo (a mão no rádio, girando a chave, 
 - Verificador: ERRO para mão de personagem desconhecido ou posição inexistente; AVISO quando o rádio ou a chave mostram
   a mão genérica (sem `hand`).
 
+## Travelling lateral: o cenário passa (`"travelling"`)
+Quando os personagens andam ou correm por um caminho (rua, mata, túnel, corredor, ponte), o cenário rola atrás deles em vez de
+eles atravessarem um fundo parado:
+```json
+{"scene": "rua", "travelling": 420, "rain": "forte",
+ "actors": [{"char": "roberta", "mark": "dir", "view": "side", "facing": 1, "walk": true, "run": true, "hold": "rafa"},
+            {"char": "rafa", "mark": "centro", "view": "side", "facing": 1, "walk": true, "run": true}],
+ "crowd": {"count": 7, "area": [-420, 1700, -120, 1780], "dir": 1, "speed": 45}}
+```
+- Valor = velocidade do chão em px/s (positivo: vão para a direita; negativo: para a esquerda). `{"speed": 300, "frente": true}`
+  também passa postes borrados na frente da câmera. ~250 andando, ~400 correndo.
+- Camadas com paralaxe geradas por código (`lofi/travelling.py`) e sem emenda visível: céu parado, prédios/árvores ao longe,
+  fachadas/paredes no meio, calçada/piso com postes, lixeiras, hidrantes, portas, pilares e luminárias em espaçamento irregular.
+- Tema pelo cenário (`TEMA`): cidade (rua, rua_amanhecer, entrada_metro, posto, telhado), mata (floresta), túnel (metro), esgoto,
+  ponte e interno (corredor, hospital, escola, delegacia, mercado, igreja, casa, cada um com a cor da parede). Hora, chuva, névoa e
+  luz vêm do cenário original (`rain`, `fog`, `time`, `dark` continuam valendo).
+- Personagens ficam no lugar: marcas próprias do travelling `esq`, `centro`, `dir`, `fundo`, `frente` (chão de y 1560 a 1900).
+  Quem persegue entra com `crowd` (`dir` no mesmo sentido) ou com x/y animado.
+- Para chegar a algum lugar (o carro, a porta), corte para um plano curto sem travelling com a chegada.
+- Verificador: ERRO para valor inválido ou travelling fora de plano de cenário; AVISO para personagem parado (vai deslizar) ou
+  virado contra o movimento.
+
 ## Continuidade de lugar e objetos
 A história não pode pular de lugar. `lofi/mapa.py` agrupa os cenários em lugares (`LUGAR`: `apartamento`/`entrada`/`radio`/`janela` = casa;
 `carro`/`radio_carro` = carro; `rua`/`rua_amanhecer`/`entrada_metro` = rua; os demais são o próprio lugar).
@@ -180,14 +202,14 @@ Usado pela skill `serie-comentarios`: um personagem responde comentários dos se
 - Cartão de comentário estilo app, desenhado por cima de todos os filtros:
   `{"type": "comment", "user": "@usuario", "text": "texto do comentário", "likes": 1240, "t": [início, fim], "y": 700, "label": "Respondendo a"}`
   (`y` = centro do cartão, nunca acima do contador; texto quebra sozinho até 6 linhas; emojis são removidos; `likes` opcional, 1240 vira "1,2 mil").
-- O verificador troca as regras de episódio (gancho, título, A/B, 12–20 cenas, 2–3 min) por: 20–90 s, pelo menos um cartão,
+- O verificador troca as regras de episódio (gancho, título, A/B, 12+ cenas, mínimo 2 min) por: 20–90 s, pelo menos um cartão,
   nenhum cartão vazio e **cartão cobrindo rosto = ERRO**.
 - Fontes do cartão: Inter (`font("sans")` e `font("sansb")`, licença OFL em `lofi/fonts/LICENSE-Inter.txt`).
 
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.
-- `python3 tests/validar_roteiro.py epNN_roteiro.md [--final]` → confere gancho, 12–20 cenas, A/B, ElevenLabs.
+- `python3 tests/validar_roteiro.py epNN_roteiro.md [--final]` → confere gancho, 12+ cenas, mínimo 2 min, A/B, ElevenLabs.
 - `tests/evals.json` → casos de teste da skill.
 
 ## Extras

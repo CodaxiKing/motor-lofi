@@ -8,7 +8,7 @@
       "espera": [
         "GANCHO",
         "A MAIORIA ESCOLHEU: TELHADO",
-        "12 a 20 cenas",
+        "12 cenas ou mais",
         "A) e B)",
         "CONTINUA NO EPISÓDIO 4",
         "narração ElevenLabs por personagem",
@@ -49,7 +49,7 @@
       "espera": [
         "python3 -m lofi.check sem ERRO antes do render",
         "revisor independente aprovou a folha _revisao.png",
-        "MP4 de 2–3 min",
+        "MP4 de no mínimo 2 min",
         "teaser e capa gerados"
       ]
     },
