@@ -39,7 +39,8 @@ def keyframe(v, t, default=None):
         if t <= pts[0][0]: return pts[0][1]
         for (t0, a), (t1, b) in zip(pts, pts[1:]):
             if t0 <= t <= t1:
-                if isinstance(a, str): return a if t < t1 else b
+                if not (isinstance(a, (int, float)) and isinstance(b, (int, float))) or isinstance(a, bool) or isinstance(b, bool):
+                    return a if t < t1 else b          # texto, None, True/False: troca no tempo, sem interpolar
                 return lerp(a, b, ease((t - t0) / max(1e-6, t1 - t0)))
         return pts[-1][1]
     return v
