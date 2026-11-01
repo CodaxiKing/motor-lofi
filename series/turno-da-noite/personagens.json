@@ -1,0 +1,37 @@
+{
+ "_leia": "Fichas travadas da série Turno da Noite. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito.",
+ "bia": {
+  "_papel": "protagonista, 19 anos, atendente nova do turno da noite. Cor de destaque: vermelho da loja (boné e camisa).",
+  "skin": "moreno", "hair": "afro", "hair_color": [34, 24, 20],
+  "top_style": "shirt", "top": [196, 44, 40], "sleeves": "short",
+  "bottom": "pants", "legs": [44, 54, 84], "shoes": [236, 236, 230],
+  "hat": "cap", "hat_color": [196, 44, 40], "acc": ["badge", "earrings"]
+ },
+ "nestor": {
+  "_papel": "antigo atendente, sumiu na semana passada; deixou as regras. Mesmo uniforme, desbotado. Cor: vermelho desbotado + óculos.",
+  "skin": "claro", "body": "old", "hair": "bald", "facial": "mustache", "facial_color": [200, 200, 196],
+  "top_style": "shirt", "top": [150, 92, 86], "sleeves": "long",
+  "bottom": "pants", "legs": [70, 66, 60], "shoes": [50, 40, 34],
+  "glasses": true, "acc": ["badge"]
+ },
+ "caio": {
+  "_papel": "motoboy que passa toda madrugada pra tomar café; aparece na câmera; aliado. Cor: amarelo (capacete e baú).",
+  "skin": "escuro", "body": "tall", "facial": "stubble", "facial_color": [20, 16, 14],
+  "top_style": "leather", "top": [34, 34, 38], "inner": [240, 190, 40],
+  "bottom": "pants", "legs": [40, 40, 46], "shoes": [30, 30, 30],
+  "hat": "helmet", "hat_color": [240, 190, 40], "backpack": [240, 190, 40]
+ },
+ "dona_cida": {
+  "_papel": "cliente fiel que compra leite às 2h toda noite; não aparece na câmera (é da noite de 1996). Cor: lilás.",
+  "skin": "oliva", "body": "old", "hair": "bun", "hair_color": [200, 200, 204],
+  "top_style": "sweater", "top": [170, 120, 190], "bottom": "skirt", "skirt": [90, 70, 100], "tights": [60, 56, 64],
+  "shoes": [80, 50, 50], "glasses": true, "scarf": [120, 80, 140]
+ },
+ "cliente": {
+  "_papel": "o Cliente das 3h17: alto, magro, nunca tira o chapéu nem os óculos escuros; não aparece na câmera. Silhueta preta.",
+  "skin": "palido", "body": "thin", "scale": 1.14,
+  "top_style": "trench", "top": [22, 22, 26], "inner": [40, 40, 44], "tie": [110, 20, 30],
+  "bottom": "pants", "legs": [20, 20, 24], "shoes": [14, 14, 16],
+  "hat": "fedora", "hat_color": [18, 18, 20], "acc": ["sunglasses", "tie"]
+ }
+}

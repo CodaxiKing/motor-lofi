@@ -79,6 +79,9 @@ O validador de roteiro usa esse mesmo catálogo, então um nome que não está l
 - `"dust": 60` no plano → poeira flutuando.
 - `"crowd": {"count": 10, "area": [x0,y0,x1,y1], "dir": 1|-1|0, "speed": 40, "seed": 3}` → horda com andares, velocidades e roupas variadas.
 - Novos cenários: `hospital` (flicker), `mercado` (flicker), `metro` (props: `train` 0–1 = farol chegando).
+- Loja de conveniência (`lofi/scenes_loja.py`): `loja` (balcão do caixa na frente com registradora e monitor das câmeras com chiado,
+  geladeiras de vidro, gôndola, porta de vidro com sininho; marca `balcao` = atrás do balcão, da cintura para cima; prop `flicker`)
+  e `estoque` (prateleiras, lâmpada pendurada que balança, porta da câmara fria; props `swing` e `flicker`). Som `bell` = sininho da porta.
 
 **Gancho (primeiros 2 s)**: plano com `"hook": {"text": "ELES ESTÃO\nOUVINDO", "y": 820}` antes do título. O título seguinte com `"transition": "glitch"`.
 

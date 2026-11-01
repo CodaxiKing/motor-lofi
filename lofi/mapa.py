@@ -321,3 +321,21 @@ if __name__ == "__main__":
     else:
         from . import scenes
         print(folha(list(scenes.REGISTRY), os.path.join(raiz, "examples", "mapa_cenarios.png")))
+
+
+# Loja de conveniência (série Turno da Noite): a loja por dentro e o estoque nos fundos.
+MAPA["loja"] = {
+    "chao": [(320, 1130), (760, 1130), (1190, 1920), (-110, 1920)],
+    "marcas": {"balcao": {"x": 230, "y": 1560, "nota": "atrás do balcão do caixa (aparece da cintura para cima)"},
+               "caixa": {"x": 620, "y": 1620, "nota": "cliente na frente do balcão, sendo atendido"},
+               "porta": {"x": 820, "y": 1320, "nota": "na porta de vidro, entrando ou saindo (sininho)"},
+               "geladeira": {"x": 300, "y": 1350, "nota": "diante das geladeiras de vidro"},
+               "fundo": {"x": 540, "y": 1180, "nota": "lá no fundo, diante da gôndola (pequeno)"},
+               "meio": {"x": 600, "y": 1460}, "frente": {"x": 780, "y": 1800, "nota": "perto da câmera, à direita do balcão"}}}
+MAPA["estoque"] = {
+    "chao": [(360, 1200), (720, 1200), (1190, 1920), (-110, 1920)],
+    "marcas": {"camara": {"x": 540, "y": 1240, "nota": "diante da porta da câmara fria (pequeno, longe)"},
+               "meio": {"x": 540, "y": 1500}, "frente": {"x": 540, "y": 1800},
+               "prateleira_esq": {"x": 200, "y": 1740, "nota": "colado na prateleira da esquerda, escondido"},
+               "prateleira_dir": {"x": 880, "y": 1740, "nota": "colado na prateleira da direita"}}}
+LUGAR.update({"loja": "loja", "estoque": "loja"})

@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (28): `apartamento`, `beco`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `vagao`, `viaduto`
+**Cenários** (30): `apartamento`, `beco`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `estoque`, `floresta`, `hospital`, `igreja`, `janela`, `loja`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `vagao`, `viaduto`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
@@ -14,7 +14,7 @@ Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não
 
 **Planos de detalhe (`subject`)** (5): `celular`, `chave`, `macaneta`, `olho`, `relogio`
 
-**Sons (`sfx.name`)** (25): `bang`, `beep`, `breath`, `car_alarm`, `click`, `crowd`, `door_close`, `door_open`, `echo_step`, `glass`, `growl`, `heartbeat`, `impact`, `knock`, `lock`, `no_service`, `notif`, `shuffle`, `siren`, `stamp`, `static`, `step`, `thunder`, `vibe`, `whoosh`
+**Sons (`sfx.name`)** (26): `bang`, `beep`, `bell`, `breath`, `car_alarm`, `click`, `crowd`, `door_close`, `door_open`, `echo_step`, `glass`, `growl`, `heartbeat`, `impact`, `knock`, `lock`, `no_service`, `notif`, `shuffle`, `siren`, `stamp`, `static`, `step`, `thunder`, `vibe`, `whoosh`
 
 **Sons que aceitam `dur`** (4): `breath`, `crowd`, `heartbeat`, `static`
 
@@ -61,6 +61,8 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **estacionamento:** `fundo`, `meio`, `frente`, `pilar` (escondido atrás do pilar)
 - **vagao:** `porta` (na porta do fundo), `meio`, `frente`, `banco_esq` (perto do banco da esquerda), `banco_dir`
 - **travelling (qualquer cenário com "travelling"):** `esq` (atrás na corrida (quem persegue/segue)), `centro`, `dir` (à frente na corrida), `fundo` (junto à parede/fachada), `frente` (na beira da calçada, perto da câmera)
+- **loja:** `balcao` (atrás do balcão do caixa (aparece da cintura para cima)), `caixa` (cliente na frente do balcão, sendo atendido), `porta` (na porta de vidro, entrando ou saindo (sininho)), `geladeira` (diante das geladeiras de vidro), `fundo` (lá no fundo, diante da gôndola (pequeno)), `meio`, `frente` (perto da câmera, à direita do balcão)
+- **estoque:** `camara` (diante da porta da câmara fria (pequeno, longe)), `meio`, `frente`, `prateleira_esq` (colado na prateleira da esquerda, escondido), `prateleira_dir` (colado na prateleira da direita)
 
 ## Travelling lateral (o cenário passa)
 

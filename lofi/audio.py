@@ -118,6 +118,14 @@ def breath(d=2.0):
     return out * 0.09
 def static(d=2.0):
     return (bp(noise(d), 600, 6000) + (_r.random(int(d*SR)) > 0.9995) * _r.standard_normal(int(d*SR)) * 3) * 0.05
+def bell():
+    """Sininho da porta da loja: duas batidas metálicas que somem devagar."""
+    d = 1.6; t = t_(d); s = np.zeros(len(t))
+    for off, g in ((0.0, 1.0), (0.14, 0.6)):
+        tt = np.clip(t - off, 0, None); on = t > off
+        for f, a in ((2093, 1.0), (3136, 0.5), (4186, 0.3)):
+            s += np.sin(2*np.pi*f*tt) * np.exp(-tt/0.45) * on * a * g
+    return s * 0.08
 def crowd(d=4.0):
     n = lp(noise(d), 350) * 1.2; t = np.arange(len(n))/SR
     m = 0.6 + 0.4*np.sin(2*np.pi*0.3*t) * np.sin(2*np.pi*0.13*t + 1)
@@ -128,7 +136,7 @@ def crowd(d=4.0):
 
 SFX = {k: v for k, v in globals().items() if callable(v) and k in (
     "beep stamp whoosh step shuffle echo_step door_open door_close lock bang knock glass impact thunder no_service notif vibe "
-    "click growl car_alarm siren heartbeat breath static crowd").split()}
+    "click growl car_alarm siren heartbeat breath static crowd bell").split()}
 DURATION_SFX = {"heartbeat", "breath", "static", "crowd"}   # aceitam "dur"
 
 # ------------------- ambientes -------------------

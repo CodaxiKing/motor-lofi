@@ -1,0 +1,20 @@
+{
+ "lugares": {
+  "loja": {"cenarios": ["loja"], "nota": "Conveniência Lua 24H por dentro: balcão do caixa, geladeiras, gôndolas e a porta de vidro com sininho"},
+  "estoque": {"cenarios": ["estoque"], "nota": "estoque nos fundos, atrás do balcão; no fundo, a porta da câmara fria"},
+  "patio": {"cenarios": ["posto"], "nota": "pátio do Posto Lua, com as bombas e a cobertura vermelha, na frente da loja"},
+  "fundos": {"cenarios": ["beco"], "nota": "fundos do posto: lixeiras e a porta de serviço do estoque"},
+  "rodovia": {"cenarios": ["rua", "rua_amanhecer", "viaduto"], "nota": "a rodovia na frente do posto e o viaduto mais adiante"}
+ },
+ "ligacoes": [
+  ["loja", "estoque", "pela porta de vaivém atrás do balcão"],
+  ["loja", "patio", "pela porta de vidro (o sininho toca)"],
+  ["estoque", "fundos", "pela porta de serviço do estoque"],
+  ["fundos", "patio", "contornando a loja pela lateral"],
+  ["patio", "rodovia", "pela saída do posto"]
+ ],
+ "fim": {
+  "0": {"lugar": "loja", "dia": 1, "hora": "22:00", "inventario": {"bia": ["bilhete", "lanterna", "celular"], "caio": ["mochila"]},
+        "nota": "começo da série: primeira noite da Bia, sozinha no caixa; o bilhete das regras estava colado embaixo da registradora"}
+ }
+}
