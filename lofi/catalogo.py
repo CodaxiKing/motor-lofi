@@ -52,6 +52,12 @@ def markdown(c):
     for cena, m in MAPA.items():
         itens = [f"`{n}`" + (f" ({v['nota']})" if v.get("nota") else "") for n, v in m["marcas"].items()]
         out += [f"- **{cena}:** " + ", ".join(itens)]
+    out += ["", "## Partes do corpo (mão e braço do personagem)", "",
+            "Em rádio e planos de detalhe, `\"hand\": \"roberta\"` desenha o braço com a manga e a pele da ficha do personagem; "
+            "`{\"of\": \"rafa\", \"at\": \"antena\"}` escolhe a posição; `false` tira a mão. No `olho`, a pele em volta é a do personagem.", ""]
+    from .partes import POSICOES
+    for cena, ps in POSICOES.items():
+        out += [f"- **{cena}:** " + ", ".join(f"`{n}` ({p['nota']})" for n, p in ps.items())]
     out += [""]
     return "\n".join(out)
 

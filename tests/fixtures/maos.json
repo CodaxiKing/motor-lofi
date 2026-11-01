@@ -1,0 +1,113 @@
+{
+ "out": "_maos.mp4",
+ "fps": 30,
+ "total": 16,
+ "voices": {},
+ "style": "desenho",
+ "subs": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "radio",
+   "props": {
+    "on": 1,
+    "level": 0.5
+   },
+   "hand": "roberta",
+   "overlay": [
+    {
+     "type": "text",
+     "text": "ROBERTA",
+     "y": 1500,
+     "size": 70
+    }
+   ]
+  },
+  {
+   "start": 2,
+   "end": 4,
+   "scene": "radio",
+   "props": {
+    "on": 1,
+    "level": 0.5
+   },
+   "hand": "rafa"
+  },
+  {
+   "start": 4,
+   "end": 6,
+   "scene": "radio",
+   "props": {
+    "on": 1,
+    "level": 0.5
+   },
+   "hand": {
+    "of": "lia",
+    "at": "antena"
+   }
+  },
+  {
+   "start": 6,
+   "end": 8,
+   "type": "detail",
+   "subject": "chave",
+   "params": {
+    "turn": [
+     0,
+     80
+    ]
+   },
+   "hand": "rafa"
+  },
+  {
+   "start": 8,
+   "end": 10,
+   "type": "detail",
+   "subject": "celular",
+   "params": {
+    "text": [
+     "SEM",
+     "SERVIÇO"
+    ]
+   },
+   "hand": {
+    "of": "roberta",
+    "at": "dedo"
+   }
+  },
+  {
+   "start": 10,
+   "end": 12,
+   "type": "detail",
+   "subject": "macaneta",
+   "params": {
+    "turn": [
+     0,
+     50
+    ]
+   },
+   "hand": "valter"
+  },
+  {
+   "start": 12,
+   "end": 14,
+   "type": "detail",
+   "subject": "olho",
+   "params": {
+    "pupil": 0.6
+   },
+   "hand": "rafa"
+  },
+  {
+   "start": 14,
+   "end": 16,
+   "scene": "radio",
+   "props": {
+    "on": 1,
+    "level": 0.3
+   },
+   "hand": false
+  }
+ ]
+}

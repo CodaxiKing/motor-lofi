@@ -148,6 +148,22 @@ Cada cenário tem em `lofi/mapa.py` a **área de chão** (onde os pés podem fic
   (de propósito, ex.: fantasma voando). Quem entra ou sai pela lateral (x fora da tela) não é acusado.
 - Cenário novo precisa entrar no `MAPA` (o teste de fumaça falha se faltar ou se uma marca cair fora do chão).
 
+## Partes do corpo: mão e braço do personagem
+Quando a cena mostra só uma parte do corpo (a mão no rádio, girando a chave, na maçaneta, no celular), diga **de quem** é:
+```json
+{"scene": "radio", "hand": "rafa"}                                   // braço com a manga verde e a pele do Rafa, no dial
+{"scene": "radio", "hand": {"of": "lia", "at": "antena"}}            // posição nomeada
+{"type": "detail", "subject": "chave", "hand": "roberta"}           // a mão acompanha a cabeça da chave girando
+{"type": "detail", "subject": "celular", "hand": {"of": "roberta", "at": "dedo"}}
+{"type": "detail", "subject": "olho", "hand": "rafa"}                // pele em volta do olho = pele do Rafa
+"hand": false                                                        // sem mão
+```
+- Manga, punho e pele vêm da ficha (`personagens.json` ou personagem pronto); manga curta mostra o antebraço.
+- Posições por cenário: seção "Partes do corpo" do [CATALOGO.md](CATALOGO.md) (`lofi/partes.py`).
+- A legenda desvia sozinha do braço e do objeto em destaque (rádio, tela do celular, fechadura, olho).
+- Verificador: ERRO para mão de personagem desconhecido ou posição inexistente; AVISO quando o rádio ou a chave mostram
+  a mão genérica (sem `hand`).
+
 ## Vídeo de comentários (`"formato": "comentarios"`)
 Usado pela skill `serie-comentarios`: um personagem responde comentários dos seguidores. Arquivos em `series/<serie>/comentarios/cNN.json`
 (o motor acha o `personagens.json` da série na pasta acima).

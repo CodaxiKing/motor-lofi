@@ -12,7 +12,7 @@ import os, sys, subprocess, traceback, json
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, RAIZ)
 EXEMPLOS = ["examples/demo4/demo4.json", "examples/demo3/demo3.json", "examples/exemplo_roteiro.json",
-            "tests/fixtures/recap_moments.json", "tests/fixtures/comentarios.json"]
+            "tests/fixtures/recap_moments.json", "tests/fixtures/comentarios.json", "tests/fixtures/maos.json"]
 
 
 def vozes_falsas(path):

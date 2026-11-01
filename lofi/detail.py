@@ -5,6 +5,7 @@ Uso no roteiro: {"type": "detail", "subject": "macaneta", "params": {"turn": [0,
 """
 import math, random
 from PIL import Image, ImageDraw, ImageFilter
+from . import partes
 from .core import W, H, font, text_center, add_light, lerp, ease, c01
 
 OUT = (22, 24, 34)
@@ -30,11 +31,14 @@ def macaneta(t, p):
     d.line([(cx, cy), (ex, ey)], fill=OUT, width=96); d.line([(cx, cy), (ex, ey)], fill=(205, 185, 125), width=82)
     d.ellipse([ex - 48, ey - 48, ex + 48, ey + 48], fill=(205, 185, 125), outline=OUT, width=8)
     d.ellipse([cx - 34, cy - 34, cx + 34, cy + 34], fill=(230, 215, 160))
+    v, pos = p.get("_hand", (None, None))
+    if v and pos: p.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], (ex, ey + 10), v, larg=150))
     return img
 
 def olho(t, p):
     img = Image.new("RGB", (W, H), (226, 222, 214)); d = ImageDraw.Draw(img)
-    skin = tuple(p.get("skin", (236, 236, 230)))
+    v, _ = p.get("_hand", (None, None))
+    skin = tuple(p.get("skin", v["pele"] if v and v.get("de") else (236, 236, 230)))
     d.rectangle([0, 0, W, H], fill=skin)
     cx, cy = 540, 960
     open_k = 1.0
@@ -88,6 +92,8 @@ def celular(t, p):
             d.rounded_rectangle([240, yy, 840, yy + 100], 20, fill=(60, 64, 80))
             d.rectangle([260, yy + 20, 272, yy + 80], fill=(215, 52, 42))
             d.text((300, yy + 28), nt, font=font("mono", 34), fill=(230, 230, 230))
+    v, pos = p.get("_hand", (None, None))
+    if v and pos: p.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v, larg=150, dedo=pos.get("dedo", False)))
     return img
 
 def chave(t, p):
@@ -102,10 +108,10 @@ def chave(t, p):
     kd.ellipse([310, 400, 390, 480], fill=(0, 0, 0, 0), outline=OUT + (255,), width=6)
     k = k.rotate(-ang, center=(350, 120), resample=Image.BICUBIC)
     img.paste(k, (cx - 350, cy - 120), k)
-    hand = p.get("hand", True)
-    if hand:
-        d.ellipse([cx - 90, cy + 300, cx + 120, cy + 520], fill=(236, 236, 230), outline=OUT, width=8)
-        d.line([(cx + 60, cy + 470), (W + 100, H + 100)], fill=OUT, width=150); d.line([(cx + 60, cy + 470), (W + 100, H + 100)], fill=(210, 212, 220), width=136)
+    v, pos = p.get("_hand", (None, None))
+    if v and pos:
+        a = math.radians(ang); cabeca = (cx - 320 * math.sin(a), cy + 320 * math.cos(a))   # cabeça da chave depois do giro
+        p.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"] or cabeca, v, larg=150))
     return img
 
 def relogio(t, p):

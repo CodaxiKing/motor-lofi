@@ -7,6 +7,7 @@ Cada cenário define: camadas, chão (perspectiva), luz dos personagens, tratame
 import math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
+from . import partes
 from .core import W, H, grad, add_light, darken, lerp, ease, font
 from . import fx
 
@@ -468,11 +469,9 @@ class Radio(Scene):
         d.ellipse([kx - 56, ky - 56, kx + 56, ky + 56], fill=(60, 40, 30), outline=(30, 20, 14), width=5)
         d.line([(kx, ky), (kx + 46 * math.cos(math.radians(ang)), ky + 46 * math.sin(math.radians(ang)))], fill=(230, 220, 190), width=7)
         d.ellipse([815, 1335, 845, 1365], fill=(255, 70, 50) if on else (70, 30, 26))
-        sleeve = props.get("sleeve", (210, 212, 220))
-        if props.get("hand", True):
-            d.line([(1120, 1640), (kx + 60, ky + 50)], fill=(22, 24, 34), width=104)
-            d.line([(1120, 1640), (kx + 60, ky + 50)], fill=sleeve, width=92)
-            d.ellipse([kx + 26, ky + 16, kx + 94, ky + 84], fill=(220, 220, 214), outline=(22, 24, 34), width=5)
+        v, pos = props.get("_hand", (None, None))
+        if v and pos:
+            props.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v))
         if on and lvl > 0.02:
             for k in range(12):
                 h = 30 + lvl * 700 * (0.5 + 0.5 * math.sin(t * 25 + k * 1.3)); x = 230 + k * 52

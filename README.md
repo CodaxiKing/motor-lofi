@@ -80,6 +80,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 - **Eco por ambiente**: a voz reverbera na escada e na igreja, fica abafada dentro do carro
 
 **Qualidade**
+- Partes do corpo do personagem certo: quando a cena mostra só a mão (rádio, chave, maçaneta, celular), a manga e a pele são as da ficha de quem age, e a legenda desvia do braço
 - Mapa de cada cenário com chão e marcas de posição (porta, sofá, parapeito…): os personagens são posicionados por nome e o verificador acusa quem fica flutuando ou dentro da parede ([`examples/mapa_cenarios.png`](examples/mapa_cenarios.png))
 - Validador de roteiro (gancho, 12–20 cenas, A/B) e verificador de montagem (legenda no rosto, personagem cortado, ficha desrespeitada)
 - Folha de revisão para um revisor independente aprovar antes do render
@@ -124,6 +125,7 @@ lofi/          código do motor
   transcribe.py  transcrição das vozes
   catalogo.py    lista de nomes aceitos (gera o CATALOGO.md)
   mapa.py        chão e marcas de posição de cada cenário
+  partes.py      mão e braço do personagem em closes de objeto
   wavio.py       leitura/escrita de áudio sem dependências extras
 series/        uma pasta por série (bíblia, personagens travados, roteiros)
 skills/        as 5 skills do Claude (SKILL.md + .zip gerado)

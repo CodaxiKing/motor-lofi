@@ -11,7 +11,7 @@ from .core import W, H, font
 from . import scenes, detail, text
 from .rig import CHARS, POSES, EMOTIONS
 from .render import Episode, val, change
-from . import mapa
+from . import mapa, partes
 
 def check(path, frames=True):
     ep = Episode(path); sp = ep.spec; probs = []
@@ -73,6 +73,20 @@ def check(path, frames=True):
     cl = sorted(ep.clips, key=lambda c: c["at"])
     for a, b in zip(cl, cl[1:]):
         if a["at"] + (a["src"][1] - a["src"][0]) > b["at"] + 0.1: warn(f"falas sobrepostas em {b['at']:.1f}s ({a['voice']} / {b['voice']})")
+    # ---------- partes do corpo (mão/braço em rádio e planos de detalhe) ----------
+    for s in shots:
+        cena = s.get("scene") if s.get("type", "scene") == "scene" else {"maçaneta": "macaneta", "relógio": "relogio"}.get(s.get("subject"), s.get("subject"))
+        if cena not in partes.POSICOES and cena != "olho": continue
+        h = s.get("hand")
+        if h is None:
+            if cena in partes.SEMPRE:
+                warn(f"mão genérica em '{cena}' ({s['start']}s): diga de quem é a mão (\"hand\": \"roberta\") para a manga e a pele baterem com o personagem")
+            continue
+        if h is False: continue
+        de, at = (h, None) if isinstance(h, str) else (h.get("of"), h.get("at"))
+        if de not in CHARS and de not in ep.custom and de not in ep.locked: err(f"mão de personagem desconhecido '{de}' em '{cena}' ({s['start']}s)")
+        if at and at not in partes.POSICOES.get(cena, {}):
+            err(f"posição de mão '{at}' não existe em '{cena}' ({s['start']}s). Posições: {', '.join(partes.POSICOES.get(cena, {})) or 'nenhuma'}")
     # ---------- posição no chão (mapa dos cenários) ----------
     for s in shots:
         if s.get("type", "scene") != "scene" or s.get("scene") not in mapa.MAPA: continue

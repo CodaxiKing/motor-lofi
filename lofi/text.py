@@ -22,6 +22,16 @@ def _word_times(txt, a, b):
         dd = (b - a - 0.12) * (len(w) + 1) / tot; out.append((w, t, t + dd)); t += dd
     return out
 
+def sub_width(t, subs):
+    """Largura (px) da legenda ativa em t, ou 0. Mesmo cálculo de tamanho de subtitle()."""
+    d = ImageDraw.Draw(Image.new("L", (8, 8)))
+    for a, b, txt, voice in subs:
+        if not (a <= t < b): continue
+        n = len(txt); f = font("title", 112 if n <= 16 else (90 if n <= 22 else 72))
+        return min(W - 70, d.textbbox((0, 0), txt, font=f)[2])
+    return 0
+
+
 def subtitle(img, t, subs, speakers, y=None, words=True):
     """subs: lista de (ini, fim, texto, voz). speakers: {voz: {"label": "RAFA", "color": (r,g,b)}}."""
     y0 = y or SUB_Y

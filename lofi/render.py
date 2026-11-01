@@ -9,7 +9,7 @@ import sys, os, json, math, subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail
+from . import fx, scenes, text, audio, particles, detail, partes
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
 
 HEAD_FRAC = 0.215
@@ -64,6 +64,7 @@ class Episode:
         sp = self.spec
         self.fps = sp.get("fps", 30)
         from .mapa import resolver_plano
+        self._avoid = []; self._heads = []
         self.shots = sorted((resolver_plano(s) for s in sp["shots"]), key=lambda s: s["start"])
         self.total = sp.get("total", max(s["end"] for s in self.shots))
         self.voices = {k: os.path.join(self.base, v) for k, v in sp.get("voices", {}).items()}
@@ -341,6 +342,8 @@ class Episode:
         rel = t - shot["start"]; norm = c01(rel / max(1e-6, shot["end"] - shot["start"]))
         props = {k: val(v, rel, norm) for k, v in shot.get("props", {}).items()}
         if props.get("level") == "auto": props["level"] = min(1.0, self.level(props.get("level_voice", "_all"), t) * 0.9)
+        props["_hand"] = partes.resolver(False if props.get("hand") is False else shot.get("hand"), sc.name, self.locked, self.custom)
+        props["_avoid"] = self._avoid
         shot["_props"] = props
         # clima
         saved = (sc.rain_strength, sc.rain_full, sc.fog_cfg)
@@ -421,6 +424,11 @@ class Episode:
         for k, v in shot.get("params", {}).items():
             params[k] = v
             params[k + "_now"] = val(v, rel, norm)
+        subj = {"maçaneta": "macaneta", "relógio": "relogio"}.get(shot["subject"], shot["subject"])
+        hspec = shot.get("hand", False if params.get("hand") is False else None)
+        params["_hand"] = partes.resolver(hspec, subj, self.locked, self.custom)
+        if subj == "olho" and hspec: params["_hand"] = (partes.visual(hspec if isinstance(hspec, str) else hspec.get("of"), self.locked, self.custom), None)
+        params["_avoid"] = self._avoid
         img = detail.render_detail(shot["subject"], t_anim - shot["start"], params)
         img = fx.grade(img, shot.get("grade", "noite"))
         cam = shot.get("camera", {})
@@ -543,6 +551,19 @@ class Episode:
 
     def pick_sub_y(self, shot):
         if shot.get("sub_y"): return shot["sub_y"]
+        av = getattr(self, "_avoid", [])
+        if av:   # braço/mão em cena: legenda numa faixa livre (braço > objeto em destaque > cabeças)
+            wd = text.sub_width(self._treal, self.subs) or 600
+            sx0, sx1 = W / 2 - wd / 2 - 20, W / 2 + wd / 2 + 20
+            foco = partes.FOCO.get(shot.get("scene") or {"maçaneta": "macaneta", "relógio": "relogio"}.get(shot.get("subject"), shot.get("subject")), [])
+            def bate(y, itens):
+                return any(partes.bate_retangulo(it, (sx0, y - 80, sx1, y + 60)) for it in itens)
+            def cabeca(y):
+                return any(h[1] > 120 and h[0] < W - 120 and h[2] < y + 160 and h[3] > y - 80 for h in self._heads)
+            cands = (text.SUB_Y, 1600, 1440, 1700, 1380, 1250, 900, 780)
+            for rects in (av + foco, foco, av):   # 1º livre de tudo; 2º só o objeto em destaque (pode passar sobre a manga)
+                for y in cands:
+                    if not bate(y, rects) and not cabeca(y): return y
         y = text.SUB_Y; band = (y - 170, y + 70)
         hits = [h for h in self._heads if h[1] > 120 and h[0] < W - 120 and h[2] < band[1] and h[3] > band[0]]
         if not hits: return y
@@ -551,7 +572,7 @@ class Episode:
         return min(1640, bot + 150)
 
     def frame(self, t):
-        self._heads = []; self._beams = []; self._treal = t
+        self._heads = []; self._beams = []; self._treal = t; self._avoid = []
         shot = next((s for s in self.shots if s["start"] <= t < s["end"]), self.shots[-1])
         typ = shot.get("type", "scene")
         slow = shot.get("slowmo")
@@ -577,7 +598,7 @@ class Episode:
         hs = self.hud_state(t)
         if hs and shot.get("hud", typ not in ("title", "recap", "detail") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
         if not shot.get("hook") and typ != "recap":
-            sy = self.pick_sub_y(shot) if typ == "scene" else shot.get("sub_y", 1590 if typ == "choice" else None)
+            sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else None)
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)
         if t > self.total - 0.6: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))
         return img

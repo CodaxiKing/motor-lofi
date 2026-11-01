@@ -52,3 +52,12 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **esgoto:** `fundo`, `meio`, `frente`
 - **igreja:** `altar` (no altar, lá no fundo), `corredor`, `frente`, `banco_esq`, `banco_dir`
 - **rua_amanhecer:** `centro`, `calcada_esq`, `calcada_dir`, `longe` (lá no fundo da rua (pequeno)), `longe_esq`, `longe_dir`, `carro` (ao lado do carro estacionado, à esquerda)
+
+## Partes do corpo (mão e braço do personagem)
+
+Em rádio e planos de detalhe, `"hand": "roberta"` desenha o braço com a manga e a pele da ficha do personagem; `{"of": "rafa", "at": "antena"}` escolhe a posição; `false` tira a mão. No `olho`, a pele em volta é a do personagem.
+
+- **radio:** `dial` (girando o dial (padrão)), `antena` (segurando a antena), `botao` (apertando o botão de ligar), `repouso` (mão parada na mesa, ao lado do rádio)
+- **chave:** `girando` (segurando a cabeça da chave, acompanha o giro (padrão))
+- **macaneta:** `girando` (na ponta da maçaneta, acompanha o giro (padrão))
+- **celular:** `segurando` (segurando o celular pela borda (padrão)), `dedo` (dedo tocando a tela)
