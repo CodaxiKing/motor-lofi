@@ -46,8 +46,11 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - EP 1: Roberta acordou no Dia 1 com 37 alertas pedindo silêncio. No corredor, o vizinho seu Válter virou a cabeça, com olhos brancos, quando um copo caiu. No rádio, uma voz feminina que Roberta acha familiar disse: "Cheguem à ponte antes do Dia 5. Três batidas." Às 23h40, alguém bateu 3 vezes na porta.
 - EP 2: Roberta espiou e viu Rafa, do 12º andar, com seu Válter vindo atrás. Ela abriu no último segundo; Rafa entrou desconfiado por ela ter demorado. Rafa provou que os infectados seguem o som. No Dia 2, o celular ficou sem sinal e a rua amanheceu cheia de infectados. O rádio repetiu: "A ponte, antes do Dia 5."
 - EP 3: Roberta e Rafa pularam para o prédio vizinho; ela o segurou no pulo e a confiança dele começou a voltar. No Dia 3, um caco de vidro atraiu a horda e os dois se esconderam num posto, onde o rádio chamou Roberta pelo nome: era Lia, a irmã dela, no Hospital Central. Com a ponte fechando em dois dias, ela precisa escolher entre buscar a irmã ou correr para a ponte.
-- EP 4: Roberta desligou o rádio para não voltar pela irmã e seguiu com o Rafa pelos túneis do metrô até o último quarteirão antes da ponte. O megafone do exército acordou a horda e os dois se trancaram num carro cercado. Pelo rádio, a Lia disse que o hospital caiu e pediu que ela atravessasse; Roberta prometeu. O Rafa teve a ideia do alarme do carro e disse que confia nela: fazer barulho ou esperar o dia, com a ponte fechando às seis.
+- EP 4: Roberta desligou o rádio para não voltar pela irmã e desceu com o Rafa pela estação Sé, na mesma rua do posto, e esperou o dia passar na plataforma. À noite subiram pela mesma escada, a um quarteirão da ponte; o megafone do exército acordou a horda e os dois correram para um carro parado na rua, que foi cercado. Pelo rádio do carro, a Lia disse que o hospital caiu e pediu que ela atravessasse; Roberta prometeu. O Rafa teve a ideia do alarme do carro e disse que confia nela: fazer barulho ou esperar o dia, com a ponte fechando às seis.
 
 ## Vídeos de comentários
 | Nº | Depois do ep. | Comentários respondidos | Status |
 |---|---|---|---|
+
+## Continuidade (onde eles estão)
+- Fim do ep. 4: Roberta e Rafa dentro de um carro parado na rua da estação Sé, a um quarteirão da ponte, cercados pela horda, ao amanhecer do dia 5. O rádio que ela usa agora é o do carro (o rádio de casa ficou no apartamento). O ep. 5 começa dentro desse carro.
