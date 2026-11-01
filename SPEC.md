@@ -114,6 +114,7 @@ Cada série vive no repositório em `series/<nome-da-serie>/`:
 - Nuvens se movendo e poças com ondinhas nos externos.
 - No plano: `"rain": "forte" | "normal" | "fraca" | "nenhuma"`, `"fog": 0–1`, `"snow": 0–1`, `"time": "dia" | "entardecer" | "amanhecer" | "madrugada" | "noite"` (aceita keyframes, transição suave).
 - Novos lugares: `escola`, `delegacia` (sirene), `posto`, `floresta`, `carro` (limpador animado), `esgoto`, `igreja`.
+- `rua_amanhecer`: a mesma rua de madrugada clareando (céu claro, sem lua, garoa fina). Use quando a cena precisar ser de dia: o `time` só muda a cor e não tira a lua da `rua`.
 
 **Câmera e pós**
 - Plano de detalhe: `{"type": "detail", "subject": "macaneta|olho|celular|chave|relogio", "params": {...}}`

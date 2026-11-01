@@ -601,6 +601,19 @@ class Episode:
             part = os.path.join(self.base, f"_parte{k}.mp4"); parts.append(part)
             procs.append(subprocess.Popen([sys.executable, "-m", "lofi.render", self.spec_path, "--segment", str(cuts[k]), str(cuts[k + 1]), part], cwd=root))
         for pr in procs: pr.wait()
+        # confere cada bloco: um processo interrompido gera um bloco curto e o vídeo sairia cortado
+        for k, (pr, part) in enumerate(zip(procs, parts)):
+            want = (cuts[k + 1] - cuts[k]) / self.fps
+            try:
+                got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", part],
+                                           capture_output=True, text=True).stdout.strip() or 0)
+            except ValueError: got = 0.0
+            if pr.returncode != 0 or abs(got - want) > 0.5:
+                print(f"bloco {k} incompleto ({got:.1f}s de {want:.1f}s, código {pr.returncode}); refazendo sozinho", flush=True)
+                self.render_segment(cuts[k], cuts[k + 1], part)
+                got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", part],
+                                           capture_output=True, text=True).stdout.strip() or 0)
+                if abs(got - want) > 0.5: raise RuntimeError(f"bloco {k} continua incompleto ({got:.1f}s de {want:.1f}s)")
         lst = os.path.join(self.base, "_partes.txt")
         open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,

@@ -62,7 +62,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 - **Guarda-roupa** completo: 8 tons de pele, 14 tipos de roupa, saia/shorts/calça, 12 cabelos, barba e bigode, 12 chapéus, 12 acessórios, capa e modo fantasma
 - **29 personagens prontos**: Roberta, Rafa, Lia, zumbis variados, soldado, detetive, cientista, estudantes, executivos, médica, policial, roqueiro, avós, criança, bruxa, rainha, chef, cowboy, fantasma, DJ, pirata
 
-**Cenários (19)** — apartamento, entrada, corredor, rua, vista da janela, escada, telhado, ponte, rádio, hospital, mercado, metrô, escola, delegacia, posto de gasolina, floresta, interior de carro, esgoto, igreja
+**Cenários (20)** — apartamento, entrada, corredor, rua, rua de madrugada, vista da janela, escada, telhado, ponte, rádio, hospital, mercado, metrô, escola, delegacia, posto de gasolina, floresta, interior de carro, esgoto, igreja
 - Camadas em paralaxe, desfoque de fundo, névoa, chuva forte ou fraca, neve, nuvens, poças com ondinhas, hora do dia
 - Detalhes vivos: ventilador girando, TV com chiado, cortina ao vento, sirene, limpador de para-brisa, velas
 

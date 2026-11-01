@@ -277,13 +277,18 @@ class Rua(Scene):
     rain_full = True; wet = True; amb = "chuva_fora"
     lightning_full = True
     fog_cfg = dict(y=1240, height=520, alpha=0.55, col=(90, 60, 80), speed=14)
+    sky_cols = ((10, 14, 30), (60, 26, 34)); far_col = (30, 42, 66); near_col = (18, 26, 44)
+    lit = 0.3; glow = (130, 30, 26); moon = True
     def build(self):
         back = canvas()
-        city = skyline(CWX * S, 1250 * S, 77, sky=((10, 14, 30), (60, 26, 34)), hmin=0.35, hmax=0.9, lit=0.3)
+        city = skyline(CWX * S, 1250 * S, 77, sky=self.sky_cols, far=self.far_col, near=self.near_col, hmin=0.35, hmax=0.9, lit=self.lit)
         back.paste(city.filter(ImageFilter.GaussianBlur(2 * S)), (0, 0))
-        back = add_light(back, PS((-300, 900), (1380, 1500)), (130, 30, 26), 140 * S, 170)
+        back = add_light(back, PS((-300, 900), (1380, 1500)), self.glow, 140 * S, 170)
         d = ImageDraw.Draw(back)
-        d.ellipse(PS((760, 420), (880, 540)), fill=(215, 210, 195)); d.ellipse(PS((738, 408), (858, 528)), fill=(18, 18, 32))
+        if self.moon:
+            d.ellipse(PS((760, 420), (880, 540)), fill=(215, 210, 195)); d.ellipse(PS((738, 408), (858, 528)), fill=(18, 18, 32))
+        else:  # sol baixo atrás da névoa
+            back = add_light(back, PS((600, 820), (860, 1080)), (240, 170, 130), 110 * S, 80)
         mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
         road = grad(CWX * S, 670 * S, (34, 34, 44), (14, 14, 20)); mid.paste(road, P(-M, 1250))
         d.rectangle(PS((-M, 1250), (W + M, 1275)), fill=(60, 60, 70, 255))
@@ -776,7 +781,16 @@ class Igreja(Scene):
             f = 0.8 + 0.2 * math.sin(t * 13 + x)
             img.paste(add_light(img, (x - 80, 920, x + 80, 1100), (255, 170, 80), 30, int(180 * f)))
 
-REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, Janela, Escada, Telhado, Ponte, Radio, Hospital, Mercado, Metro,
+class RuaAmanhecer(Rua):
+    """A mesma rua de madrugada clareando: céu frio-rosado, sem lua, poucas janelas acesas, garoa fina."""
+    name = "rua_amanhecer"; light = "dawn"; grade = "amanhecer"
+    clouds = (60, 520, (200, 170, 180))
+    rain_strength = 0.35
+    fog_cfg = dict(y=1180, height=600, alpha=0.6, col=(170, 160, 175), speed=12)
+    sky_cols = ((96, 104, 138), (214, 160, 150)); far_col = (96, 98, 122); near_col = (62, 64, 84)
+    lit = 0.08; glow = (200, 120, 90); moon = False
+
+REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, RuaAmanhecer, Janela, Escada, Telhado, Ponte, Radio, Hospital, Mercado, Metro,
                                      Escola, Delegacia, Posto, Floresta, Carro, Esgoto, Igreja)}
 _inst = {}
 def get(name):

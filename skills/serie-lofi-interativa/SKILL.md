@@ -31,7 +31,7 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Emoções:** neutral, fear, shock, angry, sad, determined, happy, suspicious, cry, panting.
 - **Corpos:** child, old, tall, fat, thin. **Objetos na mão:** radio, flashlight, phone, key, bag.
 - **Luz:** breu de verdade (`dark`) iluminado só pela lanterna e por `lights`; sombras projetadas na parede (`wall_shadow`); bloom automático.
-- **Cenários (19):** apartamento (ventilador, TV com chiado, cortina ao vento), entrada, corredor, rua, janela, escada, telhado, ponte, radio, hospital, mercado, metro, escola, delegacia, posto, floresta, carro, esgoto, igreja. Nuvens e poças animadas nos externos. Novos lugares são criados conforme a história.
+- **Cenários (20):** apartamento (ventilador, TV com chiado, cortina ao vento), entrada, corredor, rua, rua_amanhecer (rua de dia/madrugada clara; `time` não tira a lua da `rua`), janela, escada, telhado, ponte, radio, hospital, mercado, metro, escola, delegacia, posto, floresta, carro, esgoto, igreja. Nuvens e poças animadas nos externos. Novos lugares são criados conforme a história.
 - **Clima e hora:** `rain` forte/fraca/nenhuma, `fog`, `snow`, `time` dia/entardecer/amanhecer/madrugada/noite (com transição).
 - **Câmera:** close no rosto, por cima do ombro, travelling, foco seletivo, paralaxe, câmera na mão (`handheld`), vertigo, câmera lenta (`slowmo`), susto (`scare`), gotas na lente (`lens_drops`).
 - **Planos de detalhe:** `type: detail` com maçaneta, olho, celular, chave, relógio.

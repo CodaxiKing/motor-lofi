@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (19): `apartamento`, `carro`, `corredor`, `delegacia`, `entrada`, `escada`, `escola`, `esgoto`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `posto`, `radio`, `rua`, `telhado`
+**Cenários** (20): `apartamento`, `carro`, `corredor`, `delegacia`, `entrada`, `escada`, `escola`, `esgoto`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `posto`, `radio`, `rua`, `rua_amanhecer`, `telhado`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
