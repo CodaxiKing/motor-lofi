@@ -193,6 +193,8 @@ if __name__ == "__main__":
         for p in plats: capa(args[0], float(args[1]) if len(args) > 1 else None, plataforma=p, guias="--guias" in sys.argv)
     elif cmd == "pacote":
         args = [a for a in sys.argv[2:] if not a.startswith("--")]
+        if len(args) < 2 or not args[1].endswith(".mp4"):   # vídeo omitido: usa o "out" do episódio
+            spec = json.load(open(args[0])); args.insert(1, os.path.join(os.path.dirname(args[0]), spec.get("out", "")))
         r = pacote(args[0], args[1], float(args[2]) if len(args) > 2 else None)
         print("\n".join(f"{k}: {v}" for k, v in r.items()))
     elif cmd == "temporada": temporada(sys.argv[2], sys.argv[3], sys.argv[4:])
