@@ -21,6 +21,7 @@ Responda em português do Brasil.
 - Use só nomes de cenário, som, pose, emoção e personagem que estão em `CATALOGO.md` ou em `personagens.json`.
 
 ## Entregar
+Tudo **escrito na própria resposta do chat** (não só como arquivo anexado): o usuário lê e copia direto daqui. A narração vai em blocos de código, um por personagem, prontos para colar no ElevenLabs.
 1. Roteiro completo por cena.
 2. Narração para o ElevenLabs v3: um bloco por personagem (nome no título), tags em inglês, dica de voz; versão CapCut.
 3. As duas opções finais e o que acontece em cada uma.

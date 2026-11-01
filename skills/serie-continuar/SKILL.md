@@ -20,6 +20,6 @@ Responda em português do Brasil.
 4. Registre o voto (e o placar, se veio) na tabela da bíblia e escreva o roteiro do próximo episódio seguindo a skill **serie-lofi-interativa** (seção 2: gancho, "Anteriormente em…", carimbo, 12–20 cenas com planos de detalhe, ações, luz e clima do motor, consequências das escolhas anteriores, cor do episódio).
 5. Se o próximo episódio for o último, escreva o desfecho conforme os finais da bíblia e todas as escolhas registradas, terminando com "FIM" (sem pergunta A/B).
 6. Salve `series/<serie>/epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Corrija até não haver ERRO.
-7. Entregue: roteiro por cena; **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz); versão CapCut; as duas opções finais e o que acontece em cada uma.
+7. Entregue **escrito na própria resposta do chat** (não só como arquivo; o arquivo vai junto, mas o usuário lê e copia daqui): roteiro por cena; **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz); versão CapCut; as duas opções finais e o que acontece em cada uma.
 8. Marque o episódio como "roteiro" na bíblia, commit e push.
 9. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-montar com os áudios".

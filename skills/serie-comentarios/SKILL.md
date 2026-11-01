@@ -33,7 +33,7 @@ Duas etapas, decididas pelo que vier anexado:
    - **FECHAMENTO (3–6 s):** chamada para a votação aberta ou para o próximo episódio ("Comenta A ou B no episódio 3") e "CONTINUA…".
    - Duração total: 30 a 75 s.
 6. **Formato do roteiro** (`series/<serie>/comentarios/cNN_roteiro.md`): cabeçalho com série, depois de qual episódio, total; para cada bloco: `BLOCO n — início s a fim s`, `COMENTÁRIO: @usuario · "texto" · curtidas (se houver)`, `CENÁRIO:` (nome do motor entre crases), `PERSONAGENS:` (nomes, vista, pose e emoção do motor entre crases), `PLANO:`, `SOM:`, `FALA (personagem): [tag] texto`, `LEGENDA:` (caixa alta, máx. 4 palavras por pedaço). Use só nomes de `CATALOGO.md` e `personagens.json`.
-7. **Entregue:** os comentários escolhidos (e, em uma linha, quantos ficaram de fora, sem citar os recusados), o roteiro por bloco, a **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz) e a legenda do post.
+7. **Entregue escrito na própria resposta do chat** (não só como arquivo): os comentários escolhidos (e, em uma linha, quantos ficaram de fora, sem citar os recusados), o roteiro por bloco, a **narração para o ElevenLabs v3** com um bloco por personagem (nome no título, tags em inglês, dica de voz) e a legenda do post.
 8. Registre na bíblia (status "roteiro"), commit e push. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-comentarios com os áudios".
 
 ## Etapa 2 · Montagem (com os áudios)
