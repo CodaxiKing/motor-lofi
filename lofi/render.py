@@ -644,6 +644,57 @@ class Episode:
             if (i - a) % 300 == 0: print(f"[{a}-{b}] quadro {i}", flush=True)
         p.stdin.close(); p.wait()
 
+    # ---------------- cache por plano ----------------
+    def _chaves_planos(self):
+        """Uma chave por plano: muda só se o plano, o que é global ao vídeo, as vozes,
+        as fichas dos personagens ou o código do motor mudarem. Som/trilha não entram (não mudam a imagem)."""
+        import hashlib, glob
+        h = hashlib.sha1()
+        for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "*.py"))):
+            h.update(open(f, "rb").read())
+        for f in [os.path.join(self.base, v) for v in (self.spec.get("voices") or {}).values()] + [os.path.join(self.base, "personagens.json")]:
+            if os.path.exists(f): st = os.stat(f); h.update(f"{f}{st.st_size}{st.st_mtime}".encode())
+        glob_spec = {k: v for k, v in self.spec.items() if k not in ("shots", "sfx", "music", "out")}
+        h.update(json.dumps(glob_spec, sort_keys=True, ensure_ascii=False, default=str).encode())
+        base = h.hexdigest(); shots = self.spec["shots"]; chaves = []
+        for i, sh in enumerate(sorted(shots, key=lambda x: x["start"])):
+            k = hashlib.sha1((base + json.dumps(sh, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()[:20]
+            a, b = int(round(sh["start"] * self.fps)), int(round(sh["end"] * self.fps))
+            chaves.append((k, a, min(b, int(self.total * self.fps))))
+        return chaves
+
+    def render_cache(self, jobs=2, out=None):
+        """Renderiza só os planos que mudaram desde a última vez (o resto vem de series/<serie>/_cache/)."""
+        out = out or os.path.join(self.base, self.spec.get("out", "episodio.mp4"))
+        self.build_audio()
+        cache = os.path.join(self.base, "_cache"); os.makedirs(cache, exist_ok=True)
+        chaves = [(k, a, b) for k, a, b in self._chaves_planos() if b > a]
+        falta = [(k, a, b) for k, a, b in chaves if not os.path.exists(os.path.join(cache, k + ".mp4"))]
+        print(f"cache: {len(chaves) - len(falta)} de {len(chaves)} planos prontos; renderizando {len(falta)}", flush=True)
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        lotes = [[] for _ in range(max(1, jobs))]; carga = [0] * len(lotes)
+        for k, a, b in sorted(falta, key=lambda x: x[1] - x[2]):           # maiores primeiro, no lote mais leve
+            i = carga.index(min(carga)); lotes[i] += [str(a), str(b), os.path.join(cache, k + ".tmp.mp4")]; carga[i] += b - a
+        procs = [subprocess.Popen([sys.executable, "-m", "lofi.render", self.spec_path, "--segments"] + l, cwd=root) for l in lotes if l]
+        for pr in procs: pr.wait()
+        for k, a, b in falta:
+            tmp = os.path.join(cache, k + ".tmp.mp4")
+            got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", tmp],
+                                       capture_output=True, text=True).stdout.strip() or 0) if os.path.exists(tmp) else 0
+            if abs(got - (b - a) / self.fps) > 0.2:
+                print(f"plano {a}-{b} incompleto; refazendo", flush=True); self.render_segment(a, b, tmp)
+            os.replace(tmp, os.path.join(cache, k + ".mp4"))
+        lst = os.path.join(self.base, "_partes.txt")
+        open(lst, "w").write("".join(f"file '{os.path.join(cache, k + '.mp4')}'\n" for k, a, b in chaves))
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,
+                        "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
+                        "-shortest", "-movflags", "+faststart", out], check=True)
+        os.remove(lst)
+        usados = {k + ".mp4" for k, a, b in chaves}
+        for f in os.listdir(cache):                                          # planos antigos que não servem mais
+            if f not in usados: os.remove(os.path.join(cache, f))
+        print("pronto:", out); return out
+
     def render_parallel(self, jobs=2, out=None):
         out = out or os.path.join(self.base, self.spec.get("out", "episodio.mp4"))
         self.build_audio()
@@ -681,8 +732,15 @@ if __name__ == "__main__":
     ep = Episode(sys.argv[1])
     if "--segment" in sys.argv:
         i = sys.argv.index("--segment"); ep.render_segment(int(sys.argv[i + 1]), int(sys.argv[i + 2]), sys.argv[i + 3]); sys.exit()
+    if "--segments" in sys.argv:        # vários planos num processo só (usado pelo cache)
+        r = sys.argv[sys.argv.index("--segments") + 1:]
+        for i in range(0, len(r) - 2, 3): ep.render_segment(int(r[i]), int(r[i + 1]), r[i + 2])
+        sys.exit()
     if "--jobs" in sys.argv:
-        ep.render_parallel(int(sys.argv[sys.argv.index("--jobs") + 1])); sys.exit()
+        j = int(sys.argv[sys.argv.index("--jobs") + 1])
+        if "--sem-cache" in sys.argv: ep.render_parallel(j)
+        else: ep.render_cache(j)
+        sys.exit()
     if "--test" in sys.argv:
         ts = [float(x) for x in sys.argv[sys.argv.index("--test") + 1:]]
         if ep.voices:

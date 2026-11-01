@@ -13,3 +13,4 @@ _partes.txt
 *.mp3.json
 *.m4a.json
 *.wav.json
+_cache/
