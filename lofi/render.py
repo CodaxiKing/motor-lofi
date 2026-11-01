@@ -174,7 +174,7 @@ class Episode:
         if not name:
             name = sc.light
             if sc.name == "escada": name = "red" if props.get("_light_on", True) else "dark"
-            if sc.name in ("corredor", "hospital", "mercado", "escola", "delegacia") and not props.get("_lamp_on", True): name = "dark"
+            if sc.name in ("corredor", "hospital", "mercado", "escola", "delegacia", "loja", "deposito", "camara_fria") and not props.get("_lamp_on", True): name = "dark"
             if val(shot.get("dark"), 0, 0, 0) and val(shot.get("dark"), 0, 0, 0) > 0.5: name = "dark"
         if fx.flash_amount(t, self.flashes) > 0.5: name = "flash"
         return name, LIGHTS.get(name, LIGHTS["night"])

@@ -1,37 +1,21 @@
 {
  "_leia": "Fichas travadas da série Turno da Noite. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito.",
- "bia": {
-  "_papel": "protagonista, 19 anos, atendente nova do turno da noite. Cor de destaque: vermelho da loja (boné e camisa).",
-  "skin": "moreno", "hair": "afro", "hair_color": [34, 24, 20],
-  "top_style": "shirt", "top": [196, 44, 40], "sleeves": "short",
-  "bottom": "pants", "legs": [44, 54, 84], "shoes": [236, 236, 230],
-  "hat": "cap", "hat_color": [196, 44, 40], "acc": ["badge", "earrings"]
- },
- "nestor": {
-  "_papel": "antigo atendente, sumiu na semana passada; deixou as regras. Mesmo uniforme, desbotado. Cor: vermelho desbotado + óculos.",
-  "skin": "claro", "body": "old", "hair": "bald", "facial": "mustache", "facial_color": [200, 200, 196],
-  "top_style": "shirt", "top": [150, 92, 86], "sleeves": "long",
-  "bottom": "pants", "legs": [70, 66, 60], "shoes": [50, 40, 34],
-  "glasses": true, "acc": ["badge"]
- },
- "caio": {
-  "_papel": "motoboy que passa toda madrugada pra tomar café; aparece na câmera; aliado. Cor: amarelo (capacete e baú).",
-  "skin": "escuro", "body": "tall", "facial": "stubble", "facial_color": [20, 16, 14],
-  "top_style": "leather", "top": [34, 34, 38], "inner": [240, 190, 40],
-  "bottom": "pants", "legs": [40, 40, 46], "shoes": [30, 30, 30],
-  "hat": "helmet", "hat_color": [240, 190, 40], "backpack": [240, 190, 40]
- },
- "dona_cida": {
-  "_papel": "cliente fiel que compra leite às 2h toda noite; não aparece na câmera (é da noite de 1996). Cor: lilás.",
-  "skin": "oliva", "body": "old", "hair": "bun", "hair_color": [200, 200, 204],
-  "top_style": "sweater", "top": [170, 120, 190], "bottom": "skirt", "skirt": [90, 70, 100], "tights": [60, 56, 64],
-  "shoes": [80, 50, 50], "glasses": true, "scarf": [120, 80, 140]
- },
- "cliente": {
-  "_papel": "o Cliente das 3h17: alto, magro, nunca tira o chapéu nem os óculos escuros; não aparece na câmera. Silhueta preta.",
-  "skin": "palido", "body": "thin", "scale": 1.14,
-  "top_style": "trench", "top": [22, 22, 26], "inner": [40, 40, 44], "tie": [110, 20, 30],
-  "bottom": "pants", "legs": [20, 20, 24], "shoes": [14, 14, 16],
-  "hat": "fedora", "hat_color": [18, 18, 20], "acc": ["sunglasses", "tie"]
- }
+ "davi": {"skin": "moreno", "top_style": "uniform", "top": [36, 104, 98], "legs": [36, 40, 56], "shoes": [235, 235, 230],
+          "hair": "short", "hair_color": [24, 20, 18], "facial": "stubble", "facial_color": [30, 24, 20],
+          "hat": "cap", "hat_color": [238, 186, 40], "acc": ["badge"], "body": "thin"},
+ "sonia": {"skin": "claro", "top_style": "trench", "top": [176, 150, 110], "inner": [236, 236, 230], "legs": [40, 40, 44],
+           "shoes": [120, 30, 30], "hair": "bob", "hair_color": [150, 150, 156], "glasses": true,
+           "scarf": [150, 30, 44], "acc": ["badge", "earrings"], "body": "tall"},
+ "ivo": {"skin": [176, 192, 204], "top_style": "uniform", "top": [74, 112, 108], "legs": [50, 54, 66], "shoes": [190, 190, 186],
+         "hair": "short", "hair_color": [220, 220, 224], "facial": "beard", "facial_color": [230, 230, 234],
+         "hat": "cap", "hat_color": [176, 158, 96], "acc": ["badge"], "body": "old"},
+ "cliente": {"skin": [228, 226, 220], "top_style": "suit", "top": [16, 16, 20], "inner": [238, 238, 234], "tie": [16, 16, 20],
+             "legs": [16, 16, 20], "shoes": [10, 10, 10], "hat": "fedora", "hat_color": [14, 14, 16],
+             "body": "thin", "infected": true, "scale": 1.18},
+ "bento": {"skin": "escuro", "top_style": "shirt", "top": [170, 52, 44], "legs": [50, 60, 90], "shoes": [90, 60, 40],
+           "hat": "cap", "hat_color": [40, 70, 140], "facial": "mustache", "facial_color": [30, 26, 24], "hair": "short",
+           "hair_color": [30, 26, 24], "body": "fat"},
+ "duplo": {"skin": "moreno", "top_style": "uniform", "top": [36, 104, 98], "legs": [36, 40, 56], "shoes": [235, 235, 230],
+           "hair": "short", "hair_color": [24, 20, 18], "facial": "stubble", "facial_color": [30, 24, 20],
+           "hat": "cap", "hat_color": [238, 186, 40], "acc": ["badge"], "body": "thin", "infected": true}
 }

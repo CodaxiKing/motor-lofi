@@ -37,6 +37,10 @@ POSICOES = {
         "segurando": {"ombro": (1180, 1980), "mao": (900, 1560), "nota": "segurando o celular pela borda (padrão)"},
         "dedo": {"ombro": (1180, 1980), "mao": (640, 1180), "dedo": True, "nota": "dedo tocando a tela"},
     },
+    "cftv": {
+        "tela": {"ombro": (1180, 1980), "mao": (760, 1180), "dedo": True, "nota": "dedo apontando a tela do monitor (padrão)"},
+        "botao": {"ombro": (1180, 1980), "mao": (920, 1350), "nota": "apertando o botão do monitor"},
+    },
 }
 # áreas importantes do quadro (a legenda evita cobrir): objeto em destaque de cada cenário/plano de detalhe
 FOCO = {
@@ -48,8 +52,10 @@ FOCO = {
     "macaneta": [(300, 640, 760, 1300)],
     "olho": [(120, 640, 960, 1240)],
     "relogio": [(130, 510, 950, 1330)],
+    "cftv": [(130, 420, 950, 1250)],
+    "deposito": [(560, 740, 880, 1280)],
 }
-PADRAO = {"radio": "dial", "radio_carro": "dial", "radio_portatil": "segurando", "chave": "girando", "macaneta": "girando", "celular": "segurando"}
+PADRAO = {"radio": "dial", "radio_carro": "dial", "radio_portatil": "segurando", "chave": "girando", "macaneta": "girando", "celular": "segurando", "cftv": "tela"}
 SEMPRE = {"radio", "radio_carro", "radio_portatil", "chave"}        # mostram mão mesmo sem "hand" (mão genérica)
 
 

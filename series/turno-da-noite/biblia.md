@@ -1,74 +1,63 @@
-# TURNO DA NOITE — AS REGRAS DA LUA 24H
-5 episódios · Suspense/Terror (estilo creepypasta narrada, em primeira pessoa) · Classificação: todas as idades (sem sangue, sustos sem violência explícita) · Posto de rodovia, tempos atuais · Duração por episódio: 2 a 3 min
-Elemento fixo: contador "DIA X · HH:MM" com o lugar "LUA 24H" · Som assinatura: o sininho da porta (`bell`), que às 3h17 toca sem ninguém entrar · Estilo do traço: desenho
+# TURNO DA NOITE — ARQUIVO 24-0317
+5 episódios · Terror/Suspense (estilo SCP) · Classificação: 14+ (sustos fortes e violência leve, sem gore) · Loja de conveniência de posto, km 317 da rodovia, tempos atuais · Duração por episódio: 2 a 3 min
+Elemento fixo: contador "NOITE X · HH:MM" (hud `place`: "KM 317") · Som assinatura: o sininho da porta (`bell`) tocando sem ninguém entrar · Estilo do traço: desenho · Capa: `capa.png`
 
 ## Cor de cada episódio (tint)
-- EP 1: verde fluorescente [120, 200, 150, 0.10] · EP 2: azul do monitor [80, 130, 200, 0.12] · EP 3: sépia de 1996 [210, 160, 90, 0.12] · EP 4: vermelho [200, 60, 60, 0.14] · EP 5: rosa amanhecer [240, 160, 130, 0.12]
+- EP 1: verde fluorescente [110, 200, 150, 0.10] · EP 2: azul gelo [120, 180, 230, 0.12] · EP 3: âmbar de luz de sódio [230, 170, 70, 0.10] · EP 4: vermelho de emergência [210, 60, 50, 0.12] · EP 5: branco do amanhecer [220, 220, 240, 0.10]
 
 ## Resumo
-Bia, 19 anos, assume o turno da noite na Conveniência Lua 24H, num posto à beira da rodovia, uma semana depois de o antigo atendente sumir. Embaixo da registradora ela encontra um bilhete com as regras do turno, e cada regra que ela quebra (ou segue) muda quem sai vivo de lá ao amanhecer.
-
-## Narração (estilo creepypasta)
-A Bia narra em primeira pessoa, no passado, como quem conta a história anos depois ("Eu tinha dezenove anos quando aceitei o turno da noite."). Voz baixa, calma, com pausas antes dos sustos. As regras do bilhete são lidas na voz do Nestor (gravada, mais grave e cansada). Toda abertura de episódio começa com uma regra.
+Davi aceita o turno da noite numa loja de conveniência 24h no meio da rodovia e encontra, colada no caixa, uma folha com 7 regras assinadas pelo antigo atendente, que sumiu. Toda noite, das 3h00 às 3h33, alguém entra na loja que não aparece nas câmeras, e cada escolha decide se Davi termina o turno.
 
 ## Personagens (motor)
 Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episódios; não redefinir no roteiro.
-- bia — protagonista e narradora, atendente nova. Silhueta: cabelo afro + boné. Cor: vermelho da loja (boné e camisa).
-- nestor — antigo atendente que sumiu; escreveu as regras. Velho, careca, bigode branco, óculos. Cor: vermelho desbotado.
-- caio — motoboy que toma café ali toda madrugada; aliado. Alto, capacete e baú amarelos. Cor: amarelo.
-- dona_cida — senhora que compra leite às 2h toda noite; não aparece na câmera. Coque grisalho, saia, cachecol lilás. Cor: lilás.
-- cliente — o Cliente das 3h17: alto, magro, sobretudo, chapéu e óculos escuros; nunca aparece na câmera. Silhueta preta e comprida (scale 1.14).
+- davi — protagonista, 24 anos, atendente novo, moreno e magro, uniforme verde-petróleo com crachá. Cor: amarelo (boné). Fala pouco e ri de nervoso.
+- sonia — "a gerente": Dra. Sônia Prates, pesquisadora do Instituto, alta, cabelo chanel grisalho, sobretudo bege, óculos. Cor: vinho (cachecol). Calma demais.
+- ivo — antigo atendente, idoso, preso na câmara fria: pele azulada de frio, barba branca, o mesmo uniforme desbotado. Cor: boné amarelo desbotado.
+- cliente — a Anomalia 24-0317 ("O Cliente"): altíssimo e magro, terno e chapéu pretos, rosto branco e olhos brancos. Silhueta única (chapéu + braços longos). Só aparece na forma real quando o disfarce falha.
+- bento — o primeiro disfarce do Cliente: caminhoneiro gordo e simpático, camisa vermelha, boné azul, bigode.
+- duplo — o Cliente imitando Davi (igual ao Davi, mas com olhos brancos). Só no ep. 4 e 5.
 
-## As regras do bilhete (letra do Nestor)
-1. Nunca atenda ninguém às 3h17. Se o sininho tocar às 3h17, olhe o monitor antes de olhar a porta.
-2. Se alguém não aparecer na câmera, não aceite o dinheiro dele. Nem o troco.
-3. A Dona Cida compra leite às 2h. Venda. Não pergunte de onde ela vem.
-4. A câmara fria fica trancada. Se alguém bater lá de dentro, não abra. *(letra diferente: escrita pelo Cliente)*
-5. Se o relógio da parede parar, apague as luzes e fique atrás do balcão até ele voltar a andar.
-6. Antes das 6h, nunca saia pela porta da frente.
-7. *(pedaço rasgado: "Se ele souber o seu nome…")*
+## Mistério central
+Por que a loja nunca fecha, se quase ninguém passa por ela?
+A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arquivo 24-0317). O Cliente é uma entidade atraída pela rotina humana; um lugar que nunca fecha é um laço perfeito. Enquanto houver um atendente cumprindo o turno e as regras, ele fica preso dentro da loja das 3h00 às 3h33. Quem quebra uma regra é "estocado": vai parar na câmara fria, que por dentro não tem fim. O Ivo quebrou a regra 2 há 40 noites. O anúncio de emprego que Davi respondeu foi publicado pelo próprio Instituto, e a Sônia assiste a tudo pelas câmeras.
 
-## Mistério central e a verdade
-Na madrugada de 1º de novembro de 1996, um ônibus sumiu no nevoeiro na curva do viaduto, logo depois de parar no Posto Lua. Os passageiros nunca chegaram. Desde então, quem não aparece na câmera é daquela noite: a Dona Cida é uma das passageiras, presa na última parada, comprando o leite que ia levar pro neto.
-O Cliente das 3h17 é o "cobrador" daquela viagem: ele precisa que alguém da loja aceite o dinheiro dele. Quem aceita "paga a passagem" e passa a pertencer à noite de 1996. O Nestor aceitou um troco dele há uma semana e está preso na câmara fria, que às 3h17 vira o bagageiro do ônibus. A regra 4 não é do Nestor: o Cliente a escreveu no bilhete para que ninguém o solte.
-Para soltar alguém, é preciso devolver o dinheiro na mão do Cliente às 3h17, com o relógio parado, sem dizer o próprio nome.
-
-## Finais
-- A — O TROCO (voto A no ep. 4): Bia devolve a moeda na mão do Cliente. O relógio volta a andar, o Nestor sai da câmara fria e o sininho toca pela última vez. Às 6h, a Dona Cida paga o leite com uma moeda atual e vai embora: os passageiros foram liberados. Bia fica com o emprego, e a última cena mostra um bilhete novo embaixo da registradora, na letra dela.
-- B — A PORTA DA FRENTE (voto B no ep. 4): Bia foge com o Nestor pela porta da frente antes das 6h. Eles saem no nevoeiro e veem o ônibus de 1996 parado no pátio, de faróis acesos. O Nestor entra no lugar dela para que ela possa correr até a rodovia. Às 6h, a loja está fechada, coberta de poeira, como se estivesse abandonada há 30 anos. Última fala: "Eu nunca mais passei por aquele posto. Mas às 3h17, o meu celular ainda toca um sininho."
-- Ep. 1 (A ATENDER): o Cliente fala o nome dela ("Até amanhã, Bia"): no final ele pode chamá-la pelo nome, e ela precisa cobrir o crachá. (B ESCONDER): ele deixa uma moeda de 1996 no balcão: é essa moeda que ela devolve no final A.
-- Ep. 2 (A ABRIR): a Bia vê o Nestor por um segundo dentro do bagageiro do ônibus e fecha a porta. Ela tem prova; o Nestor confia nela. (B NÃO ABRIR): o Nestor passa a falar com ela só pelas batidas (3 = sim, 1 = não).
-- Ep. 3 (A CONTAR AO CAIO): no final o Caio segura a lanterna e vigia o relógio; o Caio aparece na câmera, então ele é a prova de que a Bia ainda está "do lado de cá". (B SOZINHA): no final ela fica sem ajuda e sem luz.
-
-## Por episódio
-| Nº | Fase | Objetivo | Gancho (cena 0) | Pergunta A/B | Cor |
-|---|---|---|---|---|---|
-| 1 | início | A primeira noite: Bia acha o bilhete, conhece o Caio e a Dona Cida (que não aparece no monitor). Às 3h17 o sininho toca. | Monitor mostrando a porta vazia, enquanto na porta há um homem alto de chapéu: "ELE NÃO APARECE NA CÂMERA" | A) Atender o cliente · B) Seguir a regra e se esconder atrás do balcão | verde fluorescente |
-| 2 | complicação | O Cliente espera no balcão; o relógio para (regra 5), as luzes apagam. No estoque, a Bia acha o celular do Nestor com um último vídeo. Batidas na câmara fria: "Bia… sou eu, o Nestor." | Mão batendo de dentro, porta da câmara fria com gelo: "ALGUÉM BATE LÁ DENTRO" | A) Abrir a câmara fria · B) Obedecer a regra 4 | azul do monitor |
-| 3 | reviravolta | A Bia percebe que a regra 4 tem outra letra. Na segunda noite, a Dona Cida conta do ônibus de 1996 e do "cobrador". | Bilhete em close, a regra 4 tremendo: "ESSA LETRA NÃO É DELE" | A) Contar tudo pro Caio · B) Resolver sozinha | sépia de 1996 |
-| 4 | clímax | Terceira noite: o plano para soltar o Nestor. Às 3h17 o relógio para, o Cliente entra e sabe tudo. | Relógio parado em 3:17 e o sininho: "O RELÓGIO PAROU" | A) Devolver o dinheiro na mão dele · B) Fugir pela porta da frente antes das 6h | vermelho |
-| 5 | final | Final A ou B conforme o voto do ep. 4. | Porta da câmara fria se abrindo em câmera lenta: "QUEM SAI DAQUI?" | — | rosa amanhecer |
-
-## Cenários e mapa (`mundo.json`)
-- `loja` (novo no motor): a loja por dentro: balcão do caixa com registradora e monitor das câmeras (com chiado), geladeiras de vidro, gôndola e a porta de vidro com sininho. Marcas: balcao, caixa, porta, geladeira, fundo, meio, frente.
-- `estoque` (novo no motor): prateleiras de caixas, lâmpada que balança e a porta da câmara fria no fundo. Marcas: camara, meio, frente, prateleira_esq, prateleira_dir.
-- `posto` (pátio com as bombas), `beco` (fundos do posto), `rua`/`rua_amanhecer`/`viaduto` (a rodovia e a curva do viaduto).
-- Planos de detalhe: `relogio` (o relógio da parede), `celular` (o vídeo do Nestor), `macaneta` (a porta da câmara fria), `olho`.
-- Ligações: loja ↔ estoque (porta de vaivém) · loja ↔ pátio (porta de vidro, sininho) · estoque ↔ fundos (porta de serviço) · fundos ↔ pátio (pela lateral) · pátio ↔ rodovia (saída do posto).
-- Começo: Bia na loja, DIA 1 · 22:00, com o bilhete, a lanterna e o celular; o Caio com a mochila (baú).
-- Tempo: a série vai do DIA 1 · 22:00 ao amanhecer do DIA 4. Cada madrugada vira o dia seguinte no contador (3h17 da primeira noite = DIA 2 · 03:17).
+## Regras do turno (a folha do Ivo, colada no caixa)
+1. As luzes nunca se apagam.
+2. Das 3h00 às 3h33, não olhe para reflexos.
+3. Ninguém pede "o de sempre". Se pedirem, a loja está fechada.
+4. A câmara fria fica trancada. Se baterem de dentro, não abra.
+5. Se alguém disser o seu nome antes de ler o crachá, não responda.
+6. O turno acaba quando o sol nasce, não quando o relógio manda.
+7. Nunca saia da loja antes do amanhecer.
 
 ## Regras do universo
-1. Quem não aparece no monitor das câmeras é da noite de 1996 · 2. Aceitar dinheiro (ou troco) de quem não aparece prende você naquela noite · 3. O Cliente só entra às 3h17 e só pode tocar no que é dado a ele · 4. Com o relógio parado, nada lá dentro muda de lugar até ele voltar a andar · 5. Saber o seu nome dá poder a ele: o crachá é perigoso · 6. A loja é segura até as 6h, desde que ninguém saia pela porta da frente · 7. Sem sangue; os sumiços são silenciosos (a pessoa some no nevoeiro ou numa luz)
+1. O Cliente só age das 3h00 às 3h33 no relógio da loja (o relógio pode pular ou voltar minutos) · 2. Ele imita pessoas, mas sempre erra um detalhe: não tem reflexo, não tem sombra ou chama alguém pelo nome sem ler · 3. As câmeras (CFTV) não mentem: mostram o que está mesmo na loja · 4. Ele não toca em quem está sob luz acesa · 5. Celular sem sinal das 3h00 às 3h33; o telefone fixo do balcão sempre funciona · 6. Ninguém de fora vê a loja aberta depois das 3h · 7. Classificação 14+: tensão, perseguição e sustos fortes, sem sangue nem gore
+
+## Finais
+- A — O FUNCIONÁRIO DO MÊS (voto A no ep. 4, religar o gerador): a luz volta às 3h32, o Cliente é empurrado de volta para a câmara fria e o sol nasce. Se o Ivo foi solto no ep. 2, ele assume o turno e Davi vai embora livre ao amanhecer; se não, Davi assina o contrato do Instituto e escreve a regra 8 na folha. Última imagem: a foto dele no quadro "funcionário do mês".
+- B — A LOJA FECHOU (voto B no ep. 4, ficar parado no escuro): Davi não se mexe, o Cliente passa ao lado dele e sai pela porta de vidro. Pela primeira vez o letreiro "24H" apaga. Na rodovia, todas as placas de lojas 24h piscam às 3h33. "A loja fechou. O mundo, não."
+- Ep. 2: abrir a câmara fria → Ivo sai (fraco, congelado) e passa a ajudar, mas o Cliente ganha uma noite a mais de liberdade (o relógio pula para 3h00 mais cedo no ep. 3); ligar para a gerente → Sônia aparece no ep. 3 e o Ivo continua preso.
+- Ep. 3: confiar na Sônia → o Instituto orienta Davi pelo telefone fixo no ep. 4 e 5; confiar no Ivo → o Ivo conta a "regra zero" (que não está na folha) e ela decide o confronto com o duplo no ep. 5.
 
 ## Episódios
-| Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
+| Nº | Noite | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 1–2 | início | planejado | A) Atender o cliente · B) Seguir a regra e se esconder | | |
-| 2 | 2 | complicação | planejado | A) Abrir a câmara fria · B) Obedecer a regra 4 | | |
-| 3 | 2–3 | reviravolta | planejado | A) Contar tudo pro Caio · B) Resolver sozinha | | |
-| 4 | 3–4 | clímax | planejado | A) Devolver o dinheiro na mão dele · B) Fugir pela porta da frente | | |
-| 5 | 4 | final | planejado | — | | |
+| 1 | 1 | início | planejado | A) Atender · B) Dizer que está fechado | | |
+| 2 | 2 | complicação | planejado | A) Abrir a câmara fria · B) Ligar pra gerente | | |
+| 3 | 3 | reviravolta | planejado | A) Confiar na Sônia · B) Confiar no Ivo | | |
+| 4 | 4 | clímax | planejado | A) Religar o gerador · B) Ficar parado no escuro | | |
+| 5 | 5 | final | planejado | — | | |
+
+## Plano por episódio
+- **EP 1 · NOITE 1 · "O DE SEMPRE"** (início, verde) — Objetivo: apresentar Davi, a loja e a folha de regras; o primeiro contato. Davi ri da folha e lê as regras em voz alta. A noite corre normal até o relógio pular de 2h59 para 3h00. A porta faz o bipe duplo sem ninguém. Entra o Bento, simpático, e pede "o de sempre"; na CAM 1, Davi está sozinho no balcão. Gancho de abertura: close no vidro da geladeira, um vulto de chapéu no reflexo e ninguém na frente ("NÃO OLHE / PARA O VIDRO"). Pergunta: A) ATENDER · B) DIZER QUE ESTÁ FECHADO.
+- **EP 2 · NOITE 2 · "TRÊS BATIDAS NO GELO"** (complicação, azul gelo) — Objetivo: consequência do voto e a câmara fria. (A) Bento paga com moedas geladas e diz "boa noite, Davi" antes de olhar o crachá; (B) as luzes piscam e Bento fica parado do lado de fora até 3h33, sorrindo, e some. Na noite 2, batidas de dentro da câmara fria e a voz do Ivo pedindo ajuda; a CAM 4 mostra a câmara vazia, mas o vidro da porta embaça com um rosto. Gancho: mãos pálidas no vidro da porta de aço ("TEM ALGUÉM / LÁ DENTRO"). Pergunta: A) ABRIR A CÂMARA FRIA · B) LIGAR PRA GERENTE.
+- **EP 3 · NOITE 3 · "ARQUIVO 24-0317"** (reviravolta, âmbar) — Objetivo: a verdade sobre a loja. Sônia revela o Instituto, o crachá dela, o arquivo 24-0317 e que o atendente é a contenção. (A no ep. 2) Ivo, solto e congelado, diz que ela mente e que precisa de alguém "lá dentro"; (B no ep. 2) Sônia chega com o contrato e o Ivo bate de novo, mais fraco. Às 3h00, o Cliente aparece pela primeira vez na forma real, no fundo do corredor. Gancho: o crachá de Sônia com a foto do Davi, datado de amanhã ("ELA JÁ / SABIA"). Pergunta: A) CONFIAR NA SÔNIA · B) CONFIAR NO IVO.
+- **EP 4 · NOITE 4 · "DUAS VEZES DAVI"** (clímax, vermelho) — Objetivo: o Cliente imita Davi e apaga a loja. A CAM 1 mostra Davi atrás do caixa, enquanto ele está no depósito. O duplo diz o nome dele com a voz dele. Às 3h10, blecaute: só as geladeiras acesas. O gerador fica no depósito, do outro lado do corredor escuro. Gancho: CFTV com dois Davis ("QUAL DELES / É VOCÊ?"). Pergunta: A) RELIGAR O GERADOR · B) FICAR PARADO NO ESCURO.
+- **EP 5 · NOITE 5 · "AMANHECER"** (final, branco) — Objetivo: fechar o turno e a série conforme os votos (finais A e B acima; o Ivo e a regra zero entram conforme os eps. 2 e 3). Gancho: relógio marcando 3h33 e o sol nascendo pela porta de vidro ("O TURNO / ACABOU?"). Fecha com "FIM".
+
+## Cenários
+- Novos no motor (lofi/scenes_loja.py): `loja` (salão: caixa à esquerda, porta de vidro, geladeiras, relógio digital, monitor; props relogio, vulto, reflexo, flicker, apagado), `deposito` (fundos: caixas, gerador, porta de aço da câmara fria; props batida, rosto, cadeado, gerador, luz), `camara_fria` (por dentro, sem fim; props flicker, tiras), `cftv` (close no monitor com 4 câmeras; props hora, vulto, duplo, ruido, cam).
+- Da biblioteca: `mercado` (corredores das prateleiras), `posto` (bombas e fachada, chuva), `rua` e `carro` (rodovia, só no final B). Detalhes: relogio, macaneta, chave, olho, celular.
 
 ## Resumos
 - EP 1:
@@ -82,4 +71,4 @@ Para soltar alguém, é preciso devolver o dinheiro na mão do Cliente às 3h17,
 |---|---|---|---|
 
 ## Continuidade (onde eles estão)
-- Começo da série: Bia sozinha atrás do balcão da Lua 24H, DIA 1 · 22:00. O bilhete estava colado embaixo da registradora.
+- Início do ep. 1: Davi sozinho no caixa da loja, 22h da Noite 1. O telefone fixo fica no balcão; o rádio da loja não existe (sem rádio nesta série).

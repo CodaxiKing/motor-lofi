@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (30): `apartamento`, `beco`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `estoque`, `floresta`, `hospital`, `igreja`, `janela`, `loja`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `vagao`, `viaduto`
+**Cenários** (32): `apartamento`, `beco`, `camara_fria`, `carro`, `cftv`, `corredor`, `delegacia`, `deposito`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `floresta`, `hospital`, `igreja`, `janela`, `loja`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `vagao`, `viaduto`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
@@ -61,8 +61,10 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **estacionamento:** `fundo`, `meio`, `frente`, `pilar` (escondido atrás do pilar)
 - **vagao:** `porta` (na porta do fundo), `meio`, `frente`, `banco_esq` (perto do banco da esquerda), `banco_dir`
 - **travelling (qualquer cenário com "travelling"):** `esq` (atrás na corrida (quem persegue/segue)), `centro`, `dir` (à frente na corrida), `fundo` (junto à parede/fachada), `frente` (na beira da calçada, perto da câmera)
-- **loja:** `balcao` (atrás do balcão do caixa (aparece da cintura para cima)), `caixa` (cliente na frente do balcão, sendo atendido), `porta` (na porta de vidro, entrando ou saindo (sininho)), `geladeira` (diante das geladeiras de vidro), `fundo` (lá no fundo, diante da gôndola (pequeno)), `meio`, `frente` (perto da câmera, à direita do balcão)
-- **estoque:** `camara` (diante da porta da câmara fria (pequeno, longe)), `meio`, `frente`, `prateleira_esq` (colado na prateleira da esquerda, escondido), `prateleira_dir` (colado na prateleira da direita)
+- **loja:** `caixa` (atrás do balcão do caixa (o balcão tapa da cintura para baixo)), `balcao` (cliente na frente do balcão, à direita dele), `porta` (entrando pela porta de vidro (pequeno, no fundo)), `geladeira` (na frente das geladeiras, à direita), `centro`, `frente` (perto da câmera)
+- **deposito:** `porta_camara` (colado na porta da câmara fria, de costas), `frente_porta` (de frente, diante da porta da câmara fria), `gerador` (ao lado do gerador), `centro`, `frente`
+- **camara_fria:** `fundo` (lá no fundo, perto da porta), `meio`, `frente`
+- **cftv:** 
 
 ## Travelling lateral (o cenário passa)
 
@@ -79,3 +81,4 @@ Em rádio e planos de detalhe, `"hand": "roberta"` desenha o braço com a manga 
 - **chave:** `girando` (segurando a cabeça da chave, acompanha o giro (padrão))
 - **macaneta:** `girando` (na ponta da maçaneta, acompanha o giro (padrão))
 - **celular:** `segurando` (segurando o celular pela borda (padrão)), `dedo` (dedo tocando a tela)
+- **cftv:** `tela` (dedo apontando a tela do monitor (padrão)), `botao` (apertando o botão do monitor)

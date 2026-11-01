@@ -1,20 +1,14 @@
 {
  "lugares": {
-  "loja": {"cenarios": ["loja"], "nota": "Conveniência Lua 24H por dentro: balcão do caixa, geladeiras, gôndolas e a porta de vidro com sininho"},
-  "estoque": {"cenarios": ["estoque"], "nota": "estoque nos fundos, atrás do balcão; no fundo, a porta da câmara fria"},
-  "patio": {"cenarios": ["posto"], "nota": "pátio do Posto Lua, com as bombas e a cobertura vermelha, na frente da loja"},
-  "fundos": {"cenarios": ["beco"], "nota": "fundos do posto: lixeiras e a porta de serviço do estoque"},
-  "rodovia": {"cenarios": ["rua", "rua_amanhecer", "viaduto"], "nota": "a rodovia na frente do posto e o viaduto mais adiante"}
+  "loja": {"cenarios": ["loja", "deposito", "camara_fria", "cftv", "mercado"], "nota": "Conveniência Estrela 24h por dentro: salão com caixa, corredores das prateleiras (mercado), depósito dos fundos com o gerador e a câmara fria"},
+  "posto": {"cenarios": ["posto"], "nota": "área das bombas e fachada da loja, km 317 da rodovia"},
+  "rodovia": {"cenarios": ["rua", "carro"], "nota": "a rodovia escura em frente ao posto (só no final B)"}
  },
  "ligacoes": [
-  ["loja", "estoque", "pela porta de vaivém atrás do balcão"],
-  ["loja", "patio", "pela porta de vidro (o sininho toca)"],
-  ["estoque", "fundos", "pela porta de serviço do estoque"],
-  ["fundos", "patio", "contornando a loja pela lateral"],
-  ["patio", "rodovia", "pela saída do posto"]
+  ["loja", "posto", "pela porta de vidro automática"],
+  ["posto", "rodovia", "pelo acostamento, saindo do posto"]
  ],
- "fim": {
-  "0": {"lugar": "loja", "dia": 1, "hora": "22:00", "inventario": {"bia": ["bilhete", "lanterna", "celular"], "caio": ["mochila"]},
-        "nota": "começo da série: primeira noite da Bia, sozinha no caixa; o bilhete das regras estava colado embaixo da registradora"}
- }
+ "inicio": {"lugar": "loja", "noite": 1, "hora": "22:00", "inventario": {"davi": ["chave"]},
+            "nota": "Davi sozinho no caixa; a chave do cadeado da câmara fria fica com ele"},
+ "fim": {}
 }

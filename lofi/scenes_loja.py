@@ -1,150 +1,317 @@
-"""Cenários da loja de conveniência (série Turno da Noite): a loja por dentro e o estoque com a câmara fria.
-Mesmo padrão de lofi/scenes.py (camadas fundo/meio/frente, chão em perspectiva, luz que pisca)."""
+"""Cenários da loja de conveniência 24h (série Turno da Noite).
+
+    loja         salão visto do corredor: caixa com o balcão à esquerda (frente: esconde quem está atrás dele),
+                 porta de vidro no fundo, geladeiras à direita, relógio digital e monitor das câmeras na parede.
+                 props: relogio ("03:00"), vulto (0–1, silhueta alta na porta de vidro), flicker (0–1),
+                        reflexo (0–1, silhueta parada no vidro da geladeira), apagado (True = só a luz das geladeiras)
+    deposito     fundos da loja: caixas, gerador e a porta de aço da câmara fria.
+                 props: batida (0–1, porta tremendo), rosto (0–1, rosto no vidro da porta), cadeado (True),
+                        gerador (True = ligado), luz (0–1, lâmpada; 0 = breu)
+    camara_fria  câmara fria por dentro: prateleiras de aço, gelo, lâmpada azul, cortina de tiras na frente.
+                 props: flicker (0–1), tiras (True = cortina na frente)
+    cftv         close no monitor das câmeras (4 quadrantes) em cima do balcão.
+                 props: hora ("03:00:00"), vulto (nº da câmera 1–4 ou lista), duplo (True = alguém no caixa na CAM 1),
+                        ruido (0–1), cam (1–4: uma câmera em tela cheia)
+"""
 import math, random
-from PIL import Image, ImageDraw
-from .scenes import Scene, canvas, P, PS, down, S, M, W
-from .core import add_light, font, lerp
+from PIL import Image, ImageDraw, ImageFilter
+from . import partes
+from .core import W, H, grad, add_light, lerp, font
+from .scenes import Scene, M, S, CWX, P, PS, canvas, down
 
 
+def _sombra_alta(img, x, y_pe, alt, a=1.0, col=(8, 8, 12)):
+    """Silhueta alta e magra (o Cliente): chapéu, ombros estreitos, braços longos."""
+    lay = Image.new("L", img.size, 0); d = ImageDraw.Draw(lay); k = alt / 600.0; v = int(255 * a)
+    d.ellipse([x - 34 * k, y_pe - alt, x + 34 * k, y_pe - alt + 80 * k], fill=v)                      # cabeça
+    d.rectangle([x - 60 * k, y_pe - alt - 8 * k, x + 60 * k, y_pe - alt + 6 * k], fill=v)            # aba do chapéu
+    d.rectangle([x - 32 * k, y_pe - alt - 50 * k, x + 32 * k, y_pe - alt], fill=v)
+    d.polygon([(x - 56 * k, y_pe - alt + 110 * k), (x + 56 * k, y_pe - alt + 110 * k),
+               (x + 40 * k, y_pe - 230 * k), (x - 40 * k, y_pe - 230 * k)], fill=v)                   # tronco
+    d.rectangle([x - 18 * k, y_pe - alt + 76 * k, x + 18 * k, y_pe - alt + 116 * k], fill=v)         # pescoço
+    for s in (-1, 1):
+        d.line([(x + s * 54 * k, y_pe - alt + 118 * k), (x + s * 70 * k, y_pe - 160 * k)], fill=v, width=int(22 * k) + 1)
+        d.line([(x + s * 18 * k, y_pe - 240 * k), (x + s * 26 * k, y_pe)], fill=v, width=int(30 * k) + 1)
+    img.paste(col, (0, 0), lay.filter(ImageFilter.GaussianBlur(3)))
+
+
+# ======================= LOJA (salão com caixa) =======================
 class Loja(Scene):
-    """Loja de conveniência 24h por dentro, de madrugada: geladeiras de vidro à esquerda, porta de vidro com sininho
-    à direita (lá fora, o pátio do posto), gôndola no fundo e o balcão do caixa na frente, à esquerda, com a
-    registradora e o monitor das câmeras. Quem fica na marca `balcao` aparece atrás do balcão (da cintura para cima)."""
-    name = "loja"; acoustic = "media"; light = "dark"; grade = "frio"
-    ground = (1130, 1900, 0.5, 1.5); amb = "zumbido"
+    name = "loja"; acoustic = "media"; light = "night"; grade = "frio"; amb = "zumbido"
+    ground = (1180, 1900, 0.5, 1.45)
     def build(self):
-        back = canvas((22, 26, 30)); d = ImageDraw.Draw(back); r = random.Random(17)
-        # paredes, teto e piso (ponto de fuga no centro)
-        d.rectangle(PS((-M, 0), (W + M, 1920)), fill=(72, 80, 78))
-        d.polygon(PS((-M, 0), (W + M, 0), (760, 640), (320, 640)), fill=(110, 116, 112))
-        d.polygon(PS((-M, 1920), (W + M, 1920), (760, 1130), (320, 1130)), fill=(96, 100, 94))
-        for i in range(-12, 14):                                                   # piso quadriculado
-            d.line(PS((540 + i * 18, 1130), (540 + i * 150, 1920)), fill=(104, 108, 100), width=2 * S)
-        for k in range(11):
-            y = 1130 + (k / 11) ** 1.7 * 790; d.line(PS((-M, y), (W + M, y)), fill=(104, 108, 100), width=2 * S)
-        d.polygon(PS((-M, 0), (320, 640), (320, 1130), (-M, 1920)), fill=(84, 92, 92))                  # parede esq.
-        d.polygon(PS((W + M, 0), (760, 640), (760, 1130), (W + M, 1920)), fill=(80, 86, 90))            # parede dir.
-        d.rectangle(PS((320, 640), (760, 1130)), fill=(70, 76, 74))                                     # fundo
-        # gôndola do fundo com produtos
-        d.rectangle(PS((340, 760), (740, 1130)), fill=(50, 54, 60))
-        for j in range(5):
-            y = 790 + j * 66; d.rectangle(PS((340, y + 50), (740, y + 58)), fill=(110, 114, 120))
-            x = 350
-            while x < 730:
-                w = r.randint(14, 30); h = r.randint(26, 48)
-                if r.random() < 0.85:
-                    d.rectangle(PS((x, y + 50 - h), (x + w, y + 50)), fill=r.choice(
-                        [(200, 60, 50), (230, 190, 60), (60, 140, 200), (90, 170, 90), (230, 230, 230), (230, 120, 40)]))
-                x += w + 3
-        d.rectangle(PS((380, 666), (700, 736)), fill=(40, 70, 150))                                     # placa
-        d.text(P(404, 670), "LUA 24H", font=font("title", 56 * S), fill=(255, 230, 120))
-        # geladeiras de vidro (parede esquerda), portas com luz fria
+        r = random.Random(24)
+        back = canvas((40, 44, 44)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 300)), fill=(30, 32, 34))                                    # forro
+        d.rectangle(PS((-M, 300), (W + M, 1180)), fill=(112, 122, 112))                              # parede
+        d.rectangle(PS((-M, 1080), (W + M, 1180)), fill=(84, 92, 84))                             # rodapé
+        # piso xadrez em perspectiva
+        d.rectangle(PS((-M, 1180), (W + M, 1920)), fill=(140, 144, 136))
+        lin = [1180 + (k / 14) ** 1.8 * 740 for k in range(15)]
+        for i in range(14):
+            for j in range(-14, 15):
+                if (i + j) % 2: continue
+                def X(jj, yy): return 540 + jj * lerp(46, 150, (yy - 1180) / 740)
+                y0, y1 = lin[i], lin[i + 1]
+                d.polygon(PS((X(j, y0), y0), (X(j + 1, y0), y0), (X(j + 1, y1), y1), (X(j, y1), y1)), fill=(100, 104, 98))
+        # prateleira de cigarros atrás do caixa
+        d.rectangle(PS((20, 640), (440, 1080)), fill=(70, 50, 40))
+        for row in range(6):
+            for col in range(9):
+                c = r.choice([(210, 60, 50), (230, 230, 225), (60, 90, 170), (220, 180, 60), (40, 40, 44)])
+                x = 36 + col * 45; y = 660 + row * 68
+                d.rectangle(PS((x, y), (x + 34, y + 50)), fill=c)
+        # porta de vidro no fundo (fora: escuro, bombas e o letreiro)
+        d.rectangle(PS((480, 600), (780, 1170)), fill=(60, 64, 66))
+        out = grad(280 * S, 550 * S, (8, 10, 22), (26, 18, 30))
+        back.paste(out, P(490, 610))
+        d.rectangle(PS((490, 1000), (770, 1160)), fill=(28, 28, 32))
+        for x in (560, 700):
+            d.rounded_rectangle(PS((x - 26, 900), (x + 26, 1010)), 6 * S, fill=(150, 34, 34))
+        d.rectangle(PS((490, 840), (770, 858)), fill=(200, 40, 40)); d.rectangle(PS((490, 858), (770, 866)), fill=(220, 220, 220))
+        d.line(PS((630, 610), (630, 1160)), fill=(60, 64, 66), width=10 * S)
+        d.text(P(500, 630), "ABERTO 24H", font=font("mono", 30 * S), fill=(255, 90, 70))
+        # geladeiras na parede da direita (perspectiva)
         for k in range(4):
             f0, f1 = k / 4, (k + 1) / 4
-            xa, xb = lerp(320, -60, f0 ** 1.25), lerp(320, -60, f1 ** 1.25)
-            ta, tb = lerp(700, 260, f0 ** 1.2), lerp(700, 260, f1 ** 1.2)
-            ba, bb = lerp(1120, 1560, f0 ** 1.2), lerp(1120, 1560, f1 ** 1.2)
-            d.polygon(PS((xa, ta), (xb, tb), (xb, bb), (xa, ba)), fill=(104, 150, 172), outline=(40, 46, 52))
-            for j in range(1, 5):
-                u = j / 5; d.line(PS((xa, lerp(ta, ba, u)), (xb, lerp(tb, bb, u))), fill=(90, 120, 150), width=3 * S)
-                for q in range(3):
-                    v = (q + 0.5) / 3; x = lerp(xa, xb, v); y = lerp(lerp(ta, ba, u), lerp(tb, bb, u), v)
-                    h = lerp(18, 50, f1); d.rectangle(PS((x - h * 0.2, y - h), (x + h * 0.2, y)), fill=r.choice(
-                        [(200, 50, 50), (60, 160, 90), (240, 200, 60), (60, 90, 200)]))
-            d.line(PS((xb + 8, lerp(tb, bb, 0.45)), (xb + 8, lerp(tb, bb, 0.6))), fill=(200, 200, 210), width=5 * S)
-        back = add_light(back, PS((-120, 240), (330, 1560)), (90, 150, 200), 70 * S, 70)
-        # porta de vidro (parede direita): lá fora, o pátio do posto de noite
-        d = ImageDraw.Draw(back)
-        d.polygon(PS((800, 690), (1010, 470), (1010, 1430), (800, 1180)), fill=(10, 14, 28), outline=(150, 156, 160))
-        d.line(PS((905, 580), (905, 1305)), fill=(150, 156, 160), width=5 * S)
-        d.polygon(PS((812, 880), (998, 760), (998, 790), (812, 900)), fill=(200, 40, 40))                # cobertura do posto
-        for x in (850, 960): d.rectangle(PS((x - 14, 1000), (x + 14, 1140)), fill=(190, 40, 40))         # bombas
-        d.text(P(830, 640), "ABERTO", font=font("title", 30 * S), fill=(120, 255, 160))
-        d.ellipse(PS((786, 640), (814, 668)), fill=(220, 190, 80))                                       # sininho
-        d.line(PS((800, 610), (800, 642)), fill=(120, 120, 120), width=3 * S)
-        # luminárias
-        for k in range(4):
-            y = 120 + k * 150; w = 360 - k * 70
-            d.rectangle(PS((540 - w / 2, y), (540 + w / 2, y + 14)), fill=(235, 245, 250))
-        back = add_light(back, PS((240, 80), (840, 1250)), (70, 80, 80), 80 * S, 100)
-        # balcão do caixa na frente (esquerda): registradora e monitor das câmeras
-        front = canvas(alpha=True); f = ImageDraw.Draw(front)
-        f.polygon(PS((-M, 1580), (430, 1540), (470, 1600), (470, 1920), (-M, 1920)), fill=(150, 46, 40, 255))
-        f.polygon(PS((-M, 1550), (420, 1512), (470, 1540), (470, 1600), (-M, 1600)), fill=(196, 190, 176, 255))
-        f.rectangle(PS((-M, 1650), (470, 1680)), fill=(230, 200, 60, 255))                            # faixa amarela
-        f.rounded_rectangle(PS((250, 1420), (420, 1530)), 10 * S, fill=(40, 42, 48, 255))              # registradora
-        f.rectangle(PS((270, 1436), (400, 1476)), fill=(70, 200, 120, 255))
-        f.rounded_rectangle(PS((20, 1360), (210, 1520)), 10 * S, fill=(24, 24, 28, 255))               # monitor CFTV
-        f.rectangle(PS((36, 1376), (194, 1494)), fill=(60, 74, 70, 255))
-        for gx in (36, 115):
-            for gy in (1376, 1435): f.rectangle(PS((gx, gy), (gx + 78, gy + 58)), outline=(20, 24, 22, 255), width=2 * S)
-        f.text(P(40, 1378), "CAM", font=font("title", 18 * S), fill=(230, 240, 230, 255))
-        return down(back), None, down(front)
+            xa, xb = lerp(800, 1190, f0 ** 1.3), lerp(800, 1190, f1 ** 1.3)
+            ta, tb = lerp(560, 120, f0 ** 1.2), lerp(560, 120, f1 ** 1.2)
+            ba, bb = lerp(1190, 1720, f0 ** 1.3), lerp(1190, 1720, f1 ** 1.3)
+            d.polygon(PS((xa, ta), (xb, tb), (xb, bb), (xa, ba)), fill=(30, 40, 44))
+            g = 10
+            d.polygon(PS((xa + g, ta + g), (xb - g, tb + g), (xb - g, bb - g), (xa + g, ba - g)), fill=(120, 170, 180))
+            for j in range(4):
+                ya, yb = lerp(ta, ba, (j + 1) / 5), lerp(tb, bb, (j + 1) / 5)
+                d.line(PS((xa + g, ya), (xb - g, yb)), fill=(60, 80, 86), width=4 * S)
+                for q in range(5):
+                    u = (q + 0.3) / 5; x = lerp(xa, xb, u); y = lerp(ya, yb, u); h = lerp(30, 90, f0)
+                    c = r.choice([(220, 60, 50), (240, 200, 60), (70, 160, 90), (240, 240, 240), (60, 100, 200)])
+                    d.rectangle(PS((x - h * 0.15, y - h), (x + h * 0.15, y)), fill=c)
+        # relógio digital e monitor das câmeras na parede
+        d.rounded_rectangle(PS((520, 470), (740, 560)), 8 * S, fill=(18, 18, 20))
+        d.rounded_rectangle(PS((300, 400), (460, 520)), 6 * S, fill=(200, 196, 180))
+        d.rectangle(PS((314, 412), (446, 506)), fill=(20, 30, 30))
+        back = add_light(back, PS((-200, 300), (1300, 1500)), (170, 200, 190), 120 * S, 45)
+        back = down(back)
+        # balcão do caixa (frente: tapa as pernas de quem está atrás)
+        front = canvas(alpha=True); d = ImageDraw.Draw(front)
+        d.polygon(PS((-M, 1330), (470, 1330), (470, 1358), (-M, 1358)), fill=(214, 210, 200, 255))      # tampo
+        d.rectangle(PS((-M, 1358), (460, 1560)), fill=(160, 36, 36, 255))                               # frente vermelha
+        d.rectangle(PS((-M, 1540), (460, 1560)), fill=(80, 18, 18, 255))
+        d.rectangle(PS((300, 1262), (420, 1332)), fill=(40, 40, 44, 255))                               # caixa registradora
+        d.rectangle(PS((314, 1272), (406, 1300)), fill=(80, 200, 120, 255))
+        d.rectangle(PS((60, 1306), (136, 1332)), fill=(60, 60, 64, 255))                               # maquininha
+        d.rectangle(PS((60, 1384), (196, 1528)), fill=(236, 232, 214, 255))                             # folha das regras
+        d.text(P(72, 1392), "REGRAS", font=font("mono", 26 * S), fill=(30, 30, 30, 255))
+        for k in range(8): d.line(PS((72, 1436 + k * 11), (182 - (k % 3) * 18, 1436 + k * 11)), fill=(70, 70, 70, 255), width=2 * S)
+        d.line(PS((80, 1380), (110, 1390)), fill=(200, 200, 160, 255), width=8 * S)                    # durex
+        return back, None, down(front)
     def dynamic(self, img, t, camx, props):
-        on = random.Random(int(t * 9) * 23 + 5).random() > props.get("flicker", 0.1)
-        if not on: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.55))
+        d = ImageDraw.Draw(img); dx = camx * self.depths[0]
+        apagado = props.get("apagado", False)
+        on = (not apagado) and random.Random(int(t * 9) * 31 + 5).random() > props.get("flicker", 0.04)
         props["_lamp_on"] = on
-        # chiado no monitor das câmeras (acompanha a frente)
-        off = int(M - camx * self.depths[2]); off = max(0, min(2 * M, off))
-        x0, x1 = 36 + M - off + 4, 194 + M - off - 4
-        if x1 > 0 and x0 < W:
-            rr = random.Random(int(t * 24)); d = ImageDraw.Draw(img)
-            for _ in range(40):
-                x = rr.uniform(x0, x1); y = rr.uniform(1380, 1490); c = rr.randint(60, 200)
-                d.line([(x, y), (x + rr.uniform(4, 18), y)], fill=(c, c + 10, c))
+        for k in range(3):                                                                           # lâmpadas tubulares
+            y = 120 + k * 70; w = 520 - k * 120
+            d.rectangle([540 - w / 2 + dx, y, 540 + w / 2 + dx, y + 16], fill=(235, 250, 240) if on else (70, 74, 72))
+        hora = str(props.get("relogio", "03:00"))
+        d.text((540 + dx, 482), hora, font=font("mono", 64), fill=(255, 50, 40))
+        if props.get("vulto", 0):                                                                    # silhueta na porta
+            _sombra_alta(img, 630 + dx, 1160, 520, a=min(1.0, float(props["vulto"])))
+        if props.get("reflexo", 0):                                                                  # alguém no vidro da geladeira
+            lay = Image.new("RGB", img.size, (0, 0, 0)); _sombra_alta(lay, 900 + dx * 1.2, 1300, 560, col=(200, 230, 235))
+            m = lay.convert("L").point(lambda v: int(v * 0.45 * float(props["reflexo"])))
+            img.paste((10, 14, 16), (0, 0), m)
+        cam = (314 + dx, 412, 446 + dx, 506)                                                         # monitor da parede
+        n = random.Random(int(t * 12))
+        for q in range(4):
+            qx = cam[0] + (q % 2) * 66; qy = cam[1] + (q // 2) * 47
+            d.rectangle([qx + 2, qy + 2, qx + 64, qy + 45], fill=(40 + n.randint(0, 20), 60 + n.randint(0, 20), 56))
+        if not on:
+            img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.78 if apagado else 0.6))
+            if apagado:                                                                              # só as geladeiras acesas
+                img.paste(add_light(img, (760 + dx, 200, 1080, 1700), (90, 170, 190), 70, 110))
 
 
-class Estoque(Scene):
-    """Estoque nos fundos da loja: prateleiras de metal com caixas dos dois lados, uma lâmpada pendurada que balança
-    e, no fundo, a porta de aço da câmara fria com gelo nas frestas."""
-    name = "estoque"; acoustic = "sala"; light = "dark"; grade = "frio"
-    ground = (1200, 1900, 0.55, 1.5); amb = "zumbido"
+# ======================= DEPÓSITO (fundos + porta da câmara fria) =======================
+class Deposito(Scene):
+    name = "deposito"; acoustic = "sala"; light = "warm"; grade = "quente"; amb = "zumbido"
+    ground = (1260, 1900, 0.55, 1.4)
     def build(self):
-        back = canvas((14, 16, 18)); d = ImageDraw.Draw(back); r = random.Random(29)
-        d.rectangle(PS((-M, 0), (W + M, 1920)), fill=(58, 60, 62))
-        d.polygon(PS((-M, 1920), (W + M, 1920), (720, 1200), (360, 1200)), fill=(66, 66, 64))
+        r = random.Random(7)
+        back = canvas((30, 28, 26)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 1260)), fill=(96, 92, 84))                                  # parede de concreto
+        for _ in range(140):
+            x, y = r.uniform(-M, W + M), r.uniform(0, 1250)
+            d.ellipse(PS((x, y), (x + 6, y + 6)), fill=(86, 82, 76))
+        d.rectangle(PS((-M, 1260), (W + M, 1920)), fill=(70, 68, 64))                               # chão
         for k in range(10):
-            y = 1200 + (k / 10) ** 1.7 * 720; d.line(PS((-M, y), (W + M, y)), fill=(56, 56, 54), width=2 * S)
-        d.polygon(PS((-M, 0), (W + M, 0), (720, 560), (360, 560)), fill=(40, 42, 44))
-        d.rectangle(PS((360, 560), (720, 1200)), fill=(70, 72, 74))
-        # porta da câmara fria
-        d.rectangle(PS((400, 640), (680, 1200)), fill=(150, 160, 168), outline=(90, 96, 102), width=6 * S)
-        for y in range(700, 1180, 60): d.line(PS((410, y), (670, y)), fill=(130, 140, 148), width=2 * S)
-        d.rounded_rectangle(PS((620, 880), (660, 1000)), 8 * S, fill=(60, 64, 70))
-        d.rectangle(PS((420, 600), (660, 634)), fill=(40, 90, 160))
-        d.text(P(436, 600), "CÂMARA FRIA", font=font("title", 28 * S), fill=(230, 240, 255))
-        for x in range(404, 680, 18): d.polygon(PS((x, 1196), (x + 9, 1196), (x + 4, 1180)), fill=(220, 236, 250))
-        back = add_light(back, PS((380, 1150), (700, 1260)), (150, 200, 240), 30 * S, 90)
-        # prateleiras com caixas dos dois lados
-        mid = canvas(alpha=True); md = ImageDraw.Draw(mid)
-        for side in (-1, 1):
-            for k in range(4):
-                f0, f1 = k / 4, (k + 1) / 4
-                xa = lerp(540 + side * 190, 540 + side * 760, f0 ** 1.4); xb = lerp(540 + side * 190, 540 + side * 760, f1 ** 1.4)
-                ta, tb = lerp(600, 120, f0 ** 1.2), lerp(600, 120, f1 ** 1.2); ba, bb = lerp(1200, 1880, f0 ** 1.4), lerp(1200, 1880, f1 ** 1.4)
-                for j in range(5):
-                    u = j / 4.6; ya, yb = lerp(ta, ba, u), lerp(tb, bb, u)
-                    md.line(PS((xa, ya), (xb, yb)), fill=(120, 126, 132, 255), width=max(2, int(lerp(3, 9, f1))) * S)
-                    if j < 4:
-                        for q in range(2):
-                            v0, v1 = 0.1 + q * 0.45, 0.45 + q * 0.45
-                            hh = lerp(30, 120, f1) * r.uniform(0.6, 1.0)
-                            pa = (lerp(xa, xb, v0), lerp(ya, yb, v0)); pb = (lerp(xa, xb, v1), lerp(ya, yb, v1))
-                            md.polygon(PS((pa[0], pa[1] - 3), (pb[0], pb[1] - 3), (pb[0], pb[1] - hh), (pa[0], pa[1] - hh)),
-                                       fill=r.choice([(160, 120, 70, 255), (176, 134, 82, 255), (140, 104, 60, 255)]))
-                for x, ta_, ba_ in ((xa, ta, ba), (xb, tb, bb)):
-                    md.line(PS((x, ta_), (x, ba_)), fill=(90, 94, 100, 255), width=max(2, int(lerp(3, 10, f1))) * S)
-        return down(back), down(mid), None
+            y = 1260 + (k / 10) ** 1.7 * 660; d.line(PS((-M, y), (W + M, y)), fill=(62, 60, 56), width=2 * S)
+        # pilhas de caixas à esquerda
+        for (x, y, w, h) in ((-60, 1000, 200, 270), (140, 1060, 170, 210), (-40, 760, 180, 240), (160, 880, 140, 180)):
+            d.rectangle(PS((x, y), (x + w, y + h)), fill=(170, 130, 84)); d.rectangle(PS((x, y), (x + w, y + h)), outline=(120, 90, 56), width=4 * S)
+            d.line(PS((x + w / 2, y), (x + w / 2, y + h)), fill=(200, 180, 130), width=10 * S)
+        # gerador
+        d.rounded_rectangle(PS((330, 1060), (500, 1270)), 10 * S, fill=(200, 160, 40))
+        d.rectangle(PS((350, 1090), (480, 1140)), fill=(40, 40, 40)); d.text(P(356, 1094), "GERADOR", font=font("mono", 22 * S), fill=(240, 220, 120))
+        d.line(PS((470, 1180), (470, 1230)), fill=(30, 30, 30), width=10 * S)
+        # placa da câmara fria
+        d.rectangle(PS((560, 640), (880, 720)), fill=(230, 220, 60))
+        d.text(P(574, 650), "CÂMARA FRIA", font=font("title", 40 * S), fill=(30, 30, 30))
+        d.text(P(612, 698), "NÃO ABRIR", font=font("mono", 18 * S), fill=(160, 20, 20))
+        # cano e fios
+        d.line(PS((-M, 260), (W + M, 260)), fill=(60, 58, 54), width=24 * S)
+        d.line(PS((420, 260), (420, 1060)), fill=(30, 30, 30), width=6 * S)
+        return down(back), None, None
     def dynamic(self, img, t, camx, props):
-        # lâmpada pendurada balançando: o círculo de luz anda de um lado para o outro
-        a = math.sin(t * props.get("swing", 1.6)) * 60
-        x = 540 + a; d = ImageDraw.Draw(img)
-        d.line([(540, 0), (x, 300)], fill=(20, 20, 20), width=3)
-        d.ellipse([x - 16, 296, x + 16, 330], fill=(255, 236, 180))
-        img.paste(add_light(img, (x - 520, 200, x + 520, 1600), (90, 80, 60), 160, 90))
-        if random.Random(int(t * 8) * 31).random() < props.get("flicker", 0.08):
-            img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.65)); props["_lamp_on"] = False
-        else: props["_lamp_on"] = True
+        dx = camx * self.depths[0]; d = ImageDraw.Draw(img)
+        bat = float(props.get("batida", 0) or 0)
+        tr = (math.sin(t * 70) * 6 * bat) if bat and (t * 2.2) % 1 < 0.35 else 0
+        x0, x1 = 570 + dx + tr, 870 + dx + tr
+        d.rectangle([x0 - 16, 744, x1 + 16, 1280], fill=(60, 64, 70))                              # batente
+        d.rectangle([x0, 760, x1, 1270], fill=(176, 184, 190))                                      # porta de aço
+        for k in range(5): d.line([(x0 + 10, 800 + k * 100), (x1 - 10, 800 + k * 100)], fill=(150, 158, 164), width=3)
+        jan = [x0 + 100, 820, x0 + 200, 930]
+        d.rectangle(jan, fill=(150, 196, 210), outline=(80, 86, 92), width=5)                       # vidro embaçado
+        if props.get("rosto", 0):
+            a = float(props["rosto"]); lay = Image.new("L", img.size, 0); dl = ImageDraw.Draw(lay)
+            dl.ellipse([jan[0] + 22, jan[1] + 14, jan[2] - 22, jan[3] - 4], fill=int(200 * a))
+            img.paste((214, 226, 230), (0, 0), lay.filter(ImageFilter.GaussianBlur(6))); d = ImageDraw.Draw(img)
+            for ex in (jan[0] + 38, jan[2] - 46):
+                d.ellipse([ex, jan[1] + 44, ex + 8, jan[1] + 52], fill=(30, 40, 50))
+            for hx in (jan[0] + 8, jan[2] - 22):                                                     # mãos no vidro
+                d.ellipse([hx, jan[3] - 30, hx + 16, jan[3] - 6], fill=(200, 214, 220))
+        d.rectangle([x1 - 60, 1010, x1 - 20, 1040], fill=(60, 60, 64))                              # maçaneta
+        if props.get("cadeado", True):
+            d.arc([x1 - 66, 1032, x1 - 30, 1070], 180, 360, fill=(140, 140, 140), width=6)
+            d.rounded_rectangle([x1 - 72, 1050, x1 - 24, 1100], 6, fill=(200, 170, 60))
+        # lâmpada pendurada
+        luz = float(props.get("luz", 1.0)); ger = props.get("gerador", True)
+        on = luz > 0 and random.Random(int(t * 7) * 13).random() > props.get("flicker", 0.05)
+        props["_lamp_on"] = on
+        d.line([(540 + dx, 270), (540 + dx, 380)], fill=(20, 20, 20), width=4)
+        d.ellipse([520 + dx, 378, 560 + dx, 420], fill=(255, 230, 160) if on else (60, 56, 50))
+        if on: img.paste(add_light(img, (140 + dx, 300, 940 + dx, 1500), (255, 210, 140), 90, int(70 * luz)))
+        d = ImageDraw.Draw(img)
+        d.ellipse([440 + dx, 1100, 456 + dx, 1116], fill=(80, 230, 90) if ger else (230, 50, 40))   # LED do gerador
+        if not on: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.72))
 
 
-CENAS = (Loja, Estoque)
+# ======================= CÂMARA FRIA (por dentro) =======================
+class CamaraFria(Scene):
+    name = "camara_fria"; acoustic = "abafado"; light = "dark"; grade = "frio"; amb = "zumbido"
+    ground = (1220, 1900, 0.55, 1.4)
+    fog_cfg = dict(y=1500, height=420, alpha=0.5, col=(190, 220, 235), speed=8)
+    def build(self):
+        r = random.Random(11)
+        back = canvas((40, 56, 70)); d = ImageDraw.Draw(back)
+        d.polygon(PS((-M, 0), (W + M, 0), (680, 520), (400, 520)), fill=(60, 80, 96))                # teto
+        d.rectangle(PS((400, 520), (680, 1220)), fill=(110, 140, 158))                               # parede do fundo
+        d.polygon(PS((-M, 1920), (W + M, 1920), (680, 1220), (400, 1220)), fill=(96, 110, 120))       # chão de chapa
+        for k in range(12):
+            y = 1220 + (k / 12) ** 1.7 * 700; xa = lerp(400, -M, (y - 1220) / 700); xb = lerp(680, W + M, (y - 1220) / 700)
+            d.line(PS((xa, y), (xb, y)), fill=(84, 98, 108), width=2 * S)
+        for side in (-1, 1):                                                                         # prateleiras de aço
+            for k in range(5):
+                f0, f1 = k / 5, (k + 1) / 5
+                xa = lerp(540 + side * 140, 540 + side * 760, f0 ** 1.4); xb = lerp(540 + side * 140, 540 + side * 760, f1 ** 1.4)
+                ta, tb = lerp(560, 0, f0 ** 1.2), lerp(560, 0, f1 ** 1.2); ba, bb = lerp(1210, 1900, f0 ** 1.4), lerp(1210, 1900, f1 ** 1.4)
+                d.polygon(PS((xa, ta), (xb, tb), (xb, bb), (xa, ba)), fill=(54, 70, 82))
+                for j in range(4):
+                    ya, yb = lerp(ta, ba, (j + 1) / 5), lerp(tb, bb, (j + 1) / 5)
+                    d.line(PS((xa, ya), (xb, yb)), fill=(170, 186, 196), width=max(2, int(lerp(2, 9, f1))) * S)
+                    for q in range(3):
+                        u = (q + r.random() * 0.4) / 3; x = lerp(xa, xb, u); y = lerp(ya, yb, u); h = lerp(16, 80, f0)
+                        c = r.choice([(170, 130, 84), (200, 200, 196), (150, 120, 80), (110, 150, 170)])
+                        d.rectangle(PS((min(x, x + side * h), y - h * 0.8), (max(x, x + side * h), y)), fill=c)
+        for _ in range(260):                                                                         # gelo
+            x, y = r.uniform(-M, W + M), r.uniform(0, 1900)
+            d.ellipse(PS((x, y), (x + 4, y + 4)), fill=(220, 236, 244))
+        d.rectangle(PS((470, 680), (610, 1220)), fill=(150, 176, 190))                               # porta lá no fundo
+        d.rectangle(PS((510, 740), (570, 820)), fill=(255, 236, 180))
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        dx = camx * self.depths[0]; d = ImageDraw.Draw(img)
+        on = random.Random(int(t * 8) * 7 + 1).random() > props.get("flicker", 0.08)
+        props["_lamp_on"] = on
+        d.rectangle([515 + dx, 560, 565 + dx, 600], outline=(30, 30, 30), width=4)
+        d.ellipse([522 + dx, 566, 558 + dx, 596], fill=(170, 220, 255) if on else (40, 50, 60))
+        if on: img.paste(add_light(img, (140 + dx, 400, 940 + dx, 1600), (140, 200, 255), 110, 80))
+        else: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.65))
+    def render_front(self, img, t, camx, props, flashes):
+        img = super().render_front(img, t, camx, props, flashes)
+        if props.get("tiras", False):                                                                # cortina de tiras plásticas
+            lay = Image.new("L", img.size, 0); d = ImageDraw.Draw(lay)
+            for k in range(9):
+                x = 20 + k * 124 + math.sin(t * 1.4 + k) * 6 - camx * 1.3
+                d.rectangle([x, 0, x + 100, H], fill=60)
+                d.line([(x + 8, 0), (x + 8, H)], fill=140, width=3)
+            img.paste((210, 230, 240), (0, 0), lay)
+        return img
+
+
+# ======================= CFTV (close no monitor) =======================
+class Cftv(Scene):
+    name = "cftv"; acoustic = "sala"; light = "tv"; grade = "frio"; amb = "zumbido"
+    ground = (1500, 1900, 1.0, 1.0)
+    def build(self):
+        back = canvas((14, 16, 18)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 1500), (W + M, 1920)), fill=(150, 36, 36))                               # balcão
+        d.rectangle(PS((-M, 1480), (W + M, 1510)), fill=(214, 210, 200))
+        d.rounded_rectangle(PS((70, 360), (1010, 1420)), 50 * S, fill=(196, 190, 170))                 # gabinete
+        d.rounded_rectangle(PS((70, 360), (1010, 1420)), 50 * S, outline=(120, 116, 104), width=8 * S)
+        d.rectangle(PS((380, 1420), (700, 1490)), fill=(150, 146, 130))
+        d.ellipse(PS((900, 1330), (940, 1370)), fill=(60, 60, 60))
+        return down(back), None, None
+    def _quadro(self, d, box, cam, t):
+        x0, y0, x1, y1 = box; w, h = x1 - x0, y1 - y0; c = (150, 170, 160)
+        def L(a, b, cc=c, wd=3): d.line([(x0 + a[0] * w, y0 + a[1] * h), (x0 + b[0] * w, y0 + b[1] * h)], fill=cc, width=wd)
+        if cam == 1:   # caixa
+            d.rectangle([x0 + 0.05 * w, y0 + 0.62 * h, x0 + 0.7 * w, y0 + 0.78 * h], outline=c, width=3)
+            L((0.6, 0.15), (0.95, 0.15)); L((0.6, 0.15), (0.6, 0.6))
+        elif cam == 2:  # corredor
+            L((0.0, 1.0), (0.4, 0.35)); L((1.0, 1.0), (0.6, 0.35)); L((0.4, 0.35), (0.6, 0.35))
+            for k in range(4): L((0.1 + k * 0.06, 0.85 - k * 0.12), (0.9 - k * 0.06, 0.85 - k * 0.12), (110, 126, 120), 2)
+        elif cam == 3:  # bombas
+            for xx in (0.3, 0.7): d.rectangle([x0 + (xx - 0.06) * w, y0 + 0.45 * h, x0 + (xx + 0.06) * w, y0 + 0.8 * h], outline=c, width=3)
+            L((0.0, 0.3), (1.0, 0.3)); L((0.0, 0.85), (1.0, 0.85))
+        else:           # câmara fria
+            L((0.1, 1.0), (0.38, 0.2)); L((0.9, 1.0), (0.62, 0.2))
+            d.rectangle([x0 + 0.42 * w, y0 + 0.2 * h, x0 + 0.58 * w, y0 + 0.6 * h], outline=c, width=3)
+        nomes = {1: "CAM1 CAIXA", 2: "CAM2 CORREDOR", 3: "CAM3 BOMBAS", 4: "CAM4 CAMARA FRIA"}
+        d.text((x0 + 10, y0 + 8), nomes[cam], font=font("mono", 22 if w < 500 else 34), fill=(230, 240, 230))
+    def dynamic(self, img, t, camx, props):
+        d = ImageDraw.Draw(img); tela = (130, 420, 950, 1250)
+        d.rectangle(tela, fill=(18, 26, 24))
+        so = props.get("cam"); vul = props.get("vulto", [])
+        vul = [vul] if isinstance(vul, int) and vul else (vul or [])
+        boxes = {so: tela} if so else {1: (130, 420, 538, 833), 2: (542, 420, 950, 833), 3: (130, 837, 538, 1250), 4: (542, 837, 950, 1250)}
+        for cam, b in boxes.items():
+            self._quadro(d, b, cam, t)
+            bw, bh = b[2] - b[0], b[3] - b[1]
+            if cam in vul: _sombra_alta(img, b[0] + bw * 0.5, b[1] + bh * 0.92, bh * 0.8, col=(6, 8, 8))
+            if cam == 1 and props.get("duplo"):                                                      # alguém atrás do caixa
+                lay = Image.new("L", img.size, 0); dl = ImageDraw.Draw(lay); cx, cy = b[0] + bw * 0.38, b[1] + bh * 0.62
+                dl.ellipse([cx - bh * 0.06, cy - bh * 0.34, cx + bh * 0.06, cy - bh * 0.2], fill=255)
+                dl.rectangle([cx - bh * 0.09, cy - bh * 0.37, cx + bh * 0.09, cy - bh * 0.33], fill=255)      # boné
+                dl.rectangle([cx - bh * 0.1, cy - bh * 0.2, cx + bh * 0.1, cy], fill=255)
+                img.paste((10, 12, 12), (0, 0), lay.filter(ImageFilter.GaussianBlur(2)))
+        d = ImageDraw.Draw(img)
+        r = random.Random(int(t * 15)); rz = float(props.get("ruido", 0.15))
+        for y in range(tela[1], tela[3], 4): d.line([(tela[0], y), (tela[2], y)], fill=(10, 16, 14), width=1)   # linhas da tela
+        for _ in range(int(600 * rz)):
+            x, y = r.uniform(tela[0], tela[2]), r.uniform(tela[1], tela[3]); v = r.randint(80, 220)
+            d.rectangle([x, y, x + 3, y + 2], fill=(v, v, v))
+        if rz > 0.5 and r.random() < rz - 0.4:                                                       # faixa de interferência
+            y = r.uniform(tela[1], tela[3] - 60); d.rectangle([tela[0], y, tela[2], y + 40], fill=(200, 210, 205))
+        d.line([(130, 837 - 2), (950, 837 - 2)], fill=(0, 0, 0), width=4) if not so else None
+        d.line([(540, 420), (540, 1250)], fill=(0, 0, 0), width=4) if not so else None
+        if int(t * 2) % 2: d.ellipse([880, 440, 904, 464], fill=(255, 40, 30))                       # REC
+        d.text((790, 436), "REC", font=font("mono", 26), fill=(255, 80, 60))
+        d.text((150, 1196), str(props.get("hora", "03:00:00")), font=font("mono", 36), fill=(240, 240, 230))
+        img.paste(add_light(img, tela, (110, 160, 150), 60, 50))
+        v, pos = props.get("_hand", (None, None))
+        if v and pos: props.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v))
+
+
+CENAS = (Loja, Deposito, CamaraFria, Cftv)

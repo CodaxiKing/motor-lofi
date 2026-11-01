@@ -79,9 +79,7 @@ O validador de roteiro usa esse mesmo catálogo, então um nome que não está l
 - `"dust": 60` no plano → poeira flutuando.
 - `"crowd": {"count": 10, "area": [x0,y0,x1,y1], "dir": 1|-1|0, "speed": 40, "seed": 3}` → horda com andares, velocidades e roupas variadas.
 - Novos cenários: `hospital` (flicker), `mercado` (flicker), `metro` (props: `train` 0–1 = farol chegando).
-- Loja de conveniência (`lofi/scenes_loja.py`): `loja` (balcão do caixa na frente com registradora e monitor das câmeras com chiado,
-  geladeiras de vidro, gôndola, porta de vidro com sininho; marca `balcao` = atrás do balcão, da cintura para cima; prop `flicker`)
-  e `estoque` (prateleiras, lâmpada pendurada que balança, porta da câmara fria; props `swing` e `flicker`). Som `bell` = sininho da porta.
+- Som `bell` = sininho da porta da loja (duas batidas metálicas).
 
 **Gancho (primeiros 2 s)**: plano com `"hook": {"text": "ELES ESTÃO\nOUVINDO", "y": 820}` antes do título. O título seguinte com `"transition": "glitch"`.
 
@@ -324,3 +322,9 @@ Exemplo completo: [`examples/demo4/demo4.json`](examples/demo4/demo4.json).
 
 **Velocidade.** ~3,5 s de processamento por segundo de vídeo com `--jobs 2` (episódio de 3 min ≈ 10–11 min).
 Esse é o único valor de referência; os números de versões antigas (7 s, 10 s) não valem mais.
+
+## Loja de conveniência 24h (`lofi/scenes_loja.py`)
+- `loja` — salão com o caixa à esquerda (o balcão fica na frente e tapa da cintura para baixo quem está na marca `caixa`), porta de vidro no fundo, geladeiras à direita, relógio digital e monitor na parede. Props: `relogio` ("03:00"), `vulto` (0–1, silhueta alta na porta), `reflexo` (0–1, vulto no vidro da geladeira), `flicker`, `apagado` (só as geladeiras acesas). Marcas: caixa, balcao, porta, geladeira, centro, frente.
+- `deposito` — fundos com caixas, gerador e a porta de aço da câmara fria. Props: `batida` (porta tremendo), `rosto` (rosto e mãos no vidro), `cadeado`, `gerador` (LED verde/vermelho), `luz` (0 = breu). Marcas: porta_camara, frente_porta, gerador, centro, frente.
+- `camara_fria` — por dentro, prateleiras de aço, gelo, névoa e lâmpada azul. Props: `flicker`, `tiras` (cortina de tiras na frente). Marcas: fundo, meio, frente.
+- `cftv` — close no monitor das câmeras (CAM1 CAIXA, CAM2 CORREDOR, CAM3 BOMBAS, CAM4 CAMARA FRIA). Props: `hora` ("03:00:00"), `vulto` (nº da câmera ou lista), `duplo` (alguém atrás do caixa na CAM1), `ruido` (0–1), `cam` (uma câmera em tela cheia). Mão: `"hand": "davi"` (posições `tela`, `botao`).
