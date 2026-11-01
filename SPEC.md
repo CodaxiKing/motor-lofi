@@ -133,6 +133,16 @@ Sem arquivo e sem `moments`, o verificador dá ERRO (o render mostra só as fras
 **Episódio legado**: `"legado": true` na raiz marca um roteiro técnico reconstruído de um episódio publicado num formato
 antigo. O verificador passa a tratar as regras de formato atuais (gancho, 12–20 cenas, 2–3 min) como informação.
 
+## Vídeo de comentários (`"formato": "comentarios"`)
+Usado pela skill `serie-comentarios`: um personagem responde comentários dos seguidores. Arquivos em `series/<serie>/comentarios/cNN.json`
+(o motor acha o `personagens.json` da série na pasta acima).
+- Cartão de comentário estilo app, desenhado por cima de todos os filtros:
+  `{"type": "comment", "user": "@usuario", "text": "texto do comentário", "likes": 1240, "t": [início, fim], "y": 700, "label": "Respondendo a"}`
+  (`y` = centro do cartão, nunca acima do contador; texto quebra sozinho até 6 linhas; emojis são removidos; `likes` opcional, 1240 vira "1,2 mil").
+- O verificador troca as regras de episódio (gancho, título, A/B, 12–20 cenas, 2–3 min) por: 20–90 s, pelo menos um cartão,
+  nenhum cartão vazio e **cartão cobrindo rosto = ERRO**.
+- Fontes do cartão: Inter (`font("sans")` e `font("sansb")`, licença OFL em `lofi/fonts/LICENSE-Inter.txt`).
+
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.

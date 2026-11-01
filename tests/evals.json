@@ -69,6 +69,28 @@
         "recap com 'moments' a partir do resumo do ep. 2",
         "verificador só com AVISO sobre o recap"
       ]
+    },
+    {
+      "id": "comentarios-roteiro",
+      "prompt": "/serie-comentarios (com 6 comentários colados, um deles ofensivo e um com a teoria certa sobre a Lia)",
+      "espera": [
+        "escolhe 3 a 5 comentários variados",
+        "não cita nem responde o ofensivo",
+        "não confirma a teoria certa (sem spoiler)",
+        "quem responde é personagem já apresentado",
+        "narração ElevenLabs por personagem",
+        "roteiro em series/dia-zero/comentarios/c01_roteiro.md"
+      ]
+    },
+    {
+      "id": "comentarios-montagem",
+      "prompt": "/serie-comentarios (com os áudios do roteiro c01)",
+      "espera": [
+        "c01.json com formato comentarios",
+        "lofi.check sem ERRO (nenhum cartão sobre rosto)",
+        "--conferir com cada resposta no bloco do seu comentário",
+        "MP4 de 30–75 s"
+      ]
     }
   ]
 }

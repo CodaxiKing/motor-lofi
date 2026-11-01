@@ -11,7 +11,7 @@ Tudo é desenhado e animado por código, no estilo lo-fi flat: personagens expre
 
 ## Como usar no Claude (o jeito fácil)
 
-O repositório vem com **5 skills** (pasta [`skills/`](skills/)) que fazem todo o trabalho por comando. Você não precisa mexer no código.
+O repositório vem com **6 skills** (pasta [`skills/`](skills/)) que fazem todo o trabalho por comando. Você não precisa mexer no código.
 
 | Comando | O que você manda | O que recebe |
 |---|---|---|
@@ -19,6 +19,7 @@ O repositório vem com **5 skills** (pasta [`skills/`](skills/)) que fazem todo 
 | `/serie-roteiro` | Nada (o voto é escolhido por toque) | Roteiro de 2–3 min + narração pronta para o ElevenLabs |
 | `/serie-continuar 2 B` | Só o comando (episódio que terminou + opção vencedora) | Voto registrado + roteiro do próximo episódio |
 | `/serie-montar` | Um áudio por personagem | Vídeo, teaser de 15 s, capa e legenda do post |
+| `/serie-comentarios` | Comentários dos seguidores (texto ou print) e, depois, a voz | Personagem respondendo os comentários, com o cartão do comentário na tela (30–75 s) |
 
 ### Ciclo de cada episódio
 1. A votação fecha → `/serie-continuar 2 B`

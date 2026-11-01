@@ -71,3 +71,60 @@ def split_subs(entries, to_video):
             dd = (B - A) * len(p) / tot
             out.append((t, t + dd + 0.12, p, voice)); t += dd
     return out
+
+
+# ------------------- cartão de comentário (vídeos de resposta a comentários) -------------------
+def _limpa(txt):
+    """Tira emojis e símbolos que a fonte não desenha (viram quadradinhos)."""
+    return "".join(ch for ch in txt if ord(ch) < 0x2190 or 0x2E80 <= ord(ch) < 0xD800).strip()
+
+
+def _quebra(d, txt, f, largura):
+    linhas, atual = [], ""
+    for w in txt.split():
+        prova = (atual + " " + w).strip()
+        if d.textlength(prova, font=f) <= largura or not atual: atual = prova
+        else: linhas.append(atual); atual = w
+    if atual: linhas.append(atual)
+    return linhas
+
+
+def comment_card(img, o, p):
+    """Cartão estilo app: 'Respondendo a @usuario', texto do comentário e curtidas.
+    o = {"user": "@ana", "text": "...", "likes": 128, "y": 520, "label": "Respondendo a"}; p = 0..1 (entrada/saída)."""
+    from PIL import ImageFilter
+    if p <= 0: return
+    user = _limpa(o.get("user", "@seguidor")); user = user if user.startswith("@") else "@" + user
+    corpo = _limpa(o.get("text", ""))
+    fb, fu, fl = font("sans", 46), font("sansb", 36), font("sansb", 30)
+    largura = 820; x0 = (W - largura - 80) // 2
+    d0 = ImageDraw.Draw(img)
+    linhas = _quebra(d0, corpo, fb, largura - 40)[:6]
+    if len(_quebra(d0, corpo, fb, largura - 40)) > 6: linhas[-1] = linhas[-1].rstrip(".,!? ") + "…"
+    alt = 150 + len(linhas) * 60 + (54 if o.get("likes") is not None else 10)
+    y0 = int(max(470, o.get("y", 700) - alt / 2) + (1 - p) * 60)   # abaixo do contador
+    lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+    alpha = int(255 * min(1, p * 1.3))
+    sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ImageDraw.Draw(sombra).rounded_rectangle([x0 + 6, y0 + 14, x0 + largura + 86, y0 + alt + 14], 38, fill=(0, 0, 0, int(alpha * 0.45)))
+    lay = Image.alpha_composite(lay, sombra.filter(ImageFilter.GaussianBlur(16))); d = ImageDraw.Draw(lay)
+    d.rounded_rectangle([x0, y0, x0 + largura + 80, y0 + alt], 38, fill=(255, 255, 255, alpha))
+    # avatar com a inicial, cor estável por usuário
+    hue = sum(map(ord, user)) % 6
+    cor = [(232, 92, 74), (66, 133, 244), (52, 168, 83), (171, 71, 188), (255, 152, 0), (0, 150, 136)][hue]
+    ax, ay = x0 + 40, y0 + 34
+    d.ellipse([ax, ay, ax + 68, ay + 68], fill=cor + (alpha,))
+    ini = (user[1:2] or "?").upper()
+    bb = d.textbbox((0, 0), ini, font=fu); d.text((ax + 34 - (bb[2] - bb[0]) / 2 - bb[0], ay + 34 - (bb[3] - bb[1]) / 2 - bb[1]), ini, font=fu, fill=(255, 255, 255, alpha))
+    d.text((ax + 90, ay + 2), o.get("label", "Respondendo a"), font=fl, fill=(130, 130, 140, alpha))
+    d.text((ax + 90, ay + 34), user, font=fu, fill=(20, 20, 26, alpha))
+    yy = y0 + 128
+    for ln in linhas:
+        d.text((x0 + 40, yy), ln, font=fb, fill=(28, 28, 34, alpha)); yy += 60
+    if o.get("likes") is not None:
+        lk = o["likes"]; txt = f"{lk/1000:.1f} mil".replace(".", ",") if isinstance(lk, (int, float)) and lk >= 1000 else str(lk)
+        hx, hy = x0 + 44, yy + 14
+        d.ellipse([hx, hy, hx + 16, hy + 16], fill=(232, 60, 70, alpha)); d.ellipse([hx + 12, hy, hx + 28, hy + 16], fill=(232, 60, 70, alpha))
+        d.polygon([(hx, hy + 10), (hx + 28, hy + 10), (hx + 14, hy + 28)], fill=(232, 60, 70, alpha))
+        d.text((hx + 40, hy - 4), txt, font=fl, fill=(110, 110, 120, alpha))
+    base = img.convert("RGBA"); base.alpha_composite(lay); img.paste(base.convert("RGB"))

@@ -20,16 +20,25 @@ def check(path, frames=True):
     def regra(m): probs.append(("INFO" if legado else "ERRO", m + (" (episódio legado)" if legado else "")))
     def regra_aviso(m): probs.append(("INFO" if legado else "AVISO", m + (" (episódio legado)" if legado else "")))
     shots = ep.shots
+    formato = sp.get("formato", "episodio")
     # ---------- estrutura ----------
-    if not (115 <= ep.total <= 185): regra_aviso(f"duração {ep.total:.0f}s fora do padrão de 2–3 min")
-    if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
-    if not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
-    final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
-    if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
+    if formato == "comentarios":   # vídeo de resposta a comentários (skill serie-comentarios)
+        if not (20 <= ep.total <= 90): warn(f"duração {ep.total:.0f}s fora do padrão de 20–90 s")
+        n_com = sum(1 for s in shots for o in s.get("overlay", []) if o.get("type") == "comment")
+        if not n_com: err("nenhum comentário na tela (overlay 'comment')")
+        for s in shots:
+            for o in s.get("overlay", []):
+                if o.get("type") == "comment" and not o.get("text", "").strip(): err(f"comentário vazio em {s['start']}s")
+    else:
+        if not (115 <= ep.total <= 185): regra_aviso(f"duração {ep.total:.0f}s fora do padrão de 2–3 min")
+        if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
+        if not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
+        final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
+        if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
     for a, b in zip(shots, shots[1:]):
         if abs(a["end"] - b["start"]) > 0.05: err(f"buraco/sobreposição entre planos em {a['end']:.2f}s e {b['start']:.2f}s")
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
-    if n_scene < 12: regra_aviso(f"só {n_scene} cenas (padrão 12–20)")
+    if formato != "comentarios" and n_scene < 12: regra_aviso(f"só {n_scene} cenas (padrão 12–20)")
     for s in shots:
         typ = s.get("type", "scene")
         if typ == "scene" and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")
@@ -79,6 +88,12 @@ def check(path, frames=True):
                     if x1 < 40 or x0 > W - 40: warn(f"personagem fora do quadro em {t:.1f}s")
                     elif (x0 < -60 or x1 > W + 60) and not shot.get("camera", {}).get("close") is not None: warn(f"personagem cortado na lateral em {t:.1f}s")
                     if top < 450 and x0 < 430 and shot.get("hud", True): warn(f"cabeça embaixo do contador em {t:.1f}s")
+                    for o in shot.get("overlay", []):
+                        if o.get("type") != "comment": continue
+                        a_, b_ = o.get("t", [shot["start"], shot["end"]])
+                        cy = o.get("y", 700); c0, c1 = max(470, cy - 170), max(470, cy - 170) + 340
+                        if a_ <= t < b_ and top + (bot - top) * 0.1 < c1 and top + (bot - top) * 0.5 > c0:
+                            err(f"cartão de comentário cobrindo rosto em {t:.1f}s (desça o personagem ou suba/baixe o 'y' do cartão)")
                     if top > 1640: warn(f"personagem na área da interface do Reels (embaixo) em {t:.1f}s")
             sheet_frames.append((t, img))
         cols = 6; tw, th = 270, 480

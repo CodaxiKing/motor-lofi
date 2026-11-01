@@ -528,6 +528,17 @@ class Episode:
                 text_center(d, o["text"], W / 2, o.get("y", 900), font("title", o.get("size", 120)), col, 8)
             elif o["type"] == "stamp":
                 fx.stamp(img, t, a, o.get("top", ""), o.get("word", ""), o.get("y", 1000))
+            elif o["type"] == "comment":
+                pass  # desenhado no fim do quadro, depois dos filtros (ver draw_comments)
+
+    def draw_comments(self, img, shot, t):
+        """Cartões de comentário ficam por cima de tudo (filtro de desenho, cor, grão), como num app."""
+        for o in shot.get("overlay", []):
+            if o.get("type") != "comment": continue
+            a, b = o.get("t", [shot["start"], shot["end"]])
+            if not (a <= t < b): continue
+            p = ease_out(c01((t - a) / 0.35)) * (1 - ease(c01((t - (b - 0.3)) / 0.3)))
+            text.comment_card(img, o, p)
 
     def pick_sub_y(self, shot):
         if shot.get("sub_y"): return shot["sub_y"]
@@ -561,6 +572,7 @@ class Episode:
         tr = shot.get("transition", "cut"); dur = shot.get("transition_dur", 0.28)
         rel = t - shot["start"]
         if tr != "cut" and rel < dur: img = fx.transition(img, None, tr, rel / dur)
+        self.draw_comments(img, shot, t)
         hs = self.hud_state(t)
         if hs and shot.get("hud", typ not in ("title", "recap", "detail") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
         if not shot.get("hook") and typ != "recap":

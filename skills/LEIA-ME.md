@@ -1,6 +1,6 @@
 # Skills da série lo-fi interativa
 
-Cópia das 5 skills usadas com o motor. Para usar em outra conta do Claude, adicione cada uma nas configurações de skills
+Cópia das 6 skills usadas com o motor. Para usar em outra conta do Claude, adicione cada uma nas configurações de skills
 da conta (envie o arquivo `.zip` de cada pasta ou o `SKILL.md`).
 
 | Skill | Para que serve |
@@ -10,6 +10,7 @@ da conta (envie o arquivo `.zip` de cada pasta ou o `SKILL.md`).
 | `serie-roteiro` | `/serie-roteiro` — roteiro do próximo episódio, voto por toque |
 | `serie-continuar` | `/serie-continuar 2 B` — registra o voto e gera o próximo roteiro |
 | `serie-montar` | `/serie-montar` + áudios — monta o vídeo, teaser, capa e legenda |
+| `serie-comentarios` | `/serie-comentarios` + comentários (texto ou print) → roteiro de respostas; com os áudios → vídeo |
 
 ## Requisitos na outra conta
 - Acesso a este repositório no GitHub (`CodaxiKing/motor-lofi`): conecte o GitHub na outra conta. Se o repositório for privado,

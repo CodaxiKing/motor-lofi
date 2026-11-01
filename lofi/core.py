@@ -15,7 +15,7 @@ _fcache = {}
 def font(name, size):
     key = (name, size)
     if key not in _fcache:
-        f = {"title": "Anton-Regular.ttf", "mono": "SpaceMono-Bold.ttf"}[name]
+        f = {"title": "Anton-Regular.ttf", "mono": "SpaceMono-Bold.ttf", "sans": "Inter-Regular.otf", "sansb": "Inter-Bold.otf"}[name]
         _fcache[key] = ImageFont.truetype(os.path.join(FONT_DIR, f), size)
     return _fcache[key]
 
