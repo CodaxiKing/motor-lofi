@@ -24,3 +24,19 @@ def test_todos_os_temas_constroem():
 def test_marcas_do_travelling_no_chao():
     for n, mk in mapa.marcas("_travelling").items():
         assert mapa.no_chao("_travelling", mk["x"], mk["y"], folga=0), n
+
+
+def test_chegada_desacelera_e_para_no_alvo():
+    from lofi.travelling import posicao
+    tv = {"speed": 400, "chegada": "carro", "para": 1.5, "chegada_x": 760}
+    s_fim, (tipo, x_fim) = posicao(tv, 5.0, 5.0)
+    s_quase, _ = posicao(tv, 4.9, 5.0)
+    assert tipo == "carro" and abs(x_fim - 760) < 1 and s_fim - s_quase < 400 * 0.1 * 0.2   # quase parado no fim
+    assert posicao(tv, 1.0, 5.0)[1][1] > W                                                  # no começo o carro está fora do quadro
+
+
+def test_frente_e_fundo_rolam():
+    sc = scenes.get("corredor", travelling="frente")
+    a = np.asarray(sc.render_back(0, 0, {"_scroll": 0}), dtype=float)
+    b = np.asarray(sc.render_back(0, 0, {"_scroll": 300}), dtype=float)
+    assert np.abs(a - b).mean() > 2

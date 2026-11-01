@@ -342,14 +342,19 @@ class Episode:
     def scene_frame(self, shot, t, t_anim=None):
         t_anim = t if t_anim is None else t_anim
         trav = shot.get("travelling")
-        sc = scenes.get(shot["scene"], bool(trav))
+        tdir = trav.get("dir") if isinstance(trav, dict) else None
+        sc = scenes.get(shot["scene"], "frente" if tdir in ("frente", "fundo") else bool(trav))
         rel = t - shot["start"]; norm = c01(rel / max(1e-6, shot["end"] - shot["start"]))
         props = {k: val(v, rel, norm) for k, v in shot.get("props", {}).items()}
         if trav:
-            tv = trav if isinstance(trav, dict) else {"speed": trav}
-            sp = tv.get("speed", 300)
-            if sp is True: sp = 300 * (shot.get("actors") or [{}])[0].get("facing", 1)
-            props["_scroll"] = float(sp) * rel; props["_frente"] = bool(tv.get("frente"))
+            from .travelling import posicao
+            tv = dict(trav) if isinstance(trav, dict) else {"speed": trav}
+            if tv.get("speed", 300) is True: tv["speed"] = 300 * (shot.get("actors") or [{}])[0].get("facing", 1)
+            dur = shot["end"] - shot["start"]
+            props["_scroll"], props["_chegada"] = posicao(tv, rel, dur); props["_frente"] = bool(tv.get("frente"))
+            if tdir == "frente": props["_scroll"] = -props["_scroll"]   # vêm para a câmera: o caminho fica para trás
+            props["_parou"] = bool(tv.get("chegada")) and rel > dur - 0.12 - 0.0 and props["_chegada"] is not None and \
+                abs(posicao(tv, rel, dur)[0] - posicao(tv, dur, dur)[0]) < 4
         if props.get("level") == "auto": props["level"] = min(1.0, self.level(props.get("level_voice", "_all"), t) * 0.9)
         props["_hand"] = partes.resolver(False if props.get("hand") is False else shot.get("hand"), sc.name, self.locked, self.custom)
         props["_avoid"] = self._avoid
@@ -382,6 +387,7 @@ class Episode:
         if crowd:
             for cs in (crowd if isinstance(crowd, list) else [crowd]): actors += particles.crowd_actors(cs, rel * (t_anim - shot["start"]) / max(1e-6, rel) if rel else 0)
         self._beams = []; self._lit = []; self._lit_soft = []
+        if props.get("_parou"): actors = [a if a.get("_crowd") else dict(a, walk=False, run=False) for a in actors]   # chegou: param de andar
         actors = self.link_actors(actors, sc, rel, norm)
         order = sorted([(i, a) for i, a in enumerate(actors) if not a.get("fg")], key=lambda ia: self.actor_state(ia[1], sc, rel, norm)[1] + ia[1].get("_zbias", 0))
         prepared = []

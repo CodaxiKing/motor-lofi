@@ -11,7 +11,7 @@ e repetem a cada ~3 telas, com elementos espaçados de forma irregular para a re
 """
 import random
 from PIL import Image, ImageDraw, ImageFilter
-from .core import W, H, grad, add_light
+from .core import W, H, grad, add_light, font
 from . import fx
 
 L = 3 * W          # comprimento da tira que repete
@@ -287,7 +287,15 @@ def make(base):
                 if strip is None or strip.width <= W: continue
                 lay = _wrapcrop(strip, (s + camx) * dep + 2000); img.paste(lay, (0, 0), lay)
             if self.wet and self.rain_full and self.rain_strength: fx.splashes(img, t, CHAO + 40, 1880, n=24)
+            ch = props.get("_chegada")
+            if ch:
+                tipo, x = ch
+                if tipo not in self._spr: self._spr[tipo] = sprite_chegada(tipo, self.kluz)
+                spr = self._spr[tipo]
+                if -spr.width < x + spr.width / 2 and x - spr.width / 2 < W:
+                    img.paste(spr, (int(x - spr.width / 2), CHAO + 150 - spr.height), spr)
             return img
+        _spr = {}
         def render_front(self, img, t, camx, props, flashes):
             if self.fog_cfg: fx.fog(img, t, **self.fog_cfg)
             if props.get("_frente"):
@@ -303,3 +311,159 @@ def make(base):
                 img = fx.lightning(img, t, flashes)
             return img
     return Travelling()
+
+
+CHEGADAS = ("carro", "porta", "escada", "portao")
+
+
+def sprite_chegada(tipo, k=0.6):
+    """Destino que entra no quadro no fim de um travelling com chegada (base = chão da calçada)."""
+    if tipo == "carro":
+        img = Image.new("RGBA", (520, 260), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+        d.rounded_rectangle((10, 100, 510, 220), 40, fill=_k((120, 40, 36), k + 0.2) + (255,), outline=(16, 14, 18, 255), width=6)
+        d.rounded_rectangle((110, 30, 400, 120), 34, fill=_k((104, 34, 30), k + 0.2) + (255,), outline=(16, 14, 18, 255), width=6)
+        d.rectangle((140, 46, 245, 110), fill=(24, 28, 40, 255)); d.rectangle((265, 46, 370, 110), fill=(24, 28, 40, 255))
+        for cx in (110, 410): d.ellipse((cx - 50, 170, cx + 50, 260), fill=(14, 14, 16, 255)); d.ellipse((cx - 22, 192, cx + 22, 238), fill=(90, 90, 96, 255))
+        d.ellipse((470, 130, 504, 156), fill=(255, 236, 180, 255)); d.rectangle((250, 140, 280, 148), fill=(30, 26, 30, 255))
+        return img
+    if tipo == "porta":
+        img = Image.new("RGBA", (260, 560), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+        d.rectangle((0, 0, 260, 560), fill=(40, 34, 30, 255)); d.rectangle((24, 24, 236, 560), fill=_k((120, 86, 60), k + 0.3) + (255,))
+        d.rectangle((80, 70, 180, 200), fill=(240, 210, 140, 255)); d.ellipse((200, 300, 220, 320), fill=(220, 200, 150, 255))
+        return img
+    if tipo == "portao":
+        img = Image.new("RGBA", (420, 620), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+        d.rectangle((0, 0, 420, 620), fill=(36, 30, 30, 255)); d.rectangle((30, 40, 390, 620), fill=(150, 130, 90, 255))
+        for x in range(30, 391, 30): d.rectangle((x, 40, x + 8, 620), fill=(22, 22, 26, 255))
+        for y in (60, 320, 600): d.rectangle((30, y, 398, y + 12), fill=(22, 22, 26, 255))
+        return img
+    if tipo == "escada":     # boca da estação na calçada, com a placa
+        img = Image.new("RGBA", (520, 760), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+        d.rectangle((60, 600, 460, 760), fill=(12, 12, 16, 255))
+        for kk in range(5): d.line((70 + kk * 6, 620 + kk * 28, 450 - kk * 6, 620 + kk * 28), fill=(40 + kk * 10, 40 + kk * 10, 48 + kk * 10, 255), width=6)
+        for x in (60, 460): d.line((x, 520, x, 760), fill=(150, 150, 160, 255), width=8)
+        d.line((60, 520, 460, 520), fill=(150, 150, 160, 255), width=8)
+        d.rectangle((24, 120, 36, 600), fill=(30, 30, 36, 255)); d.ellipse((-30, 40, 90, 160), fill=(200, 40, 40, 255), outline=(240, 240, 240, 255), width=5)
+        d.text((10, 62), "M", font=font("title", 70), fill=(255, 255, 255, 255))
+        return img
+    raise ValueError(f"chegada desconhecida: {tipo} (use {', '.join(CHEGADAS)})")
+
+
+def posicao(tv, rel, dur):
+    """Quanto o chão andou (px) em `rel` segundos e, se houver chegada, onde o destino está na tela.
+    Com "chegada", o travelling desacelera nos últimos `para` segundos e para com o destino em `chegada_x`."""
+    v = float(tv.get("speed", 300)); ch = tv.get("chegada")
+    if not ch: return v * rel, None
+    p = min(float(tv.get("para", 1.5)), dur * 0.8); t0 = dur - p
+    def pos(r):
+        if r <= t0: return v * r
+        u = min(r - t0, p); return v * t0 + v * (u - u * u / (2 * p))
+    fim = pos(dur); x_alvo = float(tv.get("chegada_x", 760 if v > 0 else 320))
+    return pos(rel), (ch, x_alvo + (fim - pos(rel)) * (1 if v > 0 else -1))
+
+
+# ======================= travelling de frente / de costas =======================
+# Câmera no meio do caminho olhando para o ponto de fuga. "dir": "frente" = os personagens vêm na direção da câmera
+# (a câmera recua e o caminho vai ficando para trás deles); "dir": "fundo" = a câmera segue por trás e o caminho vem.
+YH = 1150; GH = 770                    # horizonte e altura da câmera (px na profundidade 1)
+
+
+def _proj(X, Y, z): return 540 + X / z, YH + (GH - Y) / z
+
+
+def make_frente(base):
+    lat = make(base)                                    # reaproveita tema, cores e clima do travelling lateral
+    from .scenes import Scene
+
+    class Frente(Scene):
+        def __init__(self):
+            for k in ("name", "light", "grade", "acoustic", "amb", "rain_full", "rain_strength", "wet", "fog_cfg",
+                      "lightning_full", "clouds", "tema", "kluz", "ceu"):
+                setattr(self, k, getattr(lat, k, None))
+            self.rain_boxes = []; self.lightning_boxes = []; self.ripples = None
+            self.depths = (0.15, 0.55, 1.0); self.ground = lat.ground; self.front = None
+            fora = self.tema in ("cidade", "ponte", "mata")
+            k = self.kluz
+            self.cfg = dict(
+                fora=fora,
+                chao=_k({"mata": (70, 56, 40), "tunel": (84, 84, 90), "esgoto": (50, 60, 50)}.get(self.tema, (46, 46, 54)), k + 0.15),
+                lado=_k({"mata": (60, 50, 36), "interno": (150, 146, 136)}.get(self.tema, (96, 96, 104)), k),
+                parede=_k(PAREDE.get(base.name, {"cidade": (90, 76, 70), "tunel": (70, 74, 80), "esgoto": (66, 74, 62),
+                                                  "ponte": (60, 64, 74), "mata": (34, 60, 42)}.get(self.tema, (120, 110, 96))), k),
+                largura=380 if fora else 300, muro=900 if fora else 520, teto=None if fora else 1300)
+        def build(self): return None, None, None
+
+        def _quad(self, d, pts, cor):
+            d.polygon([_proj(*p) for p in pts], fill=cor)
+
+        def render_back(self, t, camx, props):
+            s = props.get("_scroll", 0.0) * 0.004                          # profundidade andada
+            c = self.cfg; img = self.ceu.copy() if c["fora"] else Image.new("RGB", (W, H), _k(c["parede"], 0.45))
+            if c["fora"]: self.sky(img, t, camx)
+            d = ImageDraw.Draw(img); zf, zn = 40.0, 0.55
+            L_, M_ = c["largura"], c["muro"]
+            if c["fora"] and self.tema != "mata":                          # silhueta da cidade no horizonte
+                r = random.Random(5); x = -20
+                while x < W:
+                    bw = r.randint(30, 70); bh = r.randint(40, 260)
+                    d.rectangle((x, YH - bh, x + bw, YH), fill=_k((36, 46, 70), self.kluz * 1.2)); x += bw + 2
+            self._quad(d, [(-M_ * 3, 0, zf), (M_ * 3, 0, zf), (M_ * 3, 0, zn), (-M_ * 3, 0, zn)], c["lado"])     # calçadas/piso
+            self._quad(d, [(-L_, 0, zf), (L_, 0, zf), (L_, 0, zn), (-L_, 0, zn)], c["chao"])                      # pista/corredor
+            # faixas e juntas que andam
+            per = 2.0
+            for kk in range(60):
+                z0 = per * kk - (s % per) + 0.4
+                if z0 < zn or z0 > zf: continue
+                if c["fora"] and self.tema == "cidade":
+                    self._quad(d, [(-14, 0, z0), (14, 0, z0), (14, 0, z0 + 0.8), (-14, 0, z0 + 0.8)], _k((200, 190, 120), self.kluz))
+                else:
+                    x0, y0 = _proj(-L_, 0, z0); x1, _ = _proj(L_, 0, z0); d.line((x0, y0, x1, y0), fill=_k(c["chao"], 0.8), width=2)
+            # paredes / fachadas dos dois lados (em blocos que andam) e elementos
+            blocos = []
+            perb = 3.0
+            for kk in range(16):
+                zb = perb * kk - (s % perb) + 0.3
+                blocos.append(zb)
+            for zb in sorted(blocos, reverse=True):
+                if zb + perb < zn or zb > zf: continue
+                idx = int((zb + s) // perb + 1000)
+                r = random.Random(idx)
+                for lado in (-1, 1):
+                    X = lado * M_; altura = r.randint(1500, 3200) if c["fora"] else c["teto"]
+                    if self.tema == "mata":
+                        cx, cy = _proj(lado * (M_ + r.randint(-200, 200)), 0, max(zb, zn))
+                        tw = 60 / max(zb, zn); th = 1400 / max(zb, zn)
+                        d.rectangle((cx - tw, cy - th, cx + tw, cy), fill=_k((52, 40, 32), self.kluz))
+                        d.ellipse((cx - tw * 6, cy - th * 1.3, cx + tw * 6, cy - th * 0.6), fill=_k((34, 64, 44), self.kluz))
+                        continue
+                    cor = _k(r.choice([(92, 70, 64), (80, 84, 96), (104, 92, 76), (70, 76, 70)]), self.kluz) if c["fora"] else c["parede"]
+                    za, zb2 = max(zb, zn), min(zb + perb * 0.96, zf)
+                    self._quad(d, [(X, 0, za), (X, altura, za), (X, altura, zb2), (X, 0, zb2)], cor)
+                    # janelas / portas
+                    for j in range(3):
+                        zj = za + (zb2 - za) * (0.15 + 0.3 * j)
+                        if c["fora"]:
+                            for yy in range(500, altura - 200, 360):
+                                acesa = r.random() < 0.3 * (1.3 - self.kluz)
+                                self._quad(d, [(X, yy, zj), (X, yy + 180, zj), (X, yy + 180, zj + 0.25), (X, yy, zj + 0.25)],
+                                           (250, 210, 140) if acesa else _k((30, 36, 52), self.kluz + 0.3))
+                        elif r.random() < 0.5:
+                            self._quad(d, [(X, 0, zj), (X, 700, zj), (X, 700, zj + 0.35), (X, 0, zj + 0.35)], _k((110, 82, 60), self.kluz + 0.2))
+                    if c["fora"] and r.random() < 0.8:                    # poste
+                        px, py = _proj(lado * (L_ + 120), 0, za); top = _proj(lado * (L_ + 120), 1500, za)[1]
+                        d.line((px, py, px, top), fill=(24, 24, 30), width=max(2, int(16 / za)))
+                        d.ellipse((px - 24 / za, top - 10 / za, px + 24 / za, top + 14 / za), fill=(255, 230, 170))
+                if c["teto"]:
+                    self._quad(d, [(-M_, c["teto"], max(zb, zn)), (M_, c["teto"], max(zb, zn)), (M_, c["teto"], min(zb + perb, zf)),
+                                   (-M_, c["teto"], min(zb + perb, zf))], _k(c["parede"], 0.6))
+                    self._quad(d, [(-120, c["teto"] - 2, max(zb, zn) + 0.4), (120, c["teto"] - 2, max(zb, zn) + 0.4),
+                                   (120, c["teto"] - 2, max(zb, zn) + 1.0), (-120, c["teto"] - 2, max(zb, zn) + 1.0)], (240, 245, 235))
+            if self.wet and self.rain_full and self.rain_strength: fx.splashes(img, t, YH + 100, 1880, n=24)
+            return img
+
+        def render_front(self, img, t, camx, props, flashes):
+            if self.fog_cfg: fx.fog(img, t, **self.fog_cfg)
+            if self.rain_full and self.rain_strength: fx.rain(img, t, strength=self.rain_strength)
+            if flashes and self.cfg["fora"]: img = fx.lightning(img, t, flashes)
+            return img
+    return Frente()

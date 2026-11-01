@@ -139,6 +139,18 @@ def check(path, frames=True):
         try: sp = float(sp)
         except (TypeError, ValueError): err(f"travelling inválido em {s['start']}s: use um número (px/s) ou {{\"speed\": 300}}"); continue
         if s.get("type", "scene") != "scene": err(f"travelling só vale em plano de cenário ({s['start']}s)")
+        tdir = tv.get("dir", "lado") if isinstance(tv, dict) else "lado"
+        if tdir not in ("lado", "frente", "fundo"): err(f"travelling 'dir' inválido em {s['start']}s: use lado, frente ou fundo")
+        if isinstance(tv, dict) and tv.get("chegada"):
+            from .travelling import CHEGADAS
+            if tv["chegada"] not in CHEGADAS: err(f"chegada '{tv['chegada']}' não existe em {s['start']}s (use {', '.join(CHEGADAS)})")
+            if tdir != "lado": err(f"chegada só no travelling de lado ({s['start']}s)")
+        if tdir != "lado":
+            for a in s.get("actors", []):
+                if a.get("fg") or a.get("livre"): continue
+                vw = a.get("view", "front"); quer = "front" if tdir == "frente" else "back"
+                if isinstance(vw, str) and vw != quer: warn(f"{a['char']} com view '{vw}' num travelling de {tdir} em {s['start']}s (use \"view\": \"{quer}\")")
+            continue
         for a in s.get("actors", []):
             if a.get("fg") or a.get("carried_by") or a.get("livre"): continue
             w = a.get("walk"); anda = any(v for _, v in w) if isinstance(w, list) else bool(w)

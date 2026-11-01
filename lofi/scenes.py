@@ -912,7 +912,8 @@ def get(name, travelling=False):
     """Cenário pronto (cacheado). travelling=True devolve a versão lateral que rola (lofi/travelling.py)."""
     if name not in _inst: _inst[name] = REGISTRY[name]()
     if not travelling: return _inst[name]
-    if name + "@trav" not in _inst:
-        from .travelling import make
-        _inst[name + "@trav"] = make(_inst[name])
-    return _inst[name + "@trav"]
+    chave = name + ("@frente" if travelling == "frente" else "@trav")
+    if chave not in _inst:
+        from .travelling import make, make_frente
+        _inst[chave] = (make_frente if travelling == "frente" else make)(_inst[name])
+    return _inst[chave]
