@@ -74,21 +74,32 @@ PLATAFORMAS = {
 
 
 def _escolher_tempo(ep, cfg):
-    """Quadro para a capa: prefere closes e cenas com mais gente, mas só aceita um quadro em que todos os rostos
-    aparecem inteiros, no meio da imagem (entre o selo e o nome do episódio) e dentro da área segura."""
+    """Escolhe (tempo, câmera) para a capa. Testa o meio de cada cena com quem fala no episódio, no enquadramento original
+    e num close no protagonista da cena; fica com o quadro de rostos maiores, todos inteiros, entre o selo e o nome do
+    episódio e dentro da área segura. Devolve a câmera a usar (None = a do próprio plano)."""
     sp = ep.spec
-    scen = [s for s in sp["shots"] if s.get("type", "scene") == "scene" and s.get("actors") and not s.get("hook")]
-    ordem = sorted(scen, key=lambda s: (-(s.get("camera", {}).get("close") is not None), -len(s.get("actors", []))))
-    x0, _, x1, _ = cfg["seguro"]; topo, base = cfg["selo_y"] + 60, cfg["nome_y"] - 80
-    for s in ordem:
-        for k in (0.5, 0.35, 0.7):
-            t = s["start"] + (s["end"] - s["start"]) * k
-            ep.frame(t)
-            cabecas = [h for h in ep._heads if h[1] > 0 and h[0] < W]
-            if cabecas and all(h[0] >= x0 and h[1] <= x1 and h[2] >= topo and h[2] <= base for h in cabecas):
-                return t
-    s = ordem[0] if ordem else None
-    return (s["start"] + s["end"]) / 2 if s else ep.total * 0.4
+    scen = [s for s in ep.shots if s.get("type", "scene") == "scene" and s.get("actors") and not s.get("hook")]
+    falam = set(sp.get("voices", {})) - {k for k, v in sp.get("speakers", {}).items() if v.get("label") in ("RÁDIO", "MEGAFONE")}
+    x0, _, x1, _ = cfg["seguro"]; topo, base = cfg["selo_y"] + 60, cfg["nome_y"] - 90
+    melhor, nota_melhor = (None, None), -1
+    for s in scen:
+        idx = [i for i, a in enumerate(s["actors"]) if a.get("char") in falam and not a.get("fg")]
+        if not idx: continue
+        original = s.get("camera")
+        for cam in (None, {"close": idx[0], "close_zoom": 1.9, "close_in": 0.01, "handheld": False}):
+            if cam is not None: s["camera"] = cam
+            for k in (0.5, 0.3, 0.75):
+                t = s["start"] + (s["end"] - s["start"]) * k
+                ep.frame(t)
+                cab = [h for h in ep._heads if h[1] > 0 and h[0] < W and h[3] - h[2] > 40]
+                if cab and all(h[0] >= x0 and h[1] <= x1 and h[2] >= topo and h[3] <= base for h in cab):
+                    nota = sum(h[3] - h[2] for h in cab)
+                    if nota > nota_melhor: melhor, nota_melhor = (t, cam), nota
+            if original is None: s.pop("camera", None)
+            else: s["camera"] = original
+    if melhor[0] is not None: return melhor
+    s = scen[0] if scen else None
+    return ((s["start"] + s["end"]) / 2 if s else ep.total * 0.4), None
 
 
 def _texto_ajustado(d, txt, cx, cy, tamanho, largura, cor, contorno=6):
@@ -99,14 +110,17 @@ def _texto_ajustado(d, txt, cx, cy, tamanho, largura, cor, contorno=6):
     return f
 
 
-def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False):
+def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False, camera=None):
     """Capa do episódio para TikTok ou Instagram, com título, selo do episódio e nome do episódio dentro da área segura.
     guias=True desenha as áreas seguras (só para conferência, não para postar)."""
     from .render import Episode
     cfg = PLATAFORMAS[plataforma]
     ep = Episode(spec_path); sp = ep.spec
     ep.subs = []; ep.hud_state = lambda _t: None          # capa sem legenda e sem contador
-    t = _escolher_tempo(ep, cfg) if t is None else t
+    if t is None: t, camera = _escolher_tempo(ep, cfg)
+    if camera is not None:
+        plano = next((s for s in ep.shots if s["start"] <= float(t) < s["end"]), None)
+        if plano is not None: plano["camera"] = camera
     img = ep.frame(float(t)).filter(ImageFilter.GaussianBlur(0.5))
     # escurece em cima (título) e embaixo (nome do episódio) para o texto ler bem sobre qualquer cena
     topo = Image.linear_gradient("L").resize((W, cfg["selo_y"] + 260)).transpose(Image.FLIP_TOP_BOTTOM)
@@ -139,10 +153,12 @@ def pacote(spec_path, video, t=None):
     if t is None:   # mesmo quadro nas duas capas, escolhido pela área segura mais apertada (TikTok)
         from .render import Episode
         ep = Episode(spec_path); ep.subs = []; ep.hud_state = lambda _t: None
-        t = _escolher_tempo(ep, PLATAFORMAS["tiktok"])
+        t, camera = _escolher_tempo(ep, PLATAFORMAS["tiktok"])
+    else:
+        camera = None
     return {"video": video, "teaser": teaser(spec_path, video),
-            "capa_tiktok": capa(spec_path, t, plataforma="tiktok"),
-            "capa_instagram": capa(spec_path, t, plataforma="instagram")}
+            "capa_tiktok": capa(spec_path, t, plataforma="tiktok", camera=camera),
+            "capa_instagram": capa(spec_path, t, plataforma="instagram", camera=camera)}
 
 
 def temporada(out, title, videos):
