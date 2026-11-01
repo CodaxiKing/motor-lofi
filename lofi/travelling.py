@@ -19,7 +19,7 @@ B = 220            # faixa de emenda (fundida para não aparecer o corte)
 CHAO = 1540        # onde a parede/fachada encontra o chão
 
 TEMA = {"rua": "cidade", "rua_amanhecer": "cidade", "entrada_metro": "cidade", "posto": "cidade", "telhado": "cidade",
-        "janela": "cidade", "floresta": "mata", "metro": "tunel", "esgoto": "esgoto", "ponte": "ponte",
+        "janela": "cidade", "portao": "cidade", "beco": "cidade", "viaduto": "ponte", "estacionamento": "tunel", "vagao": "interno", "floresta": "mata", "metro": "tunel", "esgoto": "esgoto", "ponte": "ponte",
         "corredor": "interno", "hospital": "interno", "escola": "interno", "delegacia": "interno", "mercado": "interno",
         "igreja": "interno", "apartamento": "interno", "entrada": "interno", "escada": "interno"}
 PAREDE = {"hospital": (150, 176, 160), "escola": (176, 160, 126), "delegacia": (120, 132, 150), "mercado": (170, 170, 160),

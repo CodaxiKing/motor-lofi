@@ -5,7 +5,7 @@
 Gera `_revisao.png` (folha de quadros para o revisor) e imprime a lista de problemas.
 Código de saída 1 se houver ERRO.
 """
-import sys, os, json
+import sys, os, json, re
 from PIL import Image, ImageDraw
 from .core import W, H, font
 from . import scenes, detail, text
@@ -115,6 +115,22 @@ def check(path, frames=True):
                 ms = ", ".join(mapa.marcas(s["scene"]))
                 err(f"{a['char']} fora do chão de '{s['scene']}' em {s['start']}s ({ruins[0]}): vai parecer flutuando ou dentro da parede. "
                     f"Use uma marca ({ms}), ajuste x/y (veja python3 -m lofi.mapa {s['scene']}) ou, se for de propósito (fantasma voando), \"livre\": true")
+    dias = (sp.get("hud") or {}).get("days") or []      # relógio do HUD: só anda para frente
+    def _min(d, h):
+        try: return int(re.sub(r"\D", "", str(d))) * 1440 + int(h.split(":")[0]) * 60 + int(h.split(":")[1])
+        except Exception: return None
+    ms = [(t, _min(d, h), d, h) for t, d, h in [x[:3] for x in dias]]
+    for (t0, m0, d0, h0), (t1, m1, d1, h1) in zip(ms, ms[1:]):
+        if m0 is not None and m1 is not None and m1 < m0: err(f"relógio do HUD volta no tempo em {t1}s ({d0} {h0} → {d1} {h1})")
+    try:
+        from . import continuidade
+        mundo = continuidade.carregar(os.path.dirname(os.path.abspath(path)))
+        nep = sp.get("episode"); fim = (mundo or {}).get("fim", {}).get(str(nep - 1)) if nep else None
+        if fim and ms and ms[0][1] is not None and fim.get("dia"):
+            if ms[0][1] < continuidade._minutos(fim["dia"], fim["hora"]):
+                err(f"o episódio começa em {ms[0][2]} {ms[0][3]}, antes do fim do episódio anterior (DIA {fim['dia']} {fim['hora']})")
+    except Exception as e:
+        warn(f"não deu para conferir o mundo.json: {e}")
     for s in shots:   # travelling: quem está no plano tem que andar/correr no sentido do movimento
         tv = s.get("travelling")
         if not tv: continue

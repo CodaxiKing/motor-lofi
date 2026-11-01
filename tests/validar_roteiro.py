@@ -139,6 +139,9 @@ def validar(txt, final=False, caminho=None):
     else:
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
         erros += conferir_continuidade(txt, cat)
+    if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)
+        from lofi.continuidade import conferir as conferir_mundo
+        erros += conferir_mundo(caminho, txt)
     return erros, avisos
 
 

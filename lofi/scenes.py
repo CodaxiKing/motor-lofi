@@ -905,6 +905,8 @@ class RuaAmanhecer(Rua):
 
 REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, RuaAmanhecer, Janela, Escada, Telhado, Ponte, Radio, RadioCarro, RadioPortatil, EntradaMetro, Hospital, Mercado, Metro,
                                      Escola, Delegacia, Posto, Floresta, Carro, Esgoto, Igreja)}
+from .scenes_passagem import CENAS as _PASSAGEM   # portão, beco, viaduto, estacionamento, vagão
+REGISTRY.update({c.name: c for c in _PASSAGEM})
 _inst = {}
 def get(name, travelling=False):
     """Cenário pronto (cacheado). travelling=True devolve a versão lateral que rola (lofi/travelling.py)."""

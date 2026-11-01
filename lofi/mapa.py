@@ -165,11 +165,34 @@ MAPA["radio_portatil"] = {"chao": None, "marcas": {}}
 LUGAR = {
     "apartamento": "casa", "entrada": "casa", "radio": "casa", "janela": "casa", "corredor": "predio",
     "carro": "carro", "radio_carro": "carro",
-    "rua": "rua", "rua_amanhecer": "rua", "entrada_metro": "rua",
+    "rua": "rua", "rua_amanhecer": "rua", "entrada_metro": "rua", "portao": "rua", "beco": "rua", "viaduto": "rua", "vagao": "metro",
     "radio_portatil": None,          # vai junto com o personagem: não muda o lugar
 }
 OBJETO_DO_LUGAR = {"radio": "casa", "radio_carro": "carro"}   # rádio de mesa só em casa; rádio do painel só no carro
 
+
+MAPA["portao"] = {
+    "chao": [(0, 1380), (1080, 1380), (1080, 1900), (0, 1900)],
+    "marcas": {"portao": {"x": 540, "y": 1400, "nota": "no portão, saindo ou entrando no prédio"},
+               "calcada_esq": {"x": 220, "y": 1760}, "calcada_dir": {"x": 860, "y": 1760},
+               "frente": {"x": 540, "y": 1820, "nota": "na calçada, perto da câmera"}}}
+MAPA["beco"] = {
+    "chao": [(470, 1260), (610, 1260), (1080, 1840), (1080, 1900), (0, 1900), (0, 1840)],
+    "marcas": {"fundo": {"x": 540, "y": 1300, "nota": "no fim do beco (pequeno)"}, "meio": {"x": 540, "y": 1520},
+               "frente": {"x": 540, "y": 1800}, "lixeira": {"x": 420, "y": 1760, "nota": "escondido atrás da lixeira"}}}
+MAPA["viaduto"] = {
+    "chao": [(500, 1240), (580, 1240), (1080, 1800), (1080, 1900), (0, 1900), (0, 1800)],
+    "marcas": {"longe": {"x": 540, "y": 1280, "nota": "lá no fim do viaduto, perto da ponte"}, "meio": {"x": 540, "y": 1500},
+               "frente": {"x": 540, "y": 1800}, "mureta": {"x": 260, "y": 1700, "nota": "junto à mureta, olhando a cidade"}}}
+MAPA["estacionamento"] = {
+    "chao": [(320, 1280), (760, 1280), (1080, 1720), (1080, 1900), (0, 1900), (0, 1720)],
+    "marcas": {"fundo": {"x": 540, "y": 1320}, "meio": {"x": 540, "y": 1560}, "frente": {"x": 540, "y": 1800},
+               "pilar": {"x": 760, "y": 1760, "nota": "escondido atrás do pilar"}}}
+MAPA["vagao"] = {
+    "chao": [(400, 1320), (680, 1320), (1080, 1840), (1080, 1900), (0, 1900), (0, 1840)],
+    "marcas": {"porta": {"x": 540, "y": 1360, "nota": "na porta do fundo"}, "meio": {"x": 540, "y": 1560},
+               "frente": {"x": 540, "y": 1800}, "banco_esq": {"x": 260, "y": 1740, "nota": "perto do banco da esquerda"},
+               "banco_dir": {"x": 820, "y": 1740}}}
 
 # Travelling lateral (lofi/travelling.py): o chão é a faixa da calçada/piso, igual em todos os cenários.
 MAPA["_travelling"] = {
