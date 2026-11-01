@@ -1,0 +1,1312 @@
+{
+ "out": "ep01.mp4",
+ "fps": 30,
+ "total": 126.77,
+ "crf": 28,
+ "series_title": "TURNO DA NOITE",
+ "episode": 1,
+ "episodes_total": 5,
+ "episode_title": "O DE SEMPRE",
+ "tint": [
+  110,
+  200,
+  150,
+  0.1
+ ],
+ "style": "desenho",
+ "voices": {
+  "davi": "ep01/davi.mp3",
+  "sonia": "ep01/sonia.mp3",
+  "bento": "ep01/bento.mp3"
+ },
+ "speakers": {
+  "sonia": {
+   "label": "TELEFONE",
+   "color": [
+    255,
+    200,
+    170
+   ]
+  },
+  "bento": {
+   "label": "BENTO",
+   "color": [
+    190,
+    210,
+    255
+   ]
+  }
+ },
+ "hud": {
+  "place": "KM 317",
+  "days": [
+   [
+    0,
+    "NOITE 1",
+    "22:00"
+   ],
+   [
+    52.27,
+    "NOITE 1",
+    "02:59"
+   ],
+   [
+    60.17,
+    "NOITE 1",
+    "03:00"
+   ]
+  ],
+  "sec_per_min": 7.5
+ },
+ "lightning": [
+  11.4
+ ],
+ "clips": [
+  {
+   "voice": "davi",
+   "src": [
+    0.0,
+    6.65
+   ],
+   "at": 6.2
+  },
+  {
+   "voice": "sonia",
+   "src": [
+    0.0,
+    7.31
+   ],
+   "at": 21.4,
+   "radio": true
+  },
+  {
+   "voice": "davi",
+   "src": [
+    7.01,
+    15.49
+   ],
+   "at": 30.11
+  },
+  {
+   "voice": "davi",
+   "src": [
+    15.71,
+    20.93
+   ],
+   "at": 39.89
+  },
+  {
+   "voice": "davi",
+   "src": [
+    21.44,
+    26.3
+   ],
+   "at": 46.51
+  },
+  {
+   "voice": "davi",
+   "src": [
+    26.73,
+    30.69
+   ],
+   "at": 53.07
+  },
+  {
+   "voice": "davi",
+   "src": [
+    31.03,
+    33.95
+   ],
+   "at": 61.77
+  },
+  {
+   "voice": "davi",
+   "src": [
+    34.44,
+    37.87
+   ],
+   "at": 66.87
+  },
+  {
+   "voice": "bento",
+   "src": [
+    0.0,
+    3.2
+   ],
+   "at": 74.37
+  },
+  {
+   "voice": "davi",
+   "src": [
+    38.26,
+    40.08
+   ],
+   "at": 79.57
+  },
+  {
+   "voice": "davi",
+   "src": [
+    40.36,
+    44.02
+   ],
+   "at": 85.87
+  },
+  {
+   "voice": "davi",
+   "src": [
+    44.35,
+    47.45
+   ],
+   "at": 91.77
+  },
+  {
+   "voice": "bento",
+   "src": [
+    3.64,
+    6.54
+   ],
+   "at": 97.57
+  },
+  {
+   "voice": "davi",
+   "src": [
+    47.71,
+    52.66
+   ],
+   "at": 103.27
+  },
+  {
+   "voice": "davi",
+   "src": [
+    53.01,
+    58.22
+   ],
+   "at": 110.27
+  }
+ ],
+ "subs": [
+  {
+   "voice": "davi",
+   "src": [
+    0.0,
+    1.36
+   ],
+   "text": [
+    "EU PRECISAVA",
+    "DO DINHEIRO."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    1.79,
+    6.65
+   ],
+   "text": [
+    "TURNO DA NOITE,",
+    "KM 317.",
+    "PAGA EM DOBRO."
+   ]
+  },
+  {
+   "voice": "sonia",
+   "src": [
+    0.0,
+    2.67
+   ],
+   "text": [
+    "DAVI? AQUI É",
+    "A SÔNIA,",
+    "A GERENTE."
+   ]
+  },
+  {
+   "voice": "sonia",
+   "src": [
+    3.0,
+    7.31
+   ],
+   "text": [
+    "BEM-VINDO.",
+    "AS REGRAS ESTÃO",
+    "NO CAIXA.",
+    "LEIA TODAS."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    7.01,
+    9.44
+   ],
+   "text": [
+    "REGRA UM:",
+    "AS LUZES NUNCA",
+    "SE APAGAM."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    9.66,
+    15.49
+   ],
+   "text": [
+    "REGRA DOIS:",
+    "DAS 3H ÀS 3H33,",
+    "NÃO OLHE",
+    "PARA REFLEXOS."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    15.71,
+    19.28
+   ],
+   "text": [
+    "REGRA TRÊS:",
+    "NINGUÉM PEDE",
+    "O DE SEMPRE.",
+    "SE PEDIREM,",
+    "ESTÁ FECHADO."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    19.66,
+    20.93
+   ],
+   "text": [
+    "ASSINADO: IVO."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    21.44,
+    26.3
+   ],
+   "text": [
+    "ATÉ AS DUAS,",
+    "NADA.",
+    "UM CASAL,",
+    "UM MOTOQUEIRO,",
+    "UM CACHORRO",
+    "SOZINHO."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    26.73,
+    30.69
+   ],
+   "text": [
+    "ÀS 2H59,",
+    "AS LUZES PISCARAM.",
+    "TODAS JUNTAS."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    31.03,
+    33.95
+   ],
+   "text": [
+    "O SININHO TOCOU.",
+    "A PORTA ABRIU.",
+    "NINGUÉM ENTROU."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    34.44,
+    37.87
+   ],
+   "text": [
+    "NAS CÂMERAS,",
+    "NINGUÉM.",
+    "NEM NAS BOMBAS.",
+    "NEM NA ESTRADA."
+   ]
+  },
+  {
+   "voice": "bento",
+   "src": [
+    0.0,
+    2.02
+   ],
+   "text": [
+    "BOA NOITE, RAPAZ!",
+    "FRIO, NÉ?"
+   ]
+  },
+  {
+   "voice": "bento",
+   "src": [
+    2.44,
+    3.2
+   ],
+   "text": [
+    "ME VÊ",
+    "O DE SEMPRE."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    38.26,
+    40.08
+   ],
+   "text": [
+    "O DE SEMPRE.",
+    "REGRA TRÊS."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    40.36,
+    42.2
+   ],
+   "text": [
+    "EU OLHEI.",
+    "EU SEI QUE",
+    "NÃO PODIA."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    42.61,
+    44.02
+   ],
+   "text": [
+    "E NO VIDRO...",
+    "NÃO ERA ELE."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    44.35,
+    47.45
+   ],
+   "text": [
+    "NA CÂMERA",
+    "DO CAIXA,",
+    "EU ESTAVA SOZINHO.",
+    "FALANDO",
+    "COM NINGUÉM."
+   ]
+  },
+  {
+   "voice": "bento",
+   "src": [
+    3.64,
+    6.54
+   ],
+   "text": [
+    "O DE SEMPRE,",
+    "FILHO.",
+    "VOCÊ SABE",
+    "QUAL É."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    47.71,
+    49.72
+   ],
+   "text": [
+    "SE EU ATENDESSE,",
+    "TALVEZ ELE",
+    "FOSSE EMBORA."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    50.0,
+    52.66
+   ],
+   "text": [
+    "SE EU DISSESSE",
+    "QUE ESTAVA FECHADO...",
+    "EU IA TER",
+    "QUE FECHAR."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    53.01,
+    55.83
+   ],
+   "text": [
+    "ERAM 3H07.",
+    "FALTAVAM",
+    "26 MINUTOS."
+   ]
+  },
+  {
+   "voice": "davi",
+   "src": [
+    56.11,
+    58.22
+   ],
+   "text": [
+    "ATENDO...",
+    "OU ESTÁ FECHADO?"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "loja",
+   "hook": {
+    "text": "NÃO OLHE\nPARA O VIDRO",
+    "y": 1240
+   },
+   "slowmo": 0.4,
+   "props": {
+    "relogio": "03:04",
+    "reflexo": 1,
+    "flicker": 0.15
+   },
+   "camera": {
+    "zoom": 1.45,
+    "cx": 0.85,
+    "cy": 0.55
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "geladeira",
+     "dx": -120,
+     "view": "back",
+     "emotion": "shock",
+     "tremble": 1
+    }
+   ]
+  },
+  {
+   "start": 2,
+   "end": 5,
+   "type": "title",
+   "title": "EPISÓDIO 1/5",
+   "subtitle": "TURNO DA NOITE",
+   "transition": "glitch",
+   "stamp": {
+    "t": 3.4,
+    "top": "ARQUIVO",
+    "word": "24-0317"
+   }
+  },
+  {
+   "scene": "posto",
+   "transition": "fade",
+   "rain": "fraca",
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": [
+      [
+       0,
+       "frente_esq"
+      ],
+      [
+       4.5,
+       "frente"
+      ]
+     ],
+     "view": "3q",
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       4.5,
+       false
+      ]
+     ],
+     "emotion": "neutral"
+    }
+   ],
+   "start": 5.0,
+   "end": 15.0
+  },
+  {
+   "scene": "posto",
+   "transition": "cut",
+   "rain": "fraca",
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "frente",
+     "view": "3q",
+     "facing": -1,
+     "emotion": "suspicious"
+    }
+   ],
+   "start": 15.0,
+   "end": 19.0
+  },
+  {
+   "scene": "loja",
+   "transition": "whip",
+   "props": {
+    "relogio": "22:04",
+    "flicker": 0.02
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": [
+      [
+       0,
+       "porta"
+      ],
+      [
+       2.2,
+       "caixa"
+      ]
+     ],
+     "view": [
+      [
+       0,
+       "back"
+      ],
+      [
+       2.2,
+       "3q"
+      ]
+     ],
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       2.2,
+       false
+      ]
+     ],
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       2.3,
+       "phone"
+      ]
+     ],
+     "prop": [
+      [
+       0,
+       null
+      ],
+      [
+       2.3,
+       "phone"
+      ]
+     ],
+     "emotion": "neutral"
+    }
+   ],
+   "start": 19.0,
+   "end": 29.61
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "22:06",
+    "flicker": 0.02
+   },
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "suspicious",
+     "look": -1
+    }
+   ],
+   "start": 29.61,
+   "end": 39.49
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "22:07",
+    "flicker": 0.02
+   },
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "front",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "happy"
+      ],
+      [
+       3.6,
+       "suspicious"
+      ]
+     ]
+    }
+   ],
+   "start": 39.49,
+   "end": 46.01
+  },
+  {
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes": [
+     1330,
+     1619
+    ]
+   },
+   "transition": "fade",
+   "grade": "frio",
+   "start": 46.01,
+   "end": 52.27
+  },
+  {
+   "scene": "mercado",
+   "transition": "fade",
+   "props": {
+    "flicker": 0.3
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": [
+      [
+       0,
+       "frente_dir"
+      ],
+      [
+       4,
+       "meio"
+      ]
+     ],
+     "view": "back",
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       4,
+       false
+      ]
+     ],
+     "emotion": "neutral"
+    }
+   ],
+   "start": 52.27,
+   "end": 58.77
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": [
+     [
+      0,
+      "02:59"
+     ],
+     [
+      1.4,
+      "03:00"
+     ]
+    ],
+    "flicker": [
+     [
+      0,
+      0.5
+     ],
+     [
+      1.4,
+      0.0
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "scare": [
+    2.0
+   ],
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "front",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "neutral"
+      ],
+      [
+       2.0,
+       "shock"
+      ]
+     ]
+    }
+   ],
+   "start": 58.77,
+   "end": 66.27
+  },
+  {
+   "scene": "cftv",
+   "transition": "cut",
+   "hand": "davi",
+   "props": {
+    "hora": "03:00:41",
+    "ruido": 0.2
+   },
+   "start": 66.27,
+   "end": 71.77
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "03:02",
+    "flicker": 0.02
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       3.4,
+       "happy"
+      ]
+     ]
+    },
+    {
+     "char": "bento",
+     "mark": [
+      [
+       0,
+       "porta"
+      ],
+      [
+       2.4,
+       "balcao"
+      ]
+     ],
+     "view": "3q",
+     "facing": -1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       2.4,
+       false
+      ]
+     ],
+     "emotion": "happy",
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       2.6,
+       "wave"
+      ],
+      [
+       3.6,
+       "idle"
+      ]
+     ]
+    }
+   ],
+   "start": 71.77,
+   "end": 78.77
+  },
+  {
+   "type": "detail",
+   "subject": "olho",
+   "hand": "davi",
+   "params": {
+    "pupil": [
+     0.45,
+     0.8
+    ],
+    "brow": -15
+   },
+   "transition": "cut",
+   "start": 78.77,
+   "end": 83.27
+  },
+  {
+   "scene": "loja",
+   "transition": "flash",
+   "props": {
+    "relogio": "03:04",
+    "flicker": 0.08,
+    "reflexo": [
+     [
+      0,
+      0
+     ],
+     [
+      1.6,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "scare": [
+    1.6
+   ],
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "look": [
+      [
+       0,
+       0
+      ],
+      [
+       1.2,
+       1
+      ]
+     ],
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       1.6,
+       "shock"
+      ]
+     ]
+    },
+    {
+     "char": "bento",
+     "mark": "balcao",
+     "view": "3q",
+     "facing": -1,
+     "emotion": "happy"
+    }
+   ],
+   "start": 83.27,
+   "end": 91.27
+  },
+  {
+   "scene": "cftv",
+   "transition": "zoom",
+   "camera": {
+    "vertigo": [
+     1.0,
+     1.12
+    ]
+   },
+   "props": {
+    "cam": 1,
+    "duplo": true,
+    "hora": "03:05:12",
+    "ruido": [
+     [
+      0,
+      0.2
+     ],
+     [
+      4,
+      0.6
+     ]
+    ]
+   },
+   "start": 91.27,
+   "end": 96.77
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "03:06",
+    "flicker": 0.1
+   },
+   "camera": {
+    "plano": "medio",
+    "handheld": 6
+   },
+   "actors": [
+    {
+     "char": "bento",
+     "mark": "balcao",
+     "view": "front",
+     "facing": -1,
+     "pose": "forward",
+     "emotion": "neutral"
+    },
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear",
+     "tremble": 1
+    }
+   ],
+   "start": 96.77,
+   "end": 102.77
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "03:06",
+    "flicker": 0.05
+   },
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       3.5,
+       "determined"
+      ]
+     ]
+    }
+   ],
+   "start": 102.77,
+   "end": 109.27
+  },
+  {
+   "scene": "loja",
+   "transition": "cut",
+   "props": {
+    "relogio": "03:07",
+    "flicker": 0.06,
+    "vulto": 0.6
+   },
+   "actors": [
+    {
+     "char": "davi",
+     "mark": "caixa",
+     "view": "front",
+     "facing": 1,
+     "emotion": "fear"
+    },
+    {
+     "char": "bento",
+     "mark": "balcao",
+     "view": "3q",
+     "facing": -1
+    }
+   ],
+   "start": 109.27,
+   "end": 117.77
+  },
+  {
+   "start": 117.77,
+   "end": 126.77,
+   "type": "choice",
+   "transition": "zoom",
+   "hud": false,
+   "a": {
+    "label": "ATENDER",
+    "scene": "loja",
+    "crop_x": 100,
+    "props": {
+     "relogio": "03:07"
+    },
+    "actors": [
+     {
+      "char": "davi",
+      "x": 210,
+      "y": 1420,
+      "view": "3q",
+      "facing": 1,
+      "pose": "reach",
+      "emotion": "fear"
+     },
+     {
+      "char": "bento",
+      "x": 590,
+      "y": 1470,
+      "view": "3q",
+      "facing": -1,
+      "emotion": "happy"
+     }
+    ]
+   },
+   "b": {
+    "label": "FECHADO",
+    "scene": "loja",
+    "crop_x": 360,
+    "props": {
+     "relogio": "03:07",
+     "vulto": 1,
+     "flicker": 0.3
+    },
+    "actors": [
+     {
+      "char": "davi",
+      "x": 620,
+      "y": 1650,
+      "view": "front",
+      "emotion": "determined"
+     }
+    ]
+   },
+   "end_card": {
+    "t": 124.27,
+    "text": "CONTINUA NO EPISÓDIO 2"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.0,
+   "name": "heartbeat",
+   "dur": 2
+  },
+  {
+   "t": 1.0,
+   "name": "bell"
+  },
+  {
+   "t": 3.4,
+   "name": "stamp"
+  },
+  {
+   "t": 5.8,
+   "name": "step"
+  },
+  {
+   "t": 7.2,
+   "name": "step"
+  },
+  {
+   "t": 11.5,
+   "name": "thunder"
+  },
+  {
+   "t": 16.0,
+   "name": "breath"
+  },
+  {
+   "t": 19.3,
+   "name": "bell"
+  },
+  {
+   "t": 19.6,
+   "name": "step"
+  },
+  {
+   "t": 20.6,
+   "name": "beep"
+  },
+  {
+   "t": 21.1,
+   "name": "click"
+  },
+  {
+   "t": 29.81,
+   "name": "click"
+  },
+  {
+   "t": 44.49,
+   "name": "static",
+   "dur": 0.8
+  },
+  {
+   "t": 46.21,
+   "name": "click"
+  },
+  {
+   "t": 49.51,
+   "name": "click"
+  },
+  {
+   "t": 52.77,
+   "name": "step"
+  },
+  {
+   "t": 54.77,
+   "name": "static",
+   "dur": 1.0
+  },
+  {
+   "t": 60.17,
+   "name": "click"
+  },
+  {
+   "t": 60.77,
+   "name": "bell"
+  },
+  {
+   "t": 60.77,
+   "name": "whoosh"
+  },
+  {
+   "t": 61.17,
+   "name": "heartbeat",
+   "dur": 4
+  },
+  {
+   "t": 66.37,
+   "name": "static",
+   "dur": 1.2
+  },
+  {
+   "t": 69.77,
+   "name": "breath"
+  },
+  {
+   "t": 72.17,
+   "name": "step"
+  },
+  {
+   "t": 73.17,
+   "name": "step"
+  },
+  {
+   "t": 78.87,
+   "name": "heartbeat",
+   "dur": 3
+  },
+  {
+   "t": 83.67,
+   "name": "bell"
+  },
+  {
+   "t": 84.87,
+   "name": "impact"
+  },
+  {
+   "t": 85.17,
+   "name": "heartbeat",
+   "dur": 5
+  },
+  {
+   "t": 91.37,
+   "name": "static",
+   "dur": 4
+  },
+  {
+   "t": 97.07,
+   "name": "growl"
+  },
+  {
+   "t": 100.77,
+   "name": "breath"
+  },
+  {
+   "t": 102.97,
+   "name": "heartbeat",
+   "dur": 5
+  },
+  {
+   "t": 108.27,
+   "name": "click"
+  },
+  {
+   "t": 109.47,
+   "name": "heartbeat",
+   "dur": 6
+  },
+  {
+   "t": 116.57,
+   "name": "bell"
+  },
+  {
+   "t": 118.77,
+   "name": "bell"
+  },
+  {
+   "t": 122.77,
+   "name": "stamp"
+  }
+ ],
+ "music": [
+  {
+   "start": 5,
+   "end": 58.77,
+   "gain": [
+    0.03,
+    0.06
+   ],
+   "tense": 0.35
+  },
+  {
+   "start": 58.77,
+   "end": 96.77,
+   "gain": [
+    0.05,
+    0.1
+   ],
+   "tense": 0.8
+  },
+  {
+   "start": 96.77,
+   "end": 126.77,
+   "gain": [
+    0.05,
+    0.1
+   ],
+   "tense": 0.9
+  }
+ ]
+}

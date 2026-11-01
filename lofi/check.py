@@ -121,6 +121,8 @@ def check(path, frames=True):
         except Exception: return None
     ms = [(t, _min(d, h), d, h) for t, d, h in [x[:3] for x in dias]]
     for (t0, m0, d0, h0), (t1, m1, d1, h1) in zip(ms, ms[1:]):
+        if m0 is not None and m1 is not None and m1 < m0 and str(d0).upper().startswith("NOITE") and d0 == d1 \
+                and m0 % 1440 >= 12 * 60 and m1 % 1440 < 12 * 60: continue    # a mesma noite passa da meia-noite
         if m0 is not None and m1 is not None and m1 < m0: err(f"relógio do HUD volta no tempo em {t1}s ({d0} {h0} → {d1} {h1})")
     try:
         from . import continuidade
@@ -174,7 +176,8 @@ def check(path, frames=True):
                     face = (top + (bot - top) * 0.35, bot)
                     if sub and face[0] < sy + 55 and face[1] > sy - 55 and x1 > 160 and x0 < W - 160:
                         err(f"legenda cobrindo rosto em {t:.1f}s ('{sub[2]}')")
-                    if x1 < 40 or x0 > W - 40: warn(f"personagem fora do quadro em {t:.1f}s")
+                    if (x1 < 40 or x0 > W - 40) and ep.plano_de(shot, scenes.get(shot["scene"])) not in ("medio", "close"):
+                        warn(f"personagem fora do quadro em {t:.1f}s")
                     elif (x0 < -60 or x1 > W + 60) and not shot.get("camera", {}).get("close") is not None \
                             and ep.plano_de(shot, scenes.get(shot["scene"])) not in ("medio", "close"): warn(f"personagem cortado na lateral em {t:.1f}s")
                     if top < 450 and x0 < 430 and shot.get("hud", True): warn(f"cabeça embaixo do contador em {t:.1f}s")

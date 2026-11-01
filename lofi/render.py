@@ -356,10 +356,10 @@ class Episode:
         if plano == "medio":
             wx, y, h = caixas[0]
             z = min(6.0, max(1.0, 1.22 * H / h)) * push
-            x0 = wx - W / 2 / z; y0 = (y - h * 0.88) - 0.24 * H / z
+            x0 = wx - W / 2 / z; y0 = (y - h * 0.88) - 0.27 * H / z
         else:
             hmax = max(c[2] for c in caixas)
-            xa = min(c[0] for c in caixas) - 0.2 * hmax; xb = max(c[0] for c in caixas) + 0.2 * hmax
+            xa = min(c[0] for c in caixas) - 0.3 * hmax; xb = max(c[0] for c in caixas) + 0.3 * hmax
             top = min(c[1] - c[2] * 0.88 for c in caixas); bot = max(c[1] for c in caixas)
             z = min(0.52 * H / max(1, bot - top), 0.98 * W / max(1, xb - xa), 3.0)
             z = max(1.0, z) * push
@@ -385,7 +385,7 @@ class Episode:
             else:                                    # close de verdade: cabeça e ombros enchendo o quadro, em qualquer distância
                 z = min(9.0, max(2.0, 2.3 * H / sh))
             hx, hy = x - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
-            x0, y0 = hx - W / 2 / z, hy - 820 / z
+            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else 960) / z
             k = ease(c01(rel / cam.get("close_in", 0.0001)))
             z = lerp(1.0, z, k); x0 = lerp(0, x0, k); y0 = lerp(0, y0, k)
         elif follow is not None and int(follow) < len(actors):
