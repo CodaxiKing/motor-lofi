@@ -42,7 +42,7 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 ## Episódios
 | Nº | Noite | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 1 | início | roteiro | A) Atender · B) Dizer que está fechado | — | |
+| 1 | 1 | início | montado | A) Atender · B) Dizer que está fechado | (aguardando) | |
 | 2 | 2 | complicação | planejado | A) Abrir a câmara fria · B) Ligar pra gerente | | |
 | 3 | 3 | reviravolta | planejado | A) Confiar na Sônia · B) Confiar no Ivo | | |
 | 4 | 4 | clímax | planejado | A) Religar o gerador · B) Ficar parado no escuro | | |
@@ -60,7 +60,7 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 - Da biblioteca: `mercado` (corredores das prateleiras), `posto` (bombas e fachada, chuva), `rua` e `carro` (rodovia, só no final B). Detalhes: relogio, macaneta, chave, olho, celular.
 
 ## Resumos
-- EP 1:
+- EP 1: Davi começou o turno da noite na loja 24h do km 317 e achou no caixa as regras assinadas pelo Ivo, o atendente que sumiu. Às 3h00 o relógio pulou, a porta abriu sozinha com o sininho e entrou o caminhoneiro Bento pedindo "o de sempre". Na câmera do caixa Davi estava sozinho, e no vidro da geladeira o reflexo era uma silhueta alta de chapéu. Às 3h07, ele precisa escolher: atender ou dizer que a loja está fechada.
 - EP 2:
 - EP 3:
 - EP 4:
@@ -71,4 +71,5 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 |---|---|---|---|
 
 ## Continuidade (onde eles estão)
+- Fim do ep. 1: Davi atrás do caixa, Noite 1 · 03:07, com o Bento no balcão e o vulto de chapéu na porta de vidro.
 - Início do ep. 1: Davi sozinho no caixa da loja, 22h da Noite 1. O telefone fixo fica no balcão; o rádio da loja não existe (sem rádio nesta série).
