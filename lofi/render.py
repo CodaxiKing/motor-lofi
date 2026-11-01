@@ -63,7 +63,8 @@ class Episode:
         self.spec = json.load(open(spec_path))
         sp = self.spec
         self.fps = sp.get("fps", 30)
-        self.shots = sorted(sp["shots"], key=lambda s: s["start"])
+        from .mapa import resolver_plano
+        self.shots = sorted((resolver_plano(s) for s in sp["shots"]), key=lambda s: s["start"])
         self.total = sp.get("total", max(s["end"] for s in self.shots))
         self.voices = {k: os.path.join(self.base, v) for k, v in sp.get("voices", {}).items()}
         self.speakers = {k: {"label": v.get("label"), "color": tuple(v.get("color", (250, 250, 248)))} for k, v in sp.get("speakers", {}).items()}

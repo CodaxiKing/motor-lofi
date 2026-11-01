@@ -133,6 +133,21 @@ Sem arquivo e sem `moments`, o verificador dá ERRO (o render mostra só as fras
 **Episódio legado**: `"legado": true` na raiz marca um roteiro técnico reconstruído de um episódio publicado num formato
 antigo. O verificador passa a tratar as regras de formato atuais (gancho, 12–20 cenas, 2–3 min) como informação.
 
+## Mapa dos cenários: marcas de posição e chão
+Cada cenário tem em `lofi/mapa.py` a **área de chão** (onde os pés podem ficar) e **marcas nomeadas**. Prefira marcas a x/y soltos:
+```json
+{"char": "roberta", "mark": "porta"}                          // x, y e padrões da marca (ex.: porta = de costas)
+{"char": "rafa", "mark": [[0, "fundo"], [3.5, "frente"]], "walk": true}   // anda de uma marca até a outra
+{"char": "lia", "mark": "sofa", "dx": -60}                     // deslocado 60 px para a esquerda
+```
+- x/y escritos no ator vencem a marca; vista, pose, escala, `fg` e `blur` da marca só entram se o ator não definir.
+- Lista de marcas: seção "Marcas de posição por cenário" do [CATALOGO.md](CATALOGO.md). Imagem com a personagem em cada marca:
+  [`examples/mapa_cenarios.png`](examples/mapa_cenarios.png) (`python3 -m lofi.mapa`; só um cenário: `python3 -m lofi.mapa escada`).
+- O verificador dá **ERRO** para marca que não existe no cenário e para personagem **fora do chão** (flutuando ou dentro da
+  parede), conferindo início, meio e fim de cada plano. Exceções: `fg` (primeiro plano), `carried_by`, horda e `"livre": true`
+  (de propósito, ex.: fantasma voando). Quem entra ou sai pela lateral (x fora da tela) não é acusado.
+- Cenário novo precisa entrar no `MAPA` (o teste de fumaça falha se faltar ou se uma marca cair fora do chão).
+
 ## Vídeo de comentários (`"formato": "comentarios"`)
 Usado pela skill `serie-comentarios`: um personagem responde comentários dos seguidores. Arquivos em `series/<serie>/comentarios/cNN.json`
 (o motor acha o `personagens.json` da série na pasta acima).

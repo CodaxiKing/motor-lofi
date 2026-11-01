@@ -11,6 +11,7 @@ from .core import W, H, font
 from . import scenes, detail, text
 from .rig import CHARS, POSES, EMOTIONS
 from .render import Episode, val, change
+from . import mapa
 
 def check(path, frames=True):
     ep = Episode(path); sp = ep.spec; probs = []
@@ -52,6 +53,9 @@ def check(path, frames=True):
                 err(f"recap aponta para arquivo inexistente: {s.get('from')} (versione o epNN.json anterior ou use 'moments')")
         for a in s.get("actors", []) + sum(([s[k]] if False else s.get(k, {}).get("actors", []) for k in ("a", "b")), []):
             if a["char"] not in CHARS and a["char"] not in ep.custom: err(f"personagem desconhecido: {a['char']} ({s['start']}s)")
+            if a.get("_mark_erro"):
+                cena = s.get("scene") or "?"
+                err(f"marca '{a['_mark_erro']}' não existe em '{cena}' ({s['start']}s). Marcas: {', '.join(mapa.marcas(cena)) or 'nenhuma'}")
             for key, allowed in (("pose", POSES), ("emotion", EMOTIONS)):
                 v = a.get(key)
                 vals = [x[1] for x in v] if isinstance(v, list) else ([v] if v else [])
@@ -69,6 +73,23 @@ def check(path, frames=True):
     cl = sorted(ep.clips, key=lambda c: c["at"])
     for a, b in zip(cl, cl[1:]):
         if a["at"] + (a["src"][1] - a["src"][0]) > b["at"] + 0.1: warn(f"falas sobrepostas em {b['at']:.1f}s ({a['voice']} / {b['voice']})")
+    # ---------- posição no chão (mapa dos cenários) ----------
+    for s in shots:
+        if s.get("type", "scene") != "scene" or s.get("scene") not in mapa.MAPA: continue
+        dur = max(1e-6, s["end"] - s["start"])
+        for a in s.get("actors", []):
+            if a.get("fg") or a.get("carried_by") or a.get("_crowd") or a.get("_mark_erro") or a.get("livre"): continue
+            ruins = []
+            for rel in (0.0, dur * 0.5, dur - 0.01):
+                try:
+                    x = val(a.get("x", 540), rel, rel / dur); y = val(a.get("y"), rel, rel / dur)
+                except Exception: continue
+                if y is None or x is None: continue
+                if not mapa.no_chao(s["scene"], min(1080, max(0, x)), y): ruins.append(f"x={x:.0f} y={y:.0f}")  # x fora da tela = entrando/saindo
+            if ruins:
+                ms = ", ".join(mapa.marcas(s["scene"]))
+                err(f"{a['char']} fora do chão de '{s['scene']}' em {s['start']}s ({ruins[0]}): vai parecer flutuando ou dentro da parede. "
+                    f"Use uma marca ({ms}), ajuste x/y (veja python3 -m lofi.mapa {s['scene']}) ou, se for de propósito (fantasma voando), \"livre\": true")
     # ---------- quadros ----------
     sheet_frames = []
     if frames:

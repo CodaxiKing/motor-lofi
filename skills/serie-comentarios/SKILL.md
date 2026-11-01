@@ -40,7 +40,7 @@ Duas etapas, decididas pelo que vier anexado:
 1. Siga a seção "Montagem" da skill **serie-lofi-interativa** e as regras de áudio do /serie-montar: copie as vozes para `series/<serie>/comentarios/cNN/<personagem>.mp3`, transcreva (`python3 -m lofi.transcribe ...`) e case cada fala **pelo texto**, dividindo trechos que juntam respostas de blocos diferentes.
 2. Escreva `series/<serie>/comentarios/cNN.json` com `"formato": "comentarios"`, `series_title`, `tint` do último episódio, `style` da série, `voices`, `clips`, `subs` (uma legenda por frase) e `shots`:
    - abertura: plano com `"hook": {"text": "VOCÊS\nCOMENTARAM…"}`;
-   - cada bloco: um plano com o cartão em `overlay`: `{"type": "comment", "user": "@usuario", "text": "texto", "likes": 1240, "t": [início, fim], "y": 700}`. O cartão entra 0,3 s antes da reação e sai quando a resposta termina; `y` (centro do cartão) entre 640 e 760, com o personagem abaixo (`y` do ator ≥ 1650, sem close que suba o rosto para a área do cartão);
+   - cada bloco: um plano com o cartão em `overlay`: `{"type": "comment", "user": "@usuario", "text": "texto", "likes": 1240, "t": [início, fim], "y": 700}`. O cartão entra 0,3 s antes da reação e sai quando a resposta termina; `y` (centro do cartão) entre 640 e 760, com o personagem abaixo, posicionado por uma marca da frente do cenário (`"mark": "frente"`, `"centro"`… ver `CATALOGO.md`), sem close que suba o rosto para a área do cartão;
    - `notif` no `sfx` na entrada de cada cartão; trilha leve (`music` com `tense` baixo);
    - fechamento com `"overlay": [{"type": "text", "text": "COMENTA A OU B", "y": 900}]` (ou "CONTINUA…") e, se fizer sentido, o carimbo do voto.
    - `hud` com o dia/hora do ponto atual da história e `place` "RESPONDENDO".

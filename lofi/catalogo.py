@@ -45,6 +45,14 @@ def markdown(c):
         out += [f"**{t}** ({len(c[k])}): " + ", ".join(f"`{x}`" for x in c[k]), ""]
     out += ["**Clima:** `rain` = " + ", ".join(f"`{x}`" for x in c["clima"]["rain"]) +
             " · `time` = " + ", ".join(f"`{x}`" for x in c["clima"]["time"]) + " · `fog` e `snow` de 0 a 1", ""]
+    from .mapa import MAPA
+    out += ["## Marcas de posição por cenário", "",
+            "Use no ator: `\"mark\": \"porta\"` (ou `[[0, \"fundo\"], [3, \"frente\"]]` para andar entre marcas). "
+            "Imagem com todas: [`examples/mapa_cenarios.png`](examples/mapa_cenarios.png).", ""]
+    for cena, m in MAPA.items():
+        itens = [f"`{n}`" + (f" ({v['nota']})" if v.get("nota") else "") for n, v in m["marcas"].items()]
+        out += [f"- **{cena}:** " + ", ".join(itens)]
+    out += [""]
     return "\n".join(out)
 
 

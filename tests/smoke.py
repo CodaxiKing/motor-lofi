@@ -30,6 +30,8 @@ def main():
     from lofi.render import Episode
     from lofi.check import check
     falhas = []
+    from lofi.mapa import conferir_mapa
+    for e in conferir_mapa(): falhas.append("mapa: " + e)
     for ex in EXEMPLOS:
         path = os.path.join(RAIZ, ex)
         try:

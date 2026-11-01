@@ -39,11 +39,13 @@ def carregar_nomes(caminho_roteiro):
         if os.path.isfile(p):
             locked = {k for k in json.load(open(p, encoding="utf-8")) if not k.startswith("_")}; break
     clima = set(c["clima"]["rain"]) | set(c["clima"]["time"])
+    from lofi.mapa import MAPA
+    marcas = {n for m in MAPA.values() for n in m["marcas"]}
     personagens = set(c["personagens"]) | locked
     nomes = {
         "CENARIO": set(c["cenarios"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima,
         "PERSONAGENS": personagens | set(c["poses"]) | set(c["emocoes"]) | set(c["vistas"]) | set(c["objetos"])
-                       | set(c["corpos"]) | CAMPOS_ATOR,
+                       | set(c["corpos"]) | CAMPOS_ATOR | marcas | {"mark"},
         "PLANO": set(c["transicoes"]) | set(c["detalhes"]) | CAMPOS_PLANO | clima | personagens | set(c["acusticas"]),
         "SOM": set(c["sons"]),
     }
