@@ -3,7 +3,7 @@
     loja         salão visto do corredor: caixa com o balcão à esquerda (frente: esconde quem está atrás dele),
                  porta de vidro no fundo, geladeiras à direita, relógio digital e monitor das câmeras na parede.
                  props: relogio ("03:00"), vulto (0–1, silhueta alta na porta de vidro), flicker (0–1),
-                        reflexo (0–1, silhueta parada no vidro da geladeira), apagado (True = só a luz das geladeiras)
+                        reflexo (0–1, silhueta parada no vidro da geladeira), porta (0–1, porta de vidro abrindo), apagado (True = só a luz das geladeiras)
     deposito     fundos da loja: caixas, gerador e a porta de aço da câmara fria.
                  props: batida (0–1, porta tremendo), rosto (0–1, rosto no vidro da porta), cadeado (True),
                         gerador (True = ligado), luz (0–1, lâmpada; 0 = breu)
@@ -100,11 +100,18 @@ class Loja(Scene):
         d.rectangle(PS((-M, 1540), (460, 1560)), fill=(80, 18, 18, 255))
         d.rectangle(PS((300, 1262), (420, 1332)), fill=(40, 40, 44, 255))                               # caixa registradora
         d.rectangle(PS((314, 1272), (406, 1300)), fill=(80, 200, 120, 255))
-        d.rectangle(PS((60, 1306), (136, 1332)), fill=(60, 60, 64, 255))                               # maquininha
-        d.rectangle(PS((60, 1384), (196, 1528)), fill=(236, 232, 214, 255))                             # folha das regras
-        d.text(P(72, 1392), "REGRAS", font=font("mono", 26 * S), fill=(30, 30, 30, 255))
-        for k in range(8): d.line(PS((72, 1436 + k * 11), (182 - (k % 3) * 18, 1436 + k * 11)), fill=(70, 70, 70, 255), width=2 * S)
-        d.line(PS((80, 1380), (110, 1390)), fill=(200, 200, 160, 255), width=8 * S)                    # durex
+        d.rectangle(PS((44, 1368), (214, 1550)), fill=(236, 232, 214, 255))                             # folha das regras
+        d.text(P(56, 1372), "REGRAS DO TURNO", font=font("mono", 15 * S), fill=(30, 30, 30, 255))
+        regras = ["1 LUZES SEMPRE ACESAS", "2 3H-3H33: NAO OLHE", "  PARA REFLEXOS", "3 NINGUEM PEDE", "  \"O DE SEMPRE\"",
+                  "4 CAMARA FRIA: NAO ABRA", "5 NOME? NAO RESPONDA", "6 SO O SOL ENCERRA", "7 NAO SAIA", "          - IVO"]
+        for k, linha in enumerate(regras):
+            d.text(P(54, 1394 + k * 15), linha, font=font("mono", 10 * S), fill=(40, 40, 40, 255))
+        d.line(PS((54, 1452), (150, 1452)), fill=(200, 30, 30, 255), width=2 * S)                       # regra três sublinhada
+        d.line(PS((54, 1467), (140, 1467)), fill=(200, 30, 30, 255), width=2 * S)
+        d.line(PS((70, 1364), (100, 1374)), fill=(200, 200, 160, 255), width=8 * S)                    # durex
+        d.rounded_rectangle(PS((232, 1300), (292, 1332)), 6 * S, fill=(214, 206, 180, 255))            # telefone fixo
+        d.rounded_rectangle(PS((228, 1290), (296, 1304)), 6 * S, fill=(196, 188, 162, 255))
+        for k in range(3): d.rectangle(PS((242 + k * 16, 1312), (252 + k * 16, 1320)), fill=(90, 86, 76, 255))
         return back, None, down(front)
     def dynamic(self, img, t, camx, props):
         d = ImageDraw.Draw(img); dx = camx * self.depths[0]
@@ -116,11 +123,16 @@ class Loja(Scene):
             d.rectangle([540 - w / 2 + dx, y, 540 + w / 2 + dx, y + 16], fill=(235, 250, 240) if on else (70, 74, 72))
         hora = str(props.get("relogio", "03:00"))
         d.text((540 + dx, 482), hora, font=font("mono", 64), fill=(255, 50, 40))
+        ab = float(props.get("porta", 0) or 0)                                                       # porta de vidro abrindo
+        if ab > 0:
+            g = 130 * ab
+            d.rectangle([630 + dx - g, 612, 630 + dx + g, 1158], fill=(10, 12, 22))
+            for xx in (630 + dx - g, 630 + dx + g): d.line([(xx, 612), (xx, 1158)], fill=(90, 96, 100), width=8)
         if props.get("vulto", 0):                                                                    # silhueta na porta
             _sombra_alta(img, 630 + dx, 1160, 520, a=min(1.0, float(props["vulto"])))
         if props.get("reflexo", 0):                                                                  # alguém no vidro da geladeira
-            lay = Image.new("RGB", img.size, (0, 0, 0)); _sombra_alta(lay, 900 + dx * 1.2, 1300, 560, col=(200, 230, 235))
-            m = lay.convert("L").point(lambda v: int(v * 0.45 * float(props["reflexo"])))
+            lay = Image.new("RGB", img.size, (0, 0, 0)); _sombra_alta(lay, 930 + dx * 1.2, 1380, 700, col=(220, 240, 245))
+            m = lay.convert("L").point(lambda v: int(v * 0.85 * float(props["reflexo"])))
             img.paste((10, 14, 16), (0, 0), m)
         cam = (314 + dx, 412, 446 + dx, 506)                                                         # monitor da parede
         n = random.Random(int(t * 12))

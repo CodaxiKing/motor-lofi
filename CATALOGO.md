@@ -22,7 +22,7 @@ Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não
 
 **Acústicas** (5): `abafado`, `aberto`, `grande`, `media`, `sala`
 
-**Objetos na mão (`prop`)** (5): `radio`, `flashlight`, `phone`, `key`, `bag`
+**Objetos na mão (`prop`)** (6): `radio`, `flashlight`, `phone`, `handset`, `key`, `bag`
 
 **Corpos (`body`)** (5): `child`, `old`, `tall`, `fat`, `thin`
 

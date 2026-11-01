@@ -577,7 +577,9 @@ class Episode:
         img = Image.new("RGB", (W, H), (10, 10, 14))
         for i, key in enumerate(("a", "b")):
             opt = shot[key]
-            f = self.scene_frame(dict(opt, start=shot["start"], end=shot["end"]), t)
+            o = dict(opt, start=shot["start"], end=shot["end"])
+            o.setdefault("camera", {}); o["camera"] = dict({"plano": "aberto"}, **o["camera"])   # o recorte já aproxima
+            f = self.scene_frame(o, t)
             cx = opt.get("crop_x", 270)
             part = f.crop((cx, 300, cx + W // 2, 1450)).resize((W // 2 - 6, 1150))
             img.paste(part, (0 if i == 0 else W // 2 + 6, 300))

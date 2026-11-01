@@ -1,7 +1,7 @@
 {
  "out": "ep01.mp4",
  "fps": 30,
- "total": 126.77,
+ "total": 127.37,
  "crf": 28,
  "series_title": "TURNO DA NOITE",
  "episode": 1,
@@ -11,7 +11,7 @@
   110,
   200,
   150,
-  0.1
+  0.07
  ],
  "style": "desenho",
  "voices": {
@@ -56,7 +56,7 @@
     "03:00"
    ]
   ],
-  "sec_per_min": 7.5
+  "sec_per_min": 7.0
  },
  "lightning": [
   11.4
@@ -149,7 +149,7 @@
     40.36,
     44.02
    ],
-   "at": 85.87
+   "at": 87.07
   },
   {
    "voice": "davi",
@@ -157,7 +157,7 @@
     44.35,
     47.45
    ],
-   "at": 91.77
+   "at": 92.37
   },
   {
    "voice": "bento",
@@ -165,7 +165,7 @@
     3.64,
     6.54
    ],
-   "at": 97.57
+   "at": 98.17
   },
   {
    "voice": "davi",
@@ -173,7 +173,7 @@
     47.71,
     52.66
    ],
-   "at": 103.27
+   "at": 103.87
   },
   {
    "voice": "davi",
@@ -181,7 +181,7 @@
     53.01,
     58.22
    ],
-   "at": 110.27
+   "at": 110.87
   }
  ],
  "subs": [
@@ -477,14 +477,14 @@
    },
    "slowmo": 0.4,
    "props": {
-    "relogio": "03:04",
+    "relogio": "03:03",
     "reflexo": 1,
     "flicker": 0.15
    },
    "camera": {
-    "zoom": 1.45,
-    "cx": 0.85,
-    "cy": 0.55
+    "zoom": 1.9,
+    "cx": 0.95,
+    "cy": 0.5
    },
    "actors": [
     {
@@ -622,7 +622,7 @@
       ],
       [
        2.3,
-       "phone"
+       "handset"
       ]
      ],
      "emotion": "neutral"
@@ -639,7 +639,12 @@
     "flicker": 0.02
    },
    "camera": {
-    "plano": "close"
+    "zoom": [
+     2.3,
+     2.55
+    ],
+    "cx": 0.0,
+    "cy": 0.86
    },
    "actors": [
     {
@@ -705,6 +710,9 @@
    "props": {
     "flicker": 0.3
    },
+   "camera": {
+    "plano": "conjunto"
+   },
    "actors": [
     {
      "char": "davi",
@@ -758,10 +766,34 @@
       1.4,
       0.0
      ]
+    ],
+    "porta": [
+     [
+      0,
+      0
+     ],
+     [
+      2.0,
+      0
+     ],
+     [
+      2.6,
+      1
+     ],
+     [
+      5.6,
+      1
+     ],
+     [
+      6.6,
+      0
+     ]
     ]
    },
    "camera": {
-    "plano": "aberto"
+    "zoom": 1.35,
+    "cx": 0.35,
+    "cy": 0.62
    },
    "scare": [
     2.0
@@ -791,8 +823,9 @@
    "scene": "cftv",
    "transition": "cut",
    "hand": "davi",
+   "hud": false,
    "props": {
-    "hora": "03:00:41",
+    "hora": "03:00:52",
     "ruido": 0.2
    },
    "start": 66.27,
@@ -802,7 +835,7 @@
    "scene": "loja",
    "transition": "cut",
    "props": {
-    "relogio": "03:02",
+    "relogio": "03:01",
     "flicker": 0.02
    },
    "actors": [
@@ -883,27 +916,11 @@
   },
   {
    "scene": "loja",
-   "transition": "flash",
+   "transition": "cut",
    "props": {
-    "relogio": "03:04",
-    "flicker": 0.08,
-    "reflexo": [
-     [
-      0,
-      0
-     ],
-     [
-      1.6,
-      1
-     ]
-    ]
+    "relogio": "03:03",
+    "flicker": 0.08
    },
-   "camera": {
-    "plano": "aberto"
-   },
-   "scare": [
-    1.6
-   ],
    "actors": [
     {
      "char": "davi",
@@ -926,8 +943,8 @@
        "fear"
       ],
       [
-       1.6,
-       "shock"
+       1.4,
+       "suspicious"
       ]
      ]
     },
@@ -940,11 +957,52 @@
     }
    ],
    "start": 83.27,
-   "end": 91.27
+   "end": 85.87
+  },
+  {
+   "scene": "loja",
+   "transition": "flash",
+   "props": {
+    "relogio": "03:03",
+    "flicker": 0.1,
+    "reflexo": [
+     [
+      0,
+      0.15
+     ],
+     [
+      0.6,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": [
+     1.7,
+     1.85
+    ],
+    "cx": 0.92,
+    "cy": 0.45
+   },
+   "scare": [
+    0.6
+   ],
+   "actors": [
+    {
+     "char": "bento",
+     "mark": "balcao",
+     "view": "3q",
+     "facing": -1,
+     "emotion": "happy"
+    }
+   ],
+   "start": 85.87,
+   "end": 91.87
   },
   {
    "scene": "cftv",
    "transition": "zoom",
+   "hud": false,
    "camera": {
     "vertigo": [
      1.0,
@@ -954,7 +1012,7 @@
    "props": {
     "cam": 1,
     "duplo": true,
-    "hora": "03:05:12",
+    "hora": "03:04:31",
     "ruido": [
      [
       0,
@@ -966,14 +1024,14 @@
      ]
     ]
    },
-   "start": 91.27,
-   "end": 96.77
+   "start": 91.87,
+   "end": 97.37
   },
   {
    "scene": "loja",
    "transition": "cut",
    "props": {
-    "relogio": "03:06",
+    "relogio": "03:05",
     "flicker": 0.1
    },
    "camera": {
@@ -998,8 +1056,8 @@
      "tremble": 1
     }
    ],
-   "start": 96.77,
-   "end": 102.77
+   "start": 97.37,
+   "end": 103.37
   },
   {
    "scene": "loja",
@@ -1009,7 +1067,12 @@
     "flicker": 0.05
    },
    "camera": {
-    "plano": "close"
+    "zoom": [
+     2.3,
+     2.6
+    ],
+    "cx": 0.0,
+    "cy": 0.86
    },
    "actors": [
     {
@@ -1026,11 +1089,12 @@
        3.5,
        "determined"
       ]
-     ]
+     ],
+     "look": -1
     }
    ],
-   "start": 102.77,
-   "end": 109.27
+   "start": 103.37,
+   "end": 109.87
   },
   {
    "scene": "loja",
@@ -1038,7 +1102,11 @@
    "props": {
     "relogio": "03:07",
     "flicker": 0.06,
-    "vulto": 0.6
+    "vulto": 1
+   },
+   "camera": {
+    "plano": "conjunto",
+    "push": 4
    },
    "actors": [
     {
@@ -1055,27 +1123,32 @@
      "facing": -1
     }
    ],
-   "start": 109.27,
-   "end": 117.77
+   "start": 109.87,
+   "end": 118.37
   },
   {
-   "start": 117.77,
-   "end": 126.77,
+   "start": 118.37,
+   "end": 127.37,
    "type": "choice",
    "transition": "zoom",
    "hud": false,
    "a": {
     "label": "ATENDER",
     "scene": "loja",
-    "crop_x": 100,
+    "crop_x": 150,
+    "camera": {
+     "zoom": 1.6,
+     "cx": 0.37,
+     "cy": 0.9
+    },
     "props": {
      "relogio": "03:07"
     },
     "actors": [
      {
       "char": "davi",
-      "x": 210,
-      "y": 1420,
+      "x": 300,
+      "y": 1430,
       "view": "3q",
       "facing": 1,
       "pose": "reach",
@@ -1083,7 +1156,7 @@
      },
      {
       "char": "bento",
-      "x": 590,
+      "x": 500,
       "y": 1470,
       "view": "3q",
       "facing": -1,
@@ -1094,7 +1167,12 @@
    "b": {
     "label": "FECHADO",
     "scene": "loja",
-    "crop_x": 360,
+    "crop_x": 270,
+    "camera": {
+     "zoom": 1.3,
+     "cx": 0.68,
+     "cy": 0.8
+    },
     "props": {
      "relogio": "03:07",
      "vulto": 1,
@@ -1103,15 +1181,15 @@
     "actors": [
      {
       "char": "davi",
-      "x": 620,
-      "y": 1650,
+      "x": 500,
+      "y": 1450,
       "view": "front",
       "emotion": "determined"
      }
     ]
    },
    "end_card": {
-    "t": 124.27,
+    "t": 124.87,
     "text": "CONTINUA NO EPISÓDIO 2"
    }
   }
@@ -1228,55 +1306,55 @@
    "dur": 3
   },
   {
-   "t": 83.67,
+   "t": 86.27,
    "name": "bell"
   },
   {
-   "t": 84.87,
+   "t": 87.47,
    "name": "impact"
   },
   {
-   "t": 85.17,
+   "t": 87.77,
    "name": "heartbeat",
    "dur": 5
   },
   {
-   "t": 91.37,
+   "t": 91.97,
    "name": "static",
    "dur": 4
   },
   {
-   "t": 97.07,
+   "t": 97.67,
    "name": "growl"
   },
   {
-   "t": 100.77,
+   "t": 101.37,
    "name": "breath"
   },
   {
-   "t": 102.97,
+   "t": 103.57,
    "name": "heartbeat",
    "dur": 5
   },
   {
-   "t": 108.27,
+   "t": 108.87,
    "name": "click"
   },
   {
-   "t": 109.47,
+   "t": 110.07,
    "name": "heartbeat",
    "dur": 6
   },
   {
-   "t": 116.57,
+   "t": 117.17,
    "name": "bell"
   },
   {
-   "t": 118.77,
+   "t": 119.37,
    "name": "bell"
   },
   {
-   "t": 122.77,
+   "t": 123.37,
    "name": "stamp"
   }
  ],
@@ -1292,7 +1370,7 @@
   },
   {
    "start": 58.77,
-   "end": 96.77,
+   "end": 97.37,
    "gain": [
     0.05,
     0.1
@@ -1300,8 +1378,8 @@
    "tense": 0.8
   },
   {
-   "start": 96.77,
-   "end": 126.77,
+   "start": 97.37,
+   "end": 127.37,
    "gain": [
     0.05,
     0.1
