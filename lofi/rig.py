@@ -688,6 +688,7 @@ def _shade(im, light):
     return Image.fromarray(arr.astype("uint8"), "RGBA")
 
 _CACHE = {}
+_CACHE_PX = 0
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
                 blink_force=False, sniff=False, prop=None, viseme=0, gesture=None):
@@ -711,8 +712,11 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
         im = Image.merge("RGBA", (r_.point(lambda v: min(255, int(v * 0.9 + 30))), g_.point(lambda v: min(255, int(v * 0.95 + 30))), b_.point(lambda v: min(255, v + 50)), a_))
     if facing < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     res = (im, (nw / 2, anc[1] * k))
-    if len(_CACHE) > 1500: _CACHE.clear()
-    _CACHE[key] = res
+    global _CACHE_PX
+    px = im.width * im.height
+    if px > 3_000_000: return res                       # sprite gigante (close/médio perto): não guarda, cabe na memória
+    if len(_CACHE) > 1500 or _CACHE_PX + px > 120_000_000: _CACHE.clear(); _CACHE_PX = 0   # ~500 MB no máximo
+    _CACHE[key] = res; _CACHE_PX += px
     return res
 
 _SHADOWS = {}
