@@ -29,6 +29,7 @@ NARRAÇÃO: [whispers] Você ouviu isso?
 LEGENDA: VOCÊ OUVIU / ISSO?
 
 ## CENA 3 — 30 s a 40 s
+LIGAÇÃO: descem a escada e entram pelo corredor do prédio
 CENÁRIO: `corredor`
 PERSONAGENS: `roberta` `hold` `rafa`, `run`
 PLANO: travelling `follow` 0 · TRANSIÇÃO: `whip`
@@ -38,6 +39,7 @@ NARRAÇÃO: [whispers] Corre!
 LEGENDA: CORRE!
 
 ## CENA 4 — 40 s a 50 s
+LIGAÇÃO: atravessam a porta do fim do corredor, que dá para a ala do hospital
 CENÁRIO: `hospital`
 PERSONAGENS: `zombie_enfermeiro` `sniff` ao fundo
 PLANO: `close` 0, `vertigo` · TRANSIÇÃO: `flash`
@@ -74,6 +76,7 @@ NARRAÇÃO: [whispers] Você está viva
 LEGENDA: VOCÊ ESTÁ / VIVA
 
 ## CENA 8 — 80 s a 90 s
+LIGAÇÃO: saem pela porta de emergência do hospital direto na rua
 CENÁRIO: `rua`
 PERSONAGENS: os três `walk`, `rafa` `suspicious`
 PLANO: aberto, `handheld` · TRANSIÇÃO: `whip`
@@ -92,6 +95,7 @@ NARRAÇÃO: [whispers] Eles estão vindo
 LEGENDA: ELES ESTÃO / VINDO
 
 ## CENA 10 — 100 s a 110 s
+LIGAÇÃO: correm pela rua até o posto da esquina
 CENÁRIO: `posto`
 PERSONAGENS: `rafa` `point`, `roberta` `fear`
 PLANO: `close` 1 · TRANSIÇÃO: `cut`
@@ -110,6 +114,7 @@ NARRAÇÃO: [whispers] Tranca a porta
 LEGENDA: TRANCA / A PORTA
 
 ## CENA 12 — 120 s a 130 s
+LIGAÇÃO: seguem pela avenida do posto até a cabeceira da ponte
 CENÁRIO: `ponte`
 PERSONAGENS: os três de costas
 PLANO: aberto, `zoom` · TRANSIÇÃO: `fade`

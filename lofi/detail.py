@@ -97,9 +97,18 @@ def celular(t, p):
     return img
 
 def chave(t, p):
-    img = Image.new("RGB", (W, H), (60, 52, 46)); d = ImageDraw.Draw(img)
-    d.rounded_rectangle([270, 520, 810, 1400], 60, fill=(150, 140, 120), outline=OUT, width=10)
     cx, cy = 540, 900
+    if p.get("onde") == "carro":   # ignição no painel do carro: plástico escuro e anel com OFF / ACC / ON
+        img = Image.new("RGB", (W, H), (26, 28, 34)); d = ImageDraw.Draw(img)
+        d.rounded_rectangle([170, 480, 910, 1420], 80, fill=(34, 36, 44), outline=OUT, width=10)
+        d.ellipse([cx - 230, cy - 230, cx + 230, cy + 230], fill=(70, 72, 80), outline=OUT, width=10)
+        d.ellipse([cx - 150, cy - 150, cx + 150, cy + 150], fill=(48, 50, 58), outline=OUT, width=6)
+        for txt, ang in (("OFF", -120), ("ACC", -60), ("ON", 0)):
+            a = math.radians(ang - 90); tx, ty = cx + math.cos(a) * 300, cy + math.sin(a) * 300
+            text_center(d, txt, tx, ty, font("mono", 46), (200, 205, 215))
+    else:
+        img = Image.new("RGB", (W, H), (60, 52, 46)); d = ImageDraw.Draw(img)
+        d.rounded_rectangle([270, 520, 810, 1400], 60, fill=(150, 140, 120), outline=OUT, width=10)
     d.ellipse([cx - 70, cy - 70, cx + 70, cy + 70], fill=(20, 18, 16)); d.polygon([(cx - 40, cy + 40), (cx + 40, cy + 40), (cx + 26, cy + 230), (cx - 26, cy + 230)], fill=(20, 18, 16))
     ang = p.get("turn_now", 0)
     k = Image.new("RGBA", (700, 700), (0, 0, 0, 0)); kd = ImageDraw.Draw(k)

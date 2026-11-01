@@ -17,6 +17,7 @@ Responda em português do Brasil.
 - 2 a 3 minutos, 12 a 20 cenas de 6 a 14 s, pelo menos 3 momentos de tensão.
 - Estrutura: gancho (0–2 s) → "Anteriormente em…" (a partir do ep. 2) → abertura com carimbo do voto → consequência da escolha → algo novo e estranho → plano de detalhe + susto → revelação com close → escalada → pergunta A/B → "CONTINUA NO EPISÓDIO X". Último episódio: desfecho conforme os finais e escolhas, "FIM".
 - Use os recursos do motor: vista 3/4, ações (correr, pular, esconder, abrir porta, cair), breu com lanterna, sombras na parede, clima e hora, câmera na mão, vertigo, câmera lenta, cor do episódio.
+- **Continuidade:** sem pulos de lugar. Toda mudança de lugar tem `LIGAÇÃO:` (como eles chegam lá) e, se der, uma cena de passagem; corte para outro lugar sem os personagens é `INSERÇÃO:`. Objetos combinam com o lugar: `radio` só em casa, `radio_carro` no carro, `radio_portatil` fora; `chave` com `"onde": "carro"` é a ignição. Se faltar um cenário de passagem, crie no motor.
 - Mantenha as consequências das escolhas anteriores registradas na bíblia e respeite a classificação da série.
 - Use só nomes de cenário, som, pose, emoção e personagem que estão em `CATALOGO.md` ou em `personagens.json`.
 

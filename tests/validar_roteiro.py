@@ -85,6 +85,34 @@ def conferir_nomes(txt, cat):
     return erros, avisos
 
 
+def conferir_continuidade(txt, cat):
+    """Pulo de lugar sem LIGAÇÃO e objeto fora do lugar (rádio de casa no carro, rádio do carro fora dele)."""
+    from lofi.mapa import lugar, OBJETO_DO_LUGAR
+    erros = []
+    partes = re.split(r"^#+\s*CENA\s+(\d+)[^\n]*$", txt, flags=re.M)
+    atual = None
+    for k in range(1, len(partes) - 1, 2):
+        n, corpo = int(partes[k]), partes[k + 1]
+        m = re.search(r"CEN[AÁ]RIO[^:\n]*:\**\s*`([^`]+)`", corpo, re.I)
+        if n == 0 or not m: continue                     # gancho e planos de detalhe não mudam o lugar
+        cena = m.group(1).strip()
+        if cena not in cat["cenarios"]: continue
+        insercao = re.search(r"INSER[ÇC][ÃA]O", corpo, re.I)
+        ligacao = re.search(r"LIGA[ÇC][ÃA]O\s*:", corpo, re.I)
+        dono = OBJETO_DO_LUGAR.get(cena)
+        if dono and atual and dono != atual and not insercao:
+            alt = {"casa": "`radio_carro` (no carro) ou `radio_portatil` (na mão)", "carro": "`radio` (em casa) ou `radio_portatil` (na mão)"}[dono]
+            erros.append(f"CENA {n}: `{cena}` é um objeto de {dono}, mas a história está em '{atual}'. Use {alt}")
+            continue
+        novo = lugar(cena)
+        if novo is None or insercao: continue
+        if atual is not None and novo != atual and not ligacao:
+            erros.append(f"CENA {n}: pulo de lugar ('{atual}' → '{novo}') sem mostrar o caminho. Escreva uma linha "
+                         f"LIGAÇÃO: dizendo como eles chegam lá (e mostre a passagem na cena), ou marque INSERÇÃO se for só um corte para outro lugar")
+        atual = novo
+    return erros
+
+
 def validar(txt, final=False, caminho=None):
     erros, avisos = [], []
     up = txt.upper()
@@ -110,6 +138,7 @@ def validar(txt, final=False, caminho=None):
     if cat is None: avisos.append(motivo)
     else:
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
+        erros += conferir_continuidade(txt, cat)
     return erros, avisos
 
 

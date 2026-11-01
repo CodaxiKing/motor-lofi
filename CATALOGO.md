@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (20): `apartamento`, `carro`, `corredor`, `delegacia`, `entrada`, `escada`, `escola`, `esgoto`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `posto`, `radio`, `rua`, `rua_amanhecer`, `telhado`
+**Cenários** (23): `apartamento`, `carro`, `corredor`, `delegacia`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `floresta`, `hospital`, `igreja`, `janela`, `mercado`, `metro`, `ponte`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
@@ -52,12 +52,17 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **esgoto:** `fundo`, `meio`, `frente`
 - **igreja:** `altar` (no altar, lá no fundo), `corredor`, `frente`, `banco_esq`, `banco_dir`
 - **rua_amanhecer:** `centro`, `calcada_esq`, `calcada_dir`, `longe` (lá no fundo da rua (pequeno)), `longe_esq`, `longe_dir`, `carro` (ao lado do carro estacionado, à esquerda)
+- **entrada_metro:** `calcada_esq` (na calçada, à esquerda), `frente` (na calçada, perto da câmera), `escada_topo` (no primeiro degrau, perto da câmera (prestes a descer ou acabando de subir)), `escada_baixo` (lá embaixo na escada, entrando na estação (pequeno, longe)), `longe` (lá no fundo da calçada)
+- **radio_carro:** 
+- **radio_portatil:** 
 
 ## Partes do corpo (mão e braço do personagem)
 
 Em rádio e planos de detalhe, `"hand": "roberta"` desenha o braço com a manga e a pele da ficha do personagem; `{"of": "rafa", "at": "antena"}` escolhe a posição; `false` tira a mão. No `olho`, a pele em volta é a do personagem.
 
 - **radio:** `dial` (girando o dial (padrão)), `antena` (segurando a antena), `botao` (apertando o botão de ligar), `repouso` (mão parada na mesa, ao lado do rádio)
+- **radio_carro:** `dial` (girando a sintonia do rádio do carro (padrão)), `volume` (no botão de volume (braço vindo da esquerda: motorista))
+- **radio_portatil:** `segurando` (segurando o rádio por baixo (padrão)), `dial` (girando a sintonia)
 - **chave:** `girando` (segurando a cabeça da chave, acompanha o giro (padrão))
 - **macaneta:** `girando` (na ponta da maçaneta, acompanha o giro (padrão))
 - **celular:** `segurando` (segurando o celular pela borda (padrão)), `dedo` (dedo tocando a tela)

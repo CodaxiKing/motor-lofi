@@ -23,6 +23,14 @@ POSICOES = {
         "botao": {"ombro": (1150, 1760), "mao": (842, 1372), "nota": "apertando o botão de ligar"},
         "repouso": {"ombro": (1150, 1820), "mao": (930, 1470), "nota": "mão parada na mesa, ao lado do rádio"},
     },
+    "radio_carro": {
+        "dial": {"ombro": (1150, 1900), "mao": (860, 1395), "nota": "girando a sintonia do rádio do carro (padrão)"},
+        "volume": {"ombro": (-80, 1900), "mao": (232, 1395), "nota": "no botão de volume (braço vindo da esquerda: motorista)"},
+    },
+    "radio_portatil": {
+        "segurando": {"ombro": (1160, 1990), "mao": (560, 1470), "nota": "segurando o rádio por baixo (padrão)"},
+        "dial": {"ombro": (1160, 1600), "mao": (712, 1046), "nota": "girando a sintonia"},
+    },
     "chave": {"girando": {"ombro": (1180, 2020), "mao": None, "nota": "segurando a cabeça da chave, acompanha o giro (padrão)"}},
     "macaneta": {"girando": {"ombro": (1180, 1700), "mao": None, "nota": "na ponta da maçaneta, acompanha o giro (padrão)"}},
     "celular": {
@@ -33,14 +41,16 @@ POSICOES = {
 # áreas importantes do quadro (a legenda evita cobrir): objeto em destaque de cada cenário/plano de detalhe
 FOCO = {
     "radio": [(200, 1000, 880, 1380), (230, 560, 870, 1000)],
+    "radio_carro": [(190, 980, 890, 1420)],
+    "radio_portatil": [(320, 700, 760, 1460)],
     "celular": [(200, 640, 880, 1060)],
     "chave": [(380, 760, 700, 1140)],
     "macaneta": [(300, 640, 760, 1300)],
     "olho": [(120, 640, 960, 1240)],
     "relogio": [(130, 510, 950, 1330)],
 }
-PADRAO = {"radio": "dial", "chave": "girando", "macaneta": "girando", "celular": "segurando"}
-SEMPRE = {"radio", "chave"}        # mostram mão mesmo sem "hand" (mão genérica)
+PADRAO = {"radio": "dial", "radio_carro": "dial", "radio_portatil": "segurando", "chave": "girando", "macaneta": "girando", "celular": "segurando"}
+SEMPRE = {"radio", "radio_carro", "radio_portatil", "chave"}        # mostram mão mesmo sem "hand" (mão genérica)
 
 
 def visual(nome, locked=None, custom=None):

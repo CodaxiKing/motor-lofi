@@ -478,6 +478,120 @@ class Radio(Scene):
                 d.rounded_rectangle([x, 880 - h / 2, x + 28, 880 + h / 2], 12, fill=(255, 226, 120))
 
 
+# ======================= RÁDIO DO CARRO (close no painel) =======================
+class RadioCarro(Scene):
+    """Close no rádio do painel do carro: para-brisa com chuva em cima, console com display e botões embaixo."""
+    name = "radio_carro"; acoustic = "abafado"; light = "night"; grade = "noite"; amb = "chuva_dentro"
+    ground = (1500, 1900, 1.0, 1.0)
+    rain_boxes = [(0, 0, 1080, 640)]; lightning_boxes = [(0, 0, 1080, 640)]
+    def build(self):
+        back = canvas((10, 12, 20))
+        cidade = skyline(CWX * S, 640 * S, 63, hmin=0.25, hmax=0.6, lit=0.3)
+        back.paste(cidade.filter(ImageFilter.GaussianBlur(7 * S)), (0, 0))
+        mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
+        d.rectangle(PS((-M, 600), (W + M, 1920)), fill=(26, 28, 34, 255))               # painel
+        d.polygon(PS((-M, 600), (W + M, 600), (W + M, 700), (-M, 700)), fill=(36, 38, 46, 255))
+        d.rounded_rectangle(PS((150, 760), (930, 1560)), 40 * S, fill=(20, 22, 28, 255))  # console central
+        for x in (210, 560):                                                              # saídas de ar
+            d.rounded_rectangle(PS((x, 800), (x + 310, 920)), 18 * S, fill=(12, 13, 17, 255))
+            for k in range(5): d.line(PS((x + 20, 822 + k * 20), (x + 290, 822 + k * 20)), fill=(34, 36, 44, 255), width=5 * S)
+        d.rounded_rectangle(PS((190, 980), (890, 1420)), 26 * S, fill=(34, 36, 44, 255), outline=(12, 12, 16, 255), width=6 * S)
+        for k in range(6): d.rounded_rectangle(PS((250 + k * 98, 1250), (320 + k * 98, 1300)), 10 * S, fill=(22, 24, 30, 255))
+        return down(back), down(mid), None
+    def dynamic(self, img, t, camx, props):
+        on = props.get("on", True); lvl = props.get("level", 0.0)
+        d = ImageDraw.Draw(img)
+        for base in ((260, 640), (760, 640)):                                            # limpadores
+            a = math.radians(200 + 60 * (0.5 + 0.5 * math.sin(t * 2.6)))
+            d.line([base, (base[0] + math.cos(a) * 470, base[1] + math.sin(a) * 470)], fill=(8, 8, 10), width=11)
+        tela = (300, 1030, 780, 1190)
+        if on: img.paste(add_light(img, (tela[0] - 60, tela[1] - 60, tela[2] + 60, tela[3] + 60), (90, 200, 255), 40, 70)); d = ImageDraw.Draw(img)
+        d.rounded_rectangle(tela, 14, fill=(40, 130, 170) if on else (16, 26, 32), outline=(10, 10, 14), width=5)
+        if on:
+            d.text((330, 1052), "FM 98.1", font=font("mono", 56), fill=(210, 245, 255))
+            for k in range(10):
+                h = 8 + lvl * 70 * (0.5 + 0.5 * math.sin(t * 22 + k * 1.7))
+                d.rectangle([600 + k * 16, 1170 - h, 610 + k * 16, 1170], fill=(210, 245, 255))
+        for (kx, ky) in ((260, 1350), (820, 1350)):                                       # volume e sintonia
+            d.ellipse([kx - 48, ky - 48, kx + 48, ky + 48], fill=(16, 16, 20), outline=(60, 62, 70), width=5)
+            ang = math.radians(-60 + 40 * math.sin(t * 1.5))
+            d.line([(kx, ky), (kx + 34 * math.cos(ang), ky + 34 * math.sin(ang))], fill=(200, 200, 205), width=6)
+        d.ellipse([505, 1335, 575, 1365], fill=(255, 70, 50) if on else (60, 26, 22))
+        v, pos = props.get("_hand", (None, None))
+        if v and pos: props.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v))
+
+
+# ======================= RÁDIO PORTÁTIL (close na mão) =======================
+class RadioPortatil(Scene):
+    """Close no rádio portátil que o personagem carrega, com o lugar desfocado atrás (luzes, chuva)."""
+    name = "radio_portatil"; acoustic = "aberto"; light = "night"; grade = "noite"; amb = "chuva_fora"
+    ground = (1500, 1900, 1.0, 1.0)
+    rain_boxes = [(0, 0, 1080, 1920)]; lightning_boxes = [(0, 0, 1080, 1920)]
+    def build(self):
+        back = canvas((14, 16, 26))
+        r = random.Random(5); d = ImageDraw.Draw(back)
+        for _ in range(40):                                                               # luzes desfocadas (bokeh)
+            x, y, rr = r.uniform(-M, W + M), r.uniform(0, 1500), r.uniform(20, 70)
+            c = r.choice([(255, 200, 120), (120, 160, 255), (255, 120, 90)])
+            d.ellipse(PS((x - rr, y - rr), (x + rr, y + rr)), fill=tuple(int(v * 0.35) for v in c))
+        back = back.filter(ImageFilter.GaussianBlur(24 * S))
+        return down(back), None, None
+    def dynamic(self, img, t, camx, props):
+        on = props.get("on", True); lvl = props.get("level", 0.0)
+        d = ImageDraw.Draw(img)
+        d.line([(690, 720), (800, 250)], fill=(20, 20, 24), width=16); d.ellipse([790, 236, 816, 262], fill=(30, 30, 34))   # antena
+        d.rounded_rectangle([320, 700, 760, 1460], 46, fill=(34, 36, 42), outline=(10, 10, 14), width=8)
+        tela = (380, 760, 700, 880)
+        d.rounded_rectangle(tela, 12, fill=(230, 180, 70) if on else (60, 50, 30), outline=(10, 10, 14), width=4)
+        if on:
+            d.text((402, 784), "98.1", font=font("mono", 64), fill=(60, 30, 10))
+            img.paste(add_light(img, (300, 700, 780, 940), (255, 200, 90), 50, int(40 + 90 * lvl))); d = ImageDraw.Draw(img)
+        for gy in range(940, 1300, 34):                                                   # grade do alto-falante
+            for gx in range(380, 620, 34): d.ellipse([gx, gy, gx + 16, gy + 16], fill=(16, 16, 20))
+        kx, ky = 680, 1010
+        d.ellipse([kx - 44, ky - 44, kx + 44, ky + 44], fill=(20, 20, 24), outline=(70, 72, 80), width=5)
+        ang = math.radians(-70 + 30 * math.sin(t * 1.3)); d.line([(kx, ky), (kx + 30 * math.cos(ang), ky + 30 * math.sin(ang))], fill=(220, 220, 220), width=6)
+        for k in range(5):                                                                # LEDs de sinal
+            ac = on and lvl > (k + 1) * 0.12
+            d.ellipse([650, 1120 + k * 52, 690, 1160 + k * 52], fill=(255, 90, 60) if ac else (50, 30, 26))
+        v, pos = props.get("_hand", (None, None))
+        if v and pos: props.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v, larg=130))
+
+
+# ======================= ENTRADA DO METRÔ (rua com a escada da estação) =======================
+class EntradaMetro(Scene):
+    """Calçada com a escada que desce para a estação: liga as cenas de rua às de metrô (descer / sair)."""
+    name = "entrada_metro"; light = "night"; grade = "noite"; acoustic = "aberto"
+    clouds = (60, 520, (60, 50, 70))
+    ground = (1250, 1900, 0.35, 1.6)
+    rain_full = True; wet = True; amb = "chuva_fora"; lightning_full = True
+    ripples = [(220, 1640, 120), (420, 1820, 140)]
+    fog_cfg = dict(y=1240, height=520, alpha=0.5, col=(90, 70, 90), speed=12)
+    def build(self):
+        back = canvas()
+        city = skyline(CWX * S, 1250 * S, 91, sky=((12, 16, 32), (56, 28, 40)), hmin=0.35, hmax=0.9, lit=0.25)
+        back.paste(city.filter(ImageFilter.GaussianBlur(2 * S)), (0, 0))
+        mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
+        d.rectangle(PS((-M, 1250), (W + M, 1920)), fill=(40, 40, 48, 255))                 # calçada
+        for k in range(9): d.line(PS((-M, 1290 + k * 75), (W + M, 1290 + k * 75)), fill=(52, 52, 60, 255), width=3 * S)
+        d.polygon(PS((600, 1300), (960, 1300), (1040, 1700), (520, 1700)), fill=(12, 12, 16, 255))   # boca da escada
+        for k in range(10):            # degraus: mais escuros lá no fundo (a escada desce, afastando-se da câmera)
+            y = 1330 + k * 38; c = 18 + k * 6
+            d.line(PS((605 - k * 8, y), (955 + k * 8, y)), fill=(c, c, c + 8, 255), width=6 * S)
+        for x0, x1 in ((600, 520), (960, 1040)):                                            # corrimãos
+            d.line(PS((x0, 1220), (x1, 1620)), fill=(150, 150, 160, 255), width=9 * S)
+            for k in range(5):
+                px = x0 + (x1 - x0) * k / 4; py = 1220 + 400 * k / 4
+                d.line(PS((px, py), (px, py + 90)), fill=(120, 120, 130, 255), width=6 * S)
+        d.rectangle(PS((420, 760), (436, 1300)), fill=(30, 30, 36, 255))                   # poste da placa
+        d.ellipse(PS((358, 700), (498, 840)), fill=(200, 40, 40, 255), outline=(240, 240, 240, 255), width=6 * S)
+        d.text(P(396, 726), "M", font=font("title", 80 * S), fill=(255, 255, 255, 255))
+        d.rounded_rectangle(PS((300, 860), (560, 930)), 10 * S, fill=(30, 50, 110, 255))
+        d.text(P(318, 872), "ESTAÇÃO SÉ", font=font("title", 40 * S), fill=(235, 235, 240, 255))
+        mid = add_light(mid, PS((600, 1240), (960, 1720)), (180, 160, 110), 40 * S, 60)    # luz que sobe da estação
+        return down(back), down(mid), None
+
+
 # ======================= HOSPITAL (corredor) =======================
 class Hospital(Scene):
     name = "hospital"; acoustic = "media"; light = "dawn"; grade = "frio"
@@ -789,7 +903,7 @@ class RuaAmanhecer(Rua):
     sky_cols = ((96, 104, 138), (214, 160, 150)); far_col = (96, 98, 122); near_col = (62, 64, 84)
     lit = 0.08; glow = (200, 120, 90); moon = False
 
-REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, RuaAmanhecer, Janela, Escada, Telhado, Ponte, Radio, Hospital, Mercado, Metro,
+REGISTRY = {c.name: c for c in (Apartamento, Entrada, Corredor, Rua, RuaAmanhecer, Janela, Escada, Telhado, Ponte, Radio, RadioCarro, RadioPortatil, EntradaMetro, Hospital, Mercado, Metro,
                                      Escola, Delegacia, Posto, Floresta, Carro, Esgoto, Igreja)}
 _inst = {}
 def get(name):

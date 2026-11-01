@@ -164,6 +164,16 @@ Quando a cena mostra só uma parte do corpo (a mão no rádio, girando a chave, 
 - Verificador: ERRO para mão de personagem desconhecido ou posição inexistente; AVISO quando o rádio ou a chave mostram
   a mão genérica (sem `hand`).
 
+## Continuidade de lugar e objetos
+A história não pode pular de lugar. `lofi/mapa.py` agrupa os cenários em lugares (`LUGAR`: `apartamento`/`entrada`/`radio`/`janela` = casa;
+`carro`/`radio_carro` = carro; `rua`/`rua_amanhecer`/`entrada_metro` = rua; os demais são o próprio lugar).
+- **Roteiro:** toda cena que muda de lugar precisa de uma linha `LIGAÇÃO:` (como eles chegam lá; de preferência com uma cena de passagem,
+  ex.: `entrada_metro` entre a rua e o `metro`). Corte para outro lugar sem os personagens (a ponte vista de longe, quem fala do outro
+  lado do rádio) é `INSERÇÃO:` e não muda onde eles estão. O `tests/validar_roteiro.py` dá ERRO nos dois casos.
+- **Objetos do lugar** (`OBJETO_DO_LUGAR`): `radio` é o rádio de casa; no carro use `radio_carro` (painel, para-brisa com chuva);
+  fora de casa, `radio_portatil` (rádio de pilha na mão). `{"type": "detail", "subject": "chave", "params": {"onde": "carro"}}` desenha a ignição.
+- **JSON:** o `lofi.check` dá ERRO quando o plano usa um objeto de outro lugar que o da cena anterior; um plano com `"insercao": true` é isento.
+
 ## Vídeo de comentários (`"formato": "comentarios"`)
 Usado pela skill `serie-comentarios`: um personagem responde comentários dos seguidores. Arquivos em `series/<serie>/comentarios/cNN.json`
 (o motor acha o `personagens.json` da série na pasta acima).

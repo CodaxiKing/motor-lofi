@@ -147,6 +147,34 @@ MAPA = {
         }},
 }
 MAPA["rua_amanhecer"] = copy.deepcopy(MAPA["rua"])
+MAPA["entrada_metro"] = {
+    "chao": [(0, 1250), (1080, 1250), (1080, 1900), (0, 1900)],
+    "marcas": {
+        "calcada_esq": {"x": 220, "y": 1760, "nota": "na calçada, à esquerda"},
+        "frente": {"x": 480, "y": 1780, "nota": "na calçada, perto da câmera"},
+        "escada_topo": {"x": 780, "y": 1700, "nota": "no primeiro degrau, perto da câmera (prestes a descer ou acabando de subir)"},
+        "escada_baixo": {"x": 780, "y": 1340, "nota": "lá embaixo na escada, entrando na estação (pequeno, longe)"},
+        "longe": {"x": 300, "y": 1320, "nota": "lá no fundo da calçada"},
+    }}
+# closes de objeto: sem chão nem marcas (só a mão do personagem; ver lofi/partes.py)
+MAPA["radio_carro"] = {"chao": None, "marcas": {}}
+MAPA["radio_portatil"] = {"chao": None, "marcas": {}}
+
+# Continuidade: a que LUGAR cada cenário pertence. Cenários do mesmo lugar podem se alternar sem explicação;
+# mudar de lugar pede uma passagem (LIGAÇÃO no roteiro). Closes de objeto valem só dentro do lugar deles.
+LUGAR = {
+    "apartamento": "casa", "entrada": "casa", "radio": "casa", "janela": "casa", "corredor": "predio",
+    "carro": "carro", "radio_carro": "carro",
+    "rua": "rua", "rua_amanhecer": "rua", "entrada_metro": "rua",
+    "radio_portatil": None,          # vai junto com o personagem: não muda o lugar
+}
+OBJETO_DO_LUGAR = {"radio": "casa", "radio_carro": "carro"}   # rádio de mesa só em casa; rádio do painel só no carro
+
+
+def lugar(cena):
+    """Lugar de um cenário (o próprio nome quando não há grupo). None = não muda o lugar (ex.: rádio portátil)."""
+    return LUGAR.get(cena, cena)
+
 
 PADROES = ("view", "facing", "pose", "scale", "fg", "blur")
 

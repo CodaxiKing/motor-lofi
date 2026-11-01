@@ -73,6 +73,17 @@ def check(path, frames=True):
     cl = sorted(ep.clips, key=lambda c: c["at"])
     for a, b in zip(cl, cl[1:]):
         if a["at"] + (a["src"][1] - a["src"][0]) > b["at"] + 0.1: warn(f"falas sobrepostas em {b['at']:.1f}s ({a['voice']} / {b['voice']})")
+    # ---------- continuidade de objetos: rádio de casa / do carro no lugar certo ----------
+    atual = None
+    for s in shots:
+        if s.get("type", "scene") != "scene" or s.get("hook"): continue
+        cena = s.get("scene"); dono = mapa.OBJETO_DO_LUGAR.get(cena)
+        if dono and atual and dono != atual and not s.get("insercao"):
+            err(f"'{cena}' em {s['start']}s é objeto de '{dono}', mas a cena anterior é em '{atual}' "
+                f"(use {'radio_carro ou radio_portatil' if dono == 'casa' else 'radio ou radio_portatil'})")
+            continue
+        novo = mapa.lugar(cena)
+        if novo is not None and not s.get("insercao"): atual = novo
     # ---------- partes do corpo (mão/braço em rádio e planos de detalhe) ----------
     for s in shots:
         cena = s.get("scene") if s.get("type", "scene") == "scene" else {"maçaneta": "macaneta", "relógio": "relogio"}.get(s.get("subject"), s.get("subject"))

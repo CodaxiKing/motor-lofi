@@ -58,6 +58,7 @@ NARRAÇÃO (Roberta): Ele pulou. E eu segurei.
 LEGENDA: EU TE PEGO / CONFIA EM MIM / ELE PULOU
 
 ## CENA 4 — 38 s a 46 s · Nove andares
+LIGAÇÃO: descem do telhado pela porta da escada de serviço
 CENÁRIO: `escada` (prédio vizinho, luz de emergência)
 PERSONAGENS: `roberta` `back` descendo, `flashlight` · `rafa` atrás, `hold` com `roberta`
 PLANO: `handheld` · TRANSIÇÃO: `fade`
@@ -73,6 +74,7 @@ NARRAÇÃO (Roberta): [whispers] À noite eles correm. Então esperamos.
 LEGENDA: À NOITE / ELES CORREM
 
 ## CENA 6 — 52 s a 62 s · Dia 3
+LIGAÇÃO: saem pela porta do térreo direto na rua
 CENÁRIO: `rua` · amanhecer, `fog` 0.5 · DIA 3 · 05:52
 PERSONAGENS: `roberta` e `rafa` `side` andando (`walk`) de mãos dadas (`hold`) · horda lenta ao fundo
 PLANO: aberto, paralaxe, `zoom` lento · TRANSIÇÃO: `whip`
@@ -101,6 +103,7 @@ ROBERTA: [shouting] Corre! Pro posto!
 LEGENDA: CORRE! / PRO POSTO!
 
 ## CENA 9 — 78 s a 86 s · Escondidos
+LIGAÇÃO: correm pela rua até o posto da esquina
 CENÁRIO: `posto` (loja de conveniência)
 PERSONAGENS: `roberta` e `rafa` agachados (`hide`) atrás do balcão, emoção `panting`
 PLANO: `focus` 0, câmera parada · TRANSIÇÃO: `cut`
@@ -149,6 +152,7 @@ RAFA: [pause] Você ia me largar de novo?
 LEGENDA: A PONTE FECHA / EM DOIS DIAS / VOCÊ IA / ME LARGAR?
 
 ## CENA 14 — 122 s a 132 s · A ponte
+INSERÇÃO: a ponte vista de longe, enquanto eles ficam no posto
 CENÁRIO: `ponte` · `fog` 0.6 · entardecer
 PERSONAGENS: `soldado` ao longe, de guarda (`hold`)
 PLANO: aberto, `zoom` lento · TRANSIÇÃO: `fade`
@@ -158,6 +162,7 @@ NARRAÇÃO (Roberta): [whispers] A ponte. Dois dias. E o exército não espera n
 LEGENDA: A PONTE / DOIS DIAS
 
 ## CENA 15 — 132 s a 142 s · O hospital
+INSERÇÃO: Lia no hospital, do outro lado do rádio
 CENÁRIO: `hospital` (corredor piscando)
 PERSONAGENS: `zombie_enfermeiro` parado no fim do corredor, `sniff`
 PLANO: `handheld`, `zoom` lento · TRANSIÇÃO: `whip`
@@ -167,6 +172,7 @@ NARRAÇÃO (Roberta): [scared] E o hospital... era de onde todos eles tinham sa�
 LEGENDA: E O HOSPITAL... / DE ONDE TODOS / TINHAM SAÍDO
 
 ## CENA 16 — 142 s a 150 s · A decisão
+LIGAÇÃO: volta para o posto, onde os dois continuam
 CENÁRIO: `posto`
 PERSONAGENS: `roberta` `front` emoção `determined` com o rádio (`prop` `radio`) · `rafa` atrás, emoção `fear`
 PLANO: `close` 0, `zoom` lento · TRANSIÇÃO: `cut`
