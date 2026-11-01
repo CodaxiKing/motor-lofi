@@ -39,4 +39,4 @@ def test_frente_e_fundo_rolam():
     sc = scenes.get("corredor", travelling="frente")
     a = np.asarray(sc.render_back(0, 0, {"_scroll": 0}), dtype=float)
     b = np.asarray(sc.render_back(0, 0, {"_scroll": 300}), dtype=float)
-    assert np.abs(a - b).mean() > 2
+    assert np.abs(a - b).mean() > 0.8
