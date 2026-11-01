@@ -20,7 +20,7 @@ CAMPOS_ATOR = {"crowd", "walk", "run", "tremble", "hold", "carried_by", "flashli
 CAMPOS_PLANO = {"close", "travelling", "follow", "focus", "handheld", "vertigo", "slowmo", "scare", "lens_drops", "dark", "wall_shadow", "lights",
                 "cold", "dust", "crowd", "fog", "rain", "snow", "time", "tint", "peephole", "shake", "lightning", "hook", "bloom",
                 "style", "desenho", "acoustic", "detail", "recap", "moments", "choice", "title", "effect", "camera", "zoom",
-                "flicker", "tv", "static", "fan", "wind", "train", "door", "locks", "under_door_light", "feet", "on", "level"}
+                "flicker", "plano", "aberto", "conjunto", "medio", "geral", "alvo", "tv", "static", "fan", "wind", "train", "door", "locks", "under_door_light", "feet", "on", "level"}
 
 
 def sem_acento(s):

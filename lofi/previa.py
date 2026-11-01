@@ -49,6 +49,11 @@ def plano_da_cena(n, corpo, nomes):
     pl = re.search(r"^PLANO[^:\n]*:(.*)$", corpo, re.M)
     if pl and "`travelling`" in pl.group(1):
         s["travelling"] = {"speed": 300, "dir": "frente" if "de frente" in pl.group(1) else ("fundo" if "por trás" in pl.group(1) else "lado")}
+    if pl:   # enquadramento: plano aberto / conjunto / médio / close
+        txt = pl.group(1).lower()
+        for chave, plano in (("`close`", "close"), ("close", "close"), ("médio", "medio"), ("`medio`", "medio"), ("medio", "medio"),
+                             ("conjunto", "conjunto"), ("aberto", "aberto"), ("geral", "aberto")):
+            if chave in txt: s.setdefault("camera", {})["plano"] = plano; break
     pe = re.search(r"^PERSONAGENS[^:\n]*:(.*)$", corpo, re.M)
     atores = []
     marcas = mapa.marcas("_travelling" if s.get("travelling") else cena)

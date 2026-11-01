@@ -175,7 +175,8 @@ def check(path, frames=True):
                     if sub and face[0] < sy + 55 and face[1] > sy - 55 and x1 > 160 and x0 < W - 160:
                         err(f"legenda cobrindo rosto em {t:.1f}s ('{sub[2]}')")
                     if x1 < 40 or x0 > W - 40: warn(f"personagem fora do quadro em {t:.1f}s")
-                    elif (x0 < -60 or x1 > W + 60) and not shot.get("camera", {}).get("close") is not None: warn(f"personagem cortado na lateral em {t:.1f}s")
+                    elif (x0 < -60 or x1 > W + 60) and not shot.get("camera", {}).get("close") is not None \
+                            and ep.plano_de(shot, scenes.get(shot["scene"])) not in ("medio", "close"): warn(f"personagem cortado na lateral em {t:.1f}s")
                     if top < 450 and x0 < 430 and shot.get("hud", True): warn(f"cabeça embaixo do contador em {t:.1f}s")
                     for o in shot.get("overlay", []):
                         if o.get("type") != "comment": continue

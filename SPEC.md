@@ -64,8 +64,19 @@ O validador de roteiro usa esse mesmo catálogo, então um nome que não está l
 - Gestos na fala: cabeça e mão se mexem sozinhas enquanto o personagem fala.
 - Transições de pose e emoção: use keyframes de texto (`"pose": [[0,"idle"],[1.2,"point"]]`); a pose muda com antecipação e leve exagero, a emoção troca com piscada e "pop".
 
+**Enquadramento perto (padrão)** — `camera.plano`: `aberto` · `conjunto` · `medio` · `close`
+- Sem nada escrito, todo plano com personagens se enquadra sozinho: **1 personagem → `medio`** (da cabeça até os joelhos, enchendo o
+  quadro, fundo desfocado) e **2 ou mais → `conjunto`** (todos de corpo inteiro, grandes). O personagem é redesenhado no tamanho
+  final (traço nítido); só o fundo amplia e desfoca. Há uma aproximação lenta durante o plano (`"push": 0` desliga).
+- `"plano": "aberto"` mostra o cenário inteiro: use só para situar um lugar novo ou quando o cenário é a informação (porta abrindo,
+  reflexo na geladeira, horda chegando). `"alvo": 1` (ou `[0, 2]`) escolhe quem entra no enquadramento.
+- `"plano": "close"` (ou `"close": 0`) = cabeça e ombros enchendo o quadro, em qualquer distância do cenário.
+- Closes de objeto (`radio_carro`, `cftv`...), planos de detalhe, `fg` (por cima do ombro) e planos com `zoom`/`follow`/`vertigo`
+  ficam como estão. A camada da frente do cenário (balcão, grades) acompanha o zoom.
+- Episódio inteiro no enquadramento antigo: `"plano_padrao": "aberto"` no topo do JSON (os episódios já publicados de Dia Zero usam).
+
 **Câmera de cinema** (dentro de `camera`)
-- `"close": 0` → close no rosto do ator 0 (`close_zoom` padrão 2.9, `close_in` = segundos para entrar). Fundo desfoca, personagem fica nítido.
+- `"close": 0` → close no rosto do ator 0 (zoom automático pelo tamanho do personagem; com `close_zoom` fixo, ou com `plano_padrao: aberto`, 2.9; `close_in` = segundos para entrar). Fundo desfoca, personagem fica nítido.
 - `"follow": 0` → travelling acompanhando o ator 0 (`zoom` padrão 1.3).
 - `"focus": 1` → foco no ator 1 (os outros e o fundo desfocam). Aceita keyframes para trocar o foco: `[[0,1],[2.5,0]]`.
 - Plano por cima do ombro: ator com `"fg": true, "view": "back", "x": 260, "y": 2380, "scale": 3.4, "blur": 6` (coordenadas de tela) + `focus` em quem fala.

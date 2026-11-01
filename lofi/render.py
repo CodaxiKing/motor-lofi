@@ -304,6 +304,69 @@ class Episode:
             x = P["sx"] + dx - m.width / 2; y = P["sy"] - P["anc"][1] * k - cfg.get("raise", 140) + (P["sy"] - ly) * 0.0
             img.paste((0, 0, 0), (int(x), int(y)), m)
 
+    # ---------------- enquadramento (planos de cinema) ----------------
+    # aberto   = o cenário inteiro (zoom 1), para situar o lugar
+    # conjunto = todos os personagens do plano de corpo inteiro, grandes (ocupam ~44% da altura), fundo levemente desfocado
+    # medio    = um personagem da cabeça até os joelhos, enchendo o quadro, fundo desfocado (padrão com 1 personagem)
+    # close    = só o rosto (camera.close, já existente)
+    # Padrão (spec "plano_padrao", "auto" se ausente): plano com personagens e sem zoom/close/follow escolhe sozinho:
+    # 1 personagem -> medio, 2 ou mais -> conjunto. "plano_padrao": "aberto" mantém o comportamento antigo.
+    PLANOS = ("aberto", "conjunto", "medio", "close")
+
+    def _visiveis(self, shot, rel):
+        acts = []
+        for i, a in enumerate(shot.get("actors", [])):
+            if a.get("fg") or a.get("_crowd") or a.get("carried_by"): continue
+            if rel < a.get("enter", -1e9) or rel > a.get("exit", 1e9): continue
+            acts.append((i, a))
+        return acts
+
+    def plano_de(self, shot, sc, rel=None):
+        cam = shot.get("camera", {})
+        p = cam.get("plano")
+        if p: return p
+        if shot.get("type", "scene") != "scene" or any(k in cam for k in ("zoom", "close", "follow", "vertigo")): return "aberto"
+        padrao = self.spec.get("plano_padrao", "auto")
+        if padrao in ("conjunto", "medio"): return padrao
+        if padrao != "auto": return "aberto"
+        from .mapa import MAPA
+        if MAPA.get(sc.name, {}).get("chao") is None: return "aberto"      # closes de objeto (rádio, cftv...)
+        acts = [a for a in shot.get("actors", []) if not a.get("fg") and not a.get("_crowd") and not a.get("carried_by")]
+        if not acts or any(a.get("fg") for a in shot.get("actors", [])): return "aberto"
+        return "medio" if len(acts) == 1 else "conjunto"
+
+    def enquadrar(self, plano, shot, sc, camx, rel, norm):
+        from .rig import char_def, CH
+        cam = shot.get("camera", {})
+        acts = self._visiveis(shot, rel)
+        alvo = cam.get("alvo")
+        if alvo is not None:
+            alvo = alvo if isinstance(alvo, list) else [alvo]
+            acts = [ia for ia in acts if ia[0] in alvo] or acts
+        if not acts: return 1.0, 0.0, 0.0
+        if plano == "medio": acts = acts[:1]      # o primeiro da lista (ou o "alvo")
+        caixas = []
+        for i, a in acts:
+            x, y, s = self.actor_state(a, sc, rel, norm)
+            cd = char_def(a["char"], self.custom.get(a["char"]))
+            h = CH * 0.5 * s * cd.get("scale", 1.0) * 0.93
+            wx = x - camx * a.get("depth", sc.depths[1])
+            caixas.append((wx, y, h))
+        push = 1 + 0.035 * norm * cam.get("push", 1.0)                 # aproximação lenta: o plano nunca fica parado
+        if plano == "medio":
+            wx, y, h = caixas[0]
+            z = min(6.0, max(1.0, 1.22 * H / h)) * push
+            x0 = wx - W / 2 / z; y0 = (y - h * 0.88) - 0.24 * H / z
+        else:
+            hmax = max(c[2] for c in caixas)
+            xa = min(c[0] for c in caixas) - 0.2 * hmax; xb = max(c[0] for c in caixas) + 0.2 * hmax
+            top = min(c[1] - c[2] * 0.88 for c in caixas); bot = max(c[1] for c in caixas)
+            z = min(0.52 * H / max(1, bot - top), 0.98 * W / max(1, xb - xa), 3.0)
+            z = max(1.0, z) * push
+            x0 = (xa + xb) / 2 - W / 2 / z; y0 = bot - 0.76 * H / z
+        z *= val(cam.get("zoom_k", 1.0), rel, norm, 1.0)
+        return z, x0, y0
+
     # ---------------- câmera ----------------
     def camera(self, shot, sc, t, rel, norm):
         cam = shot.get("camera", {})
@@ -312,10 +375,15 @@ class Episode:
         cx = val(cam.get("cx", 0.5), rel, norm, 0.5); cy = val(cam.get("cy", 0.5), rel, norm, 0.5)
         actors = shot.get("actors", [])
         close = val(cam.get("close"), rel, norm); follow = val(cam.get("follow"), rel, norm)
+        if close is None and cam.get("plano") == "close":
+            al = cam.get("alvo", 0); close = al[0] if isinstance(al, list) else al
         if close is not None and close != "none" and int(close) < len(actors):
             a = actors[int(close)]; x, y, s = self.actor_state(a, sc, rel, norm)
-            z = val(cam.get("close_zoom", 2.9), rel, norm, 2.9)
             sh = 760 * s * 0.5 * 0.95
+            if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto":
+                z = val(cam.get("close_zoom", 2.9), rel, norm, 2.9)
+            else:                                    # close de verdade: cabeça e ombros enchendo o quadro, em qualquer distância
+                z = min(9.0, max(2.0, 2.3 * H / sh))
             hx, hy = x - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
             x0, y0 = hx - W / 2 / z, hy - 820 / z
             k = ease(c01(rel / cam.get("close_in", 0.0001)))
@@ -326,6 +394,8 @@ class Episode:
             camx = val(cam.get("x", (x - 540) * 0.25), rel, norm)
             x0 = (x - camx * sc.depths[1]) - W / 2 / z
             y0 = (H - H / z) * cy
+        elif self.plano_de(shot, sc) in ("conjunto", "medio"):
+            z, x0, y0 = self.enquadrar(self.plano_de(shot, sc), shot, sc, camx, rel, norm)
         else:
             x0 = (W - W / z) * cx; y0 = (H - H / z) * cy
         dx, dy = fx.shake_offset(t, shot.get("shake", []) + shot.get("scare", []), amp=cam.get("shake_amp", 16))
@@ -406,7 +476,9 @@ class Episode:
         self.paint_holds(img, prepared)
         for (o, ang, ln, sp) in self._beams: particles.flashlight(img, t_anim, o, ang, ln, spread=sp)
         if shot.get("dust"): particles.dust(img, t_anim, n=shot["dust"] if isinstance(shot["dust"], int) else 60)
+        sc._cam = (z, x0, y0)
         img = sc.render_front(img, t_anim, camx, props, self.flashes)
+        sc._cam = None
         if shot.get("snow"): fx.snow(img, t_anim, shot["snow"] if not isinstance(shot["snow"], bool) else 1.0)
         dk = val(shot.get("dark"), rel, norm, 0) or 0
         if dk:

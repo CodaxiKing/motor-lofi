@@ -1,7 +1,7 @@
 # TURNO DA NOITE · EPISÓDIO 1/5 — O DE SEMPRE
 
 5 episódios · Terror/Suspense (estilo SCP) · 14+ (sem gore) · Fase: início · Cor do episódio (`tint`): verde fluorescente [110, 200, 150, 0.10]
-Estilo do traço: desenho · Contador: NOITE 1 · HH:MM (lugar "KM 317") · Duração: ~2 min 19 s · 15 cenas
+Estilo do traço: desenho · Enquadramento: perto (médio e conjunto por padrão; aberto só para situar o lugar) · Contador: NOITE 1 · HH:MM (lugar "KM 317") · Duração: ~2 min 19 s · 15 cenas
 Voto: — (primeiro episódio)
 
 **Em jogo neste episódio**
@@ -28,7 +28,7 @@ SOM: `stamp` 3.5 s
 ## CENA 1 — 5 s a 14 s · O anúncio
 CENÁRIO: `posto` · noite · chuva fraca · NOITE 1 · 22:00
 PERSONAGENS: `davi` andando (`walk`) da marca `frente_esq` até `frente`, `3q`, emoção `neutral`
-PLANO: aberto, `zoom` lento · TRANSIÇÃO: `fade`
+PLANO: aberto (situa o posto), depois médio no Davi · TRANSIÇÃO: `fade`
 LUZ E DETALHES: letreiro do posto aceso, poças com chuva
 SOM: `step` 6 s · `thunder` 11 s
 NARRAÇÃO (Davi): [calm] Eu precisava do dinheiro. O anúncio dizia: turno da noite, quilômetro trezentos e dezessete. Paga em dobro.
@@ -38,7 +38,7 @@ LEGENDA: TURNO DA NOITE / KM 317 / PAGA EM DOBRO
 LIGAÇÃO: Davi entra na loja pela porta de vidro automática, o sininho toca, e ele vai até o caixa
 CENÁRIO: `loja` · relógio da loja em 22:04
 PERSONAGENS: `davi` andando da marca `porta` até `caixa`, depois `3q`, pose `phone`, emoção `neutral`
-PLANO: aberto, depois `zoom` no caixa · TRANSIÇÃO: `whip`
+PLANO: médio no Davi, fundo desfocado · TRANSIÇÃO: `whip`
 LUZ E DETALHES: lâmpadas acesas, zumbido
 SOM: `bell` 14.5 s · `beep` 18 s · `click` 19 s
 SÔNIA (telefone): [calm] Davi? Aqui é a Sônia, a gerente. Bem-vindo. As regras estão coladas no caixa. Leia todas.
@@ -72,7 +72,7 @@ LEGENDA: ATÉ AS DUAS / NADA
 LIGAÇÃO: Davi sai do caixa e anda até o corredor das prateleiras, dentro da loja
 CENÁRIO: `mercado` (corredor das prateleiras da loja) · NOITE 1 · 02:59
 PERSONAGENS: `davi` andando (`walk`) da marca `frente_dir` até `meio`, de costas, emoção `neutral`
-PLANO: `travelling` lento pelas prateleiras · TRANSIÇÃO: `fade`
+PLANO: médio, de costas, `travelling` lento pelas prateleiras · TRANSIÇÃO: `fade`
 LUZ E DETALHES: `flicker` 0.3, as lâmpadas falhando
 SOM: `step` 49 s · `static` 53 s
 NARRAÇÃO (Davi): [whispers] Às duas e cinquenta e nove, as luzes piscaram. Todas ao mesmo tempo.
@@ -100,7 +100,7 @@ LEGENDA: NAS CÂMERAS / NINGUÉM
 ## CENA 9 — 71 s a 80 s · O Bento
 CENÁRIO: `loja` · relógio da loja em 03:02
 PERSONAGENS: `bento` entrando (`enter`) até a marca `balcao`, `3q`, emoção `happy`, `wave` · `davi` na marca `caixa`, emoção `fear` mudando para `happy` (alívio)
-PLANO: por cima do ombro do Davi · TRANSIÇÃO: `cut`
+PLANO: conjunto (os dois grandes no quadro), por cima do ombro do Davi · TRANSIÇÃO: `cut`
 LUZ E DETALHES: luz fria, o Bento sem sombra no chão
 SOM: `step` 71 s · `step` 72 s
 BENTO: [warm, friendly] Boa noite, rapaz! Frio, né? Me vê o de sempre.
@@ -151,7 +151,7 @@ LEGENDA: SE EU ATENDESSE / ELE IA EMBORA? / SE EU FECHASSE...
 ## CENA 15 — 121 s a 131 s · Três e sete
 CENÁRIO: `loja` · relógio da loja em 03:07 · silhueta de chapéu na porta de vidro, lá fora (prop vulto 0.6)
 PERSONAGENS: `bento` na marca `balcao`, `3q`, parado · `davi` na marca `caixa`, `front`, emoção `fear`
-PLANO: aberto, `zoom` lento até o rosto do Davi · TRANSIÇÃO: `cut`
+PLANO: conjunto, `zoom` lento até o rosto do Davi · TRANSIÇÃO: `cut`
 LUZ E DETALHES: `flicker`, chuva no vidro
 SOM: `heartbeat` 121 s · `bell` 129 s
 NARRAÇÃO (Davi): [shaky] Eram três e sete. Faltavam vinte e seis minutos. Atendo... ou digo que a loja está fechada?

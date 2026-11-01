@@ -8,7 +8,7 @@ import math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 from . import partes
-from .core import W, H, grad, add_light, darken, lerp, ease, font
+from .core import W, H, grad, add_light, darken, lerp, ease, font, crop_zoom
 from . import fx
 
 M = 110                     # margem lateral para paralaxe
@@ -80,7 +80,8 @@ class Scene:
         self.dynamic(img, t, camx, props)
         return img
     def render_front(self, img, t, camx, props, flashes):
-        if self.ripples and self.rain_full and self.rain_strength > 0:
+        zc = getattr(self, "_cam", None)
+        if self.ripples and self.rain_full and self.rain_strength > 0 and not (zc and zc[0] > 1.15):   # poças só no plano aberto
             d = ImageDraw.Draw(img); dx = -camx * self.depths[1]
             for k, (x, y, w) in enumerate(self.ripples):
                 for j in range(2):
@@ -88,7 +89,11 @@ class Scene:
                     d.ellipse([x + dx - rr, y - rr * 0.22, x + dx + rr, y + rr * 0.22], outline=(150, 170, 210), width=2) if ph < 0.85 else None
         if self.fog_cfg: fx.fog(img, t, **self.fog_cfg)
         if self.front is not None:
-            f = self.crop(self.front, camx, self.depths[2]); img.paste(f, (0, 0), f)
+            f = self.crop(self.front, camx, self.depths[2])
+            cam = getattr(self, "_cam", None)                    # a frente acompanha o zoom da câmera (balcão, grades...)
+            if cam and (cam[0] != 1.0 or cam[1] or cam[2]):
+                z, x0, y0 = cam; f = crop_zoom(f, max(0, x0), max(0, y0), min(W, x0 + W / z), min(H, y0 + H / z))
+            img.paste(f, (0, 0), f)
         if self.rain_full: fx.rain(img, t, strength=self.rain_strength)
         if flashes:
             if self.lightning_full: img = fx.lightning(img, t, flashes)
