@@ -18,6 +18,8 @@
             "hair": "bun", "hair_color": [156, 156, 160], "glasses": true, "scarf": [40, 150, 160], "body": "old"},
  "prado": {"skin": "palido", "top_style": "suit", "top": [28, 30, 40], "inner": [240, 240, 236], "tie": [240, 118, 30], "legs": [28, 30, 40], "shoes": [14, 14, 16],
            "hair": "short", "hair_color": [190, 180, 150], "glasses": true, "body": "tall", "acc": ["tie"]},
+ "porteiro": {"skin": "escuro", "top_style": "uniform", "top": [70, 84, 104], "legs": [44, 50, 64], "shoes": [24, 24, 26],
+          "hair": "short", "hair_color": [170, 170, 170], "facial": "mustache", "facial_color": [170, 170, 170], "hat": "cap", "hat_color": [50, 60, 78], "acc": ["badge"], "body": "old"},
  "zombie_motoboy": {"skin": [146, 154, 150], "top_style": "torn", "top": [70, 74, 84], "legs": [52, 60, 84], "shoes": [120, 120, 116],
           "hat": "capacete_moto", "hat_color": [150, 84, 40], "backpack": [168, 90, 40], "bag_termica": true, "infected": true}
 }

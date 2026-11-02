@@ -19,6 +19,7 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 - jo — motogirl, pele escura, black power, fones no pescoço, camiseta e mochila cúbica verdes. Cor: verde.
 - helena — Dra. Helena Couto, virologista, idosa, coque grisalho, óculos, jaleco branco e cachecol turquesa. Cor: turquesa.
 - prado — Otávio Prado, fundador do JáVai, alto e magro, terno escuro, gravata laranja, óculos. Vilão. Cor: laranja só na gravata.
+- porteiro — seu Antônio, porteiro da Torre JáVai, idoso, pele escura, bigode grisalho, uniforme azul e crachá.
 - zombie_motoboy — entregador infectado, com a mochila cúbica desbotada. Mais os prontos: zombie, zombie_corredor, zombie_rastejante, zombie_enfermeiro, zombie_policial, soldado.
 
 ## Personagens (motivação e voz)
@@ -45,10 +46,10 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 
 ## Mistério central
 Quem continua fazendo pedidos no aplicativo depois do fim do mundo?
-A verdade: duas pessoas, dentro do mesmo prédio. Otávio Prado, dono do JáVai, se trancou no topo da Torre com os servidores e faz os pedidos pretos: os motoboys buscam comida e combustível para ele e sobem a nota para "ganhar a vaga" na Zona Segura. Quando alguém chega ao pino, todos os celulares por perto tocam ao mesmo tempo e a horda vai para lá, longe da Torre. A Dra. Helena Couto, presa no laboratório do mesmo andar, invadiu o sistema e faz os pedidos vermelhos para reunir as 3 doses do soro. A caixa que Gabriel derrubou no DIA 0 levava a amostra do vírus para a Torre; o porteiro foi o primeiro infectado.
+A verdade: duas pessoas, dentro do mesmo prédio. Otávio Prado, dono do JáVai, se trancou no topo da Torre com os servidores e faz os pedidos pretos: os motoboys buscam comida e combustível para ele e sobem a nota para "ganhar a vaga" na Zona Segura. Quando alguém chega ao pino, todos os celulares por perto tocam ao mesmo tempo e a horda vai para lá, longe da Torre. A Dra. Helena Couto, presa no laboratório do mesmo andar, invadiu o sistema e faz os pedidos vermelhos para reunir as 3 doses do soro. A caixa que Gabriel derrubou no DIA 0 levava a amostra do vírus para a Torre; o porteiro foi o primeiro infectado. O pedido da Nina, ainda no DIA 0, é um dos últimos de cliente comum, antes de só restarem os pretos e os vermelhos.
 
 ## Regras do universo
-1. Os motoboys chamam os infectados de "cancelados". Eles enxergam mal e caçam pelo som · 2. Moto ligada e celular tocando atraem horda: desligar a moto e empurrar é sempre uma opção que custa tempo · 3. Mordida transforma em 1 a 3 dias: quanto mais longe do pescoço, mais demora; uma mancha escura sobe pelo braço · 4. O app só funciona porque os servidores da Torre têm gerador; o resto da rede de celular caiu · 5. A nota de cada entregador aparece na tela: ★ 5,0 libera o pino da Zona Segura · 6. Gasolina é a moeda da cidade · 7. Existem só 3 doses do soro; elas ficam na geladeira da Prado Saúde no hospital e só o cartão H-7 abre · 8. Todas as idades: sem sangue nem gore; ataques em corte, sombra e som.
+1. Os motoboys chamam os infectados de "cancelados". Eles enxergam mal e caçam pelo som · 2. Moto ligada e celular tocando atraem horda: desligar a moto e empurrar é sempre uma opção que custa tempo · 3. Mordida transforma de minutos (pescoço) a 3 dias (mão ou braço): quanto mais longe do pescoço, mais demora; uma mancha escura sobe pelo braço · 4. O app só funciona porque os servidores da Torre têm gerador; o resto da rede de celular caiu · 5. A nota de cada entregador aparece na tela: ★ 5,0 libera o pino da Zona Segura · 6. Gasolina é a moeda da cidade · 7. Existem só 3 doses do soro; elas ficam na geladeira da Prado Saúde no hospital e só o cartão H-7 abre · 8. Todas as idades: sem sangue nem gore; ataques em corte, sombra e som.
 
 ## Finais
 - A — OFFLINE (voto A no ep. 7, desligar o app): Gabriel derruba os servidores. O silêncio faz os cancelados se dispersarem e Prado fica sem ninguém que trabalhe para ele, mas a rede que distribuiria o soro morre junto. Os motoboys passam a levar as doses de mão em mão, de moto, sem nota e sem mapa. Última imagem: Gabriel e Nina parados num portão, a caixa na mão, batendo palmas em vez de tocar o interfone. "ENTREGA DE PORTA EM PORTA."
@@ -59,7 +60,7 @@ A verdade: duas pessoas, dentro do mesmo prédio. Otávio Prado, dono do JáVai,
 | Ep. | Opção | GANHA | PERDE |
 |---|---|---|---|
 | 1 | A) Aceitar o pedido da Nina | chega com a Sílvia ainda lúcida e ouve dela sobre o cartão H-7 | a moto atrai os cancelados e ele perde a kitnet para sempre, com toda a comida |
-| 1 | B) Trancar a porta e ficar | uma noite segura, mochila cheia de comida e tanque de reserva | a Sílvia já virou quando ele chega; a Nina não confia nele; ★ cai para 4,6 |
+| 1 | B) Recusar e barrar a porta | uma noite segura, mochila cheia de comida e tanque de reserva | a Sílvia já virou quando ele chega; a Nina não confia nele; ★ cai para 4,6 |
 | 2 | A) Levar a Nina na garupa | a Nina ao lado dele e a promessa cumprida | peso e barulho gastam o tanque: chega ao Ponto empurrando a moto e devendo ao Bode |
 | 2 | B) Deixar a Nina trancada e buscar ajuda | moto rápida e tanque cheio até o Ponto | a Nina sai sozinha; o Bode a acha primeiro e a usa como garantia das corridas de Gabriel |
 | 3 | A) Pegar o pedido preto do app | ★ sobe, comida para o Ponto e a Jô vai junto | a H. fica sem resposta: chega ao hospital sem mapa nem aviso, e a ala está cheia de cancelados |
@@ -79,7 +80,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | planejado | A) Aceitar o pedido · B) Trancar a porta | | |
+| 1 | 0 | início | roteiro | A) Aceitar o pedido · B) Recusar e barrar a porta | — | |
 | 2 | 1 | complicação | planejado | A) Levar a Nina · B) Deixar a Nina trancada | | |
 | 3 | 3 | complicação | planejado | A) Pedido preto · B) Pedido vermelho | | |
 | 4 | 4 | virada | planejado | A) Injetar a dose · B) Guardar as doses | | |
@@ -89,7 +90,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 | 8 | 8 | final | planejado | — | | |
 
 ## Plano por episódio
-- **EP 1 · DIA 0 · "A ÚLTIMA ENTREGA"** (início, laranja) — Objetivo: apresentar Gabriel, o app e o fim do mundo a partir de uma corrida. 14h10: ele derruba a caixa lacrada num buraco, vê o amassado, entrega na Torre e o porteiro coça o punho. À noite, sirenes, vizinho batendo na porta errada, o primeiro cancelado é um colega motoboy. Trancado na kitnet, o celular toca alto e os passos no corredor param. Na tela: "NOVO PEDIDO · remédio · cliente Nina · 'por favor, minha mãe tá mal'". Gancho: o celular tocando no escuro e uma mão batendo na porta ("NÃO ATENDE / O PEDIDO"). PENSAMENTO: Gabriel imagina a porta cedendo. Pergunta: A) ACEITAR O PEDIDO · B) TRANCAR A PORTA.
+- **EP 1 · DIA 0 · "A ÚLTIMA ENTREGA"** (início, laranja) — Objetivo: apresentar Gabriel, o app e o fim do mundo a partir de uma corrida. 14h10: ele derruba a caixa lacrada num buraco, vê o amassado, entrega na Torre e o porteiro coça o punho. À noite, sirenes, vizinho batendo na porta errada, o primeiro cancelado é um colega motoboy. Trancado na kitnet, o celular toca alto e os passos no corredor param. Na tela: "NOVO PEDIDO · remédio · cliente Nina · 'por favor, minha mãe tá mal'". Gancho: o celular tocando no escuro e uma mão batendo na porta ("NÃO PARA / DE TOCAR"). PENSAMENTO: Gabriel imagina a porta cedendo. Pergunta: A) ACEITAR O PEDIDO · B) RECUSAR E BARRAR A PORTA.
 - **EP 2 · DIA 1 · "5º ANDAR"** (complicação, azul-petróleo) — Objetivo: a Nina e a primeira perda. (A) Gabriel foge da kitnet de moto, passa na farmácia e encontra a Sílvia lúcida, que fala do cartão H-7 antes de se trancar no quarto; (B) chega com comida e tanque, mas a Sílvia já bate por dentro do quarto. A nota sobe: "ENTREGA CONCLUÍDA · ★". O app mostra pela primeira vez o pino da Zona Segura. Barulho na escada obriga a sair. Gancho: Nina do lado de cá da porta, a mãe do lado de lá ("ELA AINDA / ME CONHECE?"). O PLANO: como descer 5 andares sem ligar nada. Pergunta: A) LEVAR A NINA · B) DEIXAR A NINA TRANCADA.
 - **EP 3 · DIA 3 · "O PONTO"** (complicação, âmbar) — Objetivo: a sociedade dos motoboys. O posto virou base, com ranking na parede, gasolina como dinheiro e o Bode no comando. Jô apresenta os pedidos vermelhos, assinados só "H.". Ao longe, dezenas de celulares tocam juntos e todos fingem que não ouviram. Gancho: uma lista com a nota de todos e o nome do Gabriel lá embaixo ("QUEM FAZ / ESSES PEDIDOS?"). Pergunta: A) PEDIDO PRETO · B) PEDIDO VERMELHO.
 - **EP 4 · DIA 4 · "CAIXA TÉRMICA"** (virada, verde) — Objetivo: as doses e a mordida. Os dois votos levam ao hospital; o cartão da Nina abre a geladeira da Prado Saúde. Protegendo a Nina de um enfermeiro infectado, Gabriel é mordido no braço. Áudio da H.: "três doses. Não abra. Confirme a entrega". PENSAMENTO: o que a Nina faria sozinha. Gancho: a mancha subindo no braço, a caixa aberta ("SÃO SÓ / TRÊS DOSES"). Pergunta: A) INJETAR A DOSE · B) GUARDAR AS DOSES.
@@ -104,6 +105,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 ## Extras
 | Nº | Depois do ep. | Tema | Status |
 |---|---|---|---|
+| 1 | 1 | O que aconteceu com o seu Antônio? | roteiro |
 
 ## Cenários
 - Da biblioteca: `rua`, `rua_amanhecer`, `beco`, `apartamento`, `entrada`, `janela`, `corredor`, `escada`, `portao`, `telhado`, `mercado`, `posto`, `hospital`, `viaduto`, `estacionamento`, `esgoto`. Planos de detalhe: `celular`, `chave`, `macaneta`, `olho`, `relogio`.
@@ -111,7 +113,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 - A criar antes do ep. 6: `servidor` (sala dos servidores e laboratório no topo da Torre), a entrar em `mundo.json` no lugar `predios`.
 
 ## Resumos
-- EP 1:
+- EP 1: No último dia normal, o entregador Gabriel deixou cair uma caixa lacrada, viu o amassado e entregou na Torre JáVai dizendo que "veio assim". À noite, a cidade caiu e ele descobriu que os infectados seguem o som. Trancado em casa, com a porta cedendo, recebeu pelo app o pedido de uma menina sozinha, e o toque só para se ele responder.
 - EP 2:
 - EP 3:
 - EP 4:
@@ -125,4 +127,5 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 |---|---|---|---|
 
 ## Continuidade (onde eles estão)
+- Fim do ep. 1: Gabriel na entrada da kitnet (3º andar), DIA 0 · 23:52, escorando a porta com o celular tocando; capacete no chão; a moto largada na calçada do prédio.
 - Início do ep. 1: Gabriel de moto na rua, DIA 0 · 14:10, com o celular, o capacete e a mochila térmica; mora sozinho numa kitnet.

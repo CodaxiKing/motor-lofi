@@ -72,6 +72,7 @@ def plano_da_cena(n, corpo, nomes):
                 if vista: a["view"] = vista
                 if emo: a["emotion"] = emo
                 if pose: a["pose"] = pose
+                if pose == "sit" and "assento moto" in grupo: a["assento"] = "moto"; a["view"] = "side"
                 if "fg" in toks: a.update(fg=True, x=330 + i * 480, y=2380, scale=3.0, view="back"); a.pop("mark", None)
                 if "flashlight" in toks and i == 0: a["flashlight"] = 10
                 if s.get("travelling"): a["walk"] = True; a.setdefault("mark", "centro"); a.setdefault("dx", (i - (len(quem) - 1) / 2) * 130)
