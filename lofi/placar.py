@@ -8,7 +8,7 @@ Plano no roteiro técnico:
  "comments": [{"img": "placar/c1.png", "vote": "A"},                          # recorte do print (preferido)
               {"user": "Adrisia Vieira", "text": "a", "vote": "A"}, ...],   # ou redesenhado; até 5 no total
  "winner": "A",                                     # o voto registrado na bíblia (decide o empate)
- "scene": {"scene": "carro", ...}}                  # opcional: fundo desfocado
+ "fundo": {"scene": "carro", ...}}                  # opcional: cena desfocada atrás
 
 Sem empate: as porcentagens sobem, os comentários pulam na tela e o card vencedor cresce com "VOCÊS ESCOLHERAM".
 Empate: carimbo "EMPATE!" e uma roleta gira e para na opção `winner` ("DESEMPATE: ...").
@@ -169,8 +169,9 @@ def frame(ep, shot, t):
     rel = t - shot["start"]; labels = shot.get("labels", {"A": "A", "B": "B"}); win = shot.get("winner", "A")
     tie = empate(shot); pa, pb = pct(shot)
     # fundo: cena do episódio desfocada e escura, ou degradê
-    if shot.get("scene"):
-        sc = dict(shot["scene"], start=shot["start"], end=shot["end"])
+    fundo = shot.get("fundo") or (shot.get("scene") if isinstance(shot.get("scene"), dict) else None)
+    if fundo:
+        sc = dict(fundo, start=shot["start"], end=shot["end"])
         bg = ep.scene_frame(sc, t).filter(ImageFilter.GaussianBlur(14))
         img = Image.blend(bg, Image.new("RGB", (W, H), (6, 6, 10)), 0.62).convert("RGBA")
     else:
@@ -188,7 +189,9 @@ def frame(ep, shot, t):
     kc = ease_out(c01((rel - T_CARDS) / 0.45)); conta = ease(c01((rel - T_CARDS) / 1.4))
     rel_res = T_PARA + 0.1 if tie else T_RESULT
     res = c01((rel - rel_res) / 0.35)
+    roleta_on = tie and T_ROLETA + 0.3 <= rel < T_PARA + 1.3
     for key, x0, p in (("A", 80, pa), ("B", 580, pb)):
+        if roleta_on: break
         y0 = 740 + (1 - kc) * 160
         ganhou = res > 0 and key == win; perdeu = res > 0 and key != win
         s = 1 + (0.06 * ease_out(res) + 0.02 * math.sin(rel * 6) * res if ganhou else 0)

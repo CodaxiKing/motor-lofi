@@ -553,7 +553,7 @@
    "scene": "ponte",
    "hook": {
     "text": "5H59\nO PORTÃO FECHANDO",
-    "y": 1240
+    "y": 640
    },
    "time": "amanhecer",
    "grade": "amanhecer",
@@ -646,7 +646,10 @@
      "vote": "B"
     }
    ],
-   "scene": {
+   "prints": [
+    "placar/ep04_print1.jpg"
+   ],
+   "fundo": {
     "scene": "carro",
     "rain": "fraca",
     "dark": 0.3,
@@ -660,10 +663,7 @@
       "mark": "carona"
      }
     ]
-   },
-   "prints": [
-    "placar/ep04_print1.jpg"
-   ]
+   }
   },
   {
    "start": 16,
@@ -927,7 +927,21 @@
      "dx": 120,
      "view": "3q",
      "facing": -1,
-     "emotion": "determined"
+     "emotion": "determined",
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       1.2,
+       "point"
+      ],
+      [
+       4.6,
+       "idle"
+      ]
+     ]
     },
     {
      "char": "rafa",
@@ -968,10 +982,10 @@
    "crowd": {
     "count": 9,
     "area": [
-     0,
-     1660,
-     1080,
-     1720
+     380,
+     1260,
+     700,
+     1310
     ],
     "dir": 0,
     "speed": 20,
@@ -979,7 +993,8 @@
    },
    "camera": {
     "plano": "conjunto",
-    "handheld": 10
+    "handheld": 10,
+    "cortes": false
    },
    "actors": [
     {
@@ -998,16 +1013,7 @@
        "fear"
       ]
      ],
-     "pose": [
-      [
-       0,
-       "idle"
-      ],
-      [
-       4.2,
-       "point"
-      ]
-     ]
+     "pose": "idle"
     },
     {
      "char": "rafa",
@@ -1078,7 +1084,8 @@
    "fog": 0.3,
    "dust": 50,
    "camera": {
-    "plano": "conjunto"
+    "plano": "conjunto",
+    "cortes": false
    },
    "actors": [
     {

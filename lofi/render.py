@@ -9,7 +9,7 @@ import sys, os, json, math, subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail, placar, partes
+from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
@@ -105,7 +105,7 @@ class Episode:
         amb = []
         for s in self.shots:
             sc = s.get("scene")
-            if sc and sc in scenes.REGISTRY and s.get("type", "scene") == "scene":
+            if isinstance(sc, str) and sc in scenes.REGISTRY and s.get("type", "scene") == "scene":
                 kind = scenes.REGISTRY[sc].amb
                 if s.get("rain") == "nenhuma" and kind == "chuva_fora": kind = "vento"
                 amb.append((s["start"], s["end"], kind))
@@ -471,6 +471,7 @@ class Episode:
         fogv = val(shot.get("fog"), rel, norm)
         if fogv is not None: sc.fog_cfg = dict(y=1100, height=1500, alpha=min(0.95, fogv), col=(120, 128, 148), speed=14) if fogv > 0 else None
         camx, cam, rot = self.camera(shot, sc, t_anim, rel, norm)
+        self._cam = (camx, cam, sc.depths[1])
         z, x0, y0 = cam
         img = sc.render_back(t_anim, camx, props)
         vz = val(shot.get("camera", {}).get("vertigo"), rel, norm)
@@ -798,7 +799,7 @@ class Episode:
         return min(text.SAFE_Y_MAX, 1640, bot + 150)
 
     def frame(self, t):
-        self._heads = []; self._beams = []; self._treal = t; self._avoid = []
+        self._heads = []; self._beams = []; self._treal = t; self._avoid = []; self._cam = None
         shot = next((s for s in self.shots if s["start"] <= t < s["end"]), self.shots[-1])
         typ = shot.get("type", "scene")
         if typ == "loop":   # o gancho de trás para frente: o último quadro é o primeiro, e o vídeo emenda sem pulo
@@ -815,6 +816,7 @@ class Episode:
             progress = max(0.0, min(1.0, (t-shot["start"])/max(0.001, shot["end"]-shot["start"])))
             img = composite_layers(img, shot["layers"], self.base, progress)
         self.draw_overlays(img, shot, t)
+        if typ in ("scene", "detail"): img = ondas.desenhar(self, img, shot, t)
         if shot.get("bloom", self.spec.get("bloom", True)) and typ in ("scene", "detail"): img = fx.bloom(img)
         if shot.get("lens_drops"): img = fx.lens_drops(img, t)
         sa = fx.scare_amount(t, shot.get("scare", []))

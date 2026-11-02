@@ -370,7 +370,7 @@ ESCOLHEU" do selo some quando há placar (não repete).
  "labels": {"A": "BARULHO", "B": "SILÊNCIO"}, "votes": {"A": 357, "B": 284},
  "platforms": {"TikTok": 357, "YouTube": 184, "Instagram": 100},
  "comments": [{"img": "placar/ep04_c1.png", "vote": "A"}, {"user": "fulano", "text": "B!", "vote": "B"}],
- "winner": "A", "scene": {"scene": "carro", "rain": "fraca"}}
+ "winner": "A", "fundo": {"scene": "carro", "rain": "fraca"}}
 ```
 - `comments`: até 5. `img` = recorte do print (preferido; caminho relativo à pasta do roteiro; `w` muda a largura, `x`/`y`/`ang` a posição);
   sem `img`, o comentário é redesenhado com `user` e `text`. `vote` põe a etiqueta da opção no canto.
@@ -384,3 +384,17 @@ Arquivos `series/<serie>/extraNN_roteiro.md`, `extraNN.json` e vozes em `extraNN
 O selo mostra "EXTRA"; sem recap, placar, pergunta ou escolha; a chamada final ("A VOTAÇÃO DO EP. 3 CONTINUA ABERTA", "TEMPORADA 2?")
 vai num `overlay` de texto. O validador (`tests/validar_roteiro.py`, detecta pelo nome `extra...`) pede gancho, 5+ cenas, título com
 EXTRA, CHAMADA e 45–100 s; o `lofi.check` aceita a duração curta.
+
+## Ondas de som na tela (padrão)
+Todo efeito sonoro do `sfx` ganha um desenho no lugar de onde vem (`lofi/ondas.py`): `knock` = três arcos saindo da porta + "TOC",
+`bang` = estrela de impacto + "BAM!", `door_close` "BLAM", `door_open` "CREC", `glass` cacos + "CRASH", `car_alarm`/`siren` arcos
+pulsando, `notif`/`vibe` tremidinhas + "BZZ", `growl` linhas onduladas + "GRRR", `heartbeat` pulso vermelho nas bordas, `beep` "BIP",
+`lock` "CLAC". Sem `x`/`y` no efeito, a onda sai da marca `porta` do cenário (sons de porta), do `carro` (alarme) ou do centro.
+`{"t": 12, "name": "knock", "x": 690, "y": 1080}` posiciona; `"onda": false` desliga um efeito; `"ondas": false` (episódio ou plano)
+desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true}` liga os anéis de passos.
+
+## Artes para as redes (`python3 -m lofi.artes dados.json saida.png`)
+1080×1920, no estilo da série (personagens travados e cenários do motor). Tipos: `agenda` (maratona/agenda do dia), `aviso`
+(antes de episódio pesado, com personagem em close), `meta` (meta da comunidade com baú trancado e marcos), `resultado`
+(porcentagem, baú trancado/aberto, barra) e `ranking` (top 10 com empates). Campos de cada tipo nas skills `serie-agenda`,
+`serie-aviso` e `serie-comunidade`; exemplos em `series/dia-zero/artes/*.json`.
