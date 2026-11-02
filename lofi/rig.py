@@ -402,11 +402,13 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         if pr == "phone":
             d.rounded_rectangle([hx_ - 19, hy_ - 44, hx_ + 19, hy_ + 22], 7, fill=(20, 20, 26, 255), outline=OUT, width=3)
             d.rounded_rectangle([hx_ - 13, hy_ - 38, hx_ + 13, hy_ + 14], 4, fill=(170, 200, 255, 255))
-        elif pr == "handset":   # fone de gancho do telefone fixo, encostado na orelha
-            d.line([(hx_ - 4, hy_ - 58), (hx_ + 6, hy_ + 26)], fill=OUT, width=22)
-            d.line([(hx_ - 4, hy_ - 58), (hx_ + 6, hy_ + 26)], fill=(214, 206, 180, 255), width=14)
-            for (ex, ey) in ((hx_ - 6, hy_ - 64), (hx_ + 8, hy_ + 32)):
-                d.ellipse([ex - 16, ey - 12, ex + 16, ey + 12], fill=(214, 206, 180, 255), outline=OUT, width=3)
+        elif pr == "handset":   # fone de gancho do telefone fixo: cabo curvo, auricular em cima e bocal embaixo
+            bege = (214, 206, 180, 255)
+            d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=OUT, width=24)
+            d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=bege, width=15)
+            for (ex, ey) in ((hx_ - 2, hy_ - 70), (hx_ - 2, hy_ + 44)):
+                d.rounded_rectangle([ex - 8, ey - 14, ex + 26, ey + 14], 10, fill=bege, outline=OUT, width=4)
+            d.line([(hx_ + 4, hy_ + 58), (hx_ + 18, hy_ + 96)], fill=(40, 40, 40, 255), width=4)   # fio enrolado
         elif pr == "flashlight":
             d.rounded_rectangle([hx_ - 10, hy_ - 13, hx_ + 54, hy_ + 13], 7, fill=(70, 72, 80, 255), outline=OUT, width=3)
             d.ellipse([hx_ + 46, hy_ - 16, hx_ + 62, hy_ + 16], fill=(255, 240, 180, 255), outline=OUT, width=3)

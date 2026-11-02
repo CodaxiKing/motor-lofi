@@ -17,9 +17,22 @@ def _wood(col=(92, 58, 40)):
         d.line([(0, y), (W, y + r.randint(-4, 4))], fill=tuple(int(c * k) for c in col), width=3)
     return img
 
+def _aco():
+    """Chapa de aço escovado (porta de câmara fria)."""
+    img = Image.new("RGB", (W, H), (150, 160, 168)); d = ImageDraw.Draw(img); r = random.Random(5)
+    for y in range(0, H, 3):
+        v = int(150 + 12 * math.sin(y * 0.05) + r.uniform(-6, 6)); d.line([(0, y), (W, y)], fill=(v, v + 8, v + 16))
+    for y in (240, 1700): d.rectangle([0, y, W, y + 18], fill=(120, 128, 136))
+    for (x, y) in ((80, 160), (W - 80, 160), (80, 1800), (W - 80, 1800)): d.ellipse([x - 14, y - 14, x + 14, y + 14], fill=(100, 106, 112))
+    return img
+
+
 def macaneta(t, p):
-    img = _wood(); d = ImageDraw.Draw(img)
-    if p.get("light", True):
+    metal = p.get("metal", False)
+    img = _aco() if metal else _wood(); d = ImageDraw.Draw(img)
+    if metal:
+        img = add_light(img, (-200, -200, W + 200, 900), (80, 140, 200), 160, 90); d = ImageDraw.Draw(img)
+    elif p.get("light", True):
         d.rectangle([W - 60, 0, W, H], fill=(200, 160, 90))
         img = add_light(img, (W - 400, -200, W + 200, H + 200), (120, 80, 30), 120, 150); d = ImageDraw.Draw(img)
     d.rounded_rectangle([300, 640, 520, 1300], 40, fill=(170, 150, 100), outline=OUT, width=8)

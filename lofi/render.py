@@ -412,9 +412,9 @@ class Episode:
             if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto":
                 z = val(cam.get("close_zoom", 2.9), rel, norm, 2.9)
             else:                                    # close de verdade: cabeça e ombros enchendo o quadro, em qualquer distância
-                z = min(9.0, max(2.0, 2.3 * H / sh))
+                z = min(9.0, max(2.0, (1.85 if self.redes else 2.3) * H / sh))
             hx, hy = x - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
-            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else (880 if self.redes else 960)) / z
+            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else (780 if self.redes else 960)) / z
             k = ease(c01(rel / cam.get("close_in", 0.0001)))
             z = lerp(1.0, z, k); x0 = lerp(0, x0, k); y0 = lerp(0, y0, k)
         elif follow is not None and int(follow) < len(actors):
@@ -614,11 +614,13 @@ class Episode:
             o.setdefault("camera", {}); o["camera"] = dict({"plano": "aberto"}, **o["camera"])   # o recorte já aproxima
             f = self.scene_frame(o, t)
             cx = opt.get("crop_x", 270)
-            part = f.crop((cx, 300, cx + W // 2, 1450)).resize((W // 2 - 6, 1150))
-            img.paste(part, (0 if i == 0 else W // 2 + 6, 300))
+            py0, py1 = (190, 1680) if self.redes else (300, 1450)        # modo redes: painéis na altura toda, sem faixas pretas
+            ch = int((py1 - py0) * (W // 2) / (W // 2 - 6)); cy0 = max(0, min(H - ch, opt.get("crop_y", (H - ch) // 2 + 40)))
+            part = f.crop((cx, cy0, cx + W // 2, cy0 + ch)).resize((W // 2 - 6, py1 - py0))
+            img.paste(part, (0 if i == 0 else W // 2 + 6, py0))
         d = ImageDraw.Draw(img)
-        d.rectangle([W // 2 - 6, 300, W // 2 + 6, 1450], fill=(235, 232, 225))
-        p = ease_out(c01((t - shot["start"]) / 0.4)); y = lerp(1560, 1395, p)
+        d.rectangle([W // 2 - 6, py0, W // 2 + 6, py1], fill=(235, 232, 225))
+        p = ease_out(c01((t - shot["start"]) / 0.4)); y = lerp(py1 + 110, py1 - 120, p)
         d.rounded_rectangle([40, y - 64, W // 2 - 40, y + 64], 26, fill=(235, 232, 225))
         d.rounded_rectangle([W // 2 + 40, y - 64, W - 40, y + 64], 26, fill=RED)
         for k, (lab, x, col) in enumerate(((shot["a"]["label"], 320, (20, 20, 20)), (shot["b"]["label"], W // 2 + 320, (255, 255, 255)))):

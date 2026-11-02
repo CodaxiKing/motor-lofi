@@ -184,15 +184,21 @@ class Deposito(Scene):
         d.rectangle([x0, 760, x1, 1270], fill=(176, 184, 190))                                      # porta de aço
         for k in range(5): d.line([(x0 + 10, 800 + k * 100), (x1 - 10, 800 + k * 100)], fill=(150, 158, 164), width=3)
         jan = [x0 + 100, 820, x0 + 200, 930]
-        d.rectangle(jan, fill=(150, 196, 210), outline=(80, 86, 92), width=5)                       # vidro embaçado
-        if props.get("rosto", 0):
+        d.rectangle(jan, fill=(46, 70, 88), outline=(80, 86, 92), width=5)                         # vidro (escuro por dentro)
+        for k in range(6): d.line([(jan[0] + 6, jan[1] + 12 + k * 17), (jan[2] - 6, jan[1] + 6 + k * 17)], fill=(70, 98, 116), width=3)   # gelo                       # vidro embaçado
+        if props.get("rosto", 0):                                                                    # rosto e mãos colados no vidro
             a = float(props["rosto"]); lay = Image.new("L", img.size, 0); dl = ImageDraw.Draw(lay)
-            dl.ellipse([jan[0] + 22, jan[1] + 14, jan[2] - 22, jan[3] - 4], fill=int(200 * a))
-            img.paste((214, 226, 230), (0, 0), lay.filter(ImageFilter.GaussianBlur(6))); d = ImageDraw.Draw(img)
-            for ex in (jan[0] + 38, jan[2] - 46):
-                d.ellipse([ex, jan[1] + 44, ex + 8, jan[1] + 52], fill=(30, 40, 50))
-            for hx in (jan[0] + 8, jan[2] - 22):                                                     # mãos no vidro
-                d.ellipse([hx, jan[3] - 30, hx + 16, jan[3] - 6], fill=(200, 214, 220))
+            cx, cy = (jan[0] + jan[2]) / 2, jan[1] + 52
+            dl.ellipse([cx - 34, cy - 40, cx + 34, cy + 44], fill=int(235 * a))                      # rosto pálido
+            for hx in (jan[0] + 4, jan[2] - 30):
+                dl.ellipse([hx, jan[3] - 46, hx + 26, jan[3] - 8], fill=int(220 * a))                 # palmas
+                for f in range(4): dl.line([(hx + 4 + f * 6, jan[3] - 44), (hx + 2 + f * 7, jan[3] - 62)], fill=int(220 * a), width=5)
+            img.paste((226, 236, 240), (0, 0), lay.filter(ImageFilter.GaussianBlur(3)))
+            sh = Image.new("L", img.size, 0); ds = ImageDraw.Draw(sh)
+            for ex in (cx - 16, cx + 16):                                                             # olhos fundos e boca aberta
+                ds.ellipse([ex - 7, cy - 10, ex + 7, cy + 6], fill=int(255 * a))
+            ds.ellipse([cx - 9, cy + 16, cx + 9, cy + 34], fill=int(230 * a))
+            img.paste((20, 30, 40), (0, 0), sh.filter(ImageFilter.GaussianBlur(1.5))); d = ImageDraw.Draw(img)
         d.rectangle([x1 - 60, 1010, x1 - 20, 1040], fill=(60, 60, 64))                              # maçaneta
         if props.get("cadeado", True):
             d.arc([x1 - 66, 1032, x1 - 30, 1070], 180, 360, fill=(140, 140, 140), width=6)
