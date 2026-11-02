@@ -478,3 +478,10 @@ a boca nem faz gesto de fala (um ator pode ligar com `"lipsync": true`, ex.: uma
 continua com `"radio": true`). O `lofi.check` recusa mais de uma voz. No roteiro, a linha `Formato: 100% narrado (...)` da bíblia
 (ou do cabeçalho) liga as regras do validador: fala de personagem é ERRO, toda cena tem NARRAÇÃO, até ~2,6 palavras/s, ElevenLabs
 com um bloco só. O dossiê de contexto (`lofi.contexto`) ganha a seção "FORMATO 100% NARRADO".
+
+## Estilo visual: lofi ou vetor
+`"style"` no topo do episódio: `"desenho"` (lo-fi com traço de nanquim e papel), ausente (lo-fi liso) ou `"vetor"`.
+No vetor os personagens não têm contorno; cada parte do corpo ganha uma faixa de sombra do lado oposto à luz e um brilho fino do
+lado da luz (borda dura, sem degradê); camisas, uniformes e jalecos ganham bolsos com lapela e botões, calças ganham cinto com fivela,
+as mãos ganham polegar e as mangas ficam um tom mais escuras que o tronco. Traços do rosto (sobrancelhas) continuam. As fichas de
+`personagens.json` valem igual nos dois estilos. A bíblia registra na linha `Estilo: lofi-desenho | lofi-liso | vetor`.

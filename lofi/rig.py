@@ -136,6 +136,45 @@ EMOTIONS = ("neutral", "fear", "shock", "angry", "sad", "determined", "happy", "
 CW, CH = 480, 760          # tela 2x
 HIP_Y, FEET_Y = 480, 690
 
+# ---------------- estilo do traço ----------------
+# "lofi" (padrão): contorno escuro em tudo. "vetor": sem contorno, sombra em duas tons com borda dura, brilho fino,
+# detalhes de roupa (bolsos, botões, cinto) e mãos com polegar.
+ESTILO = {"nome": "lofi"}
+TRACO = (22, 24, 34, 254)          # traços de rosto (sobrancelha, fio) que ficam no estilo vetor
+def set_estilo(nome):
+    ESTILO["nome"] = "vetor" if nome == "vetor" else "lofi"
+
+
+class _DrawVetor(ImageDraw.ImageDraw):
+    """Igual ao ImageDraw, mas some com o contorno (OUT) dos desenhos e com as linhas de contorno."""
+    def _sem(self, kw):
+        if kw.get("outline") == OUT: kw["outline"] = None
+        return kw
+    def ellipse(self, xy, fill=None, outline=None, width=1):
+        if fill == OUT and outline is None: return
+        return super().ellipse(xy, fill=fill, outline=None if outline == OUT else outline, width=width)
+    def rectangle(self, xy, fill=None, outline=None, width=1):
+        return super().rectangle(xy, fill=fill, outline=None if outline == OUT else outline, width=width)
+    def rounded_rectangle(self, xy, radius=0, fill=None, outline=None, width=1, **kw):
+        return super().rounded_rectangle(xy, radius, fill=fill, outline=None if outline == OUT else outline, width=width, **kw)
+    def polygon(self, xy, fill=None, outline=None, width=1):
+        return super().polygon(xy, fill=fill, outline=None if outline == OUT else outline, width=width)
+    def pieslice(self, xy, start, end, fill=None, outline=None, width=1):
+        return super().pieslice(xy, start, end, fill=fill, outline=None if outline == OUT else outline, width=width)
+    def chord(self, xy, start, end, fill=None, outline=None, width=1):
+        return super().chord(xy, start, end, fill=fill, outline=None if outline == OUT else outline, width=width)
+    def line(self, xy, fill=None, width=0, joint=None):
+        if fill == OUT: return
+        return super().line(xy, fill=fill, width=width, joint=joint)
+    def arc(self, xy, start, end, fill=None, width=1):
+        if fill == OUT: return
+        return super().arc(xy, start, end, fill=fill, width=width)
+
+
+def _Draw(im):
+    return _DrawVetor(im) if ESTILO["nome"] == "vetor" else ImageDraw.Draw(im)
+
+
 def _seg(p, ang, L):
     a = math.radians(ang); return (p[0] + L * math.sin(a), p[1] + L * math.cos(a))
 
@@ -149,6 +188,8 @@ def _limb(d, pts, col, w):
 
 def _hand(d, p, skin, r=19):
     d.ellipse([p[0] - r, p[1] - r, p[0] + r, p[1] + r], fill=skin + (255,), outline=OUT, width=4)
+    if ESTILO["nome"] == "vetor":     # polegar
+        d.ellipse([p[0] - r * 0.15, p[1] - r * 1.25, p[0] + r * 0.75, p[1] - r * 0.15], fill=skin + (255,))
 
 def _blink(t, seed):
     r = random.Random(seed)
@@ -202,7 +243,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     _andando = bool(walk or run)
     if draw_pose in ("sit", "chao"): walk = False          # sentado não anda (mesmo com "walk" ligado no plano)
 
-    im = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    im = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); d = _Draw(im)
     skin, top = cd["skin"], cd["top"]
     inf = cd["infected"]
     cx = CW / 2
@@ -435,6 +476,17 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.polygon([(cx - 16, torso_top + 30), (cx - 50, torso_top), (cx - 40, torso_top + 90)], fill=dark(topc, 0.85) + (255,), outline=OUT)
             d.polygon([(cx + 16, torso_top + 30), (cx + 50, torso_top), (cx + 40, torso_top + 90)], fill=dark(topc, 0.85) + (255,), outline=OUT)
         if st == "trench": d.rectangle([tx0 - 10, hip_y - 30, tx0 + tw + 10, hip_y - 14], fill=dark(topc, 0.7) + (255,))
+    if ESTILO["nome"] == "vetor" and not back and not side and st in ("uniform", "shirt", "labcoat", "scrubs", "trench", "leather"):
+        bolso = dark(topc, 0.88) + (255,); aba = dark(topc, 1.12) + (255,)
+        for sgn in (-1, 1):
+            bx = cx + sgn * tw * 0.27 - 22
+            d.rounded_rectangle([bx, torso_top + 70, bx + 44, torso_top + 120], 5, fill=bolso)
+            d.polygon([(bx - 3, torso_top + 66), (bx + 47, torso_top + 66), (bx + 44, torso_top + 84), (bx + 22, torso_top + 90), (bx, torso_top + 84)], fill=aba)
+            d.ellipse([bx + 18, torso_top + 78, bx + 26, torso_top + 86], fill=dark(topc, 0.6) + (255,))
+        for k in range(4): d.ellipse([cx - 4, torso_top + 50 + k * 34, cx + 4, torso_top + 58 + k * 34], fill=dark(topc, 0.6) + (255,))
+    if ESTILO["nome"] == "vetor" and not back and cd["bottom"] == "pants" and st not in ("dress", "trench", "labcoat"):
+        d.rectangle([tx0 + 2, hip_y - 6, tx0 + tw - 2, hip_y + 12], fill=(30, 28, 34, 255))
+        if not side: d.rounded_rectangle([cx - 13, hip_y - 9, cx + 13, hip_y + 15], 4, fill=(196, 176, 100, 255))
     if st == "puffer":
         for k in range(3):
             y = torso_top + 62 + k * 52
@@ -513,7 +565,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     else:
         rng_arms = [1] if (side or q3) else [0, 1]
         for i in rng_arms:
-            arm(arms[i], topc, 44 * LIMBK, skin)
+            arm(arms[i], dark(topc, 0.86) if ESTILO["nome"] == "vetor" else topc, 44 * LIMBK, skin)
     # --- objeto na mão ---
     pr = prop or ("phone" if draw_pose == "phone" else ("flashlight" if draw_pose == "hold" else ("bag" if draw_pose == "remove_bag" else None)))
     if pr and not back and draw_pose not in ("cross", "forward"):
@@ -525,7 +577,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.rounded_rectangle([hx_ - 13, hy_ - 38, hx_ + 13, hy_ + 14], 4, fill=(170, 200, 255, 255))
         elif pr == "handset":   # fone de gancho do telefone fixo: cabo curvo, auricular em cima e bocal embaixo
             bege = (214, 206, 180, 255)
-            d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=OUT, width=24)
+            d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=TRACO, width=24)
             d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=bege, width=15)
             for (ex, ey) in ((hx_ - 2, hy_ - 70), (hx_ - 2, hy_ + 44)):
                 d.rounded_rectangle([ex - 8, ey - 14, ex + 26, ey + 14], 10, fill=bege, outline=OUT, width=4)
@@ -578,7 +630,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     ImageDraw.Draw(sh_l).ellipse([hx - hr + 6, hy - hr * 0.1, hx + hr - 6, hy + hr - 6], fill=40)
     face = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); face.putalpha(sh_l.filter(ImageFilter.GaussianBlur(14)))
     head_mask = Image.new("L", (CW, CH), 0); ImageDraw.Draw(head_mask).ellipse([hx - hr + 7, hy - hr + 7, hx + hr - 7, hy + hr - 7], fill=255)
-    face.putalpha(ImageChops.multiply(face.split()[3], head_mask)); im.alpha_composite(face); d = ImageDraw.Draw(im)
+    face.putalpha(ImageChops.multiply(face.split()[3], head_mask)); im.alpha_composite(face); d = _Draw(im)
     # cabelo
     if cd["hair"] == "short":
         d.chord([hx - hr, hy - hr, hx + hr, hy + hr * 0.5], 190, 350, fill=cd["hair_color"] + (255,))
@@ -694,7 +746,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         if inf:
             glow = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); gd = ImageDraw.Draw(glow)
             for (x, y) in eyes: gd.ellipse([x - 30, y - 26, x + 30, y + 26], fill=(255, 255, 235, 120))
-            im.alpha_composite(glow.filter(ImageFilter.GaussianBlur(10))); d = ImageDraw.Draw(im)
+            im.alpha_composite(glow.filter(ImageFilter.GaussianBlur(10))); d = _Draw(im)
             for (x, y) in eyes: d.ellipse([x - 14, y - 12, x + 14, y + 12], fill=(252, 252, 240, 255))
             d.line([(hx - 40, hy + 50), (hx - 10, hy + 46), (hx + 10, hy + 54), (hx + 36, hy + 48)], fill=(80, 86, 84, 255), width=5)
         else:
@@ -786,11 +838,11 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             acc = cd["acc"]
             if "sunglasses" in acc:
                 for (x, y) in eyes: d.rounded_rectangle([x - 26, y - 18, x + 26, y + 16], 10, fill=(14, 14, 20, 255), outline=OUT, width=4)
-                if len(eyes) == 2: d.line([(eyes[0][0] + 26, eyes[0][1] - 6), (eyes[1][0] - 26, eyes[1][1] - 6)], fill=OUT, width=5)
+                if len(eyes) == 2: d.line([(eyes[0][0] + 26, eyes[0][1] - 6), (eyes[1][0] - 26, eyes[1][1] - 6)], fill=TRACO, width=5)
                 for (x, y) in eyes: d.line([(x - 14, y - 8), (x - 4, y - 12)], fill=(200, 200, 220, 255), width=3)
             if "eyepatch" in acc:
                 x, y = eyes[-1]
-                d.line([(hx - hr + 10, hy - 40), (hx + hr - 10, hy - 20)], fill=OUT, width=6)
+                d.line([(hx - hr + 10, hy - 40), (hx + hr - 10, hy - 20)], fill=TRACO, width=6)
                 d.ellipse([x - 22, y - 20, x + 22, y + 20], fill=(14, 14, 18, 255))
             if "mask" in acc:
                 d.rounded_rectangle([hx - 52 + (fx - hx), hy + 34, hx + 52 + (fx - hx), hy + 84], 18, fill=(150, 200, 220, 255), outline=OUT, width=4)
@@ -803,12 +855,36 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                 d.polygon([(bx_, by_), (bx_ + 34, by_ - 22), (bx_ + 34, by_ + 22)], fill=(220, 70, 110, 255), outline=OUT)
             if cd["glasses"]:
                 for (x, y) in eyes: d.ellipse([x - 22, y - 20, x + 22, y + 20], outline=OUT, width=5)
-                if len(eyes) == 2: d.line([(eyes[0][0] + 22, eyes[0][1]), (eyes[1][0] - 22, eyes[1][1])], fill=OUT, width=5)
+                if len(eyes) == 2: d.line([(eyes[0][0] + 22, eyes[0][1]), (eyes[1][0] - 22, eyes[1][1])], fill=TRACO, width=5)
     _draw._ultimo_info = dict(im.info)
     return im, (CW / 2, FEET_Y + 22 + (0 if not sit else 0))
 
+def _shade_vetor(im, light):
+    """Estilo vetor: em cada parte (região de uma cor), uma faixa de sombra do lado oposto à luz e um brilho fino do
+    lado da luz, com borda dura (sem degradê), mais o tingimento ambiente."""
+    arr = np.asarray(im).astype(np.float32); h, w = arr.shape[:2]
+    rgb = arr[..., :3]; A = arr[..., 3] > 8
+    lado = -1 if light.get("dir", 0.0) > 0.15 else 1        # sombra do lado esquerdo (luz vindo da direita) por padrão
+    def fora(dx, dy):              # o pixel a (dx, dy) daqui está fora do corpo
+        return ~np.roll(np.roll(A, dx, axis=1), dy, axis=0)
+    K = max(3, int(w * 0.09)); k2 = max(2, int(w * 0.014))
+    sombra = np.zeros((h, w), bool)
+    for k in range(max(1, K // 6), K + 1, max(1, K // 6)):
+        sombra |= fora(lado * k, -k // 5)
+    brilho = (fora(-lado * k2, k2) | fora(0, k2)) & ~sombra
+    sombra &= A; brilho &= A
+    escuro = (rgb.sum(axis=2) < 120)                         # olhos, traços: não mexe
+    rgb[sombra & ~escuro] *= 0.8
+    rgb[brilho & ~escuro] = rgb[brilho & ~escuro] * 0.75 + 255 * 0.25
+    key = np.array(light.get("key", (1, 1, 1)))
+    rgb *= key * (1 - 0.08 * np.linspace(0, 1, h))[:, None, None]
+    arr[..., :3] = np.clip(rgb, 0, 255)
+    return Image.fromarray(arr.astype("uint8"), "RGBA")
+
+
 def _shade(im, light):
     """Sombra suave no corpo (lado oposto à luz), tingimento ambiente e luz de borda."""
+    if ESTILO["nome"] == "vetor": return _shade_vetor(im, light)
     arr = np.asarray(im).astype(np.float32)
     h, w = arr.shape[:2]
     A = arr[..., 3] / 255.0
@@ -843,7 +919,7 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
     qph = round((phase % 1.0) * 48) / 48 if (walk and phase is not None) else None
     qgk = round(gait_k * 8) / 8
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None, None if aim is None else round(aim))
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None, None if aim is None else round(aim), ESTILO["nome"])
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
                     pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat=seat, aim=aim)

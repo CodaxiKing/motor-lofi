@@ -40,7 +40,7 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Câmera:** enquadramento perto por padrão (`plano`: medio, conjunto, close; aberto só para situar), close no rosto, por cima do ombro, travelling, foco seletivo, paralaxe, câmera na mão (`handheld`), vertigo, câmera lenta (`slowmo`), susto (`scare`), gotas na lente (`lens_drops`).
 - **Pensamento e plano:** `type: pensamento` (balão com lembrança, imaginação ou medo, com a cena dentro) e `type: plano` (mapa desenhado com setas, passos, cabecinhas andando e perigos).
 - **Planos de detalhe:** `type: detail` com maçaneta, olho, celular, chave, relógio. **Partes do corpo:** `"hand": "roberta"` mostra o braço e a mão do personagem certo (rádio, chave, maçaneta, celular; no olho, a pele).
-- **Estilo:** `style: "desenho"` (traço de nanquim + papel) e `tint` (cor do episódio).
+- **Estilo visual (escolhido na criação da série, linha `Estilo:` da bíblia):** `style: "desenho"` (lo-fi com traço de nanquim + papel), sem `style` (lo-fi liso) ou `style: "vetor"` (vetor sombreado: personagens sem contorno, sombra em duas tons com borda dura, brilho fino, bolsos, botões, cinto e mãos com polegar). Mais `tint` (cor do episódio). Os personagens são os mesmos nos três estilos.
 - **Legendas estilo Reels**, gancho (`hook`), **"Anteriormente em…"** (`type: recap`).
 
 ## Padrão de duração

@@ -74,6 +74,8 @@ class Episode:
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
         fx.set_efeitos(sp.get("efeitos", "leve"))
+        from .rig import set_estilo
+        set_estilo(sp.get("style"))                  # "vetor": personagens sem contorno, sombra em duas tons
         # 100% narrado: só o narrador fala; ninguém mexe a boca e a voz é de estúdio (sem eco do lugar)
         self.narrado = bool(sp.get("narrado", False))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
         self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
