@@ -126,7 +126,7 @@ Gancho de 1 linha com o dia · resumo em 2–3 frases citando a escolha do públ
 
 ## Dicas de qualidade
 - Personagem principal sempre com a mesma roupa e cor de destaque em todos os episódios (`personagens.json` é a fonte única); vilões e criaturas com silhueta bem diferente.
-- Escreva falas que aproveitem os gestos automáticos ("ali", "eu", "não") e use interações nos momentos emocionais (mãos dadas na fuga, abraço no reencontro, carregar o ferido).
+- Escreva falas que aproveitem os gestos automáticos ("ali", "eu", "não", "calma", "não sei", "por favor") e use interações e poses da biblioteca nos momentos emocionais (mãos dadas na fuga, abraço no reencontro, desespero na revelação, pensativo na dúvida).
 - Paralaxe em planos longos, zoom lento em momentos tensos, relâmpago e tremor só nos picos.
 - Transição whip para mudança de lugar, flash para susto, glitch saindo do gancho.
-- Se a história pedir um lugar ou uma peça de roupa que não existe, crie no motor (`lofi/scenes.py` ou `lofi/rig.py`) no mesmo padrão; cenário novo também ganha chão e marcas em `lofi/mapa.py` (confira com `python3 -m lofi.mapa <cenario>`) e entra em `LUGAR` (e em `OBJETO_DO_LUGAR`, se for um objeto de um lugar). Teste com uma folha de referência, documente no `SPEC.md` e faça push.
+- Se a história pedir um lugar ou uma peça de roupa que não existe, crie no motor (`lofi/scenes.py` ou `lofi/rig.py`) no mesmo padrão; cenário novo também ganha chão e marcas em `lofi/mapa.py` (confira com `python3 -m lofi.mapa <cenario>`) e entra em `LUGAR` (e em `OBJETO_DO_LUGAR`, se for um objeto de um lugar). Gesto novo vira uma entrada em `lofi/poses.json`. Teste com uma folha de referência, documente no `SPEC.md` e faça push.
