@@ -705,11 +705,11 @@
     0.4
    ],
    "camera": {
-    "zoom": 1.35,
-    "cy": 0.78,
+    "zoom": 1.8,
+    "cy": 0.95,
     "cortes": false
    },
-   "sub_y": 900,
+   "sub_y": 800,
    "actors": [
     {
      "char": "gabriel",
@@ -1325,13 +1325,15 @@
     "scene": "entrada",
     "crop_x": 270,
     "camera": {
-     "zoom": 1.7,
-     "cy": 0.72
+     "zoom": 1.2,
+     "cy": 1.0,
+     "cx": 0.5
     },
     "actors": [
      {
       "char": "gabriel",
       "mark": "frente_porta",
+      "dy": -230,
       "view": "front",
       "pose": "phone",
       "prop": "phone",
@@ -1345,16 +1347,18 @@
     "scene": "entrada",
     "crop_x": 270,
     "camera": {
-     "zoom": 1.7,
-     "cy": 0.72
+     "zoom": 1.2,
+     "cy": 1.0,
+     "cx": 0.5
     },
     "actors": [
      {
       "char": "gabriel",
       "mark": "frente_porta",
+      "dy": -230,
       "view": "3q",
       "facing": -1,
-      "pose": "push",
+      "pose": "scared",
       "emotion": "fear",
       "lipsync": false
      }
@@ -1410,10 +1414,6 @@
   {
    "t": 40,
    "name": "click"
-  },
-  {
-   "t": 42,
-   "name": "notif"
   },
   {
    "t": 45,
@@ -1558,6 +1558,12 @@
   {
    "t": 154,
    "name": "stamp"
+  },
+  {
+   "t": 42,
+   "name": "notif",
+   "x": 800,
+   "y": 1500
   },
   {
    "t": 109.5,
