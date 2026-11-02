@@ -290,7 +290,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if lanterna and aim is not None and view == "back":
         # de costas: a lanterna fica na frente do corpo, na altura do ombro; o braço não sobe por cima da cabeça
         phi = 90 - aim if aim > -60 or aim < -120 else 150
-        el = _seg(sh[1], 40, 70); hd = (sh[1][0] + 18, sh_y + 40)
+        el = _seg(sh[1], 40, 70); hd = (sh[1][0] + 34, sh_y + 30)
         arms[1] = (sh[1], el, hd)
     elif lanterna and aim is not None and draw_pose in ("idle", "hold", "run", "walk", "point", "reach"):
         # mira: o braço que segura aponta para onde a luz vai (aim: 0 = direita, 90 = baixo, -90 = cima)
@@ -512,6 +512,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.line([(hx_, hy_ + 4), (hx_ - 4, hy_ - 14)], fill=bc + (255,), width=10)
     if lanterna:
         hx_, hy_ = arms[1][2]; dir_ = aim if aim is not None else 0.0
+        if back and -120 < dir_ < -60: dir_ += 14          # de costas: o feixe sai para o lado da mão, sem cobrir a cabeça
         im.info["lanterna"] = (hx_ + math.cos(math.radians(dir_)) * 63, hy_ + math.sin(math.radians(dir_)) * 63, dir_, back)
     # --- cachecol ---
     if cd["scarf"]:

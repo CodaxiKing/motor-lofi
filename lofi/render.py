@@ -336,7 +336,7 @@ class Episode:
         if focus_on is not None and focus_on != idx and not a.get("_crowd"): blur = max(blur, 4)
         if blur: spr = spr.filter(ImageFilter.GaussianBlur(blur))
         return dict(a=a, spr=spr, anc=anc, sx=sx, sy=sy - lift * z, floor_y=sy, scale=scale, view=view, facing=facing, idx=idx, rot=rot,
-                    ponta=None if rot else ponta)
+                    ponta=None if rot else ponta, prop=prop_)
 
     def paint_actor(self, img, P, sc, shot, t, light):
         a, spr, anc, sx, sy, scale = P["a"], P["spr"], P["anc"], P["sx"], P["sy"], P["scale"]
@@ -354,8 +354,10 @@ class Episode:
             particles.breath_fog(img, t, (sx + (P["facing"] * hr * 0.6 if P["view"] in ("side", "3q") else 0), hcy + hr * 0.55),
                                  P["facing"], seed=P["idx"], strength=min(1, scale))
         fl = a.get("flashlight")
+        pt = P.get("ponta")
+        if fl and not pt and P.get("prop") not in (None, "flashlight"):
+            fl = None          # a mão está ocupada com outro objeto: a lanterna fica apagada
         if fl:
-            pt = P.get("ponta")
             if pt:      # a luz nasce na ponta da lanterna desenhada na mão
                 o = (sx - anc[0] + pt[0], sy - anc[1] + pt[1]); ang = pt[2]
             else:
