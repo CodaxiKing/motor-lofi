@@ -136,7 +136,7 @@ def check(path, frames=True):
     try:
         from . import continuidade
         mundo = continuidade.carregar(os.path.dirname(os.path.abspath(path)))
-        nep = sp.get("episode"); fim = (mundo or {}).get("fim", {}).get(str(nep - 1)) if nep else None
+        nep = sp.get("episode") if formato != "extra" else None; fim = (mundo or {}).get("fim", {}).get(str(nep - 1)) if nep else None
         if fim and ms and ms[0][1] is not None and fim.get("dia"):
             if ms[0][1] < continuidade._minutos(fim["dia"], fim["hora"]):
                 err(f"o episódio começa em {ms[0][2]} {ms[0][3]}, antes do fim do episódio anterior (DIA {fim['dia']} {fim['hora']})")

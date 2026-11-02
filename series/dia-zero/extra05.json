@@ -1,0 +1,859 @@
+{
+ "out": "extra05.mp4",
+ "fps": 30,
+ "total": 72.0,
+ "crf": 28,
+ "formato": "extra",
+ "series_title": "DIA ZERO",
+ "episode": 5,
+ "episodes_total": 5,
+ "episode_title": "O QUE ACONTECEU COM A LIA?",
+ "tint": [
+  120,
+  200,
+  170,
+  0.1
+ ],
+ "style": "desenho",
+ "loop": false,
+ "pergunta": false,
+ "voices": {
+  "lia": "extra05/lia.mp3"
+ },
+ "speakers": {},
+ "hud": {
+  "place": "HOSPITAL CENTRAL",
+  "days": [
+   [
+    0,
+    "DIA 1",
+    "06:40"
+   ],
+   [
+    16.5,
+    "DIA 1",
+    "21:30"
+   ],
+   [
+    22.5,
+    "DIA 1",
+    "23:40"
+   ],
+   [
+    30,
+    "DIA 3",
+    "22:10"
+   ],
+   [
+    35,
+    "DIA 4",
+    "23:50"
+   ],
+   [
+    42,
+    "DIA 5",
+    "06:00"
+   ],
+   [
+    58,
+    "DIA 5",
+    "06:05"
+   ]
+  ],
+  "sec_per_min": 60
+ },
+ "clips": [
+  {
+   "voice": "lia",
+   "src": [
+    0.0,
+    4.74
+   ],
+   "at": 2.6
+  },
+  {
+   "voice": "lia",
+   "src": [
+    5.21,
+    10.0
+   ],
+   "at": 9.6
+  },
+  {
+   "voice": "lia",
+   "src": [
+    10.44,
+    14.58
+   ],
+   "at": 17.0
+  },
+  {
+   "voice": "lia",
+   "src": [
+    15.11,
+    20.71
+   ],
+   "at": 23.0
+  },
+  {
+   "voice": "lia",
+   "src": [
+    21.14,
+    24.41
+   ],
+   "at": 30.6
+  },
+  {
+   "voice": "lia",
+   "src": [
+    24.8,
+    29.5
+   ],
+   "at": 36.2
+  },
+  {
+   "voice": "lia",
+   "src": [
+    29.75,
+    38.32
+   ],
+   "at": 42.6
+  },
+  {
+   "voice": "lia",
+   "src": [
+    38.73,
+    40.04
+   ],
+   "at": 52.3
+  },
+  {
+   "voice": "lia",
+   "src": [
+    40.52,
+    41.43
+   ],
+   "at": 56.0
+  },
+  {
+   "voice": "lia",
+   "src": [
+    42.3,
+    45.79
+   ],
+   "at": 59.0
+  }
+ ],
+ "subs": [
+  {
+   "voice": "lia",
+   "src": [
+    0.0,
+    4.74
+   ],
+   "text": [
+    "DIA 1.",
+    "MEU PRIMEIRO PACIENTE",
+    "ACORDOU.",
+    "FOI ATRÁS DO *BIPE*."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    5.21,
+    10.0
+   ],
+   "text": [
+    "DESLIGUEI O MONITOR,",
+    "E ELE PAROU.",
+    "ELES NÃO ENXERGAM.",
+    "ELES *ESCUTAM*."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    10.44,
+    14.58
+   ],
+   "text": [
+    "UM SOLDADO DEIXOU",
+    "O RÁDIO COMIGO.",
+    "A PONTE FECHA",
+    "ÀS *SEIS*."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    15.11,
+    20.71
+   ],
+   "text": [
+    "CHEGUEM À PONTE",
+    "ANTES DO DIA CINCO.",
+    "*TRÊS BATIDAS*.",
+    "A NOITE INTEIRA."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    21.14,
+    24.41
+   ],
+   "text": [
+    "NO DIA TRÊS,",
+    "ALGUÉM RESPONDEU.",
+    "ERA A MINHA *IRMÃ*."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    24.8,
+    29.5
+   ],
+   "text": [
+    "DIA QUATRO,",
+    "O HOSPITAL *CAIU*.",
+    "ME TRANQUEI",
+    "E ME DESPEDI DELA."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    29.75,
+    38.32
+   ],
+   "text": [
+    "ÀS SEIS, EU OUVI:",
+    "\"LIA, EU ATRAVESSEI.\"",
+    "ESTAVAM ATRÁS DA PORTA.",
+    "SE EU *FALASSE*,",
+    "ELES OUVIAM."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    38.73,
+    40.04
+   ],
+   "text": [
+    "ENTÃO EU BATI",
+    "NO MICROFONE."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    40.52,
+    41.43
+   ],
+   "text": [
+    "*TRÊS VEZES*."
+   ]
+  },
+  {
+   "voice": "lia",
+   "src": [
+    42.3,
+    45.79
+   ],
+   "text": [
+    "EU AINDA ESTOU AQUI.",
+    "E O RÁDIO CONTINUA",
+    "*LIGADO*."
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "radio_portatil",
+   "hook": {
+    "text": "AS TRÊS BATIDAS\nERAM DELA",
+    "y": 640
+   },
+   "hand": "lia",
+   "slowmo": 0.5,
+   "dark": 0.4,
+   "props": {
+    "on": 1,
+    "level": [
+     [
+      0,
+      0.1
+     ],
+     [
+      0.1,
+      0.9
+     ],
+     [
+      0.3,
+      0.1
+     ],
+     [
+      0.7,
+      0.9
+     ],
+     [
+      0.9,
+      0.1
+     ],
+     [
+      1.3,
+      0.9
+     ],
+     [
+      1.5,
+      0.1
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": [
+     1.1,
+     1.2
+    ]
+   },
+   "ondas": {
+    "texto": false
+   }
+  },
+  {
+   "start": 2,
+   "end": 9,
+   "scene": "hospital",
+   "transition": "glitch",
+   "time": "madrugada",
+   "fog": 0.1,
+   "actors": [
+    {
+     "char": "lia",
+     "mark": "maca",
+     "view": "3q",
+     "facing": -1,
+     "emotion": [
+      [
+       0,
+       "neutral"
+      ],
+      [
+       3.5,
+       "shock"
+      ]
+     ]
+    },
+    {
+     "char": "zombie",
+     "mark": [
+      [
+       0,
+       "fundo"
+      ],
+      [
+       6,
+       "meio"
+      ]
+     ],
+     "walk": true,
+     "sniff": true,
+     "view": "front"
+    }
+   ],
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   }
+  },
+  {
+   "start": 9,
+   "end": 16.5,
+   "scene": "hospital",
+   "transition": "cut",
+   "dark": 0.4,
+   "actors": [
+    {
+     "char": "lia",
+     "mark": "maca",
+     "view": "3q",
+     "facing": -1,
+     "pose": [
+      [
+       0,
+       "reach"
+      ],
+      [
+       1.2,
+       "idle"
+      ]
+     ],
+     "emotion": "fear"
+    },
+    {
+     "char": "zombie",
+     "mark": "meio",
+     "sniff": true,
+     "view": "front"
+    }
+   ],
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   }
+  },
+  {
+   "start": 16.5,
+   "end": 22.5,
+   "scene": "hospital",
+   "transition": "cut",
+   "dark": 0.5,
+   "time": "noite",
+   "actors": [
+    {
+     "char": "lia",
+     "mark": "frente",
+     "view": "front",
+     "prop": "radio",
+     "emotion": "determined"
+    },
+    {
+     "char": "soldado",
+     "mark": [
+      [
+       0,
+       "meio"
+      ],
+      [
+       5,
+       "fundo"
+      ]
+     ],
+     "view": "back",
+     "walk": true,
+     "flashlight": -90
+    }
+   ],
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   }
+  },
+  {
+   "start": 22.5,
+   "end": 30,
+   "scene": "radio_portatil",
+   "transition": "cut",
+   "hand": {
+    "of": "lia",
+    "at": "dial"
+   },
+   "props": {
+    "on": 1,
+    "level": "auto",
+    "level_voice": "lia"
+   },
+   "camera": {
+    "zoom": [
+     1.0,
+     1.08
+    ]
+   }
+  },
+  {
+   "start": 30,
+   "end": 35,
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes": [
+     1420,
+     2860
+    ]
+   },
+   "transition": "cut"
+  },
+  {
+   "start": 35,
+   "end": 42,
+   "scene": "hospital",
+   "transition": "flash",
+   "dark": 0.7,
+   "scare": [
+    36.0
+   ],
+   "camera": {
+    "plano": "aberto",
+    "handheld": 8
+   },
+   "crowd": {
+    "count": 6,
+    "area": [
+     100,
+     1700,
+     980,
+     1760
+    ],
+    "dir": 0,
+    "speed": 8,
+    "seed": 3
+   },
+   "actors": [
+    {
+     "char": "lia",
+     "mark": "fundo",
+     "pose": "hide",
+     "emotion": "fear",
+     "tremble": 0.5
+    },
+    {
+     "char": "zombie_enfermeiro",
+     "mark": "frente",
+     "sniff": true,
+     "view": "back"
+    }
+   ]
+  },
+  {
+   "start": 42,
+   "end": 52,
+   "scene": "radio_portatil",
+   "transition": "cut",
+   "hand": "lia",
+   "dark": 0.3,
+   "props": {
+    "on": 1,
+    "level": [
+     [
+      0,
+      0.6
+     ],
+     [
+      3,
+      0.15
+     ],
+     [
+      10,
+      0.1
+     ]
+    ]
+   },
+   "camera": {
+    "vertigo": [
+     1.0,
+     1.2
+    ]
+   }
+  },
+  {
+   "start": 52,
+   "end": 58,
+   "type": "detail",
+   "subject": "olho",
+   "hand": "lia",
+   "params": {
+    "tear": true,
+    "pupil": [
+     0.4,
+     0.75
+    ],
+    "brow": -20,
+    "blink_at": 3.0
+   },
+   "transition": "cut"
+  },
+  {
+   "start": 58,
+   "end": 66,
+   "scene": "hospital",
+   "transition": "fade",
+   "time": "amanhecer",
+   "dust": 30,
+   "actors": [
+    {
+     "char": "lia",
+     "mark": "frente",
+     "view": "3q",
+     "facing": 1,
+     "pose": "sit",
+     "prop": "radio",
+     "emotion": [
+      [
+       0,
+       "cry"
+      ],
+      [
+       4,
+       "happy"
+      ]
+     ]
+    }
+   ],
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   }
+  },
+  {
+   "start": 66,
+   "end": 72,
+   "scene": "hospital",
+   "transition": "fade",
+   "time": "amanhecer",
+   "hud": false,
+   "dark": [
+    [
+     0,
+     0.2
+    ],
+    [
+     1.0,
+     0.75
+    ]
+   ],
+   "camera": {
+    "plano": "aberto"
+   },
+   "overlay": [
+    {
+     "type": "text",
+     "text": "TEMPORADA 2?",
+     "y": 860,
+     "size": 180,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      66.6,
+      72
+     ]
+    },
+    {
+     "type": "text",
+     "text": "COMENTA \"LIA\" SE VOCÊ QUER",
+     "y": 1040,
+     "size": 60,
+     "t": [
+      67.3,
+      72
+     ]
+    },
+    {
+     "type": "text",
+     "text": "QUE A ROBERTA VOLTE POR ELA",
+     "y": 1120,
+     "size": 60,
+     "t": [
+      67.6,
+      72
+     ]
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.0,
+   "name": "knock",
+   "x": 540,
+   "y": 900
+  },
+  {
+   "t": 0.6,
+   "name": "knock",
+   "x": 540,
+   "y": 900
+  },
+  {
+   "t": 1.2,
+   "name": "knock",
+   "x": 540,
+   "y": 900
+  },
+  {
+   "t": 2.3,
+   "name": "beep",
+   "x": 820,
+   "y": 1200
+  },
+  {
+   "t": 4.3,
+   "name": "beep",
+   "x": 820,
+   "y": 1200
+  },
+  {
+   "t": 6.3,
+   "name": "beep",
+   "x": 820,
+   "y": 1200
+  },
+  {
+   "t": 7.6,
+   "name": "growl",
+   "x": 540,
+   "y": 1150
+  },
+  {
+   "t": 9.4,
+   "name": "click"
+  },
+  {
+   "t": 12.0,
+   "name": "breath",
+   "dur": 1.0
+  },
+  {
+   "t": 16.6,
+   "name": "static",
+   "dur": 1.0
+  },
+  {
+   "t": 18.0,
+   "name": "siren",
+   "gain": 0.4
+  },
+  {
+   "t": 22.6,
+   "name": "click"
+  },
+  {
+   "t": 22.8,
+   "name": "static",
+   "dur": 6
+  },
+  {
+   "t": 30.2,
+   "name": "click"
+  },
+  {
+   "t": 33.5,
+   "name": "static",
+   "dur": 1.2
+  },
+  {
+   "t": 35.1,
+   "name": "bang",
+   "x": 540,
+   "y": 1300
+  },
+  {
+   "t": 35.5,
+   "name": "crowd",
+   "dur": 5
+  },
+  {
+   "t": 36.0,
+   "name": "growl",
+   "x": 600,
+   "y": 1400
+  },
+  {
+   "t": 40.9,
+   "name": "door_close",
+   "x": 540,
+   "y": 1100
+  },
+  {
+   "t": 42.2,
+   "name": "static",
+   "dur": 5
+  },
+  {
+   "t": 47.5,
+   "name": "bang",
+   "x": 540,
+   "y": 700,
+   "gain": 0.6
+  },
+  {
+   "t": 48.2,
+   "name": "growl",
+   "x": 540,
+   "y": 700,
+   "gain": 0.6
+  },
+  {
+   "t": 54.0,
+   "name": "knock",
+   "x": 540,
+   "y": 700
+  },
+  {
+   "t": 54.6,
+   "name": "knock",
+   "x": 540,
+   "y": 700
+  },
+  {
+   "t": 55.2,
+   "name": "knock",
+   "x": 540,
+   "y": 700
+  },
+  {
+   "t": 57.0,
+   "name": "heartbeat",
+   "dur": 1.5
+  },
+  {
+   "t": 58.4,
+   "name": "breath",
+   "dur": 1.0
+  },
+  {
+   "t": 63.0,
+   "name": "bang",
+   "x": 540,
+   "y": 1000,
+   "gain": 0.3
+  },
+  {
+   "t": 66.5,
+   "name": "beep",
+   "gain": 0.5,
+   "onda": false
+  },
+  {
+   "t": 67.0,
+   "name": "stamp"
+  }
+ ],
+ "music": [
+  {
+   "start": 2,
+   "end": 35,
+   "gain": [
+    0.04,
+    0.08
+   ],
+   "tense": 0.6
+  },
+  {
+   "start": 35,
+   "end": 58,
+   "gain": [
+    0.07,
+    0.11
+   ],
+   "tense": 0.95
+  },
+  {
+   "start": 58,
+   "end": 72,
+   "gain": [
+    0.05,
+    0.08
+   ],
+   "tense": 0.15,
+   "base": 65
+  }
+ ]
+}
