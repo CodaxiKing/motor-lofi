@@ -465,3 +465,8 @@ perigo ganha um X vermelho (com `click`/`impact` automáticos). Sem contador na 
 
 No roteiro: `PENSAMENTO: \`lia\` · lembrança · no balão: ...` ou `O PLANO: passos ... · setas ... · perigos ...` (a cena não muda o
 lugar de ninguém). O validador avisa se o episódio não tiver nenhuma das duas.
+
+## Chamada para seguir na escolha
+A tela de escolha A/B mostra no alto (abaixo da área dos botões das redes) o selo "SIGA PARA ACOMPANHAR AS HISTÓRIAS", que entra
+0,5 s depois do começo da escolha e fica até o fim. Troque o texto com `"seguir": "..."` no plano `choice` ou no topo do episódio;
+`"seguir": false` tira.

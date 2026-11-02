@@ -688,6 +688,17 @@ class Episode:
         for k, (lab, x, col) in enumerate(((shot["a"]["label"], 320, (20, 20, 20)), (shot["b"]["label"], W // 2 + 320, (255, 255, 255)))):
             text_center(d, "AB"[k], x - 210, y, font("title", 84), col)
             text_center(d, lab, x, y, font("title", 70 if len(lab) < 9 else 54), col)
+        seg = shot.get("seguir", self.spec.get("seguir", "SIGA PARA ACOMPANHAR AS HISTÓRIAS"))
+        if seg:      # chamada para seguir o perfil, fixa no alto da escolha (fora da área dos botões das redes)
+            ks = ease_out(c01((t - shot["start"] - 0.5) / 0.35))
+            if ks > 0:
+                f = font("title", 58); bb = d.textbbox((0, 0), seg, font=f); w = bb[2] - bb[0]
+                yc = (py0 + 120) - (1 - ks) * 40; x0 = W / 2 - w / 2 - 92
+                d.rounded_rectangle([x0, yc - 52, W / 2 + w / 2 + 36, yc + 52], 52, fill=(14, 14, 18), outline=(235, 232, 225), width=4)
+                d.ellipse([x0 + 18, yc - 34, x0 + 86, yc + 34], fill=RED)
+                d.line([(x0 + 52, yc - 18), (x0 + 52, yc + 18)], fill=(255, 255, 255), width=9)
+                d.line([(x0 + 34, yc), (x0 + 70, yc)], fill=(255, 255, 255), width=9)
+                d.text((x0 + 108 - bb[0], yc), seg, font=f, fill=(255, 255, 255), anchor="lm")
         ec = shot.get("end_card")
         if ec and t >= ec["t"]:
             k = c01((t - ec["t"]) / 0.4)
