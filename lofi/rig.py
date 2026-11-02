@@ -199,6 +199,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
           seat="banco", aim=None):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
+    _andando = bool(walk or run)
     if draw_pose in ("sit", "chao"): walk = False          # sentado não anda (mesmo com "walk" ligado no plano)
 
     im = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
@@ -373,7 +374,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         arm(arms[0], dark(topc), 42 * LIMBK, dark(skin, 0.85))
     if back or (not side and pose not in ("cross", "forward")):
         pass
-    if sit and seat == "moto": _moto(d, cx, hip_y, view, t, dark, moving=gk > 0 and bool(walk or run))
+    if sit and seat == "moto": _moto(d, cx, hip_y, view, t, dark, moving=_andando)
     # --- assento (banco/caixa/cadeira) para "sit"; "nenhum" quando o cenário já tem onde sentar ---
     if sit and seat and seat not in ("nenhum", "moto"):
         wood = {"banco": (122, 84, 52), "caixa": (150, 112, 64), "cadeira": (70, 74, 86)}.get(seat, (122, 84, 52))

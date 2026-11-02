@@ -1,0 +1,506 @@
+{
+ "out": "extra01.mp4",
+ "fps": 30,
+ "total": 60,
+ "crf": 28,
+ "formato": "extra",
+ "series_title": "DEPOIS DO ÚLTIMO DIA",
+ "episode": 1,
+ "episodes_total": 8,
+ "episode_title": "O QUE ACONTECEU COM O SEU ANTÔNIO?",
+ "tint": [
+  240,
+  118,
+  30,
+  0.08
+ ],
+ "style": "desenho",
+ "loop": false,
+ "pergunta": false,
+ "voices": {
+  "narrador": "extra01/narrador.mp3",
+  "porteiro": "extra01/porteiro.mp3"
+ },
+ "speakers": {
+  "porteiro": {
+   "label": "SEU ANTÔNIO",
+   "color": [
+    190,
+    210,
+    255
+   ]
+  }
+ },
+ "hud": {
+  "place": "TORRE JÁVAI",
+  "days": [
+   [
+    0,
+    "DIA 0",
+    "14:33"
+   ],
+   [
+    11,
+    "DIA 0",
+    "14:40"
+   ],
+   [
+    19,
+    "DIA 0",
+    "14:42"
+   ],
+   [
+    28,
+    "DIA 0",
+    "18:10"
+   ],
+   [
+    36,
+    "DIA 0",
+    "18:40"
+   ],
+   [
+    44,
+    "DIA 0",
+    "19:00"
+   ]
+  ],
+  "sec_per_min": 60
+ },
+ "clips": [
+  {
+   "voice": "narrador",
+   "src": [
+    51.48,
+    59.02
+   ],
+   "at": 3
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    59.43,
+    63.68
+   ],
+   "at": 12
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    5.78,
+    9.48
+   ],
+   "at": 20
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    64.08,
+    69.39
+   ],
+   "at": 28
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    9.88,
+    13.32
+   ],
+   "at": 38
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    69.77,
+    76.36
+   ],
+   "at": 45
+  }
+ ],
+ "subs": [
+  {
+   "voice": "narrador",
+   "src": [
+    51.48,
+    56.1
+   ],
+   "text": [
+    "TRINTA *ANOS*",
+    "DE PORTARIA",
+    "A DOIS MESES",
+    "DE *APOSENTAR*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    56.53,
+    59.02
+   ],
+   "text": [
+    "UM MOTOBOY",
+    "UMA CAIXA *GELADA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    59.43,
+    63.68
+   ],
+   "text": [
+    "ATÉ O *ELEVADOR*",
+    "UMA *MÃO* PEGOU",
+    "NENHUM *OBRIGADO*"
+   ]
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    5.78,
+    9.48
+   ],
+   "text": [
+    "\"VEIO *ASSIM*\"",
+    "NEM OLHOU",
+    "NA MINHA CARA"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    64.08,
+    69.39
+   ],
+   "text": [
+    "A TARDE *COÇANDO*",
+    "O FRIO DA CAIXA",
+    "VIERAM AS *SIRENES*"
+   ]
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    9.88,
+    13.32
+   ],
+   "text": [
+    "TRINTA ANOS",
+    "TRANCOU *COMIGO*",
+    "DO LADO *DE FORA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    69.77,
+    72.33
+   ],
+   "text": [
+    "A CIDADE",
+    "FOI *APAGANDO*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    72.73,
+    76.36
+   ],
+   "text": [
+    "UMA LUZ *ACESA*",
+    "QUEM ESTAVA *LÁ?*"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "portao",
+   "time": "noite",
+   "rain": "nenhuma",
+   "hook": {
+    "text": "POR QUE\nCOÇA TANTO?",
+    "y": 1300
+   },
+   "slowmo": 0.5,
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "view": "front",
+     "emotion": "fear",
+     "pose": "chest",
+     "lipsync": false
+    }
+   ]
+  },
+  {
+   "start": 2,
+   "end": 11,
+   "scene": "portao",
+   "time": "dia",
+   "rain": "nenhuma",
+   "transition": "glitch",
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "happy",
+     "prop": "bag"
+    }
+   ]
+  },
+  {
+   "start": 11,
+   "end": 19,
+   "scene": "corredor",
+   "transition": "whip",
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "view": "back",
+     "pose": "reach",
+     "prop": "bag"
+    }
+   ]
+  },
+  {
+   "start": 19,
+   "end": 28,
+   "type": "pensamento",
+   "quem": "porteiro",
+   "emotion": "suspicious",
+   "estilo": "memoria",
+   "transition": "cut",
+   "fundo": {
+    "scene": "corredor",
+    "actors": []
+   },
+   "cena": {
+    "scene": "portao",
+    "time": "dia",
+    "rain": "nenhuma",
+    "actors": [
+     {
+      "char": "gabriel",
+      "mark": "frente",
+      "view": "3q",
+      "facing": -1,
+      "emotion": "fear",
+      "walk": true
+     }
+    ]
+   }
+  },
+  {
+   "start": 28,
+   "end": 36,
+   "scene": "portao",
+   "time": "entardecer",
+   "rain": "nenhuma",
+   "transition": "dip",
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "view": "3q",
+     "facing": 1,
+     "pose": "chest",
+     "emotion": "fear"
+    }
+   ]
+  },
+  {
+   "start": 36,
+   "end": 44,
+   "scene": "portao",
+   "time": "noite",
+   "rain": "nenhuma",
+   "transition": "cut",
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "portao",
+     "view": "back",
+     "pose": [
+      [
+       0,
+       "knock"
+      ],
+      [
+       1,
+       "knock2"
+      ],
+      [
+       2,
+       "knock"
+      ],
+      [
+       3,
+       "knock2"
+      ],
+      [
+       4,
+       "knock"
+      ]
+     ],
+     "emotion": "panting"
+    }
+   ]
+  },
+  {
+   "start": 44,
+   "end": 54,
+   "scene": "portao",
+   "time": "noite",
+   "rain": "nenhuma",
+   "transition": "fade",
+   "camera": {
+    "zoom": [
+     1.1,
+     1.3
+    ]
+   },
+   "actors": [
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "view": "back",
+     "emotion": "sad"
+    }
+   ]
+  },
+  {
+   "start": 54,
+   "end": 60,
+   "scene": "portao",
+   "time": "noite",
+   "rain": "nenhuma",
+   "transition": "fade",
+   "dark": 0.6,
+   "camera": {
+    "plano": "aberto"
+   },
+   "hud": false,
+   "actors": [],
+   "overlay": [
+    {
+     "type": "text",
+     "text": "A VOTAÇÃO DO EP. 1",
+     "y": 800,
+     "size": 90,
+     "t": [
+      54.4,
+      60
+     ]
+    },
+    {
+     "type": "text",
+     "text": "CONTINUA ABERTA",
+     "y": 920,
+     "size": 90,
+     "t": [
+      54.6,
+      60
+     ]
+    },
+    {
+     "type": "text",
+     "text": "COMENTA A OU B",
+     "y": 1060,
+     "size": 120,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      55,
+      60
+     ]
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.1,
+   "name": "heartbeat"
+  },
+  {
+   "t": 2.1,
+   "name": "whoosh"
+  },
+  {
+   "t": 4,
+   "name": "step"
+  },
+  {
+   "t": 12,
+   "name": "beep"
+  },
+  {
+   "t": 17.5,
+   "name": "door_close"
+  },
+  {
+   "t": 24,
+   "name": "click"
+  },
+  {
+   "t": 29,
+   "name": "siren"
+  },
+  {
+   "t": 33,
+   "name": "breath"
+  },
+  {
+   "t": 36.2,
+   "name": "lock"
+  },
+  {
+   "t": 37,
+   "name": "knock"
+  },
+  {
+   "t": 39,
+   "name": "knock"
+  },
+  {
+   "t": 41,
+   "name": "knock"
+  },
+  {
+   "t": 52,
+   "name": "notif"
+  },
+  {
+   "t": 53,
+   "name": "growl"
+  },
+  {
+   "t": 55,
+   "name": "stamp"
+  }
+ ],
+ "music": [
+  {
+   "start": 2,
+   "end": 54,
+   "gain": [
+    0.04,
+    0.08
+   ],
+   "tense": 0.6
+  }
+ ]
+}

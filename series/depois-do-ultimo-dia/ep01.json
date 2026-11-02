@@ -1,0 +1,1548 @@
+{
+ "out": "ep01.mp4",
+ "fps": 30,
+ "total": 158,
+ "crf": 28,
+ "series_title": "DEPOIS DO ÚLTIMO DIA",
+ "episode": 1,
+ "episodes_total": 8,
+ "episode_title": "A ÚLTIMA ENTREGA",
+ "tint": [
+  240,
+  118,
+  30,
+  0.08
+ ],
+ "style": "desenho",
+ "pergunta": {
+  "text": "VOCÊ TERIA CONTADO?"
+ },
+ "voices": {
+  "narrador": "ep01/narrador.mp3",
+  "gabriel": "ep01/gabriel.mp3",
+  "porteiro": "ep01/porteiro.mp3",
+  "prado": "ep01/prado.mp3",
+  "nina": "ep01/nina.mp3"
+ },
+ "speakers": {
+  "gabriel": {
+   "label": "GABRIEL",
+   "color": [
+    255,
+    190,
+    120
+   ]
+  },
+  "porteiro": {
+   "label": "SEU ANTÔNIO",
+   "color": [
+    190,
+    210,
+    255
+   ]
+  },
+  "prado": {
+   "label": "APP",
+   "color": [
+    255,
+    160,
+    70
+   ]
+  },
+  "nina": {
+   "label": "ÁUDIO DA NINA",
+   "color": [
+    255,
+    230,
+    120
+   ]
+  }
+ },
+ "hud": {
+  "place": "NOTA 5,0",
+  "days": [
+   [
+    0,
+    "DIA 0",
+    "14:10"
+   ],
+   [
+    11,
+    "DIA 0",
+    "14:12"
+   ],
+   [
+    19,
+    "DIA 0",
+    "14:13"
+   ],
+   [
+    28,
+    "DIA 0",
+    "14:32"
+   ],
+   [
+    47.5,
+    "DIA 0",
+    "14:40"
+   ],
+   [
+    54,
+    "DIA 0",
+    "21:48"
+   ],
+   [
+    63,
+    "DIA 0",
+    "21:49"
+   ],
+   [
+    72,
+    "DIA 0",
+    "21:53"
+   ],
+   [
+    79,
+    "DIA 0",
+    "21:55"
+   ],
+   [
+    89,
+    "DIA 0",
+    "21:56"
+   ],
+   [
+    96,
+    "DIA 0",
+    "23:30"
+   ],
+   [
+    105,
+    "DIA 0",
+    "23:49"
+   ],
+   [
+    119,
+    "DIA 0",
+    "23:50"
+   ],
+   [
+    138,
+    "DIA 0",
+    "23:52"
+   ]
+  ],
+  "sec_per_min": 60
+ },
+ "clips": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.0,
+    7.64
+   ],
+   "at": 3
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    0.77,
+    3.66
+   ],
+   "at": 12.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    8.22,
+    16.53
+   ],
+   "at": 19
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    0.1,
+    2.12
+   ],
+   "at": 29
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    4.27,
+    5.37
+   ],
+   "at": 31.4
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    5.76,
+    7.17
+   ],
+   "at": 32.7
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    2.47,
+    5.34
+   ],
+   "at": 34.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    17.04,
+    19.31
+   ],
+   "at": 38
+  },
+  {
+   "voice": "prado",
+   "src": [
+    0,
+    4.28
+   ],
+   "at": 42
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    19.84,
+    23.56
+   ],
+   "at": 48.5
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    7.54,
+    10.29
+   ],
+   "at": 56.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    23.99,
+    28.49
+   ],
+   "at": 66
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    10.69,
+    13.1
+   ],
+   "at": 73.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    28.97,
+    33.23
+   ],
+   "at": 81
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    13.36,
+    17.1
+   ],
+   "at": 91.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    33.64,
+    39.18
+   ],
+   "at": 97.5
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    17.39,
+    19.31
+   ],
+   "at": 115
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    39.62,
+    43.61
+   ],
+   "at": 121
+  },
+  {
+   "voice": "nina",
+   "src": [
+    0,
+    6.92
+   ],
+   "at": 129
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    19.65,
+    20.46
+   ],
+   "at": 139.5
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    44.0,
+    51.04
+   ],
+   "at": 141.5
+  }
+ ],
+ "subs": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.0,
+    2.98
+   ],
+   "text": [
+    "GABRIEL TINHA",
+    "DOIS MIL *PEDIDOS*",
+    "E NOTA *CINCO*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    3.67,
+    7.64
+   ],
+   "text": [
+    "ELE NÃO SABIA",
+    "O ÚLTIMO DIA",
+    "*NORMAL* DO MUNDO"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    0.77,
+    3.66
+   ],
+   "text": [
+    "NÃO, NÃO, NÃO...",
+    "*DEU RUIM*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    8.22,
+    13.32
+   ],
+   "text": [
+    "A NOTA *CAÍA*",
+    "A CONTA *TRAVAVA*",
+    "O ALUGUEL *VENCIA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    13.75,
+    16.53
+   ],
+   "text": [
+    "O QUE TODO",
+    "MUNDO *FARIA*"
+   ]
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    0.1,
+    2.12
+   ],
+   "text": [
+    "IH, RAPAZ",
+    "AMASSOU, *É?*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    4.27,
+    5.37
+   ],
+   "text": [
+    "VEIO *ASSIM*",
+    "DO HOSPITAL"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    5.76,
+    7.17
+   ],
+   "text": [
+    "TÁ CHEGANDO...",
+    "TÁ *ENTREGUE*"
+   ]
+  },
+  {
+   "voice": "porteiro",
+   "src": [
+    2.47,
+    5.34
+   ],
+   "text": [
+    "TÁ GELADA, ESSA CAIXA",
+    "DÁ ATÉ *COCEIRA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    17.04,
+    19.31
+   ],
+   "text": [
+    "FOI A *MENTIRA*",
+    "MAIS CARA",
+    "DA VIDA DELE"
+   ]
+  },
+  {
+   "voice": "prado",
+   "src": [
+    0,
+    4.28
+   ],
+   "text": [
+    "OBRIGADO, *PARCEIRO*",
+    "CINCO ESTRELAS",
+    "VOCÊ *NÃO PARA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    19.84,
+    23.56
+   ],
+   "text": [
+    "À NOITE, O APP",
+    "TOCAVA *MENOS*",
+    "AS SIRENES, *MAIS*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    7.54,
+    10.29
+   ],
+   "text": [
+    "Ô, *PARCEIRO!*",
+    "CAIU?",
+    "TÁ TUDO BEM AÍ?"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    23.99,
+    24.88
+   ],
+   "text": [
+    "O CELULAR *TOCOU*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    25.37,
+    28.49
+   ],
+   "text": [
+    "E GABRIEL *ENTENDEU*",
+    "ELES SEGUEM",
+    "O *SOM*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    10.69,
+    13.1
+   ],
+   "text": [
+    "TÁ *CHEGANDO*",
+    "TÁ *CHEGANDO*",
+    "TÁ *CHEGANDO*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    28.97,
+    33.23
+   ],
+   "text": [
+    "ERA O SEU *JAIR*",
+    "DO 302",
+    "NA PRÓPRIA *CASA*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    13.36,
+    17.1
+   ],
+   "text": [
+    "PRONTO. MAIS UMA",
+    "ENTREGUEI *EU MESMO*",
+    "EM CASA"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    33.64,
+    36.35
+   ],
+   "text": [
+    "SEM *SINAL*",
+    "SEM LIGAÇÃO",
+    "SEM *TV*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    36.71,
+    39.18
+   ],
+   "text": [
+    "SÓ UMA COISA",
+    "FUNCIONAVA",
+    "O *APP*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    17.39,
+    19.31
+   ],
+   "text": [
+    "*DESLIGA*",
+    "DESLIGA, DESLIGA"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    39.62,
+    43.61
+   ],
+   "text": [
+    "A PORTA",
+    "NÃO *AGUENTA*",
+    "CINCO *MINUTOS*"
+   ]
+  },
+  {
+   "voice": "nina",
+   "src": [
+    0,
+    2.55
+   ],
+   "text": [
+    "MOÇO...",
+    "MINHA MÃE TÁ *MAL*"
+   ]
+  },
+  {
+   "voice": "nina",
+   "src": [
+    3.15,
+    4.48
+   ],
+   "text": [
+    "TEM UMA *FARMÁCIA*",
+    "NO CAMINHO"
+   ]
+  },
+  {
+   "voice": "nina",
+   "src": [
+    4.79,
+    6.92
+   ],
+   "text": [
+    "POR FAVOR",
+    "EU TÔ *SOZINHA*"
+   ]
+  },
+  {
+   "voice": "gabriel",
+   "src": [
+    19.65,
+    20.46
+   ],
+   "text": [
+    "NÃO *SILENCIA*..."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    44.0,
+    45.76
+   ],
+   "text": [
+    "SE *ACEITASSE*",
+    "TERIA QUE SAIR"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    46.1,
+    48.66
+   ],
+   "text": [
+    "SE *RECUSASSE*",
+    "UMA MENINA",
+    "FICARIA *SOZINHA*"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    49.09,
+    51.04
+   ],
+   "text": [
+    "AGORA, A DECISÃO",
+    "É DE *VOCÊS*"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2,
+   "scene": "entrada",
+   "hook": {
+    "text": "NÃO PARA\nDE TOCAR",
+    "y": 1300
+   },
+   "slowmo": 0.5,
+   "dark": 0.45,
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "frente_porta",
+     "view": "front",
+     "emotion": "fear",
+     "tremble": true,
+     "prop": "phone",
+     "pose": "phone",
+     "lipsync": false
+    }
+   ]
+  },
+  {
+   "scene": "rua_amanhecer",
+   "time": "dia",
+   "rain": "nenhuma",
+   "start": 2,
+   "end": 11,
+   "transition": "glitch",
+   "travelling": 400,
+   "camera": {
+    "zoom": 1.7,
+    "cx": 0.5,
+    "cy": 0.82
+   },
+   "actors": [
+    {
+     "char": "gabriel_moto",
+     "mark": "centro",
+     "view": "side",
+     "facing": 1,
+     "pose": "sit",
+     "assento": "moto",
+     "emotion": "happy",
+     "voice": "gabriel",
+     "walk": true,
+     "scale": 1.5,
+     "lipsync": false
+    }
+   ]
+  },
+  {
+   "scene": "rua_amanhecer",
+   "time": "dia",
+   "rain": "nenhuma",
+   "start": 11,
+   "end": 19,
+   "transition": "flash",
+   "shake": [
+    0.4
+   ],
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "centro",
+     "view": "3q",
+     "pose": "crouch",
+     "emotion": "shock",
+     "prop": "bag"
+    }
+   ]
+  },
+  {
+   "start": 19,
+   "end": 28,
+   "type": "pensamento",
+   "quem": "gabriel",
+   "emotion": "fear",
+   "estilo": "medo",
+   "texto": "CONTA BLOQUEADA",
+   "transition": "cut",
+   "fundo": {
+    "scene": "rua_amanhecer",
+    "time": "dia",
+    "rain": "nenhuma",
+    "actors": []
+   },
+   "cena": {
+    "scene": "entrada",
+    "actors": [
+     {
+      "char": "gabriel",
+      "mark": "frente_porta",
+      "view": "front",
+      "pose": "phone",
+      "prop": "phone",
+      "emotion": "sad"
+     }
+    ]
+   }
+  },
+  {
+   "start": 28,
+   "end": 41,
+   "scene": "portao",
+   "time": "dia",
+   "rain": "nenhuma",
+   "transition": "whip",
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "calcada_esq",
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "suspicious"
+      ],
+      [
+       3,
+       "fear"
+      ]
+     ],
+     "prop": [
+      [
+       0,
+       "bag"
+      ],
+      [
+       6.2,
+       null
+      ]
+     ],
+     "pose": [
+      [
+       0,
+       "reach"
+      ],
+      [
+       6.2,
+       "idle"
+      ]
+     ]
+    },
+    {
+     "char": "porteiro",
+     "mark": "frente",
+     "dx": 200,
+     "view": "3q",
+     "facing": -1,
+     "emotion": "happy",
+     "prop": [
+      [
+       0,
+       null
+      ],
+      [
+       6.2,
+       "bag"
+      ]
+     ],
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       9.5,
+       "chest"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": "gabriel",
+   "params": {
+    "text": [
+     "ENTREGA",
+     "CONCLUÍDA",
+     "5 ESTRELAS"
+    ],
+    "color": [
+     255,
+     160,
+     70
+    ]
+   },
+   "transition": "cut",
+   "sub_y": 560,
+   "start": 41,
+   "end": 47.5
+  },
+  {
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes": [
+     880,
+     1300
+    ]
+   },
+   "transition": "cut",
+   "start": 47.5,
+   "end": 54
+  },
+  {
+   "scene": "rua",
+   "time": "noite",
+   "rain": "nenhuma",
+   "start": 54,
+   "end": 63,
+   "transition": "whip",
+   "camera": {
+    "zoom": 1.5,
+    "cx": 0.45,
+    "cy": 0.8
+   },
+   "actors": [
+    {
+     "char": "gabriel_moto",
+     "mark": "calcada_esq",
+     "view": "side",
+     "facing": 1,
+     "pose": "sit",
+     "assento": "moto",
+     "emotion": "suspicious",
+     "voice": "gabriel",
+     "walk": false,
+     "scale": 1.5,
+     "dx": 60,
+     "y": 1500
+    },
+    {
+     "char": "zombie_motoboy",
+     "mark": "centro",
+     "dx": 130,
+     "view": [
+      [
+       0,
+       "back"
+      ],
+      [
+       6.5,
+       "front"
+      ]
+     ],
+     "emotion": "neutral",
+     "sniff": true
+    }
+   ]
+  },
+  {
+   "scene": "rua",
+   "time": "noite",
+   "rain": "nenhuma",
+   "start": 63,
+   "end": 72,
+   "transition": "flash",
+   "handheld": true,
+   "travelling": 520,
+   "camera": {
+    "zoom": 1.5,
+    "cx": 0.5,
+    "cy": 0.82
+   },
+   "actors": [
+    {
+     "char": "gabriel_moto",
+     "mark": "dir",
+     "view": "side",
+     "facing": 1,
+     "pose": "sit",
+     "assento": "moto",
+     "emotion": "shock",
+     "voice": "gabriel",
+     "walk": true,
+     "scale": 1.5,
+     "lipsync": false
+    },
+    {
+     "char": "zombie_motoboy",
+     "mark": "esq",
+     "view": "side",
+     "facing": 1,
+     "run": true,
+     "walk": true,
+     "emotion": "angry"
+    }
+   ]
+  },
+  {
+   "start": 72,
+   "end": 79,
+   "scene": "escada",
+   "transition": "whip",
+   "handheld": true,
+   "dark": 0.3,
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": [
+      [
+       0,
+       "degrau_baixo"
+      ],
+      [
+       6,
+       "degrau_alto"
+      ]
+     ],
+     "view": "3q",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "emotion": "panting"
+    }
+   ]
+  },
+  {
+   "start": 79,
+   "end": 89,
+   "scene": "corredor",
+   "transition": "cut",
+   "camera": {
+    "cortes": false
+   },
+   "props": {
+    "flicker": 0.25
+   },
+   "dark": 0.2,
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "frente_esq",
+     "view": "3q",
+     "facing": 1,
+     "pose": "hide",
+     "emotion": "fear"
+    },
+    {
+     "char": "zombie",
+     "mark": "meio",
+     "view": "back",
+     "pose": [
+      [
+       0,
+       "knock"
+      ],
+      [
+       1,
+       "knock2"
+      ],
+      [
+       2,
+       "knock"
+      ],
+      [
+       3,
+       "knock2"
+      ],
+      [
+       4,
+       "knock"
+      ],
+      [
+       5,
+       "knock2"
+      ],
+      [
+       6,
+       "knock"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 89,
+   "end": 96,
+   "scene": "entrada",
+   "transition": "cut",
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": [
+      [
+       0,
+       "porta"
+      ],
+      [
+       2,
+       "frente_porta"
+      ]
+     ],
+     "view": [
+      [
+       0,
+       "back"
+      ],
+      [
+       2,
+       "front"
+      ]
+     ],
+     "emotion": "panting",
+     "pose": [
+      [
+       0,
+       "open_door"
+      ],
+      [
+       2,
+       "idle"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 96,
+   "end": 105,
+   "scene": "apartamento",
+   "transition": "fade",
+   "time": "noite",
+   "props": {
+    "tv": 1,
+    "static": 1
+   },
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "centro",
+     "view": "3q",
+     "facing": 1,
+     "pose": "phone",
+     "prop": "phone",
+     "emotion": "suspicious",
+     "lipsync": false
+    }
+   ]
+  },
+  {
+   "start": 105,
+   "end": 113,
+   "scene": "entrada",
+   "transition": "dip",
+   "dark": 0.25,
+   "camera": {
+    "zoom": [
+     1.3,
+     1.6
+    ],
+    "cx": 0.35,
+    "cy": 0.85
+   },
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "chao_porta",
+     "pose": "chao",
+     "emotion": "fear",
+     "prop": "phone"
+    }
+   ]
+  },
+  {
+   "type": "detail",
+   "subject": "macaneta",
+   "hand": "gabriel",
+   "params": {
+    "turn": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1.2,
+      8
+     ],
+     [
+      1.4,
+      -4
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3.2,
+      12
+     ],
+     [
+      3.4,
+      -6
+     ],
+     [
+      3.8,
+      0
+     ],
+     [
+      4.6,
+      10
+     ],
+     [
+      4.8,
+      -6
+     ],
+     [
+      5.2,
+      0
+     ]
+    ]
+   },
+   "transition": "cut",
+   "start": 113,
+   "end": 119
+  },
+  {
+   "start": 119,
+   "end": 128,
+   "type": "pensamento",
+   "quem": "gabriel",
+   "emotion": "shock",
+   "estilo": "imaginacao",
+   "texto": "E SE CEDER?",
+   "transition": "flash",
+   "fundo": {
+    "scene": "entrada",
+    "dark": 0.45,
+    "actors": []
+   },
+   "cena": {
+    "scene": "corredor",
+    "dark": 0.2,
+    "actors": [
+     {
+      "char": "zombie",
+      "mark": "meio",
+      "dx": -90,
+      "view": "front",
+      "pose": "reach"
+     },
+     {
+      "char": "zombie_policial",
+      "mark": "meio",
+      "dx": 90,
+      "view": "front",
+      "pose": "reach"
+     }
+    ]
+   }
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": "gabriel",
+   "params": {
+    "text": [
+     "NOVO PEDIDO",
+     "REMÉDIO",
+     "CLIENTE: NINA"
+    ],
+    "color": [
+     255,
+     160,
+     70
+    ],
+    "notifs": [
+     "ACEITAR OU RECUSAR",
+     "PARA SILENCIAR"
+    ]
+   },
+   "transition": "cut",
+   "sub_y": 470,
+   "start": 128,
+   "end": 138
+  },
+  {
+   "start": 138,
+   "end": 150,
+   "scene": "entrada",
+   "transition": "cut",
+   "handheld": true,
+   "dark": 0.45,
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "gabriel",
+     "mark": "frente_porta",
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       3.5,
+       "determined"
+      ]
+     ],
+     "pose": "phone",
+     "prop": "phone"
+    }
+   ]
+  },
+  {
+   "start": 150,
+   "end": 158,
+   "type": "choice",
+   "transition": "zoom",
+   "hud": false,
+   "a": {
+    "label": "ACEITAR",
+    "scene": "entrada",
+    "crop_x": 270,
+    "actors": [
+     {
+      "char": "gabriel",
+      "mark": "frente_porta",
+      "view": "front",
+      "pose": "phone",
+      "prop": "phone",
+      "emotion": "determined",
+      "lipsync": false
+     }
+    ]
+   },
+   "b": {
+    "label": "BARRAR A PORTA",
+    "scene": "entrada",
+    "crop_x": 270,
+    "actors": [
+     {
+      "char": "gabriel",
+      "mark": "porta",
+      "view": "back",
+      "pose": "push",
+      "emotion": "fear",
+      "lipsync": false
+     }
+    ]
+   },
+   "end_card": {
+    "t": 155.5,
+    "text": "CONTINUA NO EPISÓDIO 2"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.05,
+   "name": "notif"
+  },
+  {
+   "t": 1,
+   "name": "knock"
+  },
+  {
+   "t": 2.1,
+   "name": "whoosh"
+  },
+  {
+   "t": 8.5,
+   "name": "notif"
+  },
+  {
+   "t": 11.4,
+   "name": "bang"
+  },
+  {
+   "t": 11.8,
+   "name": "impact"
+  },
+  {
+   "t": 14.5,
+   "name": "breath"
+  },
+  {
+   "t": 20,
+   "name": "heartbeat"
+  },
+  {
+   "t": 24,
+   "name": "vibe"
+  },
+  {
+   "t": 29,
+   "name": "step"
+  },
+  {
+   "t": 40,
+   "name": "click"
+  },
+  {
+   "t": 42,
+   "name": "notif"
+  },
+  {
+   "t": 45,
+   "name": "beep"
+  },
+  {
+   "t": 47.6,
+   "name": "click"
+  },
+  {
+   "t": 50,
+   "name": "siren"
+  },
+  {
+   "t": 54.2,
+   "name": "car_alarm"
+  },
+  {
+   "t": 59,
+   "name": "shuffle"
+  },
+  {
+   "t": 61,
+   "name": "growl"
+  },
+  {
+   "t": 63.5,
+   "name": "notif"
+  },
+  {
+   "t": 64.4,
+   "name": "growl"
+  },
+  {
+   "t": 67,
+   "name": "step"
+  },
+  {
+   "t": 72.5,
+   "name": "echo_step"
+  },
+  {
+   "t": 73,
+   "name": "door_close"
+  },
+  {
+   "t": 76,
+   "name": "breath"
+  },
+  {
+   "t": 80,
+   "name": "knock"
+  },
+  {
+   "t": 82,
+   "name": "knock"
+  },
+  {
+   "t": 84,
+   "name": "knock"
+  },
+  {
+   "t": 86,
+   "name": "knock"
+  },
+  {
+   "t": 89.8,
+   "name": "door_close"
+  },
+  {
+   "t": 90.3,
+   "name": "lock"
+  },
+  {
+   "t": 90.8,
+   "name": "lock"
+  },
+  {
+   "t": 95,
+   "name": "breath"
+  },
+  {
+   "t": 100,
+   "name": "no_service"
+  },
+  {
+   "t": 102,
+   "name": "no_service"
+  },
+  {
+   "t": 105.5,
+   "name": "echo_step"
+  },
+  {
+   "t": 107.5,
+   "name": "echo_step"
+  },
+  {
+   "t": 109.5,
+   "name": "notif"
+  },
+  {
+   "t": 114,
+   "name": "click"
+  },
+  {
+   "t": 116.5,
+   "name": "bang"
+  },
+  {
+   "t": 117.8,
+   "name": "knock"
+  },
+  {
+   "t": 120,
+   "name": "knock"
+  },
+  {
+   "t": 124,
+   "name": "knock"
+  },
+  {
+   "t": 126.8,
+   "name": "notif"
+  },
+  {
+   "t": 128.3,
+   "name": "notif"
+  },
+  {
+   "t": 130,
+   "name": "vibe"
+  },
+  {
+   "t": 139,
+   "name": "knock"
+  },
+  {
+   "t": 141,
+   "name": "notif"
+  },
+  {
+   "t": 145,
+   "name": "knock"
+  },
+  {
+   "t": 147,
+   "name": "notif"
+  },
+  {
+   "t": 149.3,
+   "name": "bang"
+  },
+  {
+   "t": 150.5,
+   "name": "notif"
+  },
+  {
+   "t": 154,
+   "name": "stamp"
+  },
+  {
+   "t": 96.2,
+   "name": "static",
+   "dur": 3.5
+  }
+ ],
+ "music": [
+  {
+   "start": 2,
+   "end": 28,
+   "gain": [
+    0.03,
+    0.06
+   ],
+   "tense": 0.2
+  },
+  {
+   "start": 28,
+   "end": 54,
+   "gain": [
+    0.04,
+    0.07
+   ],
+   "tense": 0.45
+  },
+  {
+   "start": 54,
+   "end": 158,
+   "gain": [
+    0.05,
+    0.1
+   ],
+   "tense": 0.9
+  }
+ ]
+}
