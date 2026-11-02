@@ -1,33 +1,179 @@
 {
  "lugares": {
-  "apartamento": {"cenarios": ["apartamento", "entrada", "janela", "radio"], "nota": "apartamento da Roberta, 7º andar"},
-  "predio": {"cenarios": ["corredor", "escada", "telhado", "portao"], "nota": "prédio nº 214: corredor, escada de serviço, telhado e portão da rua"},
-  "rua": {"cenarios": ["rua", "rua_amanhecer", "beco", "entrada_metro"], "nota": "rua do prédio até a praça da Sé, com a entrada da estação"},
-  "posto": {"cenarios": ["posto"], "nota": "posto de gasolina na esquina"},
-  "metro": {"cenarios": ["metro", "vagao"], "nota": "estação Sé por dentro: plataforma, trilhos e o vagão parado"},
-  "carro": {"cenarios": ["carro", "radio_carro"], "nota": "carro parado na rua da estação"},
-  "estacionamento": {"cenarios": ["estacionamento"], "nota": "garagem subterrânea ao lado da estação"},
-  "viaduto": {"cenarios": ["viaduto"], "nota": "viaduto que sobe até a cabeceira da ponte"},
-  "ponte": {"cenarios": ["ponte"], "nota": "ponte com a barreira do exército"},
-  "hospital": {"cenarios": ["hospital"], "nota": "hospital onde a Lia está (só aparece pelo rádio ou em inserção)"}
+  "apartamento": {
+   "cenarios": [
+    "apartamento",
+    "entrada",
+    "janela",
+    "radio"
+   ],
+   "nota": "apartamento da Roberta, 7º andar"
+  },
+  "predio": {
+   "cenarios": [
+    "corredor",
+    "escada",
+    "telhado",
+    "portao"
+   ],
+   "nota": "prédio nº 214: corredor, escada de serviço, telhado e portão da rua"
+  },
+  "rua": {
+   "cenarios": [
+    "rua",
+    "rua_amanhecer",
+    "beco",
+    "entrada_metro"
+   ],
+   "nota": "rua do prédio até a praça da Sé, com a entrada da estação"
+  },
+  "posto": {
+   "cenarios": [
+    "posto"
+   ],
+   "nota": "posto de gasolina na esquina"
+  },
+  "metro": {
+   "cenarios": [
+    "metro",
+    "vagao"
+   ],
+   "nota": "estação Sé por dentro: plataforma, trilhos e o vagão parado"
+  },
+  "carro": {
+   "cenarios": [
+    "carro",
+    "radio_carro"
+   ],
+   "nota": "carro parado na rua da estação"
+  },
+  "estacionamento": {
+   "cenarios": [
+    "estacionamento"
+   ],
+   "nota": "garagem subterrânea ao lado da estação"
+  },
+  "viaduto": {
+   "cenarios": [
+    "viaduto"
+   ],
+   "nota": "viaduto que sobe até a cabeceira da ponte"
+  },
+  "ponte": {
+   "cenarios": [
+    "ponte"
+   ],
+   "nota": "ponte com a barreira do exército"
+  },
+  "hospital": {
+   "cenarios": [
+    "hospital"
+   ],
+   "nota": "hospital onde a Lia está (só aparece pelo rádio ou em inserção)"
+  }
  },
  "ligacoes": [
-  ["apartamento", "predio", "pela porta do apartamento até o corredor"],
-  ["predio", "rua", "pelo portão do prédio"],
-  ["rua", "posto", "pela calçada até a esquina"],
-  ["rua", "metro", "pela escada da estação Sé"],
-  ["rua", "carro", "entrando no carro parado"],
-  ["rua", "estacionamento", "pela rampa da garagem"],
-  ["metro", "estacionamento", "pelo corredor de serviço da estação"],
-  ["rua", "viaduto", "subindo a alça do viaduto"],
-  ["viaduto", "ponte", "no fim do viaduto"],
-  ["rua", "ponte", "a um quarteirão, pela avenida"],
-  ["rua", "hospital", "pela avenida (do outro lado da cidade)"]
+  [
+   "apartamento",
+   "predio",
+   "pela porta do apartamento até o corredor"
+  ],
+  [
+   "predio",
+   "rua",
+   "pelo portão do prédio"
+  ],
+  [
+   "rua",
+   "posto",
+   "pela calçada até a esquina"
+  ],
+  [
+   "rua",
+   "metro",
+   "pela escada da estação Sé"
+  ],
+  [
+   "rua",
+   "carro",
+   "entrando no carro parado"
+  ],
+  [
+   "rua",
+   "estacionamento",
+   "pela rampa da garagem"
+  ],
+  [
+   "metro",
+   "estacionamento",
+   "pelo corredor de serviço da estação"
+  ],
+  [
+   "rua",
+   "viaduto",
+   "subindo a alça do viaduto"
+  ],
+  [
+   "viaduto",
+   "ponte",
+   "no fim do viaduto"
+  ],
+  [
+   "rua",
+   "ponte",
+   "a um quarteirão, pela avenida"
+  ],
+  [
+   "rua",
+   "hospital",
+   "pela avenida (do outro lado da cidade)"
+  ]
  ],
  "fim": {
-  "3": {"lugar": "posto", "dia": 4, "hora": "05:40", "inventario": {"roberta": ["radio", "lanterna"], "rafa": ["mochila"]},
-        "nota": "escolheram a ponte; Roberta no posto com o rádio de pilha"},
-  "4": {"lugar": "carro", "dia": 5, "hora": "05:20", "inventario": {"roberta": ["radio", "lanterna"], "rafa": ["mochila"]},
-        "nota": "dentro do carro cercado na rua da estação Sé, a um quarteirão da ponte; a ponte fecha às 06:00"}
+  "3": {
+   "lugar": "posto",
+   "dia": 4,
+   "hora": "05:40",
+   "inventario": {
+    "roberta": [
+     "radio",
+     "lanterna"
+    ],
+    "rafa": [
+     "mochila"
+    ]
+   },
+   "nota": "escolheram a ponte; Roberta no posto com o rádio de pilha"
+  },
+  "4": {
+   "lugar": "carro",
+   "dia": 5,
+   "hora": "05:20",
+   "inventario": {
+    "roberta": [
+     "radio",
+     "lanterna"
+    ],
+    "rafa": [
+     "mochila"
+    ]
+   },
+   "nota": "dentro do carro cercado na rua da estação Sé, a um quarteirão da ponte; a ponte fecha às 06:00"
+  },
+  "5": {
+   "lugar": "ponte",
+   "inventario": {
+    "roberta": [
+     "radio",
+     "lanterna"
+    ],
+    "rafa": [
+     "mochila"
+    ]
+   },
+   "dia": 6,
+   "hora": "06:00",
+   "rotulo": "DIA"
+  }
  }
 }

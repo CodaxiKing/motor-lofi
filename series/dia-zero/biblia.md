@@ -24,6 +24,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - Ep. 1 (ESPIAR) → Rafa desconfiado; hesita no momento decisivo, a não ser que Roberta recupere a confiança dele.
 - Ep. 3: buscar Lia → Lia no final; ir direto → Lia só pelo rádio.
 - Ep. 3 (roteiro): Roberta segurou Rafa no pulo entre os prédios → a confiança dele começa a voltar.
+- Ep. 4 (voto BARULHO): final A. No ep. 5 o alarme puxa a horda, a Roberta cai na ponte e o Rafa volta para puxá-la (devolve o pulo do telhado); atravessam às 5h59. Do outro lado, ela chama a Lia e ouve três batidas no chiado (esperança sem confirmação, gancho para uma 2ª temporada). Fecha no DIA 6.
 - Ep. 3 (voto PONTE): Lia fica só pelo rádio; no ep. 4 ela se despede ("o hospital caiu") e Roberta promete atravessar. Rafa passa a confiar nela: no ep. 4 é ele quem tem a ideia do alarme e diz "eu confio em você" → no final ele não hesita.
 
 ## Regras do universo
@@ -35,8 +36,8 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 | 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | — |
 | 2 | 2 | complicação | montado | A) Escada · B) Telhado | TELHADO | |
 | 3 | 3 | reviravolta | montado | A) Buscar Lia no hospital · B) Ir direto pra ponte | PONTE | |
-| 4 | 4 | clímax | montado | A) Fazer barulho · B) Esperar em silêncio | (aguardando) | |
-| 5 | 5 | final | planejado | — | | |
+| 4 | 4 | clímax | montado | A) Fazer barulho · B) Esperar em silêncio | BARULHO (A) | |
+| 5 | 5 | final | roteiro | — (final A — O BARULHO) | | |
 
 > Eps. 1 e 2 foram publicados na versão antiga do motor (~1 min cada). Os roteiros e os `epNN.json` desta pasta foram
 > reconstruídos a partir dos vídeos publicados (marcados como `legado`). Para o "Anteriormente em…" do ep. 3, use
@@ -54,3 +55,4 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 
 ## Continuidade (onde eles estão)
 - Fim do ep. 4: Roberta e Rafa dentro de um carro parado na rua da estação Sé, a um quarteirão da ponte, cercados pela horda, ao amanhecer do dia 5. O rádio que ela usa agora é o do carro (o rádio de casa ficou no apartamento). O ep. 5 começa dentro desse carro.
+- Fim do ep. 5 (roteiro): Roberta e Rafa do lado de dentro da barreira da ponte, DIA 6 · 06:00, com o rádio de pilha ligado. Portão fechado; a horda ficou do outro lado.
