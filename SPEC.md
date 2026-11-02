@@ -398,3 +398,13 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
 (antes de episódio pesado, com personagem em close), `meta` (meta da comunidade com baú trancado e marcos), `resultado`
 (porcentagem, baú trancado/aberto, barra) e `ranking` (top 10 com empates). Campos de cada tipo nas skills `serie-agenda`,
 `serie-aviso` e `serie-comunidade`; exemplos em `series/dia-zero/artes/*.json`.
+
+## Movimento fluido (automático)
+- **Passo preso ao chão:** a fase da caminhada vem da distância que o ator percorre (x/y com keyframes ou marcas), então os pés não
+  escorregam; no `travelling` vem da velocidade do cenário, e na horda, da velocidade de cada zumbi. Andando sem sair do lugar, usa o tempo.
+- **Ciclo novo:** coxa e joelho separados (joelho dobra só no balanço), quadril que sobe e desce duas vezes por ciclo e balança de lado,
+  corpo inclinado na corrida, braço oposto à perna com o cotovelo dobrando na ida, objeto na mão com inércia (atrasa e quica).
+- **Zumbis:** `zombie` manca (um passo mais demorado), arrasta uma perna, afunda no passo e balança a cabeça; `zombie_corredor` corre
+  aos trancos com o corpo para a frente; de frente, os braços ficam soltos e balançam atrasados.
+- **Começar e parar:** quando `walk` muda nos keyframes, o passo entra em ~0,2 s e sai em ~0,3 s (sem tranco). Agachar, sentar e pular
+  descem/sobem o corpo com suavidade. Personagens são desenhados a 30 quadros por segundo (antes 15).

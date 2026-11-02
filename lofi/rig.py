@@ -29,7 +29,7 @@ CHARS = {
                    hair="short", hair_color=(170, 170, 170), infected=True),
     "zombie": dict(skin=(146, 154, 150), top=(90, 96, 92), top_style="torn", legs=(64, 66, 72), shoes=(36, 34, 34),
                    infected=True, scale=0.95),
-    "zombie_corredor": dict(skin=(150, 150, 146), top=(110, 70, 66), top_style="torn", legs=(60, 60, 70), shoes=(30, 30, 30), infected=True),
+    "zombie_corredor": dict(skin=(150, 150, 146), top=(110, 70, 66), top_style="torn", legs=(60, 60, 70), shoes=(30, 30, 30), infected=True, fast=True),
     "zombie_rastejante": dict(skin=(140, 148, 144), top=(80, 86, 80), top_style="torn", legs=(56, 58, 62), shoes=(30, 30, 30), infected=True, body="thin"),
     "zombie_enfermeiro": dict(skin=(148, 156, 152), top=(120, 150, 150), top_style="scrubs", legs=(120, 150, 150), shoes=(200, 200, 200),
                               hair="bun", hair_color=(90, 80, 70), infected=True),
@@ -159,7 +159,7 @@ def _backout(x, c=1.6):
     x = max(0.0, min(1.0, x)); return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
 
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
-          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None):
+          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
 
@@ -177,20 +177,33 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if q3: view = "front"
     if sniff: look = math.sin(t * 2.3 + seed) * 22
     # --- ciclo de caminhada / corrida / respiração ---
-    amp = 1.0 if not walk else (1.0 if not run else 1.6)
-    ph = (t * (1.9 if run else 1.25) + seed * 0.13) % 1.0 if walk else 0.0
-    s = math.sin(2 * math.pi * ph)
-    bob = -abs(math.cos(2 * math.pi * ph)) * (14 if run else 8) if walk else 0
+    # fase do passo: vem do deslocamento (pés não escorregam) ou do tempo; gait_k (0–1) liga/desliga o passo suavemente
+    corredor = inf and cd.get("fast")
+    cad = (1.9 if run else 1.25) if not inf else ((2.3 if corredor else 0.85) if run or corredor else 0.85)
+    gk = gait_k if walk else 0.0
+    amp = (1.0 if not run else 1.6) * gk
+    ph = ((phase if phase is not None else t * cad) + seed * 0.13) % 1.0 if walk else 0.0
+    if inf and walk and not corredor: ph = (ph + 0.09 * math.sin(2 * math.pi * ph)) % 1.0     # manca: um passo mais demorado
+    if corredor and walk: ph = (ph + 0.04 * math.sin(2 * math.pi * ph * 3 + seed)) % 1.0       # corrida aos trancos
+    s = math.sin(2 * math.pi * ph); c_ = math.cos(2 * math.pi * ph)
+    bob = -abs(c_) * (16 if run else 9) * gk if walk else 0
+    if inf and walk: bob += abs(s) * 6 * gk                                                      # afunda no passo arrastado
+    lean = ((20 if run else 6) if not inf else (14 if corredor else 4)) * gk if walk else 0             # corpo inclinado para a frente
+    sway_x = (s * (7 if not inf else 16)) * gk if walk else 0                                  # balanço lateral do quadril
     pant = emotion == "panting"
     breath = math.sin(t * 2 * math.pi / ((3.2 if not inf else 2.4) if not pant else 0.8) + seed) * breath_k * (3.2 if pant else 1)
     hunch = (14 if inf else 0) + HUNCH_ADD
     sit = draw_pose == "sit"; crouch = draw_pose in ("crouch", "hide"); jump = draw_pose == "jump"
-    hip_y = HIP_Y + bob + (1 - LEGK) * 202 + (110 if sit else 0) + (70 if crouch else 0) + (50 if jump else 0)
+    _dz = lambda p_: {"sit": 110, "crouch": 70, "hide": 70, "jump": 50}.get(p_, 0)
+    desce = _dz(pose)
+    if pose_prev and pk < 1.0: desce = _dz(pose_prev) + (_dz(pose) - _dz(pose_prev)) * _backout(pk, 0.6)   # agacha/levanta sem pulo
+    hip_y = HIP_Y + bob + (1 - LEGK) * 202 + desce
     torso_top = hip_y - 238 + hunch - breath * 4
     sh_y = torso_top + 52
-    neck = (cx + (hunch * 0.8 if view == "side" else 0), torso_top + 6)
-    head_c = (neck[0] + (6 * math.sin(t * 1.3 + seed) if inf else 0), neck[1] - 74 + bob * 0.2 - breath * 2)
-    if view == "side": head_c = (head_c[0] + 18 + hunch * 0.6, head_c[1])
+    neck = (cx + (hunch * 0.8 if view == "side" else 0) + (lean if view == "side" else sway_x * 0.6), torso_top + 6)
+    loll = (math.sin(2 * math.pi * ph + 1.3) * 12 * gk if inf and walk else 0)               # cabeça do infectado balança com o passo
+    head_c = (neck[0] + (6 * math.sin(t * 1.3 + seed) if inf else 0) + loll, neck[1] - 74 + bob * 0.25 - breath * 2 + abs(loll) * 0.3)
+    if view == "side": head_c = (head_c[0] + 18 + hunch * 0.6 + lean * 0.5, head_c[1])
     if q3: head_c = (head_c[0] + 14, head_c[1])
     if sniff: head_c = (head_c[0] + math.sin(t * 2.3 + seed) * 16, head_c[1] - 8 - abs(math.sin(t * 4.6)) * 6)
     if gesture == "nod": head_c = (head_c[0], head_c[1] + abs(math.sin(t * 9)) * 12)
@@ -200,11 +213,18 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     # --- pernas ---
     if view == "side":
         hips = [(cx, hip_y), (cx, hip_y)]
-        legA = [s * 30 * amp, -s * 30 * amp]
-        kneeB = [max(0, -s) * 45 * amp, max(0, s) * 45 * amp]
+        # coxa oscila; o joelho dobra na fase de balanço (perna indo para a frente) e fica quase reto no apoio
+        legA, kneeB = [], []
+        for i in range(2):
+            pi_ = 2 * math.pi * (ph + 0.5 * i)
+            th = math.sin(pi_) * 30 * amp
+            sw_ = max(0.0, math.cos(pi_))                      # balanço: coxa avançando
+            flex = (max(0.0, math.cos(pi_ - 0.5)) ** 0.9) * (36 if not run else 76) * gk + 4 * gk
+            if inf and i == 0 and not corredor: flex *= 0.35; th *= 0.75   # perna arrastada
+            legA.append(th); kneeB.append(flex)
     else:
-        hips = [(cx - 30, hip_y), (cx + 30, hip_y)]
-        legA = [-4 + (s * 5 if walk else 0), 4 - (s * 5 if walk else 0)]
+        hips = [(cx - 30 + sway_x, hip_y), (cx + 30 + sway_x, hip_y)]
+        legA = [-4 - sway_x * 0.15, 4 - sway_x * 0.15]
         kneeB = [0, 0]
     leg_pts = []
     for i in range(2):
@@ -219,9 +239,13 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         else:
             if view == "side":
                 kn = _seg(hp, legA[i], 102 * LEGK); ft = _seg(kn, legA[i] - kneeB[i], 100 * LEGK)
+                ft = (ft[0], min(ft[1], FEET_Y + bob * 0.0 + 2) if walk else ft[1])
             else:
-                lift = (max(0, s if i == 0 else -s) * 22) if walk else 0
-                kn = _seg(hp, legA[i], 102 * LEGK - lift * 0.4); ft = _seg(kn, legA[i], 100 * LEGK - lift)
+                li = max(0.0, math.sin(2 * math.pi * (ph + 0.5 * i)))
+                lift = (li ** 1.3) * (26 if not run else 40) * gk if walk else 0
+                if inf and i == 0 and walk and not corredor: lift *= 0.3
+                kn = _seg(hp, legA[i] + (lift * 0.25 if i == 0 else -lift * 0.25), 102 * LEGK - lift * 0.35)
+                ft = _seg(kn, legA[i], 100 * LEGK - lift * 0.9)
         leg_pts.append((hp, kn, ft))
     # --- braços ---
     pa = POSES.get(pose, POSES["idle"])
@@ -234,12 +258,17 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         a_sh, a_el = pa[i]
         if talk > 0 and draw_pose in ("idle", "cross") and i == 1 and not walk:
             a_el += math.sin(t * 5.2 + seed) * 22 * talk; a_sh += math.sin(t * 3.1 + seed) * 10 * talk
-        if walk and pose in ("idle", "run"):
-            sw = (-s if i == 0 else s) * (24 if view == "side" else 10) * amp
+        if walk and pose in ("idle", "run") and not inf:
+            # braço oposto à perna; cotovelo dobra mais quando o braço vai à frente (e muito mais correndo)
+            sw = (-s if i == 0 else s) * (26 if view == "side" else 10) * amp
             a_sh = a_sh + sw if view == "side" else a_sh + sw * 0.3
-            a_el = a_el + (abs(sw) * 0.8 if view == "side" else 0)
+            a_el = a_el + ((max(0.0, sw) * 0.9 + (38 if run else 8) * gk) if view == "side" else 0)
         if inf and pose in ("idle", "forward") and view == "side":
-            a_sh, a_el = 80, 10
+            a_sh, a_el = 80 + math.sin(2 * math.pi * ph + i) * 8 * gk, 10 + math.sin(t * 2.1 + i) * 6
+        elif inf and walk and pose == "idle" and view != "side":
+            # infectado andando de frente: braços pendurados que balançam atrasados e soltos
+            a_sh = a_sh + math.sin(2 * math.pi * ph + (0 if i else math.pi) + 0.9) * 9 * gk
+            a_el = a_el + abs(math.sin(2 * math.pi * ph + i)) * 10 * gk
         if draw_pose == "knock" and int(t * 6) % 2 == 1 and i == 1: a_sh, a_el = POSES["knock2"][1]
         if view == "side":
             a_sh = a_sh if i == 1 else -a_sh * 0.6 + (s * 24 if walk else 0)
@@ -399,6 +428,8 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     pr = prop or ("phone" if draw_pose == "phone" else ("flashlight" if draw_pose == "hold" else ("bag" if draw_pose == "remove_bag" else None)))
     if pr and not back and draw_pose not in ("cross", "forward"):
         hx_, hy_ = arms[1][2]
+        if walk:   # inércia: o objeto acompanha a mão com atraso e quica levemente
+            hx_ += math.sin(2 * math.pi * ph - 0.7) * 5 * gk; hy_ += abs(math.sin(2 * math.pi * ph - 0.5)) * 6 * gk
         if pr == "phone":
             d.rounded_rectangle([hx_ - 19, hy_ - 44, hx_ + 19, hy_ + 22], 7, fill=(20, 20, 26, 255), outline=OUT, width=3)
             d.rounded_rectangle([hx_ - 13, hy_ - 38, hx_ + 13, hy_ + 14], 4, fill=(170, 200, 255, 255))
@@ -693,17 +724,19 @@ _CACHE = {}
 _CACHE_PX = 0
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
-                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None):
-    """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés."""
+                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0):
+    """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés. phase = fase do passo (0–1, do deslocamento), gait_k = força do passo."""
     cd = char_def(name, custom)
     seed = seed if seed is not None else (sum(map(ord, name)) % 97)
     light = light or LIGHTS["night"]
-    qt = round(t * 15) / 15 if (walk or sway or breath) else 0
+    qt = round(t * 30) / 30 if (walk or sway or breath) else 0
+    qph = round((phase % 1.0) * 48) / 48 if (walk and phase is not None) else None
+    qgk = round(gait_k * 8) / 8
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture)
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk)
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
-                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture)
+                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk)
     k = 0.5 * scale * cd["scale"]
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)

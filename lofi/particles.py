@@ -76,5 +76,5 @@ def crowd_actors(spec, t_rel):
         tint = r.choice([(90, 96, 92), (110, 86, 66), (70, 80, 100), (100, 70, 70), (84, 90, 60)])
         out.append({"char": spec.get("char", "zombie"), "x": x, "y": y, "view": spec.get("view", "side"), "facing": dirn,
                     "walk": True, "seed": i * 7 + 3, "pose": "forward", "custom": {"top": tint},
-                    "scale_k": r.uniform(0.85, 1.1), "_crowd": True, "_limp": r.uniform(0.6, 1.3)})
+                    "scale_k": r.uniform(0.85, 1.1), "_crowd": True, "_limp": r.uniform(0.6, 1.3), "_vel": abs(sp), "_t": t_rel})
     return out

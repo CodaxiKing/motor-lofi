@@ -241,6 +241,44 @@ class Episode:
             d = d or ImageDraw.Draw(img)
             d.ellipse([mx - rr, y - rr, mx + rr, y + rr], fill=(222, 200, 180), outline=(30, 30, 40), width=3)
 
+    def gait(self, a, sc, shot, rel, norm, walk, run):
+        """(anda?, fase do passo, força do passo). A fase vem da distância percorrida (os pés não escorregam no chão);
+        o passo entra e sai em ~0,25 s quando "walk" muda (sem trancos)."""
+        gk = 1.0; w = a.get("walk")
+        if isinstance(w, list) and w and isinstance(w[0], (list, tuple)):
+            ts, ant = None, None
+            for tk, v in w:
+                if tk <= rel: ts, ant = tk, bool(v)
+            prev = None
+            for tk, v in w:
+                if ts is not None and tk < ts: prev = bool(v)
+            if ts is not None and prev is not None and prev != ant:
+                dt = rel - ts
+                if ant and dt < 0.22: gk = ease(dt / 0.22)
+                elif not ant and dt < 0.28: walk, gk = True, 1 - ease(dt / 0.28)
+        if not walk: return False, None, 0.0
+        inf = a["char"].startswith("zombie"); passo = (2.4 if not run else 4.2) * (0.75 if inf and not run else 1.0)
+        if a.get("_vel") is not None:                               # horda: cada um no seu ritmo, pés acompanhando a velocidade
+            esc = self.actor_state(a, sc, rel, norm)[2]
+            return True, a.get("_t", rel) * a["_vel"] / (passo * 100 * max(0.05, esc) * 0.5) + (a.get("seed", 0) % 10) / 10, gk
+        tv = shot.get("travelling")
+        if tv:
+            sp = abs(tv.get("speed", 300) if isinstance(tv, dict) else (300 if tv is True else tv))
+            esc = self.actor_state(a, sc, rel, norm)[2]
+            return True, rel * sp / (passo * 100 * esc * 0.5 + 1e-6), gk
+        key = (shot["start"], a["char"], str(a.get("x")), str(a.get("y")), str(a.get("mark")), a.get("dx", 0), round(rel * 30))
+        cache = self.__dict__.setdefault("_gait_cache", {})
+        if key in cache: return True, cache[key], gk
+        n = max(1, int(rel * 15)); dist = 0.0; px, py, ps = self.actor_state(a, sc, 0.0, 0.0)
+        for k in range(1, n + 1):
+            r_ = rel * k / n; x, y, esc = self.actor_state(a, sc, r_, r_ / max(1e-6, shot["end"] - shot["start"]))
+            dist += math.hypot(x - px, (y - py) * 1.8) / (passo * 100 * max(0.05, esc) * 0.5); px, py = x, y
+        dur = max(1e-6, shot["end"] - shot["start"]); xa, ya, _ = self.actor_state(a, sc, 0.0, 0.0); xb, yb, _ = self.actor_state(a, sc, dur, 1.0)
+        ph = dist if math.hypot(xb - xa, yb - ya) > 20 else None     # anda sem sair do lugar: fase pelo tempo
+        if len(cache) > 20000: cache.clear()
+        cache[key] = ph
+        return True, ph, gk
+
     def prepare_actor(self, a, sc, shot, t, rel, norm, camx, cam, light, focus_on, idx):
         x, y, base_scale = self.actor_state(a, sc, rel, norm)
         z, x0, y0 = cam
@@ -267,10 +305,12 @@ class Episode:
         talk = min(1.0, self.level(voice, self._treal, smooth=4) * 1.3) if lips else 0.0
         mouth = min(1.0, self.level(voice, self._treal) * 1.25) if lips else 0.0
         walk = val(a.get("walk", False), rel, norm)
+        run_ = bool(val(a.get("run", False), rel, norm))
+        walk, phase, gk = self.gait(a, sc, shot, rel, norm, bool(walk), run_)
         view = val(a.get("view", "front"), rel, norm)
         facing = val(a.get("facing", 1), rel, norm)
         spr, anc = render_char(a["char"], view=view, emotion=emo, pose=pose, t=t * a.get("_limp", 1.0), scale=scale, light=light,
-                               walk=bool(walk), run=bool(val(a.get("run", False), rel, norm)), look=val(a.get("look", 0), rel, norm),
+                               walk=bool(walk), run=run_, phase=phase, gait_k=gk, look=val(a.get("look", 0), rel, norm),
                                facing=facing, custom=({**(a.get("custom") or {}), **self.locked[a["char"]]} if a["char"] in self.locked
                                                       else (a.get("custom") or self.custom.get(a["char"]))), seed=a.get("seed"),
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
