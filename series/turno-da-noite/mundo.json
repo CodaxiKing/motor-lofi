@@ -1,14 +1,64 @@
 {
  "lugares": {
-  "loja": {"cenarios": ["loja", "deposito", "camara_fria", "cftv", "mercado"], "nota": "Conveniência Estrela 24h por dentro: salão com caixa, corredores das prateleiras (mercado), depósito dos fundos com o gerador e a câmara fria"},
-  "posto": {"cenarios": ["posto"], "nota": "área das bombas e fachada da loja, km 317 da rodovia"},
-  "rodovia": {"cenarios": ["rua", "carro"], "nota": "a rodovia escura em frente ao posto (só no final B)"}
+  "loja": {
+   "cenarios": [
+    "loja",
+    "deposito",
+    "camara_fria",
+    "cftv",
+    "mercado"
+   ],
+   "nota": "Conveniência Estrela 24h por dentro: salão com caixa, corredores das prateleiras (mercado), depósito dos fundos com o gerador e a câmara fria"
+  },
+  "posto": {
+   "cenarios": [
+    "posto"
+   ],
+   "nota": "área das bombas e fachada da loja, km 317 da rodovia"
+  },
+  "rodovia": {
+   "cenarios": [
+    "rua",
+    "carro"
+   ],
+   "nota": "a rodovia escura em frente ao posto (só no final B)"
+  }
  },
  "ligacoes": [
-  ["loja", "posto", "pela porta de vidro automática"],
-  ["posto", "rodovia", "pelo acostamento, saindo do posto"]
+  [
+   "loja",
+   "posto",
+   "pela porta de vidro automática"
+  ],
+  [
+   "posto",
+   "rodovia",
+   "pelo acostamento, saindo do posto"
+  ]
  ],
- "inicio": {"lugar": "loja", "noite": 1, "hora": "22:00", "inventario": {"davi": ["chave"]},
-            "nota": "Davi sozinho no caixa; a chave do cadeado da câmara fria fica com ele"},
- "fim": {}
+ "inicio": {
+  "lugar": "posto",
+  "noite": 1,
+  "hora": "22:00",
+  "inventario": {
+   "davi": [
+    "chave"
+   ]
+  },
+  "nota": "Davi chega ao posto às 22h e entra na loja; a chave do cadeado da câmara fria fica com ele"
+ },
+ "fim": {
+  "1": {
+   "lugar": "loja",
+   "inventario": {
+    "davi": [
+     "chave"
+    ]
+   },
+   "dia": 1,
+   "hora": "03:07",
+   "rotulo": "NOITE",
+   "nota": "Davi atrás do caixa; o Bento no balcão pediu 'o de sempre' e o vulto de chapéu está na porta de vidro"
+  }
+ }
 }

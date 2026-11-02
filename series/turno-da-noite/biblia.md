@@ -36,14 +36,15 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 ## Finais
 - A — O FUNCIONÁRIO DO MÊS (voto A no ep. 4, religar o gerador): a luz volta às 3h32, o Cliente é empurrado de volta para a câmara fria e o sol nasce. Se o Ivo foi solto no ep. 2, ele assume o turno e Davi vai embora livre ao amanhecer; se não, Davi assina o contrato do Instituto e escreve a regra 8 na folha. Última imagem: a foto dele no quadro "funcionário do mês".
 - B — A LOJA FECHOU (voto B no ep. 4, ficar parado no escuro): Davi não se mexe, o Cliente passa ao lado dele e sai pela porta de vidro. Pela primeira vez o letreiro "24H" apaga. Na rodovia, todas as placas de lojas 24h piscam às 3h33. "A loja fechou. O mundo, não."
+- Ep. 1 (voto FECHADO): o Bento esperou do lado de fora até 3h33 e sumiu; o Cliente sabe que o Davi conhece as regras e troca de disfarce (o Bento não volta).
 - Ep. 2: abrir a câmara fria → Ivo sai (fraco, congelado) e passa a ajudar, mas o Cliente ganha uma noite a mais de liberdade (o relógio pula para 3h00 mais cedo no ep. 3); ligar para a gerente → Sônia aparece no ep. 3 e o Ivo continua preso.
 - Ep. 3: confiar na Sônia → o Instituto orienta Davi pelo telefone fixo no ep. 4 e 5; confiar no Ivo → o Ivo conta a "regra zero" (que não está na folha) e ela decide o confronto com o duplo no ep. 5.
 
 ## Episódios
 | Nº | Noite | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 1 | início | montado | A) Atender · B) Dizer que está fechado | (aguardando) | |
-| 2 | 2 | complicação | planejado | A) Abrir a câmara fria · B) Ligar pra gerente | | |
+| 1 | 1 | início | montado | A) Atender · B) Dizer que está fechado | FECHADO (B) | |
+| 2 | 2 | complicação | roteiro | A) Abrir a câmara fria · B) Ligar pra gerente | | |
 | 3 | 3 | reviravolta | planejado | A) Confiar na Sônia · B) Confiar no Ivo | | |
 | 4 | 4 | clímax | planejado | A) Religar o gerador · B) Ficar parado no escuro | | |
 | 5 | 5 | final | planejado | — | | |

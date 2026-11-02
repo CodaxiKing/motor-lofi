@@ -73,7 +73,7 @@ class Episode:
         # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
-        self._hook_end = max([s["end"] for s in self.shots if s.get("hook")] or [0.0])
+        self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") == "recap" and s["start"] < 12)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
             ls = {"start": t0, "end": round(t0 + 0.5, 3), "type": "loop"}

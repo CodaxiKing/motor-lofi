@@ -79,13 +79,21 @@ def _ep_num(caminho):
     return int(m.group(1)) if m else None
 
 
+def _momento(rotulo, d, hhmm):
+    """Minutos desde o começo da série. Numa NOITE, a madrugada (antes do meio-dia) vem depois das 22h da mesma noite."""
+    t = _minutos(d, hhmm)
+    if str(rotulo).upper() == "NOITE" and int(str(hhmm).split(":")[0]) < 12: t += 1440
+    return t
+
+
 def percorrer(txt, mundo, inicio=None):
     """Anda pelo roteiro cena a cena. Devolve (erros, estado_final)."""
     erros = []
     est = json.loads(json.dumps(inicio or {}))
     inv = {k: list(v) for k, v in est.get("inventario", {}).items()}
-    atual = est.get("lugar"); relogio = _minutos(est["dia"], est["hora"]) if est.get("dia") and est.get("hora") else None
-    mais_tarde = None; viu_relogio = False; primeira = True; dia_hora = (est.get("dia"), est.get("hora"))
+    rot0 = est.get("rotulo") or ("NOITE" if est.get("noite") else "DIA"); d0 = est.get("dia") or est.get("noite")
+    atual = est.get("lugar"); relogio = _momento(rot0, d0, est["hora"]) if d0 and est.get("hora") else None
+    mais_tarde = None; viu_relogio = False; primeira = True; dia_hora = (d0, est.get("hora")); rotulo = rot0
     for n, corpo in cenas(txt):
         if n == 0: continue                                                        # gancho é flash-forward
         for quem, item in re.findall(r"PEGA\s*:\s*`?(\w+)`?\s+`?(\w+)`?", corpo, re.I):
@@ -94,15 +102,15 @@ def percorrer(txt, mundo, inicio=None):
             if item.lower() in inv.get(quem.lower(), []): inv[quem.lower()].remove(item.lower())
         if re.search(r"`relogio`|O TEMPO PASSA", corpo, re.I): viu_relogio = True
         insercao = bool(re.search(r"INSER[ÇC][ÃA]O", corpo, re.I))
-        for d, h, mi in re.findall(r"DIA\s*(\d+)\s*[·\-,]?\s*(\d{1,2}):(\d{2})", corpo):
-            t = _minutos(d, f"{h}:{mi}")
+        for rot, d, h, mi in re.findall(r"(DIA|NOITE)\s*(\d+)\s*[·\-,]?\s*(\d{1,2}):(\d{2})", corpo):
+            t = _momento(rot, d, f"{h}:{mi}")
             if relogio is not None and not insercao:
                 if t < relogio:
-                    erros.append(f"CENA {n}: o relógio voltou no tempo (DIA {d} {h}:{mi} depois de DIA {dia_hora[0]} {dia_hora[1]})")
+                    erros.append(f"CENA {n}: o relógio voltou no tempo ({rot} {d} {h}:{mi} depois de {rotulo} {dia_hora[0]} {dia_hora[1]})")
                 elif t - relogio > JANELA_H and not viu_relogio:
                     erros.append(f"CENA {n}: pulo de {(t - relogio) // 60} h sem mostrar o tempo passando. Ponha antes um "
                                  f"PLANO DE DETALHE `relogio` (ou a linha \"O TEMPO PASSA\")")
-            if not insercao: relogio = t; dia_hora = (int(d), f"{int(h):02d}:{mi}"); viu_relogio = False
+            if not insercao: relogio = t; dia_hora = (int(d), f"{int(h):02d}:{mi}"); viu_relogio = False; rotulo = rot
             elif relogio is None or t > (mais_tarde[0] if mais_tarde else relogio): mais_tarde = (t, (int(d), f"{int(h):02d}:{mi}"))
         m = re.search(r"CEN[AÁ]RIO[^:\n]*:\**\s*`([^`]+)`", corpo, re.I)
         if not m: continue
@@ -129,7 +137,7 @@ def percorrer(txt, mundo, inicio=None):
         atual = novo; primeira = False
     fim = {"lugar": atual, "inventario": inv}
     if mais_tarde and (relogio is None or mais_tarde[0] > relogio): dia_hora = mais_tarde[1]   # o dia chegou numa inserção
-    if dia_hora[0]: fim["dia"], fim["hora"] = dia_hora
+    if dia_hora[0]: fim["dia"], fim["hora"] = dia_hora; fim["rotulo"] = rotulo
     return erros, fim
 
 
@@ -138,14 +146,14 @@ def conferir(caminho, txt=None):
     pasta = os.path.dirname(os.path.abspath(caminho)); mundo = carregar(pasta)
     if not mundo: return []
     txt = txt if txt is not None else open(caminho, encoding="utf-8").read()
-    n = _ep_num(caminho); inicio = mundo.get("fim", {}).get(str(n - 1)) if n else None
+    n = _ep_num(caminho); inicio = (mundo.get("fim", {}).get(str(n - 1)) or (mundo.get("inicio") if n == 1 else None)) if n else None
     erros, _ = percorrer(txt, mundo, inicio)
     return erros
 
 
 def fechar(caminho):
     pasta = os.path.dirname(os.path.abspath(caminho)); p = os.path.join(pasta, "mundo.json"); mundo = carregar(pasta)
-    n = _ep_num(caminho); inicio = mundo.get("fim", {}).get(str(n - 1))
+    n = _ep_num(caminho); inicio = mundo.get("fim", {}).get(str(n - 1)) or (mundo.get("inicio") if n == 1 else None)
     erros, fim = percorrer(open(caminho, encoding="utf-8").read(), mundo, inicio)
     mundo.setdefault("fim", {})[str(n)] = fim
     json.dump(mundo, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
