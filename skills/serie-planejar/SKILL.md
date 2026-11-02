@@ -16,13 +16,13 @@ Mapa da cidade em `mundo.json` (lugares, cenários de cada lugar, ligações e o
 2. Senão, faça as perguntas de escolha com AskUserQuestion (uma única chamada):
    - Quantos episódios? (5 (Recomendado) · 3 · 8 · 10)
    - Gênero? (Suspense/Terror · Mistério/Policial · Comédia/Romance · Fantasia) — o usuário pode digitar outro
-   - Duração por episódio? (2–3 min (Recomendado) · 3–4 min · 4 min ou mais); nunca menos de 2 min
+   - Formato das vozes? (Com falas dos personagens (Recomendado) · 100% narrado: um narrador conta tudo, sem falas dos personagens)
    - Estilo do traço? (Desenhado à mão (Recomendado) · Liso)
-3. Na mesma resposta, peça em texto livre, numa lista curta: **ideia da história** (obrigatório), protagonista (nome, jeito, roupa marcante, tipo de corpo), cenário/época, elemento fixo na tela e classificação ("todas as idades" ou "14+") (opcionais; o que ficar em branco você decide).
+3. Na mesma resposta, peça em texto livre, numa lista curta: **ideia da história** (obrigatório), protagonista (nome, jeito, roupa marcante, tipo de corpo), cenário/época, elemento fixo na tela, classificação ("todas as idades" ou "14+"), duração se não for 2–3 min e, no formato 100% narrado, quem narra (um narrador de fora, em 3ª pessoa, ou o protagonista, em 1ª pessoa) (opcionais; o que ficar em branco você decide).
 4. Não pergunte nada além disso. Se o usuário não estiver presente, decida e diga o que decidiu.
 
 ## Entregar
 1. O plano completo da série, com gancho de abertura e cor dominante por episódio.
 2. A capa 1080×1920 no estilo do motor (personagens e cenário da série, título, contador "DIA 0").
-3. Anexe e clone o repositório (`add_repo`: CodaxiKing / motor-lofi, access push), crie `series/<nome-curto>/biblia.md` no formato de `series/dia-zero/biblia.md` (classificação, estilo do traço, cor de cada episódio, tabela de episódios com status "planejado" e coluna de placar, resumos vazios) e `series/<nome-curto>/personagens.json` com as fichas (campos de `SPEC.md`, incluindo `body`), inclua na bíblia as tabelas `## Personagens (motivação e voz)` (DESEJO, MEDO, SEGREDO e JEITO DE FALAR de cada personagem importante, inclusive o vilão) e `## Pistas` (pistas que levam às revelações e aos finais, com o episódio em que são plantadas e pagas), e faça cada pergunta A/B custar algo dos dois lados (GANHA/PERDE). Crie cenários novos no motor se a história precisar, commit e push.
+3. Anexe e clone o repositório (`add_repo`: CodaxiKing / motor-lofi, access push), crie `series/<nome-curto>/biblia.md` no formato de `series/dia-zero/biblia.md` (classificação, linha `Formato: com falas` ou `Formato: 100% narrado (narrador em 3ª pessoa | <protagonista> em 1ª pessoa)`, estilo do traço, cor de cada episódio, tabela de episódios com status "planejado" e coluna de placar, resumos vazios) e `series/<nome-curto>/personagens.json` com as fichas (campos de `SPEC.md`, incluindo `body`), inclua na bíblia as tabelas `## Personagens (motivação e voz)` (DESEJO, MEDO, SEGREDO e JEITO DE FALAR de cada personagem importante, inclusive o vilão) e `## Pistas` (pistas que levam às revelações e aos finais, com o episódio em que são plantadas e pagas), e faça cada pergunta A/B custar algo dos dois lados (GANHA/PERDE). Crie cenários novos no motor se a história precisar, commit e push.
 4. Linha final: "Próximo passo: /serie-roteiro".

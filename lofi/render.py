@@ -73,7 +73,9 @@ class Episode:
         # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
-        fx.set_efeitos(sp.get("efeitos", "leve"))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
+        fx.set_efeitos(sp.get("efeitos", "leve"))
+        # 100% narrado: só o narrador fala; ninguém mexe a boca e a voz é de estúdio (sem eco do lugar)
+        self.narrado = bool(sp.get("narrado", False))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
         self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
@@ -134,6 +136,7 @@ class Episode:
         clips = []
         for c in self.clips:
             c = dict(c)
+            if self.narrado and "acoustic" not in c and not c.get("radio"): c["acoustic"] = None
             if "acoustic" not in c and self.spec.get("acoustics", True):
                 sh = next((s for s in self.shots if s["start"] <= c["at"] + 0.3 < s["end"]), None)
                 if sh and sh.get("type", "scene") == "scene" and sh.get("scene") in scenes.REGISTRY:
@@ -295,7 +298,7 @@ class Episode:
         if emo_dt < 0.25: pop = 1 + 0.07 * (1 - emo_dt / 0.25)
         scale = base_scale * z * pop
         voice = a.get("voice", a["char"])
-        lips = a.get("lipsync", True)
+        lips = a.get("lipsync", not self.narrado)
         gesture = val(a.get("gesture"), rel, norm)
         if lips and a.get("gestures", self.spec.get("gestures", True)) and pose == "idle" and not a.get("_crowd"):
             g = self.speech_gesture(voice, self._treal)

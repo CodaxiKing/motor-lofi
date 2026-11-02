@@ -22,6 +22,12 @@ def check(path, frames=True):
     def regra_aviso(m): probs.append(("INFO" if legado else "AVISO", m + (" (episódio legado)" if legado else "")))
     shots = ep.shots
     formato = sp.get("formato", "episodio")
+    if sp.get("narrado"):   # 100% narrado: uma voz só (o narrador) e ninguém mexendo a boca
+        vozes = set((sp.get("voices") or {}).keys())
+        if len(vozes) > 1: err(f"episódio 100% narrado com {len(vozes)} vozes ({', '.join(sorted(vozes))}): use só o áudio do narrador")
+        for s in shots:
+            for a in s.get("actors", []):
+                if a.get("lipsync"): warn(f"{a['char']} com lipsync em {s['start']}s num episódio narrado (ninguém fala em cena)")
     # ---------- estrutura ----------
     if formato == "comentarios":   # vídeo de resposta a comentários (skill serie-comentarios)
         if not (20 <= ep.total <= 90): warn(f"duração {ep.total:.0f}s fora do padrão de 20–90 s")

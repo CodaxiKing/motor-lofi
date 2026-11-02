@@ -3,7 +3,7 @@ name: "serie-lofi-interativa"
 description: "Planejar, roteirizar e montar episódios de séries interativas em vídeo vertical (estilo lo-fi, \"escolha o caminho\") com o motor lo-fi do GitHub, a partir das vozes do usuário."
 ---
 
-# Série lo-fi interativa (v11)
+# Série lo-fi interativa (v12)
 
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
@@ -56,7 +56,8 @@ Quando o usuário mandar a ideia, entregue:
 7. Som assinatura e regras do universo
 8. **Personagens com vontade própria:** na bíblia, uma tabela `## Personagens (motivação e voz)` com DESEJO (o que quer), MEDO, SEGREDO e JEITO DE FALAR (ritmo, gírias, bordão) de cada personagem importante; o vilão também. E uma tabela `## Pistas` (pista · plantada em · paga em · status) com as pistas que levam às revelações e aos finais.
 9. **Escolhas com custo:** cada pergunta A/B do plano custa algo dos dois lados (o que cada opção GANHA e PERDE); evite escolhas de caminho sem perda ("escada ou telhado").
-10. Classificação: "todas as idades" (padrão: sem sangue, sustos sem violência explícita) ou "14+" (violência leve, sem gore). Registre na primeira linha da bíblia e respeite em todos os roteiros.
+10. **Formato das vozes:** "com falas" (padrão: cada personagem tem sua voz) ou "100% narrado" (um narrador conta tudo, em 3ª pessoa ou na voz do protagonista em 1ª pessoa; ninguém fala em cena). Registre na linha `Formato:` da bíblia.
+11. Classificação: "todas as idades" (padrão: sem sangue, sustos sem violência explícita) ou "14+" (violência leve, sem gore). Registre na primeira linha da bíblia e respeite em todos os roteiros.
 Salve tudo em `series/<nome>/biblia.md` (formato de `series/dia-zero/biblia.md`), as fichas em `series/<nome>/personagens.json` e o mapa em `series/<nome>/mundo.json` (formatos de `series/dia-zero/`) e faça push.
 
 ## 2. Roteiro do episódio
@@ -72,6 +73,7 @@ Salve tudo em `series/<nome>/biblia.md` (formato de `series/dia-zero/biblia.md`)
 - **Pergunta do meio:** até 7 palavras, resposta curta (sim/não ou "X ou Y"), que divida opiniões ("VOCÊ CONFIARIA NO IVO?").
 - **Escolha com custo:** em "O que acontece em cada opção", escreva `GANHA:` e `PERDE:` para A e para B.
 - **Pensamentos e planos na tela:** pelo menos uma cena por episódio mostra o que se passa na cabeça de alguém, em vez de narrar. Uma linha `PENSAMENTO:` com o personagem entre crases, o estilo (lembrança, imaginação ou medo) e o que aparece no balão (close do personagem embaixo e um balão de pensamento com a cena: uma lembrança que explica um motivo, o que ele imagina que vai acontecer, o medo dele). `O PLANO:` quando alguém decide uma estratégia (mapa desenhado com os lugares, setas do caminho, passos numerados, as cabecinhas dos personagens andando e um X vermelho em cada perigo); escreva os passos (até 4, curtos), os lugares e os perigos. A fala dessas cenas é o pensamento ou a explicação do plano, em poucas palavras. No JSON: `"type": "pensamento"` e `"type": "plano"` (ver SPEC "Pensamento e plano").
+**Formato 100% narrado (quando a bíblia diz):** nenhum personagem fala; o que seria diálogo vira NARRAÇÃO (o narrador conta o que foi dito e sentido: "a Sônia mandou ele assinar. Ele não conseguia tirar os olhos do vidro.") ou imagem (bilhete, tela do celular, gesto, expressão). Toda cena tem NARRAÇÃO (ou "sem narração" quando a imagem conta tudo), no máximo ~2,6 palavras por segundo; a regra de 1,3 palavra/s não vale. As cenas de PENSAMENTO e O PLANO combinam bem com esse formato. ElevenLabs: um bloco só (o narrador, com dica de voz). No JSON: `"narrado": true` e uma voz só; o motor fecha a boca de todos e tira o eco do lugar da voz. O validador recusa fala de personagem nesse formato.
 **Fluxo sem pulos (obrigatório):** cada cena começa exatamente onde a anterior terminou: mesmo lugar, mesma hora (ou um salto mostrado), mesmas pessoas no mesmo estado (cansada, ferida, molhada, com o objeto na mão). Quem chega numa cena ganha uma linha `ENTRA: <personagem> <de onde vem>`; quem vai embora, `SAI: <personagem> <para onde>`; mudança de lugar, `LIGAÇÃO:`. A ação da cena anterior termina antes da próxima começar (porta aberta continua aberta, quem caiu se levanta em cena). A fala de cada cena cabe no tempo dela (no máximo ~3 palavras por segundo). O gancho mostra um momento que acontece de verdade mais adiante.
 Use a bíblia, a classificação da série e o resultado da votação. Estrutura obrigatória:
 - **CENA 0 · GANCHO (0–2 s):** flash-forward do momento mais forte do episódio + frase curta de impacto em caixa alta (máx. 4 palavras por linha). Sem contador.

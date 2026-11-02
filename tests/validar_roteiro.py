@@ -113,6 +113,42 @@ def conferir_continuidade(txt, cat):
     return erros
 
 
+def eh_narrado(txt, caminho=None):
+    """Formato 100% narrado: escrito no cabeçalho do roteiro ou na bíblia da série ("100% narrado")."""
+    if re.search(r"100\s*%\s*narrad", txt[:3000], re.I): return True
+    if caminho:
+        b = os.path.join(os.path.dirname(os.path.abspath(caminho)), "biblia.md")
+        if os.path.exists(b) and re.search(r"^Formato[^\n]*100\s*%\s*narrad", open(b, encoding="utf-8").read(), re.I | re.M): return True
+    return False
+
+
+def conferir_narrado(txt, caminho=None):
+    """100% narrado: só NARRAÇÃO fala; nenhuma fala de personagem; um bloco do ElevenLabs (o narrador)."""
+    erros, avisos = [], []
+    pasta = os.path.dirname(os.path.abspath(caminho)) if caminho else "."
+    nomes = set()
+    pj = os.path.join(pasta, "personagens.json")
+    if os.path.exists(pj):
+        nomes = {k.upper() for k in json.load(open(pj, encoding="utf-8")) if not k.startswith("_")}
+    corpo = re.split(r"^#+\s*NARRA[ÇC][ÃA]O PARA O ELEVENLABS", txt, flags=re.M | re.I)
+    cenas, eleven = corpo[0], (corpo[1] if len(corpo) > 1 else "")
+    for linha in cenas.split("\n"):
+        m = re.match(r"^\s*\**([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{1,24})\**\s*(\([^)]*\))?\s*:\s*(.*\S)", linha)
+        if not m: continue
+        rot = sem_acento(m.group(1).strip()).upper()
+        if rot in nomes or rot.split()[0] in nomes:
+            erros.append(f"fala de personagem no formato 100% narrado: '{linha.strip()[:70]}' (passe para a NARRAÇÃO ou para a imagem)")
+    blocos = [b.strip().lower() for b in re.findall(r"^###\s*(.+)$", eleven, re.M)]
+    if len(blocos) > 1:
+        avisos.append(f"formato 100% narrado com {len(blocos)} blocos no ElevenLabs ({', '.join(blocos)}): use um bloco só, o do narrador")
+    partes = re.split(r"^#+\s*(CENA\s+\d+[^\n]*)$", txt, flags=re.M)
+    for k in range(1, len(partes) - 1, 2):
+        n = int(re.search(r"CENA\s+(\d+)", partes[k]).group(1))
+        if n and not re.search(r"^\s*NARRA[ÇC][ÃA]O", partes[k + 1], re.M | re.I) and not re.search(r"silêncio|sem fala|sem narra", partes[k + 1], re.I):
+            avisos.append(f"CENA {n} sem NARRAÇÃO (no formato narrado, cena muda só se a imagem contar tudo; escreva 'sem narração')")
+    return erros, avisos
+
+
 def validar_extra(txt, caminho=None):
     """Episódio extra de curiosidades: 45–100 s, gancho, 5+ cenas, sem votação, chamada para o episódio/votação."""
     erros, avisos = [], []
@@ -133,6 +169,8 @@ def validar_extra(txt, caminho=None):
     if cat is None: avisos.append(motivo)
     else:
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
+    if eh_narrado(txt, caminho):
+        e, a = conferir_narrado(txt, caminho); erros += e; avisos += a
     return erros, avisos
 
 
@@ -205,7 +243,7 @@ def conferir_fluxo(txt, caminho=None):
     return erros, avisos
 
 
-def conferir_retencao(txt, final=False):
+def conferir_retencao(txt, final=False, narrado=False):
     """Prende quem assiste: gancho escolhido entre 3, virada a cada <=30 s, pouca narração, escolha com custo, consequência
     do voto logo na 1ª cena, motivação dos personagens, pistas plantadas/pagas, pergunta do meio curta e fim em suspense."""
     av = []
@@ -231,8 +269,9 @@ def conferir_retencao(txt, final=False):
             av.append("a CENA 1 precisa de uma linha CONSEQUÊNCIA: mostrando algo concreto que mudou por causa do voto")
         dur = max(1.0, cenas[-1][2] - cenas[0][1])
         narr = sum(len(re.sub(r"\[[^\]]*\]", "", m).split()) for m in re.findall(r"^\s*NARRA[ÇC][ÃA]O[^:]*:\s*(.+)$", txt, re.M))
-        if narr / dur > 1.3:
-            av.append(f"narração demais ({narr} palavras em {dur:.0f} s): narre só o que a imagem não mostra (pensamento, medo, memória); o resto vira ação, som e rosto")
+        if narr / dur > (2.6 if narrado else 1.3):
+            av.append(f"narração demais ({narr} palavras em {dur:.0f} s): narre só o que a imagem não mostra (pensamento, medo, memória); o resto vira ação, som e rosto"
+                      if not narrado else f"narração rápida demais para o formato narrado ({narr} palavras em {dur:.0f} s): no máximo ~2,6 palavras por segundo")
     if not re.search(r"^\s*(PENSAMENTO|O PLANO)\s*:", txt, re.M | re.I):
         av.append("nenhuma cena de PENSAMENTO (balão com lembrança, imaginação ou medo) ou O PLANO (mapa desenhado com setas e passos): "
                   "mostre pelo menos uma vez o que o personagem pensa ou planeja, em vez de narrar")
@@ -283,7 +322,10 @@ def validar(txt, final=False, caminho=None):
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
         erros += conferir_continuidade(txt, cat)
     e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
-    avisos += conferir_retencao(txt, final)
+    narrado = eh_narrado(txt, caminho)
+    avisos += conferir_retencao(txt, final, narrado)
+    if narrado:
+        e, a_ = conferir_narrado(txt, caminho); erros += e; avisos += a_
     if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)
         from lofi.continuidade import conferir as conferir_mundo
         erros += conferir_mundo(caminho, txt)

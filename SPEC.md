@@ -471,3 +471,10 @@ lugar de ninguém). O validador avisa se o episódio não tiver nenhuma das duas
 A tela de escolha A/B mostra no alto (abaixo da área dos botões das redes) o selo "SIGA PARA ACOMPANHAR AS HISTÓRIAS", que entra
 0,5 s depois do começo da escolha e fica até o fim. Troque o texto com `"seguir": "..."` no plano `choice` ou no topo do episódio;
 `"seguir": false` tira.
+
+## Formato 100% narrado
+`"narrado": true` no topo do episódio: só o narrador fala (uma voz, ex.: `"voices": {"narrador": "ep03/narrador.mp3"}`); ninguém mexe
+a boca nem faz gesto de fala (um ator pode ligar com `"lipsync": true`, ex.: uma TV), e a voz sai limpa, sem o eco do lugar (rádio
+continua com `"radio": true`). O `lofi.check` recusa mais de uma voz. No roteiro, a linha `Formato: 100% narrado (...)` da bíblia
+(ou do cabeçalho) liga as regras do validador: fala de personagem é ERRO, toda cena tem NARRAÇÃO, até ~2,6 palavras/s, ElevenLabs
+com um bloco só. O dossiê de contexto (`lofi.contexto`) ganha a seção "FORMATO 100% NARRADO".
