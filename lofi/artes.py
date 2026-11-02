@@ -43,7 +43,6 @@ def _fundo_cena(dados, escurece=0.6, blur=10):
             sc = scenes.get(cena)
             img = sc.render_back(0.0, 0.0, {}) if hasattr(sc, "render_back") else None
             if img is not None:
-                img = sc.crop(img, 0.0) if hasattr(sc, "crop") else img
                 img = img.convert("RGB").resize((W, H)).filter(ImageFilter.GaussianBlur(blur))
                 return Image.blend(img, Image.new("RGB", (W, H), (6, 8, 16)), escurece)
         except Exception:
