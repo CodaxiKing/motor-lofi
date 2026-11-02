@@ -488,6 +488,7 @@ class Episode:
         sc = scenes.get(shot["scene"], "frente" if tdir in ("frente", "fundo") else bool(trav))
         rel = t - shot["start"]; norm = c01(rel / max(1e-6, shot["end"] - shot["start"]))
         props = {k: val(v, rel, norm) for k, v in shot.get("props", {}).items()}
+        props["_vida"] = shot.get("vida", self.spec.get("vida", True))
         if trav:
             from .travelling import posicao
             tv = dict(trav) if isinstance(trav, dict) else {"speed": trav}

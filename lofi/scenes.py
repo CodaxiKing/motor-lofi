@@ -51,6 +51,8 @@ class Scene:
     acoustic = "aberto"                      # som do lugar na voz: aberto, sala, media, grande, abafado
     def __init__(self):
         self.back, self.mid, self.front = self.build()
+        from . import cenario_vivo
+        cenario_vivo.objetos(self); cenario_vivo.acabamento(self)
     def build(self): raise NotImplementedError
     def scale_at(self, y):
         y0, y1, s0, s1 = self.ground
@@ -78,6 +80,8 @@ class Scene:
         if self.mid is not None:
             m = self.crop(self.mid, camx, self.depths[1]); img.paste(m, (0, 0), m)
         self.dynamic(img, t, camx, props)
+        from . import cenario_vivo
+        cenario_vivo.vida(self, img, t, camx, props, props.get("_vida", True))
         return img
     def render_front(self, img, t, camx, props, flashes):
         zc = getattr(self, "_cam", None)

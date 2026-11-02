@@ -408,3 +408,13 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
   aos trancos com o corpo para a frente; de frente, os braços ficam soltos e balançam atrasados.
 - **Começar e parar:** quando `walk` muda nos keyframes, o passo entra em ~0,2 s e sai em ~0,3 s (sem tranco). Agachar, sentar e pular
   descem/sobem o corpo com suavidade. Personagens são desenhados a 30 quadros por segundo (antes 15).
+
+## Cenários vivos (automático) — `lofi/cenario_vivo.py`
+- **Acabamento:** textura leve de papel no fundo de todos os cenários, teto mais escuro nos internos e sombra de contato onde a
+  parede reta encontra o chão (entrada, apartamento, depósito, delegacia, loja).
+- **Objetos novos:** entrada (capacho, quadro, interruptor, tênis), corredor (extintor, vaso com planta), telhado (ar-condicionado,
+  respiro, varal com roupas), rua e rua_amanhecer (sacos de lixo, hidrante, cartaz no poste).
+- **Vida por cenário:** mariposas nas lâmpadas, lâmpadas que falham, gotas pingando com respingo, vapor subindo (bueiro, esgoto,
+  câmara fria), vaga-lumes na floresta, poeira na luz, papel voando na rua, moscas no lixo do beco, luz vermelha de antena/barreira
+  piscando e pássaros no amanhecer. Configuração em `VIDA` (coordenadas do cenário).
+- Desligar: `"vida": false` no plano ou no episódio; `"vida": {"vapor": false}` desliga só um efeito.
