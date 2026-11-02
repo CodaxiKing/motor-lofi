@@ -530,7 +530,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     sq = breath * 3
     st = cd["top_style"]
     coat = st in ("trench", "labcoat")
-    d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=(cd["inner"] if coat and not back else topc) + (255,), outline=OUT, width=6)
+    d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=(cd["inner"] if coat and not back and not side else topc) + (255,), outline=OUT, width=6)
     bot = cd["bottom"] if st != "dress" else "dress"
     if bot in ("skirt", "dress") and draw_pose not in ("sit", "chao", "fallen", "crawl"):
         sc_ = cd["skirt"] or (topc if bot == "dress" else legc); ln_ = 86 if bot == "skirt" else 150
@@ -539,6 +539,12 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         for k in (1, 2, 3): d.line([(tx0 + tw * k / 4, hip_y - 6), (tx0 + tw * k / 4 + (k - 2) * 18, hip_y + ln_ - 4)], fill=dark(sc_, 0.82) + (255,), width=3)
     if coat:
         ln_ = 170 if st == "trench" else 150
+        if draw_pose in ("sit", "chao"): ln_ = 34          # sentado: a barra do casaco fica no colo, sem atravessar as pernas
+    if coat and side:                                     # de lado: um painel só, fechado, sem a abertura da frente
+        d.polygon([(tx0 - 2, torso_top + 14), (tx0 + tw + 4, torso_top + 14), (tx0 + tw + 14, hip_y + ln_), (tx0 - 12, hip_y + ln_)], fill=topc + (255,), outline=OUT)
+        d.line([(tx0 + tw * 0.62, torso_top + 30), (tx0 + tw * 0.66 + 6, hip_y + ln_ - 4)], fill=dark(topc, 0.8) + (255,), width=4)
+        if st == "trench": d.rectangle([tx0 - 8, hip_y - 30, tx0 + tw + 8, hip_y - 14], fill=dark(topc, 0.7) + (255,))
+    elif coat:
         for sgn in (-1, 1):
             xa = cx + sgn * 16; xb = cx + sgn * (tw / 2 + 4)
             d.polygon([(xa, torso_top + 30), (xb, torso_top + 10), (xb + sgn * 22, hip_y + ln_), (xa + sgn * 6, hip_y + ln_)], fill=topc + (255,), outline=OUT)
@@ -570,26 +576,26 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         for _ in range(5):
             x0 = r.uniform(tx0 + 20, tx0 + tw - 30); y0 = r.uniform(torso_top + 40, hip_y - 30)
             d.polygon([(x0, y0), (x0 + 24, y0 + 8), (x0 + 8, y0 + 32), (x0 + 16, y0 + 14)], fill=dark(topc, 0.45) + (255,))
-    elif st == "scrubs" and not back:
+    elif st == "scrubs" and not back and not side:
         d.polygon([(cx - 40, torso_top + 4), (cx, torso_top + 60), (cx + 40, torso_top + 4)], fill=dark(topc, 0.8) + (255,))
     elif st == "uniform":
         d.rectangle([tx0 + 20, torso_top + 80, tx0 + tw - 20, torso_top + 96], fill=dark(topc, 0.7) + (255,))
-    elif st == "suit" and not back:
+    elif st == "suit" and not back and not side:
         d.polygon([(cx - 30, torso_top + 4), (cx, torso_top + 110), (cx + 30, torso_top + 4)], fill=(235, 235, 235, 255))
         d.polygon([(cx - 8, torso_top + 20), (cx + 8, torso_top + 20), (cx + 12, torso_top + 104), (cx, torso_top + 120), (cx - 12, torso_top + 104)], fill=cd["tie"] + (255,))
         for sgn in (-1, 1): d.polygon([(cx + sgn * 30, torso_top + 2), (cx + sgn * 6, torso_top + 116), (cx + sgn * 56, torso_top + 50)], fill=dark(topc, 0.8) + (255,), outline=OUT)
         for k in range(2): d.ellipse([cx - 6, hip_y - 70 + k * 30, cx + 6, hip_y - 58 + k * 30], fill=(20, 20, 20, 255))
-    elif st == "tshirt" and not back:
+    elif st == "tshirt" and not back and not side:
         d.arc([cx - 34, torso_top - 20, cx + 34, torso_top + 28], 20, 160, fill=dark(topc, 0.75) + (255,), width=5)
         d.ellipse([cx - 30, torso_top + 70, cx + 30, torso_top + 130], fill=dark(topc, 0.78) + (255,))
     elif st == "leather":
-        for sgn in (-1, 1): d.polygon([(cx + sgn * 20, torso_top + 4), (cx + sgn * 70, torso_top - 6), (cx + sgn * 40, torso_top + 70)], fill=dark(topc, 1.5) + (255,), outline=OUT)
+        for sgn in ((-1, 1) if not side else ()): d.polygon([(cx + sgn * 20, torso_top + 4), (cx + sgn * 70, torso_top - 6), (cx + sgn * 40, torso_top + 70)], fill=dark(topc, 1.5) + (255,), outline=OUT)
         d.line([(cx + 12, torso_top + 30), (cx + 12, hip_y + 8)], fill=(180, 180, 190, 255), width=4)
     elif st == "sweater":
         d.rectangle([tx0 + 4, hip_y - 22, tx0 + tw - 4, hip_y + 8], fill=dark(topc, 0.82) + (255,))
         for xx in range(int(tx0) + 14, int(tx0 + tw) - 8, 14): d.line([(xx, hip_y - 20), (xx, hip_y + 6)], fill=dark(topc, 0.65) + (255,), width=2)
         d.arc([cx - 40, torso_top - 24, cx + 40, torso_top + 30], 20, 160, fill=dark(topc, 0.75) + (255,), width=8)
-    elif st == "chef" and not back:
+    elif st == "chef" and not back and not side:
         for k in range(3):
             for sgn in (-1, 1): d.ellipse([cx + sgn * 26 - 6, torso_top + 40 + k * 44, cx + sgn * 26 + 6, torso_top + 52 + k * 44], fill=(60, 60, 60, 255))
     elif st == "dress" and not back:
@@ -598,11 +604,12 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     # acessórios no peito
     if not back:
         acc = cd["acc"]
+        if side: acc = [a_ for a_ in acc if a_ in ("badge",)]      # de lado: colar, gravata e estetoscópio ficariam no lugar errado
         if "necklace" in acc:
             d.arc([cx - 46, torso_top - 30, cx + 46, torso_top + 50], 30, 150, fill=(230, 200, 80, 255), width=4)
             d.ellipse([cx - 9, torso_top + 40, cx + 9, torso_top + 58], fill=(230, 200, 80, 255))
         if "badge" in acc:
-            bx, by = cx - 46, torso_top + 70
+            bx, by = (cx - 46 if not side else tx0 + tw - 34), torso_top + 70
             d.polygon([(bx + 16 * math.cos(math.radians(a_ * 72 - 90)) * (1 if k_ % 2 == 0 else 0.45), by + 16 * math.sin(math.radians(a_ * 72 - 90)) * (1 if k_ % 2 == 0 else 0.45))
                        for k_, a_ in enumerate([i * 0.5 for i in range(10)])], fill=(230, 190, 60, 255), outline=OUT)
         if "stethoscope" in acc:
@@ -624,6 +631,19 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.rounded_rectangle([cx - 40, torso_top + 100, cx + 40, torso_top + 170], 16, fill=dark(cd["backpack"], 0.88) + (255,), outline=OUT, width=4)
         elif not side:
             for xx in (cx - 50, cx + 50): d.line([(xx, torso_top + 10), (xx, torso_top + 190)], fill=cd["backpack"] + (255,), width=16)
+    # --- cachecol ---
+    if cd["scarf"]:
+        sc = cd["scarf"]
+        sx0_, sx1_ = (tx0 - 6, tx0 + tw + 6) if side else (cx - 82, cx + 82)
+        d.rounded_rectangle([sx0_, torso_top - 22, sx1_, torso_top + 32], 24, fill=sc + (255,), outline=OUT, width=6)
+        sw = math.sin(t * 3.1 + seed) * 8 * sway_k + (s * 14 if walk else 0)
+        if not back:
+            tx = cx - 50 if not side else tx0 + tw - 46          # de lado a ponta cai na frente do peito
+            d.polygon([(tx, torso_top + 20), (tx + 40, torso_top + 20), (tx + 44 + sw, torso_top + 110), (tx + 4 + sw, torso_top + 112)],
+                      fill=dark(sc, 0.92) + (255,), outline=OUT)
+            for k in range(3):
+                yy = torso_top + 48 + k * 20
+                d.line([(tx + 4 + sw * (yy - torso_top) / 110, yy), (tx + 40 + sw * (yy - torso_top) / 110, yy)], fill=dark(sc, 0.75) + (255,), width=3)
     # --- braços da frente ---
     if draw_pose == "cross" and not back and not side:
         d.rounded_rectangle([cx - 104, sh_y + 40, cx + 104, sh_y + 100], 28, fill=topc + (255,), outline=OUT, width=6)
@@ -680,18 +700,6 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         hx_, hy_ = arms[1][2]; dir_ = aim if aim is not None else 0.0
         if back and -120 < dir_ < -60: dir_ += 14          # de costas: o feixe sai para o lado da mão, sem cobrir a cabeça
         im.info["lanterna"] = (hx_ + math.cos(math.radians(dir_)) * 63, hy_ + math.sin(math.radians(dir_)) * 63, dir_, back)
-    # --- cachecol ---
-    if cd["scarf"]:
-        sc = cd["scarf"]
-        d.rounded_rectangle([cx - 82 + (hunch * 0.5 if side else 0), torso_top - 22, cx + 82, torso_top + 32], 24, fill=sc + (255,), outline=OUT, width=6)
-        sw = math.sin(t * 3.1 + seed) * 8 * sway_k + (s * 14 if walk else 0)
-        if not back:
-            tx = cx - 50 if not side else cx - 70
-            d.polygon([(tx, torso_top + 20), (tx + 40, torso_top + 20), (tx + 44 + sw, torso_top + 110), (tx + 4 + sw, torso_top + 112)],
-                      fill=dark(sc, 0.92) + (255,), outline=OUT)
-            for k in range(3):
-                yy = torso_top + 48 + k * 20
-                d.line([(tx + 4 + sw * (yy - torso_top) / 110, yy), (tx + 40 + sw * (yy - torso_top) / 110, yy)], fill=dark(sc, 0.75) + (255,), width=3)
     # --- cabeça ---
     hx, hy = head_c
     d.ellipse([hx - hr, hy - hr, hx + hr, hy + hr], fill=skin + (255,), outline=OUT, width=7)

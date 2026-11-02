@@ -77,7 +77,9 @@ class Episode:
         from .rig import set_estilo
         set_estilo(sp.get("style"))                  # "vetor": personagens sem contorno, sombra em duas tons
         # 100% narrado: só o narrador fala; ninguém mexe a boca e a voz é de estúdio (sem eco do lugar)
-        self.narrado = bool(sp.get("narrado", False))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
+        self.narrado = bool(sp.get("narrado", False))
+        # personagens maiores em relação ao cenário (1.0 = tamanho antigo; episódios "legado" ficam como eram)
+        self.k_pers = float(sp.get("escala_personagens", 1.0 if sp.get("legado") else 1.18))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
         self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
@@ -210,7 +212,7 @@ class Episode:
         x = val(a.get("x", 540), rel, norm)
         y = val(a.get("y", sc.ground[0] + (sc.ground[1] - sc.ground[0]) * 0.6), rel, norm)
         scale = val(a.get("scale"), rel, norm) or sc.scale_at(y) * a.get("scale_k", 1.0)
-        return x, y, scale
+        return x, y, scale * getattr(self, "k_pers", 1.0)
 
     def resolve_light(self, shot, sc, t):
         name = shot.get("light")
@@ -465,9 +467,10 @@ class Episode:
             x0 = wx - W / 2 / z; y0 = (y - h * 0.88) - 0.27 * H / z
         else:
             hmax = max(c[2] for c in caixas)
-            xa = min(c[0] for c in caixas) - 0.3 * hmax; xb = max(c[0] for c in caixas) + 0.3 * hmax
+            xa = min(c[0] for c in caixas) - 0.36 * hmax; xb = max(c[0] for c in caixas) + 0.36 * hmax
             top = min(c[1] - c[2] * 0.88 for c in caixas); bot = max(c[1] for c in caixas)
-            z = min(0.52 * H / max(1, bot - top), 0.98 * W / max(1, xb - xa), 3.0)
+            # o maior personagem ocupa ~60% da altura; quem está mais ao fundo não afasta a câmera além do necessário
+            z = min(0.60 * H / max(1, hmax), 0.70 * H / max(1, bot - top), 0.98 * W / max(1, xb - xa), 3.2)
             z = max(1.0, z) * push
             x0 = (xa + xb) / 2 - W / 2 / z; y0 = bot - 0.76 * H / z
         z *= val(cam.get("zoom_k", 1.0), rel, norm, 1.0)
@@ -897,6 +900,14 @@ class Episode:
         hits = [h for h in self._heads if h[1] > 120 and h[0] < W - 120 and h[2] < band[1] and h[3] > band[0]]
         if not hits: return y
         top = min(h[2] for h in hits); bot = max(h[3] for h in hits)
+        def livre(yy):    # nenhuma cabeça na faixa da legenda (cabeças em alturas diferentes: procura um vão)
+            return not any(h[1] > 120 and h[0] < W - 120 and h[2] < yy + 70 and h[3] > yy - 170 for h in self._heads)
+        def rosto_livre(yy):   # tolera passar no queixo/topo da cabeça, nunca nos olhos e na boca
+            return not any(h[1] > 160 and h[0] < W - 160 and h[2] + (h[3] - h[2]) * 0.3 < yy + 65 and h[3] > yy - 65 for h in self._heads)
+        cands = (top - 70, min(text.SAFE_Y_MAX, 1640, bot + 150), 1440, 1600, 1700, 900, 780)
+        for teste in (livre, rosto_livre):
+            for yy in cands:
+                if 760 <= yy <= text.SAFE_Y_MAX and teste(yy): return yy
         if top - 70 >= 760: return top - 70
         return min(text.SAFE_Y_MAX, 1640, bot + 150)
 
