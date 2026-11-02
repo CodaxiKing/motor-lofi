@@ -53,7 +53,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 ## Extras (curiosidades)
 | Nº | Depois do ep. | Tema | Status |
 |---|---|---|---|
-| 05 | 5 | O que aconteceu com a Lia? (as três batidas eram dela; continua presa no hospital) | roteiro |
+| 05 | 5 | O que aconteceu com a Lia? (as três batidas eram dela; continua presa no hospital) | montado |
 
 ## Vídeos de comentários
 | Nº | Depois do ep. | Comentários respondidos | Status |

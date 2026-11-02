@@ -55,6 +55,7 @@ def teaser(spec_path, video, out=None, end_text=None):
         _run(["ffmpeg", "-loglevel", "error", "-y", "-ss", f"{a:.2f}", "-t", f"{d:.2f}", "-i", video, "-vf", "scale=1080:1920,fps=30",
               "-c:v", "libx264", "-crf", "24", "-preset", "veryfast", "-c:a", "aac", "-ar", "44100", "-ac", "2", p])
     ep_n = spec.get("episode", ""); title = spec.get("series_title", "")
+    if spec.get("formato") == "extra": ep_n = ""; end_text = end_text or "EXTRA NO PERFIL"
     card = os.path.join(tmp, "card.png"); _card(card, [title or "NOVO EPISÓDIO", end_text or (f"EPISÓDIO {ep_n} NO PERFIL" if ep_n else "JÁ NO PERFIL")])
     cv = os.path.join(tmp, "card.mp4"); parts.append(cv)
     _run(["ffmpeg", "-loglevel", "error", "-y", "-loop", "1", "-t", "2.5", "-i", card, "-f", "lavfi", "-t", "2.5", "-i", "anullsrc=r=44100:cl=stereo",
@@ -133,6 +134,8 @@ def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False, camera=N
     n = sp.get("episode", "?"); tot = sp.get("episodes_total", "")
     if sp.get("formato") == "comentarios":
         lab = "VOCÊS COMENTARAM"; n = os.path.splitext(os.path.basename(spec_path))[0]
+    elif sp.get("formato") == "extra":
+        lab = "EXTRA"; n = os.path.splitext(os.path.basename(spec_path))[0]
     else:
         lab = f"EPISÓDIO {n}" + (f"/{tot}" if tot else "")
     fl = font("title", 76); bb = d.textbbox((0, 0), lab, font=fl); w = bb[2] - bb[0]
