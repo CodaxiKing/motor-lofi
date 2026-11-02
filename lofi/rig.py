@@ -114,6 +114,7 @@ POSES = {
     "cross":   ((-8, 6), (8, -6)),     # desenhado à parte
     "forward": ((-8, 6), (8, -6)),     # desenhado à parte (braços para a câmera)
     "sit":     ((-14, 40), (14, -40)),
+    "chao":    ((-22, 30), (22, -30)),      # sentado no chão, pernas esticadas
     "crouch":  ((-30, 60), (30, -60)),
     "run":     ((-8, 6), (8, -6)),
     "jump":    ((-150, 10), (150, -10)),
@@ -159,9 +160,11 @@ def _backout(x, c=1.6):
     x = max(0.0, min(1.0, x)); return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
 
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
-          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0):
+          pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0,
+          seat="banco"):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
+    if draw_pose in ("sit", "chao"): walk = False          # sentado não anda (mesmo com "walk" ligado no plano)
 
     im = Image.new("RGBA", (CW, CH), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     skin, top = cd["skin"], cd["top"]
@@ -193,8 +196,9 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     pant = emotion == "panting"
     breath = math.sin(t * 2 * math.pi / ((3.2 if not inf else 2.4) if not pant else 0.8) + seed) * breath_k * (3.2 if pant else 1)
     hunch = (14 if inf else 0) + HUNCH_ADD
+    chao = draw_pose == "chao"
     sit = draw_pose == "sit"; crouch = draw_pose in ("crouch", "hide"); jump = draw_pose == "jump"
-    _dz = lambda p_: {"sit": 110, "crouch": 70, "hide": 70, "jump": 50}.get(p_, 0)
+    _dz = lambda p_: {"chao": 186, "sit": 110, "crouch": 70, "hide": 70, "jump": 50}.get(p_, 0)
     desce = _dz(pose)
     if pose_prev and pk < 1.0: desce = _dz(pose_prev) + (_dz(pose) - _dz(pose_prev)) * _backout(pk, 0.6)   # agacha/levanta sem pulo
     hip_y = HIP_Y + bob + (1 - LEGK) * 202 + desce
@@ -229,9 +233,16 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     leg_pts = []
     for i in range(2):
         hp = hips[i]
-        if sit:
-            kn = (hp[0] + (-46 if i == 0 else 46) * (0.3 if view != "side" else 0) + (60 if view == "side" else 0), hp[1] + 24)
-            ft = (kn[0] + (0 if view != "side" else 10), kn[1] + 96)
+        sg = -1 if i == 0 else 1
+        if sit and view == "side":
+            kn = (hp[0] + 96, hp[1] + 6); ft = (kn[0] + 8, kn[1] + 108)
+        elif sit:
+            # de frente: coxa vem na direção da câmera (curta e larga), joelhos abertos, canela até o chão
+            kn = (hp[0] + sg * 22 + (16 if q3 else 0), hp[1] + 44); ft = (kn[0] + sg * 10 + (10 if q3 else 0), hp[1] + 128)
+        elif chao and view == "side":
+            kn = (hp[0] + 100, hp[1] + 4); ft = (hp[0] + 196, hp[1] + 10)
+        elif chao:
+            kn = (hp[0] + sg * 44 + (14 if q3 else 0), hp[1] + 22); ft = (hp[0] + sg * 70 + (22 if q3 else 0), hp[1] + 52)
         elif crouch:
             kn = (hp[0] + (-50 if i == 0 else 50), hp[1] + 60 * LEGK); ft = (hp[0] + (-28 if i == 0 else 28), hp[1] + 140 * LEGK)
         elif jump:
@@ -312,6 +323,20 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         arm(arms[0], dark(topc), 42 * LIMBK, dark(skin, 0.85))
     if back or (not side and pose not in ("cross", "forward")):
         pass
+    # --- assento (banco/caixa/cadeira) para "sit"; "nenhum" quando o cenário já tem onde sentar ---
+    if sit and seat and seat != "nenhum":
+        wood = {"banco": (122, 84, 52), "caixa": (150, 112, 64), "cadeira": (70, 74, 86)}.get(seat, (122, 84, 52))
+        sx0, sx1 = (cx - 118, cx + 118) if not side else (cx - 70, cx + 70)
+        ty = hip_y + 8
+        if seat == "cadeira" and not back:
+            d.rounded_rectangle([cx - 104, torso_top + 30, cx + 104, ty], 14, fill=dark(wood, 0.8) + (255,), outline=OUT, width=6)
+        if seat == "caixa":
+            d.rectangle([sx0, ty, sx1, FEET_Y + 16], fill=wood + (255,), outline=OUT, width=6)
+            for k in (1, 2): d.line([(sx0 + 6, ty + (FEET_Y + 16 - ty) * k / 3), (sx1 - 6, ty + (FEET_Y + 16 - ty) * k / 3)], fill=dark(wood) + (255,), width=4)
+        else:
+            for lx in ((sx0 + 16, sx1 - 16) if not side else (sx0 + 12, sx1 - 12)):
+                d.rectangle([lx - 9, ty + 10, lx + 9, FEET_Y + 18], fill=dark(wood) + (255,), outline=OUT, width=5)
+            d.rounded_rectangle([sx0, ty - 4, sx1, ty + 26], 8, fill=wood + (255,), outline=OUT, width=6)
     # --- pernas ---
     order = [0, 1] if not side else [0, 1]
     for i in order:
@@ -319,11 +344,21 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         bot = cd["bottom"] if cd["top_style"] != "dress" else "dress"
         base_leg = legc if bot == "pants" else (cd["tights"] or skin)
         col = base_leg if not (side and i == 0) else dark(base_leg)
-        _limb(d, [hp, kn, ft], col, (50 if bot == "pants" else 40) * LIMBK)
+        lw = (50 if bot == "pants" else 40) * LIMBK
+        if (sit or chao) and not side:
+            _limb(d, [hp, kn], dark(col, 0.92), lw * 1.22)                 # coxa vista de frente (vem para a câmera)
+            _limb(d, [kn, ft], col, lw)
+            d.ellipse([kn[0] - lw * 0.62, kn[1] - lw * 0.55, kn[0] + lw * 0.62, kn[1] + lw * 0.55], fill=col + (255,), outline=OUT, width=5)
+        else:
+            _limb(d, [hp, kn, ft], col, lw)
         if bot == "shorts":
             mid = (hp[0] + (kn[0] - hp[0]) * 0.75, hp[1] + (kn[1] - hp[1]) * 0.75)
             _limb(d, [hp, mid], legc if not (side and i == 0) else dark(legc), 54 * LIMBK)
         fx = 26 if side else 0
+        if chao and not side:
+            d.ellipse([ft[0] - 30, ft[1] - 38, ft[0] + 30, ft[1] + 30], fill=(shoe if i else dark(shoe, 0.9)) + (255,), outline=OUT, width=6)
+            d.ellipse([ft[0] - 18, ft[1] - 24, ft[0] + 18, ft[1] + 16], fill=dark(shoe, 0.7) + (255,))
+            continue
         d.rounded_rectangle([ft[0] - 36 + fx * 0.3, ft[1] - 16, ft[0] + 36 + fx, ft[1] + 22], 18,
                             fill=(shoe if not (side and i == 0) else dark(shoe)) + (255,), outline=OUT, width=6)
     # --- tronco ---
@@ -334,7 +369,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     coat = st in ("trench", "labcoat")
     d.rounded_rectangle([tx0, torso_top - sq, tx0 + tw, hip_y + 12], 62, fill=(cd["inner"] if coat and not back else topc) + (255,), outline=OUT, width=6)
     bot = cd["bottom"] if st != "dress" else "dress"
-    if bot in ("skirt", "dress") and draw_pose not in ("sit", "fallen", "crawl"):
+    if bot in ("skirt", "dress") and draw_pose not in ("sit", "chao", "fallen", "crawl"):
         sc_ = cd["skirt"] or (topc if bot == "dress" else legc); ln_ = 86 if bot == "skirt" else 150
         fl = 26 + (s * 8 if walk else 0)
         d.polygon([(tx0 + 4, hip_y - 14), (tx0 + tw - 4, hip_y - 14), (tx0 + tw + fl, hip_y + ln_), (tx0 - fl, hip_y + ln_)], fill=sc_ + (255,), outline=OUT)
@@ -724,7 +759,7 @@ _CACHE = {}
 _CACHE_PX = 0
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
-                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0):
+                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0, seat="banco"):
     """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés. phase = fase do passo (0–1, do deslocamento), gait_k = força do passo."""
     cd = char_def(name, custom)
     seed = seed if seed is not None else (sum(map(ord, name)) % 97)
@@ -733,10 +768,10 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
     qph = round((phase % 1.0) * 48) / 48 if (walk and phase is not None) else None
     qgk = round(gait_k * 8) / 8
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk)
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None)
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
-                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk)
+                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat=seat)
     k = 0.5 * scale * cd["scale"]
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)

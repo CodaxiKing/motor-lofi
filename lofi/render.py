@@ -317,7 +317,8 @@ class Episode:
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
                                viseme=self.viseme(voice, self._treal) if lips and view != "back" else 0, gesture=gesture,
                                pk=c01(pose_dt / 0.32) if pose_prev else 1.0, blink_force=emo_dt < 0.1,
-                               sniff=bool(val(a.get("sniff", False), rel, norm)), prop=val(a.get("prop"), rel, norm))
+                               sniff=bool(val(a.get("sniff", False), rel, norm)), prop=val(a.get("prop"), rel, norm),
+                               seat=a.get("assento", "banco"))
         rot = val(a.get("rot"), rel, norm)
         if rot is None: rot = {"fallen": 86, "crawl": 72}.get(pose, 0) * (1 if facing >= 0 else -1)
         if a.get("_carried"): rot = a["_carried"]

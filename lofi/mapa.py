@@ -31,7 +31,7 @@ MAPA = {
             "frente_porta": {"x": 690, "y": 1760, "nota": "de frente para a câmera, diante da porta"},
             "lado_esq": {"x": 300, "y": 1720, "nota": "perto do cabideiro"},
             "lado_dir": {"x": 950, "y": 1740},
-            "chao_porta": {"x": 430, "y": 1700, "pose": "sit", "nota": "sentada no chão encostada na parede"},
+            "chao_porta": {"x": 430, "y": 1700, "pose": "chao", "nota": "sentada no chão encostada na parede"},
         }},
     "corredor": {
         "chao": [(410, 1080), (670, 1080), (1050, 1900), (30, 1900)],
