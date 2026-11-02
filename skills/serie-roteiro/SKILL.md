@@ -11,7 +11,10 @@ Responda em português do Brasil.
 ## Dados
 1. Anexe e clone o repositório (`add_repo`: CodaxiKing / motor-lofi, access push) ou `git pull`; leia `series/*/biblia.md`. Se houver mais de uma série, pergunte qual (AskUserQuestion).
 2. Episódio: o primeiro da tabela com status "planejado".
-3. Pergunte o voto com AskUserQuestion usando as duas opções do episódio anterior registradas na bíblia. Se o usuário já disse o voto, não pergunte. No episódio 1 não há voto. Se o usuário informar o placar (ex.: 62% ou 340x210), registre também.
+3. Pergunte o voto num cartão (AskUserQuestion) usando as duas opções do episódio anterior registradas na bíblia (junto com a série, se houver mais de uma). Se o usuário já disse o voto, não pergunte. No episódio 1 não há voto. Se o usuário informar o placar (ex.: 62% ou 340x210), registre também.
+
+4. **Escolhas por cartão (padrão):** em cada etapa com opções, mostre um cartão de escolha (AskUserQuestion) em vez de decidir sozinho: até 4 perguntas por cartão, 2 a 4 opções cada, a recomendada primeiro com "(Recomendado)", e o usuário sempre pode digitar outra. Junte num cartão só as decisões da mesma etapa e não pergunte o que os argumentos já responderam. Se o usuário não estiver presente (comando agendado ou sem resposta), siga com as recomendadas e diga quais foram.
+5. **Cartão de escolhas (antes de escrever as cenas):** depois do dossiê e da ESCALETA rascunhada, mostre um cartão com: "Gancho do episódio?" (as 3 opções da seção GANCHOS, a mais estranha como recomendada, cada uma com uma linha do momento em que acontece), "Pergunta do meio?" (3 opções de até 7 palavras), "Tema do extra?" (3 curiosidades do público, ex.: "O que aconteceu com a Lia?") e, se a escaleta tiver um caminho em aberto, "Rumo do episódio?" (2 rumos, uma linha cada). Escreva o roteiro com o que foi escolhido.
 
 ## Regras
 - No mínimo 2 minutos, sem limite máximo; 12 cenas ou mais, de 6 a 14 s, pelo menos 3 momentos de tensão.

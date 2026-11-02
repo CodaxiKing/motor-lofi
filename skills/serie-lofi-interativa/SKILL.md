@@ -3,10 +3,11 @@ name: "serie-lofi-interativa"
 description: "Planejar, roteirizar e montar episódios de séries interativas em vídeo vertical (estilo lo-fi, \"escolha o caminho\") com o motor lo-fi do GitHub, a partir das vozes do usuário."
 ---
 
-# Série lo-fi interativa (v12)
+# Série lo-fi interativa (v13)
 
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
+**Escolhas por cartão (padrão):** em cada etapa com opções, mostre um cartão de escolha (AskUserQuestion) em vez de decidir sozinho: até 4 perguntas por cartão, 2 a 4 opções cada, a recomendada primeiro com "(Recomendado)", e o usuário sempre pode digitar outra. Junte num cartão só as decisões da mesma etapa e não pergunte o que os argumentos já responderam. Se o usuário não estiver presente (comando agendado ou sem resposta), siga com as recomendadas e diga quais foram. Os pontos de escolha de cada comando estão na skill do comando (/serie-planejar, /serie-roteiro, /serie-continuar, /serie-montar, /serie-aviso, /serie-agenda, /serie-comunidade).
 
 ## Motor e bíblia: repositório GitHub (nunca peça zip)
 - Repositório: https://github.com/CodaxiKing/motor-lofi (branch `main`).
