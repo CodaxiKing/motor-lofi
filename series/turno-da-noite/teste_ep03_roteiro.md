@@ -166,8 +166,9 @@ LEGENDA: NÃO OLHE / PARA ELE. / *ASSINE*, / E ELE VOLTA.
 ## CENA 12 — 95 s a 102 s · O crachá
 CENÁRIO: `loja` · NOITE 3 · 03:05
 PERSONAGENS: `davi` na marca `caixa`, `front`, segura o crachá do Instituto com a própria foto, emoção `shock`
-PLANO: `close` no crachá, depois no rosto do Davi · TRANSIÇÃO: `cut`
-LUZ E DETALHES: no crachá: "EMITIDO EM 02/10"
+PENSAMENTO: `davi` · lembrança · no balão: a entrevista, dia 5; o Davi sorrindo e mentindo sobre o currículo, e a Sônia já com uma pasta com a foto dele
+PLANO: `close` no crachá, depois o close do Davi com o balão de pensamento · TRANSIÇÃO: `cut`
+LUZ E DETALHES: no crachá: "EMITIDO EM 02/10"; o balão é sépia (lembrança)
 SOM: `heartbeat` 96 s
 VIRADA: o crachá foi emitido antes da entrevista: o Instituto escolheu o Davi antes
 DAVI: [whispers, voice cracking] Emitido dia dois. Minha entrevista foi dia cinco. Vocês sabiam que eu menti.

@@ -9,7 +9,7 @@ import sys, os, json, math, subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes
+from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
@@ -119,6 +119,7 @@ class Episode:
             if s.get("type") == "title" and s.get("stamp"): sfx.append({"t": s["stamp"]["t"], "name": "stamp"})
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
             if s.get("type") == "placar": sfx += placar.sons(s)
+            if s.get("type") in ("pensamento", "plano"): sfx += mente.sons(s)
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
         if self.redes:
             for s in self.shots:
@@ -870,6 +871,8 @@ class Episode:
         if typ == "title": img = self.title_frame(shot, t)
         elif typ == "choice": img = self.choice_frame(shot, t)
         elif typ == "placar": img = placar.frame(self, shot, t)
+        elif typ == "pensamento": img = mente.pensamento(self, shot, t)
+        elif typ == "plano": img = mente.plano(self, shot, t)
         elif typ == "detail": img = self.detail_frame(shot, t, t_anim)
         elif typ == "recap": img = self.recap_frame(shot, t)
         else: img = self.scene_frame(shot, t, t_anim)
@@ -884,7 +887,7 @@ class Episode:
         if sa: img = Image.blend(fx.chromatic(img, 18 * sa), Image.new("RGB", (W, H), (255, 255, 255)), 0.25 * sa if sa > 0.85 else 0)
         tn = shot.get("tint", self.spec.get("tint"))
         if tn and typ != "title": img = fx.tint(img, tn[:3], tn[3] if len(tn) > 3 else 0.15)
-        if self.spec.get("style") == "desenho" and typ in ("scene", "detail", "choice"): img = fx.hand_drawn(img)
+        if self.spec.get("style") == "desenho" and typ in ("scene", "detail", "choice", "pensamento", "plano"): img = fx.hand_drawn(img)
         img = fx.vignette(img, shot.get("vignette", 1.0)); img = fx.grain(img)
         tr = shot.get("transition", "cut"); dur = shot.get("transition_dur", 0.28)
         rel = t - shot["start"]
@@ -892,9 +895,9 @@ class Episode:
         self.draw_comments(img, shot, t)
         if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
-        if hs and shot.get("hud", typ not in ("title", "recap", "detail") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
+        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
         if not shot.get("hook") and typ != "recap":
-            sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else None)
+            sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else (1440 if typ == "pensamento" else None))
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)
         if t > self.total - 0.6 and not self.redes: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))
         img = apply_profile(img, self.visual_profile)

@@ -3,7 +3,7 @@ name: "serie-lofi-interativa"
 description: "Planejar, roteirizar e montar episódios de séries interativas em vídeo vertical (estilo lo-fi, \"escolha o caminho\") com o motor lo-fi do GitHub, a partir das vozes do usuário."
 ---
 
-# Série lo-fi interativa (v10)
+# Série lo-fi interativa (v11)
 
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
@@ -25,6 +25,8 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Personagens prontos:** roberta, rafa, lia, valter, soldado, zumbis (zombie, zombie_corredor, zombie_rastejante, zombie_enfermeiro, zombie_policial) e, para outros gêneros, detetive, cientista, estudante, estudante2, executiva, executivo, medica, policial, roqueiro, vovo, vovo2, crianca, bruxa, rainha, chef, cowboy, fantasma, dj, pirata. Qualquer um pode ser ajustado ou criado em `characters`.
 - **Atuação:** boca com formatos de vogal (A, E, O, U, M) lidos da voz, transições de pose com antecipação, troca de emoção com piscada.
 - **Gestos pela fala (automáticos com o ator em `idle`):** aponta em "ali/lá/olha/aquele", mão no peito em "eu/meu/minha", acena no "sim", balança a cabeça no "não", cabeça baixa em "desculpa/perdão/sinto". Manual: `gesture` nod/shake/down.
+- **Lanterna:** `"flashlight": <ângulo>` (0 = direita, 90 = baixo, -90 = para o fundo) põe a lanterna na mão, aponta o braço e a luz sai da ponta dela.
+- **Sentar:** `pose: sit` (com banco; `"assento": "caixa" | "cadeira" | "nenhum"`) e `pose: chao` (sentado no chão).
 - **Interações:** `hold` (mãos dadas andando), `carried_by` (no colo de alguém, com `pose: carry` em quem carrega), poses `hug`, `push`, `chest`, `hand_r`, `hand_l`, `reach_l`.
 - **Eco por ambiente (automático):** voz reverbera em escada, igreja, esgoto e metrô; eco curto em corredor, hospital, escola, mercado e delegacia; abafada no carro. Troque com `acoustic` no plano.
 - **Vistas e ações:** frente, costas, lado e **3/4** (`3q`); correr, pular (`jump` + `lift`), esconder (`hide`), abrir porta, tirar mochila, cair (`fallen`), rastejar (`crawl`), tremer (`tremble`).
@@ -35,6 +37,7 @@ Os nomes válidos de cenários, poses, emoções, sons, transições e planos de
 - **Travelling (o cenário passa):** `"travelling": 400` no plano faz a rua, mata, túnel, corredor ou ponte rolar atrás de quem anda/corre (de lado; marcas `esq`, `centro`, `dir`, `fundo`, `frente`). `{"dir": "frente"}` = correm na direção da câmera; `{"dir": "fundo"}` = câmera segue por trás. `{"chegada": "carro"}` (ou `porta`, `escada`, `portao`) desacelera e o destino entra no quadro. Use sempre que alguém correr ou caminhar por um trajeto.
 - **Clima e hora:** `rain` forte/fraca/nenhuma, `fog`, `snow`, `time` dia/entardecer/amanhecer/madrugada/noite (com transição).
 - **Câmera:** enquadramento perto por padrão (`plano`: medio, conjunto, close; aberto só para situar), close no rosto, por cima do ombro, travelling, foco seletivo, paralaxe, câmera na mão (`handheld`), vertigo, câmera lenta (`slowmo`), susto (`scare`), gotas na lente (`lens_drops`).
+- **Pensamento e plano:** `type: pensamento` (balão com lembrança, imaginação ou medo, com a cena dentro) e `type: plano` (mapa desenhado com setas, passos, cabecinhas andando e perigos).
 - **Planos de detalhe:** `type: detail` com maçaneta, olho, celular, chave, relógio. **Partes do corpo:** `"hand": "roberta"` mostra o braço e a mão do personagem certo (rádio, chave, maçaneta, celular; no olho, a pele).
 - **Estilo:** `style: "desenho"` (traço de nanquim + papel) e `tint` (cor do episódio).
 - **Legendas estilo Reels**, gancho (`hook`), **"Anteriormente em…"** (`type: recap`).
@@ -68,6 +71,7 @@ Salve tudo em `series/<nome>/biblia.md` (formato de `series/dia-zero/biblia.md`)
 - **PISTAS:** uma seção `## PISTAS` com `PLANTA:` (pista nova, visível na cena, para pagar depois) e `PAGA:` (pista antiga paga agora); atualize a tabela de pistas da bíblia.
 - **Pergunta do meio:** até 7 palavras, resposta curta (sim/não ou "X ou Y"), que divida opiniões ("VOCÊ CONFIARIA NO IVO?").
 - **Escolha com custo:** em "O que acontece em cada opção", escreva `GANHA:` e `PERDE:` para A e para B.
+- **Pensamentos e planos na tela:** pelo menos uma cena por episódio mostra o que se passa na cabeça de alguém, em vez de narrar. Uma linha `PENSAMENTO:` com o personagem entre crases, o estilo (lembrança, imaginação ou medo) e o que aparece no balão (close do personagem embaixo e um balão de pensamento com a cena: uma lembrança que explica um motivo, o que ele imagina que vai acontecer, o medo dele). `O PLANO:` quando alguém decide uma estratégia (mapa desenhado com os lugares, setas do caminho, passos numerados, as cabecinhas dos personagens andando e um X vermelho em cada perigo); escreva os passos (até 4, curtos), os lugares e os perigos. A fala dessas cenas é o pensamento ou a explicação do plano, em poucas palavras. No JSON: `"type": "pensamento"` e `"type": "plano"` (ver SPEC "Pensamento e plano").
 **Fluxo sem pulos (obrigatório):** cada cena começa exatamente onde a anterior terminou: mesmo lugar, mesma hora (ou um salto mostrado), mesmas pessoas no mesmo estado (cansada, ferida, molhada, com o objeto na mão). Quem chega numa cena ganha uma linha `ENTRA: <personagem> <de onde vem>`; quem vai embora, `SAI: <personagem> <para onde>`; mudança de lugar, `LIGAÇÃO:`. A ação da cena anterior termina antes da próxima começar (porta aberta continua aberta, quem caiu se levanta em cena). A fala de cada cena cabe no tempo dela (no máximo ~3 palavras por segundo). O gancho mostra um momento que acontece de verdade mais adiante.
 Use a bíblia, a classificação da série e o resultado da votação. Estrutura obrigatória:
 - **CENA 0 · GANCHO (0–2 s):** flash-forward do momento mais forte do episódio + frase curta de impacto em caixa alta (máx. 4 palavras por linha). Sem contador.

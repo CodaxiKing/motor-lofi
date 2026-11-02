@@ -447,3 +447,21 @@ Comentário com A e B ao mesmo tempo fica como dúvida e não conta.
 `"pose": "sit"` senta num banco desenhado junto (`"assento": "banco"` padrão, `"caixa"`, `"cadeira"` ou `"nenhum"` quando o cenário
 já tem onde sentar); de frente, as coxas vêm na direção da câmera e os joelhos aparecem. `"pose": "chao"` = sentado no chão com as
 pernas esticadas (a marca `chao_porta` usa essa). Sentado nunca anda, mesmo com `walk` ligado.
+
+## Pensamento e plano (lofi/mente.py)
+**Pensamento** — o que o personagem lembra, imagina ou teme, num balão de pensamento:
+`{"type": "pensamento", "quem": "lia", "emotion": "sad", "estilo": "memoria" | "imaginacao" | "medo", "texto": "E SE...?" (opcional),
+"fundo": {...cena atual, fica escura e desfocada...}, "cena": {...plano de cena normal dentro do balão: scene, actors, props...}}`.
+O personagem fica em close embaixo, as bolinhas sobem da cabeça e o balão cresce em 0,4 s. Lembrança = sépia; imaginação = azulada;
+medo = vermelha e tremendo (com batimento). O balão se centraliza em quem está dentro dele, e quem está na lembrança não mexe a boca.
+Rótulo no canto do balão (LEMBRANÇA / E SE... / MEDO; `"rotulo": false` tira). Som `whoosh` automático; legenda sobe para 1440.
+
+**Plano** — a estratégia desenhada à mão:
+`{"type": "plano", "titulo": "O PLANO", "fundo": "papel" | "quadro" | "mapa", "lugares": [{"id", "nome", "x", "y", "icone"}],
+"setas": [{"de", "para", "t", "dur", "cor", "tracejado"}], "passos": [{"t", "texto"}], "fichas": [{"char", "caminho": [ids], "t": [t0, t1], "dx"}],
+"perigos": [{"x", "y", "t", "texto"}]}` (tempos relativos ao plano). Ícones: casa, predio, hospital, loja, ponte, carro, porta,
+estrela, caveira, radio. As setas se desenham, os passos entram numerados, as cabecinhas dos personagens andam pelo caminho e cada
+perigo ganha um X vermelho (com `click`/`impact` automáticos). Sem contador na tela.
+
+No roteiro: `PENSAMENTO: \`lia\` · lembrança · no balão: ...` ou `O PLANO: passos ... · setas ... · perigos ...` (a cena não muda o
+lugar de ninguém). O validador avisa se o episódio não tiver nenhuma das duas.

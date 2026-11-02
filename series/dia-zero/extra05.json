@@ -546,15 +546,40 @@
   {
    "start": 30,
    "end": 35,
-   "type": "detail",
-   "subject": "relogio",
-   "params": {
-    "minutes": [
-     1420,
-     2860
-    ]
+   "type": "pensamento",
+   "quem": "lia",
+   "emotion": "sad",
+   "estilo": "memoria",
+   "transition": "cut",
+   "fundo": {
+    "scene": "hospital",
+    "time": "noite",
+    "dark": 0.5,
+    "actors": []
    },
-   "transition": "cut"
+   "cena": {
+    "scene": "apartamento",
+    "actors": [
+     {
+      "char": "roberta",
+      "mark": "tapete_dir",
+      "dx": -90,
+      "pose": "sit",
+      "view": "3q",
+      "facing": -1,
+      "emotion": "happy",
+      "prop": "radio"
+     },
+     {
+      "char": "lia",
+      "mark": "tapete_esq",
+      "dx": 110,
+      "view": "3q",
+      "facing": 1,
+      "emotion": "happy"
+     }
+    ]
+   }
   },
   {
    "start": 35,

@@ -93,10 +93,12 @@ NARRAÇÃO (Lia): [firm, whispering] Cheguem à ponte antes do dia cinco. Três 
 LEGENDA: CHEGUEM À PONTE / *TRÊS BATIDAS* / A NOITE INTEIRA
 
 ## CENA 5 — 37 s a 44 s · A voz dela
-PLANO DE DETALHE: `relogio` · os ponteiros correndo do Dia 1 até o Dia 3 (O TEMPO PASSA)
-SOM: `click` 37 s · `static` 41 s
-VIRADA: quem respondeu foi a irmã dela
+PENSAMENTO: `lia` · lembrança · no balão: a Roberta no sofá de casa, rindo, com o rádio na mão; a Lia na porta (antes de tudo)
+CENÁRIO: `hospital` (fundo escuro e desfocado) · DIA 3 · 22:10
+PLANO: close da Lia embaixo, balão de pensamento em cima · TRANSIÇÃO: `cut`
+SOM: `whoosh` 37 s · `static` 41 s
 NARRAÇÃO (Lia): [emotional] No dia três, alguém respondeu. Era a minha irmã.
+VIRADA: quem respondeu foi a irmã dela
 LEGENDA: NO DIA TRÊS / ALGUÉM RESPONDEU / ERA A MINHA *IRMÃ*
 
 ## CENA 6 — 44 s a 53 s · O hospital caiu

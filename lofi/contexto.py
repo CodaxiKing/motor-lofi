@@ -97,6 +97,7 @@ def gerar(pasta, n, extra=False):
           "- Escreva 3 opções de GANCHO (perguntas sem resposta) e escolha a mais estranha.",
           "- Uma VIRADA a cada 20–30 s; narração só para o que a imagem não mostra; cada personagem fala do jeito dele (seção 5).",
           "- Mexa em pelo menos um DESEJO, MEDO ou SEGREDO; pague uma pista pendente e plante uma nova (seção 5b).",
+          "- Mostre o que se passa na cabeça: pelo menos uma cena de PENSAMENTO (balão com lembrança, imaginação ou medo) ou O PLANO (mapa desenhado com setas, passos e perigos) quando alguém decide algo.",
           "- A escolha A/B custa algo dos dois lados (GANHA/PERDE); termine no meio da ação, com uma informação nova."]
     txt = "\n".join(L).strip() + "\n"
     out = os.path.join(pasta, f"_contexto_{'extra' if extra else 'ep'}{n:02d}.md")

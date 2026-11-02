@@ -155,7 +155,7 @@ def conferir_fluxo(txt, caminho=None):
         pl = re.search(r"PERSONAGENS?[^:\n]*:(.*)", corpo, re.I)
         quem = {x for x in re.findall(r"`([^`]+)`", pl.group(1))} & nomes if pl and nomes else set()
         cenas.append(dict(n=n, a=a, b=b, cen=cen.group(1) if cen else None, quem=quem, corpo=corpo,
-                          detalhe=bool(re.search(r"PLANO DE DETALHE", corpo, re.I)) and not cen,
+                          detalhe=bool(re.search(r"PLANO DE DETALHE|^\s*PENSAMENTO\s*:|^\s*O PLANO\s*:", corpo, re.I | re.M)) and not cen,
                           insercao=bool(re.search(r"INSER[ÇC][ÃA]O", corpo, re.I)),
                           objeto=bool(cen and cen.group(1).startswith("radio")),
                           liga=bool(re.search(r"LIGA[ÇC][ÃA]O\s*:", corpo, re.I)),
@@ -173,7 +173,7 @@ def conferir_fluxo(txt, caminho=None):
                 m = re.match(r"^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{1,30}(?:\s*\([^)]*\))?)\s*:\s*(.+)$", linha)
                 if not m: continue
                 rot = m.group(1).strip()
-                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO|CONSEQ|VIRADA)", rot): continue
+                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO|CONSEQ|VIRADA|PENSAMENTO|O PLANO|NO BAL|PASSOS|SETAS|MAPA)", rot): continue
                 pal += len(re.sub(r"\[[^\]]*\]", "", m.group(2)).split())
             wps = pal / (c["b"] - c["a"])
             if wps > 3.3: avisos.append(f"CENA {c['n']}: {pal} palavras em {c['b'] - c['a']:g} s ({wps:.1f}/s) — fala demais para o tempo; aumente a cena ou corte texto")
@@ -233,6 +233,9 @@ def conferir_retencao(txt, final=False):
         narr = sum(len(re.sub(r"\[[^\]]*\]", "", m).split()) for m in re.findall(r"^\s*NARRA[ÇC][ÃA]O[^:]*:\s*(.+)$", txt, re.M))
         if narr / dur > 1.3:
             av.append(f"narração demais ({narr} palavras em {dur:.0f} s): narre só o que a imagem não mostra (pensamento, medo, memória); o resto vira ação, som e rosto")
+    if not re.search(r"^\s*(PENSAMENTO|O PLANO)\s*:", txt, re.M | re.I):
+        av.append("nenhuma cena de PENSAMENTO (balão com lembrança, imaginação ou medo) ou O PLANO (mapa desenhado com setas e passos): "
+                  "mostre pelo menos uma vez o que o personagem pensa ou planeja, em vez de narrar")
     esc = re.search(r"^#+\s*ESCALETA.*?(?=^#+\s*(?:GANCHOS|PISTAS|CENA)|\Z)", txt, re.M | re.S | re.I)
     if esc and not re.search(r"DESEJO|MEDO|SEGREDO", esc.group(0), re.I):
         av.append("a ESCALETA não mexe em nenhum DESEJO, MEDO ou SEGREDO de personagem (veja a bíblia): cada episódio move pelo menos um")
