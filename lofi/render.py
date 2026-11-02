@@ -799,7 +799,8 @@ class Episode:
         self._heads = []; self._beams = []; self._treal = t; self._avoid = []
         shot = next((s for s in self.shots if s["start"] <= t < s["end"]), self.shots[-1])
         typ = shot.get("type", "scene")
-        if typ == "loop": return self.frame(t - shot["start"])
+        if typ == "loop":   # o gancho de trás para frente: o último quadro é o primeiro, e o vídeo emenda sem pulo
+            return self.frame(max(0.0, shot["end"] - t - 1.0 / self.fps))
         slow = shot.get("slowmo")
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
         if typ == "title": img = self.title_frame(shot, t)

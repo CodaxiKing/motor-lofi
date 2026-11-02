@@ -198,15 +198,15 @@ def corte(spec_path, video, alvo=68.0, minimo=60.0, maximo=75.0, out=None):
             if i not in escolhidos and total + dur(i) <= maximo: escolhidos.add(i); total += dur(i)
     trechos = [(shots[i]["start"], shots[i]["end"]) for i in sorted(escolhidos)]
     out = out or os.path.splitext(video)[0] + "_corte.mp4"
-    fc, n = [], len(trechos)
-    for k, (a, b) in enumerate(trechos):
-        fd = max(0.0, (b - a) - 0.04)
-        fc.append(f"[0:v]trim={a:.3f}:{b:.3f},setpts=PTS-STARTPTS[v{k}];"
-                  f"[0:a]atrim={a:.3f}:{b:.3f},asetpts=PTS-STARTPTS,afade=t=in:d=0.03,afade=t=out:st={fd:.3f}:d=0.04[a{k}];")
-    fc.append("".join(f"[v{k}][a{k}]" for k in range(n)) + f"concat=n={n}:v=1:a=1[v][a]")
-    _run(["ffmpeg", "-loglevel", "error", "-y", "-i", video, "-filter_complex", "".join(fc), "-map", "[v]", "-map", "[a]",
-          "-c:v", "libx264", "-preset", "medium", "-crf", "26", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
-          "-movflags", "+faststart", out])
+    tmp = tempfile.mkdtemp(); partes = []; n = len(trechos)
+    for k, (a, b) in enumerate(trechos):   # um pedaço por vez (vários trims no mesmo filtro estouram a memória)
+        pt = os.path.join(tmp, f"p{k:02d}.mp4"); fd = max(0.0, (b - a) - 0.04)
+        _run(["ffmpeg", "-loglevel", "error", "-y", "-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", video,
+              "-af", f"afade=t=in:d=0.03,afade=t=out:st={fd:.3f}:d=0.04", "-c:v", "libx264", "-preset", "medium", "-crf", "24",
+              "-pix_fmt", "yuv420p", "-r", "30", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", pt])
+        partes.append(pt)
+    lst = os.path.join(tmp, "lista.txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in partes))
+    _run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", "-movflags", "+faststart", out])
     print(f"corte: {out} ({total:.1f} s, {n} planos)"); return out
 
 
