@@ -70,6 +70,15 @@ class Episode:
         self._avoid = []; self._heads = []
         self.shots = sorted((resolver_plano(s) for s in sp["shots"]), key=lambda s: s["start"])
         self.total = sp.get("total", max(s["end"] for s in self.shots))
+        # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
+        self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
+        text.set_redes(self.redes)
+        self._hook_end = max([s["end"] for s in self.shots if s.get("hook")] or [0.0])
+        if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
+            t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
+            ls = {"start": t0, "end": round(t0 + 0.5, 3), "type": "loop"}
+            self.shots.append(ls); sp["shots"] = list(sp["shots"]) + [ls]; self.total = ls["end"]
+        self._cortes_cache = {}
         self.voices = {k: os.path.join(self.base, v) for k, v in sp.get("voices", {}).items()}
         self.speakers = {k: {"label": v.get("label"), "color": tuple(v.get("color", (250, 250, 248)))} for k, v in sp.get("speakers", {}).items()}
         # personagens travados da série: personagens.json na pasta do roteiro (ou na pasta acima) sempre vence
@@ -109,6 +118,15 @@ class Episode:
             if s.get("type") == "title" and s.get("stamp"): sfx.append({"t": s["stamp"]["t"], "name": "stamp"})
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
+        if self.redes:
+            for s in self.shots:
+                if s.get("hook") and not any(abs(x.get("t", -9) - s["start"]) < 0.2 and x.get("name") == "impact" for x in sfx):
+                    sfx += [{"t": s["start"], "name": "impact", "gain": 1.2}, {"t": s["start"], "name": "whoosh"}]
+            cs = next((s for s in self.shots if s.get("type") == "choice"), None)
+            if cs: sfx += [{"t": cs["start"] - k, "name": "beep", "gain": 0.8} for k in (3, 2, 1)]
+            if self.spec.get("voto"): sfx.append({"t": self._hook_end + 0.3, "name": "stamp"})
+            pq = self.pergunta()
+            if pq: sfx.append({"t": pq[0], "name": "notif", "gain": 0.8})
         self.mix_path = os.path.join(self.base, "_mix.wav")
         clips = []
         for c in self.clips:
@@ -370,6 +388,16 @@ class Episode:
     # ---------------- câmera ----------------
     def camera(self, shot, sc, t, rel, norm):
         cam = shot.get("camera", {})
+        base_plano = self.plano_de(shot, sc)
+        if self.redes and base_plano in ("conjunto", "medio") and not any(k in cam for k in ("zoom", "close", "follow", "vertigo")):
+            for (s0, s1, var, quem) in self.cortes(shot):
+                if s0 <= shot["start"] + rel < s1 or s1 == shot["end"]:
+                    if var == 1:      # close em quem fala
+                        cam = dict(cam, plano="close", alvo=quem)
+                    elif var == 2:    # o outro enquadramento: conjunto vira médio em quem fala; médio vira corpo inteiro
+                        cam = dict(cam, plano="medio", alvo=quem) if base_plano == "conjunto" else dict(cam, plano="conjunto", alvo=quem)
+                    shot = dict(shot, camera=cam); norm = c01((shot["start"] + rel - s0) / max(1e-6, s1 - s0))
+                    break
         camx = val(cam.get("x", 0), rel, norm, 0)
         z = val(cam.get("zoom", 1.0), rel, norm, 1.0)
         cx = val(cam.get("cx", 0.5), rel, norm, 0.5); cy = val(cam.get("cy", 0.5), rel, norm, 0.5)
@@ -385,7 +413,7 @@ class Episode:
             else:                                    # close de verdade: cabeça e ombros enchendo o quadro, em qualquer distância
                 z = min(9.0, max(2.0, 2.3 * H / sh))
             hx, hy = x - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
-            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else 960) / z
+            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else (880 if self.redes else 960)) / z
             k = ease(c01(rel / cam.get("close_in", 0.0001)))
             z = lerp(1.0, z, k); x0 = lerp(0, x0, k); y0 = lerp(0, y0, k)
         elif follow is not None and int(follow) < len(actors):
@@ -398,6 +426,9 @@ class Episode:
             z, x0, y0 = self.enquadrar(self.plano_de(shot, sc), shot, sc, camx, rel, norm)
         else:
             x0 = (W - W / z) * cx; y0 = (H - H / z) * cy
+        if self.redes and shot.get("hook"):   # gancho: entra num "soco" de zoom que assenta em 0,4 s
+            cxw, cyw = x0 + W / 2 / z, y0 + H / 2 / z
+            z = z * (1 + 0.18 * (1 - ease_out(c01(rel / 0.4)))); x0, y0 = cxw - W / 2 / z, cyw - H / 2 / z
         dx, dy = fx.shake_offset(t, shot.get("shake", []) + shot.get("scare", []), amp=cam.get("shake_amp", 16))
         rot = 0.0
         hh = val(cam.get("handheld"), rel, norm)
@@ -606,7 +637,17 @@ class Episode:
             txt = hk["text"] if isinstance(hk, dict) else str(hk)
             y = hk.get("y", 860) if isinstance(hk, dict) else 860
             lines = txt.split("\n")
-            for k, line in enumerate(lines):
+            if self.redes:   # aparece palavra por palavra desde o 1º quadro (o 1º quadro vira a capa no feed)
+                passo = hk.get("passo", 0.16) if isinstance(hk, dict) else 0.16; n = 0
+                for k, line in enumerate(lines):
+                    f = font("title", 112 if len(line) < 16 else 90)
+                    bb = d.textbbox((0, 0), line, font=f); w = bb[2] - bb[0]; yy = y + k * 138
+                    ws = line.split(); vis = [wd for j, wd in enumerate(ws) if rel >= (n + j) * passo]; n += len(ws)
+                    if not vis: continue
+                    d.rectangle([W / 2 - w / 2 - 28, yy - 66, W / 2 + w / 2 + 28, yy + 66], fill=RED if k == len(lines) - 1 else (12, 12, 16))
+                    d.text((W / 2 - w / 2 - bb[0], yy), " ".join(vis), font=f, fill=(255, 255, 255), anchor="lm")
+            else:
+              for k, line in enumerate(lines):
                 f = font("title", 104 if len(line) < 16 else 84)
                 bb = d.textbbox((0, 0), line, font=f); w = bb[2] - bb[0]; yy = y + k * 130
                 d.rectangle([W / 2 - w / 2 - 26, yy - 62, W / 2 - w / 2 - 26 + (w + 52) * p, yy + 62], fill=RED if k == len(lines) - 1 else (12, 12, 16))
@@ -638,6 +679,100 @@ class Episode:
             p = ease_out(c01((t - a) / 0.35)) * (1 - ease(c01((t - (b - 0.3)) / 0.3)))
             text.comment_card(img, o, p)
 
+    # ---------------- modo redes: selo, voto, pergunta no meio e contagem antes da escolha ----------------
+    def pergunta(self):
+        """(ini, fim, texto) da pergunta na tela no meio do episódio, ou None."""
+        pq = self.spec.get("pergunta")
+        if not self.redes or pq is False: return None
+        pq = pq if isinstance(pq, dict) else ({"text": pq} if isinstance(pq, str) else {})
+        if not pq and not any(s.get("type") == "choice" for s in self.shots): return None
+        t0 = pq.get("t")
+        if t0 is None:   # começo do 1º plano de cena depois da metade (fora do gancho e do final)
+            cand = [s["start"] for s in self.shots if s.get("type", "scene") == "scene" and not s.get("hook")
+                    and self.total * 0.48 <= s["start"] <= self.total * 0.75]
+            if not cand: return None
+            t0 = cand[0] + 0.4
+        return (t0, t0 + pq.get("dur", 3.0), pq.get("text", "E VOCÊ, O QUE FARIA?"))
+
+    def draw_redes(self, img, shot, t):
+        typ = shot.get("type", "scene")
+        if shot.get("hook") or typ in ("loop", "title", "recap"): return
+        d = ImageDraw.Draw(img); sp = self.spec; h0 = self._hook_end
+        # selo da série (no lugar da cartela de título): grande logo depois do gancho, depois discreto
+        ep, tot = sp.get("episode"), sp.get("episodes_total")
+        if ep and typ != "choice" and not any(s.get("type") == "title" for s in self.shots):
+            rel = t - h0; big = rel < 3.5
+            lab = f"EP {ep}/{tot}" if tot else f"EP {ep}"
+            f = font("title", 64 if big else 42); bb = d.textbbox((0, 0), lab, font=f); w = bb[2] - bb[0]
+            p = ease_out(c01(rel / 0.3)) if big else 1.0
+            x1 = W - 56; x0 = x1 - w - 44; y0 = 236 - (1 - p) * 120; y1 = y0 + (92 if big else 66)
+            d.rounded_rectangle([x0, y0, x1, y1], 18, fill=RED if big else (150, 30, 30))
+            text_center(d, lab, (x0 + x1) / 2, (y0 + y1) / 2, f, (255, 255, 255))
+            if big and sp.get("series_title"):
+                text_center(d, sp["series_title"], (x0 + x1) / 2 - 10, y1 + 30, font("mono", 30), (235, 232, 225), 3)
+            # carimbo do voto da maioria, rápido e no alto
+            if sp.get("voto") and 0.2 <= rel < 3.4:
+                q = ease_out(c01((rel - 0.2) / 0.25)) * (1 - ease_out(c01((rel - 3.1) / 0.3)))
+                yy = 470 - (1 - q) * 60
+                fw = font("title", 96); bw = d.textbbox((0, 0), sp["voto"], font=fw); ww = max(bw[2] - bw[0], 420)
+                d.rounded_rectangle([W / 2 - ww / 2 - 34, yy - 92, W / 2 + ww / 2 + 34, yy + 70], 24, fill=(12, 12, 16), outline=RED, width=6)
+                text_center(d, "A MAIORIA ESCOLHEU", W / 2, yy - 52, font("mono", 32), (235, 232, 225))
+                text_center(d, sp["voto"], W / 2, yy + 14, fw, RED)
+        # pergunta na tela no meio do episódio (puxa comentário)
+        pq = self.pergunta()
+        if pq and pq[0] <= t < pq[1] and typ != "choice":
+            q = ease_out(c01((t - pq[0]) / 0.3)) * (1 - ease_out(c01((t - (pq[1] - 0.3)) / 0.3)))
+            yy = 560 - (1 - q) * 80
+            fq = font("title", 72); bq = d.textbbox((0, 0), pq[2], font=fq); ww = min(W - 220, bq[2] - bq[0])
+            d.rounded_rectangle([W / 2 - 40 - ww / 2 - 36, yy - 70, W / 2 - 40 + ww / 2 + 36, yy + 96], 28, fill=(240, 236, 228))
+            text_center(d, pq[2], W / 2 - 40, yy - 8, fq if bq[2] - bq[0] <= W - 220 else font("title", 56), (20, 20, 22))
+            text_center(d, "COMENTA AQUI EMBAIXO", W / 2 - 40, yy + 60, font("mono", 30), RED)
+        # contagem regressiva antes da tela A/B
+        cs = next((s for s in self.shots if s.get("type") == "choice"), None)
+        if cs and cs["start"] - 3 <= t < cs["start"] and typ != "choice":
+            k = cs["start"] - t; n = int(k) + 1; fr = 1 - (k - int(k))
+            pop = 1 + 0.35 * (1 - ease_out(c01(fr / 0.25)))
+            r = 92 * pop; cx, cy = W - 190, 470            # canto direito, abaixo do selo: não cobre rostos nem legenda
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(12, 12, 16), outline=RED, width=10)
+            d.arc([cx - r - 18, cy - r - 18, cx + r + 18, cy + r + 18], -90, -90 + 360 * (1 - fr), fill=(255, 255, 255), width=8)
+            text_center(d, str(n), cx, cy, font("title", int(150 * pop)), (255, 255, 255))
+            text_center(d, "O QUE VOCÊ", cx - 10, cy + 92 + 52, font("title", 54), (255, 255, 255), 7)
+            text_center(d, "FARIA?", cx - 10, cy + 92 + 108, font("title", 54), (255, 214, 60), 7)
+
+    # ---------------- cortes automáticos (modo redes) ----------------
+    def cortes(self, shot):
+        """Divide um plano longo em trechos de ~2,4–3,8 s nas pausas da fala: [(ini, fim, variante, alvo)]."""
+        key = (shot["start"], shot["end"])
+        if key in self._cortes_cache: return self._cortes_cache[key]
+        a0, b0 = shot["start"], shot["end"]; res = [(a0, b0, 0, None)]
+        acts = [i for i, a in enumerate(shot.get("actors", [])) if not a.get("fg") and not a.get("_crowd")]
+        cam = shot.get("camera", {})
+        ok = (self.redes and self.spec.get("cortes_auto", True) and cam.get("cortes", True) and shot.get("type", "scene") == "scene"
+              and acts and b0 - a0 >= 4.8 and not shot.get("hook") and not shot.get("travelling"))
+        if ok:
+            cand = sorted({round(s0, 2) for s0, s1, _, _ in self.subs if a0 + 2.2 <= s0 <= b0 - 1.8})
+            pts = [a0]
+            for c in cand:
+                if c - pts[-1] >= 2.4: pts.append(c)
+            while b0 - pts[-1] > 4.6: pts.append(round(pts[-1] + 3.0, 2))   # sem fala por muito tempo: corta mesmo assim
+            if b0 - pts[-1] < 1.8 and len(pts) > 1: pts.pop()
+            pts.append(b0)
+            res = []
+            for k in range(len(pts) - 1):
+                s0, s1 = pts[k], pts[k + 1]
+                vozes = {}
+                for x0, x1, _, v in self.subs:
+                    ov = min(x1, s1) - max(x0, s0)
+                    if ov > 0: vozes[v] = vozes.get(v, 0) + ov
+                quem = None
+                if vozes:
+                    fala = max(vozes, key=vozes.get)
+                    quem = next((i for i in acts if shot["actors"][i].get("voice", shot["actors"][i]["char"]) == fala), None)
+                if quem is None: quem = acts[k % len(acts)]
+                res.append((s0, s1, k % 3, quem))
+        self._cortes_cache[key] = res
+        return res
+
     def pick_sub_y(self, shot):
         if shot.get("sub_y"): return shot["sub_y"]
         av = getattr(self, "_avoid", [])
@@ -649,7 +784,7 @@ class Episode:
                 return any(partes.bate_retangulo(it, (sx0, y - 80, sx1, y + 60)) for it in itens)
             def cabeca(y):
                 return any(h[1] > 120 and h[0] < W - 120 and h[2] < y + 160 and h[3] > y - 80 for h in self._heads)
-            cands = (text.SUB_Y, 1600, 1440, 1700, 1380, 1250, 900, 780)
+            cands = tuple(c for c in (text.SUB_Y, 1600, 1440, 1700, 1380, 1250, 900, 780) if c <= text.SAFE_Y_MAX)
             for rects in (av + foco, foco, av):   # 1º livre de tudo; 2º só o objeto em destaque (pode passar sobre a manga)
                 for y in cands:
                     if not bate(y, rects) and not cabeca(y): return y
@@ -658,12 +793,13 @@ class Episode:
         if not hits: return y
         top = min(h[2] for h in hits); bot = max(h[3] for h in hits)
         if top - 70 >= 760: return top - 70
-        return min(1640, bot + 150)
+        return min(text.SAFE_Y_MAX, 1640, bot + 150)
 
     def frame(self, t):
         self._heads = []; self._beams = []; self._treal = t; self._avoid = []
         shot = next((s for s in self.shots if s["start"] <= t < s["end"]), self.shots[-1])
         typ = shot.get("type", "scene")
+        if typ == "loop": return self.frame(t - shot["start"])
         slow = shot.get("slowmo")
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
         if typ == "title": img = self.title_frame(shot, t)
@@ -687,12 +823,13 @@ class Episode:
         rel = t - shot["start"]
         if tr != "cut" and rel < dur: img = fx.transition(img, None, tr, rel / dur)
         self.draw_comments(img, shot, t)
+        if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
         if hs and shot.get("hud", typ not in ("title", "recap", "detail") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
         if not shot.get("hook") and typ != "recap":
             sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else None)
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)
-        if t > self.total - 0.6: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))
+        if t > self.total - 0.6 and not self.redes: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))
         img = apply_profile(img, self.visual_profile)
         return img
 

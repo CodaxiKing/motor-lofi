@@ -5,6 +5,7 @@
     python3 -m lofi.extras pacote  ep03.json ep03.mp4 [tempo]    -> teaser + capa TikTok + capa Instagram (o padrão de entrega)
     python3 -m lofi.extras capa    ep03.json [tempo] [--tiktok|--instagram] [--guias]
                                    -> ep03_capa_tiktok.png e ep03_capa_instagram.png (1080x1920, texto na área segura)
+    python3 -m lofi.extras corte   ep03.json ep03.mp4 [alvo_s]   -> ep03_corte.mp4: versão curta (60–75 s) só com os picos
     python3 -m lofi.extras temporada saida.mp4 "DIA ZERO" ep1.mp4 ep2.mp4 ...   -> compilação 16:9 + capítulos
 """
 import sys, os, json, subprocess, tempfile
@@ -156,9 +157,57 @@ def pacote(spec_path, video, t=None):
         t, camera = _escolher_tempo(ep, PLATAFORMAS["tiktok"])
     else:
         camera = None
-    return {"video": video, "teaser": teaser(spec_path, video),
+    return {"video": video, "teaser": teaser(spec_path, video), "corte": corte(spec_path, video),
             "capa_tiktok": capa(spec_path, t, plataforma="tiktok", camera=camera),
             "capa_instagram": capa(spec_path, t, plataforma="instagram", camera=camera)}
+
+
+def _nota_plano(sp, s, subs):
+    """Quanto um plano "segura" o público: sustos, closes, detalhes, cenário revelando algo e fala."""
+    cam = s.get("camera", {}); pr = s.get("props", {}); dur = max(0.1, s["end"] - s["start"])
+    fala = sum(max(0.0, min(b, s["end"]) - max(a, s["start"])) for a, b, _ in subs) / dur
+    dialogo = any(v in (sp.get("speakers") or {}) and min(b, s["end"]) > max(a, s["start"]) for a, b, v in subs)   # outro personagem fala
+    return (3 * len(s.get("scare", [])) + 2 * (cam.get("close") is not None or cam.get("plano") == "close")
+            + 1.5 * (s.get("type") == "detail") + 2 * any(pr.get(k) for k in ("reflexo", "vulto", "porta", "rosto", "batida", "duplo"))
+            + 1.5 * bool(s.get("shake")) + 1.2 * fala + (0.8 if cam.get("handheld") else 0) + 2.5 * dialogo)
+
+
+def corte(spec_path, video, alvo=68.0, minimo=60.0, maximo=75.0, out=None):
+    """Versão curta do episódio só com os planos mais fortes, em ordem: gancho, a 1ª cena (contexto), os picos,
+    a última cena antes da escolha, a tela A/B e o quadro de loop. Para testar qual versão segura mais em cada rede."""
+    from .render import Episode
+    ep = Episode(spec_path)
+    shots = sorted(ep.shots, key=lambda s: s["start"])
+    subs = [(a, b, v) for a, b, _, v in ep.subs]
+    fixos = set()
+    gancho = [i for i, s in enumerate(shots) if s.get("hook")]; fixos.update(gancho)
+    cenas = [i for i, s in enumerate(shots) if s.get("type", "scene") in ("scene", "detail") and not s.get("hook")]
+    if cenas: fixos.add(cenas[0])
+    ch = [i for i, s in enumerate(shots) if s.get("type") == "choice"]
+    if ch:
+        fixos.update(ch); antes = [i for i in cenas if i < ch[0]]
+        if antes: fixos.add(antes[-1])
+    fixos.update(i for i, s in enumerate(shots) if s.get("type") in ("loop", "title", "recap") and s["start"] < 12 or s.get("type") == "loop")
+    dur = lambda i: shots[i]["end"] - shots[i]["start"]
+    escolhidos = set(fixos); total = sum(dur(i) for i in escolhidos)
+    for i in sorted((i for i in cenas if i not in escolhidos), key=lambda i: -_nota_plano(ep.spec, shots[i], subs)):
+        if total >= alvo: break
+        if total + dur(i) <= maximo: escolhidos.add(i); total += dur(i)
+    if total < minimo:   # ainda curto: completa pela ordem do episódio
+        for i in cenas:
+            if i not in escolhidos and total + dur(i) <= maximo: escolhidos.add(i); total += dur(i)
+    trechos = [(shots[i]["start"], shots[i]["end"]) for i in sorted(escolhidos)]
+    out = out or os.path.splitext(video)[0] + "_corte.mp4"
+    fc, n = [], len(trechos)
+    for k, (a, b) in enumerate(trechos):
+        fd = max(0.0, (b - a) - 0.04)
+        fc.append(f"[0:v]trim={a:.3f}:{b:.3f},setpts=PTS-STARTPTS[v{k}];"
+                  f"[0:a]atrim={a:.3f}:{b:.3f},asetpts=PTS-STARTPTS,afade=t=in:d=0.03,afade=t=out:st={fd:.3f}:d=0.04[a{k}];")
+    fc.append("".join(f"[v{k}][a{k}]" for k in range(n)) + f"concat=n={n}:v=1:a=1[v][a]")
+    _run(["ffmpeg", "-loglevel", "error", "-y", "-i", video, "-filter_complex", "".join(fc), "-map", "[v]", "-map", "[a]",
+          "-c:v", "libx264", "-preset", "medium", "-crf", "26", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+          "-movflags", "+faststart", out])
+    print(f"corte: {out} ({total:.1f} s, {n} planos)"); return out
 
 
 def temporada(out, title, videos):
@@ -257,4 +306,5 @@ if __name__ == "__main__":
             spec = json.load(open(args[0])); args.insert(1, os.path.join(os.path.dirname(args[0]), spec.get("out", "")))
         r = pacote(args[0], args[1], float(args[2]) if len(args) > 2 else None)
         print("\n".join(f"{k}: {v}" for k, v in r.items()))
+    elif cmd == "corte": corte(sys.argv[2], sys.argv[3], float(sys.argv[4]) if len(sys.argv) > 4 else 68.0)
     elif cmd == "temporada": temporada(sys.argv[2], sys.argv[3], sys.argv[4:])

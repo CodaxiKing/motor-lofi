@@ -5,6 +5,26 @@ from .core import W, H, RED, CREAM, font, text_center, c01, ease_out
 
 SUB_Y = 1500                       # faixa fixa de legenda (terço inferior)
 HIGHLIGHT = (255, 214, 60)         # cor da palavra que está sendo dita
+KEYWORD = (255, 92, 70)            # palavra-chave do trecho (modo redes): maior e em vermelho
+REDES = False                      # modo redes: legenda na área segura do TikTok/Instagram + palavra-chave
+SAFE_CX, SAFE_W, SAFE_Y_MAX = W / 2, W - 70, 1700
+
+
+def set_redes(on):
+    """Área segura das redes: fora da faixa de baixo (descrição/música, ~480 px) e da coluna de botões à direita (~150 px)."""
+    global REDES, SUB_Y, SAFE_CX, SAFE_W, SAFE_Y_MAX
+    REDES = bool(on)
+    SUB_Y, SAFE_CX, SAFE_W, SAFE_Y_MAX = (1330, W / 2 - 40, W - 210, 1400) if on else (1500, W / 2, W - 70, 1700)
+
+
+def palavras(txt):
+    """[(palavra limpa, é_chave)]. *palavra* no roteiro marca a chave; sem marca, no modo redes, a mais longa (6+ letras)."""
+    ws = txt.split(); out = [(w.replace("*", ""), w.startswith("*") or w.rstrip(".,!?…:;").endswith("*")) for w in ws]
+    if REDES and not any(k for _, k in out) and len(out) >= 2:
+        letras = [sum(ch.isalpha() for ch in w) for w, _ in out]
+        i = max(range(len(out)), key=lambda j: letras[j])
+        if letras[i] >= 6: out[i] = (out[i][0], True)
+    return out
 
 def hud(img, t, day="DIA 1", clock="23:40", place="APTO 904", flash=0.0):
     d = ImageDraw.Draw(img)
@@ -28,46 +48,52 @@ def sub_width(t, subs):
     for a, b, txt, voice in subs:
         if not (a <= t < b): continue
         n = len(txt); f = font("title", 112 if n <= 16 else (90 if n <= 22 else 72))
-        return min(W - 70, d.textbbox((0, 0), txt, font=f)[2])
+        return min(SAFE_W, d.textbbox((0, 0), txt.replace("*", ""), font=f)[2])
     return 0
 
 
 def subtitle(img, t, subs, speakers, y=None, words=True):
     """subs: lista de (ini, fim, texto, voz). speakers: {voz: {"label": "RAFA", "color": (r,g,b)}}."""
-    y0 = y or SUB_Y
+    y0 = min(y or SUB_Y, SAFE_Y_MAX)
     d = ImageDraw.Draw(img)
     for a, b, txt, voice in subs:
         if not (a <= t < b): continue
-        n = len(txt)
+        pw = palavras(txt); limpo = " ".join(w for w, _ in pw)
+        n = len(limpo)
         f = font("title", 112 if n <= 16 else (90 if n <= 22 else 72))
         sp = speakers.get(voice, {})
         base = tuple(sp.get("color", (250, 250, 248)))
         if sp.get("label"):
-            text_center(d, sp["label"], W / 2, y0 - 92, font("mono", 32), base, 4)
-        wt = _word_times(txt, a, b)
+            text_center(d, sp["label"], SAFE_CX, y0 - 92, font("mono", 32), base, 4)
+        wt = _word_times(limpo, a, b)
+        def fontes(f):
+            fk = font("title", int(f.size * 1.2))
+            return [fk if k else f for _, k in pw]
+        fs = fontes(f)
         space = d.textbbox((0, 0), " ", font=f)[2]
-        widths = [d.textbbox((0, 0), w, font=f)[2] - d.textbbox((0, 0), w, font=f)[0] for w, _, _ in wt]
+        widths = [d.textbbox((0, 0), w, font=ff)[2] - d.textbbox((0, 0), w, font=ff)[0] for (w, _, _), ff in zip(wt, fs)]
         total = sum(widths) + space * (len(wt) - 1)
-        if total > W - 70:
-            f = font("title", int(f.size * (W - 70) / total)); space = d.textbbox((0, 0), " ", font=f)[2]
-            widths = [d.textbbox((0, 0), w, font=f)[2] - d.textbbox((0, 0), w, font=f)[0] for w, _, _ in wt]
+        if total > SAFE_W:
+            f = font("title", int(f.size * SAFE_W / total)); fs = fontes(f); space = d.textbbox((0, 0), " ", font=f)[2]
+            widths = [d.textbbox((0, 0), w, font=ff)[2] - d.textbbox((0, 0), w, font=ff)[0] for (w, _, _), ff in zip(wt, fs)]
             total = sum(widths) + space * (len(wt) - 1)
-        x = W / 2 - total / 2
-        for (w, ws, we), wd in zip(wt, widths):
+        x = SAFE_CX - total / 2
+        for (w, ws, we), wd, ff, (_, chave) in zip(wt, widths, fs, pw):
             active = words and ws <= t < we + 0.05
             seen = t >= ws
             col = (HIGHLIGHT if voice not in speakers or sp.get("color") is None else base) if active else (base if seen or not words else tuple(int(c * 0.78) for c in base))
             if active and voice in speakers and sp.get("color"): col = HIGHLIGHT
+            if chave and not active and (seen or not words): col = KEYWORD
             pop = ease_out(c01((t - ws) / 0.1)) if words and active else 1.0
             if active and pop < 1:
-                tmp = Image.new("RGBA", (wd + 60, 200), (0, 0, 0, 0)); td = ImageDraw.Draw(tmp)
-                text_center(td, w, tmp.width / 2, 100, f, col + (255,), 9, (0, 0, 0, 255))
+                tmp = Image.new("RGBA", (wd + 60, 240), (0, 0, 0, 0)); td = ImageDraw.Draw(tmp)
+                text_center(td, w, tmp.width / 2, 120, ff, col + (255,), 9, (0, 0, 0, 255))
                 sc = 0.8 + 0.3 * pop
                 tmp = tmp.resize((int(tmp.width * sc), int(tmp.height * sc)))
                 img.paste(tmp, (int(x + wd / 2 - tmp.width / 2), int(y0 - tmp.height / 2)), tmp)
             else:
                 yy = y0 - (6 if active else 0)
-                text_center(d, w, x + wd / 2, yy, f, col, 9)
+                text_center(d, w, x + wd / 2, yy, ff, col, 9)
             x += wd + space
         break
 

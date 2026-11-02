@@ -33,7 +33,11 @@ def check(path, frames=True):
     else:
         if ep.total < 120: regra(f"duração {ep.total:.0f}s: o episódio precisa ter no mínimo 2 min (sem limite máximo)")
         if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
-        if not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
+        if ep.redes:   # modo redes: sem cartela; o selo EP X/Y entra sozinho e o voto vai em "voto" (a partir do ep. 2)
+            if any(s.get("type") == "title" for s in shots): warn("cartela de título no modo redes: troque pelo selo automático (tire o plano 'title')")
+            if (sp.get("episode") or 1) > 1 and not sp.get("voto"): err("falta \"voto\" (palavra da escolha da maioria) para o carimbo do selo")
+            if not sp.get("episode"): err("falta \"episode\" (o selo EP X/Y usa episode e episodes_total)")
+        elif not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
         final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
         if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
     for a, b in zip(shots, shots[1:]):

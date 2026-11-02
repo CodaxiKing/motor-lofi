@@ -1,7 +1,7 @@
 {
  "out": "ep01.mp4",
  "fps": 30,
- "total": 127.37,
+ "total": 124.37,
  "crf": 28,
  "series_title": "TURNO DA NOITE",
  "episode": 1,
@@ -14,6 +14,9 @@
   0.07
  ],
  "style": "desenho",
+ "pergunta": {
+  "text": "VOCÊ ATENDERIA?"
+ },
  "voices": {
   "davi": "ep01/davi.mp3",
   "sonia": "ep01/sonia.mp3",
@@ -46,12 +49,12 @@
     "22:00"
    ],
    [
-    52.27,
+    49.27,
     "NOITE 1",
     "02:59"
    ],
    [
-    60.17,
+    57.17,
     "NOITE 1",
     "03:00"
    ]
@@ -59,7 +62,7 @@
   "sec_per_min": 7.0
  },
  "lightning": [
-  11.4
+  8.4
  ],
  "clips": [
   {
@@ -68,7 +71,7 @@
     0.0,
     6.65
    ],
-   "at": 6.2
+   "at": 3.2
   },
   {
    "voice": "sonia",
@@ -76,7 +79,7 @@
     0.0,
     7.31
    ],
-   "at": 21.4,
+   "at": 18.4,
    "radio": true
   },
   {
@@ -85,7 +88,7 @@
     7.01,
     15.49
    ],
-   "at": 30.11
+   "at": 27.11
   },
   {
    "voice": "davi",
@@ -93,7 +96,7 @@
     15.71,
     20.93
    ],
-   "at": 39.89
+   "at": 36.89
   },
   {
    "voice": "davi",
@@ -101,7 +104,7 @@
     21.44,
     26.3
    ],
-   "at": 46.51
+   "at": 43.51
   },
   {
    "voice": "davi",
@@ -109,7 +112,7 @@
     26.73,
     30.69
    ],
-   "at": 53.07
+   "at": 50.07
   },
   {
    "voice": "davi",
@@ -117,7 +120,7 @@
     31.03,
     33.95
    ],
-   "at": 61.77
+   "at": 58.77
   },
   {
    "voice": "davi",
@@ -125,7 +128,7 @@
     34.44,
     37.87
    ],
-   "at": 66.87
+   "at": 63.87
   },
   {
    "voice": "bento",
@@ -133,7 +136,7 @@
     0.0,
     3.2
    ],
-   "at": 74.37
+   "at": 71.37
   },
   {
    "voice": "davi",
@@ -141,7 +144,7 @@
     38.26,
     40.08
    ],
-   "at": 79.57
+   "at": 76.57
   },
   {
    "voice": "davi",
@@ -149,7 +152,7 @@
     40.36,
     44.02
    ],
-   "at": 87.07
+   "at": 84.07
   },
   {
    "voice": "davi",
@@ -157,7 +160,7 @@
     44.35,
     47.45
    ],
-   "at": 92.37
+   "at": 89.37
   },
   {
    "voice": "bento",
@@ -165,7 +168,7 @@
     3.64,
     6.54
    ],
-   "at": 98.17
+   "at": 95.17
   },
   {
    "voice": "davi",
@@ -173,7 +176,7 @@
     47.71,
     52.66
    ],
-   "at": 103.87
+   "at": 100.87
   },
   {
    "voice": "davi",
@@ -181,7 +184,7 @@
     53.01,
     58.22
    ],
-   "at": 110.87
+   "at": 107.87
   }
  ],
  "subs": [
@@ -498,21 +501,8 @@
    ]
   },
   {
-   "start": 2,
-   "end": 5,
-   "type": "title",
-   "title": "EPISÓDIO 1/5",
-   "subtitle": "TURNO DA NOITE",
-   "transition": "glitch",
-   "stamp": {
-    "t": 3.4,
-    "top": "ARQUIVO",
-    "word": "24-0317"
-   }
-  },
-  {
    "scene": "posto",
-   "transition": "fade",
+   "transition": "glitch",
    "rain": "fraca",
    "camera": {
     "plano": "aberto"
@@ -545,8 +535,8 @@
      "emotion": "neutral"
     }
    ],
-   "start": 5.0,
-   "end": 15.0
+   "start": 2.0,
+   "end": 12.0
   },
   {
    "scene": "posto",
@@ -561,8 +551,8 @@
      "emotion": "suspicious"
     }
    ],
-   "start": 15.0,
-   "end": 19.0
+   "start": 12.0,
+   "end": 16.0
   },
   {
    "scene": "loja",
@@ -628,8 +618,8 @@
      "emotion": "neutral"
     }
    ],
-   "start": 19.0,
-   "end": 29.61
+   "start": 16.0,
+   "end": 26.61
   },
   {
    "scene": "loja",
@@ -656,8 +646,8 @@
      "look": -1
     }
    ],
-   "start": 29.61,
-   "end": 39.49
+   "start": 26.61,
+   "end": 36.49
   },
   {
    "scene": "loja",
@@ -687,8 +677,8 @@
      ]
     }
    ],
-   "start": 39.49,
-   "end": 46.01
+   "start": 36.49,
+   "end": 43.01
   },
   {
    "type": "detail",
@@ -701,8 +691,8 @@
    },
    "transition": "fade",
    "grade": "frio",
-   "start": 46.01,
-   "end": 52.27
+   "start": 43.01,
+   "end": 49.27
   },
   {
    "scene": "mercado",
@@ -740,8 +730,8 @@
      "emotion": "neutral"
     }
    ],
-   "start": 52.27,
-   "end": 58.77
+   "start": 49.27,
+   "end": 55.77
   },
   {
    "scene": "loja",
@@ -816,8 +806,8 @@
      ]
     }
    ],
-   "start": 58.77,
-   "end": 66.27
+   "start": 55.77,
+   "end": 63.27
   },
   {
    "scene": "cftv",
@@ -828,8 +818,8 @@
     "hora": "03:00:52",
     "ruido": 0.2
    },
-   "start": 66.27,
-   "end": 71.77
+   "start": 63.27,
+   "end": 68.77
   },
   {
    "scene": "loja",
@@ -896,8 +886,8 @@
      ]
     }
    ],
-   "start": 71.77,
-   "end": 78.77
+   "start": 68.77,
+   "end": 75.77
   },
   {
    "type": "detail",
@@ -911,8 +901,8 @@
     "brow": -15
    },
    "transition": "cut",
-   "start": 78.77,
-   "end": 83.27
+   "start": 75.77,
+   "end": 80.27
   },
   {
    "scene": "loja",
@@ -956,8 +946,8 @@
      "emotion": "happy"
     }
    ],
-   "start": 83.27,
-   "end": 85.87
+   "start": 80.27,
+   "end": 82.87
   },
   {
    "scene": "loja",
@@ -996,8 +986,8 @@
      "emotion": "happy"
     }
    ],
-   "start": 85.87,
-   "end": 91.87
+   "start": 82.87,
+   "end": 88.87
   },
   {
    "scene": "cftv",
@@ -1024,8 +1014,8 @@
      ]
     ]
    },
-   "start": 91.87,
-   "end": 97.37
+   "start": 88.87,
+   "end": 94.37
   },
   {
    "scene": "loja",
@@ -1056,8 +1046,8 @@
      "tremble": 1
     }
    ],
-   "start": 97.37,
-   "end": 103.37
+   "start": 94.37,
+   "end": 100.37
   },
   {
    "scene": "loja",
@@ -1093,8 +1083,8 @@
      "look": -1
     }
    ],
-   "start": 103.37,
-   "end": 109.87
+   "start": 100.37,
+   "end": 106.87
   },
   {
    "scene": "loja",
@@ -1123,12 +1113,12 @@
      "facing": -1
     }
    ],
-   "start": 109.87,
-   "end": 118.37
+   "start": 106.87,
+   "end": 115.37
   },
   {
-   "start": 118.37,
-   "end": 127.37,
+   "start": 115.37,
+   "end": 124.37,
    "type": "choice",
    "transition": "zoom",
    "hud": false,
@@ -1189,7 +1179,7 @@
     ]
    },
    "end_card": {
-    "t": 124.87,
+    "t": 121.87,
     "text": "CONTINUA NO EPISÓDIO 2"
    }
   }
@@ -1205,163 +1195,159 @@
    "name": "bell"
   },
   {
-   "t": 3.4,
-   "name": "stamp"
-  },
-  {
-   "t": 5.8,
+   "t": 2.8,
    "name": "step"
   },
   {
-   "t": 7.2,
+   "t": 4.2,
    "name": "step"
   },
   {
-   "t": 11.5,
+   "t": 8.5,
    "name": "thunder"
   },
   {
-   "t": 16.0,
+   "t": 13.0,
    "name": "breath"
   },
   {
-   "t": 19.3,
+   "t": 16.3,
    "name": "bell"
   },
   {
-   "t": 19.6,
+   "t": 16.6,
    "name": "step"
   },
   {
-   "t": 20.6,
+   "t": 17.6,
    "name": "beep"
   },
   {
-   "t": 21.1,
+   "t": 18.1,
    "name": "click"
   },
   {
-   "t": 29.81,
+   "t": 26.81,
    "name": "click"
   },
   {
-   "t": 44.49,
+   "t": 41.49,
    "name": "static",
    "dur": 0.8
   },
   {
-   "t": 46.21,
+   "t": 43.21,
    "name": "click"
   },
   {
-   "t": 49.51,
+   "t": 46.51,
    "name": "click"
   },
   {
-   "t": 52.77,
+   "t": 49.77,
    "name": "step"
   },
   {
-   "t": 54.77,
+   "t": 51.77,
    "name": "static",
    "dur": 1.0
   },
   {
-   "t": 60.17,
+   "t": 57.17,
    "name": "click"
   },
   {
-   "t": 60.77,
+   "t": 57.77,
    "name": "bell"
   },
   {
-   "t": 60.77,
+   "t": 57.77,
    "name": "whoosh"
   },
   {
-   "t": 61.17,
+   "t": 58.17,
    "name": "heartbeat",
    "dur": 4
   },
   {
-   "t": 66.37,
+   "t": 63.37,
    "name": "static",
    "dur": 1.2
   },
   {
-   "t": 69.77,
+   "t": 66.77,
    "name": "breath"
   },
   {
-   "t": 72.17,
+   "t": 69.17,
    "name": "step"
   },
   {
-   "t": 73.17,
+   "t": 70.17,
    "name": "step"
   },
   {
-   "t": 78.87,
+   "t": 75.87,
    "name": "heartbeat",
    "dur": 3
   },
   {
-   "t": 86.27,
+   "t": 83.27,
    "name": "bell"
   },
   {
-   "t": 87.47,
+   "t": 84.47,
    "name": "impact"
   },
   {
-   "t": 87.77,
+   "t": 84.77,
    "name": "heartbeat",
    "dur": 5
   },
   {
-   "t": 91.97,
+   "t": 88.97,
    "name": "static",
    "dur": 4
   },
   {
-   "t": 97.67,
+   "t": 94.67,
    "name": "growl"
   },
   {
-   "t": 101.37,
+   "t": 98.37,
    "name": "breath"
   },
   {
-   "t": 103.57,
+   "t": 100.57,
    "name": "heartbeat",
    "dur": 5
   },
   {
-   "t": 108.87,
+   "t": 105.87,
    "name": "click"
   },
   {
-   "t": 110.07,
+   "t": 107.07,
    "name": "heartbeat",
    "dur": 6
   },
   {
-   "t": 117.17,
+   "t": 114.17,
    "name": "bell"
   },
   {
-   "t": 119.37,
+   "t": 116.37,
    "name": "bell"
   },
   {
-   "t": 123.37,
+   "t": 120.37,
    "name": "stamp"
   }
  ],
  "music": [
   {
-   "start": 5,
-   "end": 58.77,
+   "start": 2,
+   "end": 55.77,
    "gain": [
     0.03,
     0.06
@@ -1369,8 +1355,8 @@
    "tense": 0.35
   },
   {
-   "start": 58.77,
-   "end": 97.37,
+   "start": 55.77,
+   "end": 94.37,
    "gain": [
     0.05,
     0.1
@@ -1378,8 +1364,8 @@
    "tense": 0.8
   },
   {
-   "start": 97.37,
-   "end": 127.37,
+   "start": 94.37,
+   "end": 124.37,
    "gain": [
     0.05,
     0.1

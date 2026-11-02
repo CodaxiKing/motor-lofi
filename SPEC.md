@@ -252,7 +252,7 @@ Usado pela skill `serie-comentarios`: um personagem responde comentários dos se
 
 ## Extras
 - `python3 -m lofi.extras teaser epNN.json epNN.mp4` → teaser de ~15 s para Stories (gancho + 3 melhores momentos + cartela).
-- `python3 -m lofi.extras pacote epNN.json epNN.mp4 [tempo]` → **entrega padrão**: teaser + capa do TikTok + capa do Instagram.
+- `python3 -m lofi.extras pacote epNN.json epNN.mp4 [tempo]` → **entrega padrão**: teaser + corte curto (60–75 s) + capa do TikTok + capa do Instagram.
 - `python3 -m lofi.extras capa epNN.json [tempo] [--tiktok|--instagram] [--guias]` → `epNN_capa_tiktok.png` e `epNN_capa_instagram.png`
   (1080×1920; usam `series_title`, `episode`, `episodes_total`, `episode_title`). Texto dentro da área segura de cada rede:
   TikTok evita o topo (~200 px), a base (~480 px, legenda e música) e a coluna direita (~150 px, botões); Instagram mantém
@@ -339,3 +339,24 @@ Esse é o único valor de referência; os números de versões antigas (7 s, 10 
 - `deposito` — fundos com caixas, gerador e a porta de aço da câmara fria. Props: `batida` (porta tremendo), `rosto` (rosto e mãos no vidro), `cadeado`, `gerador` (LED verde/vermelho), `luz` (0 = breu). Marcas: porta_camara, frente_porta, gerador, centro, frente.
 - `camara_fria` — por dentro, prateleiras de aço, gelo, névoa e lâmpada azul. Props: `flicker`, `tiras` (cortina de tiras na frente). Marcas: fundo, meio, frente.
 - `cftv` — close no monitor das câmeras (CAM1 CAIXA, CAM2 CORREDOR, CAM3 BOMBAS, CAM4 CAMARA FRIA). Props: `hora` ("03:00:00"), `vulto` (nº da câmera ou lista), `duplo` (alguém atrás do caixa na CAM1), `ruido` (0–1), `cam` (uma câmera em tela cheia). Mão: `"hand": "davi"` (posições `tela`, `botao`).
+
+## Modo redes (TikTok/Instagram) — padrão nos episódios novos
+Ligado sozinho em todo episódio sem `"plano_padrao": "aberto"` (desliga com `"modo_redes": false`). O que ele faz:
+- **Sem cartela de título.** Não use plano `title`: o gancho emenda direto na 1ª cena e um selo `EP X/Y` (com o nome da série)
+  entra no canto direito por 3,5 s e depois fica discreto. A partir do ep. 2, `"voto": "TELHADO"` no topo do JSON mostra o carimbo
+  "A MAIORIA ESCOLHEU" no alto, logo depois do gancho (com som `stamp`). O verificador pede `episode` e, do ep. 2 em diante, `voto`.
+- **Gancho com impacto.** O texto do `hook` aparece palavra por palavra desde o 1º quadro (`"passo": 0.16` s por palavra),
+  a câmera entra num "soco" de zoom que assenta em 0,4 s e o motor põe `impact` + `whoosh` no quadro 0.
+- **Cortes automáticos.** Planos de 4,8 s ou mais com enquadramento automático (médio/conjunto) são divididos nas pausas da
+  fala em trechos de ~2,4–3,8 s, alternando: plano base → close em quem fala → o outro enquadramento (conjunto ↔ médio).
+  Não cortam: planos com `zoom`/`close`/`follow`/`vertigo`, `plano: aberto`/`close`, gancho, travelling.
+  Desligar: `"camera": {"cortes": false}` no plano ou `"cortes_auto": false` no episódio.
+- **Pergunta no meio.** `"pergunta": {"text": "VOCÊ ATENDERIA?"}` (opcional `t`, `dur`) mostra um cartão "COMENTA AQUI
+  EMBAIXO" por 3 s no 1º plano de cena depois da metade; sem texto, usa "E VOCÊ, O QUE FARIA?". `"pergunta": false` desliga.
+- **Contagem antes da escolha.** Nos 3 s antes da tela A/B: 3… 2… 1 no canto direito com "O QUE VOCÊ FARIA?" e bipes.
+- **Loop.** O vídeo não escurece no fim: depois da tela A/B entra meio segundo do gancho, e o último quadro emenda no primeiro.
+- **Legendas na área segura.** Faixa em y≈1330 (nunca abaixo de 1400, fora da descrição/música do TikTok), centro um pouco à
+  esquerda e largura máxima de 870 px (longe da coluna de botões). A palavra-chave de cada trecho fica 20% maior e em vermelho:
+  marque com `*palavra*` no texto da legenda; sem marca, o motor escolhe a palavra mais longa (6 letras ou mais).
+- **Corte curto.** `python3 -m lofi.extras corte epNN.json epNN.mp4 [alvo]` gera `epNN_corte.mp4` (60–75 s): gancho, a 1ª cena,
+  os planos mais fortes (sustos, closes, detalhes, falas de outros personagens), a última cena, a tela A/B e o loop. Já vem no `pacote`.

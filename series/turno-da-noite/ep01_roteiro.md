@@ -19,9 +19,9 @@ LUZ E DETALHES: `flicker` forte, luz das geladeiras
 SOM: `heartbeat` 0 s · `bell` 1 s
 TEXTO: NÃO OLHE / PARA O VIDRO
 
-## ABERTURA (2–5 s)
-EPISÓDIO 1/5 · TURNO DA NOITE · carimbo: ARQUIVO 24-0317 · TRANSIÇÃO: `glitch`
-SOM: `stamp` 3.5 s
+## ABERTURA (sobre a cena 1, sem cartela)
+Selo EPISÓDIO 1/5 · TURNO DA NOITE no canto direito (modo redes) · TRANSIÇÃO da cena 1: `glitch`
+PERGUNTA NO MEIO: VOCÊ ATENDERIA? (cartão "comenta aqui embaixo", logo depois da metade)
 
 ---
 

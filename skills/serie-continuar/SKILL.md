@@ -25,3 +25,5 @@ Responda em português do Brasil.
 9. Linha final: "Próximo passo: gere um áudio por personagem no ElevenLabs e use /serie-montar com os áudios".
 
 **As falas do ElevenLabs vão na resposta do chat, sempre:** um bloco de código por personagem (nome e dica de voz em cima do bloco, fora dele), só com as falas e as tags em inglês, na ordem do episódio, para o usuário copiar e colar direto. Não basta deixar no arquivo do roteiro.
+
+**Modo redes (padrão):** sem cartela de título (a ABERTURA vira o selo "EP X/Y" + carimbo "A MAIORIA ESCOLHEU: ..." sobre a 1ª cena); o gancho de 0–2 s abre já no susto, com o texto em até 4 palavras por linha; escreva uma **PERGUNTA NO MEIO** curta para o público (ex.: "VOCÊ ATENDERIA?"); nas legendas, marque a palavra-chave de cada trecho com `*palavra*`. O motor faz sozinho os cortes a cada 2–3 s, a contagem 3-2-1 antes da escolha e o loop no fim.
