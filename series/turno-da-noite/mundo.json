@@ -59,6 +59,18 @@
    "hora": "03:07",
    "rotulo": "NOITE",
    "nota": "Davi atrás do caixa; o Bento no balcão pediu 'o de sempre' e o vulto de chapéu está na porta de vidro"
+  },
+  "2": {
+   "lugar": "loja",
+   "inventario": {
+    "davi": [
+     "chave"
+    ]
+   },
+   "dia": 2,
+   "hora": "03:14",
+   "rotulo": "NOITE",
+   "nota": "no depósito, diante da porta da câmara fria, com a chave do cadeado"
   }
  }
 }

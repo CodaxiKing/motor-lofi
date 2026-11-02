@@ -117,7 +117,7 @@ def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False, camera=N
     from .render import Episode
     cfg = PLATAFORMAS[plataforma]
     ep = Episode(spec_path); sp = ep.spec
-    ep.subs = []; ep.hud_state = lambda _t: None          # capa sem legenda e sem contador
+    ep.subs = []; ep.hud_state = lambda _t: None; ep.draw_redes = lambda *a: None   # capa sem legenda, contador, selo nem cartões
     if t is None: t, camera = _escolher_tempo(ep, cfg)
     if camera is not None:
         plano = next((s for s in ep.shots if s["start"] <= float(t) < s["end"]), None)

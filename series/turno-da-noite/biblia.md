@@ -43,8 +43,8 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 ## Episódios
 | Nº | Noite | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 1 | início | montado | A) Atender · B) Dizer que está fechado | FECHADO (B) | |
-| 2 | 2 | complicação | roteiro | A) Abrir a câmara fria · B) Ligar pra gerente | | |
+| 1 | 1 | início | montado | A) Atender · B) Dizer que está fechado | FECHADO (B) | A 0 × B 2 (Instagram 2) |
+| 2 | 2 | complicação | montado | A) Abrir a câmara fria · B) Ligar pra gerente | (aguardando) | |
 | 3 | 3 | reviravolta | planejado | A) Confiar na Sônia · B) Confiar no Ivo | | |
 | 4 | 4 | clímax | planejado | A) Religar o gerador · B) Ficar parado no escuro | | |
 | 5 | 5 | final | planejado | — | | |
@@ -62,7 +62,7 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 
 ## Resumos
 - EP 1: Davi começou o turno da noite na loja 24h do km 317 e achou no caixa as regras assinadas pelo Ivo, o atendente que sumiu. Às 3h00 o relógio pulou, a porta abriu sozinha com o sininho e entrou o caminhoneiro Bento pedindo "o de sempre". Na câmera do caixa Davi estava sozinho, e no vidro da geladeira o reflexo era uma silhueta alta de chapéu. Às 3h07, ele precisa escolher: atender ou dizer que a loja está fechada.
-- EP 2:
+- EP 2: O Davi disse que a loja estava fechada; o Bento esperou sorrindo do lado de fora até 3h33 e sumiu. Na noite 2, a Sônia ligou dizendo que vê tudo pelas câmeras. Às 3h, três batidas vieram de dentro da câmara fria: uma voz que diz ser o Ivo pediu para sair e chamou o Davi pelo nome, mas a câmera mostrava a câmara vazia e o vidro embaçou com um rosto. Abrir ou ligar para a gerente.
 - EP 3:
 - EP 4:
 - EP 5:
@@ -72,5 +72,6 @@ A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arqui
 |---|---|---|---|
 
 ## Continuidade (onde eles estão)
+- Fim do ep. 2: Davi diante da porta da câmara fria no depósito, Noite 2 · 03:14, com a chave do cadeado na mão; a voz do Ivo bate cada vez mais fraco.
 - Fim do ep. 1: Davi atrás do caixa, Noite 1 · 03:07, com o Bento no balcão e o vulto de chapéu na porta de vidro.
 - Início do ep. 1: Davi sozinho no caixa da loja, 22h da Noite 1. O telefone fixo fica no balcão; o rádio da loja não existe (sem rádio nesta série).
