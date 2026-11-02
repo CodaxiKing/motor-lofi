@@ -37,7 +37,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 | 2 | 2 | complicação | montado | A) Escada · B) Telhado | TELHADO | |
 | 3 | 3 | reviravolta | montado | A) Buscar Lia no hospital · B) Ir direto pra ponte | PONTE | |
 | 4 | 4 | clímax | montado | A) Fazer barulho · B) Esperar em silêncio | BARULHO (A) | 1×1 no TikTok (empate; roleta: BARULHO) |
-| 5 | 5 | final | roteiro | — (final A — O BARULHO) | | |
+| 5 | 5 | final | montado | — (final A — O BARULHO) | — | — |
 
 > Eps. 1 e 2 foram publicados na versão antiga do motor (~1 min cada). Os roteiros e os `epNN.json` desta pasta foram
 > reconstruídos a partir dos vídeos publicados (marcados como `legado`). Para o "Anteriormente em…" do ep. 3, use
@@ -47,6 +47,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - EP 1: Roberta acordou no Dia 1 com 37 alertas pedindo silêncio. No corredor, o vizinho seu Válter virou a cabeça, com olhos brancos, quando um copo caiu. No rádio, uma voz feminina que Roberta acha familiar disse: "Cheguem à ponte antes do Dia 5. Três batidas." Às 23h40, alguém bateu 3 vezes na porta.
 - EP 2: Roberta espiou e viu Rafa, do 12º andar, com seu Válter vindo atrás. Ela abriu no último segundo; Rafa entrou desconfiado por ela ter demorado. Rafa provou que os infectados seguem o som. No Dia 2, o celular ficou sem sinal e a rua amanheceu cheia de infectados. O rádio repetiu: "A ponte, antes do Dia 5."
 - EP 3: Roberta e Rafa pularam para o prédio vizinho; ela o segurou no pulo e a confiança dele começou a voltar. No Dia 3, um caco de vidro atraiu a horda e os dois se esconderam num posto, onde o rádio chamou Roberta pelo nome: era Lia, a irmã dela, no Hospital Central. Com a ponte fechando em dois dias, ela precisa escolher entre buscar a irmã ou correr para a ponte.
+- EP 5: Roberta disparou o alarme do carro e a horda correu para o lado errado. Ela e o Rafa subiram o viaduto até a ponte; quando ela caiu, foi o Rafa quem voltou e a puxou. Atravessaram às 5h59, com o portão batendo atrás deles. Do outro lado, ela chamou a Lia pelo rádio e ouviu três batidas no chiado. Dia 6.
 - EP 4: Roberta desligou o rádio para não voltar pela irmã e desceu com o Rafa pela estação Sé, na mesma rua do posto, e esperou o dia passar na plataforma. À noite subiram pela mesma escada, a um quarteirão da ponte; o megafone do exército acordou a horda e os dois correram para um carro parado na rua, que foi cercado. Pelo rádio do carro, a Lia disse que o hospital caiu e pediu que ela atravessasse; Roberta prometeu. O Rafa teve a ideia do alarme do carro e disse que confia nela: fazer barulho ou esperar o dia, com a ponte fechando às seis.
 
 ## Extras (curiosidades)
@@ -61,3 +62,6 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 ## Continuidade (onde eles estão)
 - Fim do ep. 4: Roberta e Rafa dentro de um carro parado na rua da estação Sé, a um quarteirão da ponte, cercados pela horda, ao amanhecer do dia 5. O rádio que ela usa agora é o do carro (o rádio de casa ficou no apartamento). O ep. 5 começa dentro desse carro.
 - Fim do ep. 5 (roteiro): Roberta e Rafa do lado de dentro da barreira da ponte, DIA 6 · 06:00, com o rádio de pilha ligado. Portão fechado; a horda ficou do outro lado.
+
+## Temporada 2 (gancho)
+As três batidas eram da Lia: ela está viva, presa na sala do rádio do Hospital Central, com os infectados do outro lado da porta (revelado no extra 05). Do lado seguro da ponte, Roberta e Rafa sabem que alguém respondeu. A temporada 2 começa com Roberta voltando para buscar a irmã, agora transmitindo ela mesma no rádio.
