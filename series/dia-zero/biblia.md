@@ -1,6 +1,7 @@
 # DIA ZERO — O COMEÇO DO FIM
 5 episódios · Suspense · Classificação: todas as idades (sem sangue) · Cidade, tempos atuais · Duração por episódio: 2 a 3 min
 Elemento fixo: contador "DIA X · HH:MM" · Som assinatura: bipe duplo de alerta de emergência · Estilo do traço: desenho
+Perfil: @arquivo.zero.0 (TikTok/Instagram; vai nos comentários fixados e nas artes)
 
 ## Cor de cada episódio (tint)
 - EP 1: azul frio [90, 120, 200, 0.10] · EP 2: cinza chuvoso [140, 150, 170, 0.10] · EP 3: azul profundo [70, 90, 190, 0.12] · EP 4: vermelho [200, 70, 60, 0.12] · EP 5: laranja amanhecer [240, 150, 90, 0.12]

@@ -1,6 +1,7 @@
 # TURNO DA NOITE — ARQUIVO 24-0317
 5 episódios · Terror/Suspense (estilo SCP) · Classificação: 14+ (sustos fortes e violência leve, sem gore) · Loja de conveniência de posto, km 317 da rodovia, tempos atuais · Duração por episódio: 2 a 3 min
 Elemento fixo: contador "NOITE X · HH:MM" (hud `place`: "KM 317") · Som assinatura: o sininho da porta (`bell`) tocando sem ninguém entrar · Estilo do traço: desenho · Capa: gerada no planejamento (PNG fica fora do repositório)
+Perfil: @arquivo.zero.0 (TikTok/Instagram; vai nos comentários fixados e nas artes)
 
 ## Cor de cada episódio (tint)
 - EP 1: verde fluorescente [110, 200, 150, 0.10] · EP 2: azul gelo [120, 180, 230, 0.12] · EP 3: âmbar de luz de sódio [230, 170, 70, 0.10] · EP 4: vermelho de emergência [210, 60, 50, 0.12] · EP 5: branco do amanhecer [220, 220, 240, 0.10]
