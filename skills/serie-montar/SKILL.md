@@ -1,6 +1,6 @@
 ---
 name: "serie-montar"
-description: "Comando para montar o vídeo do episódio de uma série lo-fi interativa: recebe só as vozes, verifica com revisor independente, renderiza e entrega o MP4, teaser, capa do TikTok, capa do Instagram e legenda do post."
+description: "Comando para montar o vídeo do episódio de uma série lo-fi interativa: recebe as vozes e o print dos comentários, verifica com revisor independente, renderiza e entrega o MP4, teaser, capas, legenda do post e o comentário para fixar."
 ---
 
 # /serie-montar
@@ -27,6 +27,7 @@ Responda em português do Brasil.
 7. Confira duração, áudio e tamanho (crf 28 padrão; use 30 se passar de 90 MB).
 8. Extras, sempre os três: `python3 -m lofi.extras pacote series/<serie>/epNN.json <mp4>` gera o **teaser** (15 s), o **corte curto** (`epNN_corte.mp4`, 60–75 s), a **capa do TikTok** (`epNN_capa_tiktok.png`) e a **capa do Instagram** (`epNN_capa_instagram.png`), as duas 1080×1920 com título, selo e nome do episódio dentro da área segura de cada rede e o mesmo quadro (rostos inteiros, sem legenda nem contador). Abra as duas capas e confira antes de entregar; se o quadro escolhido não for bom, rode de novo passando o tempo (`... pacote ep.json ep.mp4 42.5`).
 9. **Entrega padrão (sempre os quatro arquivos):** o vídeo, o teaser, a capa do TikTok e a capa do Instagram, cada um com uma linha dizendo para onde vai, mais a legenda do post (e uma linha para o teaser). Se algum não puder ser gerado, diga qual e por quê.
+   **Comentário para fixar (sempre, padrão):** entregue também um comentário pronto (num bloco de código, para copiar) que o usuário posta e fixa no próprio vídeo, chamando para **seguir a conta**: 1–2 linhas, com o @ do perfil (linha "Perfil:" da bíblia; se não houver, use "a conta" e peça o @ no fim da resposta para salvar na bíblia), o motivo para seguir (o próximo episódio/extra, a temporada 2) e, se houver votação aberta, "Comenta A ou B". Ex.: `Segue @perfil pra não perder o EP 4 — a maioria decide o que a Roberta faz. Comenta A ou B 👇`. Faça uma versão para o extra e uma para o teaser quando eles forem entregues.
 10. Commit do `epNN.json` e do `epNN_roteiro.md`; só depois atualize a bíblia (resumo de 2–3 linhas, status "montado") e faça novo commit e push (sem áudios, vídeos ou imagens temporárias). Confira com `git ls-files series/<serie>/` que o `epNN.json` está lá.
 11. Se for o último episódio: gere também o vídeo das escolhas (`python3 -m lofi.extras escolhas series/<serie>`) e entregue junto, escreva o gancho da temporada 2 na bíblia e ofereça a compilação para o YouTube (peça os MP4s e use `python3 -m lofi.extras temporada ...`).
 12. Linha final: "Quando a votação fechar: /serie-continuar [episódio] [A ou B]".
