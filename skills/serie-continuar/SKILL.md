@@ -1,6 +1,6 @@
 ---
 name: "serie-continuar"
-description: "Comando curto para seguir a série lo-fi: /serie-continuar [episódio que terminou] [A ou B] registra o voto e gera o roteiro do próximo episódio sem perguntas."
+description: "Comando curto para seguir a série lo-fi: /serie-continuar [episódio que terminou] [A ou B] registra o voto e gera o roteiro do próximo episódio, com cartões de escolha nas etapas (gancho, pergunta do meio, tema do extra)."
 ---
 
 # /serie-continuar
