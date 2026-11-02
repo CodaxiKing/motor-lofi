@@ -136,6 +136,68 @@ def validar_extra(txt, caminho=None):
     return erros, avisos
 
 
+def conferir_fluxo(txt, caminho=None):
+    """Fluxo entre cenas: ninguém aparece ou some do nada, o tempo das cenas emenda, a fala cabe na cena e o gancho acontece."""
+    erros, avisos = [], []
+    pasta = os.path.dirname(os.path.abspath(caminho)) if caminho else "."
+    nomes = set()
+    pj = os.path.join(pasta, "personagens.json")
+    if os.path.exists(pj):
+        nomes = {k for k in json.load(open(pj, encoding="utf-8")) if not k.startswith("_") and not k.startswith("zombie")}
+    partes = re.split(r"^#+\s*(CENA\s+\d+[^\n]*)$", txt, flags=re.M)
+    cenas = []
+    for k in range(1, len(partes) - 1, 2):
+        cab, corpo = partes[k], re.split(r"\n---|\n##\s", partes[k + 1])[0]
+        n = int(re.search(r"CENA\s+(\d+)", cab).group(1))
+        tm = re.search(r"(\d+(?:[.,]\d+)?)\s*s?\s*(?:a|–|-)\s*(\d+(?:[.,]\d+)?)\s*s", cab)
+        a, b = (float(tm.group(1).replace(",", ".")), float(tm.group(2).replace(",", "."))) if tm else (None, None)
+        cen = re.search(r"CEN[AÁ]RIO[^:\n]*:\**\s*`([^`]+)`", corpo, re.I)
+        pl = re.search(r"PERSONAGENS?[^:\n]*:(.*)", corpo, re.I)
+        quem = {x for x in re.findall(r"`([^`]+)`", pl.group(1))} & nomes if pl and nomes else set()
+        cenas.append(dict(n=n, a=a, b=b, cen=cen.group(1) if cen else None, quem=quem, corpo=corpo,
+                          detalhe=bool(re.search(r"PLANO DE DETALHE", corpo, re.I)) and not cen,
+                          insercao=bool(re.search(r"INSER[ÇC][ÃA]O", corpo, re.I)),
+                          objeto=bool(cen and cen.group(1).startswith("radio")),
+                          liga=bool(re.search(r"LIGA[ÇC][ÃA]O\s*:", corpo, re.I)),
+                          entra=bool(re.search(r"\bENTRA\s*:", corpo)), sai=bool(re.search(r"\bSAI\s*:", corpo))))
+    # tempo emendado
+    ant = None
+    for c in cenas:
+        if c["n"] == 0 or c["a"] is None: continue
+        if ant and ant["b"] is not None and abs(c["a"] - ant["b"]) > 0.6:
+            avisos.append(f"CENA {c['n']}: começa em {c['a']:g} s, mas a cena {ant['n']} termina em {ant['b']:g} s (buraco ou sobreposição)")
+        ant = c
+        if c["b"] and c["b"] > c["a"]:
+            pal = 0
+            for linha in c["corpo"].split("\n"):
+                m = re.match(r"^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{1,30}(?:\s*\([^)]*\))?)\s*:\s*(.+)$", linha)
+                if not m: continue
+                rot = m.group(1).strip()
+                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO)", rot): continue
+                pal += len(re.sub(r"\[[^\]]*\]", "", m.group(2)).split())
+            wps = pal / (c["b"] - c["a"])
+            if wps > 3.3: avisos.append(f"CENA {c['n']}: {pal} palavras em {c['b'] - c['a']:g} s ({wps:.1f}/s) — fala demais para o tempo; aumente a cena ou corte texto")
+    # entrada e saída de personagens
+    prev = None
+    for c in cenas:
+        if c["n"] == 0 or c["detalhe"] or c["insercao"] or c["objeto"] or not c["cen"]: continue
+        if prev and not c["liga"]:
+            novos = c["quem"] - prev["quem"]; foram = prev["quem"] - c["quem"]
+            if novos and prev["quem"] and not c["entra"]:
+                erros.append(f"CENA {c['n']}: {', '.join(sorted(novos))} aparece sem entrar (não estava na cena {prev['n']}). "
+                             f"Escreva uma linha ENTRA: dizendo de onde vem, ou LIGAÇÃO: se foi outro lugar")
+            if foram and c["quem"] and not c["sai"] and not prev["sai"]:
+                avisos.append(f"CENA {c['n']}: {', '.join(sorted(foram))} estava na cena {prev['n']} e sumiu. Escreva SAI: (para onde foi) ou mantenha em quadro")
+        prev = c
+    # gancho acontece de verdade
+    g = next((c for c in cenas if c["n"] == 0), None)
+    if g and g["cen"] and not any(c["cen"] == g["cen"] for c in cenas if c["n"] > 0):
+        avisos.append(f"GANCHO: o cenário `{g['cen']}` do gancho não aparece em nenhuma cena; o gancho tem que ser um momento real do episódio")
+    if not re.search(r"^#+\s*ESCALETA", txt, re.M | re.I):
+        avisos.append("falta a ESCALETA (6–10 batidas antes das cenas)")
+    return erros, avisos
+
+
 def validar(txt, final=False, caminho=None):
     if "--extra" in sys.argv or (caminho and os.path.basename(caminho).startswith("extra")):
         return validar_extra(txt, caminho)
@@ -164,6 +226,7 @@ def validar(txt, final=False, caminho=None):
     else:
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
         erros += conferir_continuidade(txt, cat)
+    e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
     if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)
         from lofi.continuidade import conferir as conferir_mundo
         erros += conferir_mundo(caminho, txt)

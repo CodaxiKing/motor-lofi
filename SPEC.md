@@ -418,3 +418,10 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
   câmara fria), vaga-lumes na floresta, poeira na luz, papel voando na rua, moscas no lixo do beco, luz vermelha de antena/barreira
   piscando e pássaros no amanhecer. Configuração em `VIDA` (coordenadas do cenário).
 - Desligar: `"vida": false` no plano ou no episódio; `"vida": {"vapor": false}` desliga só um efeito.
+
+## Roteiros com contexto e fluxo (padrão)
+- `python3 -m lofi.contexto series/<serie> NN` gera `_contexto_epNN.md`: regras, finais, votos, resumos, fim do episódio anterior
+  (lugar, hora, inventário, últimas 3 cenas e o que cada opção prometeu), personagens, fios em aberto, mapa e marcas. Leia antes de escrever.
+- O roteiro começa por `## ESCALETA` (6–10 batidas). Entrada e saída de personagens: linhas `ENTRA:` e `SAI:`.
+- `tests/validar_roteiro.py` confere também o fluxo: personagem que aparece sem `ENTRA:` (ERRO), que some sem `SAI:`, fala acima de
+  ~3,3 palavras/s, buraco de tempo entre cenas, gancho que não acontece e falta de ESCALETA (AVISOS).

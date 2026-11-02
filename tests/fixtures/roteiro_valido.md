@@ -1,5 +1,14 @@
 # DIA ZERO · EPISÓDIO 3/5 — exemplo de formato (usado nos testes)
 
+## ESCALETA (batidas)
+1. Gancho: o momento mais tenso do episódio, mostrado antes.
+2. Consequência do voto: começa exatamente onde o ep. anterior parou.
+3. Novo problema: algo estranho muda o plano.
+4. Detalhe + susto.
+5. Revelação em close.
+6. Escalada: o tempo aperta.
+7. Escolha A/B.
+
 ## CENA 0 · GANCHO (0–2 s)
 PLANO DE DETALHE: `olho` · TEXTO: ELES ESTÃO / OUVINDO
 SOM: `heartbeat` 0 s
