@@ -15,7 +15,8 @@
  ],
  "style": "desenho",
  "pergunta": {
-  "text": "VOCÊ TERIA CONTADO?"
+  "text": "VOCÊ TERIA CONTADO?",
+  "t": 96.5
  },
  "voices": {
   "narrador": "ep01/narrador.mp3",
@@ -648,9 +649,10 @@
     "y": 1300
    },
    "slowmo": 0.5,
-   "dark": 0.45,
+   "dark": 0.3,
    "camera": {
-    "plano": "close"
+    "zoom": 1.5,
+    "cy": 0.62
    },
    "actors": [
     {
@@ -667,7 +669,6 @@
   },
   {
    "scene": "rua_amanhecer",
-   "time": "dia",
    "rain": "nenhuma",
    "start": 2,
    "end": 11,
@@ -696,7 +697,6 @@
   },
   {
    "scene": "rua_amanhecer",
-   "time": "dia",
    "rain": "nenhuma",
    "start": 11,
    "end": 19,
@@ -704,14 +704,40 @@
    "shake": [
     0.4
    ],
+   "camera": {
+    "zoom": 1.35,
+    "cy": 0.78,
+    "cortes": false
+   },
+   "sub_y": 900,
    "actors": [
     {
      "char": "gabriel",
      "mark": "centro",
+     "dx": -90,
      "view": "3q",
-     "pose": "crouch",
+     "facing": 1,
+     "pose": [
+      [
+       0,
+       "fallen"
+      ],
+      [
+       3,
+       "crouch"
+      ]
+     ],
      "emotion": "shock",
-     "prop": "bag"
+     "prop": [
+      [
+       0,
+       null
+      ],
+      [
+       3,
+       "bag"
+      ]
+     ]
     }
    ]
   },
@@ -726,7 +752,6 @@
    "transition": "cut",
    "fundo": {
     "scene": "rua_amanhecer",
-    "time": "dia",
     "rain": "nenhuma",
     "actors": []
    },
@@ -832,7 +857,8 @@
      255,
      160,
      70
-    ]
+    ],
+    "hora": "14:33"
    },
    "transition": "cut",
    "sub_y": 560,
@@ -860,10 +886,11 @@
    "end": 63,
    "transition": "whip",
    "camera": {
-    "zoom": 1.5,
-    "cx": 0.45,
-    "cy": 0.8
+    "zoom": 1.15,
+    "cx": 0.5,
+    "cy": 0.75
    },
+   "sub_y": 850,
    "actors": [
     {
      "char": "gabriel_moto",
@@ -908,9 +935,9 @@
    "handheld": true,
    "travelling": 520,
    "camera": {
-    "zoom": 1.5,
+    "zoom": 1.25,
     "cx": 0.5,
-    "cy": 0.82
+    "cy": 0.8
    },
    "actors": [
     {
@@ -943,7 +970,11 @@
    "scene": "escada",
    "transition": "whip",
    "handheld": true,
-   "dark": 0.3,
+   "dark": 0.15,
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   },
    "actors": [
     {
      "char": "gabriel",
@@ -1028,6 +1059,10 @@
    "end": 96,
    "scene": "entrada",
    "transition": "cut",
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   },
    "actors": [
     {
      "char": "gabriel",
@@ -1102,6 +1137,23 @@
     "cx": 0.35,
     "cy": 0.85
    },
+   "overlay": [
+    {
+     "type": "text",
+     "text": "PAROU.",
+     "y": 640,
+     "size": 130,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      110,
+      112.8
+     ]
+    }
+   ],
    "actors": [
     {
      "char": "gabriel",
@@ -1218,6 +1270,7 @@
      160,
      70
     ],
+    "hora": "23:51",
     "notifs": [
      "ACEITAR OU RECUSAR",
      "PARA SILENCIAR"
@@ -1234,10 +1287,13 @@
    "scene": "entrada",
    "transition": "cut",
    "handheld": true,
-   "dark": 0.45,
+   "dark": 0.25,
    "camera": {
-    "plano": "close"
+    "zoom": 1.45,
+    "cy": 0.8,
+    "cortes": false
    },
+   "sub_y": 720,
    "actors": [
     {
      "char": "gabriel",
@@ -1268,6 +1324,10 @@
     "label": "ACEITAR",
     "scene": "entrada",
     "crop_x": 270,
+    "camera": {
+     "zoom": 1.7,
+     "cy": 0.72
+    },
     "actors": [
      {
       "char": "gabriel",
@@ -1284,11 +1344,16 @@
     "label": "BARRAR A PORTA",
     "scene": "entrada",
     "crop_x": 270,
+    "camera": {
+     "zoom": 1.7,
+     "cy": 0.72
+    },
     "actors": [
      {
       "char": "gabriel",
-      "mark": "porta",
-      "view": "back",
+      "mark": "frente_porta",
+      "view": "3q",
+      "facing": -1,
       "pose": "push",
       "emotion": "fear",
       "lipsync": false
@@ -1447,10 +1512,6 @@
    "name": "echo_step"
   },
   {
-   "t": 109.5,
-   "name": "notif"
-  },
-  {
    "t": 114,
    "name": "click"
   },
@@ -1479,24 +1540,12 @@
    "name": "notif"
   },
   {
-   "t": 130,
-   "name": "vibe"
-  },
-  {
    "t": 139,
    "name": "knock"
   },
   {
-   "t": 141,
-   "name": "notif"
-  },
-  {
    "t": 145,
    "name": "knock"
-  },
-  {
-   "t": 147,
-   "name": "notif"
   },
   {
    "t": 149.3,
@@ -1511,9 +1560,27 @@
    "name": "stamp"
   },
   {
+   "t": 109.5,
+   "name": "notif",
+   "x": 800,
+   "y": 1560
+  },
+  {
    "t": 96.2,
    "name": "static",
    "dur": 3.5
+  },
+  {
+   "t": 141,
+   "name": "notif",
+   "x": 860,
+   "y": 1560
+  },
+  {
+   "t": 147,
+   "name": "notif",
+   "x": 860,
+   "y": 1560
   }
  ],
  "music": [

@@ -787,7 +787,8 @@ class Episode:
             d.rounded_rectangle([x0, y0, x1, y1], 18, fill=RED if big else (150, 30, 30))
             text_center(d, lab, (x0 + x1) / 2, (y0 + y1) / 2, f, (255, 255, 255))
             if big and sp.get("series_title"):
-                text_center(d, sp["series_title"], (x0 + x1) / 2 - 10, y1 + 30, font("mono", 30), (235, 232, 225), 3)
+                _fs = font("mono", 30); _tw = d.textbbox((0, 0), sp["series_title"], font=_fs)[2]
+                d.text((min((x0 + x1) / 2 - 10 - _tw / 2, W - 24 - _tw), y1 + 12), sp["series_title"], font=_fs, fill=(235, 232, 225), stroke_width=3, stroke_fill=(0, 0, 0))
             # carimbo do voto da maioria, rápido e no alto
             if sp.get("voto") and 0.2 <= rel < 3.4 and not any(s.get("type") == "placar" for s in self.shots):
                 q = ease_out(c01((rel - 0.2) / 0.25)) * (1 - ease_out(c01((rel - 3.1) / 0.3)))

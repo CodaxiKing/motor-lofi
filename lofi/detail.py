@@ -88,7 +88,7 @@ def celular(t, p):
     img = add_light(img, (40, 200, 1040, 1700), (60, 80, 140), 120, 140); d = ImageDraw.Draw(img)
     d.rounded_rectangle([170, 260, 910, 1660], 70, fill=(20, 20, 24), outline=(70, 70, 80), width=10)
     d.rounded_rectangle([200, 300, 880, 1620], 50, fill=(40, 46, 62))
-    d.text((240, 320), "21:12", font=font("mono", 40), fill=(220, 220, 230))
+    d.text((240, 320), p.get("hora", "21:12"), font=font("mono", 40), fill=(220, 220, 230))
     sig = p.get("signal", 0)
     for k in range(4):
         d.rectangle([760 + k * 26, 360 - k * 12, 778 + k * 26, 372], fill=(220, 220, 230) if k < sig else None, outline=(150, 150, 160), width=2)

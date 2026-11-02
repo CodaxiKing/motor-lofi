@@ -127,8 +127,8 @@
    "text": [
     "TRINTA *ANOS*",
     "DE PORTARIA",
-    "A DOIS MESES",
-    "DE *APOSENTAR*"
+    "FALTAVAM DOIS MESES",
+    "PRA *APOSENTAR*"
    ]
   },
   {
@@ -222,7 +222,7 @@
    "rain": "nenhuma",
    "hook": {
     "text": "POR QUE\nCOÇA TANTO?",
-    "y": 1300
+    "y": 1520
    },
    "slowmo": 0.5,
    "camera": {
@@ -246,6 +246,33 @@
    "time": "dia",
    "rain": "nenhuma",
    "transition": "glitch",
+   "overlay": [
+    {
+     "type": "text",
+     "text": "O QUE ACONTECEU",
+     "y": 560,
+     "size": 90,
+     "t": [
+      2.2,
+      5.5
+     ]
+    },
+    {
+     "type": "text",
+     "text": "COM O SEU ANTÔNIO?",
+     "y": 670,
+     "size": 90,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      2.4,
+      5.5
+     ]
+    }
+   ],
    "actors": [
     {
      "char": "porteiro",
@@ -262,11 +289,13 @@
    "end": 19,
    "scene": "corredor",
    "transition": "whip",
+   "grade": "frio",
    "actors": [
     {
      "char": "porteiro",
      "mark": "frente",
-     "view": "back",
+     "view": "3q",
+     "facing": 1,
      "pose": "reach",
      "prop": "bag"
     }
@@ -325,10 +354,15 @@
    "time": "noite",
    "rain": "nenhuma",
    "transition": "cut",
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   },
    "actors": [
     {
      "char": "porteiro",
-     "mark": "portao",
+     "mark": "frente",
+     "dy": -120,
      "view": "back",
      "pose": [
       [
@@ -363,12 +397,25 @@
    "time": "noite",
    "rain": "nenhuma",
    "transition": "fade",
-   "camera": {
-    "zoom": [
-     1.1,
-     1.3
+   "dark": [
+    [
+     0,
+     0.1
+    ],
+    [
+     6,
+     0.45
     ]
+   ],
+   "camera": {
+    "zoom": 1.3,
+    "cy": [
+     0.72,
+     0.2
+    ],
+    "cortes": false
    },
+   "sub_y": 800,
    "actors": [
     {
      "char": "porteiro",
