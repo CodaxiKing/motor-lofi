@@ -161,7 +161,7 @@ def _backout(x, c=1.6):
 
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
           pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0,
-          seat="banco"):
+          seat="banco", aim=None):
     if pose_prev and pk < 1.0 and pk < 0.5: draw_pose = pose_prev
     else: draw_pose = pose
     if draw_pose in ("sit", "chao"): walk = False          # sentado não anda (mesmo com "walk" ligado no plano)
@@ -286,6 +286,17 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             a_sh = abs(a_sh) if pose in ("point", "reach", "hold", "phone", "forward") and i == 1 else a_sh
         el = _seg(sh[i], a_sh, 86); hd = _seg(el, a_sh + a_el, 80)
         arms.append((sh[i], el, hd))
+    lanterna = prop == "flashlight" or (draw_pose == "hold" and not prop)
+    if lanterna and aim is not None and view == "back":
+        # de costas: a lanterna fica na frente do corpo, na altura do ombro; o braço não sobe por cima da cabeça
+        phi = 90 - aim if aim > -60 or aim < -120 else 150
+        el = _seg(sh[1], 40, 70); hd = (sh[1][0] + 18, sh_y + 40)
+        arms[1] = (sh[1], el, hd)
+    elif lanterna and aim is not None and draw_pose in ("idle", "hold", "run", "walk", "point", "reach"):
+        # mira: o braço que segura aponta para onde a luz vai (aim: 0 = direita, 90 = baixo, -90 = cima)
+        phi = 90 - aim
+        el = _seg(sh[1], phi + (12 if -90 < aim < 90 else -12), 86); hd = _seg(el, phi, 80)
+        arms[1] = (sh[1], el, hd)
     legc, shoe, topc = cd["legs"], cd["shoes"], top
     back = view == "back"; side = view == "side"
     dark = lambda c, k=0.75: tuple(int(v * k) for v in c)
@@ -476,8 +487,16 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                 d.rounded_rectangle([ex - 8, ey - 14, ex + 26, ey + 14], 10, fill=bege, outline=OUT, width=4)
             d.line([(hx_ + 4, hy_ + 58), (hx_ + 18, hy_ + 96)], fill=(40, 40, 40, 255), width=4)   # fio enrolado
         elif pr == "flashlight":
-            d.rounded_rectangle([hx_ - 10, hy_ - 13, hx_ + 54, hy_ + 13], 7, fill=(70, 72, 80, 255), outline=OUT, width=3)
-            d.ellipse([hx_ + 46, hy_ - 16, hx_ + 62, hy_ + 16], fill=(255, 240, 180, 255), outline=OUT, width=3)
+            dir_ = aim if aim is not None else 0.0
+            ux, uy = math.cos(math.radians(dir_)), math.sin(math.radians(dir_)); nx, ny = -uy, ux
+            corpo = [(hx_ - ux * 10 + nx * 12, hy_ - uy * 10 + ny * 12), (hx_ + ux * 50 + nx * 12, hy_ + uy * 50 + ny * 12),
+                     (hx_ + ux * 50 - nx * 12, hy_ + uy * 50 - ny * 12), (hx_ - ux * 10 - nx * 12, hy_ - uy * 10 - ny * 12)]
+            d.polygon(corpo, fill=(70, 72, 80, 255), outline=OUT)
+            cab = [(hx_ + ux * 44 + nx * 17, hy_ + uy * 44 + ny * 17), (hx_ + ux * 62 + nx * 17, hy_ + uy * 62 + ny * 17),
+                   (hx_ + ux * 62 - nx * 17, hy_ + uy * 62 - ny * 17), (hx_ + ux * 44 - nx * 17, hy_ + uy * 44 - ny * 17)]
+            d.polygon(cab, fill=(90, 92, 100, 255), outline=OUT)
+            lx_, ly_ = hx_ + ux * 63, hy_ + uy * 63
+            d.ellipse([lx_ - 9, ly_ - 9, lx_ + 9, ly_ + 9], fill=(255, 246, 200, 255))
         elif pr == "radio":
             d.line([(hx_ + 30, hy_ - 30), (hx_ + 48, hy_ - 86)], fill=(160, 160, 165, 255), width=5)
             d.rounded_rectangle([hx_ - 34, hy_ - 32, hx_ + 40, hy_ + 22], 9, fill=(120, 80, 54, 255), outline=OUT, width=4)
@@ -491,6 +510,9 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             bc = cd["backpack"] or (236, 196, 50)
             d.rounded_rectangle([hx_ - 34, hy_ + 2, hx_ + 40, hy_ + 104], 22, fill=bc + (255,), outline=OUT, width=5)
             d.line([(hx_, hy_ + 4), (hx_ - 4, hy_ - 14)], fill=bc + (255,), width=10)
+    if lanterna:
+        hx_, hy_ = arms[1][2]; dir_ = aim if aim is not None else 0.0
+        im.info["lanterna"] = (hx_ + math.cos(math.radians(dir_)) * 63, hy_ + math.sin(math.radians(dir_)) * 63, dir_, back)
     # --- cachecol ---
     if cd["scarf"]:
         sc = cd["scarf"]
@@ -730,6 +752,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             if cd["glasses"]:
                 for (x, y) in eyes: d.ellipse([x - 22, y - 20, x + 22, y + 20], outline=OUT, width=5)
                 if len(eyes) == 2: d.line([(eyes[0][0] + 22, eyes[0][1]), (eyes[1][0] - 22, eyes[1][1])], fill=OUT, width=5)
+    _draw._ultimo_info = dict(im.info)
     return im, (CW / 2, FEET_Y + 22 + (0 if not sit else 0))
 
 def _shade(im, light):
@@ -759,7 +782,7 @@ _CACHE = {}
 _CACHE_PX = 0
 def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale=1.0, light=None, walk=False, run=False,
                 look=0, facing=1, custom=None, seed=None, sway=1.0, breath=1.0, mouth=0.0, talk=0.0, pose_prev=None, pk=1.0,
-                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0, seat="banco"):
+                blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0, seat="banco", aim=None):
     """Devolve (sprite RGBA, (ax, ay)) — ancorado nos pés. phase = fase do passo (0–1, do deslocamento), gait_k = força do passo."""
     cd = char_def(name, custom)
     seed = seed if seed is not None else (sum(map(ord, name)) % 97)
@@ -768,10 +791,10 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
     qph = round((phase % 1.0) * 48) / 48 if (walk and phase is not None) else None
     qgk = round(gait_k * 8) / 8
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None)
+           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None, None if aim is None else round(aim))
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
-                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat=seat)
+                    pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat=seat, aim=aim)
     k = 0.5 * scale * cd["scale"]
     nw, nh = max(2, int(CW * k)), max(2, int(CH * k))
     im = im.resize((nw, nh), Image.LANCZOS)
@@ -780,7 +803,11 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
         r_, g_, b_, a_ = im.split()
         a_ = a_.point(lambda v: int(v * 0.58))
         im = Image.merge("RGBA", (r_.point(lambda v: min(255, int(v * 0.9 + 30))), g_.point(lambda v: min(255, int(v * 0.95 + 30))), b_.point(lambda v: min(255, v + 50)), a_))
+    ponta = im_info.get("lanterna") if (im_info := getattr(_draw, "_ultimo_info", None)) else None
     if facing < 0: im = im.transpose(Image.FLIP_LEFT_RIGHT)
+    if ponta:
+        x_, y_, a_, costas = ponta
+        im.info["lanterna"] = ((nw - x_ * k) if facing < 0 else x_ * k, y_ * k, (180 - a_) if facing < 0 else a_, costas)
     res = (im, (nw / 2, anc[1] * k))
     global _CACHE_PX
     px = im.width * im.height

@@ -159,7 +159,12 @@ def vida(sc, img, t, camx, props, cfg=True):
             if falha:
                 usou = True
                 d.rectangle([x + dx - 90, y - 30, x + dx + 90, y + 40], fill=(0, 0, 0, 170))
-                d.ellipse([x + dx - 300, y - 40, x + dx + 300, y + 700], fill=(0, 0, 0, 40))
+                # a sala escurece um pouco quando a lâmpada falha: mancha bem suave (sem borda visível)
+                sm = Image.new("L", (img.size[0] // 8, img.size[1] // 8), 0)
+                ImageDraw.Draw(sm).ellipse([(x + dx - 300) / 8, (y - 40) / 8, (x + dx + 300) / 8, (y + 700) / 8], fill=38)
+                sm = sm.filter(ImageFilter.GaussianBlur(9)).resize(img.size, Image.BILINEAR)
+                sombra = Image.new("RGBA", img.size, (0, 0, 0, 0)); sombra.putalpha(sm)
+                lay.alpha_composite(sombra)
     if liga("mariposas") and "mariposas" in conf:
         for j, (x, y) in enumerate(conf["mariposas"]):
             for m in range(3):

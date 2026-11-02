@@ -310,6 +310,13 @@ class Episode:
         walk, phase, gk = self.gait(a, sc, shot, rel, norm, bool(walk), run_)
         view = val(a.get("view", "front"), rel, norm)
         facing = val(a.get("facing", 1), rel, norm)
+        fl = a.get("flashlight")
+        aim = None; prop_ = val(a.get("prop"), rel, norm)
+        if fl:
+            ang_w = val(fl, rel, norm) if not isinstance(fl, bool) else None
+            ang_w = ang_w if isinstance(ang_w, (int, float)) and not isinstance(ang_w, bool) else (12 if facing >= 0 else 168)
+            aim = ang_w if facing >= 0 else 180 - ang_w
+            if not prop_: prop_ = "flashlight"
         spr, anc = render_char(a["char"], view=view, emotion=emo, pose=pose, t=t * a.get("_limp", 1.0), scale=scale, light=light,
                                walk=bool(walk), run=run_, phase=phase, gait_k=gk, look=val(a.get("look", 0), rel, norm),
                                facing=facing, custom=({**(a.get("custom") or {}), **self.locked[a["char"]]} if a["char"] in self.locked
@@ -317,8 +324,9 @@ class Episode:
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
                                viseme=self.viseme(voice, self._treal) if lips and view != "back" else 0, gesture=gesture,
                                pk=c01(pose_dt / 0.32) if pose_prev else 1.0, blink_force=emo_dt < 0.1,
-                               sniff=bool(val(a.get("sniff", False), rel, norm)), prop=val(a.get("prop"), rel, norm),
-                               seat=a.get("assento", "banco"))
+                               sniff=bool(val(a.get("sniff", False), rel, norm)), prop=prop_,
+                               seat=a.get("assento", "banco"), aim=aim)
+        ponta = spr.info.get("lanterna") if prop_ == "flashlight" else None
         rot = val(a.get("rot"), rel, norm)
         if rot is None: rot = {"fallen": 86, "crawl": 72}.get(pose, 0) * (1 if facing >= 0 else -1)
         if a.get("_carried"): rot = a["_carried"]
@@ -326,7 +334,8 @@ class Episode:
         blur = a.get("blur", 0)
         if focus_on is not None and focus_on != idx and not a.get("_crowd"): blur = max(blur, 4)
         if blur: spr = spr.filter(ImageFilter.GaussianBlur(blur))
-        return dict(a=a, spr=spr, anc=anc, sx=sx, sy=sy - lift * z, floor_y=sy, scale=scale, view=view, facing=facing, idx=idx, rot=rot)
+        return dict(a=a, spr=spr, anc=anc, sx=sx, sy=sy - lift * z, floor_y=sy, scale=scale, view=view, facing=facing, idx=idx, rot=rot,
+                    ponta=None if rot else ponta)
 
     def paint_actor(self, img, P, sc, shot, t, light):
         a, spr, anc, sx, sy, scale = P["a"], P["spr"], P["anc"], P["sx"], P["sy"], P["scale"]
@@ -345,9 +354,16 @@ class Episode:
                                  P["facing"], seed=P["idx"], strength=min(1, scale))
         fl = a.get("flashlight")
         if fl:
-            ang = fl if isinstance(fl, (int, float)) and not isinstance(fl, bool) else (12 if P["facing"] >= 0 else 168)
-            o = (sx + P["facing"] * spr.width * 0.42, top + spr.height * 0.47)
-            self._beams.append((o, ang, 900 * min(1.4, scale), 22))
+            pt = P.get("ponta")
+            if pt:      # a luz nasce na ponta da lanterna desenhada na mão
+                o = (sx - anc[0] + pt[0], sy - anc[1] + pt[1]); ang = pt[2]
+            else:
+                ang = fl if isinstance(fl, (int, float)) and not isinstance(fl, bool) else (12 if P["facing"] >= 0 else 168)
+                o = (sx + P["facing"] * spr.width * 0.42, top + spr.height * 0.47)
+            ln, sp = 900 * min(1.4, scale), 22
+            if -135 < ang < -45:          # apontando para o fundo da cena: em perspectiva o feixe fica curto e fino
+                ln, sp = 520 * min(1.2, max(0.5, scale)), 13
+            self._beams.append((o, ang, ln, sp))
             self._lit.append((sx, top + spr.height * 0.4, spr.height * 0.5))
         elif not a.get("_crowd"):
             self._lit_soft.append((sx, top + spr.height * 0.4, spr.height * 0.42))
