@@ -73,6 +73,7 @@ class Episode:
         # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
+        fx.set_efeitos(sp.get("efeitos", "leve"))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
         self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
@@ -549,7 +550,7 @@ class Episode:
         for P in prepared: self.paint_actor(img, P, sc, shot, t_anim, light)
         self.paint_holds(img, prepared)
         for (o, ang, ln, sp) in self._beams: particles.flashlight(img, t_anim, o, ang, ln, spread=sp)
-        if shot.get("dust"): particles.dust(img, t_anim, n=shot["dust"] if isinstance(shot["dust"], int) else 60)
+        if shot.get("dust"): particles.dust(img, t_anim, n=int((shot["dust"] if isinstance(shot["dust"], int) else 60) * fx.NIVEL["part"]))
         sc._cam = (z, x0, y0)
         img = sc.render_front(img, t_anim, camx, props, self.flashes)
         sc._cam = None

@@ -425,3 +425,11 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
 - O roteiro começa por `## ESCALETA` (6–10 batidas). Entrada e saída de personagens: linhas `ENTRA:` e `SAI:`.
 - `tests/validar_roteiro.py` confere também o fluxo: personagem que aparece sem `ENTRA:` (ERRO), que some sem `SAI:`, fala acima de
   ~3,3 palavras/s, buraco de tempo entre cenas, gancho que não acontece e falta de ESCALETA (AVISOS).
+
+## Intensidade dos efeitos
+`"efeitos"` no topo do episódio controla névoa (`fog` do plano e do cenário), brilho (bloom), granulado, vinheta e partículas (poeira `dust`, vapor, vaga-lumes, moscas):
+- `"leve"` (padrão): névoa a 20%, brilho e vinheta suaves, granulado pela metade, partículas a 40% e sem vapor/poeira/vaga-lumes/moscas no cenário vivo.
+- `"normal"`: como era antes.
+- `"nenhum"`: tela limpa (só a lâmpada piscando continua).
+- Ajuste fino: `{"fog": 0.3, "bloom": 0.2, "grain": 0.5, "vig": 0.7, "part": 0.5}` (0 a 1).
+Sustos (`scare`), relâmpago, chuva e gotas na lente não mudam.

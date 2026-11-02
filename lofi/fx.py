@@ -69,6 +69,21 @@ def lightning(img, t, times, box=None, bolt=True, room=0.3):
         img.paste((240, 244, 255), (0, 0), which[0].point(lambda v: int(v * f)))
     return img
 
+# ---------- intensidade dos efeitos ----------
+# "leve" (padrão): névoa, brilho, granulado, vinheta e partículas bem mais suaves; "normal": como era; "nenhum": tela limpa.
+NIVEIS = {
+    "nenhum": dict(fog=0.0, bloom=0.0, grain=0.0, vig=0.6, part=0.0),
+    "leve":   dict(fog=0.2, bloom=0.15, grain=0.5, vig=0.6, part=0.4),
+    "normal": dict(fog=1.0, bloom=0.6, grain=1.0, vig=1.0, part=1.0),
+}
+NIVEL = dict(NIVEIS["leve"])
+def set_efeitos(nome="leve"):
+    """Aceita "nenhum", "leve", "normal" ou um dict com fog/bloom/grain/vig/part (0–1)."""
+    base = dict(NIVEIS["leve"])
+    if isinstance(nome, dict): base.update(nome)
+    else: base = dict(NIVEIS.get(nome, NIVEIS["leve"]))
+    NIVEL.clear(); NIVEL.update(base)
+
 # ---------- névoa ----------
 def _fog_tex(seed=4):
     r = np.random.default_rng(seed)
@@ -77,6 +92,8 @@ def _fog_tex(seed=4):
     return img
 FOG = _fog_tex()
 def fog(img, t, y=1100, height=700, alpha=0.5, col=(80, 90, 120), speed=18):
+    alpha *= NIVEL["fog"]
+    if alpha <= 0.01: return
     off = int(t * speed) % W
     m = FOG.crop((off, 0, off + W, 700)).resize((W, height))
     m = m.point(lambda v: int(v * alpha))
@@ -86,14 +103,21 @@ def fog(img, t, y=1100, height=700, alpha=0.5, col=(80, 90, 120), speed=18):
 _G = np.random.default_rng(1).normal(0, 4.5, (H, W)).astype(np.float32)
 GRAIN_P = Image.fromarray(np.clip(_G, 0, 255).astype("uint8")).convert("RGB")
 GRAIN_N = Image.fromarray(np.clip(-_G, 0, 255).astype("uint8")).convert("RGB")
-def grain(img): return ImageChops.subtract(ImageChops.add(img, GRAIN_P), GRAIN_N)
+GRAIN_P2 = Image.fromarray(np.clip(_G * 0.5, 0, 255).astype("uint8")).convert("RGB")
+GRAIN_N2 = Image.fromarray(np.clip(-_G * 0.5, 0, 255).astype("uint8")).convert("RGB")
+def grain(img):
+    g = NIVEL["grain"]
+    if g <= 0.01: return img
+    p, n = (GRAIN_P, GRAIN_N) if g > 0.75 else (GRAIN_P2, GRAIN_N2)
+    return ImageChops.subtract(ImageChops.add(img, p), n)
 def _vig(strength):
     yy, xx = np.mgrid[0:H, 0:W]
     dist = np.sqrt(((xx - 540) / 700) ** 2 + ((yy - 1050) / 1150) ** 2)
     return Image.fromarray((np.clip(1.18 - dist * 0.72 * strength, 0.25, 1) * 255).astype("uint8"))
-VIG = {k: _vig(k) for k in (0.6, 1.0, 1.4)}
+VIG = {k: _vig(k) for k in (0.45, 0.6, 0.75, 1.0, 1.4)}
 BLACK = Image.new("RGB", (W, H), 0)
 def vignette(img, k=1.0):
+    k *= NIVEL["vig"]
     return Image.composite(img, BLACK, VIG[min(VIG, key=lambda v: abs(v - k))])
 
 # ---------- tratamento de cor ----------
@@ -204,7 +228,9 @@ def handheld(t, amp=10.0):
     return dx, dy, math.sin(t * 1.1) * amp * 0.03
 
 _BLOOM_LUT = {}
-def bloom(img, threshold=170, strength=0.6, radius=18):
+def bloom(img, threshold=170, strength=None, radius=18):
+    if strength is None: strength = NIVEL["bloom"]
+    if strength <= 0.01: return img
     key = (threshold, strength)
     if key not in _BLOOM_LUT: _BLOOM_LUT[key] = [int(max(0, v - threshold) * 255 / max(1, 255 - threshold) * strength) for v in range(256)] * 3
     small = img.resize((W // 4, H // 4), Image.BILINEAR).point(_BLOOM_LUT[key]).filter(ImageFilter.GaussianBlur(radius / 4))

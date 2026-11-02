@@ -40,6 +40,7 @@ VIDA = {
     "portao":      {"mariposas": [(540, 1240)], "papel": (1450, 1880)},
     "viaduto":     {"farol": [(540, 1240)], "papel": (1500, 1880)},
 }
+VIDA_TIPOS = ("pisca", "mariposas", "gotas", "vapor", "vagalumes", "poeira", "moscas", "papel", "farol", "passaros")
 PAREDE_RETA = {"entrada", "apartamento", "deposito", "delegacia", "loja"}
 INTERNOS = {"apartamento", "entrada", "corredor", "hospital", "escola", "vagao", "delegacia", "mercado", "loja", "deposito",
             "camara_fria", "estacionamento", "igreja", "escada", "metro", "esgoto"}
@@ -144,7 +145,11 @@ def vida(sc, img, t, camx, props, cfg=True):
     if cfg is False: return
     conf = VIDA.get(sc.name)
     if not conf: return
-    liga = (lambda k: cfg.get(k, True)) if isinstance(cfg, dict) else (lambda k: True)
+    from . import fx
+    part = fx.NIVEL.get("part", 1.0)
+    # efeitos "leve": some o que vira névoa/sujeira na tela (vapor, poeira, vaga-lumes); "nenhum": só a lâmpada piscando
+    corta = set() if part >= 0.99 else ({"vapor", "poeira", "vagalumes", "moscas"} if part > 0 else set(VIDA_TIPOS) - {"pisca"})
+    liga = (lambda k: cfg.get(k, k not in corta)) if isinstance(cfg, dict) else (lambda k: k not in corta)
     dx = -camx * sc.depths[1]
     lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay); usou = False
     if liga("pisca") and "pisca" in conf and props.get("_lamp_on", True):
