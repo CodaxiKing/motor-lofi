@@ -17,3 +17,4 @@ _cache/
 
 # prints originais dos comentários (só os recortes vão para o repositório)
 series/*/placar/*print*
+series/*/_contexto_*.md
