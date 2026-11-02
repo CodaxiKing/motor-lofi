@@ -2,7 +2,7 @@
 
 Episódio extra de curiosidades · sai depois do ep. 1 · ~1 min 10 s · 7 cenas · sem votação
 Cor (`tint`): laranja do app [240, 118, 30, 0.08] · Estilo do traço: desenho · Enquadramento: perto · Modo redes (selo EXTRA)
-Ponto de vista: o seu Antônio, porteiro da Torre, narrando em primeira pessoa a tarde e a noite do Dia 0.
+Voz: narrador externo contando a tarde e a noite do Dia 0 do seu Antônio, porteiro da Torre, que fala nos picos.
 
 **O que este extra revela (sem contradizer a bíblia)**
 - A caixa não ficou na portaria: o seu Antônio levou até o elevador privativo e só uma mão, com punho de camisa e abotoadura laranja, a recebeu.
@@ -48,7 +48,7 @@ PERSONAGENS: `porteiro` na marca `portao`, `3q`, emoção `happy`, com a caixa n
 PLANO: `medio` · TRANSIÇÃO: `glitch`
 SOM: `step` 4 s · `whoosh` 10 s
 VIRADA: o motoboy vai embora rápido demais
-NARRAÇÃO (seu Antônio): [warm] Trinta anos nessa portaria. Faltavam dois meses pra aposentar. Aí um motoboy me deu uma caixa gelada.
+NARRAÇÃO (Narrador): [calm, low] Seu Antônio tinha trinta anos de portaria e faltavam dois meses pra aposentar. Aí um motoboy entregou uma caixa gelada.
 LEGENDA: TRINTA *ANOS* / UMA CAIXA *GELADA*
 
 ## CENA 2 — 13 s a 24 s · O elevador
@@ -58,7 +58,7 @@ PERSONAGENS: `porteiro` na marca `frente`, `3q`, `reach`, emoção `neutral`; do
 PLANO: `medio` · TRANSIÇÃO: `whip`
 SOM: `beep` 14 s · `door_close` 22 s
 VIRADA: a mão pega a caixa, e o elevador fecha sem uma palavra
-NARRAÇÃO (seu Antônio): [uneasy] Mandaram levar até o elevador. Uma mão pegou a caixa. Nenhum obrigado.
+NARRAÇÃO (Narrador): [calm, low] Mandaram levar até o elevador. Uma mão pegou a caixa. Nenhum obrigado.
 LEGENDA: UMA *MÃO* / NENHUM *OBRIGADO*
 
 ## CENA 3 — 24 s a 34 s · O motoboy
@@ -68,7 +68,7 @@ PERSONAGENS: `porteiro` em close, emoção `suspicious`
 PLANO: `close` · TRANSIÇÃO: `cut`
 SOM: `whoosh` 24 s · `click` 30 s
 VIRADA: ele lembra do motoboy, que saiu com pressa demais
-NARRAÇÃO (seu Antônio): [whispers] Aquele menino disse "veio assim". Mas nem olhou na minha cara.
+PORTEIRO: [whispers] Aquele menino disse "veio assim". Mas nem olhou na minha cara.
 LEGENDA: VEIO *ASSIM* / NEM *OLHOU*
 
 ## CENA 4 — 34 s a 44 s · A coceira
@@ -78,7 +78,7 @@ PERSONAGENS: `porteiro` na marca `portao`, `3q`, `chest`, emoção `fear`
 PLANO: `medio` · TRANSIÇÃO: `dip`
 SOM: `siren` 35 s · `breath` 40 s
 VIRADA: as primeiras sirenes passam, e a coceira no punho não parou a tarde inteira
-NARRAÇÃO (seu Antônio): [uneasy] A tarde inteira coçando. Achei que era o frio da caixa. Aí vieram as sirenes.
+NARRAÇÃO (Narrador): [calm, low] A tarde inteira coçando. Ele achou que era o frio da caixa. Aí vieram as sirenes.
 LEGENDA: A TARDE *INTEIRA* / VIERAM AS *SIRENES*
 
 ## CENA 5 — 44 s a 54 s · Trancado por fora
@@ -88,7 +88,7 @@ PLANO: `medio` · TRANSIÇÃO: `cut`
 LUZ E DETALHES: ondas de som no vidro a cada batida
 SOM: `lock` 44 s · `knock` 46 s · `knock` 48 s · `knock` 50 s
 VIRADA: as portas da Torre travam por dentro com ele do lado de fora
-NARRAÇÃO (seu Antônio): [pleading] Trinta anos. E a porta trancou comigo do lado de fora.
+PORTEIRO: [pleading] Trinta anos. E a porta trancou comigo do lado de fora.
 LEGENDA: TRANCOU *COMIGO* / DO LADO *DE FORA*
 
 ## CENA 6 — 54 s a 66 s · A luz lá em cima
@@ -98,8 +98,8 @@ PLANO: `conjunto`, `zoom` lento · TRANSIÇÃO: `fade`
 LUZ E DETALHES: a cidade apagando aos poucos atrás; o último andar da Torre aceso
 SOM: `notif` 60 s · `growl` 64 s
 VIRADA: o celular dele toca sozinho, e algo responde lá na rua
-NARRAÇÃO (seu Antônio): [whispering] A cidade foi apagando, bairro por bairro. Lá em cima, a luz continuou acesa. Quem está lá?
-LEGENDA: A LUZ *ACESA* / QUEM ESTÁ *LÁ?*
+NARRAÇÃO (Narrador): [calm, low] A cidade foi apagando, bairro por bairro. Lá em cima, uma luz continuou acesa. Quem estava lá?
+LEGENDA: A LUZ *ACESA* / QUEM ESTAVA *LÁ?*
 
 ## CHAMADA (66–71 s)
 TEXTO: A VOTAÇÃO DO EP. 1 CONTINUA ABERTA: COMENTA A OU B
@@ -109,12 +109,16 @@ SOM: `stamp` 67 s
 
 ## NARRAÇÃO PARA O ELEVENLABS v3
 
-### porteiro
-Dica de voz: homem de uns 65 anos, grave e bonachão no começo; vai ficando assustado, sem perder a gentileza.
+### narrador
+Dica de voz: a mesma do episódio, grave, calma e quase sem emoção.
 
-[warm] Trinta anos nessa portaria. Faltavam dois meses pra aposentar. Aí um motoboy me deu uma caixa gelada.
-[uneasy] Mandaram levar até o elevador. Uma mão pegou a caixa. Nenhum obrigado.
+[calm, low] Seu Antônio tinha trinta anos de portaria e faltavam dois meses pra aposentar. Aí um motoboy entregou uma caixa gelada.
+[calm, low] Mandaram levar até o elevador. Uma mão pegou a caixa. Nenhum obrigado.
+[calm, low] A tarde inteira coçando. Ele achou que era o frio da caixa. Aí vieram as sirenes.
+[calm, low] A cidade foi apagando, bairro por bairro. Lá em cima, uma luz continuou acesa. Quem estava lá?
+
+### porteiro
+Dica de voz: a mesma do episódio, grave e bonachão, agora assustado.
+
 [whispers] Aquele menino disse "veio assim". Mas nem olhou na minha cara.
-[uneasy] A tarde inteira coçando. Achei que era o frio da caixa. Aí vieram as sirenes.
 [pleading] Trinta anos. E a porta trancou comigo do lado de fora.
-[whispering] A cidade foi apagando, bairro por bairro. Lá em cima, a luz continuou acesa. Quem está lá?

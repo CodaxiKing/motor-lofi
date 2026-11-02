@@ -3,6 +3,9 @@
 Elemento fixo: contador "DIA X · HH:MM" (começa no DIA 0, o último dia normal) e nota do Gabriel no app no `hud.place` (ex.: "★ 5,0") · Som assinatura: o toque de "pedido novo" do app (`notif`), que atrai os infectados · Estilo do traço: desenho · Capa: gerada no planejamento (PNG fica fora do repositório)
 Perfil: @arquivo.zero.0 (TikTok/Instagram; vai nos comentários fixados e nas artes)
 
+## Voz da série (padrão de todos os episódios e extras)
+Um narrador externo em 3ª pessoa conta a história: homem maduro, voz grave e calma, estilo documentário de crime, quase sem emoção. Ele sabe mais do que o Gabriel e pode antecipar ("foi a mentira mais cara da vida dele"). Não narra o que a imagem mostra. Os personagens falam só nos picos e nos diálogos, em falas curtas; a escolha final é dita pelo narrador ao público. Nas cenas de PENSAMENTO e O PLANO, o narrador explica em poucas palavras. No ElevenLabs, o narrador tem o próprio bloco.
+
 ## Cor de cada episódio (tint)
 - EP 1: laranja do app [240, 118, 30, 0.08] · EP 2: azul-petróleo [60, 130, 150, 0.10] · EP 3: âmbar de posto [230, 170, 70, 0.10] · EP 4: verde de hospital [110, 190, 150, 0.10] · EP 5: vermelho de alerta [210, 60, 50, 0.12] · EP 6: roxo do esgoto e da Torre [130, 90, 190, 0.10] · EP 7: azul de tela [90, 150, 240, 0.12] · EP 8: dourado do amanhecer [245, 205, 120, 0.10]
 

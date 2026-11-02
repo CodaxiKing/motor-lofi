@@ -2,7 +2,7 @@
 
 8 episódios · Apocalipse zumbi, sobrevivência e suspense · Todas as idades (sem sangue) · Fase: início · Cor do episódio (`tint`): laranja do app [240, 118, 30, 0.08]
 Estilo do traço: desenho · Enquadramento: perto (médio, conjunto e close; aberto só para situar) · Contador: DIA 0 · HH:MM (lugar "★ 5,0") · Duração: ~2 min 45 s · 17 cenas
-Voto: — (primeiro episódio) · Efeitos de tela só em picos: ondas de som na porta e no celular; sem neblina
+Voto: — (primeiro episódio) · Voz: narrador externo em 3ª pessoa, com falas dos personagens nos picos · Efeitos de tela só em picos: ondas de som na porta e no celular; sem neblina
 
 **Em jogo neste episódio**
 - Apresentar o Gabriel, a nota dele no app e o mundo acabando em uma tarde e uma noite.
@@ -55,8 +55,8 @@ PERSONAGENS: `gabriel_moto` de lado (`side`), `sit`, assento moto, `facing` 1, e
 PLANO: `conjunto`, `travelling` 400 · TRANSIÇÃO: `glitch`
 LUZ E DETALHES: sol forte, trânsito normal, gente na calçada
 SOM: `whoosh` 5 s · `notif` 11 s
-NARRAÇÃO (Gabriel): [upbeat, slightly proud] Dois mil pedidos. Nota cinco. Nenhuma entrega perdida, até o último dia normal do mundo.
-LEGENDA: DOIS MIL *PEDIDOS* / NOTA *CINCO* / NENHUMA ENTREGA / *PERDIDA*
+NARRAÇÃO (Narrador): [calm, low] Gabriel tinha dois mil pedidos e nota cinco. Ele não sabia, mas aquele era o último dia normal do mundo.
+LEGENDA: DOIS MIL *PEDIDOS* / NOTA *CINCO* / O ÚLTIMO DIA / *NORMAL*
 
 ## CENA 2 — 14 s a 22 s · O buraco
 LIGAÇÃO: a moto cai num buraco da mesma rua e Gabriel é jogado no asfalto
@@ -76,8 +76,8 @@ PLANO: `close` · TRANSIÇÃO: `cut`
 LUZ E DETALHES: fundo desfocado
 SOM: `heartbeat` 23 s · `vibe` 27 s
 PENSAMENTO: `gabriel` · medo · no balão: ele parado na porta da kitnet com o celular na mão e a tela "CONTA BLOQUEADA · ★ 4,2"
-NARRAÇÃO (Gabriel): [whispers] Se eu avisar, a nota cai. A conta trava. E o aluguel vence sexta.
-LEGENDA: A NOTA *CAI* / A CONTA *TRAVA*
+NARRAÇÃO (Narrador): [calm, low] Se avisasse, a nota caía. A conta travava. E o aluguel vencia sexta. Então ele fez o que quase todo mundo faria.
+LEGENDA: A NOTA *CAÍA* / A CONTA *TRAVAVA* / O QUE TODO / MUNDO *FARIA*
 
 ## CENA 4 — 32 s a 44 s · Veio assim
 LIGAÇÃO: Gabriel sobe de novo na moto e segue pela avenida até o portão da Torre JáVai
@@ -92,7 +92,8 @@ VIRADA: Gabriel mente, e a caixa fica com o seu Antônio
 PORTEIRO: [friendly] Ih, rapaz. Amassou, é?
 GABRIEL: [nervous] Veio assim do hospital. Tá chegando... tá entregue.
 PORTEIRO: [amused] Tá gelada, essa caixa. Dá até coceira.
-LEGENDA: AMASSOU, *É?* / VEIO *ASSIM* / DÁ ATÉ *COCEIRA*
+NARRAÇÃO (Narrador): [calm, low] Foi a mentira mais cara da vida dele.
+LEGENDA: AMASSOU, *É?* / VEIO *ASSIM* / DÁ ATÉ *COCEIRA* / A MENTIRA / MAIS *CARA*
 
 ## CENA 5 — 44 s a 51 s · Obrigado, parceiro
 PLANO DE DETALHE: `celular` · só a mão de `gabriel` · tela: "ENTREGA CONCLUÍDA ★★★★★ · VOCÊ NÃO PARA."
@@ -104,7 +105,7 @@ LEGENDA: OBRIGADO, *PARCEIRO* / VOCÊ *NÃO PARA*
 PLANO DE DETALHE: `relogio` · os números correndo de 14:40 até 21:40
 O TEMPO PASSA
 SOM: `click` 51 s · `siren` 54 s
-NARRAÇÃO (Gabriel): [uneasy] À noite, o app tocava menos. As sirenes, mais.
+NARRAÇÃO (Narrador): [calm, low] À noite, o app tocava menos. As sirenes, mais.
 LEGENDA: O APP *MENOS* / AS SIRENES *MAIS*
 
 ## CENA 7 — 58 s a 68 s · O parceiro
@@ -125,8 +126,8 @@ PLANO: `conjunto`, `handheld`, `travelling` 520 · TRANSIÇÃO: `flash`
 LUZ E DETALHES: ondas de som saindo da mochila quando o celular toca
 SOM: `notif` 69 s · `growl` 70 s · `step` 72 s
 VIRADA: o celular toca, e o infectado vira na direção do som e corre
-NARRAÇÃO (Gabriel): [breathing heavily] O celular tocou. E ele veio... atrás do toque.
-LEGENDA: ELE VEIO / ATRÁS DO *TOQUE*
+NARRAÇÃO (Narrador): [calm, low] O celular tocou. E foi aí que Gabriel entendeu: eles seguem o som.
+LEGENDA: O CELULAR *TOCOU* / ELES SEGUEM / O *SOM*
 
 ## CENA 9 — 77 s a 85 s · Sobe
 LIGAÇÃO: Gabriel larga a moto na calçada, passa pelo portão do prédio dele e sobe a escada de serviço
@@ -146,7 +147,7 @@ PLANO: `conjunto`, foco no vizinho ao fundo · TRANSIÇÃO: `cut`
 LUZ E DETALHES: lâmpada piscando (`flicker`), ondas de som na porta do vizinho a cada batida
 SOM: `knock` 86 s · `knock` 88 s · `knock` 90 s · `step` 92 s
 VIRADA: o vizinho do 302 bate sem parar na porta do próprio apartamento, e Gabriel precisa passar atrás dele sem respirar
-NARRAÇÃO (Gabriel): [whispers] Era o seu Jair, do 302. Batendo na porta da própria casa.
+NARRAÇÃO (Narrador): [calm, low] Era o seu Jair, do 302. Batendo na porta da própria casa.
 LEGENDA: SEU *JAIR* / NA PRÓPRIA *CASA*
 
 ## CENA 11 — 95 s a 103 s · Trinco
@@ -166,8 +167,8 @@ PLANO: `medio`, fundo desfocado · TRANSIÇÃO: `fade`
 LUZ E DETALHES: TV chiando, sirenes pela janela, ícones de "sem serviço" na tela do celular
 SOM: `static` 103 s · `no_service` 105 s · `no_service` 107 s
 VIRADA: sem telefone, sem internet e sem TV, só um aplicativo continua no ar
-NARRAÇÃO (Gabriel): [uneasy] Sem sinal, sem ligação, sem TV. E o app... funcionando.
-LEGENDA: SEM *SINAL* / SEM *TV* / E O *APP...*
+NARRAÇÃO (Narrador): [calm, low] Sem sinal, sem ligação, sem TV. Só uma coisa ainda funcionava: o app.
+LEGENDA: SEM *SINAL* / SEM *TV* / SÓ O *APP*
 
 ## CENA 13 — 112 s a 121 s · Os passos
 LIGAÇÃO: Gabriel vai até o corredorzinho da entrada para escutar a porta
@@ -183,7 +184,7 @@ LEGENDA: *PAROU*
 PLANO DE DETALHE: `macaneta` · só a mão de `gabriel` segurando por dentro; a maçaneta sacode a cada pancada
 SOM: `click` 122 s · `bang` 125 s · `knock` 126 s
 VIRADA: a maçaneta sacode na mão dele, com pancadas pelo lado de fora
-NARRAÇÃO (Gabriel): [terrified whisper] Desliga. Desliga, desliga.
+GABRIEL: [terrified whisper] Desliga. Desliga, desliga.
 LEGENDA: *DESLIGA*
 
 ## CENA 15 — 128 s a 137 s · E se ceder
@@ -193,7 +194,7 @@ PLANO: `close`, `handheld` · TRANSIÇÃO: `flash`
 LUZ E DETALHES: `dark` 0.6, ondas de som na porta a cada batida
 SOM: `knock` 129 s · `knock` 132 s · `notif` 135 s
 PENSAMENTO: `gabriel` · imaginação · no balão: a porta da entrada cedendo e o `zombie` caindo para dentro, com mais dois atrás
-NARRAÇÃO (Gabriel): [shaky] Essa porta é de kitnet. Não aguenta cinco minutos.
+NARRAÇÃO (Narrador): [calm, low] A porta de uma kitnet não aguenta cinco minutos. E ele sabia disso.
 LEGENDA: NÃO *AGUENTA* / CINCO *MINUTOS*
 
 ## CENA 16 — 137 s a 147 s · Novo pedido
@@ -210,8 +211,9 @@ PLANO: `close`, câmera na mão (`handheld`) · TRANSIÇÃO: `cut`
 LUZ E DETALHES: `dark` 0.7, ondas de som fortes na porta, a tela do celular piscando
 SOM: `knock` 148 s · `notif` 151 s · `knock` 152 s · `notif` 155 s · `bang` 157 s
 VIRADA: o toque não desliga: enquanto ele não responder, o app vai continuar chamando quem está na porta, e agora bate mais de uma mão
-GABRIEL: [panicked whisper] Não silencia... Se eu aceito, eu saio. Se eu recuso... ela fica sozinha.
-LEGENDA: *NÃO SILENCIA* / SE EU *ACEITO* / SE EU *RECUSO*
+GABRIEL: [panicked whisper] Não silencia...
+NARRAÇÃO (Narrador): [calm, low] Se aceitasse, teria que sair. Se recusasse, uma menina ficaria sozinha. Agora, a decisão é de vocês.
+LEGENDA: *NÃO SILENCIA* / SE *ACEITASSE* / SE *RECUSASSE* / A DECISÃO / É DE *VOCÊS*
 
 ## FINAL (158–166 s)
 Tela dividida: A) ACEITAR O PEDIDO (cenário `entrada`, Gabriel com o capacete na mão apertando "aceitar") · B) RECUSAR E BARRAR A PORTA (cenário `entrada`, Gabriel empurrando o armário contra a porta)
@@ -235,23 +237,29 @@ TEXTO: COMENTA A OU B · SIGA PARA ACOMPANHAR AS HISTÓRIAS · CONTINUA NO EPIS�
 ## NARRAÇÃO PARA O ELEVENLABS v3
 Um arquivo por personagem, com as falas na ordem do episódio.
 
-### gabriel
-Dica de voz: rapaz de uns 23 anos, voz jovem e simpática, sotaque paulistano leve; animado no começo, depois ofegante e sussurrando, com piada nervosa quando está com medo.
+### narrador
+Dica de voz: homem maduro, voz grave e calma, estilo documentário de crime, quase sem emoção; não acelera nem nos sustos.
 
-[upbeat, slightly proud] Dois mil pedidos. Nota cinco. Nenhuma entrega perdida, até o último dia normal do mundo.
+[calm, low] Gabriel tinha dois mil pedidos e nota cinco. Ele não sabia, mas aquele era o último dia normal do mundo.
+[calm, low] Se avisasse, a nota caía. A conta travava. E o aluguel vencia sexta. Então ele fez o que quase todo mundo faria.
+[calm, low] Foi a mentira mais cara da vida dele.
+[calm, low] À noite, o app tocava menos. As sirenes, mais.
+[calm, low] O celular tocou. E foi aí que Gabriel entendeu: eles seguem o som.
+[calm, low] Era o seu Jair, do 302. Batendo na porta da própria casa.
+[calm, low] Sem sinal, sem ligação, sem TV. Só uma coisa ainda funcionava: o app.
+[calm, low] A porta de uma kitnet não aguenta cinco minutos. E ele sabia disso.
+[calm, low] Se aceitasse, teria que sair. Se recusasse, uma menina ficaria sozinha. Agora, a decisão é de vocês.
+
+### gabriel
+Dica de voz: rapaz de uns 23 anos, simpático, sotaque paulistano leve; ofegante e sussurrando, com piada nervosa no medo.
+
 [panting] Não, não, não... deu ruim.
-[whispers] Se eu avisar, a nota cai. A conta trava. E o aluguel vence sexta.
 [nervous] Veio assim do hospital. Tá chegando... tá entregue.
-[uneasy] À noite, o app tocava menos. As sirenes, mais.
 [calling out] Ô, parceiro! Caiu? Tá tudo bem aí?
-[breathing heavily] O celular tocou. E ele veio... atrás do toque.
 [panting] Tá chegando... tá chegando... tá chegando.
-[whispers] Era o seu Jair, do 302. Batendo na porta da própria casa.
 [breathless, nervous laugh] Pronto. Mais uma. Entreguei eu mesmo em casa.
-[uneasy] Sem sinal, sem ligação, sem TV. E o app... funcionando.
 [terrified whisper] Desliga. Desliga, desliga.
-[shaky] Essa porta é de kitnet. Não aguenta cinco minutos.
-[panicked whisper] Não silencia... Se eu aceito, eu saio. Se eu recuso... ela fica sozinha.
+[panicked whisper] Não silencia...
 
 ### porteiro
 Dica de voz: homem de uns 65 anos, grave e bonachão, voz de porteiro antigo que conhece todo mundo.
@@ -272,4 +280,4 @@ Dica de voz: menina de uns 10 anos, voz pequena, segurando o choro, gravando um 
 ---
 
 ## VERSÃO CAPCUT (texto limpo)
-Dois mil pedidos. Nota cinco. Nenhuma entrega perdida, até o último dia normal do mundo. — Não, não, não... deu ruim. — Se eu avisar, a nota cai. A conta trava. E o aluguel vence sexta. — Ih, rapaz. Amassou, é? — Veio assim do hospital. Tá chegando... tá entregue. — Tá gelada, essa caixa. Dá até coceira. — Obrigado, parceiro. Cinco estrelas. Você não para. — À noite, o app tocava menos. As sirenes, mais. — Ô, parceiro! Caiu? Tá tudo bem aí? — O celular tocou. E ele veio... atrás do toque. — Tá chegando... tá chegando... tá chegando. — Era o seu Jair, do 302. Batendo na porta da própria casa. — Pronto. Mais uma. Entreguei eu mesmo em casa. — Sem sinal, sem ligação, sem TV. E o app... funcionando. — Desliga. Desliga, desliga. — Essa porta é de kitnet. Não aguenta cinco minutos. — Moço... minha mãe tá muito mal. Tem uma farmácia no caminho. Por favor. Eu tô sozinha. — Não silencia... Se eu aceito, eu saio. Se eu recuso... ela fica sozinha.
+Gabriel tinha dois mil pedidos e nota cinco. Ele não sabia, mas aquele era o último dia normal do mundo. — Não, não, não... deu ruim. — Se avisasse, a nota caía. A conta travava. E o aluguel vencia sexta. Então ele fez o que quase todo mundo faria. — Ih, rapaz. Amassou, é? — Veio assim do hospital. Tá chegando... tá entregue. — Tá gelada, essa caixa. Dá até coceira. — Foi a mentira mais cara da vida dele. — Obrigado, parceiro. Cinco estrelas. Você não para. — À noite, o app tocava menos. As sirenes, mais. — Ô, parceiro! Caiu? Tá tudo bem aí? — O celular tocou. E foi aí que Gabriel entendeu: eles seguem o som. — Tá chegando... tá chegando... tá chegando. — Era o seu Jair, do 302. Batendo na porta da própria casa. — Pronto. Mais uma. Entreguei eu mesmo em casa. — Sem sinal, sem ligação, sem TV. Só uma coisa ainda funcionava: o app. — Desliga. Desliga, desliga. — A porta de uma kitnet não aguenta cinco minutos. E ele sabia disso. — Moço... minha mãe tá muito mal. Tem uma farmácia no caminho. Por favor. Eu tô sozinha. — Não silencia... — Se aceitasse, teria que sair. Se recusasse, uma menina ficaria sozinha. Agora, a decisão é de vocês.
