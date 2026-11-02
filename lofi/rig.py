@@ -131,6 +131,46 @@ POSES = {
     "carry":   ((70, -40), (85, -45)),      # carregando alguém no colo
     "push":    ((85, 0), (95, 0)),          # empurrando
 }
+# ---------------- biblioteca de poses (lofi/poses.json) ----------------
+import json as _json, os as _os
+def _carrega_poses():
+    try:
+        d = _json.load(open(_os.path.join(_os.path.dirname(__file__), "poses.json"), encoding="utf-8"))
+        return {k: v for k, v in d.items() if not k.startswith("_")}
+    except Exception as e:
+        print("poses.json:", e); return {}
+LIB = _carrega_poses()
+for _k in LIB: POSES.setdefault(_k, ((-8, 6), (8, -6)))
+ALVOS_ROSTO = {"queixo", "boca", "olhos", "rosto", "testa", "topo", "ouvido"}
+
+
+def _ik(S, T, L1, L2, escolhe):
+    """Braço de dois ossos do ombro S até o alvo T. escolhe(e1, e2) decide o cotovelo. Devolve (cotovelo, mão)."""
+    dx, dy = T[0] - S[0], T[1] - S[1]
+    d = max(abs(L1 - L2) + 1, min(L1 + L2 - 1, math.hypot(dx, dy)))
+    th = math.degrees(math.atan2(dx, dy))
+    al = math.degrees(math.acos(max(-1, min(1, (L1 * L1 + d * d - L2 * L2) / (2 * L1 * d)))))
+    e1, e2 = _seg(S, th + al, L1), _seg(S, th - al, L1)
+    E = escolhe(e1, e2)
+    fa = math.degrees(math.atan2(T[0] - E[0], T[1] - E[1]))
+    return E, _seg(E, fa, L2)
+
+
+def _alvo(nome, s, cx, sh, sh_y, hip_y, head_c, hr, tw, side):
+    hx, hy = head_c
+    f = 1 if side else s          # de lado, os dois braços vão para o lado do rosto
+    A = {"queixo": (hx + f * hr * 0.12, hy + hr * 0.92), "boca": (hx + f * hr * 0.1, hy + hr * 0.5),
+         "olhos": (hx + f * hr * 0.35, hy + hr * 0.02), "rosto": (hx + f * hr * 0.32, hy + hr * 0.3),
+         "testa": (hx + f * hr * 0.35, hy - hr * 0.5), "topo": (hx + f * hr * 0.5, hy - hr * 0.95),
+         "nuca": (hx + f * hr * 0.95, hy - hr * 0.45), "ouvido": (hx + f * hr * 1.02, hy + hr * 0.05),
+         "peito": (cx + f * 22, sh_y + 62), "coracao": (cx - 24, sh_y + 58), "barriga": (cx + f * 18, hip_y - 58),
+         "cintura": (cx + f * (tw / 2 + 4), hip_y - 26), "ombro_oposto": (cx - f * 62, sh_y + 14),
+         "juntas": (cx + f * 6, sh_y + 78), "frente": (cx + f * 70, sh_y + 86), "frente_baixo": (cx + f * 64, sh_y + 128),
+         "lado": (sh[0] + f * 150, sh_y + 40), "lado_baixo": (sh[0] + f * 74, sh_y + 92), "lado_alto": (sh[0] + f * 96, sh_y - 118),
+         "acima": (sh[0] + f * 26, sh_y - 200)}
+    return A.get(nome, (sh[0] + f * 10, sh_y + 160))
+
+
 EMOTIONS = ("neutral", "fear", "shock", "angry", "sad", "determined", "happy", "suspicious", "cry", "panting")
 
 CW, CH = 480, 760          # tela 2x
@@ -287,6 +327,11 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     if view == "side": head_c = (head_c[0] + 18 + hunch * 0.6 + lean * 0.5, head_c[1])
     if q3: head_c = (head_c[0] + 14, head_c[1])
     if sniff: head_c = (head_c[0] + math.sin(t * 2.3 + seed) * 16, head_c[1] - 8 - abs(math.sin(t * 4.6)) * 6)
+    lib_ = LIB.get(draw_pose)
+    if lib_:
+        if gesture is None and lib_.get("gesto"): gesture = lib_["gesto"]
+        cb = lib_.get("cabeca")
+        if cb: head_c = (head_c[0] + cb.get("dx", 0), head_c[1] + cb.get("dy", 0))
     if gesture == "nod": head_c = (head_c[0], head_c[1] + abs(math.sin(t * 9)) * 12)
     elif gesture == "shake": head_c = (head_c[0] + math.sin(t * 13) * 14, head_c[1]); look = math.sin(t * 13) * 18
     elif gesture == "down": head_c = (head_c[0], head_c[1] + 14)
@@ -375,6 +420,31 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         phi = 90 - aim
         el = _seg(sh[1], phi + (12 if -90 < aim < 90 else -12), 86); hd = _seg(el, phi, 80)
         arms[1] = (sh[1], el, hd)
+    rosto_maos = []
+    if lib_ and lib_.get("maos") and not (lanterna and aim is not None):
+        side = view == "side"
+        hr_ = 84 * HEADK; tw_ = (164 if not side else 124) * TWK * (0.9 if q3 else 1.0)
+        for lado_, i in (("esq", 0), ("dir", 1)):
+            m = lib_["maos"].get(lado_)
+            if not m: continue
+            sgn = -1 if i == 0 else 1
+            T = _alvo(m.get("alvo"), sgn, cx, sh[i], sh_y, hip_y, head_c, hr_, tw_, side)
+            T = (T[0] + m.get("dx", 0) * sgn, T[1] + m.get("dy", 0))
+            an = m.get("anim")
+            if an:
+                o = an.get("amp", 10) * math.sin(2 * math.pi * (t * an.get("freq", 2) + an.get("fase", 0)))
+                T = (T[0] + (o if an.get("eixo", "y") == "x" else 0), T[1] + (o if an.get("eixo", "y") == "y" else 0))
+            cot = m.get("cotovelo", "fora")
+            def escolhe(e1, e2, cot=cot, xs=sh[i][0]):
+                if cot == "baixo": return e1 if e1[1] > e2[1] else e2
+                fora_ = lambda e: abs(e[0] - cx)
+                return (max if cot == "fora" else min)((e1, e2), key=fora_)
+            el, hd = _ik(sh[i], T, 86, 80, escolhe)
+            if pose_prev and pk < 1.0:                    # entra na pose sem pulo
+                bk = _backout(pk); el0, hd0 = arms[i][1], arms[i][2]
+                el = (el0[0] + (el[0] - el0[0]) * bk, el0[1] + (el[1] - el0[1]) * bk); hd = (hd0[0] + (hd[0] - hd0[0]) * bk, hd0[1] + (hd[1] - hd0[1]) * bk)
+            arms[i] = (sh[i], el, hd)
+            if lib_.get("frente") and m.get("alvo") in ALVOS_ROSTO: rosto_maos.append(i)
     legc, shoe, topc = cd["legs"], cd["shoes"], top
     back = view == "back"; side = view == "side"
     dark = lambda c, k=0.75: tuple(int(v * k) for v in c)
@@ -805,8 +875,16 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
                     dy = (t * 70 + x) % 60
                     d.ellipse([x - 12, y + 30 + dy, x - 2, y + 42 + dy], fill=(140, 190, 245, 255))
             if pant: mouth = max(mouth, 0.35 + 0.25 * math.sin(t * 2 * math.pi / 0.8))
-            vis = viseme if mouth > 0.04 or viseme == 1 else 0
-            if vis == 1:      # M/B/P: lábios fechados apertados
+            vis = viseme if mouth > 0.04 or viseme in (1, 6, 7, 8) else 0
+            if vis == 8: mouth = max(mouth, 0.65); vis = 2          # D do Rhubarb: A bem aberto
+            if vis == 6:      # F/V: dentes de cima sobre o lábio de baixo
+                d.rounded_rectangle([mx - 17, my - 5, mx + 17, my + 7], 5, fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
+                d.rectangle([mx - 12, my - 3, mx + 12, my + 3], fill=(245, 245, 240, 255))
+            elif vis == 7:    # L: aberta com a língua aparecendo
+                mh = 12 + 14 * mouth; mw = 15 + 6 * mouth
+                d.ellipse([mx - mw, my - mh * 0.45, mx + mw, my + mh * 0.55], fill=(40, 18, 22, 255), outline=ec + (255,), width=4)
+                d.ellipse([mx - mw * 0.55, my - mh * 0.35, mx + mw * 0.55, my + mh * 0.15], fill=(214, 96, 110, 255))
+            elif vis == 1:      # M/B/P: lábios fechados apertados
                 d.line([(mx - 16, my + 2), (mx + 16, my + 2)], fill=ec + (255,), width=7)
             elif vis == 3:    # E/I: boca larga e baixa, dentes
                 mw = 20 + 6 * mouth; mh = 6 + 10 * mouth
@@ -856,6 +934,18 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             if cd["glasses"]:
                 for (x, y) in eyes: d.ellipse([x - 22, y - 20, x + 22, y + 20], outline=OUT, width=5)
                 if len(eyes) == 2: d.line([(eyes[0][0] + 22, eyes[0][1]), (eyes[1][0] - 22, eyes[1][1])], fill=TRACO, width=5)
+    if lib_ and not back:          # mãos que tocam o rosto ficam por cima dele; dedo levantado
+        col_ = dark(topc, 0.86) if ESTILO["nome"] == "vetor" else topc
+        for i in rosto_maos:
+            _limb(d, [arms[i][1], arms[i][2]], col_ if (i == 1 or not (side or q3)) else dark(topc), 44 * LIMBK)
+            _hand(d, arms[i][2], skin)
+        if lib_.get("dedo"):
+            i = 1; (ex_, ey_), (hx2, hy2) = arms[i][1], arms[i][2]
+            L_ = math.hypot(hx2 - ex_, hy2 - ey_) or 1; ux, uy = (hx2 - ex_) / L_, (hy2 - ey_) / L_
+            if draw_pose == "silencio": ux, uy = 0.0, -1.0
+            p0 = (hx2 + ux * 10, hy2 + uy * 10); p1 = (hx2 + ux * 40, hy2 + uy * 40)
+            d.line([p0, p1], fill=OUT, width=17); d.line([p0, p1], fill=skin + (255,), width=10)
+            for p_ in (p1,): d.ellipse([p_[0] - 5, p_[1] - 5, p_[0] + 5, p_[1] + 5], fill=skin + (255,))
     _draw._ultimo_info = dict(im.info)
     return im, (CW / 2, FEET_Y + 22 + (0 if not sit else 0))
 

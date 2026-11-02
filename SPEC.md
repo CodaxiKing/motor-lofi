@@ -485,3 +485,14 @@ No vetor os personagens não têm contorno; cada parte do corpo ganha uma faixa 
 lado da luz (borda dura, sem degradê); camisas, uniformes e jalecos ganham bolsos com lapela e botões, calças ganham cinto com fivela,
 as mãos ganham polegar e as mangas ficam um tom mais escuras que o tronco. Traços do rosto (sobrancelhas) continuam. As fichas de
 `personagens.json` valem igual nos dois estilos. A bíblia registra na linha `Estilo: lofi-desenho | lofi-liso | vetor`.
+
+## Boca pelo Rhubarb (padrão)
+A boca segue a voz com o [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync) (`lofi/rhubarb.py`, modo fonético, funciona em português). Na primeira vez o motor baixa o Rhubarb do GitHub (~90 MB, em `~/.cache/motor-lofi`); o resultado de cada voz fica em `_cache/rhubarb_*.json`.
+Formatos de boca: repouso, M/B/P (lábios fechados), dentes (S/T/I), aberta (E), bem aberta (A), redonda (O), biquinho (U), F/V (dente no lábio) e L (língua).
+`"boca": "espectro"` no episódio volta ao cálculo antigo; sem internet ou sem o Rhubarb, o motor usa o antigo sozinho. Teste: `python3 -m lofi.rhubarb voz.mp3`.
+
+## Biblioteca de poses (`lofi/poses.json`)
+No estilo do OpenMontage: a arte é do rig e as poses moram num arquivo de dados. Cada pose diz para onde vai cada mão (alvos: queixo, boca, olhos, rosto, testa, topo, nuca, ouvido, peito, coracao, barriga, cintura, ombro_oposto, juntas, frente, frente_baixo, lado, lado_baixo, lado_alto, acima) e o braço é calculado sozinho (IK de dois ossos), em todas as vistas.
+Poses: pensativo, desespero, mao_na_boca, silencio, ouvir, cocar_nuca, cocar_cabeca, maos_na_cintura, dar_de_ombros, pedir_calma, chamar, acenar, comemorar, proteger_rosto, abracar_se, implorar, explicar, apontar_cima, punho, segurar_barriga, espiar_longe. Use como qualquer pose: `"pose": "pensativo"` ou `[[0, "idle"], [2, "desespero"]]`.
+**Gestos pela fala (automático):** com o ator parado em `idle`, frases da legenda disparam a pose da biblioteca (campo `palavras`: "calma" → pedir_calma, "não sei" → dar_de_ombros, "por favor" → implorar, "shh" → silencio...), com entrada suave e emoção sugerida; a pose dura até ~1,4 s depois da palavra. Uma pose escrita no JSON sempre vence.
+Pose nova: acrescente uma entrada em `poses.json` (`maos`, `dx`/`dy`, `cotovelo`, `anim`, `frente`, `dedo`, `cabeca`, `gesto`, `emocao`, `palavras`) e rode `python3 -m lofi.catalogo --md CATALOGO.md`.

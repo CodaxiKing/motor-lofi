@@ -145,7 +145,8 @@ class Episode:
                     c["acoustic"] = sh.get("acoustic", scenes.REGISTRY[sh["scene"]].acoustic)
                 elif sh and sh.get("type") == "choice": c["acoustic"] = None
             clips.append(c)
-        self.env = audio.mix(self.total, clips, self.voices, sfx, self.spec.get("music", []), amb, self.mix_path, self.fps) or {}
+        self.env = audio.mix(self.total, clips, self.voices, sfx, self.spec.get("music", []), amb, self.mix_path, self.fps,
+                             boca=self.spec.get("boca", "rhubarb"), cache_dir=os.path.join(self.base, "_cache")) or {}
 
     def level(self, voice, t, smooth=0):
         e = self.env.get(voice)
@@ -162,7 +163,24 @@ class Episode:
         return int(e[min(len(e) - 1, int(t * self.fps))])
 
     def speech_gesture(self, voice, t):
-        """Gesto automático pela palavra que está sendo dita: (pose, gesto de cabeça, emoção) ou None."""
+        """Gesto automático pela palavra que está sendo dita: (pose, gesto de cabeça, emoção[, início]) ou None.
+        Primeiro as frases da biblioteca de poses (lofi/poses.json: "não sei", "meu deus"...), que seguram a pose ~1,4 s;
+        depois as palavras soltas de sempre (ali → aponta, eu → peito, sim/não → cabeça)."""
+        from .rig import LIB
+        limpa = lambda w: w.lower().strip(".,!?…:;\"'()—-*")
+        for a, b, txt, v in self.subs:
+            if v != voice or not (a - 0.2 <= t < b + 1.4): continue
+            wt = text._word_times(txt, a, b); ws = [limpa(w) for w, _, _ in wt]
+            melhor = None                     # vale a frase mais recente (a pose seguinte corta a anterior)
+            for n in (3, 2, 1):
+                for i in range(len(wt) - n + 1):
+                    wa, wb = wt[i][1], wt[i + n - 1][2]
+                    if not (wa - 0.15 <= t < wb + 1.4): continue
+                    fr = " ".join(ws[i:i + n])
+                    for nome, P in LIB.items():
+                        if fr in P.get("palavras", ()) and (melhor is None or wa > melhor[3] + 0.15):
+                            melhor = (nome, P.get("gesto"), P.get("emocao"), wa - 0.15)
+            if melhor: return melhor
         for a, b, txt, v in self.subs:
             if v != voice or not (a <= t < b): continue
             for w, wa, wb in text._word_times(txt, a, b):
@@ -305,7 +323,10 @@ class Episode:
         if lips and a.get("gestures", self.spec.get("gestures", True)) and pose == "idle" and not a.get("_crowd"):
             g = self.speech_gesture(voice, self._treal)
             if g:
-                if g[0]: pose = g[0]
+                if g[0]:
+                    if len(g) > 3 and pose_prev is None:      # pose da biblioteca entra suave (0,32 s)
+                        pose_prev, pose_dt = "idle", max(0.0, self._treal - g[3])
+                    pose = g[0]
                 gesture = gesture or g[1]
                 if g[2] and emo == "neutral": emo = g[2]
         if a.get("_hold_pose") and pose in ("idle", "walk"): pose = a["_hold_pose"]

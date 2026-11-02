@@ -233,7 +233,7 @@ def radio_filter(seg):
     seg = bp(seg, 350, 3200, 6); seg = np.tanh(seg * 4) / 2.0
     return seg + bp(noise(len(seg) / SR), 800, 5000) * 0.02
 
-def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30):
+def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30, boca="rhubarb", cache_dir=None):
     """clips: [{voice, src:[a,b], at, radio?}], voices: {nome: caminho}, sfx: [{t, name, gain, dur}],
     music: [{start, end, gain:[a,b], tense, base}], ambience: [(ini, fim, tipo)]"""
     N = int(total * SR) + SR
@@ -271,7 +271,13 @@ def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30):
     sf.write(out_path, out, SR)
     step = SR // fps
     env_ = {"_all": lp(np.abs(V), 12, 2)[::step]}
-    for v, buf in PV.items(): env_["_vis_" + v] = visemes(buf, step)
+    for v, buf in PV.items():
+        vis = None
+        if boca == "rhubarb":        # formatos de boca pelo Rhubarb Lip Sync; se não der, o cálculo pelo espectro
+            from . import rhubarb
+            try: vis = rhubarb.visemas(buf, SR, step, cache_dir)
+            except Exception as e: print("rhubarb:", e)
+        env_["_vis_" + v] = vis if vis is not None else visemes(buf, step)
     for v, buf in PV.items():
         e = lp(np.abs(buf), 14, 2)[::step]; mx = np.percentile(e[e > 1e-4], 95) if np.any(e > 1e-4) else 1
         env_[v] = np.clip(e / (mx + 1e-9), 0, 1.2)
