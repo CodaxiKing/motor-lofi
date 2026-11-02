@@ -83,7 +83,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | roteiro | A) Aceitar o pedido · B) Recusar e barrar a porta | — | |
+| 1 | 0 | início | montado | A) Aceitar o pedido · B) Recusar e barrar a porta | — | |
 | 2 | 1 | complicação | planejado | A) Levar a Nina · B) Deixar a Nina trancada | | |
 | 3 | 3 | complicação | planejado | A) Pedido preto · B) Pedido vermelho | | |
 | 4 | 4 | virada | planejado | A) Injetar a dose · B) Guardar as doses | | |
@@ -108,7 +108,7 @@ Ep. 1: A · Ep. 2: A · Ep. 3: B · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: B
 ## Extras
 | Nº | Depois do ep. | Tema | Status |
 |---|---|---|---|
-| 1 | 1 | O que aconteceu com o seu Antônio? | roteiro |
+| 1 | 1 | O que aconteceu com o seu Antônio? | montado |
 
 ## Cenários
 - Da biblioteca: `rua`, `rua_amanhecer`, `beco`, `apartamento`, `entrada`, `janela`, `corredor`, `escada`, `portao`, `telhado`, `mercado`, `posto`, `hospital`, `viaduto`, `estacionamento`, `esgoto`. Planos de detalhe: `celular`, `chave`, `macaneta`, `olho`, `relogio`.
