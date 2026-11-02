@@ -64,6 +64,8 @@ def gerar(pasta, n, extra=False):
     if os.path.exists(pj):
         fichas = {k: v for k, v in json.load(open(pj, encoding="utf-8")).items() if not k.startswith("_")}
         L.append("Fichas travadas (visual não muda): " + ", ".join(sorted(fichas)))
+    for k in sec:
+        if re.match(r"pistas", k, re.I): L += ["", f"## 5b. {k} (pague as pendentes, plante novas)", sec[k]]
     # fios em aberto: linhas da bíblia com consequências ("→") ou perguntas
     fios = [l.strip() for l in bib.split("\n") if ("→" in l or l.strip().endswith("?")) and len(l.strip()) > 8]
     if fios: L += ["", "## 6. Fios em aberto e consequências registradas (honre todos)"] + [f"- {f.lstrip('- ')}" for f in fios]
@@ -91,7 +93,11 @@ def gerar(pasta, n, extra=False):
           "- Escreva a ESCALETA (6–10 batidas) antes das cenas; cada cena serve a uma batida.",
           "- Toda cena começa onde a anterior terminou: quem entra ganha `ENTRA:`, quem sai ganha `SAI:`, mudança de lugar ganha `LIGAÇÃO:`.",
           "- Cada fio da seção 6 que este episódio toca precisa ser pago ou avançado; nenhum personagem esquece o que viveu.",
-          "- O gancho (cena 0) mostra um momento que acontece de verdade mais adiante no episódio."]
+          "- O gancho (cena 0) mostra um momento que acontece de verdade mais adiante no episódio.",
+          "- Escreva 3 opções de GANCHO (perguntas sem resposta) e escolha a mais estranha.",
+          "- Uma VIRADA a cada 20–30 s; narração só para o que a imagem não mostra; cada personagem fala do jeito dele (seção 5).",
+          "- Mexa em pelo menos um DESEJO, MEDO ou SEGREDO; pague uma pista pendente e plante uma nova (seção 5b).",
+          "- A escolha A/B custa algo dos dois lados (GANHA/PERDE); termine no meio da ação, com uma informação nova."]
     txt = "\n".join(L).strip() + "\n"
     out = os.path.join(pasta, f"_contexto_{'extra' if extra else 'ep'}{n:02d}.md")
     open(out, "w", encoding="utf-8").write(txt)

@@ -18,6 +18,22 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 - bento — o primeiro disfarce do Cliente: caminhoneiro gordo e simpático, camisa vermelha, boné azul, bigode.
 - duplo — o Cliente imitando Davi (igual ao Davi, mas com olhos brancos). Só no ep. 4 e 5.
 
+## Personagens (motivação e voz)
+| Personagem | DESEJO (o que quer) | MEDO | SEGREDO | JEITO DE FALAR |
+|---|---|---|---|---|
+| davi | juntar dinheiro para sair da casa da mãe e provar que termina um emprego | ser igual ao pai, que sumia no meio dos trabalhos | mentiu no currículo: nunca trabalhou de noite e não dorme bem no escuro | frases curtas, ri de nervoso ("hã… tá"), faz piada quando está com medo, fala sozinho para se acalmar |
+| sonia | manter a contenção funcionando, custe quem custar | perder outro atendente (o Ivo foi recrutado por ela) | o anúncio de emprego foi dela, e ela já escolheu o Davi antes da entrevista | calma, formal, frases completas, chama todo mundo pelo sobrenome ("senhor Moreira") |
+| ivo | sair da câmara fria e ver a neta | ser esquecido lá dentro | sabe a "regra zero", que ele mesmo tirou da folha | fala arrastado de frio, repete as palavras, chama o Davi de "menino" |
+| cliente | um lugar que nunca fecha, para sempre | a luz acesa e o sol nascendo | precisa ser convidado a entrar | imita a voz de quem ouve, educado demais, sempre pede "o de sempre" |
+
+## Pistas
+| Pista | Plantada em | Paga em | Status |
+|---|---|---|---|
+| O relógio da loja pula minutos (2h59 → 3h00) | ep. 1 | ep. 4 (3h10 → 3h33 no blecaute) | pendente |
+| A folha tem a regra 1 a 7, mas a numeração começa em "2" no verso (a regra zero foi arrancada) | ep. 1 | ep. 3/5 (regra zero do Ivo) | pendente |
+| O Bento sabia o nome do Davi antes de ler o crachá | ep. 2 | ep. 3 (o crachá da Sônia com a foto do Davi) | pendente |
+| A CAM 4 mostra a câmara fria vazia, mas o vidro embaça | ep. 2 | ep. 3 (a câmara por dentro não tem fim) | pendente |
+
 ## Mistério central
 Por que a loja nunca fecha, se quase ninguém passa por ela?
 A verdade: a loja é um sítio de contenção do Instituto (no estilo SCP: arquivo 24-0317). O Cliente é uma entidade atraída pela rotina humana; um lugar que nunca fecha é um laço perfeito. Enquanto houver um atendente cumprindo o turno e as regras, ele fica preso dentro da loja das 3h00 às 3h33. Quem quebra uma regra é "estocado": vai parar na câmara fria, que por dentro não tem fim. O Ivo quebrou a regra 2 há 40 noites. O anúncio de emprego que Davi respondeu foi publicado pelo próprio Instituto, e a Sônia assiste a tudo pelas câmeras.

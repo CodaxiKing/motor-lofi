@@ -173,22 +173,29 @@ def conferir_fluxo(txt, caminho=None):
                 m = re.match(r"^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{1,30}(?:\s*\([^)]*\))?)\s*:\s*(.+)$", linha)
                 if not m: continue
                 rot = m.group(1).strip()
-                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO)", rot): continue
+                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO|CONSEQ|VIRADA)", rot): continue
                 pal += len(re.sub(r"\[[^\]]*\]", "", m.group(2)).split())
             wps = pal / (c["b"] - c["a"])
             if wps > 3.3: avisos.append(f"CENA {c['n']}: {pal} palavras em {c['b'] - c['a']:g} s ({wps:.1f}/s) — fala demais para o tempo; aumente a cena ou corte texto")
-    # entrada e saída de personagens
-    prev = None
+    # entrada e saída de personagens: quem está no lugar continua presente (mesmo fora do quadro) até SAI: ou trocar de lugar
+    presentes, lugar_ant = set(), None
     for c in cenas:
-        if c["n"] == 0 or c["detalhe"] or c["insercao"] or c["objeto"] or not c["cen"]: continue
-        if prev and not c["liga"]:
-            novos = c["quem"] - prev["quem"]; foram = prev["quem"] - c["quem"]
-            if novos and prev["quem"] and not c["entra"]:
-                erros.append(f"CENA {c['n']}: {', '.join(sorted(novos))} aparece sem entrar (não estava na cena {prev['n']}). "
+        if c["n"] == 0 or c["detalhe"] or c["insercao"] or not c["cen"]: continue
+        if c["objeto"] or c["cen"] in ("cftv",):          # close de objeto/monitor: só a mão de quem já está ali
+            novos = c["quem"] - presentes
+            if novos and presentes and not c["entra"]:
+                erros.append(f"CENA {c['n']}: a mão de {', '.join(sorted(novos))} aparece, mas essa pessoa não está no lugar (ENTRA:)")
+            continue
+        if c["liga"] and lugar_ant is not None:
+            pass                                             # mudou de lugar ou de canto: quem aparece veio junto
+        else:
+            novos = c["quem"] - presentes
+            if novos and presentes and not c["entra"]:
+                erros.append(f"CENA {c['n']}: {', '.join(sorted(novos))} aparece sem entrar (não estava no lugar). "
                              f"Escreva uma linha ENTRA: dizendo de onde vem, ou LIGAÇÃO: se foi outro lugar")
-            if foram and c["quem"] and not c["sai"] and not prev["sai"]:
-                avisos.append(f"CENA {c['n']}: {', '.join(sorted(foram))} estava na cena {prev['n']} e sumiu. Escreva SAI: (para onde foi) ou mantenha em quadro")
-        prev = c
+        presentes |= c["quem"]
+        for quem in re.findall(r"\bSAI\s*:\s*`?(\w+)`?", c["corpo"]): presentes.discard(quem.lower())
+        lugar_ant = c["cen"]
     # gancho acontece de verdade
     g = next((c for c in cenas if c["n"] == 0), None)
     if g and g["cen"] and not any(c["cen"] == g["cen"] for c in cenas if c["n"] > 0):
@@ -196,6 +203,52 @@ def conferir_fluxo(txt, caminho=None):
     if not re.search(r"^#+\s*ESCALETA", txt, re.M | re.I):
         avisos.append("falta a ESCALETA (6–10 batidas antes das cenas)")
     return erros, avisos
+
+
+def conferir_retencao(txt, final=False):
+    """Prende quem assiste: gancho escolhido entre 3, virada a cada <=30 s, pouca narração, escolha com custo, consequência
+    do voto logo na 1ª cena, motivação dos personagens, pistas plantadas/pagas, pergunta do meio curta e fim em suspense."""
+    av = []
+    up = txt.upper()
+    ep = re.search(r"EPIS[ÓO]DIO\s+(\d+)\s*/", up); n_ep = int(ep.group(1)) if ep else 1
+    if not re.search(r"^#+\s*GANCHOS", txt, re.M | re.I) or len(re.findall(r"^\s*[1-3][.)]", txt.split("GANCHOS", 1)[-1][:1500], re.M)) < 3:
+        av.append("faltam as 3 opções de GANCHO (seção ## GANCHOS com 1., 2., 3. e ESCOLHIDO:); o gancho bom é uma pergunta sem resposta")
+    partes = re.split(r"^#+\s*(CENA\s+\d+[^\n]*)$", txt, flags=re.M)
+    cenas = []
+    for k in range(1, len(partes) - 1, 2):
+        cab, corpo = partes[k], re.split(r"\n---|\n##\s", partes[k + 1])[0]
+        n = int(re.search(r"CENA\s+(\d+)", cab).group(1))
+        tm = re.search(r"(\d+(?:[.,]\d+)?)\s*s?\s*(?:a|–|-)\s*(\d+(?:[.,]\d+)?)\s*s", cab)
+        if n and tm: cenas.append((n, float(tm.group(1).replace(",", ".")), float(tm.group(2).replace(",", ".")), corpo))
+    if cenas:
+        viradas = [a for n, a, b, c in cenas if re.search(r"^\s*VIRADA\s*:", c, re.M)]
+        marcos = [cenas[0][1]] + viradas + [cenas[-1][2]]
+        for x, y in zip(marcos, marcos[1:]):
+            if y - x > 30: av.append(f"de {x:g} s a {y:g} s ({y - x:g} s) sem VIRADA (susto, revelação, decisão ou ameaça nova): ponha uma a cada 20–30 s")
+        if not re.search(r"^\s*VIRADA\s*:", cenas[-1][3], re.M):
+            av.append(f"a última cena ({cenas[-1][0]}) precisa de uma VIRADA: termine no meio da ação, com uma informação nova que complica a escolha")
+        if n_ep > 1 and not re.search(r"CONSEQU[ÊE]NCIA\s*:", cenas[0][3], re.I):
+            av.append("a CENA 1 precisa de uma linha CONSEQUÊNCIA: mostrando algo concreto que mudou por causa do voto")
+        dur = max(1.0, cenas[-1][2] - cenas[0][1])
+        narr = sum(len(re.sub(r"\[[^\]]*\]", "", m).split()) for m in re.findall(r"^\s*NARRA[ÇC][ÃA]O[^:]*:\s*(.+)$", txt, re.M))
+        if narr / dur > 1.3:
+            av.append(f"narração demais ({narr} palavras em {dur:.0f} s): narre só o que a imagem não mostra (pensamento, medo, memória); o resto vira ação, som e rosto")
+    esc = re.search(r"^#+\s*ESCALETA.*?(?=^#+\s*(?:GANCHOS|PISTAS|CENA)|\Z)", txt, re.M | re.S | re.I)
+    if esc and not re.search(r"DESEJO|MEDO|SEGREDO", esc.group(0), re.I):
+        av.append("a ESCALETA não mexe em nenhum DESEJO, MEDO ou SEGREDO de personagem (veja a bíblia): cada episódio move pelo menos um")
+    if not re.search(r"^#+\s*PISTAS", txt, re.M | re.I) or not re.search(r"PLANTA\s*:", txt) :
+        av.append("falta a seção ## PISTAS com PLANTA: (pista nova para pagar depois) e PAGA: (pista antiga paga agora, se houver)")
+    pq = re.search(r"PERGUNTA NO MEIO\s*:\s*([^(\n]+)", txt, re.I)
+    if pq:
+        q = pq.group(1).strip(" .*")
+        if len(q.split()) > 7 or "?" not in q:
+            av.append(f"pergunta do meio longa ou aberta ('{q}'): use até 7 palavras com resposta curta (sim/não ou X ou Y)")
+    if not final:
+        bloco = re.search(r"O que acontece em cada op[çc][ãa]o.*?(?=\n\*\*Resumo|\n---|\Z)", txt, re.S | re.I)
+        b = bloco.group(0).upper() if bloco else ""
+        if b.count("GANHA") < 2 or b.count("PERDE") < 2:
+            av.append("a escolha A/B precisa custar algo dos dois lados: em 'O que acontece em cada opção' escreva GANHA: e PERDE: para A e para B")
+    return av
 
 
 def validar(txt, final=False, caminho=None):
@@ -227,6 +280,7 @@ def validar(txt, final=False, caminho=None):
         e, a = conferir_nomes(txt, cat); erros += e; avisos += a
         erros += conferir_continuidade(txt, cat)
     e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
+    avisos += conferir_retencao(txt, final)
     if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)
         from lofi.continuidade import conferir as conferir_mundo
         erros += conferir_mundo(caminho, txt)
