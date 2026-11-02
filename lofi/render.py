@@ -9,7 +9,7 @@ import sys, os, json, math, subprocess
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail, partes
+from . import fx, scenes, text, audio, particles, detail, placar, partes
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
@@ -73,7 +73,7 @@ class Episode:
         # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
-        self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") == "recap" and s["start"] < 12)] or [0.0])
+        self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
             ls = {"start": t0, "end": round(t0 + 0.5, 3), "type": "loop"}
@@ -117,6 +117,7 @@ class Episode:
             if s.get("transition") == "glitch": sfx.append({"t": s["start"], "name": "static", "dur": 0.3, "gain": 1.5})
             if s.get("type") == "title" and s.get("stamp"): sfx.append({"t": s["stamp"]["t"], "name": "stamp"})
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
+            if s.get("type") == "placar": sfx += placar.sons(s)
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
         if self.redes:
             for s in self.shots:
@@ -696,13 +697,14 @@ class Episode:
 
     def draw_redes(self, img, shot, t):
         typ = shot.get("type", "scene")
-        if shot.get("hook") or typ in ("loop", "title", "recap"): return
+        if shot.get("hook") or typ in ("loop", "title", "recap", "placar"): return
         d = ImageDraw.Draw(img); sp = self.spec; h0 = self._hook_end
         # selo da série (no lugar da cartela de título): grande logo depois do gancho, depois discreto
         ep, tot = sp.get("episode"), sp.get("episodes_total")
         if ep and typ != "choice" and not any(s.get("type") == "title" for s in self.shots):
             rel = t - h0; big = rel < 3.5
             lab = f"EP {ep}/{tot}" if tot else f"EP {ep}"
+            if sp.get("formato") == "extra": lab = "EXTRA"
             f = font("title", 64 if big else 42); bb = d.textbbox((0, 0), lab, font=f); w = bb[2] - bb[0]
             p = ease_out(c01(rel / 0.3)) if big else 1.0
             x1 = W - 56; x0 = x1 - w - 44; y0 = 236 - (1 - p) * 120; y1 = y0 + (92 if big else 66)
@@ -711,7 +713,7 @@ class Episode:
             if big and sp.get("series_title"):
                 text_center(d, sp["series_title"], (x0 + x1) / 2 - 10, y1 + 30, font("mono", 30), (235, 232, 225), 3)
             # carimbo do voto da maioria, rápido e no alto
-            if sp.get("voto") and 0.2 <= rel < 3.4:
+            if sp.get("voto") and 0.2 <= rel < 3.4 and not any(s.get("type") == "placar" for s in self.shots):
                 q = ease_out(c01((rel - 0.2) / 0.25)) * (1 - ease_out(c01((rel - 3.1) / 0.3)))
                 yy = 470 - (1 - q) * 60
                 fw = font("title", 96); bw = d.textbbox((0, 0), sp["voto"], font=fw); ww = max(bw[2] - bw[0], 420)
@@ -805,6 +807,7 @@ class Episode:
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
         if typ == "title": img = self.title_frame(shot, t)
         elif typ == "choice": img = self.choice_frame(shot, t)
+        elif typ == "placar": img = placar.frame(self, shot, t)
         elif typ == "detail": img = self.detail_frame(shot, t, t_anim)
         elif typ == "recap": img = self.recap_frame(shot, t)
         else: img = self.scene_frame(shot, t, t_anim)

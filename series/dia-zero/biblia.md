@@ -36,7 +36,7 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 | 1 | 1 | início | montado | A) Abrir · B) Espiar | ESPIAR | — |
 | 2 | 2 | complicação | montado | A) Escada · B) Telhado | TELHADO | |
 | 3 | 3 | reviravolta | montado | A) Buscar Lia no hospital · B) Ir direto pra ponte | PONTE | |
-| 4 | 4 | clímax | montado | A) Fazer barulho · B) Esperar em silêncio | BARULHO (A) | |
+| 4 | 4 | clímax | montado | A) Fazer barulho · B) Esperar em silêncio | BARULHO (A) | 1×1 no TikTok (empate; roleta: BARULHO) |
 | 5 | 5 | final | roteiro | — (final A — O BARULHO) | | |
 
 > Eps. 1 e 2 foram publicados na versão antiga do motor (~1 min cada). Os roteiros e os `epNN.json` desta pasta foram
@@ -48,6 +48,11 @@ O rádio repete: "Cheguem à ponte antes do Dia 5. Três batidas." Quem transmit
 - EP 2: Roberta espiou e viu Rafa, do 12º andar, com seu Válter vindo atrás. Ela abriu no último segundo; Rafa entrou desconfiado por ela ter demorado. Rafa provou que os infectados seguem o som. No Dia 2, o celular ficou sem sinal e a rua amanheceu cheia de infectados. O rádio repetiu: "A ponte, antes do Dia 5."
 - EP 3: Roberta e Rafa pularam para o prédio vizinho; ela o segurou no pulo e a confiança dele começou a voltar. No Dia 3, um caco de vidro atraiu a horda e os dois se esconderam num posto, onde o rádio chamou Roberta pelo nome: era Lia, a irmã dela, no Hospital Central. Com a ponte fechando em dois dias, ela precisa escolher entre buscar a irmã ou correr para a ponte.
 - EP 4: Roberta desligou o rádio para não voltar pela irmã e desceu com o Rafa pela estação Sé, na mesma rua do posto, e esperou o dia passar na plataforma. À noite subiram pela mesma escada, a um quarteirão da ponte; o megafone do exército acordou a horda e os dois correram para um carro parado na rua, que foi cercado. Pelo rádio do carro, a Lia disse que o hospital caiu e pediu que ela atravessasse; Roberta prometeu. O Rafa teve a ideia do alarme do carro e disse que confia nela: fazer barulho ou esperar o dia, com a ponte fechando às seis.
+
+## Extras (curiosidades)
+| Nº | Depois do ep. | Tema | Status |
+|---|---|---|---|
+| 05 | 5 | O que aconteceu com a Lia? (as três batidas eram dela; continua presa no hospital) | roteiro |
 
 ## Vídeos de comentários
 | Nº | Depois do ep. | Comentários respondidos | Status |

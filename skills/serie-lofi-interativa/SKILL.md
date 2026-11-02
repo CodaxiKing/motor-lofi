@@ -3,7 +3,7 @@ name: "serie-lofi-interativa"
 description: "Planejar, roteirizar e montar episódios de séries interativas em vídeo vertical (estilo lo-fi, \"escolha o caminho\") com o motor lo-fi do GitHub, a partir das vozes do usuário."
 ---
 
-# Série lo-fi interativa (v7)
+# Série lo-fi interativa (v8)
 
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
@@ -76,6 +76,7 @@ Use a bíblia, a classificação da série e o resultado da votação. Estrutura
 Regras de linguagem: plano de detalhe antes de um susto ou revelação; close no rosto em revelações; por cima do ombro em diálogos; câmera na mão em perseguições; corrida ou caminhada por um trajeto = travelling (o cenário passa) e um plano curto de chegada; câmera lenta só no pico; silêncio de 1 s antes dos sustos; pelo menos 1 som por cena. Adapte o tom ao gênero (luz, cor, trilha e ritmo).
 **As falas do ElevenLabs vão na resposta do chat, sempre:** um bloco de código por personagem (nome e dica de voz em cima do bloco, fora dele), só com as falas e as tags em inglês, na ordem do episódio, para o usuário copiar e colar direto. Não basta deixar no arquivo do roteiro.
 Entregue depois: narração limpa (versão CapCut e versão ElevenLabs v3 com tags em inglês, um bloco por voz), as duas opções e o resumo de 2–3 linhas.
+**Episódio extra de curiosidades (padrão, junto com cada roteiro):** além do episódio, escreva um extra curto em `series/<serie>/extraNN_roteiro.md` (NN = episódio depois do qual ele sai). Ele responde uma curiosidade que o público teria sobre a série: o que aconteceu com um personagem que saiu de cena ("O que aconteceu com a Lia?"), a origem de algo, as regras do mundo, o passado de alguém ou o outro lado de uma cena. Regras: 45 a 100 s, 5 a 9 cenas, um narrador em primeira pessoa (de preferência o personagem do tema), mesmo estilo, enquadramento e modo redes (o selo vira "EXTRA"), gancho de 0–2 s, sem votação. Não pode contradizer a bíblia nem entregar o resultado de uma votação aberta; pode revelar o que a história principal deixou no ar se a bíblia permitir. Termina com uma **CHAMADA** (ex.: "A VOTAÇÃO DO EP. 3 CONTINUA ABERTA: COMENTA A OU B"; no fim da temporada, "TEMPORADA 2?"). Valide com `python3 tests/validar_roteiro.py series/<serie>/extraNN_roteiro.md`, registre na tabela "Extras" da bíblia (nº, depois do ep., tema, status) e entregue no chat junto com o roteiro do episódio: resumo das cenas e um bloco do ElevenLabs por personagem. O extra é montado com o mesmo /serie-montar (`"formato": "extra"` no JSON; arquivos `extraNN.json` e áudios em `extraNN/`).
 **Antes de entregar:**
 1. Salve `epNN_roteiro.md` e rode `python3 tests/validar_roteiro.py series/<serie>/epNN_roteiro.md` (`--final` no último). Ele confere a estrutura, os nomes do motor, o mapa da cidade, o relógio e os objetos. Corrija até não haver ERRO.
 2. **Revisor de continuidade:** chame a ferramenta Agent (subagent general-purpose) com um prompt autocontido: o roteiro, o resumo e o `fim` do episódio anterior (de `mundo.json`) e as regras do universo. Peça uma lista objetiva do que não faz sentido na história: lugar ou tempo que pula, objeto que aparece/some, personagem ferido/cansado agindo como se nada fosse, fala que contradiz um episódio anterior, decisão do público ignorada. Corrija o que for real.
@@ -83,6 +84,7 @@ Entregue depois: narração limpa (versão CapCut e versão ElevenLabs v3 com ta
 4. `python3 -m lofi.continuidade fechar series/<serie>/epNN_roteiro.md` grava como o episódio termina (lugar, dia/hora, inventário) no `mundo.json`. Depois faça push.
 
 ## 3. Montagem (quando chegarem as vozes)
+**Placar dos comentários (padrão, a partir do ep. 2):** logo depois do "Anteriormente em…", um plano `"type": "placar"` mostra a votação do episódio anterior: porcentagens de A e B, comentários por rede, os comentários **recortados dos prints** que o usuário mandou e "VOCÊS ESCOLHERAM: ...". Em empate, aparece "EMPATE!" e uma roleta gira e para na opção registrada na bíblia ("DESEMPATE: ..."). Formato e ferramenta de recorte em `SPEC.md` ("Placar dos comentários").
 O usuário anexa só os áudios: um por personagem (o nome do arquivo indica o personagem).
 1. Clone/atualize o repositório e instale: `pip install --break-system-packages pillow numpy scipy` (obrigatório) e tente `soundfile sherpa-onnx` (opcionais; se falharem, siga: o motor usa o scipy no áudio e roda o Whisper só com onnxruntime).
 2. Copie as vozes para `series/<serie>/epNN/` com o nome do personagem e transcreva: `python3 -m lofi.transcribe ...`. Case cada frase do roteiro pelo **texto** transcrito (nunca pela ordem ou duração); um trecho pode juntar várias falas, então divida-o nas micropausas quando elas forem para cenas diferentes e use uma legenda por frase.

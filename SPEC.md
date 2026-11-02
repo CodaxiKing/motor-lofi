@@ -360,3 +360,27 @@ Ligado sozinho em todo episódio sem `"plano_padrao": "aberto"` (desliga com `"m
   marque com `*palavra*` no texto da legenda; sem marca, o motor escolhe a palavra mais longa (6 letras ou mais).
 - **Corte curto.** `python3 -m lofi.extras corte epNN.json epNN.mp4 [alvo]` gera `epNN_corte.mp4` (60–75 s): gancho, a 1ª cena,
   os planos mais fortes (sustos, closes, detalhes, falas de outros personagens), a última cena, a tela A/B e o loop. Já vem no `pacote`.
+
+## Placar dos comentários (`"type": "placar"`) — padrão a partir do ep. 2
+Plano logo depois do "Anteriormente em…": cabeçalho "PLACAR DOS COMENTÁRIOS", total de comentários, cards A/B com a porcentagem
+subindo, contagem por rede, os comentários recortados dos prints pulando na tela e "VOCÊS ESCOLHERAM: ...". O carimbo "A MAIORIA
+ESCOLHEU" do selo some quando há placar (não repete).
+```json
+{"start": 7, "end": 12.5, "type": "placar",
+ "labels": {"A": "BARULHO", "B": "SILÊNCIO"}, "votes": {"A": 357, "B": 284},
+ "platforms": {"TikTok": 357, "YouTube": 184, "Instagram": 100},
+ "comments": [{"img": "placar/ep04_c1.png", "vote": "A"}, {"user": "fulano", "text": "B!", "vote": "B"}],
+ "winner": "A", "scene": {"scene": "carro", "rain": "fraca"}}
+```
+- `comments`: até 5. `img` = recorte do print (preferido; caminho relativo à pasta do roteiro; `w` muda a largura, `x`/`y`/`ang` a posição);
+  sem `img`, o comentário é redesenhado com `user` e `text`. `vote` põe a etiqueta da opção no canto.
+- Recortar: `python3 -m lofi.placar recortar print.jpg x0 y0 x1 y1 series/<serie>/placar/ep04_c1.png` (vários prints podem ser usados).
+- **Empate** (`votes` iguais): carimbo "EMPATE!", roleta A/B que gira com tiques e para em `winner` ("DESEMPATE: ..."). Duração: 9 s.
+  Sem empate: 5,5 s. Sons (`whoosh`, `notif`, `click`, `stamp`) entram sozinhos.
+
+## Episódio extra de curiosidades (`"formato": "extra"`)
+Vídeo curto (45–100 s) entre episódios, sem votação: "O que aconteceu com a Lia?", origem de algo, o outro lado de uma cena.
+Arquivos `series/<serie>/extraNN_roteiro.md`, `extraNN.json` e vozes em `extraNN/` (NN = episódio depois do qual sai).
+O selo mostra "EXTRA"; sem recap, placar, pergunta ou escolha; a chamada final ("A VOTAÇÃO DO EP. 3 CONTINUA ABERTA", "TEMPORADA 2?")
+vai num `overlay` de texto. O validador (`tests/validar_roteiro.py`, detecta pelo nome `extra...`) pede gancho, 5+ cenas, título com
+EXTRA, CHAMADA e 45–100 s; o `lofi.check` aceita a duração curta.

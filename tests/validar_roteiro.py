@@ -113,7 +113,32 @@ def conferir_continuidade(txt, cat):
     return erros
 
 
+def validar_extra(txt, caminho=None):
+    """Episódio extra de curiosidades: 45–100 s, gancho, 5+ cenas, sem votação, chamada para o episódio/votação."""
+    erros, avisos = [], []
+    up = txt.upper()
+    if "GANCHO" not in up: erros.append("falta a CENA 0 · GANCHO")
+    if "EXTRA" not in up: erros.append("o título precisa dizer EXTRA")
+    cenas = set(int(n) for n in re.findall(r"^[#\s*\-]*CENA\s+(\d+)", up, re.M) if int(n) > 0)
+    if len(cenas) < 5: erros.append(f"{len(cenas)} cenas (mínimo 5 no extra)")
+    if "CHAMADA" not in up: erros.append("falta a CHAMADA final (ex.: 'A VOTAÇÃO DO EP. 3 CONTINUA ABERTA' ou 'TEMPORADA 2?')")
+    if re.search(r"^\s*A\)", txt, re.M) and re.search(r"^\s*B\)", txt, re.M): avisos.append("extra não tem votação A/B")
+    if "ELEVENLABS" not in up: erros.append("falta a narração para o ElevenLabs")
+    for m in re.finditer(r"LEGENDA[^:\n]*:\s*(.+)", txt, re.I):
+        for piece in re.split(r"\s*/\s*", m.group(1)):
+            if len(piece.split()) > 4: avisos.append(f"legenda com mais de 4 palavras: '{piece.strip()}'")
+    tempos = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*s\b", re.sub(r"(\d),(\d)", r"\1.\2", txt))]
+    if tempos and not (45 <= max(tempos) <= 100): erros.append(f"maior tempo citado {max(tempos):.0f}s: o extra tem de 45 a 100 s")
+    cat, motivo = carregar_nomes(caminho or ".")
+    if cat is None: avisos.append(motivo)
+    else:
+        e, a = conferir_nomes(txt, cat); erros += e; avisos += a
+    return erros, avisos
+
+
 def validar(txt, final=False, caminho=None):
+    if "--extra" in sys.argv or (caminho and os.path.basename(caminho).startswith("extra")):
+        return validar_extra(txt, caminho)
     erros, avisos = [], []
     up = txt.upper()
     if "GANCHO" not in up: erros.append("falta a CENA 0 · GANCHO")
