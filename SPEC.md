@@ -433,3 +433,17 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
 - `"nenhum"`: tela limpa (só a lâmpada piscando continua).
 - Ajuste fino: `{"fog": 0.3, "bloom": 0.2, "grain": 0.5, "vig": 0.7, "part": 0.5}` (0 a 1).
 Sustos (`scare`), relâmpago, chuva e gotas na lente não mudam.
+
+## Contagem automática dos votos
+`python3 -m lofi.votos contar series/<serie> NN print1.jpg print2_insta.jpg ... [--recortar] [--a "sinônimos"] [--b "sinônimos"]`
+lê os prints (Tesseract, português), agrupa os comentários (nome → texto → rodapé "Há 7h · Responder"), relê cada texto ampliado
+(pega votos de uma letra só), identifica A/B pela letra ("a", "B", "vou de A", "letra b") ou pelas palavras da opção na bíblia,
+conta um voto por pessoa (somando os prints), separa por rede (nome do arquivo, `caminho:Rede` ou pelo print), ignora o criador e
+os selos ("Primeiro comentário", "Fixado"). `--recortar` salva até 5 comentários em `placar/epNN_cN.png`. Sempre gera
+`placar/epNN_conferencia.png` para conferir (verde = A, laranja = B, cinza = não contou) e imprime o plano `placar`.
+Comentário com A e B ao mesmo tempo fica como dúvida e não conta.
+
+## Poses sentadas
+`"pose": "sit"` senta num banco desenhado junto (`"assento": "banco"` padrão, `"caixa"`, `"cadeira"` ou `"nenhum"` quando o cenário
+já tem onde sentar); de frente, as coxas vêm na direção da câmera e os joelhos aparecem. `"pose": "chao"` = sentado no chão com as
+pernas esticadas (a marca `chao_porta` usa essa). Sentado nunca anda, mesmo com `walk` ligado.
