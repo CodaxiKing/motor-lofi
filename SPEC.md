@@ -273,7 +273,7 @@ Todos os campos vão em `characters` no roteiro (ou na ficha da bíblia). Cores 
 | `legs`, `shoes` | cor da calça/shorts e do sapato |
 | `hair` | `short`, `long`, `ponytail`, `bun`, `bob`, `curly`, `afro`, `braids`, `pigtails`, `spiky`, `mohawk`, `bald` (+ `hair_color`) |
 | `facial` | `beard`, `mustache`, `stubble` (+ `facial_color`) |
-| `hat` | `beanie`, `cap`, `helmet`, `hood`, `fedora`, `cowboy`, `tophat`, `crown`, `witch`, `chef`, `headband`, `bandana_hat` (+ `hat_color`) |
+| `hat` | `beanie`, `cap`, `helmet`, `hood`, `fedora`, `cowboy`, `tophat`, `crown`, `witch`, `chef`, `headband`, `bandana_hat`, `capacete_moto` (+ `hat_color`) |
 | `acc` (lista) | `sunglasses`, `eyepatch`, `mask`, `earrings`, `bow`, `headphones`, `necklace`, `badge`, `stethoscope`, `tie`, `bowtie`, `bandana` |
 | outros | `glasses`, `scarf` (cor), `backpack` (cor), `cape` (cor, balança), `body`, `ghost: true` (translúcido), `scale` |
 
@@ -444,6 +444,7 @@ os selos ("Primeiro comentário", "Fixado"). `--recortar` salva até 5 comentár
 Comentário com A e B ao mesmo tempo fica como dúvida e não conta.
 
 ## Poses sentadas
+**Moto:** `"pose": "sit", "assento": "moto"` senta o personagem numa moto (de lado, com rodas girando quando há `walk`/`run` ou `travelling`; de frente/costas, versão estreita). Combine com `"travelling"` para pilotar. Guarda-roupa: chapéu `capacete_moto` e `"bag_termica": true` (a `backpack` vira a mochila cúbica de entregador).
 `"pose": "sit"` senta num banco desenhado junto (`"assento": "banco"` padrão, `"caixa"`, `"cadeira"` ou `"nenhum"` quando o cenário
 já tem onde sentar); de frente, as coxas vêm na direção da câmera e os joelhos aparecem. `"pose": "chao"` = sentado no chão com as
 pernas esticadas (a marca `chao_porta` usa essa). Sentado nunca anda, mesmo com `walk` ligado.

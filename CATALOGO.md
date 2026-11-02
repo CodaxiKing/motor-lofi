@@ -6,7 +6,7 @@ Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
-**Poses** (29): `carry`, `chest`, `crawl`, `cross`, `crouch`, `fallen`, `forward`, `hand_l`, `hand_r`, `hands_up`, `hide`, `hold`, `hug`, `idle`, `jump`, `knock`, `knock2`, `open_door`, `phone`, `point`, `pull`, `push`, `reach`, `reach_l`, `remove_bag`, `run`, `scared`, `sit`, `wave`
+**Poses** (30): `carry`, `chao`, `chest`, `crawl`, `cross`, `crouch`, `fallen`, `forward`, `hand_l`, `hand_r`, `hands_up`, `hide`, `hold`, `hug`, `idle`, `jump`, `knock`, `knock2`, `open_door`, `phone`, `point`, `pull`, `push`, `reach`, `reach_l`, `remove_bag`, `run`, `scared`, `sit`, `wave`
 
 **Emoções** (10): `angry`, `cry`, `determined`, `fear`, `happy`, `neutral`, `panting`, `sad`, `shock`, `suspicious`
 

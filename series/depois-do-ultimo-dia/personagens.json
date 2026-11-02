@@ -1,0 +1,23 @@
+{
+ "_leia": "Fichas travadas da série Depois do Último Dia. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito. gabriel_moto é o Gabriel de capacete: use nas cenas pilotando (pose sit, assento moto).",
+ "gabriel": {"skin": "moreno", "top_style": "hoodie", "top": [46, 52, 66], "inner": [226, 226, 220], "legs": [38, 54, 92], "shoes": [232, 232, 226],
+             "hair": "curly", "hair_color": [24, 18, 16], "backpack": [240, 118, 30], "bag_termica": true},
+ "gabriel_moto": {"skin": "moreno", "top_style": "hoodie", "top": [46, 52, 66], "inner": [226, 226, 220], "legs": [38, 54, 92], "shoes": [232, 232, 226],
+             "hat": "capacete_moto", "hat_color": [240, 118, 30], "backpack": [240, 118, 30], "bag_termica": true},
+ "nina": {"skin": "medio", "top_style": "puffer", "top": [244, 202, 58], "legs": [70, 90, 150], "shoes": [214, 66, 88],
+          "hair": "pigtails", "hair_color": [36, 24, 20], "acc": ["bow"], "backpack": [214, 66, 88], "body": "child", "scale": 0.8},
+ "silvia": {"skin": "medio", "top_style": "scrubs", "top": [186, 200, 214], "legs": [186, 200, 214], "shoes": [236, 236, 232],
+            "hair": "ponytail", "hair_color": [40, 28, 24], "acc": ["badge"]},
+ "silvia_infectada": {"skin": [150, 158, 150], "top_style": "torn", "top": [170, 184, 196], "legs": [160, 174, 186], "shoes": [200, 200, 196],
+            "hair": "ponytail", "hair_color": [60, 50, 46], "acc": ["badge"], "infected": true},
+ "bode": {"skin": "claro", "top_style": "leather", "top": [34, 32, 34], "inner": [172, 40, 40], "legs": [50, 52, 60], "shoes": [60, 40, 30],
+          "hair": "bald", "facial": "beard", "facial_color": [90, 66, 44], "acc": ["bandana"], "body": "fat", "scale": 1.08},
+ "jo": {"skin": "escuro", "top_style": "tshirt", "top": [58, 148, 120], "legs": [40, 40, 50], "shoes": [230, 200, 60],
+        "hair": "afro", "hair_color": [20, 16, 16], "acc": ["earrings", "headphones"], "backpack": [58, 148, 120], "bag_termica": true},
+ "helena": {"skin": "oliva", "top_style": "labcoat", "top": [234, 236, 232], "inner": [50, 96, 110], "legs": [50, 60, 70], "shoes": [40, 40, 44],
+            "hair": "bun", "hair_color": [156, 156, 160], "glasses": true, "scarf": [40, 150, 160], "body": "old"},
+ "prado": {"skin": "palido", "top_style": "suit", "top": [28, 30, 40], "inner": [240, 240, 236], "tie": [240, 118, 30], "legs": [28, 30, 40], "shoes": [14, 14, 16],
+           "hair": "short", "hair_color": [190, 180, 150], "glasses": true, "body": "tall", "acc": ["tie"]},
+ "zombie_motoboy": {"skin": [146, 154, 150], "top_style": "torn", "top": [70, 74, 84], "legs": [52, 60, 84], "shoes": [120, 120, 116],
+          "hat": "capacete_moto", "hat_color": [150, 84, 40], "backpack": [168, 90, 40], "bag_termica": true, "infected": true}
+}

@@ -1,0 +1,29 @@
+{
+ "lugares": {
+  "apartamentos": {"cenarios": ["apartamento", "entrada", "janela"], "nota": "kitnet do Gabriel (ep. 1) e o apartamento da Nina no 5º andar (ep. 2)"},
+  "predios": {"cenarios": ["corredor", "escada", "portao", "telhado"], "nota": "corredores, escadas, portões e telhados: prédio do Gabriel, prédio da Nina e a Torre JáVai (o roteiro diz qual)"},
+  "rua": {"cenarios": ["rua", "rua_amanhecer", "beco"], "nota": "ruas e becos da cidade, sempre com a moto"},
+  "mercado": {"cenarios": ["mercado"], "nota": "farmácia e mercadinho do bairro"},
+  "posto": {"cenarios": ["posto"], "nota": "O Ponto: posto de gasolina que virou a base dos motoboys"},
+  "hospital": {"cenarios": ["hospital"], "nota": "Hospital Santa Rita, com a ala da Prado Saúde"},
+  "viaduto": {"cenarios": ["viaduto"], "nota": "viaduto que leva ao pino da Zona Segura; dali se vê a Torre"},
+  "estacionamento": {"cenarios": ["estacionamento"], "nota": "a Zona Segura do app: garagem subterrânea ao lado da Torre"},
+  "esgoto": {"cenarios": ["esgoto"], "nota": "galeria que passa por baixo do centro e sai no subsolo da Torre"}
+ },
+ "ligacoes": [
+  ["apartamentos", "predios", "pela porta do apartamento até o corredor"],
+  ["predios", "rua", "pelo portão do prédio"],
+  ["rua", "mercado", "pela porta de ferro da farmácia"],
+  ["rua", "posto", "pela avenida, de moto"],
+  ["rua", "hospital", "pela entrada de ambulâncias"],
+  ["rua", "viaduto", "subindo a alça do viaduto"],
+  ["viaduto", "estacionamento", "descendo a rampa da garagem"],
+  ["estacionamento", "predios", "pelo elevador de carga até a Torre"],
+  ["rua", "esgoto", "pelo bueiro do beco"],
+  ["esgoto", "predios", "pela escotilha do subsolo da Torre"]
+ ],
+ "inicio": {"lugar": "rua", "dia": 0, "hora": "14:10", "rotulo": "DIA",
+  "inventario": {"gabriel": ["celular", "capacete", "mochila", "moto"]},
+  "nota": "Gabriel na rua, de moto, levando a entrega lacrada do hospital para a Torre JáVai"},
+ "fim": {}
+}

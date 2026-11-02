@@ -159,6 +159,41 @@ def _blink(t, seed):
 def _backout(x, c=1.6):
     x = max(0.0, min(1.0, x)); return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
 
+def _moto(d, cx, hip_y, view, t, dark, moving=False, cor=(196, 62, 40)):
+    """Moto de entregador sob quem está em pose sit com "assento": "moto". De lado (rodas girando) ou de frente/costas."""
+    metal, pneu, luz = (150, 154, 160, 255), (24, 24, 28, 255), (255, 232, 150, 255)
+    chao = FEET_Y + 16; R = 66
+    if view == "side":
+        tras, fre = (cx - 150, chao - R), (cx + 172, chao - R)
+        for c in (tras, fre):
+            d.ellipse([c[0] - R, c[1] - R, c[0] + R, c[1] + R], fill=pneu, outline=OUT, width=6)
+            d.ellipse([c[0] - R + 20, c[1] - R + 20, c[0] + R - 20, c[1] + R - 20], fill=(70, 72, 78, 255))
+            giro = (t * 18 if moving else 0.5)
+            for k in range(3):
+                a = giro + k * math.pi / 3
+                d.line([(c[0] - math.cos(a) * 44, c[1] - math.sin(a) * 44), (c[0] + math.cos(a) * 44, c[1] + math.sin(a) * 44)], fill=metal, width=5)
+        guidao = (cx + 124, hip_y - 66)
+        d.line([tras, (cx - 10, hip_y + 74), (cx + 96, hip_y + 70)], fill=metal, width=14)     # quadro
+        d.line([fre, guidao], fill=metal, width=15)                                              # garfo
+        d.rounded_rectangle([cx - 50, hip_y + 40, cx + 52, hip_y + 112], 16, fill=(58, 60, 66, 255), outline=OUT, width=6)  # motor
+        d.line([(cx - 40, hip_y + 104), (cx - 190, hip_y + 92)], fill=metal, width=12)           # escape
+        d.polygon([(cx + 38, hip_y - 8), (cx + 112, hip_y - 8), (cx + 140, hip_y + 72), (cx + 56, hip_y + 72)], fill=cor + (255,), outline=OUT)  # tanque/carenagem
+        d.rounded_rectangle([cx - 96, hip_y + 4, cx + 62, hip_y + 38], 15, fill=(30, 30, 34, 255), outline=OUT, width=6)  # banco
+        d.polygon([(cx - 92, hip_y + 8), (cx - 196, hip_y - 8), (cx - 196, hip_y + 16), (cx - 92, hip_y + 40)], fill=cor + (255,), outline=OUT)  # rabeta
+        d.ellipse([cx - 216, hip_y - 8, cx - 192, hip_y + 16], fill=(230, 50, 44, 255), outline=OUT, width=4)  # lanterna traseira
+        d.line([guidao, (guidao[0] - 26, guidao[1] - 14)], fill=(26, 26, 30, 255), width=16)      # manopla
+        d.rounded_rectangle([guidao[0] - 2, guidao[1] + 6, guidao[0] + 52, guidao[1] + 56], 16, fill=cor + (255,), outline=OUT, width=6)
+        d.ellipse([guidao[0] + 32, guidao[1] + 14, guidao[0] + 60, guidao[1] + 46], fill=luz, outline=OUT, width=4)  # farol
+    else:
+        d.rounded_rectangle([cx - 30, chao - 2 * R, cx + 30, chao], 22, fill=pneu, outline=OUT, width=6)  # roda
+        d.rounded_rectangle([cx - 84, hip_y + 22, cx + 84, hip_y + 96], 22, fill=cor + (255,), outline=OUT, width=6)  # carenagem
+        d.line([(cx - 210, hip_y - 60), (cx + 210, hip_y - 60)], fill=(26, 26, 30, 255), width=16)  # guidão
+        if view == "back":
+            d.ellipse([cx - 22, hip_y + 34, cx + 22, hip_y + 78], fill=(230, 50, 44, 255), outline=OUT, width=4)
+        else:
+            d.ellipse([cx - 32, hip_y + 16, cx + 32, hip_y + 80], fill=luz, outline=OUT, width=5)
+
+
 def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, breath_k, mouth=0.0, talk=0.0,
           pose_prev=None, pk=1.0, blink_force=False, sniff=False, prop=None, viseme=0, gesture=None, phase=None, gait_k=1.0,
           seat="banco", aim=None):
@@ -260,6 +295,7 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         leg_pts.append((hp, kn, ft))
     # --- braços ---
     pa = POSES.get(pose, POSES["idle"])
+    if seat == "moto" and sit: pa = ((34, 30), (44, 26))      # mãos no guidão
     if pose_prev and pk < 1.0:
         pb = POSES.get(pose_prev, POSES["idle"]); bk = _backout(pk)
         pa = tuple((pb[i][0] + (pa[i][0] - pb[i][0]) * bk, pb[i][1] + (pa[i][1] - pb[i][1]) * bk) for i in range(2))
@@ -319,7 +355,10 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         d.rounded_rectangle([head_c[0] - 90, head_c[1] - 20, head_c[0] + 90, head_c[1] + 170], 50, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
     if cd["hair"] == "long" and not back:
         d.rounded_rectangle([head_c[0] - 96, head_c[1] - 40, head_c[0] + 96, head_c[1] + 130], 50, fill=cd["hair_color"] + (255,), outline=OUT, width=5)
-    if cd["backpack"] and side:
+    if cd["backpack"] and side and cd.get("bag_termica"):       # mochila térmica de entregador (cubo grande)
+        d.rounded_rectangle([cx - 186, torso_top - 8, cx - 28, torso_top + 186], 12, fill=cd["backpack"] + (255,), outline=OUT, width=6)
+        d.rectangle([cx - 186, torso_top + 58, cx - 28, torso_top + 74], fill=dark(cd["backpack"], 0.72) + (255,))
+    elif cd["backpack"] and side:
         d.rounded_rectangle([cx - 110, torso_top + 30, cx - 30, torso_top + 200], 26, fill=cd["backpack"] + (255,), outline=OUT, width=6)
     # braço de trás (lado)
     def arm(a, col, w, sk):
@@ -334,8 +373,9 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         arm(arms[0], dark(topc), 42 * LIMBK, dark(skin, 0.85))
     if back or (not side and pose not in ("cross", "forward")):
         pass
+    if sit and seat == "moto": _moto(d, cx, hip_y, view, t, dark, moving=gk > 0 and bool(walk or run))
     # --- assento (banco/caixa/cadeira) para "sit"; "nenhum" quando o cenário já tem onde sentar ---
-    if sit and seat and seat != "nenhum":
+    if sit and seat and seat not in ("nenhum", "moto"):
         wood = {"banco": (122, 84, 52), "caixa": (150, 112, 64), "cadeira": (70, 74, 86)}.get(seat, (122, 84, 52))
         sx0, sx1 = (cx - 118, cx + 118) if not side else (cx - 70, cx + 70)
         ty = hip_y + 8
@@ -453,7 +493,10 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         if "bandana" in acc:
             d.polygon([(cx - 60, torso_top - 10), (cx + 60, torso_top - 10), (cx, torso_top + 50)], fill=(180, 40, 40, 255), outline=OUT)
     if cd["backpack"]:
-        if back:
+        if back and cd.get("bag_termica"):
+            d.rounded_rectangle([cx - 104, torso_top - 14, cx + 104, torso_top + 206], 12, fill=cd["backpack"] + (255,), outline=OUT, width=6)
+            d.rectangle([cx - 104, torso_top + 58, cx + 104, torso_top + 74], fill=dark(cd["backpack"], 0.72) + (255,))
+        elif back:
             d.rounded_rectangle([cx - 70, torso_top + 22, cx + 70, torso_top + 214], 34, fill=cd["backpack"] + (255,), outline=OUT, width=6)
             d.rounded_rectangle([cx - 40, torso_top + 100, cx + 40, torso_top + 170], 16, fill=dark(cd["backpack"], 0.88) + (255,), outline=OUT, width=4)
         elif not side:
@@ -587,6 +630,13 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     elif cd["hat"] == "helmet":
         d.chord([hx - 96, hy - 116, hx + 96, hy + 28], 180, 360, fill=cd["hat_color"] + (255,), outline=OUT, width=6)
         d.rectangle([hx - 100, hy - 48, hx + 100, hy - 34], fill=tuple(int(v * 0.7) for v in cd["hat_color"]) + (255,))
+    elif cd["hat"] == "capacete_moto":       # capacete aberto de motoboy, viseira levantada
+        hc = cd["hat_color"]
+        d.chord([hx - 104, hy - 124, hx + 104, hy + 84], 150, 390, fill=hc + (255,), outline=OUT, width=6)
+        d.rounded_rectangle([hx - 104, hy - 30, hx - 70, hy + 62], 14, fill=hc + (255,), outline=OUT, width=5)
+        d.rounded_rectangle([hx + 70, hy - 30, hx + 104, hy + 62], 14, fill=hc + (255,), outline=OUT, width=5)
+        d.rounded_rectangle([hx - 92, hy - 76, hx + 92, hy - 40], 12, fill=(52, 66, 84, 235), outline=OUT, width=5)
+        d.line([(hx - 60, hy - 112), (hx + 60, hy - 112)], fill=tuple(int(v * 0.72) for v in hc) + (255,), width=10)
     elif cd["hat"] == "fedora":
         hcol = cd["hat_color"] + (255,)
         d.ellipse([hx - 130, hy - 70, hx + 130, hy - 34], fill=hcol, outline=OUT, width=5)
