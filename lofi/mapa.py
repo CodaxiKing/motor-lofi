@@ -222,7 +222,12 @@ MAPA["camara_fria"] = {
     "marcas": {"fundo": {"x": 540, "y": 1280, "nota": "lá no fundo, perto da porta"}, "meio": {"x": 540, "y": 1500},
                "frente": {"x": 540, "y": 1800}}}
 MAPA["cftv"] = {"chao": None, "marcas": {}}
-LUGAR.update({"loja": "loja", "deposito": "loja", "camara_fria": "loja", "cftv": "loja"})
+MAPA["mezanino"] = {
+    "chao": [(0, 1250), (1080, 1250), (1080, 1640), (0, 1640)],
+    "marcas": {"centro": {"x": 540, "y": 1480}, "esq": {"x": 300, "y": 1520}, "dir": {"x": 800, "y": 1520},
+               "fundo": {"x": 540, "y": 1290, "view": "back", "nota": "na janela basculante do fundo, de costas"},
+               "guarda_corpo": {"x": 540, "y": 1620, "nota": "no guarda-corpo, olhando o vão da escada lá embaixo"}}}
+LUGAR.update({"loja": "loja", "deposito": "loja", "camara_fria": "loja", "cftv": "loja", "mezanino": "loja"})
 
 # Portais e caçadores (lofi/scenes_fenda.py)
 MAPA["fenda"] = {
@@ -246,6 +251,22 @@ MAPA["trono"] = {
     "marcas": {"trono": {"x": 540, "y": 1260, "nota": "ao pé do trono, lá no fundo"}, "meio": {"x": 540, "y": 1500},
                "esq": {"x": 320, "y": 1720}, "dir": {"x": 760, "y": 1720}, "frente": {"x": 540, "y": 1820}}}
 LUGAR.update({"masmorra": "masmorra", "fenda": "fenda", "associacao": "associacao", "trono": "trono"})
+
+
+# Escola (lofi/scenes_escola.py)
+MAPA["sala_aula"] = {
+    "chao": [(0, 1270), (1080, 1270), (1080, 1900), (0, 1900)],
+    "marcas": {"quadro": {"x": 540, "y": 1290, "view": "back", "nota": "diante do quadro, de costas (lendo as regras)"},
+               "mesa_prof": {"x": 790, "y": 1300, "nota": "atrás da mesa do professor"},
+               "porta": {"x": 120, "y": 1320, "nota": "na porta da sala, à esquerda"},
+               "carteira_esq": {"x": 250, "y": 1560}, "carteira_dir": {"x": 830, "y": 1560},
+               "meio": {"x": 540, "y": 1600, "nota": "no corredor entre as carteiras"}, "frente": {"x": 540, "y": 1820}}}
+MAPA["quadra"] = {
+    "chao": [(0, 1190), (1080, 1190), (1080, 1900), (0, 1900)],
+    "marcas": {"gol": {"x": 540, "y": 1250, "nota": "na frente do gol, lá no fundo"}, "area": {"x": 540, "y": 1420},
+               "arquibancada": {"x": 200, "y": 1500, "nota": "ao pé da arquibancada"}, "centro": {"x": 600, "y": 1650},
+               "dir": {"x": 860, "y": 1700}, "frente": {"x": 540, "y": 1830}}}
+LUGAR.update({"sala_aula": "escola", "quadra": "escola", "escola": "escola"})
 
 
 def lugar(cena):

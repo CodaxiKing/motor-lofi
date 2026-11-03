@@ -2,7 +2,7 @@
 
 Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não edite à mão.
 
-**Cenários** (36): `apartamento`, `associacao`, `beco`, `camara_fria`, `carro`, `cftv`, `corredor`, `delegacia`, `deposito`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `fenda`, `floresta`, `hospital`, `igreja`, `janela`, `loja`, `masmorra`, `mercado`, `metro`, `ponte`, `portao`, `posto`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `telhado`, `trono`, `vagao`, `viaduto`
+**Cenários** (39): `apartamento`, `associacao`, `beco`, `camara_fria`, `carro`, `cftv`, `corredor`, `delegacia`, `deposito`, `entrada`, `entrada_metro`, `escada`, `escola`, `esgoto`, `estacionamento`, `fenda`, `floresta`, `hospital`, `igreja`, `janela`, `loja`, `masmorra`, `mercado`, `metro`, `mezanino`, `ponte`, `portao`, `posto`, `quadra`, `radio`, `radio_carro`, `radio_portatil`, `rua`, `rua_amanhecer`, `sala_aula`, `telhado`, `trono`, `vagao`, `viaduto`
 
 **Personagens prontos** (29): `bruxa`, `chef`, `cientista`, `cowboy`, `crianca`, `detetive`, `dj`, `estudante`, `estudante2`, `executiva`, `executivo`, `fantasma`, `lia`, `medica`, `pirata`, `policial`, `rafa`, `rainha`, `roberta`, `roqueiro`, `soldado`, `valter`, `vovo`, `vovo2`, `zombie`, `zombie_corredor`, `zombie_enfermeiro`, `zombie_policial`, `zombie_rastejante`
 
@@ -14,9 +14,9 @@ Gerado por `python3 -m lofi.catalogo --md CATALOGO.md` a partir do código. Não
 
 **Planos de detalhe (`subject`)** (5): `celular`, `chave`, `macaneta`, `olho`, `relogio`
 
-**Sons (`sfx.name`)** (26): `bang`, `beep`, `bell`, `breath`, `car_alarm`, `click`, `crowd`, `door_close`, `door_open`, `echo_step`, `glass`, `growl`, `heartbeat`, `impact`, `knock`, `lock`, `no_service`, `notif`, `shuffle`, `siren`, `stamp`, `static`, `step`, `thunder`, `vibe`, `whoosh`
+**Sons (`sfx.name`)** (27): `bang`, `beep`, `bell`, `breath`, `car_alarm`, `click`, `crowd`, `door_close`, `door_open`, `echo_step`, `glass`, `growl`, `heartbeat`, `impact`, `knock`, `lock`, `no_service`, `notif`, `shuffle`, `sinal`, `siren`, `stamp`, `static`, `step`, `thunder`, `vibe`, `whoosh`
 
-**Sons que aceitam `dur`** (4): `breath`, `crowd`, `heartbeat`, `static`
+**Sons que aceitam `dur`** (5): `breath`, `crowd`, `heartbeat`, `sinal`, `static`
 
 **Transições** (7): `cut`, `whip`, `flash`, `fade`, `zoom`, `glitch`, `dip`
 
@@ -65,10 +65,13 @@ Use no ator: `"mark": "porta"` (ou `[[0, "fundo"], [3, "frente"]]` para andar en
 - **deposito:** `porta_camara` (colado na porta da câmara fria, de costas), `frente_porta` (de frente, diante da porta da câmara fria), `gerador` (ao lado do gerador), `centro`, `frente`
 - **camara_fria:** `fundo` (lá no fundo, perto da porta), `meio`, `frente`
 - **cftv:** 
+- **mezanino:** `centro`, `esq`, `dir`, `fundo` (na janela basculante do fundo, de costas), `guarda_corpo` (no guarda-corpo, olhando o vão da escada lá embaixo)
 - **fenda:** `portal` (diante da Fenda, de costas (prestes a entrar)), `centro`, `esq`, `dir`, `frente` (perto da câmera, com a Fenda atrás)
 - **masmorra:** `portal` (junto ao portal, lá no fundo (pequeno)), `fundo`, `meio`, `esq`, `dir`, `frente`
 - **associacao:** `balcao` (de frente para o balcão, à direita dele), `painel` (olhando o painel de ranks, de costas), `centro`, `esq`, `dir`, `frente`
 - **trono:** `trono` (ao pé do trono, lá no fundo), `meio`, `esq`, `dir`, `frente`
+- **sala_aula:** `quadro` (diante do quadro, de costas (lendo as regras)), `mesa_prof` (atrás da mesa do professor), `porta` (na porta da sala, à esquerda), `carteira_esq`, `carteira_dir`, `meio` (no corredor entre as carteiras), `frente`
+- **quadra:** `gol` (na frente do gol, lá no fundo), `area`, `arquibancada` (ao pé da arquibancada), `centro`, `dir`, `frente`
 
 ## Travelling lateral (o cenário passa)
 

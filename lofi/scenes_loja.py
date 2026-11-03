@@ -3,7 +3,12 @@
     loja         salão visto do corredor: caixa com o balcão à esquerda (frente: esconde quem está atrás dele),
                  porta de vidro no fundo, geladeiras à direita, relógio digital e monitor das câmeras na parede.
                  props: relogio ("03:00"), vulto (0–1, silhueta alta na porta de vidro), flicker (0–1),
-                        reflexo (0–1, silhueta parada no vidro da geladeira), porta (0–1, porta de vidro abrindo), apagado (True = só a luz das geladeiras)
+                        reflexo (0–1, silhueta parada no vidro da geladeira), porta (0–1, porta de vidro abrindo), apagado (True = só a luz das geladeiras),
+                        folha (False = balcão sem a folha "REGRAS DO TURNO" do Turno da Noite),
+                        vultos (0–6, silhuetas que se juntam do lado de fora do vidro), porta_aco (0–1, a porta de aço de enrolar descendo
+                        por dentro do vidro; 1 = fechada, com o cadeado), emergencia (True = luzes de emergência amarelas com a luz apagada)
+    mezanino     o alto do estoque: chão de grade, paletes de enlatados, guarda-corpo amarelo com o vão da escada escamoteável.
+                 props: emergencia (True = só luz amarela; padrão), escada (0–1; 1 = recolhida e travada), janela (0–1, basculante do fundo aberta)
     deposito     fundos da loja: caixas, gerador e a porta de aço da câmara fria.
                  props: batida (0–1, porta tremendo), rosto (0–1, rosto no vidro da porta), cadeado (True),
                         gerador (True = ligado), luz (0–1, lâmpada; 0 = breu)
@@ -112,8 +117,12 @@ class Loja(Scene):
         d.rounded_rectangle(PS((232, 1300), (292, 1332)), 6 * S, fill=(214, 206, 180, 255))            # telefone fixo
         d.rounded_rectangle(PS((228, 1290), (296, 1304)), 6 * S, fill=(196, 188, 162, 255))
         for k in range(3): d.rectangle(PS((242 + k * 16, 1312), (252 + k * 16, 1320)), fill=(90, 86, 76, 255))
-        return back, None, down(front)
+        sem = front.copy(); ds = ImageDraw.Draw(sem)                                                    # o mesmo balcão sem a folha
+        ds.rectangle(PS((40, 1360), (218, 1540)), fill=(160, 36, 36, 255)); ds.rectangle(PS((40, 1540), (218, 1556)), fill=(80, 18, 18, 255))
+        self._fronts = (down(front), down(sem))
+        return back, None, self._fronts[0]
     def dynamic(self, img, t, camx, props):
+        self.front = self._fronts[0 if props.get("folha", True) else 1]                                # "folha": false tira a folha do Ivo
         d = ImageDraw.Draw(img); dx = camx * self.depths[0]
         apagado = props.get("apagado", False)
         on = (not apagado) and random.Random(int(t * 9) * 31 + 5).random() > props.get("flicker", 0.04)
@@ -130,6 +139,19 @@ class Loja(Scene):
             for xx in (630 + dx - g, 630 + dx + g): d.line([(xx, 612), (xx, 1158)], fill=(90, 96, 100), width=8)
         if props.get("vulto", 0):                                                                    # silhueta na porta
             _sombra_alta(img, 630 + dx, 1160, 520, a=min(1.0, float(props["vulto"])))
+        nv = float(props.get("vultos", 0) or 0)                                                      # gente se juntando lá fora
+        for k in range(int(math.ceil(nv))):
+            xx = 500 + (k * 53) % 260 + math.sin(t * 0.9 + k * 1.7) * 8
+            _sombra_alta(img, xx + dx, 1160, 360 + (k * 37) % 140, a=min(1.0, nv - k) * 0.95)
+        pa = float(props.get("porta_aco", 0) or 0)                                                   # porta de aço de enrolar
+        if pa > 0:
+            yb = 612 + (1158 - 612) * pa
+            d.rectangle([486 + dx, 600, 774 + dx, yb], fill=(132, 136, 140))
+            for yy in range(616, int(yb), 22): d.line([(488 + dx, yy), (772 + dx, yy)], fill=(104, 108, 112), width=4)
+            d.rectangle([486 + dx, yb - 18, 774 + dx, yb], fill=(90, 94, 98))
+            if pa >= 0.99:
+                d.rectangle([614 + dx, 1124, 646 + dx, 1160], fill=(200, 170, 60))
+                d.arc([616 + dx, 1104, 644 + dx, 1134], 180, 360, fill=(160, 160, 166), width=5)
         if props.get("reflexo", 0):                                                                  # alguém no vidro da geladeira
             lay = Image.new("RGB", img.size, (0, 0, 0)); _sombra_alta(lay, 930 + dx * 1.2, 1380, 700, col=(220, 240, 245))
             m = lay.convert("L").point(lambda v: int(v * 0.85 * float(props["reflexo"])))
@@ -141,8 +163,65 @@ class Loja(Scene):
             d.rectangle([qx + 2, qy + 2, qx + 64, qy + 45], fill=(40 + n.randint(0, 20), 60 + n.randint(0, 20), 56))
         if not on:
             img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.78 if apagado else 0.6))
-            if apagado:                                                                              # só as geladeiras acesas
+            if apagado and not props.get("emergencia"):                                              # só as geladeiras acesas
                 img.paste(add_light(img, (760 + dx, 200, 1080, 1700), (90, 170, 190), 70, 110))
+        if props.get("emergencia"):                                                                  # luzes de emergência
+            for ex in (200, 880):
+                ImageDraw.Draw(img).rectangle([ex - 40 + dx, 90, ex + 40 + dx, 118], fill=(255, 200, 80))
+                img.paste(add_light(img, (ex - 260 + dx, 40, ex + 260 + dx, 900), (255, 190, 80), 80, 90))
+
+
+# ======================= MEZANINO (o alto do estoque) =======================
+class Mezanino(Scene):
+    """O alto do estoque: chão de grade sobre o depósito, paletes de enlatados dos dois lados, guarda-corpo na frente com
+    o vão da escada escamoteável e o estoque escuro lá embaixo."""
+    name = "mezanino"; acoustic = "media"; light = "warm"; grade = "quente"; amb = "zumbido"
+    ground = (1240, 1900, 0.55, 1.4)
+    def build(self):
+        r = random.Random(11)
+        back = canvas((22, 20, 20)); d = ImageDraw.Draw(back)
+        d.rectangle(PS((-M, 0), (W + M, 1240)), fill=(76, 72, 66))                                   # parede do galpão
+        d.rectangle(PS((400, 300), (680, 470)), fill=(30, 34, 46))                                   # janela basculante
+        d.line(PS((540, 300), (540, 470)), fill=(70, 70, 66), width=8 * S)
+        for x in range(-M, W + M, 70): d.line(PS((x, 0), (x + 40, 120)), fill=(60, 58, 54), width=5 * S)   # treliça
+        d.rectangle(PS((-M, 1240), (W + M, 1920)), fill=(58, 58, 60))                                # chão de grade
+        for k in range(16):
+            y = 1240 + (k / 16) ** 1.5 * 680; d.line(PS((-M, y), (W + M, y)), fill=(40, 40, 42), width=3 * S)
+        for x in range(-300, 1400, 60): d.line(PS((540 + (x - 540) * 0.4, 1240), (x, 1920)), fill=(44, 44, 46), width=2 * S)
+        cores = [(200, 70, 50), (230, 190, 60), (60, 120, 170), (90, 150, 80), (210, 210, 200)]
+        for lado in (-1, 1):                                                                          # paletes de caixas
+            for col in range(4):
+                xc = 540 + lado * (330 + col * 150); base = 1240 + col * 150; alt = 6 + col; w = 120 + col * 30
+                d.rectangle(PS((xc - w / 2, base + 10), (xc + w / 2, base + 30)), fill=(120, 86, 50))
+                for row in range(alt):
+                    y1 = base + 10 - row * (70 + col * 12); y0 = y1 - (66 + col * 12)
+                    if y1 < 0: break
+                    c = r.choice(cores)
+                    d.rectangle(PS((xc - w / 2, y0), (xc + w / 2, y1)), fill=tuple(int(v * 0.75) for v in c), outline=(40, 34, 28))
+                    d.rectangle(PS((xc - w / 2 + 10, y0 + 12), (xc + w / 2 - 10, y0 + 30)), fill=(226, 220, 204))
+        mid = canvas(alpha=True); d = ImageDraw.Draw(mid)
+        d.rectangle(PS((-M, 1660), (W + M, 1680)), fill=(216, 176, 40, 255))                         # guarda-corpo amarelo
+        d.rectangle(PS((-M, 1560), (W + M, 1574)), fill=(216, 176, 40, 255))
+        for x in range(-M, W + M, 140):
+            if 360 < x < 700: continue                                                                # vão da escada
+            d.rectangle(PS((x, 1560), (x + 14, 1920)), fill=(190, 154, 34, 255))
+        d.rectangle(PS((380, 1700), (700, 1920)), fill=(14, 14, 16, 255))                            # o vão: estoque escuro lá embaixo
+        return down(back), down(mid), None
+    def dynamic(self, img, t, camx, props):
+        d = ImageDraw.Draw(img); dx = camx * self.depths[1]
+        es = float(props.get("escada", 1) or 0)                                                       # escada escamoteável
+        if es < 0.99:
+            for k in range(6): d.line([(400 + dx, 1720 + k * 40), (680 + dx, 1720 + k * 40)], fill=(150, 150, 156), width=8)
+            for xx in (410, 670): d.line([(xx + dx, 1700), (xx + dx, 1920)], fill=(170, 170, 176), width=10)
+        else:
+            d.rectangle([380 + dx, 1700, 700 + dx, 1730], fill=(150, 150, 156)); d.rectangle([520 + dx, 1690, 560 + dx, 1740], fill=(200, 170, 60))
+        jn = float(props.get("janela", 0) or 0)
+        if jn: d.polygon([(400, 300), (680, 300), (680, 300 + 170 * (1 - jn)), (400, 300 + 170 * (1 - jn))], fill=(76, 72, 66))
+        if props.get("emergencia", True):
+            img.paste(Image.blend(img, Image.new("RGB", img.size, (10, 8, 6)), 0.35))
+            for ex in (180, 900):
+                ImageDraw.Draw(img).rectangle([ex - 34, 150, ex + 34, 174], fill=(255, 200, 80))
+                img.paste(add_light(img, (ex - 280, 60, ex + 280, 1100), (255, 190, 80), 80, 100))
 
 
 # ======================= DEPÓSITO (fundos + porta da câmara fria) =======================
@@ -332,4 +411,4 @@ class Cftv(Scene):
         if v and pos: props.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v))
 
 
-CENAS = (Loja, Deposito, CamaraFria, Cftv)
+CENAS = (Mezanino, Loja, Deposito, CamaraFria, Cftv)

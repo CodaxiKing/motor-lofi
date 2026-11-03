@@ -10,7 +10,7 @@ if "--deitado" in sys.argv: os.environ["LOFI_DEITADO"] = "1"     # versão 16:9 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente, pes
+from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente, pes, regra
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
@@ -172,6 +172,7 @@ class Episode:
             if s.get("type") == "placar": sfx += placar.sons(s)
             if s.get("type") in ("pensamento", "plano"): sfx += mente.sons(s)
             if s.get("type") == "pes": sfx += pes.sons(self, s)
+            if s.get("type") == "regra": sfx += regra.sons(s)
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
         if self.redes:
             for s in self.shots:
@@ -1019,7 +1020,7 @@ class Episode:
         typ = shot.get("type", "scene")
         if typ == "loop":   # o gancho de trás para frente: o último quadro é o primeiro, e o vídeo emenda sem pulo
             return self.frame(max(0.0, shot["end"] - t - 1.0 / self.fps))
-        if DEITADO and typ in ("title", "choice", "placar", "pensamento", "plano", "detail", "recap", "pes"):
+        if DEITADO and typ in ("title", "choice", "placar", "pensamento", "plano", "detail", "recap", "pes", "regra"):
             return self._quadro_em_pe(t)
         slow = shot.get("slowmo")
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
@@ -1029,6 +1030,7 @@ class Episode:
         elif typ == "pensamento": img = mente.pensamento(self, shot, t)
         elif typ == "plano": img = mente.plano(self, shot, t)
         elif typ == "pes": img = pes.frame(self, shot, t)
+        elif typ == "regra": img = regra.frame(self, shot, t)
         elif typ == "detail": img = self.detail_frame(shot, t, t_anim)
         elif typ == "recap": img = self.recap_frame(shot, t)
         else: img = self.scene_frame(shot, t, t_anim)
@@ -1057,7 +1059,7 @@ class Episode:
         self.draw_comments(img, shot, t)
         if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
-        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano", "pes") and not shot.get("hook")):
+        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano", "pes", "regra") and not shot.get("hook")):
             text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
             if self.spec["hud"].get("barras"): text.barras(img, t, self.spec["hud"]["barras"])
         if typ in ("scene", "detail"):

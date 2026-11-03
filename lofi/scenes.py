@@ -945,6 +945,8 @@ from .scenes_loja import CENAS as _LOJA        # loja 24h (Turno da Noite): loja
 REGISTRY.update({c.name: c for c in _LOJA})
 from .scenes_fenda import CENAS as _FENDA      # portais (Rank Zero): fenda, masmorra, associacao, trono
 REGISTRY.update({c.name: c for c in _FENDA})
+from .scenes_escola import CENAS as _ESCOLA    # escola (O Último Sinal): sala_aula, quadra
+REGISTRY.update({c.name: c for c in _ESCOLA})
 _inst = {}
 def get(name, travelling=False):
     """Cenário pronto (cacheado). travelling=True devolve a versão lateral que rola (lofi/travelling.py)."""

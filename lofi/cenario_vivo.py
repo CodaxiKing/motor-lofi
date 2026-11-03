@@ -43,7 +43,7 @@ VIDA = {
 }
 VIDA_TIPOS = ("pisca", "mariposas", "gotas", "vapor", "vagalumes", "poeira", "moscas", "papel", "farol", "passaros")
 PAREDE_RETA = {"entrada", "apartamento", "deposito", "delegacia", "loja"}
-INTERNOS = {"associacao", "masmorra", "trono", "apartamento", "entrada", "corredor", "hospital", "escola", "vagao", "delegacia", "mercado", "loja", "deposito",
+INTERNOS = {"sala_aula", "quadra", "associacao", "masmorra", "trono", "apartamento", "entrada", "corredor", "hospital", "escola", "vagao", "delegacia", "mercado", "loja", "deposito",
             "camara_fria", "estacionamento", "igreja", "escada", "metro", "esgoto"}
 
 

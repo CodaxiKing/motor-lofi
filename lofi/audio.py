@@ -126,6 +126,12 @@ def bell():
         for f, a in ((2093, 1.0), (3136, 0.5), (4186, 0.3)):
             s += np.sin(2*np.pi*f*tt) * np.exp(-tt/0.45) * on * a * g
     return s * 0.08
+def sinal(d=3.0):
+    """Campainha elétrica de escola: o martelo batendo no sino ~22 vezes por segundo, áspero e alto."""
+    t = t_(d); bat = (np.sin(2*np.pi*22*t) > 0.2).astype(float)
+    tom = sum(np.sin(2*np.pi*f*t) * a for f, a in ((1180, 1.0), (2360, 0.45), (3050, 0.3)))
+    s = np.clip(tom * (0.35 + 0.65 * bat) * 1.6, -1, 1) + bp(noise(d), 1500, 5000) * bat * 0.4
+    return s * np.minimum(1, t/0.03) * np.minimum(1, (d-t)/0.08) * 0.1
 def crowd(d=4.0):
     n = lp(noise(d), 350) * 1.2; t = np.arange(len(n))/SR
     m = 0.6 + 0.4*np.sin(2*np.pi*0.3*t) * np.sin(2*np.pi*0.13*t + 1)
@@ -136,8 +142,8 @@ def crowd(d=4.0):
 
 SFX = {k: v for k, v in globals().items() if callable(v) and k in (
     "beep stamp whoosh step shuffle echo_step door_open door_close lock bang knock glass impact thunder no_service notif vibe "
-    "click growl car_alarm siren heartbeat breath static crowd bell").split()}
-DURATION_SFX = {"heartbeat", "breath", "static", "crowd"}   # aceitam "dur"
+    "click growl car_alarm siren heartbeat breath static crowd bell sinal").split()}
+DURATION_SFX = {"heartbeat", "breath", "static", "crowd", "sinal"}   # aceitam "dur"
 
 # ------------------- ambientes -------------------
 def amb(kind, d):

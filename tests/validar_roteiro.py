@@ -20,7 +20,9 @@ CAMPOS_ATOR = {"crowd", "walk", "run", "tremble", "hold", "carried_by", "flashli
 CAMPOS_PLANO = {"close", "travelling", "follow", "focus", "handheld", "vertigo", "slowmo", "scare", "lens_drops", "dark", "wall_shadow", "lights",
                 "cold", "dust", "crowd", "fog", "rain", "snow", "time", "tint", "peephole", "shake", "lightning", "hook", "bloom",
                 "style", "desenho", "acoustic", "detail", "recap", "moments", "choice", "title", "effect", "camera", "zoom",
-                "flicker", "plano", "aberto", "conjunto", "medio", "geral", "alvo", "tv", "static", "fan", "wind", "train", "door", "locks", "under_door_light", "feet", "on", "level"}
+                "flicker", "plano", "aberto", "conjunto", "medio", "geral", "alvo", "tv", "static", "fan", "wind", "train", "door", "locks", "under_door_light", "feet", "on", "level",
+                "pes", "regra", "quebrada", "lembranca", "escolhida", "pensamento", "porta_aco", "vultos", "emergencia", "apagado",
+                "escada", "janela", "batida", "rosto", "cadeado", "gerador", "relogio", "luz", "quadro", "sinal", "sombra", "garra", "sapato", "descalco", "vulto", "piscar", "folha"}
 
 
 def sem_acento(s):

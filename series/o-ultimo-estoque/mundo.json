@@ -1,0 +1,83 @@
+{
+ "lugares": {
+  "mercado": {
+   "cenarios": [
+    "mercado"
+   ],
+   "nota": "Mercado Bom Preço, salão de vendas: corredores de enlatados, hortifrúti com o vidro lateral"
+  },
+  "loja": {
+   "cenarios": [
+    "loja",
+    "deposito",
+    "camara_fria",
+    "mezanino",
+    "cftv"
+   ],
+   "nota": "frente de caixa com a porta de vidro e a porta de aço, estoque dos fundos, câmara fria e o mezanino"
+  },
+  "rua": {
+   "cenarios": [
+    "rua",
+    "beco"
+   ],
+   "nota": "rua do mercado e o beco dos fundos, por onde chegam os caminhões"
+  },
+  "delegacia": {
+   "cenarios": [
+    "delegacia"
+   ],
+   "nota": "posto policial a três quadras (portão leste)"
+  }
+ },
+ "ligacoes": [
+  [
+   "mercado",
+   "loja",
+   "pelo fim do corredor central, até os caixas ou pela porta vaivém do estoque"
+  ],
+  [
+   "loja",
+   "rua",
+   "pela porta de vidro da frente (antes da porta de aço)"
+  ],
+  [
+   "loja",
+   "rua",
+   "pela janela basculante do mezanino, descendo no beco"
+  ],
+  [
+   "rua",
+   "delegacia",
+   "três quadras pela avenida, até o portão leste"
+  ]
+ ],
+ "inicio": {
+  "lugar": "mercado",
+  "dia": 0,
+  "hora": "18:50",
+  "rotulo": "DIA",
+  "inventario": {
+   "leo": [
+    "prancheta",
+    "crachá"
+   ]
+  },
+  "nota": "Léo sozinho no turno da noite, repondo enlatados; o gerente Sérgio saiu às 18h e deixou a porta dos fundos destrancada"
+ },
+ "fim": {
+  "1": {
+   "lugar": "loja",
+   "inventario": {
+    "leo": [
+     "crachá",
+     "cracha_sergio",
+     "radio"
+    ]
+   },
+   "dia": 0,
+   "hora": "19:15",
+   "nota": "Léo no mezanino com a escada recolhida e o rádio dos seguranças (pilha fraca); porta de aço trancada, luz do bairro caída, infectados no salão; batidas lentas na câmara fria. Ep. 2: A = sai pela janela basculante para o beco; B = continua no mezanino, 21:30"
+  }
+ }
+}

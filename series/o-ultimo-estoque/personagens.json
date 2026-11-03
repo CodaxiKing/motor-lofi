@@ -1,0 +1,11 @@
+{
+  "_leia": "Fichas travadas da série O Último Estoque. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito. O polo verde com o crachá é a marca do Léo; o crachá do Sérgio é a pista da câmara fria.",
+  "leo": {"skin": "medio", "top_style": "uniform", "top": [46, 126, 84], "legs": [44, 54, 84], "shoes": [36, 36, 40],
+          "hair": "short", "hair_color": [28, 22, 20], "acc": ["badge"], "body": "thin"},
+  "sergio": {"skin": "claro", "top_style": "shirt", "top": [206, 214, 230], "tie": [120, 32, 40], "legs": [42, 42, 52], "shoes": [24, 22, 22],
+             "hair": "short", "hair_color": [150, 150, 154], "glasses": true, "acc": ["badge", "tie"], "body": "fat"},
+  "sergio_infectado": {"skin": [146, 154, 150], "top_style": "shirt", "top": [176, 180, 186], "tie": [90, 30, 36], "legs": [40, 40, 48], "shoes": [24, 22, 22],
+                       "hair": "short", "hair_color": [130, 130, 134], "glasses": true, "acc": ["badge", "tie"], "body": "fat", "infected": true},
+  "nanda": {"skin": "escuro", "top_style": "scrubs", "top": [96, 150, 170], "legs": [96, 150, 170], "shoes": [230, 230, 226],
+            "hair": "afro", "hair_color": [24, 18, 16], "backpack": [180, 60, 50], "body": "tall"}
+}
