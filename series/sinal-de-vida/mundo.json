@@ -1,0 +1,167 @@
+{
+ "lugares": {
+  "casa_joao": {
+   "cenarios": [
+    "apartamento",
+    "entrada",
+    "janela"
+   ],
+   "nota": "quartinho do João numa vila do subúrbio"
+  },
+  "vila": {
+   "cenarios": [
+    "corredor",
+    "escada",
+    "telhado",
+    "portao"
+   ],
+   "nota": "corredor, escada, laje e portão da vila"
+  },
+  "suburbio": {
+   "cenarios": [
+    "rua",
+    "beco",
+    "mercado"
+   ],
+   "nota": "ruas do bairro, becos e o restaurante da Dandara"
+  },
+  "posto": {
+   "cenarios": [
+    "posto"
+   ],
+   "nota": "posto abandonado onde está o rádio PX"
+  },
+  "ferrovia": {
+   "cenarios": [
+    "entrada_metro",
+    "metro",
+    "vagao"
+   ],
+   "nota": "pátio e trem de carga para fora da cidade"
+  },
+  "estrada": {
+   "cenarios": [
+    "viaduto",
+    "ponte",
+    "rua_amanhecer",
+    "carro",
+    "radio_carro",
+    "estacionamento"
+   ],
+   "nota": "estrada para o interior e o caminhão do Nei"
+  },
+  "cidade_interior": {
+   "cenarios": [
+    "hospital",
+    "delegacia",
+    "escola",
+    "igreja"
+   ],
+   "nota": "cidade onde moram Cida e Téo"
+  },
+  "clinica": {
+   "cenarios": [
+    "loja"
+   ],
+   "nota": "clínica veterinária da Bia"
+  },
+  "frigorifico": {
+   "cenarios": [
+    "deposito",
+    "camara_fria",
+    "cftv"
+   ],
+   "nota": "Frigorífico Leme e Rádio Esperança"
+  },
+  "fazenda": {
+   "cenarios": [
+    "floresta",
+    "radio",
+    "esgoto"
+   ],
+   "nota": "fazenda do Geraldo: terreno e poço, cozinha com o rádio e porão"
+  }
+ },
+ "ligacoes": [
+  [
+   "casa_joao",
+   "vila",
+   "pela porta do quarto"
+  ],
+  [
+   "vila",
+   "suburbio",
+   "pelo portão da vila"
+  ],
+  [
+   "suburbio",
+   "posto",
+   "pela avenida"
+  ],
+  [
+   "suburbio",
+   "ferrovia",
+   "pelo pátio da linha do trem"
+  ],
+  [
+   "posto",
+   "ferrovia",
+   "atravessando a linha"
+  ],
+  [
+   "posto",
+   "estrada",
+   "pela saída do posto"
+  ],
+  [
+   "ferrovia",
+   "estrada",
+   "o trem para na beira da estrada"
+  ],
+  [
+   "estrada",
+   "cidade_interior",
+   "pela entrada da cidade"
+  ],
+  [
+   "estrada",
+   "clinica",
+   "pela estrada vicinal"
+  ],
+  [
+   "estrada",
+   "frigorifico",
+   "pelo acesso da fábrica"
+  ],
+  [
+   "estrada",
+   "fazenda",
+   "pela porteira"
+  ],
+  [
+   "cidade_interior",
+   "fazenda",
+   "pela estrada de terra"
+  ],
+  [
+   "clinica",
+   "fazenda",
+   "pela mata"
+  ]
+ ],
+ "fim": {
+  "0": {
+   "lugar": "suburbio",
+   "dia": 0,
+   "hora": "16:30",
+   "inventario": {
+    "joao": [
+     "celular",
+     "mochila",
+     "bicicleta"
+    ]
+   },
+   "nota": "início: João fazendo entregas no subúrbio"
+  }
+ }
+}

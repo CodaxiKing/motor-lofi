@@ -1,0 +1,298 @@
+{
+ "_leia": "Fichas travadas da série Sinal de Vida. Valem para todos os episódios; mude só aqui, de propósito.",
+ "joao": {
+  "skin": "moreno",
+  "top_style": "hoodie",
+  "top": [
+   196,
+   44,
+   40
+  ],
+  "legs": [
+   44,
+   52,
+   76
+  ],
+  "shoes": [
+   235,
+   235,
+   230
+  ],
+  "hair": "curly",
+  "hair_color": [
+   24,
+   20,
+   18
+  ],
+  "backpack": [
+   196,
+   44,
+   40
+  ],
+  "bag_termica": true,
+  "body": "thin",
+  "aparencia": "João, jovem de 22 anos, magro, pele morena, cabelo crespo curto preto, moletom vermelho de entregador com capuz, calça jeans escura, tênis branco, mochila térmica cúbica vermelha nas costas"
+ },
+ "geraldo": {
+  "skin": "medio",
+  "top_style": "shirt",
+  "top": [
+   120,
+   70,
+   50
+  ],
+  "legs": [
+   60,
+   56,
+   50
+  ],
+  "shoes": [
+   70,
+   48,
+   32
+  ],
+  "hair": "short",
+  "hair_color": [
+   150,
+   150,
+   150
+  ],
+  "facial": "mustache",
+  "facial_color": [
+   150,
+   150,
+   150
+  ],
+  "hat": "cowboy",
+  "hat_color": [
+   214,
+   188,
+   120
+  ],
+  "body": "tall",
+  "aparencia": "Geraldo, homem de 58 anos, alto, pele morena clara, bigode grisalho, chapéu de palha, camisa xadrez marrom, calça escura, botina"
+ },
+ "cida": {
+  "skin": "moreno",
+  "top_style": "scrubs",
+  "top": [
+   80,
+   160,
+   125
+  ],
+  "legs": [
+   80,
+   160,
+   125
+  ],
+  "shoes": [
+   235,
+   235,
+   230
+  ],
+  "hair": "bun",
+  "hair_color": [
+   40,
+   30,
+   26
+  ],
+  "acc": [
+   "badge"
+  ],
+  "aparencia": "Cida, mulher de 54 anos, pele morena, cabelo escuro preso em coque, pijama hospitalar verde, crachá, tênis branco"
+ },
+ "bia": {
+  "skin": "moreno",
+  "top_style": "tshirt",
+  "top": [
+   50,
+   90,
+   170
+  ],
+  "legs": [
+   60,
+   60,
+   66
+  ],
+  "shoes": [
+   70,
+   48,
+   32
+  ],
+  "hair": "braids",
+  "hair_color": [
+   30,
+   22,
+   18
+  ],
+  "aparencia": "Bia, mulher de 27 anos, pele morena, tranças escuras, colete azul de veterinária sobre camiseta, calça cinza-escura, botas marrons"
+ },
+ "teo": {
+  "skin": "moreno",
+  "top_style": "tshirt",
+  "top": [
+   240,
+   240,
+   235
+  ],
+  "legs": [
+   50,
+   70,
+   120
+  ],
+  "shoes": [
+   240,
+   240,
+   235
+  ],
+  "hair": "short",
+  "hair_color": [
+   24,
+   20,
+   18
+  ],
+  "hat": "cap",
+  "hat_color": [
+   238,
+   190,
+   40
+  ],
+  "body": "child",
+  "aparencia": "Téo, menino de 9 anos, pele morena, boné amarelo, camiseta branca de time de futebol, bermuda azul, tênis branco"
+ },
+ "vo_zefa": {
+  "skin": "medio",
+  "top_style": "dress",
+  "top": [
+   110,
+   60,
+   160
+  ],
+  "shoes": [
+   50,
+   40,
+   40
+  ],
+  "hair": "bun",
+  "hair_color": [
+   235,
+   235,
+   235
+  ],
+  "glasses": true,
+  "body": "old",
+  "aparencia": "Dona Zefa, idosa de 79 anos, baixinha, pele morena clara, coque branco, óculos, vestido florido roxo, bengala de madeira"
+ },
+ "nei": {
+  "skin": "medio",
+  "top_style": "shirt",
+  "top": [
+   225,
+   120,
+   40
+  ],
+  "legs": [
+   40,
+   44,
+   60
+  ],
+  "shoes": [
+   60,
+   44,
+   30
+  ],
+  "hair": "short",
+  "hair_color": [
+   40,
+   30,
+   26
+  ],
+  "facial": "beard",
+  "facial_color": [
+   40,
+   30,
+   26
+  ],
+  "hat": "cap",
+  "hat_color": [
+   50,
+   50,
+   56
+  ],
+  "body": "fat",
+  "aparencia": "Tio Nei, homem de 55 anos, gordo, pele morena clara, barba escura, boné cinza-escuro, camisa laranja de caminhoneiro, calça escura"
+ },
+ "dandara": {
+  "skin": "escuro",
+  "top_style": "chef",
+  "top": [
+   240,
+   240,
+   235
+  ],
+  "legs": [
+   30,
+   30,
+   34
+  ],
+  "shoes": [
+   30,
+   30,
+   34
+  ],
+  "hair": "afro",
+  "hair_color": [
+   20,
+   16,
+   14
+  ],
+  "hat": "bandana_hat",
+  "hat_color": [
+   220,
+   60,
+   60
+  ],
+  "aparencia": "Dandara, mulher de 30 anos, pele negra, cabelo black power, bandana vermelha, dólmã branca de cozinheira, calça preta"
+ },
+ "darcio": {
+  "skin": "claro",
+  "top_style": "suit",
+  "top": [
+   200,
+   180,
+   145
+  ],
+  "legs": [
+   200,
+   180,
+   145
+  ],
+  "shoes": [
+   80,
+   50,
+   30
+  ],
+  "inner": [
+   120,
+   40,
+   40
+  ],
+  "hair": "short",
+  "hair_color": [
+   200,
+   200,
+   200
+  ],
+  "hat": "fedora",
+  "hat_color": [
+   120,
+   90,
+   60
+  ],
+  "body": "tall",
+  "aparencia": "Dárcio Leme, homem de 60 anos, alto e magro, pele clara, cabelo branco, terno bege, chapéu fedora marrom, sorriso gentil"
+ },
+ "zombie": {
+  "aparencia": "repetidor (zumbi): pessoa comum de roupas sujas e rasgadas, pele acinzentada, olhos brancos brilhando, boca sempre se mexendo, andar torto"
+ }
+}
