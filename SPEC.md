@@ -431,12 +431,32 @@ desliga tudo; `"ondas": {"texto": false}` tira as onomatopeias; `{"passos": true
   ~3,3 palavras/s, buraco de tempo entre cenas, gancho que não acontece e falta de ESCALETA (AVISOS).
 
 ## Intensidade dos efeitos
-`"efeitos"` no topo do episódio controla névoa (`fog` do plano e do cenário), brilho (bloom), granulado, vinheta e partículas (poeira `dust`, vapor, vaga-lumes, moscas):
-- `"leve"` (padrão): névoa a 20%, brilho e vinheta suaves, granulado pela metade, partículas a 40% e sem vapor/poeira/vaga-lumes/moscas no cenário vivo.
+`"efeitos"` no topo do episódio controla névoa (`fog` do plano e do cenário), brilho (bloom), granulado, vinheta, partículas
+(poeira `dust`, vapor, vaga-lumes, moscas) e o desfoque dos bonecos (fora de foco e bafo de frio):
+- `"nenhum"` (padrão): tela limpa e bonecos nítidos, sem filtro nenhum. Luz, cor do lugar (`grade`), lanterna e escuro continuam.
+- `"leve"`: névoa a 20%, brilho e vinheta suaves, granulado pela metade, partículas a 40% (padrão dos episódios `legado`).
 - `"normal"`: como era antes.
-- `"nenhum"`: tela limpa (só a lâmpada piscando continua).
-- Ajuste fino: `{"fog": 0.3, "bloom": 0.2, "grain": 0.5, "vig": 0.7, "part": 0.5}` (0 a 1).
-Sustos (`scare`), relâmpago, chuva e gotas na lente não mudam.
+- Ajuste fino sobre o `"nenhum"`: `{"fog": 0.3, "bloom": 0.2, "grain": 0.5, "vig": 0.7, "part": 0.5, "desfoque": 1}` (0 a 1).
+Sustos (`scare`), relâmpago, chuva, gotas na lente, `tint`, `reticula` e `glitch` são do plano e não mudam.
+
+**Lembrança** — o único lugar com visual de filme: `"lembranca": true` no plano aplica sépia, vinheta e granulado cheios
+(flashback, "o que aconteceu antes", alguém se lembrando). O `recap` já sai assim; `"lembranca": false` desliga.
+
+## Contraplano pelos pés (`"type": "pes"`)
+A câmera no chão, por baixo da porta: só os pés de quem está do outro lado, com a luz do corredor vazando pela fresta e as
+sombras das pernas vindo na direção da câmera.
+```json
+{"start": 12, "end": 14.5, "type": "pes", "x": [[0, -160], [2.2, 470]], "pes": "sapato", "luz": [210, 176, 120]}
+```
+- `x` (animável, px da tela em pé): quando muda, os pés andam com passo alternado e o som `step` sai sozinho; parados, mudam o peso.
+- `pes`: `sapato` (gente), `descalco`, `garra` (dedos longos com unha: a criatura). `facing` 1/-1 quando parado.
+- `luz` = cor do corredor; `"piscar": true` = lâmpada falhando; `handheld` (padrão 4) = tremor da câmera; `cor` = cor das pernas.
+- Use alternando com o close de reação de quem está escondido, 1–2 s cada. Sem HUD; legenda normal. Na versão deitada vem do vídeo em pé.
+
+## Selo da escolha (`"escolhida": "A" | "B"`)
+No topo do episódio (do ep. 2 em diante, modo redes): um selo redondo com a letra que o público escolheu fica ao lado do selo
+`EP X/Y` o episódio todo, e nos 3,5 s depois do gancho a tela ganha uma borda acesa na cor da opção (A creme, B vermelho,
+as mesmas da tela de escolha). Combina com `voto` (o carimbo com a palavra).
 
 ## Contagem automática dos votos
 `python3 -m lofi.votos contar series/<serie> NN print1.jpg print2_insta.jpg ... [--recortar] [--a "sinônimos"] [--b "sinônimos"]`

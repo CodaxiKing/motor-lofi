@@ -2,7 +2,7 @@
 """Efeitos: chuva em 2 camadas, respingos, relâmpago, névoa, granulado, vinheta, tratamento de cor, tremor, transições, carimbo, olho mágico."""
 import math, random
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
+from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance, ImageOps
 from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, fast_blur, crop_zoom
 
 # ---------- chuva ----------
@@ -70,18 +70,20 @@ def lightning(img, t, times, box=None, bolt=True, room=0.3):
     return img
 
 # ---------- intensidade dos efeitos ----------
-# "leve" (padrão): névoa, brilho, granulado, vinheta e partículas bem mais suaves; "normal": como era; "nenhum": tela limpa.
+# "nenhum" (padrão): tela limpa, bonecos nítidos (sem névoa, brilho, granulado, vinheta, partículas, bafo nem desfoque de foco);
+# o visual de filme fica só nas lembranças (ver lembranca()). "leve": névoa, brilho, granulado, vinheta e partículas suaves;
+# "normal": como era. desfoque = desfoque dos bonecos fora de foco e bafo de frio (1 liga, 0 desliga).
 NIVEIS = {
-    "nenhum": dict(fog=0.0, bloom=0.0, grain=0.0, vig=0.6, part=0.0),
-    "leve":   dict(fog=0.2, bloom=0.15, grain=0.5, vig=0.6, part=0.4),
-    "normal": dict(fog=1.0, bloom=0.6, grain=1.0, vig=1.0, part=1.0),
+    "nenhum": dict(fog=0.0, bloom=0.0, grain=0.0, vig=0.0, part=0.0, desfoque=0.0),
+    "leve":   dict(fog=0.2, bloom=0.15, grain=0.5, vig=0.6, part=0.4, desfoque=1.0),
+    "normal": dict(fog=1.0, bloom=0.6, grain=1.0, vig=1.0, part=1.0, desfoque=1.0),
 }
-NIVEL = dict(NIVEIS["leve"])
-def set_efeitos(nome="leve"):
-    """Aceita "nenhum", "leve", "normal" ou um dict com fog/bloom/grain/vig/part (0–1)."""
-    base = dict(NIVEIS["leve"])
+NIVEL = dict(NIVEIS["nenhum"])
+def set_efeitos(nome="nenhum"):
+    """Aceita "nenhum", "leve", "normal" ou um dict com fog/bloom/grain/vig/part/desfoque (0–1) sobre o "nenhum"."""
+    base = dict(NIVEIS["nenhum"])
     if isinstance(nome, dict): base.update(nome)
-    else: base = dict(NIVEIS.get(nome, NIVEIS["leve"]))
+    else: base = dict(NIVEIS.get(nome, NIVEIS["nenhum"]))
     NIVEL.clear(); NIVEL.update(base)
 
 # ---------- névoa ----------
@@ -118,7 +120,18 @@ VIG = {k: _vig(k) for k in (0.45, 0.6, 0.75, 1.0, 1.4)}
 BLACK = Image.new("RGB", (W, H), 0)
 def vignette(img, k=1.0):
     k *= NIVEL["vig"]
+    if k <= 0.01: return img
     return Image.composite(img, BLACK, VIG[min(VIG, key=lambda v: abs(v - k))])
+
+# ---------- lembrança ----------
+SEPIA = Image.new("RGB", (W, H), (255, 228, 180))
+def lembranca(img, k=1.0):
+    """Visual de recordação (flashback, "anteriormente", lembrança): sépia, vinheta e granulado cheios, independente de "efeitos"."""
+    g = ImageOps.grayscale(img).convert("RGB")
+    s = ImageChops.multiply(Image.blend(img, g, 0.8 * k), SEPIA)
+    s = Image.blend(s, Image.new("RGB", (W, H), (60, 44, 28)), 0.12 * k)      # preto levantado, papel velho
+    s = Image.composite(s, BLACK, VIG[0.75])
+    return ImageChops.subtract(ImageChops.add(s, GRAIN_P), GRAIN_N)
 
 # ---------- tratamento de cor ----------
 GRADES = {

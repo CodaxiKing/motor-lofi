@@ -10,7 +10,7 @@ if "--deitado" in sys.argv: os.environ["LOFI_DEITADO"] = "1"     # versão 16:9 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
 from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
-from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente
+from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente, pes
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
 from .rig import render_char, paste_char, shadow, reflection, LIGHTS
@@ -78,7 +78,7 @@ class Episode:
         # modo redes (TikTok/Instagram): padrão nos episódios novos; os antigos ("plano_padrao": "aberto") ficam como eram
         self.redes = sp.get("modo_redes", sp.get("plano_padrao", "auto") != "aberto")
         text.set_redes(self.redes)
-        fx.set_efeitos(sp.get("efeitos", "leve"))
+        fx.set_efeitos(sp.get("efeitos", "leve" if sp.get("legado") else "nenhum"))
         from .rig import set_estilo
         set_estilo(sp.get("style"))                  # "vetor": personagens sem contorno, sombra em duas tons
         # 100% narrado: só o narrador fala; ninguém mexe a boca e a voz é de estúdio (sem eco do lugar)
@@ -171,6 +171,7 @@ class Episode:
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
             if s.get("type") == "placar": sfx += placar.sons(s)
             if s.get("type") in ("pensamento", "plano"): sfx += mente.sons(s)
+            if s.get("type") == "pes": sfx += pes.sons(self, s)
             for sc_t in s.get("scare", []): sfx.append({"t": sc_t, "name": "impact", "gain": 0.9})
         if self.redes:
             for s in self.shots:
@@ -406,7 +407,7 @@ class Episode:
         if a.get("_carried"): rot = a["_carried"]
         if rot: spr, anc = rotate_about(spr, anc, rot)
         blur = a.get("blur", 0)
-        if focus_on is not None and focus_on != idx and not a.get("_crowd"): blur = max(blur, 4)
+        if focus_on is not None and focus_on != idx and not a.get("_crowd") and fx.NIVEL["desfoque"]: blur = max(blur, 4)
         if blur: spr = spr.filter(ImageFilter.GaussianBlur(blur))
         return dict(a=a, spr=spr, anc=anc, sx=sx, sy=sy - lift * z, floor_y=sy, scale=scale, view=view, facing=facing, idx=idx, rot=rot,
                     ponta=None if rot else ponta, prop=prop_)
@@ -423,7 +424,7 @@ class Episode:
         rain_on = sc.rain_full and shot.get("rain", "normal") != "nenhuma"
         if rain_on and not a.get("_crowd") and a.get("splash", True) and not P["rot"]:
             particles.splash_on(img, t, (sx - hr, hcy - hr * 1.15, sx + hr, hcy - hr * 0.6), n=3, seed=P["idx"])
-        if a.get("breath", shot.get("cold", bool(shot.get("snow")))) and P["view"] != "back" and not a.get("_crowd") and not P["rot"]:
+        if a.get("breath", shot.get("cold", bool(shot.get("snow"))) and fx.NIVEL["desfoque"]) and P["view"] != "back" and not a.get("_crowd") and not P["rot"]:
             particles.breath_fog(img, t, (sx + (P["facing"] * hr * 0.6 if P["view"] in ("side", "3q") else 0), hcy + hr * 0.55),
                                  P["facing"], seed=P["idx"], strength=min(1, scale))
         fl = a.get("flashlight")
@@ -879,6 +880,22 @@ class Episode:
             t0 = cand[0] + 0.4
         return (t0, t0 + pq.get("dur", 3.0), pq.get("text", "E VOCÊ, O QUE FARIA?"))
 
+    def draw_selo_escolha(self, img, letra, x_ep, cy, rel):
+        """Selo redondo com a letra que o público escolheu, à esquerda do selo do episódio; nos 3,5 s depois do gancho
+        a tela ganha uma borda acesa na cor da opção (A creme, B vermelho, como na tela de escolha)."""
+        fundo, tinta = ((235, 232, 225), (20, 20, 22)) if letra == "A" else (RED, (255, 255, 255))
+        if rel < 3.5:
+            a = (0.55 + 0.45 * math.sin(rel * 6.0)) * (1 - c01((rel - 3.0) / 0.5)) * ease_out(c01(rel / 0.3))
+            m = Image.new("L", (W, H), 0)
+            ImageDraw.Draw(m).rounded_rectangle([14, 14, W - 14, H - 14], 34, outline=int(255 * a), width=10)
+            img.paste(fundo, (0, 0), fast_blur(m, 3))
+        d = ImageDraw.Draw(img)
+        p = ease_out(c01(rel / 0.35)); r = 40 * (0.6 + 0.4 * p) * (1 + 0.25 * (1 - c01(rel / 0.5)))
+        cx = x_ep - 24 - 40
+        d.ellipse([cx - r - 5, cy - r - 5, cx + r + 5, cy + r + 5], fill=(12, 12, 16))
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=fundo)
+        text_center(d, letra, cx, cy, font("title", int(r * 1.3)), tinta)
+
     def draw_redes(self, img, shot, t):
         typ = shot.get("type", "scene")
         if shot.get("hook") or typ in ("loop", "title", "recap", "placar"): return
@@ -905,6 +922,8 @@ class Episode:
                 d.rounded_rectangle([W / 2 - ww / 2 - 34, yy - 92, W / 2 + ww / 2 + 34, yy + 70], 24, fill=(12, 12, 16), outline=RED, width=6)
                 text_center(d, "A MAIORIA ESCOLHEU", W / 2, yy - 52, font("mono", 32), (235, 232, 225))
                 text_center(d, sp["voto"], W / 2, yy + 14, fw, RED)
+            esc = str(sp.get("escolhida", "")).strip().upper()[:1]
+            if esc in ("A", "B"): self.draw_selo_escolha(img, esc, x0, (y0 + y1) / 2, rel)
         # pergunta na tela no meio do episódio (puxa comentário)
         pq = self.pergunta()
         if pq and pq[0] <= t < pq[1] and typ != "choice":
@@ -1000,7 +1019,7 @@ class Episode:
         typ = shot.get("type", "scene")
         if typ == "loop":   # o gancho de trás para frente: o último quadro é o primeiro, e o vídeo emenda sem pulo
             return self.frame(max(0.0, shot["end"] - t - 1.0 / self.fps))
-        if DEITADO and typ in ("title", "choice", "placar", "pensamento", "plano", "detail", "recap"):
+        if DEITADO and typ in ("title", "choice", "placar", "pensamento", "plano", "detail", "recap", "pes"):
             return self._quadro_em_pe(t)
         slow = shot.get("slowmo")
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
@@ -1009,6 +1028,7 @@ class Episode:
         elif typ == "placar": img = placar.frame(self, shot, t)
         elif typ == "pensamento": img = mente.pensamento(self, shot, t)
         elif typ == "plano": img = mente.plano(self, shot, t)
+        elif typ == "pes": img = pes.frame(self, shot, t)
         elif typ == "detail": img = self.detail_frame(shot, t, t_anim)
         elif typ == "recap": img = self.recap_frame(shot, t)
         else: img = self.scene_frame(shot, t, t_anim)
@@ -1024,7 +1044,8 @@ class Episode:
         tn = shot.get("tint", self.spec.get("tint"))
         if tn and typ != "title": img = fx.tint(img, tn[:3], tn[3] if len(tn) > 3 else 0.15)
         if self.spec.get("style") == "desenho" and typ in ("scene", "detail", "choice", "pensamento", "plano"): img = fx.hand_drawn(img)
-        img = fx.vignette(img, shot.get("vignette", 1.0)); img = fx.grain(img)
+        if shot.get("lembranca", typ == "recap"): img = fx.lembranca(img)      # recordação: o único plano com visual de filme
+        else: img = fx.vignette(img, shot.get("vignette", 1.0)); img = fx.grain(img)
         if shot.get("reticula"): img = fx.reticula(img, float(shot["reticula"]))     # tensão: moldura de retícula
         gl = shot.get("glitch")
         if gl:
@@ -1036,7 +1057,7 @@ class Episode:
         self.draw_comments(img, shot, t)
         if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
-        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano") and not shot.get("hook")):
+        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano", "pes") and not shot.get("hook")):
             text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
             if self.spec["hud"].get("barras"): text.barras(img, t, self.spec["hud"]["barras"])
         if typ in ("scene", "detail"):
