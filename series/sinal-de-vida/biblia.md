@@ -29,7 +29,7 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 | Personagem | DESEJO (o que quer) | MEDO | SEGREDO | JEITO DE FALAR |
 |---|---|---|---|---|
 | joao | chegar à fazenda e provar que não é o filho que foi embora | chegar tarde e achar a família repetindo frases | não fala com o pai há um ano; saiu de casa depois de uma briga e nunca pediu desculpa | rápido, gíria de entregador ("tá chegando", "deu ruim"), piada quando está com medo |
-| geraldo | ver todos os filhos juntos antes que seja tarde | morrer sozinho e sem perdão | transportou as cargas do Frigorífico Leme e sabia que havia algo errado; foi mordido no DIA 3 e não contou | poucas palavras, ordens curtas, termina a chamada com "câmbio, meu filho" |
+| geraldo | ver todos os filhos juntos antes que seja tarde | morrer sozinho e sem perdão | foi mordido no DIA 3 e não contou a ninguém além da mãe | poucas palavras, ordens curtas, termina a chamada com "câmbio, meu filho" |
 | cida | tirar o Téo vivo da cidade | ter que escolher entre os pacientes e o filho | guardou uma caixa de remédios que os colegas precisavam | calma de plantão, chama todo mundo de "meu bem", dá instruções numeradas |
 | bia | provar que dá conta sem o pai | virar igual a ele | descobriu como os infectados reagem ao som ao sedar um cavalo mordido; escondeu que atirou no próprio noivo infectado | seca e técnica, usa termos de veterinária, fala palavrão pela metade |
 | teo | achar o cachorro e reunir a família | ficar sem a mãe | ouve o rádio escondido e sabe de coisas que os adultos acham que ele não sabe | muitas perguntas, repete as frases dos adultos, conta tudo em números |
@@ -41,17 +41,17 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 ## Pistas
 | Pista | Plantada em | Paga em | Status |
 |---|---|---|---|
-| O pai liga ANTES de a TV dar a notícia | ep. 1 | ep. 7 (ele conhecia a carga) | pendente |
-| No fundo da reportagem da TV, um caminhão com o logo Leme | ep. 1 | ep. 7 (o surto nasceu no frigorífico) | pendente |
+| O pai liga ANTES de a TV dar a notícia | ep. 1 | ep. 2 (caminhoneiros avisaram pelo rádio PX) | pendente |
+| No fundo da reportagem da TV, um caminhão com o logo Leme | ep. 1 | ep. 7 (o surto nasceu no frigorífico do Dárcio) | pendente |
 | Infectados repetem a última frase que disseram | ep. 1 (o vizinho repete "tá servido?") | ep. 8 (a voz no rádio pode não ser de gente viva) | pendente |
-| Geraldo passa a usar luva na mão direita ao falar no rádio (descrito pela Zefa) | ep. 4 | ep. 8 (a mordida) | pendente |
+| Geraldo passa a usar luva na mão direita ao falar no rádio (descrito pela Zefa) | ep. 4 | ep. 7 (João ouve a mordida numa gravação) | pendente |
 | O áudio da filha de Dandara, nunca aberto | ep. 2 | ep. 6 (ela ouve) | pendente |
 | Nei sabe o caminho do poço sem nunca ter ido à parte nova da fazenda | ep. 5 | ep. 6 (ele vendeu a informação) | pendente |
 | Téo conta "três vozes novas" no rádio | ep. 3 | ep. 8 (o comboio de Dárcio escuta tudo) | pendente |
 
 ## Mistério central
-Premissa: o reencontro de todo mundo na fazenda do pai. Pergunta que puxa a série: por que o pai sabia antes de todo mundo, e quem está ouvindo a família no rádio?
-A verdade: Geraldo transportava carga para o Frigorífico Leme e reconheceu a fábrica na TV; por isso ligou antes da notícia. Ele transformou a fazenda em abrigo (poço, cercas, horta) por culpa. Foi mordido no DIA 3, escondeu e aguenta o que pode para ver os filhos juntos pela última vez. Dárcio escuta a frequência e usa as conversas da família para chegar ao poço. O reencontro acontece nos dois finais; o que muda é quem chega e como.
+Premissa: o reencontro de todo mundo na fazenda do pai. Pergunta que puxa a série: o que o pai não está contando, e quem está ouvindo a família no rádio?
+A verdade: a família não tem nenhuma ligação com a origem do surto, que nasceu no frigorífico do Dárcio. Geraldo só ligou antes da notícia porque, ex-caminhoneiro, ainda escuta o rádio PX e ouviu os colegas avisando da estrada. Ele prepara a fazenda (poço, cercas, horta) para receber todos. Foi mordido no DIA 3, escondeu e aguenta o que pode para ver os filhos juntos pela última vez. Dárcio escuta a frequência e usa as conversas da família para chegar ao poço. O reencontro acontece nos dois finais; o que muda é quem chega e como.
 
 ## Regras do universo
 1. Os infectados ("repetidores") caçam pelo som e repetem a última frase que disseram; uma voz pedindo socorro pode ser uma isca sem querer · 2. A mordida transforma em até 5 dias, mais depressa quanto mais perto do pescoço; primeiro vêm a febre e a frase que não para de voltar · 3. A rede de celular cai na noite do DIA 0; só resta o rádio PX, sempre às 21h na frequência 19, quando cada um diz o nome: o "sinal de vida" · 4. Todo mundo que tem rádio escuta: falar dá notícia e também entrega a posição · 5. Pouca bateria: cada chamada gasta a barra · 6. Bicicleta é silenciosa e carro atrai horda · 7. Água limpa é a moeda do interior: o poço da fazenda vale mais que comida · 8. 14+: violência leve, sem gore; ataques em corte, sombra e som.
@@ -76,8 +76,8 @@ A verdade: Geraldo transportava carga para o Frigorífico Leme e reconheceu a f�
 | 5 | B) Ir com Bia pela mata | irmãos juntos e em silêncio | perde dois dias; a mãe chega à fazenda sem ajuda |
 | 6 | A) Denunciar o Nei no rádio | a família fica sabendo | Dárcio ouve, Nei foge com o caminhão |
 | 6 | B) Guardar segredo | mantém caminhão e o tio por perto | o Nei continua passando informações |
-| 7 | A) Contar a verdade sobre o pai | a família passa a saber quem ele é | Bia rompe e quase desiste de ir à fazenda |
-| 7 | B) Esconder dos outros | mantém todos a caminho | João carrega sozinho, e a mentira estoura no reencontro |
+| 7 | A) Contar que o pai foi mordido | a família se prepara e corre para chegar a tempo | Dárcio ouve no rádio que a fazenda está sem líder, e Bia se arrisca sem pensar |
+| 7 | B) Esconder dos outros | Dárcio não fica sabendo e todos seguem com calma | João carrega sozinho, e a mentira estoura no reencontro |
 | 8 | A) Abrir a porteira aos refugiados | gente para defender a cerca | a água acaba mais rápido e Dárcio infiltra um homem |
 | 8 | B) Fechar a porteira | água e segurança | fica com poucos braços e deixa gente morrer na cerca |
 | 9 | A) Desligar o rádio | ninguém mais encontra a fazenda | ninguém mais é salvo por ela |
@@ -95,7 +95,7 @@ Ep. 1: B · Ep. 2: A · Ep. 3: A · Ep. 4: A · Ep. 5: B · Ep. 6: A · Ep. 7: A
 | 4 | 3 | complicação | planejado | A) Ir ao abrigo · B) Seguir a pé | | |
 | 5 | 4 | virada | planejado | A) Caminhão do Nei · B) Mata com a Bia | | |
 | 6 | 5 | reviravolta | planejado | A) Denunciar o Nei · B) Guardar segredo | | |
-| 7 | 6 | reviravolta | planejado | A) Contar a verdade · B) Esconder | | |
+| 7 | 6 | reviravolta | planejado | A) Contar da mordida · B) Esconder | | |
 | 8 | 7 | escalada | planejado | A) Abrir a porteira · B) Fechar a porteira | | |
 | 9 | 8 | clímax | planejado | A) Desligar o rádio · B) Manter o rádio | | |
 | 10 | 9 | final | planejado | — | | |
@@ -107,8 +107,8 @@ Ep. 1: B · Ep. 2: A · Ep. 3: A · Ep. 4: A · Ep. 5: B · Ep. 6: A · Ep. 7: A
 - **EP 4 · DIA 3 · "RÁDIO ESPERANÇA"** (complicação, vermelho) — Uma voz gentil oferece abrigo no Frigorífico Leme. Dandara quer ir; João desconfia. Zefa comenta no rádio que Geraldo agora fala de luva. Gancho: "aqui ninguém fica sozinho" sobre uma fila de gente sumindo portão adentro. Pergunta: A) IR AO ABRIGO · B) SEGUIR A PÉ.
 - **EP 5 · DIA 4 · "BIA"** (virada, terra) — Bia, numa clínica veterinária, descobre como o som guia os infectados e encontra João no meio de um cerco. Tio Nei aparece de caminhão, sabendo demais sobre o poço. Primeira conversa dos irmãos, cheia de rancor. Gancho: o caminhão iluminando a horda ("SOBE AGORA, / SOBRINHO!"). Pergunta: A) CAMINHÃO DO NEI · B) MATA COM A BIA.
 - **EP 6 · DIA 5 · "DÍVIDA"** (reviravolta, laranja) — Dandara ouve o áudio da filha. João pega Nei falando com Dárcio no rádio: ele vendeu o poço. Gancho: a voz de Dárcio, gentil, saindo do rádio do caminhão ("OBRIGADO, / SEU NEI"). Pergunta: A) DENUNCIAR · B) GUARDAR SEGREDO.
-- **EP 7 · DIA 6 · "A CARGA"** (reviravolta, azul) — Para buscar combustível, entram no frigorífico. João acha as notas de carga com a assinatura do pai e a câmara onde tudo começou. Dárcio aparece. Revelação: o pai sabia. Gancho: a assinatura na nota ("MEU PAI / SABIA?"). Pergunta: A) CONTAR A VERDADE · B) ESCONDER.
-- **EP 8 · DIA 7 · "A PORTEIRA"** (escalada, roxo) — Cida chega à fazenda e vê a mão do Geraldo. A Zefa confessa. O rádio começa a repetir frases, e João não sabe mais se fala com o pai. Refugiados chegam, e atrás deles o comboio. Gancho: pela frequência, a voz do pai sem parar ("NÃO SAI / DE CASA"). Pergunta: A) ABRIR A PORTEIRA · B) FECHAR A PORTEIRA.
+- **EP 7 · DIA 6 · "A FITA"** (reviravolta, azul) — Para buscar combustível, entram no frigorífico. João acha a câmara onde tudo começou e a sala da Rádio Esperança, com um mapa da fazenda e fitas de todas as chamadas da família. Numa delas, gravada longe da hora marcada, Geraldo conta à Zefa que foi mordido. Dárcio aparece. Gancho: a voz do pai saindo da fita ("FUI MORDIDO, / MÃE"). Pergunta: A) CONTAR DA MORDIDA · B) ESCONDER.
+- **EP 8 · DIA 7 · "A PORTEIRA"** (escalada, roxo) — Cida chega à fazenda e vê a mão do Geraldo. A Zefa confessa que escondeu. O rádio começa a repetir frases, e João não sabe mais se fala com o pai. Refugiados chegam, e atrás deles o comboio. Gancho: pela frequência, a voz do pai sem parar ("NÃO SAI / DE CASA"). Pergunta: A) ABRIR A PORTEIRA · B) FECHAR A PORTEIRA.
 - **EP 9 · DIA 8 · "ÚLTIMO QUILÔMETRO"** (clímax, fogo) — O reencontro acontece debaixo do cerco: João chega, a família está inteira pela primeira vez, e pai e filho enfim se falam. Dárcio ataca o poço; João usa o rádio e a voz do próprio Dárcio para jogar a horda sobre o comboio. Gancho: João e o pai frente a frente ("CHEGUEI, / PAI"). Pergunta: A) DESLIGAR O RÁDIO · B) MANTER O RÁDIO.
 - **EP 10 · DIA 9 · "SINAL DE VIDA"** (final, dourado) — Geraldo se despede e a família decide o que vem depois, conforme os votos. Finais A e B acima. Gancho: a última chamada de Geraldo às 21h ("CÂMBIO, / MEU FILHO"). Fecha com "FIM".
 
@@ -116,7 +116,7 @@ Ep. 1: B · Ep. 2: A · Ep. 3: A · Ep. 4: A · Ep. 5: B · Ep. 6: A · Ep. 7: A
 Estilo imagens: cada fundo é gerado no ChatGPT. A linha `CENÁRIO` usa o nome do motor mais próximo e a linha `IMAGENS` dá o fundo real. Fundos principais: `quarto_joao`, `corredor_vila`, `rua_suburbio`, `posto_abandonado`, `vagao_de_carga`, `hospital_interior`, `estrada_interior`, `clinica_veterinaria`, `cabine_caminhao`, `frigorifico_patio`, `camara_fria_leme`, `fazenda_porteira`, `fazenda_cozinha_radio`, `fazenda_poco`.
 
 ## Extras planejados
-1. Ep. 1: o que aconteceu com o vizinho? · 2. Ep. 2: por que João saiu de casa · 3. Ep. 3: o primeiro paciente da Cida · 4. Ep. 4: quem é Dárcio Leme · 5. Ep. 5: o que a Bia fez com o noivo · 6. Ep. 6: o áudio da filha de Dandara · 7. Ep. 7: a última viagem do Geraldo · 8. Ep. 8: o que a Zefa viu · 9. Ep. 9: como o Téo ouvia o rádio.
+1. Ep. 1: o que aconteceu com o vizinho? · 2. Ep. 2: por que João saiu de casa · 3. Ep. 3: o primeiro paciente da Cida · 4. Ep. 4: quem é Dárcio Leme · 5. Ep. 5: o que a Bia fez com o noivo · 6. Ep. 6: o áudio da filha de Dandara · 7. Ep. 7: a noite em que o Geraldo foi mordido · 8. Ep. 8: o que a Zefa viu · 9. Ep. 9: como o Téo ouvia o rádio.
 
 ## Extras
 | Nº | Depois do ep. | Tema | Status |
