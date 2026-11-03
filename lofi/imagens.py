@@ -151,6 +151,13 @@ def prompts(caminho_roteiro, todas=False):
         p = prompt_fundo(nome, estilo, det) if tipo == "fundo" else (prompt_objeto(nome, estilo, det) if tipo == "objeto"
                                                                       else prompt_personagem(nome, fichas, estilo, det))
         vistos[nome] = ([cena], tipo, p); saida.append(nome)
+    for nome in list(saida):                    # personagens que aparecem em 2+ cenas: variante piscando (opcional)
+        cenas_, tipo, _ = vistos[nome]
+        pn = nome + "_piscando"
+        if tipo == "personagem" and len(set(cenas_)) >= 2 and pn not in ja and pn not in vistos:
+            vistos[pn] = (cenas_, "piscar (opcional)", f"Edite a imagem {nome} que você acabou de gerar: exatamente a mesma imagem, "
+                          "mesma pose, roupa e traços, só com os OLHOS FECHADOS (piscando). Mantenha o fundo igual (transparente ou branco liso).")
+            saida.append(pn)
     base = os.path.splitext(caminho_roteiro)[0].replace("_roteiro", "")
     out = base + "_imagens.md"
     with open(out, "w", encoding="utf-8") as f:
@@ -237,43 +244,57 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
     plano = cfg.get("plano", "aberto")
     z = {"aberto": 1.0, "medio": 1.35, "close": 2.0}.get(plano, 1.0)
     z *= 1 + 0.06 * u * cfg.get("aproximar", 1.0)
-    layers = []
+    layers = []                          # (imagem, x, y, escala, profundidade)
+    sway = math.sin(t * 0.65) * W_ * 0.006 * cfg.get("balanco", 1.0)      # câmera balança de leve; o fundo mexe menos (paralaxe)
     if cfg.get("fundo"):
         fundo = carregar(pasta_serie, cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
-        s = max(W_ / fundo.width, H_ / fundo.height)
+        s = max(W_ / fundo.width, H_ / fundo.height) * 1.03
         fy = cfg.get("fundo_y", 0.5)
-        layers.append((fundo, (W_ - fundo.width * s) / 2, (H_ - fundo.height * s) * fy, s))
+        layers.append((fundo, (W_ - fundo.width * s) / 2, (H_ - fundo.height * s) * fy, s, 0.3))
     alt_pad = 0.80 if largo else (0.52 if len(pessoas) > 1 else 0.60)
     for k, p in enumerate(pessoas):
         im = carregar(pasta_serie, p["img"])
+        pisc = p.get("piscar", p["img"] + "_piscando")              # olhos fechados por 0,12 s a cada ~3,6 s
+        periodo = 3.6 + (k * 0.7)
+        if pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png")):
+            im = carregar(pasta_serie, pisc)
         if p.get("espelhar"): im = im.transpose(Image.FLIP_LEFT_RIGHT)
         pos = p.get("pos", "centro"); fx = POS.get(pos, pos if isinstance(pos, (int, float)) else 0.5)
-        if not largo and len(pessoas) > 1 and isinstance(pos, str): fx = 0.5 + (fx - 0.5) * 1.15
+        if p.get("andar"):                                           # atravessa a cena: [de, até] (esq/centro/dir ou 0–1)
+            a_, b_ = [POS.get(v, v) if isinstance(v, str) else v for v in p["andar"]]
+            fx = a_ + (b_ - a_) * u
+        if not largo and len(pessoas) > 1 and isinstance(pos, str) and not p.get("andar"): fx = 0.5 + (fx - 0.5) * 1.15
         alt = p.get("altura", alt_pad) * H_
         s = alt / im.height
         dy = 0.0
         respiro = math.sin(2 * math.pi * rel * 0.22 + k) * H_ * 0.0025
+        if p.get("andar"): respiro = -abs(math.sin(rel * 8)) * H_ * 0.006                   # passo: sobe e desce
         if nivel and p.get("fala"):
             n = max(0.0, min(1.0, nivel(p["fala"], t)))
             dy -= n * H_ * 0.006; s *= 1 + 0.012 * n
         chao = p.get("chao", 0.97 if largo else 0.93)
         x = fx * W_ - im.width * s / 2; y = chao * H_ - im.height * s + dy + respiro
-        layers.append((im, x, y, s))
-    for o in cfg.get("objetos", []):
+        layers.append((im, x, y, s, 1.0))
+    def _obj(o, prof):
         im = carregar(pasta_serie, o["img"]); s = o.get("altura", 0.2) * H_ / im.height
-        layers.append((im, o.get("x", 0.5) * W_ - im.width * s / 2, o.get("y", 0.7) * H_ - im.height * s / 2, s))
+        y = o.get("y", 0.7) * H_
+        if o.get("flutuar"): y += math.sin(rel * o.get("velocidade", 1.0) * 2) * H_ * 0.006
+        if o.get("pulsar"): s *= 1 + 0.02 * math.sin(rel * 3)
+        return (im, o.get("x", 0.5) * W_ - im.width * s / 2, y - im.height * s / 2, s, prof)
+    for o in cfg.get("objetos", []): layers.append(_obj(o, 1.0))
+    for o in cfg.get("frente", []): layers.append(_obj(dict({"altura": 0.5, "y": 0.85}, **o), 1.4))   # primeiro plano (mexe mais)
     # ponto que a câmera segue
     if z > 1.0 and pessoas:
-        al = cfg.get("alvo", 0); im, x, y, s = layers[(1 if cfg.get("fundo") else 0) + min(al, len(pessoas) - 1)]
+        al = cfg.get("alvo", 0); im, x, y, s, _ = layers[(1 if cfg.get("fundo") else 0) + min(al, len(pessoas) - 1)]
         alvo_x = x + im.width * s / 2; alvo_y = y + im.height * s * (0.16 if plano == "close" else 0.32)
     else:
         alvo_x, alvo_y = W_ / 2, H_ / 2
     ox = W_ / 2 - alvo_x * z; oy = (H_ * (0.42 if z > 1.0 else 0.5)) - alvo_y * z
     ox = min(0, max(W_ - W_ * z, ox)); oy = min(0, max(H_ - H_ * z, oy))
-    for im, x, y, s in layers:
+    for im, x, y, s, prof in layers:
         ss = s * z; w, h = max(1, int(im.width * ss)), max(1, int(im.height * ss))
         spr = im.resize((w, h), Image.BILINEAR)
-        canvas.paste(spr, (int(x * z + ox), int(y * z + oy)), spr)
+        canvas.paste(spr, (int((x + sway * prof) * z + ox), int(y * z + oy)), spr)
     for ef in cfg.get("efeitos", []):
         nomef = ef if isinstance(ef, str) else ef.get("tipo")
         if nomef == "flicker":
@@ -290,7 +311,7 @@ def faltam(spec_path):
     for s in sp.get("shots", []):
         cfg = s.get("imagens")
         if not cfg: continue
-        nomes = [p["img"] for p in cfg.get("personagens", [])] + [o["img"] for o in cfg.get("objetos", [])]
+        nomes = [p["img"] for p in cfg.get("personagens", [])] + [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", [])]
         if cfg.get("fundo"): nomes.append(cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
         falta += [(s["start"], n) for n in nomes if n not in ja]
     return falta

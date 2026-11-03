@@ -1028,7 +1028,9 @@ class Episode:
         self.draw_comments(img, shot, t)
         if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
-        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano") and not shot.get("hook")): text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
+        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano") and not shot.get("hook")):
+            text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
+            if self.spec["hud"].get("barras"): text.barras(img, t, self.spec["hud"]["barras"])
         if not shot.get("hook") and typ != "recap":
             sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else (1440 if typ == "pensamento" else None))
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)

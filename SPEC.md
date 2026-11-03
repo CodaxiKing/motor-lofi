@@ -544,5 +544,9 @@ Bíblia: `Estilo: imagens` e `Prompt de estilo: ...`; fichas com `"aparencia"`. 
 `importar <serie> arquivo.png nome` tira fundo liso e sobras; `faltam epNN.json` confere.
 Plano: `"imagens": {"fundo", "personagens": [{"img", "pos": "esq|centro|dir|0–1", "altura", "fala": voz, "espelhar", "chao"}],
 "objetos": [{"img", "x", "y", "altura"}], "plano": "aberto|medio|close", "alvo", "aproximar", "fundo_y", "efeitos": ["flicker", "escuro"]}`.
-Quem tem `fala` balança com a voz; todos respiram; a câmera aproxima devagar. Funciona em pé e deitado, com legendas, HUD,
+Quem tem `fala` balança com a voz; todos respiram; a câmera aproxima devagar e balança de leve com paralaxe (fundo 0,3 ·
+personagens 1 · `frente` 1,4). Recursos vindos do addon "motor-lofi-v4": piscar (`<img>_piscando.png` troca por 0,12 s a cada ~3,6 s;
+`"piscar": "<outro nome>"` ou `false`), `"andar": ["esq", "dir"]` (atravessa a cena com passo), objetos `"flutuar"`/`"pulsar"`,
+camada `"frente"` (primeiro plano) e **barras de recurso** no contador (vale para qualquer estilo):
+`"hud": {..., "barras": [{"label": "BATERIA DO RÁDIO", "value": [[0, 0.6], [90, 0.1]], "color": [110, 180, 230]}]}` (abaixo de 25% pisca em vermelho). Funciona em pé e deitado, com legendas, HUD,
 gancho falado, placar e escolha do motor. O `lofi.check` acusa imagem faltando. As imagens de `series/<serie>/imagens/` vão para o repositório (commit) para serem reaproveitadas nos próximos episódios.

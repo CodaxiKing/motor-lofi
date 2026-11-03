@@ -43,3 +43,26 @@ def test_importar_tira_fundo_e_monta_quadro():
         assert imagens.quadro(shot, 0.5, d, (192, 108)).size == (192, 108)    # deitado
         json.dump({"shots": [shot, {"start": 2, "end": 3, "imagens": {"fundo": "rua"}}]}, open(os.path.join(d, "ep.json"), "w"))
         assert imagens.faltam(os.path.join(d, "ep.json")) == [(2, "fundo_rua")]
+
+
+def test_piscar_andar_frente_e_barras():
+    with tempfile.TemporaryDirectory() as d:
+        _serie(d); os.makedirs(os.path.join(d, "imagens"))
+        Image.new("RGB", (300, 200), (10, 20, 40)).save(os.path.join(d, "imagens", "fundo_hospital.png"))
+        for nome, cor in (("lia_frente_medo", (200, 30, 30, 255)), ("lia_frente_medo_piscando", (30, 200, 30, 255))):
+            fig = Image.new("RGBA", (44, 84), (0, 0, 0, 0)); ImageDraw.Draw(fig).rectangle([2, 2, 41, 81], fill=cor)
+            fig.save(os.path.join(d, "imagens", nome + ".png"))
+        Image.new("RGBA", (20, 20), (250, 250, 0, 255)).save(os.path.join(d, "imagens", "obj_grade.png"))
+        shot = {"start": 0, "end": 4, "imagens": {"fundo": "hospital", "personagens": [{"img": "lia_frente_medo"}],
+                                                   "frente": [{"img": "obj_grade", "flutuar": True}]}}
+        piscando = imagens.quadro(shot, 0.05, d, (108, 192)); aberto = imagens.quadro(shot, 1.0, d, (108, 192))
+        verde = lambda im: sum(1 for p in im.getdata() if p[1] > 150 and p[0] < 80)
+        assert verde(piscando) > 50 and verde(aberto) == 0                    # olhos fechados por um instante
+        shot["imagens"]["personagens"][0]["andar"] = ["esq", "dir"]
+        def x_vermelho(im):
+            xs = [i % im.width for i, p in enumerate(im.getdata()) if p[0] > 150 and p[1] < 80]
+            return sum(xs) / len(xs)
+        assert x_vermelho(imagens.quadro(shot, 3.9, d, (108, 192))) > x_vermelho(imagens.quadro(shot, 0.5, d, (108, 192))) + 20
+    from lofi import text
+    im = Image.new("RGB", (1080, 1920)); text.barras(im, 5.0, [{"label": "ENERGIA", "value": [[0, 1.0], [10, 0.0]]}])
+    assert im.getbbox() is not None

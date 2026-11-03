@@ -38,6 +38,28 @@ def hud(img, t, day="DIA 1", clock="23:40", place="APTO 904", flash=0.0):
     if flash > 0:
         d.rectangle([50, 190 - dy, 430, 452 - dy], outline=(255, 255, 255), width=int(2 + 7 * flash))
 
+def barras(img, t, barras):
+    """Barras de recurso embaixo do contador (ENERGIA, BATERIA, FOME...). value: 0–1 ou [[tempo, valor], ...] no tempo do episódio."""
+    d = ImageDraw.Draw(img, "RGBA"); dy = 150 if DEITADO else 0
+    y = 470 - dy
+    for b in barras:
+        v = b.get("value", b.get("valor", 1.0))
+        if isinstance(v, list):
+            ks = sorted(v); v = ks[0][1]
+            for (t0, v0), (t1, v1) in zip(ks, ks[1:]):
+                if t0 <= t <= t1: v = v0 + (v1 - v0) * (t - t0) / max(1e-6, t1 - t0); break
+            else:
+                if t > ks[-1][0]: v = ks[-1][1]
+        v = max(0.0, min(1.0, float(v)))
+        cor = tuple(b.get("color", b.get("cor", (110, 210, 110))))[:3]
+        if v < 0.25 and int(t * 3) % 2 == 0: cor = (230, 70, 60)          # pouco: pisca em vermelho
+        x0, w, h = 64, 336, 18
+        d.text((x0, y), str(b.get("label", b.get("rotulo", "")))[:20].upper(), font=font("mono", 26), fill=(230, 230, 224), stroke_width=3, stroke_fill=(0, 0, 0))
+        d.rounded_rectangle([x0, y + 36, x0 + w, y + 36 + h], 6, fill=(0, 0, 0, 170), outline=(200, 200, 200, 200), width=2)
+        if v > 0: d.rounded_rectangle([x0 + 3, y + 39, x0 + 3 + (w - 6) * v, y + 33 + h], 4, fill=cor + (240,))
+        y += 74
+
+
 def _word_times(txt, a, b):
     words = txt.split(); tot = sum(len(w) + 1 for w in words) or 1; t = a; out = []
     for w in words:
