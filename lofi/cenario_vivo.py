@@ -26,6 +26,7 @@ VIDA = {
     "beco":        {"mariposas": [(585, 775)], "gotas": [(300, 900, 1650), (760, 820, 1700)], "vapor": [(440, 1700)],
                     "moscas": [(220, 1580)], "papel": (1500, 1880)},
     "esgoto":      {"gotas": [(420, 520, 1500), (650, 600, 1550), (540, 420, 1450)], "vapor": [(540, 1500)]},
+    "associacao":  {"pisca": [(540, 226)]},
     "camara_fria": {"vapor": [(380, 1650), (700, 1700)], "pisca": [(540, 330)]},
     "estacionamento": {"pisca": [(400, 520), (680, 520)], "gotas": [(820, 700, 1700)]},
     "metro":       {"gotas": [(560, 900, 1600)], "poeira": (300, 700, 800, 1500)},
@@ -42,7 +43,7 @@ VIDA = {
 }
 VIDA_TIPOS = ("pisca", "mariposas", "gotas", "vapor", "vagalumes", "poeira", "moscas", "papel", "farol", "passaros")
 PAREDE_RETA = {"entrada", "apartamento", "deposito", "delegacia", "loja"}
-INTERNOS = {"apartamento", "entrada", "corredor", "hospital", "escola", "vagao", "delegacia", "mercado", "loja", "deposito",
+INTERNOS = {"associacao", "masmorra", "trono", "apartamento", "entrada", "corredor", "hospital", "escola", "vagao", "delegacia", "mercado", "loja", "deposito",
             "camara_fria", "estacionamento", "igreja", "escada", "metro", "esgoto"}
 
 

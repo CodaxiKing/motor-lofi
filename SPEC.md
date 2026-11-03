@@ -550,3 +550,6 @@ personagens 1 · `frente` 1,4). Recursos vindos do addon "motor-lofi-v4": piscar
 camada `"frente"` (primeiro plano) e **barras de recurso** no contador (vale para qualquer estilo):
 `"hud": {..., "barras": [{"label": "BATERIA DO RÁDIO", "value": [[0, 0.6], [90, 0.1]], "color": [110, 180, 230]}]}` (abaixo de 25% pisca em vermelho). Funciona em pé e deitado, com legendas, HUD,
 gancho falado, placar e escolha do motor. O `lofi.check` acusa imagem faltando. As imagens de `series/<serie>/imagens/` vão para o repositório (commit) para serem reaproveitadas nos próximos episódios.
+
+## Portais e caçadores (`lofi/scenes_fenda.py`)
+Cenários `fenda` (props `aberta`, `cor`, `pulso`), `masmorra` (`portal`, `cor`, `luz`), `associacao` (`rank`: "E"…"S" ou "0", `erro`) e `trono` (`olhos`, `ocupado`, `cor`). Marcas no `CATALOGO.md`. Objeto na mão novo: `"prop": "adaga"`.

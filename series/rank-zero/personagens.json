@@ -1,0 +1,23 @@
+{
+ "_leia": "Fichas travadas da série Rank Zero. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito. O cachecol azul é a cor de destaque do Caio; monstros têm 'monstro' no nome para a capa os reconhecer.",
+ "caio": {"skin": "moreno", "top_style": "hoodie", "top": [58, 62, 74], "inner": [220, 220, 214], "legs": [36, 42, 58], "shoes": [214, 214, 208],
+          "hair": "spiky", "hair_color": [20, 18, 22], "scarf": [60, 150, 255], "backpack": [226, 176, 44], "body": "thin"},
+ "tanque": {"skin": "claro", "top_style": "uniform", "top": [226, 176, 44], "legs": [52, 54, 62], "shoes": [60, 44, 34],
+            "hair": "short", "hair_color": [86, 54, 32], "hat": "cap", "hat_color": [52, 54, 62], "backpack": [60, 64, 74], "body": "fat", "scale": 1.08},
+ "tanque_campeao": {"skin": "claro", "top_style": "leather", "top": [34, 28, 34], "inner": [214, 54, 48], "legs": [30, 28, 34], "shoes": [20, 18, 22],
+            "hair": "short", "hair_color": [86, 54, 32], "scarf": [214, 54, 48], "cape": [120, 26, 30], "body": "fat", "scale": 1.12},
+ "vega": {"skin": "oliva", "top_style": "trench", "top": [232, 230, 224], "inner": [40, 42, 54], "legs": [40, 42, 54], "shoes": [24, 24, 30],
+          "hair": "bob", "hair_color": [198, 202, 214], "acc": ["badge", "earrings"], "scarf": [204, 42, 58], "body": "tall"},
+ "zefa": {"skin": "escuro", "top_style": "sweater", "top": [130, 88, 168], "skirt": [64, 56, 84], "tights": [64, 56, 84], "shoes": [38, 32, 36],
+          "hair": "bun", "hair_color": [210, 210, 214], "glasses": true, "acc": ["necklace"], "body": "old"},
+ "prates": {"skin": "palido", "top_style": "suit", "top": [28, 34, 58], "inner": [238, 238, 232], "tie": [226, 186, 72], "legs": [28, 34, 58], "shoes": [14, 14, 18],
+            "hair": "short", "hair_color": [176, 176, 182], "glasses": true, "acc": ["tie", "badge"], "body": "tall"},
+ "anfitriao": {"skin": [232, 214, 150], "top_style": "suit", "top": [20, 14, 38], "inner": [226, 186, 72], "legs": [20, 14, 38], "shoes": [12, 10, 20],
+            "hat": "crown", "hat_color": [232, 196, 96], "cape": [68, 40, 120], "ghost": true, "body": "tall", "scale": 1.18},
+ "reporter": {"skin": "medio", "top_style": "suit", "top": [150, 38, 48], "inner": [238, 236, 230], "legs": [40, 40, 50], "shoes": [20, 20, 24],
+            "hair": "long", "hair_color": [44, 28, 24], "acc": ["earrings"]},
+ "monstro_goblin": {"skin": [104, 150, 82], "top_style": "torn", "top": [74, 60, 44], "legs": [58, 46, 36], "shoes": [46, 62, 38],
+            "hair": "bald", "body": "thin", "scale": 0.74, "infected": true},
+ "monstro_guardiao": {"skin": [66, 70, 96], "top_style": "torn", "top": [34, 36, 54], "legs": [34, 36, 54], "shoes": [20, 20, 32],
+            "hair": "mohawk", "hair_color": [90, 170, 255], "body": "fat", "scale": 1.5, "infected": true}
+}

@@ -688,6 +688,11 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             d.rounded_rectangle([hx_ - 34, hy_ - 32, hx_ + 40, hy_ + 22], 9, fill=(120, 80, 54, 255), outline=OUT, width=4)
             for k in range(3): d.line([(hx_ - 24, hy_ - 20 + k * 12), (hx_ + 4, hy_ - 20 + k * 12)], fill=(60, 40, 28, 255), width=4)
             d.ellipse([hx_ + 14, hy_ - 14, hx_ + 30, hy_ + 2], fill=(230, 210, 160, 255))
+        elif pr == "adaga":     # adaga de caçador: lâmina azulada para cima, guarda e cabo
+            d.polygon([(hx_ - 11, hy_ - 14), (hx_ + 11, hy_ - 14), (hx_ + 3, hy_ - 118), (hx_ - 3, hy_ - 118)], fill=(176, 214, 255, 255), outline=OUT)
+            d.line([(hx_, hy_ - 20), (hx_, hy_ - 108)], fill=(238, 248, 255, 255), width=3)
+            d.rounded_rectangle([hx_ - 25, hy_ - 18, hx_ + 25, hy_ - 7], 4, fill=(66, 70, 88, 255), outline=OUT, width=3)
+            d.rounded_rectangle([hx_ - 8, hy_ - 7, hx_ + 8, hy_ + 26], 4, fill=(38, 40, 54, 255), outline=OUT, width=3)
         elif pr == "key":
             d.ellipse([hx_ - 6, hy_ - 30, hx_ + 18, hy_ - 6], outline=(230, 190, 70, 255), width=6)
             d.line([(hx_ + 6, hy_ - 8), (hx_ + 6, hy_ + 26)], fill=(230, 190, 70, 255), width=6)

@@ -1,0 +1,158 @@
+{
+ "lugares": {
+  "apartamento": {
+   "cenarios": [
+    "apartamento",
+    "entrada",
+    "janela"
+   ],
+   "nota": "apartamento do Caio e da dona Zefa, no Brás, 4º andar"
+  },
+  "predio": {
+   "cenarios": [
+    "corredor",
+    "escada",
+    "telhado",
+    "portao"
+   ],
+   "nota": "prédio antigo do Brás"
+  },
+  "rua": {
+   "cenarios": [
+    "rua",
+    "rua_amanhecer",
+    "beco",
+    "entrada_metro"
+   ],
+   "nota": "ruas do centro de São Paulo, do Brás até a Sé"
+  },
+  "fenda": {
+   "cenarios": [
+    "fenda"
+   ],
+   "nota": "rua isolada com a Fenda aberta (Sé, Paulista e outras)"
+  },
+  "masmorra": {
+   "cenarios": [
+    "masmorra"
+   ],
+   "nota": "interior de uma Fenda; a Fenda-Mãe sobe até o trono"
+  },
+  "associacao": {
+   "cenarios": [
+    "associacao"
+   ],
+   "nota": "sede da Associação de Caçadores, na Sé"
+  },
+  "metro": {
+   "cenarios": [
+    "metro",
+    "vagao"
+   ],
+   "nota": "estação Sé e os trens parados"
+  },
+  "esgoto": {
+   "cenarios": [
+    "esgoto"
+   ],
+   "nota": "galeria sob o centro, onde abrem as Fendas clandestinas"
+  },
+  "hospital": {
+   "cenarios": [
+    "hospital"
+   ],
+   "nota": "hospital para onde vão os sobreviventes de Fenda"
+  },
+  "viaduto": {
+   "cenarios": [
+    "viaduto"
+   ],
+   "nota": "viaduto do Chá e a vista da Sé"
+  },
+  "trono": {
+   "cenarios": [
+    "trono"
+   ],
+   "nota": "salão dos Altos; só se chega pela Fenda-Mãe"
+  }
+ },
+ "ligacoes": [
+  [
+   "apartamento",
+   "predio",
+   "pela porta do apartamento até o corredor"
+  ],
+  [
+   "predio",
+   "rua",
+   "pelo portão do prédio"
+  ],
+  [
+   "rua",
+   "fenda",
+   "passando a fita de isolamento"
+  ],
+  [
+   "fenda",
+   "masmorra",
+   "entrando pela Fenda"
+  ],
+  [
+   "rua",
+   "associacao",
+   "pela porta da sede, na praça da Sé"
+  ],
+  [
+   "rua",
+   "metro",
+   "pela escada da estação Sé"
+  ],
+  [
+   "rua",
+   "hospital",
+   "pela avenida"
+  ],
+  [
+   "rua",
+   "viaduto",
+   "subindo a alça do viaduto"
+  ],
+  [
+   "rua",
+   "esgoto",
+   "pela tampa de inspeção do beco"
+  ],
+  [
+   "metro",
+   "esgoto",
+   "pela porta de serviço do túnel"
+  ],
+  [
+   "esgoto",
+   "masmorra",
+   "entrando pela Fenda clandestina"
+  ],
+  [
+   "masmorra",
+   "trono",
+   "no fim da Fenda-Mãe"
+  ]
+ ],
+ "inicio": {
+  "lugar": "apartamento",
+  "dia": 0,
+  "hora": "20:40",
+  "rotulo": "DIA",
+  "inventario": {
+   "caio": [
+    "celular",
+    "mochila"
+   ],
+   "zefa": [
+    "tesoura"
+   ]
+  },
+  "nota": "Caio e dona Zefa vendo a TV; o celular ainda não está rachado"
+ },
+ "fim": {}
+}

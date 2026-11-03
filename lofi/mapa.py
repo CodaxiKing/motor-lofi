@@ -224,6 +224,29 @@ MAPA["camara_fria"] = {
 MAPA["cftv"] = {"chao": None, "marcas": {}}
 LUGAR.update({"loja": "loja", "deposito": "loja", "camara_fria": "loja", "cftv": "loja"})
 
+# Portais e caçadores (lofi/scenes_fenda.py)
+MAPA["fenda"] = {
+    "chao": [(0, 1270), (1080, 1270), (1080, 1900), (0, 1900)],
+    "marcas": {"portal": {"x": 540, "y": 1340, "view": "back", "nota": "diante da Fenda, de costas (prestes a entrar)"},
+               "centro": {"x": 540, "y": 1660}, "esq": {"x": 280, "y": 1700}, "dir": {"x": 800, "y": 1700},
+               "frente": {"x": 540, "y": 1820, "nota": "perto da câmera, com a Fenda atrás"}}}
+MAPA["masmorra"] = {
+    "chao": [(420, 1180), (660, 1180), (1060, 1900), (20, 1900)],
+    "marcas": {"portal": {"x": 540, "y": 1220, "nota": "junto ao portal, lá no fundo (pequeno)"}, "fundo": {"x": 540, "y": 1340},
+               "meio": {"x": 540, "y": 1540}, "esq": {"x": 340, "y": 1700}, "dir": {"x": 740, "y": 1700},
+               "frente": {"x": 540, "y": 1820}}}
+MAPA["associacao"] = {
+    "chao": [(0, 1230), (1080, 1230), (1080, 1900), (0, 1900)],
+    "marcas": {"balcao": {"x": 520, "y": 1480, "facing": -1, "nota": "de frente para o balcão, à direita dele"},
+               "painel": {"x": 700, "y": 1290, "view": "back", "nota": "olhando o painel de ranks, de costas"},
+               "centro": {"x": 620, "y": 1650}, "esq": {"x": 330, "y": 1740}, "dir": {"x": 820, "y": 1720},
+               "frente": {"x": 560, "y": 1820}}}
+MAPA["trono"] = {
+    "chao": [(260, 1250), (820, 1250), (1080, 1900), (0, 1900)],
+    "marcas": {"trono": {"x": 540, "y": 1260, "nota": "ao pé do trono, lá no fundo"}, "meio": {"x": 540, "y": 1500},
+               "esq": {"x": 320, "y": 1720}, "dir": {"x": 760, "y": 1720}, "frente": {"x": 540, "y": 1820}}}
+LUGAR.update({"masmorra": "masmorra", "fenda": "fenda", "associacao": "associacao", "trono": "trono"})
+
 
 def lugar(cena):
     """Lugar de um cenário (o próprio nome quando não há grupo). None = não muda o lugar (ex.: rádio portátil)."""

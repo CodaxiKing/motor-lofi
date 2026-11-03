@@ -9,7 +9,7 @@ import sys, json
 TRANSITIONS = ["cut", "whip", "flash", "fade", "zoom", "glitch", "dip"]
 VIEWS = ["front", "back", "side", "3q"]
 WEATHER = {"rain": ["forte", "normal", "fraca", "nenhuma"], "time": ["dia", "entardecer", "amanhecer", "madrugada", "noite"]}
-PROPS = ["radio", "flashlight", "phone", "handset", "key", "bag"]
+PROPS = ["radio", "flashlight", "phone", "handset", "key", "bag", "adaga"]
 BODIES = ["child", "old", "tall", "fat", "thin"]
 
 
