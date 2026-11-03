@@ -93,18 +93,18 @@
   },
   "1": {
    "lugar": "casa_joao",
+   "dia": 0,
+   "hora": "19:45",
    "inventario": {
     "joao": [
      "celular",
      "mochila",
      "chave",
-     "radio",
-     "radio",
      "radio"
     ],
     "bia": [
      "prancheta",
-     "pasta"
+     "lanterna"
     ],
     "rubens": [
      "controle"
@@ -112,7 +112,8 @@
     "geraldo": [
      "chaves"
     ]
-   }
+   },
+   "nota": "João na porta da kitnet, com o rádio sem bateria; Bia escondida atrás do balcão com a Cida solta; Geraldo e Rubens nos fundos; a pasta atrás das caixas no estoque"
   }
  }
 }
