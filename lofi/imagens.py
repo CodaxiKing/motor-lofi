@@ -6,6 +6,8 @@ Fluxo:
   2. Roteiro:   cada cena tem uma linha  IMAGENS: fundo `hospital_corredor` (corredor de hospital à noite) · `lia_frente_medo` · `soldado_34_neutro`
                 python3 -m lofi.imagens prompts series/<serie>/epNN_roteiro.md
                 -> epNN_imagens.md: só as imagens que ainda não existem em series/<serie>/imagens/, cada uma com o prompt pronto
+  Variantes opcionais de cada personagem: <nome>_piscando (olhos fechados) e <nome>_falando (boca aberta,
+  usada enquanto a voz de "fala" estiver alta). Mesma imagem, só os olhos ou a boca mudam.
   3. Montar:    python3 -m lofi.imagens importar series/<serie> arquivo.png lia_frente_medo
                 (tira o fundo liso se a imagem não vier transparente, corta as sobras e salva em imagens/<nome>.png)
                 no JSON, cada plano usa  "imagens": {"fundo": "hospital_corredor", "personagens": [{"img": "lia_frente_medo", "pos": "esq", "fala": "lia"}]}
@@ -385,8 +387,14 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
         im = carregar(pasta_serie, p["img"])
         pisc = p.get("piscar", p["img"] + "_piscando")              # olhos fechados por 0,12 s a cada ~3,6 s
         periodo = 3.6 + (k * 0.7)
-        if pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png")):
+        piscou = pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png"))
+        if piscou:
             im = carregar(pasta_serie, pisc)
+        # boca: com a voz alta, troca pela variante de boca aberta (<img>_falando), se existir
+        boca = p.get("boca", p["img"] + "_falando")
+        if (not piscou and nivel and p.get("fala") and boca and nivel(p["fala"], t) > 0.35
+                and os.path.exists(os.path.join(pasta_serie, PASTA, boca + ".png"))):
+            im = carregar(pasta_serie, boca)
         if p.get("espelhar"): im = im.transpose(Image.FLIP_LEFT_RIGHT)
         pos = p.get("pos", "centro"); fx = POS.get(pos, pos if isinstance(pos, (int, float)) else 0.5)
         if p.get("andar"):                                           # atravessa a cena: [de, até] (esq/centro/dir ou 0–1)

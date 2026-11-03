@@ -63,6 +63,16 @@ def test_piscar_andar_frente_e_barras():
             xs = [i % im.width for i, p in enumerate(im.getdata()) if p[0] > 150 and p[1] < 80]
             return sum(xs) / len(xs)
         assert x_vermelho(imagens.quadro(shot, 3.9, d, (108, 192))) > x_vermelho(imagens.quadro(shot, 0.5, d, (108, 192))) + 20
+    with tempfile.TemporaryDirectory() as d:          # boca: variante _falando com a voz alta
+        _serie(d); os.makedirs(os.path.join(d, "imagens"))
+        for nome, cor in (("lia_frente_medo", (200, 30, 30, 255)), ("lia_frente_medo_falando", (30, 30, 200, 255))):
+            fig = Image.new("RGBA", (44, 84), (0, 0, 0, 0)); ImageDraw.Draw(fig).rectangle([2, 2, 41, 81], fill=cor)
+            fig.save(os.path.join(d, "imagens", nome + ".png"))
+        shot = {"start": 0, "end": 4, "imagens": {"personagens": [{"img": "lia_frente_medo", "fala": "lia"}]}}
+        azul = lambda im: sum(1 for p in im.getdata() if p[2] > 150 and p[0] < 80)
+        assert azul(imagens.quadro(shot, 1.0, d, (108, 192), lambda v, t: 0.9)) > 50
+        assert azul(imagens.quadro(shot, 1.0, d, (108, 192), lambda v, t: 0.1)) == 0
+        assert azul(imagens.quadro(shot, 1.0, d, (108, 192))) == 0           # sem voz: boca fechada
     from lofi import text
     im = Image.new("RGB", (1080, 1920)); text.barras(im, 5.0, [{"label": "ENERGIA", "value": [[0, 1.0], [10, 0.0]]}])
     assert im.getbbox() is not None
