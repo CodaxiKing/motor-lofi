@@ -6,9 +6,10 @@
     python3 -m lofi.render episodio.json --test 5 12.5    # só alguns quadros (PNG)
 """
 import sys, os, json, math, subprocess
+if "--deitado" in sys.argv: os.environ["LOFI_DEITADO"] = "1"     # versão 16:9 (YouTube): antes de carregar o motor
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
-from .core import W, H, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
+from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
 from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
@@ -63,6 +64,10 @@ class Episode:
         self.spec_path = os.path.abspath(spec_path)
         self.base = os.path.dirname(self.spec_path)
         self.spec = json.load(open(spec_path, encoding="utf-8"))
+        # versão deitada (YouTube): sai como <nome>_youtube.mp4; as telas de texto (escolha, placar, recap...) vêm do vídeo em pé
+        self.vertical = os.path.join(self.base, self.spec.get("out", "episodio.mp4"))
+        if DEITADO: self.spec["out"] = os.path.splitext(os.path.basename(self.vertical))[0] + "_youtube.mp4"
+        self._quadros_v = {}
         self.visual_profile = resolve_profile(self.spec.get("visual_profile", "lofi_classic"), self.spec.get("visual_overrides"))
         sp = self.spec
         self.fps = sp.get("fps", 30)
@@ -349,7 +354,7 @@ class Episode:
     def prepare_actor(self, a, sc, shot, t, rel, norm, camx, cam, light, focus_on, idx):
         x, y, base_scale = self.actor_state(a, sc, rel, norm)
         z, x0, y0 = cam
-        wx = x - camx * a.get("depth", sc.depths[1])
+        wx = x + XO - camx * a.get("depth", sc.depths[1])
         lift = val(a.get("lift", 0), rel, norm, 0)
         trem = val(a.get("tremble", 0), rel, norm, 0)
         sx = (wx - x0) * z + (math.sin(t * 61) * 4 * trem if trem else 0)
@@ -498,7 +503,7 @@ class Episode:
             x, y, s = self.actor_state(a, sc, rel, norm)
             cd = char_def(a["char"], self.custom.get(a["char"]))
             h = CH * 0.5 * s * cd.get("scale", 1.0) * 0.93
-            wx = x - camx * a.get("depth", sc.depths[1])
+            wx = x + XO - camx * a.get("depth", sc.depths[1])
             caixas.append((wx, y, h))
         push = 1 + 0.035 * norm * cam.get("push", 1.0)                 # aproximação lenta: o plano nunca fica parado
         if plano == "medio":
@@ -543,20 +548,21 @@ class Episode:
                 z = val(cam.get("close_zoom", 2.9), rel, norm, 2.9)
             else:                                    # close de verdade: cabeça e ombros enchendo o quadro, em qualquer distância
                 z = min(9.0, max(2.0, (1.85 if self.redes else 2.3) * H / sh))
-            hx, hy = x - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
-            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else (780 if self.redes else 960)) / z
+            hx, hy = x + XO - camx * sc.depths[1], y - sh * (1 - HEAD_FRAC) * 0.97
+            x0, y0 = hx - W / 2 / z, hy - (820 if "close_zoom" in cam or self.spec.get("plano_padrao", "auto") == "aberto" else (780 if self.redes else 960)) / H_D * H / z
             k = ease(c01(rel / cam.get("close_in", 0.0001)))
             z = lerp(1.0, z, k); x0 = lerp(0, x0, k); y0 = lerp(0, y0, k)
         elif follow is not None and int(follow) < len(actors):
             a = actors[int(follow)]; x, y, s = self.actor_state(a, sc, rel, norm)
             z = val(cam.get("zoom", 1.3), rel, norm, 1.3)
             camx = val(cam.get("x", (x - 540) * 0.25), rel, norm)
-            x0 = (x - camx * sc.depths[1]) - W / 2 / z
-            y0 = (H - H / z) * cy
+            x0 = (x + XO - camx * sc.depths[1]) - W / 2 / z
+            y0 = (HW - H / z) * cy
         elif self.plano_de(shot, sc) in ("conjunto", "medio"):
             z, x0, y0 = self.enquadrar(self.plano_de(shot, sc), shot, sc, camx, rel, norm)
         else:
-            x0 = (W - W / z) * cx; y0 = (H - H / z) * cy
+            if DEITADO and "cy" not in cam: cy = self._faixa_deitada(sc, z)
+            x0 = (W - W / z) * cx; y0 = (HW - H / z) * cy
         if self.redes and shot.get("hook"):   # gancho: entra num "soco" de zoom que assenta em 0,4 s
             cxw, cyw = x0 + W / 2 / z, y0 + H / 2 / z
             z = z * (1 + 0.18 * (1 - ease_out(c01(rel / 0.4)))); x0, y0 = cxw - W / 2 / z, cyw - H / 2 / z
@@ -567,8 +573,26 @@ class Episode:
             hx_, hy_, hr_ = fx.handheld(t, hh if not isinstance(hh, bool) else 10)
             dx += hx_; dy += hy_
         x0 -= dx / z; y0 -= dy / z
-        x0 = max(-30, min(W - W / z + 30, x0)); y0 = max(-30, min(H - H / z + 30, y0))
+        x0 = max(-30, min(W - W / z + 30, x0)); y0 = max(-30, min(HW - H / z + 30, y0))
         return camx, (z, x0, y0), rot
+
+    def _tela(self, c):
+        """Ponto/círculo escrito em coordenadas da tela em pé (x 0–1080, y 0–1920) -> tela atual (deitada: pela câmera)."""
+        c = tuple(c)
+        if not DEITADO or not self._cam: return c
+        _, (z, x0, y0), _ = self._cam
+        out = ((c[0] + XO - x0) * z, (c[1] - y0) * z) + tuple(v * z for v in c[2:3]) + c[3:]
+        return out
+
+    def _faixa_deitada(self, sc, z):
+        """Deitado, plano aberto: que faixa de altura do cenário mostrar (0 = topo, 1 = base). Fica com o chão e as
+        cabeças de quem está de pé; cenários sem chão (rádio, monitor...) ficam no meio."""
+        from .mapa import MAPA
+        if MAPA.get(sc.name, {}).get("chao") is None: return 0.5
+        y0g, y1g = sc.ground[0], sc.ground[1]
+        pes = y0g + (y1g - y0g) * 0.55
+        alvo = pes + 0.16 * H / z - H / z                       # pés a ~84% da altura do quadro
+        return max(0.0, min(1.0, alvo / max(1, HW - H / z)))
 
     # ---------------- planos ----------------
     def scene_frame(self, shot, t, t_anim=None):
@@ -607,11 +631,11 @@ class Episode:
         img = sc.render_back(t_anim, camx, props)
         vz = val(shot.get("camera", {}).get("vertigo"), rel, norm)
         if vz and vz != 1.0:
-            cw, ch = W / vz, H / vz
-            img = crop_zoom(img, (W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2)
+            cw, ch = img.width / vz, img.height / vz
+            img = crop_zoom(img, (img.width - cw) / 2, (img.height - ch) / 2, (img.width + cw) / 2, (img.height + ch) / 2)
         focus_on = val(shot.get("camera", {}).get("focus"), rel, norm)
-        if z != 1.0 or x0 or y0:
-            img = crop_zoom(img, max(0, x0), max(0, y0), min(W, x0 + W / z), min(H, y0 + H / z))
+        if z != 1.0 or x0 or y0 or img.size != (W, H):
+            img = crop_zoom(img, max(0, x0), max(0, y0), min(img.width, x0 + W / z), min(img.height, y0 + H / z), size=(W, H))
             dof = shot.get("camera", {}).get("dof", 1.0) * max(0.0, (z - 1.15) * 2.2)
             if focus_on is not None: dof = max(dof, 2.5)
             if dof > 0.3: img = fast_blur(img, dof) if dof >= 6 else img.filter(ImageFilter.BoxBlur(dof * 0.8))
@@ -647,13 +671,15 @@ class Episode:
         dk = val(shot.get("dark"), rel, norm, 0) or 0
         if dk:
             dk *= (1 - fx.flash_amount(t_anim, self.flashes))
-            circles = [tuple(c) for c in shot.get("lights", [])] + self._lit
+            circles = [self._tela(c) for c in shot.get("lights", [])] + self._lit
             img = fx.darkness(img, dk, beams=self._beams, circles=circles, soft_circles=self._lit_soft)
         for i, a in enumerate(actors):
             if not a.get("fg") or rel < a.get("enter", -1e9) or rel > a.get("exit", 1e9): continue
             x, y = val(a.get("x", 200), rel, norm), val(a.get("y", 2350), rel, norm)
+            kfg = 1.0
+            if DEITADO: x, y = x * W / W_D, y * H / H_D; kfg = H / H_D * 1.25     # primeiro plano (por cima do ombro) na tela larga
             spr, anc = render_char(a["char"], view=a.get("view", "back"), emotion="neutral", pose=val(a.get("pose", "idle"), rel, norm), t=t_anim,
-                                   scale=val(a.get("scale", 3.0), rel, norm), light=LIGHTS[a.get("light", "silhouette")], facing=a.get("facing", 1),
+                                   scale=val(a.get("scale", 3.0), rel, norm) * kfg, light=LIGHTS[a.get("light", "silhouette")], facing=a.get("facing", 1),
                                    custom=self.custom.get(a["char"]), talk=min(1, self.level(a.get("voice", a["char"]), t, 4)))
             spr = spr.filter(ImageFilter.GaussianBlur(a.get("blur", 5)))
             paste_char(img, spr, anc, x, y)
@@ -782,7 +808,8 @@ class Episode:
             rel = t - shot["start"]; p = ease_out(c01(rel / 0.2))
             txt = hk["text"] if isinstance(hk, dict) else str(hk)
             y = hk.get("y", 860) if isinstance(hk, dict) else 860
-            if isinstance(hk, dict) and hk.get("fala") and "y" not in hk and self._heads:
+            if DEITADO: y = H * 0.42
+            if isinstance(hk, dict) and hk.get("fala") and ("y" not in hk or DEITADO) and self._heads:
                 y = self.pick_sub_y(shot) - (138 if "\n" in txt else 0)      # gancho falado: o texto fica fora do rosto
             lines = txt.split("\n")
             if self.redes:   # aparece palavra por palavra desde o 1º quadro (o 1º quadro vira a capa no feed)
@@ -854,7 +881,7 @@ class Episode:
             if sp.get("formato") == "extra": lab = "EXTRA"
             f = font("title", 64 if big else 42); bb = d.textbbox((0, 0), lab, font=f); w = bb[2] - bb[0]
             p = ease_out(c01(rel / 0.3)) if big else 1.0
-            x1 = W - 56; x0 = x1 - w - 44; y0 = 236 - (1 - p) * 120; y1 = y0 + (92 if big else 66)
+            x1 = W - 56; x0 = x1 - w - 44; y0 = (60 if DEITADO else 236) - (1 - p) * 120; y1 = y0 + (92 if big else 66)
             d.rounded_rectangle([x0, y0, x1, y1], 18, fill=RED if big else (150, 30, 30))
             text_center(d, lab, (x0 + x1) / 2, (y0 + y1) / 2, f, (255, 255, 255))
             if big and sp.get("series_title"):
@@ -863,7 +890,7 @@ class Episode:
             # carimbo do voto da maioria, rápido e no alto
             if sp.get("voto") and 0.2 <= rel < 3.4 and not any(s.get("type") == "placar" for s in self.shots):
                 q = ease_out(c01((rel - 0.2) / 0.25)) * (1 - ease_out(c01((rel - 3.1) / 0.3)))
-                yy = 470 - (1 - q) * 60
+                yy = (240 if DEITADO else 470) - (1 - q) * 60
                 fw = font("title", 96); bw = d.textbbox((0, 0), sp["voto"], font=fw); ww = max(bw[2] - bw[0], 420)
                 d.rounded_rectangle([W / 2 - ww / 2 - 34, yy - 92, W / 2 + ww / 2 + 34, yy + 70], 24, fill=(12, 12, 16), outline=RED, width=6)
                 text_center(d, "A MAIORIA ESCOLHEU", W / 2, yy - 52, font("mono", 32), (235, 232, 225))
@@ -872,7 +899,7 @@ class Episode:
         pq = self.pergunta()
         if pq and pq[0] <= t < pq[1] and typ != "choice":
             q = ease_out(c01((t - pq[0]) / 0.3)) * (1 - ease_out(c01((t - (pq[1] - 0.3)) / 0.3)))
-            yy = 560 - (1 - q) * 80
+            yy = (250 if DEITADO else 560) - (1 - q) * 80
             fq = font("title", 72); bq = d.textbbox((0, 0), pq[2], font=fq); ww = min(W - 220, bq[2] - bq[0])
             d.rounded_rectangle([W / 2 - 40 - ww / 2 - 36, yy - 70, W / 2 - 40 + ww / 2 + 36, yy + 96], 28, fill=(240, 236, 228))
             text_center(d, pq[2], W / 2 - 40, yy - 8, fq if bq[2] - bq[0] <= W - 220 else font("title", 56), (20, 20, 22))
@@ -882,7 +909,7 @@ class Episode:
         if cs and cs["start"] - 3 <= t < cs["start"] and typ != "choice":
             k = cs["start"] - t; n = int(k) + 1; fr = 1 - (k - int(k))
             pop = 1 + 0.35 * (1 - ease_out(c01(fr / 0.25)))
-            r = 92 * pop; cx, cy = W - 190, 470            # canto direito, abaixo do selo: não cobre rostos nem legenda
+            r = 92 * pop; cx, cy = W - 190, (300 if DEITADO else 470)   # canto direito, abaixo do selo: não cobre rostos nem legenda
             d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(12, 12, 16), outline=RED, width=10)
             d.arc([cx - r - 18, cy - r - 18, cx + r + 18, cy + r + 18], -90, -90 + 360 * (1 - fr), fill=(255, 255, 255), width=8)
             text_center(d, str(n), cx, cy, font("title", int(150 * pop)), (255, 255, 255))
@@ -924,6 +951,10 @@ class Episode:
         return res
 
     def pick_sub_y(self, shot):
+        if DEITADO:          # tela larga: embaixo; se um rosto estiver lá, em cima
+            y = text.SUB_Y
+            if any(h[1] > 300 and h[0] < W - 300 and h[2] + (h[3] - h[2]) * 0.3 < y + 65 and h[3] > y - 65 for h in self._heads): return 150
+            return y
         if shot.get("sub_y"): return shot["sub_y"]
         av = getattr(self, "_avoid", [])
         if av:   # braço/mão em cena: legenda numa faixa livre (braço > objeto em destaque > cabeças)
@@ -959,6 +990,8 @@ class Episode:
         typ = shot.get("type", "scene")
         if typ == "loop":   # o gancho de trás para frente: o último quadro é o primeiro, e o vídeo emenda sem pulo
             return self.frame(max(0.0, shot["end"] - t - 1.0 / self.fps))
+        if DEITADO and typ in ("title", "choice", "placar", "pensamento", "plano", "detail", "recap"):
+            return self._quadro_em_pe(t)
         slow = shot.get("slowmo")
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
         if typ == "title": img = self.title_frame(shot, t)
@@ -996,6 +1029,26 @@ class Episode:
         img = apply_profile(img, self.visual_profile)
         return img
 
+    def _quadro_em_pe(self, t):
+        """Deitado: telas de texto e planos de detalhe vêm do vídeo em pé já renderizado, no centro da tela larga,
+        com o próprio quadro desfocado e escurecido preenchendo as laterais."""
+        if not os.path.exists(self.vertical):
+            raise RuntimeError(f"versão deitada: renderize antes o vídeo em pé ({self.vertical})")
+        ww, hh = int(round(H * W_D / H_D / 2) * 2), H
+        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.4f}", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
+                            "-pix_fmt", "rgb24", "-s", f"{ww}x{hh}", "-"], capture_output=True)
+        if len(r.stdout) < ww * hh * 3:
+            r = subprocess.run(["ffmpeg", "-v", "error", "-sseof", "-0.1", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
+                                "-pix_fmt", "rgb24", "-s", f"{ww}x{hh}", "-"], capture_output=True)
+        q = Image.frombytes("RGB", (ww, hh), r.stdout[:ww * hh * 3])
+        fundo = q.resize((96, int(96 * hh / ww))).crop((0, int((96 * hh / ww - 54) / 2), 96, int((96 * hh / ww - 54) / 2) + 54))
+        fundo = fundo.filter(ImageFilter.GaussianBlur(3)).resize((W, H), Image.BICUBIC)
+        fundo = ImageEnhance.Brightness(fundo).enhance(0.42)
+        sombra = Image.new("L", (W, H), 0); ImageDraw.Draw(sombra).rectangle([(W - ww) // 2 - 10, 0, (W + ww) // 2 + 10, H], fill=200)
+        fundo.paste((0, 0, 0), (0, 0), sombra.filter(ImageFilter.GaussianBlur(30)))
+        fundo.paste(q, ((W - ww) // 2, 0))
+        return fundo
+
     # ---------------- saída ----------------
     def _ffmpeg_video(self, out, with_audio):
         cmd = ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(self.fps), "-i", "-"]
@@ -1029,6 +1082,8 @@ class Episode:
         for f in [os.path.join(self.base, v) for v in (self.spec.get("voices") or {}).values()] + [os.path.join(self.base, "personagens.json")]:
             if os.path.exists(f): st = os.stat(f); h.update(f"{f}{st.st_size}{st.st_mtime}".encode())
         glob_spec = {k: v for k, v in self.spec.items() if k not in ("shots", "sfx", "music", "out")}
+        if DEITADO:   # o deitado depende do vídeo em pé (telas de texto) e tem cache próprio
+            glob_spec["_deitado"] = os.path.getmtime(self.vertical) if os.path.exists(self.vertical) else 0
         h.update(json.dumps(glob_spec, sort_keys=True, ensure_ascii=False, default=str).encode())
         base = h.hexdigest(); shots = self.spec["shots"]; chaves = []
         for i, sh in enumerate(sorted(shots, key=lambda x: x["start"])):
@@ -1041,7 +1096,7 @@ class Episode:
         """Renderiza só os planos que mudaram desde a última vez (o resto vem de series/<serie>/_cache/)."""
         out = out or os.path.join(self.base, self.spec.get("out", "episodio.mp4"))
         self.build_audio()
-        cache = os.path.join(self.base, "_cache"); os.makedirs(cache, exist_ok=True)
+        cache = os.path.join(self.base, "_cache_deitado" if DEITADO else "_cache"); os.makedirs(cache, exist_ok=True)
         chaves = [(k, a, b) for k, a, b in self._chaves_planos() if b > a]
         falta = [(k, a, b) for k, a, b in chaves if not os.path.exists(os.path.join(cache, k + ".mp4"))]
         print(f"cache: {len(chaves) - len(falta)} de {len(chaves)} planos prontos; renderizando {len(falta)}", flush=True)
@@ -1066,7 +1121,7 @@ class Episode:
         os.remove(lst)
         usados = {k + ".mp4" for k, a, b in chaves}
         for f in os.listdir(cache):                                          # planos antigos que não servem mais
-            if f not in usados: os.remove(os.path.join(cache, f))
+            if f not in usados and f.endswith(".mp4"): os.remove(os.path.join(cache, f))
         print("pronto:", out); return out
 
     def render_parallel(self, jobs=2, out=None):

@@ -95,7 +95,7 @@ def fog(img, t, y=1100, height=700, alpha=0.5, col=(80, 90, 120), speed=18):
     alpha *= NIVEL["fog"]
     if alpha <= 0.01: return
     off = int(t * speed) % W
-    m = FOG.crop((off, 0, off + W, 700)).resize((W, height))
+    m = FOG.crop((off, 0, off + W, 700)).resize((W, max(1, int(height))))
     m = m.point(lambda v: int(v * alpha))
     img.paste(col, (0, int(y - height / 2)), m)
 

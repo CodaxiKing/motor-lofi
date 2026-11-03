@@ -13,7 +13,7 @@ Você é o operador do Motor Lo-Fi. Responda em português. Primeiro anexe o rep
 4. Narração: use `python tools/produzir_skill.py voz roteiro.txt saida/narracao.wav --model /caminho/voz.onnx` para Piper local. ElevenLabs só com consentimento explícito e chave configurada, gerando `.mp3`. Não chame API paga por padrão.
 5. Antes de renderizar, associe o áudio às falas, crie `voices`, `clips` e `subs` com tempos reais. **Nunca presuma que narração gerada já está sincronizada.** Revise os tempos e use a skill `serie-montar` para transcrição/conferência.
 6. Execute `python -m lofi.check saida/ep01.json`, corrija problemas e rode `python -m lofi.render saida/ep01.json --test 2`. Após inspeção, renderize o MP4 se ffmpeg e assets estiverem disponíveis.
-7. Com o MP4 pronto, rode `python -m lofi.extras pacote saida/ep01.json saida/ep01.mp4` e entregue **sempre os quatro**: vídeo, teaser, capa do TikTok e capa do Instagram (mais JSON e manifesto quando existirem). Diga explicitamente o que ficou pendente.
+7. Com o MP4 pronto, rode `python -m lofi.extras pacote saida/ep01.json saida/ep01.mp4` e entregue sempre: vídeo em pé, vídeo deitado (`python -m lofi.render saida/ep01.json --deitado --jobs 2`), capa do TikTok, do Instagram e do YouTube (mais JSON e manifesto quando existirem). Diga explicitamente o que ficou pendente.
 
 ## Segurança e custos
 - Por padrão: offline e sem chamadas remotas. Nunca inclua chaves em logs, JSON, skills ou repositório.

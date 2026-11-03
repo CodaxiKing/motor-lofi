@@ -2,7 +2,7 @@
 """Partículas e luzes práticas: poeira no ar, respingos nos personagens, bafo de frio, feixe de lanterna."""
 import math, random
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
-from .core import W, H, fast_blur
+from .core import W, H, W_D, XO, fast_blur
 
 def dust(img, t, box=(0, 0, W, H), n=60, col=(255, 236, 200), seed=3, alpha=150):
     """Poeira flutuando (fica bonita dentro de feixes de luz)."""
@@ -65,7 +65,7 @@ def flashlight(img, t, origin, angle_deg, length=900, spread=22, color=(255, 240
 def crowd_actors(spec, t_rel):
     """Gera atores de horda com andares variados. spec: {count, area:[x0,y0,x1,y1], dir:1|-1, speed, seed, char, eyes}."""
     r = random.Random(spec.get("seed", 1)); out = []
-    x0, y0, x1, y1 = spec.get("area", [0, 1300, W, 1700])
+    x0, y0, x1, y1 = spec.get("area", [-XO, 1300, W_D + XO, 1700])
     for i in range(spec.get("count", 10)):
         y = r.uniform(y0, y1); bx = r.uniform(x0 - 200, x1 + 200)
         sp = spec.get("speed", 40) * r.uniform(0.5, 1.4)

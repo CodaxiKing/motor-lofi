@@ -11,7 +11,8 @@ e repetem a cada ~3 telas, com elementos espaçados de forma irregular para a re
 """
 import random
 from PIL import Image, ImageDraw, ImageFilter
-from .core import W, H, grad, add_light, font
+from .core import W_D, H_D, XO, grad, add_light, font
+W, H = W_D + 2 * XO, H_D          # o mundo do travelling (deitado: mais largo)
 from . import fx
 
 L = 3 * W          # comprimento da tira que repete

@@ -9,7 +9,7 @@ Primeiro passo de uma série nova, sem anexar nada. Siga a skill **serie-lofi-in
 Responda em português do Brasil.
 
 ## Padrões
-Mapa da cidade em `mundo.json` (lugares, cenários de cada lugar, ligações e o que cada um carrega no início; formato de `series/dia-zero/mundo.json`) · duração por episódio: no mínimo 2 minutos, sem limite máximo · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
+Mapa da cidade em `mundo.json` (lugares, cenários de cada lugar, ligações e o que cada um carrega no início; formato de `series/dia-zero/mundo.json`) · duração por episódio: 3 a 5 minutos (no mínimo 2, sem limite máximo), com subtrama · contador "DIA X · HH:MM" · classificação "todas as idades" (sem sangue), a não ser que o usuário peça "14+".
 
 ## Coletar os dados
 1. Se o usuário já escreveu os dados junto com o comando, use-os e pergunte só o que faltar.
@@ -18,9 +18,9 @@ Mapa da cidade em `mundo.json` (lugares, cenários de cada lugar, ligações e o
    - Gênero? (Suspense/Terror · Mistério/Policial · Comédia/Romance · Fantasia) — o usuário pode digitar outro
    - Formato das vozes? (Com falas dos personagens (Recomendado) · 100% narrado: um narrador conta tudo, sem falas dos personagens)
    - Estilo visual? (Lo-fi desenhado à mão (Recomendado) · Lo-fi liso · Vetor sombreado: sem contorno, sombra em duas tons, roupa com bolsos e cinto)
-3. Na mesma resposta, peça em texto livre, numa lista curta: **ideia da história** (obrigatório), protagonista (nome, jeito, roupa marcante, tipo de corpo), cenário/época, elemento fixo na tela, classificação ("todas as idades" ou "14+"), duração se não for 2–3 min e, no formato 100% narrado, quem narra (um narrador de fora, em 3ª pessoa, ou o protagonista, em 1ª pessoa) (opcionais; o que ficar em branco você decide).
+3. Na mesma resposta, peça em texto livre, numa lista curta: **ideia da história** (obrigatório), protagonista (nome, jeito, roupa marcante, tipo de corpo), cenário/época, elemento fixo na tela, classificação ("todas as idades" ou "14+"), duração se não for 3–5 min e, no formato 100% narrado, quem narra (um narrador de fora, em 3ª pessoa, ou o protagonista, em 1ª pessoa) (opcionais; o que ficar em branco você decide).
 4. **Escolhas por cartão (padrão):** em cada etapa com opções, mostre um cartão de escolha (AskUserQuestion) em vez de decidir sozinho: até 4 perguntas por cartão, 2 a 4 opções cada, a recomendada primeiro com "(Recomendado)", e o usuário sempre pode digitar outra. Junte num cartão só as decisões da mesma etapa e não pergunte o que os argumentos já responderam. Se o usuário não estiver presente (comando agendado ou sem resposta), siga com as recomendadas e diga quais foram.
-5. **Cartão 2 (depois das respostas):** se o formato for 100% narrado, "Quem narra?" (Narrador de fora, 3ª pessoa (Recomendado) · O protagonista, 1ª pessoa) e "Duração por episódio?" (2–3 min (Recomendado) · 3–4 min · 4 min ou mais).
+5. **Cartão 2 (depois das respostas):** se o formato for 100% narrado, "Quem narra?" (Narrador de fora, 3ª pessoa (Recomendado) · O protagonista, 1ª pessoa) e "Duração por episódio?" (3–5 min, com subtrama (Recomendado) · 2–3 min, simples · 5 min ou mais).
 6. **Cartão 3 (com o plano rascunhado, antes de salvar):** "Título da série?" (3 títulos que você propõe) e "Final principal?" (2–3 ideias de verdade por trás do mistério), cada opção com uma linha de descrição; e "Gancho do ep. 1?" (3 perguntas sem resposta). Salve com o que foi escolhido.
 
 ## Entregar

@@ -8,10 +8,10 @@ import math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 from . import partes
-from .core import W, H, grad, add_light, darken, lerp, ease, font, crop_zoom
+from .core import W_D as W, H_D as H, W as W_OUT, H as H_OUT, XO, grad, add_light, darken, lerp, ease, font, crop_zoom
 from . import fx
 
-M = 110                     # margem lateral para paralaxe
+M = 110 + XO                # margem lateral para paralaxe (deitado: + o cenário extra de cada lado)
 S = 2                       # supersampling
 CWX = W + 2 * M
 def P(x, y): return (int((x + M) * S), int(y * S))
@@ -57,9 +57,23 @@ class Scene:
     def scale_at(self, y):
         y0, y1, s0, s1 = self.ground
         return lerp(s0, s1, max(0, min(1, (y - y0) / (y1 - y0))))
-    def crop(self, layer, camx, depth):
-        off = int(M - camx * depth); off = max(0, min(2 * M, off))
+    def crop(self, layer, camx, depth, largo=False):
+        off = int(M - camx * depth); off = max(M - 110, min(M + 110, off))
+        if largo and XO: return layer.crop((off - XO, 0, off + W + XO, H))     # mundo largo (deitado)
         return layer.crop((off, 0, off + W, H))
+    def _alargar(self, centro, camx, antes=None):
+        """Deitado: o quadro em pé (com tudo o que é dinâmico) no meio e as laterais do cenário dos dois lados.
+        Se a parte dinâmica escureceu ou clareou o quadro inteiro (luz apagada, blecaute), as laterais acompanham."""
+        larga = self.crop(self.back, camx, self.depths[0], largo=True).convert("RGB")
+        if self.mid is not None:
+            m = self.crop(self.mid, camx, self.depths[1], largo=True); larga.paste(m, (0, 0), m)
+        if antes is not None:
+            a = np.asarray(antes.resize((135, 240)), dtype=np.float32) + 4; b = np.asarray(centro.resize((135, 240)), dtype=np.float32) + 4
+            k = np.median(b / a, axis=(0, 1))
+            if np.any(np.abs(k - 1) > 0.04):
+                arr = np.clip(np.asarray(larga, dtype=np.float32) * k, 0, 255).astype(np.uint8); larga = Image.fromarray(arr)
+        larga.paste(centro, (XO, 0))
+        return larga
     clouds = None            # (y_min, y_max, cor) para nuvens se movendo
     ripples = None           # lista de (x, y, w) de poças com ondinhas
     def sky(self, img, t, camx):
@@ -79,30 +93,41 @@ class Scene:
             fx.rain(img, t, (max(0, x0 + dx), y0, min(W, x1 + dx), y1), self.rain_strength, near=False)
         if self.mid is not None:
             m = self.crop(self.mid, camx, self.depths[1]); img.paste(m, (0, 0), m)
+        antes = img.copy() if XO else None
         self.dynamic(img, t, camx, props)
         from . import cenario_vivo
         cenario_vivo.vida(self, img, t, camx, props, props.get("_vida", True))
+        if XO: img = self._alargar(img, camx, antes)
         return img
     def render_front(self, img, t, camx, props, flashes):
         zc = getattr(self, "_cam", None)
-        if self.ripples and self.rain_full and self.rain_strength > 0 and not (zc and zc[0] > 1.15):   # poças só no plano aberto
+        if self.ripples and self.rain_full and self.rain_strength > 0 and not (zc and zc[0] > 1.15) and not XO:   # poças só no plano aberto
             d = ImageDraw.Draw(img); dx = -camx * self.depths[1]
             for k, (x, y, w) in enumerate(self.ripples):
                 for j in range(2):
                     ph = ((t * 1.3 + k * 0.37 + j * 0.5) % 1.0); rr = w * 0.15 + w * 0.6 * ph
                     d.ellipse([x + dx - rr, y - rr * 0.22, x + dx + rr, y + rr * 0.22], outline=(150, 170, 210), width=2) if ph < 0.85 else None
-        if self.fog_cfg: fx.fog(img, t, **self.fog_cfg)
+        if self.fog_cfg:
+            fc = dict(self.fog_cfg)
+            if XO and zc: fc["y"] = (fc.get("y", 1100) - zc[2]) * zc[0]; fc["height"] = fc.get("height", 1500) * zc[0]
+            fx.fog(img, t, **fc)
         if self.front is not None:
-            f = self.crop(self.front, camx, self.depths[2])
+            f = self.crop(self.front, camx, self.depths[2], largo=True)
             cam = getattr(self, "_cam", None)                    # a frente acompanha o zoom da câmera (balcão, grades...)
-            if cam and (cam[0] != 1.0 or cam[1] or cam[2]):
-                z, x0, y0 = cam; f = crop_zoom(f, max(0, x0), max(0, y0), min(W, x0 + W / z), min(H, y0 + H / z))
+            if cam and (cam[0] != 1.0 or cam[1] or cam[2]) or f.size != img.size:
+                z, x0, y0 = cam or (1.0, 0, 0)
+                f = crop_zoom(f, max(0, x0), max(0, y0), min(f.width, x0 + W_OUT / z), min(f.height, y0 + H_OUT / z), size=img.size)
             img.paste(f, (0, 0), f)
         if self.rain_full: fx.rain(img, t, strength=self.rain_strength)
         if flashes:
             if self.lightning_full: img = fx.lightning(img, t, flashes)
             for b in self.lightning_boxes:
                 dx = int(-camx * self.depths[0]); bb = (max(0, b[0] + dx), b[1], min(W, b[2] + dx), b[3])
+                if XO:
+                    z_, x0_, y0_ = zc or (1.0, 0, 0)
+                    bb = tuple(int(v) for v in ((bb[0] + XO - x0_) * z_, (bb[1] - y0_) * z_, (bb[2] + XO - x0_) * z_, (bb[3] - y0_) * z_))
+                    bb = (max(0, bb[0]), max(0, bb[1]), min(img.width, bb[2]), min(img.height, bb[3]))
+                    if bb[2] <= bb[0] or bb[3] <= bb[1]: continue
                 img = fx.lightning(img, t, flashes, box=bb)
         return img
     def dynamic(self, img, t, camx, props): pass

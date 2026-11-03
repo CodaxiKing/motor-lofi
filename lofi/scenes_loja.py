@@ -16,7 +16,7 @@
 import math, random
 from PIL import Image, ImageDraw, ImageFilter
 from . import partes
-from .core import W, H, grad, add_light, lerp, font
+from .core import W_D as W, H_D as H, grad, add_light, lerp, font
 from .scenes import Scene, M, S, CWX, P, PS, canvas, down
 
 

@@ -10,7 +10,7 @@ Plano: "vida": false desliga; "vida": {"mariposas": false, ...} desliga um efeit
 """
 import math, random
 from PIL import Image, ImageDraw, ImageFilter
-from .core import W, H
+from .core import W_D as W, H_D as H
 
 # ---------------- configuração por cenário (coordenadas do cenário, 1080×1920) ----------------
 VIDA = {

@@ -1,7 +1,7 @@
 
 """HUD (contador fixo) e legendas estilo Reels (palavra por palavra, com a palavra falada destacada)."""
 from PIL import Image, ImageDraw
-from .core import W, H, RED, CREAM, font, text_center, c01, ease_out
+from .core import W, H, DEITADO, RED, CREAM, font, text_center, c01, ease_out
 
 SUB_Y = 1500                       # faixa fixa de legenda (terço inferior)
 HIGHLIGHT = (255, 214, 60)         # cor da palavra que está sendo dita
@@ -15,6 +15,7 @@ def set_redes(on):
     global REDES, SUB_Y, SAFE_CX, SAFE_W, SAFE_Y_MAX
     REDES = bool(on)
     SUB_Y, SAFE_CX, SAFE_W, SAFE_Y_MAX = (1330, W / 2 - 40, W - 210, 1400) if on else (1500, W / 2, W - 70, 1700)
+    if DEITADO: SUB_Y, SAFE_CX, SAFE_W, SAFE_Y_MAX = H - 150, W / 2, W * 0.72, H - 110      # tela larga: legenda embaixo, no centro
 
 
 def palavras(txt):
@@ -27,14 +28,15 @@ def palavras(txt):
     return out
 
 def hud(img, t, day="DIA 1", clock="23:40", place="APTO 904", flash=0.0):
+    dy = 150 if DEITADO else 0          # tela larga: o contador sobe para o canto
     d = ImageDraw.Draw(img)
-    if int(t * 2) % 2 == 0: d.ellipse([64, 214, 92, 242], fill=RED)
-    d.text((108, 198), day, font=font("mono", 44), fill=RED, stroke_width=3, stroke_fill=(0, 0, 0))
-    d.text((60, 248), clock, font=font("mono", 104), fill=(230, 230, 224), stroke_width=4, stroke_fill=(0, 0, 0))
-    d.line([(64, 392), (400, 392)], fill=(170, 170, 170), width=3)
-    d.text((64, 402), place, font=font("mono", 32), fill=(175, 175, 175), stroke_width=3, stroke_fill=(0, 0, 0))
+    if int(t * 2) % 2 == 0: d.ellipse([64, 214 - dy, 92, 242 - dy], fill=RED)
+    d.text((108, 198 - dy), day, font=font("mono", 44), fill=RED, stroke_width=3, stroke_fill=(0, 0, 0))
+    d.text((60, 248 - dy), clock, font=font("mono", 104), fill=(230, 230, 224), stroke_width=4, stroke_fill=(0, 0, 0))
+    d.line([(64, 392 - dy), (400, 392 - dy)], fill=(170, 170, 170), width=3)
+    d.text((64, 402 - dy), place, font=font("mono", 32), fill=(175, 175, 175), stroke_width=3, stroke_fill=(0, 0, 0))
     if flash > 0:
-        d.rectangle([50, 190, 430, 452], outline=(255, 255, 255), width=int(2 + 7 * flash))
+        d.rectangle([50, 190 - dy, 430, 452 - dy], outline=(255, 255, 255), width=int(2 + 7 * flash))
 
 def _word_times(txt, a, b):
     words = txt.split(); tot = sum(len(w) + 1 for w in words) or 1; t = a; out = []

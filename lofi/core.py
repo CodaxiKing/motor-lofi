@@ -4,7 +4,15 @@ import os, math, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
-W, H, FPS = 1080, 1920, 30
+# Quadro de saída. Os cenários são desenhados num "mundo" em pé (W_D x H_D = 1080 x 1920, coordenadas de projeto);
+# na versão deitada (YouTube, LOFI_DEITADO=1) a saída é 1920 x 1080: o mundo ganha XO px de cenário de cada lado e a
+# câmera recorta uma janela 16:9 dele.
+DEITADO = os.environ.get("LOFI_DEITADO") == "1"
+W_D, H_D = 1080, 1920
+W, H = (1920, 1080) if DEITADO else (W_D, H_D)
+XO = (W - W_D) // 2              # cenário extra de cada lado (0 em pé, 420 deitado)
+HW = H_D                         # altura do mundo (a câmera recorta dele)
+FPS = 30
 HERE = os.path.dirname(os.path.abspath(__file__))
 FONT_DIR = os.path.join(HERE, "fonts")
 OUT = (22, 24, 34, 255)          # cor do contorno

@@ -13,7 +13,7 @@ No roteiro técnico:
 """
 import math
 from PIL import Image, ImageDraw
-from .core import W, H, font, c01, ease_out
+from .core import W, H, W_D, H_D, XO, DEITADO, font, c01, ease_out
 
 ESTILO = {   # nome: (duração, cor, onomatopeia)
     "knock": (0.7, (255, 255, 255), "TOC"), "bang": (0.8, (255, 230, 120), "BAM!"),
@@ -39,9 +39,10 @@ def _ancora(ep, shot, e):
 
 def _tela(ep, x, y, no_cenario):
     cam = getattr(ep, "_cam", None)
-    if not no_cenario or not cam: return x, y, 1.0
+    if not no_cenario or not cam:
+        return (x * W / W_D, y * H / H_D, 1.0) if DEITADO else (x, y, 1.0)
     camx, (z, x0, y0), depth = cam
-    return (x - camx * depth - x0) * z, (y - y0) * z, z
+    return (x + XO - camx * depth - x0) * z, (y - y0) * z, z
 
 
 def _arcos(d, x, y, k, cor, n=3, r0=40, r1=260, larg=10, abertura=None):
@@ -128,7 +129,7 @@ def desenhar(ep, img, shot, t):
         if cfg.get("texto", True) and txt:
             ang = (-8, 6, -4, 9, -10, 3, 7)[seed]
             tx, ty = x + (150 if x < W / 2 else -150) * min(zz, 1.4), y - 120 * min(zz, 1.4)
-            r = _texto(d, txt, max(150, min(W - 150, tx)), max(520, min(1250, ty)), k, cor if nome != "knock" else (255, 255, 255), 90, ang)
+            r = _texto(d, txt, max(150, min(W - 150, tx)), max(520 * H / H_D, min(1250 * H / H_D, ty)), k, cor if nome != "knock" else (255, 255, 255), 90, ang)
             if r: textos.append(r)
     if lay is None: return img
     for im, pos in textos: lay.alpha_composite(im, (max(0, pos[0]), max(0, pos[1])))

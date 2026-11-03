@@ -365,7 +365,9 @@ def validar(txt, final=False, caminho=None):
     e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
     narrado = eh_narrado(txt, caminho)
     avisos += conferir_retencao(txt, final, narrado)
-    if "--simples" not in sys.argv and not re.search(r"^Complexidade:\s*simples", txt, re.M | re.I):
+    bib = os.path.join(os.path.dirname(os.path.abspath(caminho)), "biblia.md") if caminho else ""
+    simples = re.search(r"^\W*Complexidade:\W*simples", txt + "\n" + (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else ""), re.M | re.I)
+    if "--simples" not in sys.argv and not simples:
         avisos += conferir_complexidade(txt, final)
     if narrado:
         e, a_ = conferir_narrado(txt, caminho); erros += e; avisos += a_

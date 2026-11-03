@@ -504,3 +504,25 @@ Pose nova: acrescente uma entrada em `poses.json` (`maos`, `dx`/`dy`, `cotovelo`
 ## Tamanho dos personagens
 Os personagens saem 18% maiores em relação ao cenário (`"escala_personagens": 1.18`, padrão; `1.0` = tamanho antigo; episódios `"legado"` ficam como eram). No plano **conjunto** o maior personagem ocupa ~60% da altura e quem está mais ao fundo não afasta mais a câmera. A legenda procura um vão entre as cabeças quando elas estão em alturas diferentes.
 Roupas: de lado, sobretudo e jaleco viram um painel fechado (sem a abertura da frente), gravata, lapela, colar e estetoscópio somem, o distintivo vai para o peito e a ponta do cachecol cai na frente; sentado, a barra do casaco fica no colo; o cachecol é desenhado antes dos braços (mão no queixo passa por cima dele).
+
+## Versão deitada para o YouTube (16:9)
+`python3 -m lofi.render epNN.json --deitado --jobs 2` → `epNN_youtube.mp4` (1920×1080), depois do vídeo em pé (ele é usado nas telas de texto).
+- Os cenários são desenhados com 420 px a mais de cada lado (o mundo de projeto continua 1080×1920; `core.XO`); o que muda no
+  quadro (TV, luzes, portas, vida do cenário) vem do centro e as laterais acompanham a luz geral.
+- A câmera recorta uma janela 16:9: aberto mostra a faixa do chão e das cabeças (`camera.cy` força outra altura), médio,
+  conjunto e close usam as mesmas regras com a tela larga. Legenda embaixo no centro (em cima, se cobrir um rosto),
+  contador menor no canto, selo e cartões no alto.
+- Telas de texto e planos de detalhe (placar, recap, escolha, pensamento, plano, detalhe, título) vêm do vídeo em pé, no centro,
+  com o próprio quadro desfocado nas laterais.
+- Cache próprio em `_cache_deitado/`. Teste quadros com `--deitado --test 5 12.5`.
+
+## Capas (`lofi/capas.py`)
+`python3 -m lofi.capas epNN.json` → `epNN_capa_tiktok.png`, `epNN_capa_instagram.png` (1080×1920) e `epNN_capa_youtube.png` (1280×720);
+o `pacote` já gera as três (e o corte curto; o teaser saiu da entrega padrão). Protagonista = quem mais fala, desenhado grande com
+contorno branco; ameaça = zumbi/criatura que mais aparece, escura com brilho vermelho atrás; fundo = cenário do gancho (sem pessoas),
+desfocado na cor do episódio; frase = texto do gancho. Ajustes: `"capa": {"quem", "emocao", "pose", "vista", "frase", "ameaca": false, "tempo"}`.
+
+## Roteiro com camadas (padrão)
+3 a 5 min, 18+ cenas, ESCALETA de 10–14 batidas em ATO 1/2/3 com VIRADA DO MEIO, `## SUBTRAMA` marcada em 2+ cenas (`SUBTRAMA:`),
+`CONFLITO:`, `SEQUÊNCIA:` de ação de 30 s+, 2+ PENSAMENTO/O PLANO e 4+ lugares. O validador avisa o que faltar (COMPLEXIDADE);
+`Complexidade: simples` na bíblia (ou `--simples`) desliga.
