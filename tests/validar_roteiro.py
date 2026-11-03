@@ -306,6 +306,34 @@ def conferir_retencao(txt, final=False, narrado=False):
     return av
 
 
+def conferir_complexidade(txt, final=False):
+    """Roteiro com mais camadas (padrão): 3 atos com virada no meio, subtrama que cruza a principal, 18+ cenas,
+    2+ cenas de PENSAMENTO/O PLANO, conflito entre personagens, sequência longa de ação, 4+ lugares."""
+    av = []
+    up = txt.upper()
+    cenas = set(int(n) for n in re.findall(r"^[#\s*\-]*CENA\s+(\d+)", up, re.M) if int(n) > 0)
+    if len(cenas) < 18: av.append(f"COMPLEXIDADE: {len(cenas)} cenas; o padrão agora é 18 ou mais (3 a 5 min), com mais acontecimentos por minuto")
+    esc = re.search(r"^#+\s*ESCALETA.*?(?=^#+\s*(?:GANCHOS|PISTAS|SUBTRAMA|CENA)|\Z)", txt, re.M | re.S | re.I)
+    if esc:
+        bat = re.findall(r"^\s*\d+[.)]", esc.group(0), re.M)
+        if len(bat) < 10: av.append(f"COMPLEXIDADE: ESCALETA com {len(bat)} batidas; use 10–14, divididas em ATO 1, ATO 2 e ATO 3")
+        if not re.search(r"\bATO\s*2\b", esc.group(0), re.I): av.append("COMPLEXIDADE: marque ATO 1, ATO 2 e ATO 3 na ESCALETA")
+    if not re.search(r"VIRADA DO MEIO", up): av.append("COMPLEXIDADE: falta a VIRADA DO MEIO (no meio do episódio algo vira a situação ao contrário: aliado mente, plano falha, lugar seguro deixa de ser)")
+    sub = re.search(r"^#+\s*SUBTRAMA", txt, re.M | re.I)
+    n_sub = len(re.findall(r"^\s*\**SUBTRAMA\**\s*:", txt, re.M | re.I))
+    if not sub: av.append("COMPLEXIDADE: falta a seção ## SUBTRAMA (uma segunda história: segredo, rixa, romance, um personagem com objetivo próprio) que cruza a principal")
+    elif n_sub < 2: av.append(f"COMPLEXIDADE: a SUBTRAMA aparece em {n_sub} cena(s); marque pelo menos 2 cenas com uma linha SUBTRAMA: (ela avança e cruza a trama principal)")
+    mente_ = len(re.findall(r"^\s*\**(PENSAMENTO|O PLANO)\**\s*:", txt, re.M | re.I))
+    if mente_ < 2: av.append(f"COMPLEXIDADE: {mente_} cena(s) de PENSAMENTO/O PLANO; use pelo menos 2 (de preferência um plano que dá errado depois)")
+    if not re.search(r"^\s*\**CONFLITO\**\s*:", txt, re.M | re.I):
+        av.append("COMPLEXIDADE: nenhuma linha CONFLITO: (dois personagens discordam de verdade, cada um com sua razão)")
+    if not re.search(r"^\s*\**SEQU[ÊE]NCIA\**\s*:", txt, re.M | re.I):
+        av.append("COMPLEXIDADE: falta uma SEQUÊNCIA: de ação de 30 s ou mais em 3+ cenas seguidas (fuga, perseguição, esconderijo, cerco)")
+    lugares = set(re.findall(r"CEN[AÁ]RIO[^:\n]*:\**\s*`([^`]+)`", txt, re.I))
+    if len(lugares) < 4: av.append(f"COMPLEXIDADE: {len(lugares)} cenário(s); use 4 ou mais lugares/cantos diferentes ao longo do episódio")
+    return av
+
+
 def validar(txt, final=False, caminho=None):
     if "--extra" in sys.argv or (caminho and os.path.basename(caminho).startswith("extra")):
         return validar_extra(txt, caminho)
@@ -337,6 +365,8 @@ def validar(txt, final=False, caminho=None):
     e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
     narrado = eh_narrado(txt, caminho)
     avisos += conferir_retencao(txt, final, narrado)
+    if "--simples" not in sys.argv and not re.search(r"^Complexidade:\s*simples", txt, re.M | re.I):
+        avisos += conferir_complexidade(txt, final)
     if narrado:
         e, a_ = conferir_narrado(txt, caminho); erros += e; avisos += a_
     if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)

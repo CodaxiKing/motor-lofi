@@ -1,8 +1,8 @@
 
 """Cortes extras a partir do episódio pronto.
 
-    python3 -m lofi.extras teaser  ep03.json ep03.mp4            -> ep03_teaser.mp4 (15 s, para Stories)
-    python3 -m lofi.extras pacote  ep03.json ep03.mp4 [tempo]    -> teaser + capa TikTok + capa Instagram (o padrão de entrega)
+    python3 -m lofi.extras pacote  ep03.json ep03.mp4            -> corte curto + capas TikTok, Instagram e YouTube (o padrão de entrega)
+    python3 -m lofi.extras teaser  ep03.json ep03.mp4            -> ep03_teaser.mp4 (15 s; fora da entrega padrão, só se pedirem)
     python3 -m lofi.extras capa    ep03.json [tempo] [--tiktok|--instagram] [--guias]
                                    -> ep03_capa_tiktok.png e ep03_capa_instagram.png (1080x1920, texto na área segura)
     python3 -m lofi.extras corte   ep03.json ep03.mp4 [alvo_s]   -> ep03_corte.mp4: versão curta (60–75 s) só com os picos
@@ -153,16 +153,16 @@ def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False, camera=N
 
 
 def pacote(spec_path, video, t=None):
-    """Tudo o que vai para as redes a partir do episódio pronto: teaser + capa do TikTok + capa do Instagram."""
-    if t is None:   # mesmo quadro nas duas capas, escolhido pela área segura mais apertada (TikTok)
-        from .render import Episode
-        ep = Episode(spec_path); ep.subs = []; ep.hud_state = lambda _t: None
-        t, camera = _escolher_tempo(ep, PLATAFORMAS["tiktok"])
-    else:
-        camera = None
-    return {"video": video, "teaser": teaser(spec_path, video), "corte": corte(spec_path, video),
-            "capa_tiktok": capa(spec_path, t, plataforma="tiktok", camera=camera),
-            "capa_instagram": capa(spec_path, t, plataforma="instagram", camera=camera)}
+    """Tudo o que vai para as redes a partir do episódio pronto: corte curto + capas do TikTok, do Instagram e do
+    YouTube (lofi/capas.py; ajustes em "capa" no JSON). Sem teaser (só com `teaser`, se pedirem)."""
+    from . import capas
+    if t is not None:
+        sp = json.load(open(spec_path, encoding="utf-8"))
+        if float(t) != sp.get("capa", {}).get("tempo"):
+            print(f"dica: para fixar o fundo da capa, ponha \"capa\": {{\"tempo\": {t}}} no JSON", file=sys.stderr)
+    res = {"video": video, "corte": corte(spec_path, video)}
+    res.update(capas.todas(spec_path))
+    return res
 
 
 def _nota_plano(sp, s, subs):
