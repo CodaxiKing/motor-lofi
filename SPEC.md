@@ -545,4 +545,4 @@ Bíblia: `Estilo: imagens` e `Prompt de estilo: ...`; fichas com `"aparencia"`. 
 Plano: `"imagens": {"fundo", "personagens": [{"img", "pos": "esq|centro|dir|0–1", "altura", "fala": voz, "espelhar", "chao"}],
 "objetos": [{"img", "x", "y", "altura"}], "plano": "aberto|medio|close", "alvo", "aproximar", "fundo_y", "efeitos": ["flicker", "escuro"]}`.
 Quem tem `fala` balança com a voz; todos respiram; a câmera aproxima devagar. Funciona em pé e deitado, com legendas, HUD,
-gancho falado, placar e escolha do motor. O `lofi.check` acusa imagem faltando.
+gancho falado, placar e escolha do motor. O `lofi.check` acusa imagem faltando. As imagens de `series/<serie>/imagens/` vão para o repositório (commit) para serem reaproveitadas nos próximos episódios.
