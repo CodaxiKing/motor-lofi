@@ -306,6 +306,31 @@ def conferir_retencao(txt, final=False, narrado=False):
     return av
 
 
+def conferir_imagens(txt, caminho=None):
+    """Estilo "imagens": toda cena diz que imagens usa (IMAGENS: fundo `lugar` · `personagem_vista_emocao[_pose]` · `obj_nome`)."""
+    erros, avisos = [], []
+    pasta = os.path.dirname(os.path.abspath(caminho)) if caminho else "."
+    pj = os.path.join(pasta, "personagens.json")
+    nomes = {k for k in json.load(open(pj, encoding="utf-8")) if not k.startswith("_")} if os.path.exists(pj) else set()
+    try:
+        from lofi.rig import CHARS; nomes |= set(CHARS)
+    except Exception: pass
+    partes = re.split(r"^#+\s*(CENA\s+\d+[^\n]*)$", txt, flags=re.M)
+    for k in range(1, len(partes) - 1, 2):
+        n = int(re.search(r"CENA\s+(\d+)", partes[k]).group(1)); corpo = partes[k + 1]
+        if re.search(r"PENSAMENTO\s*:|O PLANO\s*:|PLANO DE DETALHE", corpo, re.I): continue
+        m = re.search(r"^\s*\**IMAGENS\**\s*:\s*(.*)", corpo, re.M | re.I)
+        if not m:
+            erros.append(f"CENA {n}: estilo imagens sem linha IMAGENS: (fundo `lugar` · `personagem_vista_emocao`)"); continue
+        if not re.search(r"fundo\s+`|`fundo_", m.group(1), re.I): avisos.append(f"CENA {n}: IMAGENS sem fundo")
+        for nome in re.findall(r"(?<!fundo )`([a-z0-9_]+)`", m.group(1)):
+            if nome.startswith(("fundo_", "obj_")): continue
+            quem = nome.split("_")[0]
+            if nomes and not any(nome.startswith(x + "_") or nome == x for x in nomes):
+                avisos.append(f"CENA {n}: `{nome}` não começa com um personagem conhecido ({quem}?); use <personagem>_<vista>_<emoção>")
+    return erros, avisos
+
+
 def conferir_complexidade(txt, final=False):
     """Roteiro com mais camadas (padrão): 3 atos com virada no meio, subtrama que cruza a principal, 18+ cenas,
     2+ cenas de PENSAMENTO/O PLANO, conflito entre personagens, sequência longa de ação, 4+ lugares."""
@@ -367,6 +392,8 @@ def validar(txt, final=False, caminho=None):
     avisos += conferir_retencao(txt, final, narrado)
     bib = os.path.join(os.path.dirname(os.path.abspath(caminho)), "biblia.md") if caminho else ""
     simples = re.search(r"^\W*Complexidade:\W*simples", txt + "\n" + (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else ""), re.M | re.I)
+    if re.search(r"^\W*Estilo:\W*imagens", (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else "") + "\n" + txt, re.M | re.I):
+        e_, a_ = conferir_imagens(txt, caminho); erros += e_; avisos += a_
     if "--simples" not in sys.argv and not simples:
         avisos += conferir_complexidade(txt, final)
     if narrado:

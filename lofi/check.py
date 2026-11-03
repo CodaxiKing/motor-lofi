@@ -61,9 +61,12 @@ def check(path, frames=True):
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
     if formato == "extra" and n_scene < 5: warn(f"só {n_scene} cenas (mínimo 5 no extra)")
     if formato == "episodio" and n_scene < 12: regra_aviso(f"só {n_scene} cenas (mínimo 12)")
+    if any(s.get("imagens") for s in shots):        # estilo imagens: toda imagem citada precisa estar em imagens/
+        from .imagens import faltam
+        for t_, n_ in faltam(path): err(f"imagem faltando: imagens/{n_}.png (plano em {t_}s)")
     for s in shots:
         typ = s.get("type", "scene")
-        if typ == "scene" and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")
+        if typ == "scene" and not s.get("imagens") and s.get("scene") not in scenes.REGISTRY: err(f"cenário inexistente: {s.get('scene')} ({s['start']}s)")
         if typ == "detail" and s.get("subject") not in detail.SUBJECTS: err(f"plano de detalhe inexistente: {s.get('subject')}")
         if typ == "recap" and not os.path.isfile(os.path.join(ep.base, s.get("from", ""))):
             if s.get("moments"):

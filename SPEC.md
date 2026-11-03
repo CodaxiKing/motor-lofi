@@ -536,3 +536,13 @@ Módulos: `visual_assets` (biblioteca de imagens com busca e prompts das que fal
 `advanced_rig` (pontos do esqueleto por silhueta ou MediaPipe opcional; deformação por triângulos, não ARAP), `lipsync_pipeline`,
 `storyboard_planner`, `episode_export` (exporta só cenas DESENHO, sem legendas nem mixagem do motor) e `drawing_mode` (a ponte com
 `Episode.scene_frame`). Funciona em pé e deitado. Documentação completa e limites em `docs/desenho/`; skill em `skills/motor-lofi-desenho/`.
+
+## Estilo "imagens" (imagens geradas no ChatGPT) — `lofi/imagens.py`
+Bíblia: `Estilo: imagens` e `Prompt de estilo: ...`; fichas com `"aparencia"`. Roteiro: linha `IMAGENS:` em cada cena
+(fundo `lugar` · `<personagem>_<vista>_<emoção>[_<pose>]` · `obj_<nome>`). `python3 -m lofi.imagens prompts epNN_roteiro.md` →
+`epNN_imagens.md` só com as imagens que faltam em `series/<serie>/imagens/`; `referencias <serie>` → fichas de referência;
+`importar <serie> arquivo.png nome` tira fundo liso e sobras; `faltam epNN.json` confere.
+Plano: `"imagens": {"fundo", "personagens": [{"img", "pos": "esq|centro|dir|0–1", "altura", "fala": voz, "espelhar", "chao"}],
+"objetos": [{"img", "x", "y", "altura"}], "plano": "aberto|medio|close", "alvo", "aproximar", "fundo_y", "efeitos": ["flicker", "escuro"]}`.
+Quem tem `fala` balança com a voz; todos respiram; a câmera aproxima devagar. Funciona em pé e deitado, com legendas, HUD,
+gancho falado, placar e escolha do motor. O `lofi.check` acusa imagem faltando.

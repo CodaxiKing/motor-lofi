@@ -596,6 +596,10 @@ class Episode:
 
     # ---------------- planos ----------------
     def scene_frame(self, shot, t, t_anim=None):
+        if shot.get("imagens"):                         # estilo "imagens": cena montada com imagens geradas fora (lofi/imagens.py)
+            from .imagens import quadro
+            nv = None if self.narrado else (lambda v, tt: self.level(v, tt, smooth=2) * 1.3)
+            return quadro(shot, t, self.base, (W, H), nv)
         if self.spec.get('visual_mode') == 'DESENHO' and shot.get('image_scene') is not None:
             from .drawing_mode import draw_shot          # modo DESENHO (imagens prontas em camadas; docs/desenho)
             return draw_shot(shot, t, self.base, (W, H))
