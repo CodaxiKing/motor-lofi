@@ -19,9 +19,60 @@ import os, re, sys, json, glob, math
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 
 PASTA = "imagens"
-ESTILO_PADRAO = ("ilustração digital 2D estilo cartoon lo-fi, traço limpo e grosso, cores chapadas com sombras suaves, "
-                 "proporções de desenho animado (cabeça grande e redonda), iluminação cinematográfica noturna, "
-                 "sem texto, sem marca-d'água, mesmo estilo em todas as imagens da série")
+ESTILO_PADRAO = ("Dark Cinematic Lo-Fi Cartoon style, inspired by atmospheric survival horror animated storytelling: hand-painted 2D digital illustration, "
+                 "semi-realistic adult body proportions, minimalist cartoon facial features, clean slightly textured dark outlines, soft painterly shading with subtle "
+                 "brush textures, muted desaturated colors, cold blue-gray and dusty purple undertones, detailed clothing folds and fabric textures, atmospheric and "
+                 "melancholic, mature illustrated graphic novel appearance. Avoid: 3D render, Pixar style, anime, manga, chibi, oversized head, short legs, photorealism, "
+                 "plastic skin, flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark")
+NEGATIVO_REF = ("3D render, Pixar style, anime, manga, chibi, childish proportions, oversized head, short legs, bald character, photorealism, plastic skin, "
+                "flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark.")
+IMPORTANTE_REF = ("The character must look like an adult from a cinematic 2D animated survival horror series, not a children's cartoon.\n\n"
+                  "The head should be rounded and slightly stylized, but remain proportional to an adult body.\n\n"
+                  "Use a hand-painted digital illustration finish rather than flat vector graphics.\n\nAvoid exaggerated chibi proportions.")
+MODELO_REFERENCIA = """Create a professional 2D character model sheet in a Dark Cinematic Lo-Fi Cartoon style, inspired by atmospheric survival horror animated storytelling.
+
+ART STYLE:
+
+- Hand-painted 2D digital illustration.
+- Dark cinematic cartoon aesthetic.
+- Semi-realistic adult body proportions.
+- Minimalist cartoon facial features.
+- Clean, slightly textured dark outlines.
+- Soft painterly shading with subtle brush textures.
+- Muted, desaturated colors.
+- Cold blue-gray and dusty purple undertones.
+- Detailed clothing folds and fabric textures.
+- Atmospheric, melancholic visual identity.
+- Mature illustrated graphic novel appearance.
+- Consistent character design across all views.
+
+CHARACTER:
+{personagem}
+
+CLOTHING:
+
+{roupa}
+
+CHARACTER SHEET COMPOSITION:
+Show the exact same character in three full-body views, side by side:
+
+1. Front view.
+2. Three-quarter view.
+3. Back view.
+
+Maintain identical body proportions, clothing details, colors, facial features and accessories across all views.
+
+Neutral standing pose with arms relaxed.
+
+Plain light-gray background with very subtle grounding shadows.
+
+Landscape composition, 3:2 aspect ratio.
+
+IMPORTANT STYLE REQUIREMENTS:
+{importante}
+
+NEGATIVE PROMPT:
+{negativo}"""
 VISTAS = {"frente": "de frente para a câmera", "34": "em três quartos (3/4), levemente virado", "lado": "de perfil (de lado)",
           "costas": "de costas para a câmera"}
 EMOCOES = {"neutro": "expressão neutra", "medo": "expressão de medo, olhos arregalados", "choque": "expressão de choque, boca aberta",
@@ -170,6 +221,16 @@ def prompts(caminho_roteiro, todas=False):
     return out, [(n, vistos[n]) for n in saida]
 
 
+def prompt_referencia(nome, ficha):
+    """Ficha de referência (frente, 3/4 e costas) no modelo padrão. Campos da ficha: ref_personagem (frase + traços), ref_roupa (lista),
+    ref_importante e ref_negativo (só quando o personagem foge do adulto padrão, como crianças e criaturas)."""
+    lista = lambda v: "\n".join(f"- {x}" for x in v) if isinstance(v, list) else str(v)
+    pers = ficha.get("ref_personagem")
+    personagem = (pers[0] + "\n\n" + lista(pers[1:])) if isinstance(pers, list) else (pers or f"{nome.capitalize()}: {descricao(nome, ficha)}.")
+    return MODELO_REFERENCIA.format(personagem=personagem, roupa=lista(ficha.get("ref_roupa", "Clothing as described above.")),
+                                    importante=ficha.get("ref_importante", IMPORTANTE_REF), negativo=ficha.get("ref_negativo", NEGATIVO_REF))
+
+
 def referencias(pasta_serie):
     pasta, bib, fichas, estilo = _serie(pasta_serie)
     out = os.path.join(pasta, "imagens_referencias.md")
@@ -178,9 +239,7 @@ def referencias(pasta_serie):
                 "para o rosto, o cabelo e a roupa saírem sempre iguais. Salve como `ref_<personagem>.png`.\n\n")
         for nome, ficha in fichas.items():
             if nome.startswith("zombie") and nome != "zombie": continue
-            f.write(f"## `ref_{nome}`\n\n```\n{estilo}. Folha de referência de personagem (model sheet) de {nome.upper()}: "
-                    f"{descricao(nome, ficha)}. Três vistas lado a lado do mesmo personagem, corpo inteiro: de frente, em três quartos e "
-                    "de perfil, expressão neutra, fundo branco liso. Formato paisagem 3:2.\n```\n\n")
+            f.write(f"## `ref_{nome}`\n\n```\n{prompt_referencia(nome, ficha)}\n```\n\n")
     print("referências ->", out); return out
 
 

@@ -540,7 +540,7 @@ Módulos: `visual_assets` (biblioteca de imagens com busca e prompts das que fal
 ## Estilo "imagens" (imagens geradas no ChatGPT) — `lofi/imagens.py`
 Bíblia: `Estilo: imagens` e `Prompt de estilo: ...`; fichas com `"aparencia"`. Roteiro: linha `IMAGENS:` em cada cena
 (fundo `lugar` · `<personagem>_<vista>_<emoção>[_<pose>]` · `obj_<nome>`). `python3 -m lofi.imagens prompts epNN_roteiro.md` →
-`epNN_imagens.md` só com as imagens que faltam em `series/<serie>/imagens/`; `referencias <serie>` → fichas de referência;
+`epNN_imagens.md` só com as imagens que faltam em `series/<serie>/imagens/`; `referencias <serie>` → fichas de referência (frente, 3/4 e costas) no modelo padrão `MODELO_REFERENCIA`, com os campos `ref_personagem`, `ref_roupa` e, para criança ou criatura, `ref_importante` e `ref_negativo`;
 `importar <serie> arquivo.png nome` tira fundo liso e sobras; `faltam epNN.json` confere.
 Plano: `"imagens": {"fundo", "personagens": [{"img", "pos": "esq|centro|dir|0–1", "altura", "fala": voz, "espelhar", "chao"}],
 "objetos": [{"img", "x", "y", "altura"}], "plano": "aberto|medio|close", "alvo", "aproximar", "fundo_y", "efeitos": ["flicker", "escuro"]}`.

@@ -1,40 +1,62 @@
 {
  "_leia": "Fichas travadas da série Sinal de Vida. Valem para todos os episódios; mude só aqui, de propósito.",
  "joao": {
-  "skin": "moreno",
+  "skin": "claro",
   "top_style": "hoodie",
   "top": [
-   196,
-   44,
-   40
+   58,
+   60,
+   66
   ],
   "legs": [
-   44,
-   52,
-   76
+   38,
+   40,
+   46
   ],
   "shoes": [
-   235,
-   235,
-   230
+   30,
+   30,
+   32
   ],
-  "hair": "curly",
+  "hair": "short",
   "hair_color": [
    24,
    20,
    18
   ],
   "backpack": [
-   196,
-   44,
-   40
+   110,
+   30,
+   36
   ],
   "bag_termica": true,
   "body": "thin",
-  "aparencia": "João, jovem de 22 anos, magro, pele morena, cabelo crespo curto preto, moletom vermelho de entregador com capuz, calça jeans escura, tênis branco, mochila térmica cúbica vermelha nas costas"
+  "aparencia": "João, a 25-year-old male delivery worker with a slim, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face. Short, messy dark hair with visible volume. Subtle dark stubble and short beard. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Serious, slightly tired expression. Wearing: Dark charcoal-gray delivery jacket with a hood. Subtle reflective gray stripe across the chest and sleeves. Black undershirt. Dark cargo pants with realistic fabric folds. Black fingerless gloves. Dark rugged sneakers or boots. Large, worn, dark-red insulated delivery backpack with reflective details.",
+  "ref_personagem": [
+   "João, a 25-year-old male delivery worker with a slim, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face.",
+   "Short, messy dark hair with visible volume.",
+   "Subtle dark stubble and short beard.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Serious, slightly tired expression."
+  ],
+  "ref_roupa": [
+   "Dark charcoal-gray delivery jacket with a hood.",
+   "Subtle reflective gray stripe across the chest and sleeves.",
+   "Black undershirt.",
+   "Dark cargo pants with realistic fabric folds.",
+   "Black fingerless gloves.",
+   "Dark rugged sneakers or boots.",
+   "Large, worn, dark-red insulated delivery backpack with reflective details."
+  ]
  },
  "geraldo": {
-  "skin": "medio",
+  "skin": "claro",
   "top_style": "shirt",
   "top": [
    120,
@@ -70,10 +92,31 @@
    120
   ],
   "body": "tall",
-  "aparencia": "Geraldo, homem de 58 anos, alto, pele morena clara, bigode grisalho, chapéu de palha, camisa xadrez marrom, calça escura, botina"
+  "aparencia": "Geraldo, a 58-year-old male farmer and former truck driver with a tall, lean, weathered adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face. Short gray hair under the hat. Thick gray mustache. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Stern, weary expression. Wearing: Worn straw hat. Faded brown plaid button-up shirt with rolled sleeves. Dark work pants with realistic fabric folds. Old leather belt. Scuffed brown work boots. Small handheld CB radio clipped to the belt.",
+  "ref_personagem": [
+   "Geraldo, a 58-year-old male farmer and former truck driver with a tall, lean, weathered adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face.",
+   "Short gray hair under the hat.",
+   "Thick gray mustache.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Stern, weary expression."
+  ],
+  "ref_roupa": [
+   "Worn straw hat.",
+   "Faded brown plaid button-up shirt with rolled sleeves.",
+   "Dark work pants with realistic fabric folds.",
+   "Old leather belt.",
+   "Scuffed brown work boots.",
+   "Small handheld CB radio clipped to the belt."
+  ]
  },
  "cida": {
-  "skin": "moreno",
+  "skin": "claro",
   "top_style": "scrubs",
   "top": [
    80,
@@ -99,10 +142,29 @@
   "acc": [
    "badge"
   ],
-  "aparencia": "Cida, mulher de 54 anos, pele morena, cabelo escuro preso em coque, pijama hospitalar verde, crachá, tênis branco"
+  "aparencia": "Cida, a 54-year-old female nursing technician with a medium, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face. Dark hair with gray strands tied in a low bun. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Calm, exhausted expression. Wearing: Muted green hospital scrubs, top and pants, with realistic fabric folds. Worn gray cardigan over the scrubs. ID badge on a lanyard. Worn white nursing sneakers, slightly dirty. Small dark first-aid pouch at the waist.",
+  "ref_personagem": [
+   "Cida, a 54-year-old female nursing technician with a medium, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face.",
+   "Dark hair with gray strands tied in a low bun.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Calm, exhausted expression."
+  ],
+  "ref_roupa": [
+   "Muted green hospital scrubs, top and pants, with realistic fabric folds.",
+   "Worn gray cardigan over the scrubs.",
+   "ID badge on a lanyard.",
+   "Worn white nursing sneakers, slightly dirty.",
+   "Small dark first-aid pouch at the waist."
+  ]
  },
  "bia": {
-  "skin": "moreno",
+  "skin": "claro",
   "top_style": "tshirt",
   "top": [
    50,
@@ -125,10 +187,29 @@
    22,
    18
   ],
-  "aparencia": "Bia, mulher de 27 anos, pele morena, tranças escuras, colete azul de veterinária sobre camiseta, calça cinza-escura, botas marrons"
+  "aparencia": "Bia, a 27-year-old female veterinarian with an athletic, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face. Dark braids tied back, with visible volume. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Dry, determined expression. Wearing: Muted blue work vest with many pockets. Faded gray T-shirt. Dark gray work pants with realistic fabric folds. Brown rugged boots. Worn veterinary bag on a shoulder strap.",
+  "ref_personagem": [
+   "Bia, a 27-year-old female veterinarian with an athletic, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face.",
+   "Dark braids tied back, with visible volume.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Dry, determined expression."
+  ],
+  "ref_roupa": [
+   "Muted blue work vest with many pockets.",
+   "Faded gray T-shirt.",
+   "Dark gray work pants with realistic fabric folds.",
+   "Brown rugged boots.",
+   "Worn veterinary bag on a shoulder strap."
+  ]
  },
  "teo": {
-  "skin": "moreno",
+  "skin": "claro",
   "top_style": "tshirt",
   "top": [
    240,
@@ -158,10 +239,29 @@
    40
   ],
   "body": "child",
-  "aparencia": "Téo, menino de 9 anos, pele morena, boné amarelo, camiseta branca de time de futebol, bermuda azul, tênis branco"
+  "aparencia": "Téo, a 9-year-old boy with a naturally proportioned child body, not chibi. Approximately 5.5 heads tall, realistic for a nine-year-old. Round, smooth, white cartoon face. Short dark hair showing under the cap. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Curious, watchful expression. Wearing: Faded yellow baseball cap. Worn off-white soccer T-shirt, slightly too big. Muted blue shorts. Dirty white sneakers. Small dark backpack.",
+  "ref_personagem": [
+   "Téo, a 9-year-old boy with a naturally proportioned child body, not chibi.",
+   "Approximately 5.5 heads tall, realistic for a nine-year-old.",
+   "Round, smooth, white cartoon face.",
+   "Short dark hair showing under the cap.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Curious, watchful expression."
+  ],
+  "ref_roupa": [
+   "Faded yellow baseball cap.",
+   "Worn off-white soccer T-shirt, slightly too big.",
+   "Muted blue shorts.",
+   "Dirty white sneakers.",
+   "Small dark backpack."
+  ],
+  "ref_importante": "The character must look like a real nine-year-old child from a cinematic 2D animated survival horror series, not a children's cartoon.\n\nThe head should be rounded and slightly stylized, but remain proportional to a child's body.\n\nUse a hand-painted digital illustration finish rather than flat vector graphics.\n\nAvoid exaggerated chibi proportions.",
+  "ref_negativo": "3D render, Pixar style, anime, manga, chibi, oversized head, short legs, bald character, photorealism, plastic skin, flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark."
  },
  "vo_zefa": {
-  "skin": "medio",
+  "skin": "claro",
   "top_style": "dress",
   "top": [
    110,
@@ -181,10 +281,29 @@
   ],
   "glasses": true,
   "body": "old",
-  "aparencia": "Dona Zefa, idosa de 79 anos, baixinha, pele morena clara, coque branco, óculos, vestido florido roxo, bengala de madeira"
+  "aparencia": "Dona Zefa, a 79-year-old woman with a short, thin, slightly hunched elderly body. Approximately 6.5 heads tall, with natural elderly proportions. Round, smooth, white cartoon face. White hair tied in a small bun. Round glasses. Soft wrinkles drawn with minimal lines. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Stubborn, watchful expression. Wearing: Faded purple floral dress with realistic fabric folds. Worn dark knitted cardigan. Dark flat shoes. Wooden walking cane. Small rosary around the wrist.",
+  "ref_personagem": [
+   "Dona Zefa, a 79-year-old woman with a short, thin, slightly hunched elderly body.",
+   "Approximately 6.5 heads tall, with natural elderly proportions.",
+   "Round, smooth, white cartoon face.",
+   "White hair tied in a small bun.",
+   "Round glasses.",
+   "Soft wrinkles drawn with minimal lines.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Stubborn, watchful expression."
+  ],
+  "ref_roupa": [
+   "Faded purple floral dress with realistic fabric folds.",
+   "Worn dark knitted cardigan.",
+   "Dark flat shoes.",
+   "Wooden walking cane.",
+   "Small rosary around the wrist."
+  ]
  },
  "nei": {
-  "skin": "medio",
+  "skin": "claro",
   "top_style": "shirt",
   "top": [
    225,
@@ -220,10 +339,30 @@
    56
   ],
   "body": "fat",
-  "aparencia": "Tio Nei, homem de 55 anos, gordo, pele morena clara, barba escura, boné cinza-escuro, camisa laranja de caminhoneiro, calça escura"
+  "aparencia": "Nei, a 55-year-old male truck driver with a heavyset, naturally proportioned adult body and a large belly. Approximately 7 heads tall. Broad shoulders. Round, smooth, white cartoon face. Short dark hair under the cap. Dark full beard. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Loud, friendly expression that hides worry. Wearing: Dark gray worn cap. Burnt-orange work shirt with rolled sleeves, sweat-stained. Dark jeans with realistic fabric folds. Old leather belt with a large buckle. Scuffed work boots. Heavy key ring on the belt.",
+  "ref_personagem": [
+   "Nei, a 55-year-old male truck driver with a heavyset, naturally proportioned adult body and a large belly.",
+   "Approximately 7 heads tall.",
+   "Broad shoulders.",
+   "Round, smooth, white cartoon face.",
+   "Short dark hair under the cap.",
+   "Dark full beard.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Loud, friendly expression that hides worry."
+  ],
+  "ref_roupa": [
+   "Dark gray worn cap.",
+   "Burnt-orange work shirt with rolled sleeves, sweat-stained.",
+   "Dark jeans with realistic fabric folds.",
+   "Old leather belt with a large buckle.",
+   "Scuffed work boots.",
+   "Heavy key ring on the belt."
+  ]
  },
  "dandara": {
-  "skin": "escuro",
+  "skin": "claro",
   "top_style": "chef",
   "top": [
    240,
@@ -252,7 +391,26 @@
    60,
    60
   ],
-  "aparencia": "Dandara, mulher de 30 anos, pele negra, cabelo black power, bandana vermelha, dólmã branca de cozinheira, calça preta"
+  "aparencia": "Dandara, a 30-year-old female cook with a strong, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face. Large natural black afro hair with visible volume. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Direct, unimpressed expression. Wearing: Dark red bandana tied around the hair. Dirty off-white chef jacket with sleeves pushed up. Black work pants with realistic fabric folds. Black non-slip kitchen shoes. Worn apron tied at the waist, with a pocket holding an old phone.",
+  "ref_personagem": [
+   "Dandara, a 30-year-old female cook with a strong, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face.",
+   "Large natural black afro hair with visible volume.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Direct, unimpressed expression."
+  ],
+  "ref_roupa": [
+   "Dark red bandana tied around the hair.",
+   "Dirty off-white chef jacket with sleeves pushed up.",
+   "Black work pants with realistic fabric folds.",
+   "Black non-slip kitchen shoes.",
+   "Worn apron tied at the waist, with a pocket holding an old phone."
+  ]
  },
  "darcio": {
   "skin": "claro",
@@ -290,9 +448,47 @@
    60
   ],
   "body": "tall",
-  "aparencia": "Dárcio Leme, homem de 60 anos, alto e magro, pele clara, cabelo branco, terno bege, chapéu fedora marrom, sorriso gentil"
+  "aparencia": "Dárcio Leme, a 60-year-old male meatpacking plant owner and radio host with a tall, thin, naturally proportioned adult body. Approximately 7.5 heads tall. Long legs and narrow shoulders. Round, smooth, white cartoon face. Neat short white hair. Small black oval eyes. Minimalist expressive eyebrows. Small, simplified mouth. Gentle, unsettling smile. Wearing: Worn beige three-piece suit with realistic fabric folds. Dark red tie. Brown fedora hat. Polished brown leather shoes. Old gold watch on the wrist.",
+  "ref_personagem": [
+   "Dárcio Leme, a 60-year-old male meatpacking plant owner and radio host with a tall, thin, naturally proportioned adult body.",
+   "Approximately 7.5 heads tall.",
+   "Long legs and narrow shoulders.",
+   "Round, smooth, white cartoon face.",
+   "Neat short white hair.",
+   "Small black oval eyes.",
+   "Minimalist expressive eyebrows.",
+   "Small, simplified mouth.",
+   "Gentle, unsettling smile."
+  ],
+  "ref_roupa": [
+   "Worn beige three-piece suit with realistic fabric folds.",
+   "Dark red tie.",
+   "Brown fedora hat.",
+   "Polished brown leather shoes.",
+   "Old gold watch on the wrist."
+  ]
  },
  "zombie": {
-  "aparencia": "repetidor (zumbi): pessoa comum de roupas sujas e rasgadas, pele acinzentada, olhos brancos brilhando, boca sempre se mexendo, andar torto"
+  "aparencia": "A \"repetidor\", an infected ordinary adult from a Brazilian town, with a thin, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Normal adult shoulder width. Round, smooth, white cartoon face with a sickly gray tint. Messy, thinning dark hair. Glowing white empty eyes. Minimalist eyebrows. Slightly open mouth, as if repeating words. Blank, hollow expression and a slightly crooked posture. Wearing: Dirty, torn everyday T-shirt with realistic fabric folds. Stained work pants. One missing shoe and one worn sneaker. No visible blood or gore.",
+  "ref_personagem": [
+   "A \"repetidor\", an infected ordinary adult from a Brazilian town, with a thin, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Normal adult shoulder width.",
+   "Round, smooth, white cartoon face with a sickly gray tint.",
+   "Messy, thinning dark hair.",
+   "Glowing white empty eyes.",
+   "Minimalist eyebrows.",
+   "Slightly open mouth, as if repeating words.",
+   "Blank, hollow expression and a slightly crooked posture."
+  ],
+  "ref_roupa": [
+   "Dirty, torn everyday T-shirt with realistic fabric folds.",
+   "Stained work pants.",
+   "One missing shoe and one worn sneaker.",
+   "No visible blood or gore."
+  ],
+  "ref_importante": "The character must look like an adult from a cinematic 2D animated survival horror series, not a children's cartoon.\n\nThe head should be rounded and slightly stylized, but remain proportional to an adult body.\n\nUse a hand-painted digital illustration finish rather than flat vector graphics.\n\nAvoid exaggerated chibi proportions.\n\nThe horror comes from the eyes, the posture and the silence. No gore.",
+  "ref_negativo": "3D render, Pixar style, anime, manga, chibi, childish proportions, oversized head, short legs, photorealism, plastic skin, flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark. Blood, gore, exposed wounds."
  }
 }
