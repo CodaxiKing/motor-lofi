@@ -2,7 +2,7 @@
 10 episódios · Apocalipse zumbi, suspense e terror · Classificação: 14+ (violência leve, sem gore) · Subúrbio de cidade grande e interior do Brasil, tempos atuais · Duração por episódio: 3 a 5 min, com subtrama
 Formato: com falas
 Estilo: imagens
-Prompt de estilo: Dark Cinematic Lo-Fi Cartoon style, inspired by atmospheric survival horror animated storytelling: hand-painted 2D digital illustration, semi-realistic adult body proportions, minimalist cartoon facial features, clean slightly textured dark outlines, soft painterly shading with subtle brush textures, muted desaturated colors, cold blue-gray and dusty purple undertones, detailed clothing folds and fabric textures, atmospheric and melancholic, mature illustrated graphic novel appearance. Avoid: 3D render, Pixar style, anime, manga, chibi, oversized head, short legs, photorealism, plastic skin, flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark. Todos os personagens têm rosto branco, redondo e liso de cartoon
+Prompt de estilo: Dark Cinematic Lo-Fi Cartoon 2D, hand-painted digital illustration, mature graphic novel aesthetic, clean slightly textured dark outlines, soft painterly shading with subtle brush textures, muted desaturated colors, cold blue-gray and dusty purple undertones. Perfectly round, smooth, spherical cartoon head; all skin in the same muted off-white grayish porcelain tone with cool-gray and lavender shadows; small black oval eyes, minimalist black eyebrows, small simple mouth; no realistic nose, ears or human facial anatomy; adults 6.5-7 heads tall, children 5-5.5 heads tall. Avoid: Pure white skin, glowing white face, bright white limbs, realistic skin tones, human facial anatomy, realistic nose, photorealistic face, 3D render, Pixar style, anime, manga, chibi, oversized head, short adult legs, flat vector art, plastic skin, overly saturated colors, inconsistent character design
 Elemento fixo: contador "DIA X · HH:MM", distância até a fazenda no `hud.place` (começa em "480 KM") e barra "BATERIA DO RÁDIO" · Som assinatura: chiado do rádio (`static`) seguido do bipe de chamada (`beep`) · Capa: gerada no planejamento (PNG fica fora do repositório)
 Perfil: @arquivo.zero.0 (TikTok/Instagram; vai nos comentários fixados e nas artes)
 
@@ -14,15 +14,15 @@ João, entregador de 25 anos, recebe uma ligação do pai: "não sai de casa e l
 
 ## Personagens (motor)
 Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episódios; não redefinir no roteiro.
-- joao — protagonista, 25 anos, magro, rosto branco de cartoon, cabelo escuro curto e bagunçado, barba curta, jaqueta grafite de entregador com capuz e faixa refletiva, luvas sem dedos, calça cargo escura, mochila térmica vermelho-escura. Cor: vermelho-escuro.
-- geraldo — o pai, 58 anos, ex-caminhoneiro, dono da fazenda, rosto branco de cartoon, bigode grisalho, chapéu de palha gasto, camisa xadrez marrom. Cor: palha.
-- cida — a mãe, 54 anos, técnica de enfermagem, separada do Geraldo, mora na cidade do interior com o Téo. Rosto branco de cartoon, coque escuro, uniforme hospitalar verde apagado, crachá. Cor: verde.
-- bia — a irmã, 27 anos, veterinária em outra cidade, rosto branco de cartoon, tranças escuras, colete azul apagado. Cor: azul.
-- teo — o caçula, 9 anos, rosto branco de cartoon, boné amarelo apagado, camiseta de time. Cor: amarelo.
-- vo_zefa — mãe do Geraldo, 79 anos, baixinha, rosto branco de cartoon, coque branco, óculos, vestido florido roxo apagado, bengala. Cor: roxo.
-- nei — tio, irmão do Geraldo, caminhoneiro, gordo, rosto branco de cartoon, boné e barba, camisa laranja queimado. Cor: laranja.
-- dandara — cozinheira do restaurante onde João pegava os pedidos, 30 anos, rosto branco de cartoon, cabelo black power, dólmã branca suja e bandana vermelha. Cor: branco.
-- darcio — Dárcio Leme, 60 anos, dono do Frigorífico Leme e voz da Rádio Esperança, alto e magro, rosto branco de cartoon, cabelo branco, terno bege e fedora. Vilão.
+- joao — protagonista, 25 anos, magro, rosto redondo cinza-claro de porcelana, cabelo escuro curto e bagunçado, barba curta, jaqueta grafite de entregador com capuz e faixa refletiva, luvas sem dedos, calça cargo escura, mochila térmica vermelho-escura. Cor: vermelho-escuro.
+- geraldo — o pai, 58 anos, ex-caminhoneiro, dono da fazenda, rosto redondo cinza-claro de porcelana, bigode grisalho, chapéu de palha gasto, camisa xadrez marrom. Cor: palha.
+- cida — a mãe, 54 anos, técnica de enfermagem, separada do Geraldo, mora na cidade do interior com o Téo. Rosto redondo cinza-claro de porcelana, coque escuro, uniforme hospitalar verde apagado, crachá. Cor: verde.
+- bia — a irmã, 27 anos, veterinária em outra cidade, rosto redondo cinza-claro de porcelana, tranças escuras, colete azul apagado. Cor: azul.
+- teo — o caçula, 9 anos, rosto redondo cinza-claro de porcelana, boné amarelo apagado, camiseta de time. Cor: amarelo.
+- vo_zefa — mãe do Geraldo, 79 anos, baixinha, rosto redondo cinza-claro de porcelana, coque branco, óculos, vestido florido roxo apagado, bengala. Cor: roxo.
+- nei — tio, irmão do Geraldo, caminhoneiro, gordo, rosto redondo cinza-claro de porcelana, boné e barba, camisa laranja queimado. Cor: laranja.
+- dandara — cozinheira do restaurante onde João pegava os pedidos, 30 anos, rosto redondo cinza-claro de porcelana, cabelo black power, dólmã branca suja e bandana vermelha. Cor: branco.
+- darcio — Dárcio Leme, 60 anos, dono do Frigorífico Leme e voz da Rádio Esperança, alto e magro, rosto redondo cinza-claro de porcelana, cabelo branco, terno bege e fedora. Vilão.
 - zombie e variações prontas: `zombie`, `zombie_corredor`, `zombie_rastejante`, `zombie_enfermeiro`, `zombie_policial`. Chamados de "repetidores".
 
 ## Personagens (motivação e voz)

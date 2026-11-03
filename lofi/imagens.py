@@ -19,32 +19,72 @@ import os, re, sys, json, glob, math
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 
 PASTA = "imagens"
-ESTILO_PADRAO = ("Dark Cinematic Lo-Fi Cartoon style, inspired by atmospheric survival horror animated storytelling: hand-painted 2D digital illustration, "
-                 "semi-realistic adult body proportions, minimalist cartoon facial features, clean slightly textured dark outlines, soft painterly shading with subtle "
-                 "brush textures, muted desaturated colors, cold blue-gray and dusty purple undertones, detailed clothing folds and fabric textures, atmospheric and "
-                 "melancholic, mature illustrated graphic novel appearance. Avoid: 3D render, Pixar style, anime, manga, chibi, oversized head, short legs, photorealism, "
-                 "plastic skin, flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark")
-NEGATIVO_REF = ("3D render, Pixar style, anime, manga, chibi, childish proportions, oversized head, short legs, bald character, photorealism, plastic skin, "
-                "flat vector art, overly saturated colors, thick sticker outlines, text, logos, watermark.")
-IMPORTANTE_REF = ("The character must look like an adult from a cinematic 2D animated survival horror series, not a children's cartoon.\n\n"
-                  "The head should be rounded and slightly stylized, but remain proportional to an adult body.\n\n"
-                  "Use a hand-painted digital illustration finish rather than flat vector graphics.\n\nAvoid exaggerated chibi proportions.")
-MODELO_REFERENCIA = """Create a professional 2D character model sheet in a Dark Cinematic Lo-Fi Cartoon style, inspired by atmospheric survival horror animated storytelling.
+MASTER_STYLE = """MASTER CHARACTER STYLE — MANDATORY
+
+All characters must follow the exact same visual identity:
 
 ART STYLE:
 
-- Hand-painted 2D digital illustration.
-- Dark cinematic cartoon aesthetic.
-- Semi-realistic adult body proportions.
-- Minimalist cartoon facial features.
+- Dark Cinematic Lo-Fi Cartoon 2D.
+- Hand-painted digital illustration.
+- Mature graphic novel aesthetic.
 - Clean, slightly textured dark outlines.
 - Soft painterly shading with subtle brush textures.
 - Muted, desaturated colors.
 - Cold blue-gray and dusty purple undertones.
-- Detailed clothing folds and fabric textures.
-- Atmospheric, melancholic visual identity.
-- Mature illustrated graphic novel appearance.
-- Consistent character design across all views.
+- Detailed clothing textures, folds and shadows.
+- Consistent rendering quality across all characters.
+
+HEAD AND FACE — CRITICAL:
+
+- Perfectly round, smooth, spherical cartoon head.
+- Soft off-white, slightly grayish face color.
+- Muted porcelain-white appearance, never pure bright white.
+- Subtle cool-gray and lavender shadows around the edges.
+- Gentle shading to emphasize the spherical shape.
+- Small black oval eyes.
+- Minimalist black eyebrows.
+- Small, simple mouth, always visible in front and three-quarter views.
+- No realistic nose, ears or human facial anatomy.
+- Hair and facial hair may vary between characters.
+- Preserve the same head shape and face color across the entire series.
+
+BODY AND SKIN:
+
+- All visible skin must use the same muted off-white grayish tone as the face.
+- No natural human skin tones.
+- Soft gray-lavender shadows on arms, hands, legs and neck.
+- Never use pure white or glowing skin.
+- Anatomically appropriate body proportions.
+- Adults: approximately 6.5–7 heads tall.
+- Children: age-appropriate proportions, approximately 5–5.5 heads tall.
+- No chibi proportions.
+
+COLOR AND LIGHTING:
+
+- Muted, low-saturation color palette.
+- Soft cinematic ambient lighting.
+- Moderate contrast.
+- Subtle cool shadows.
+- No harsh highlights on white surfaces.
+- No excessive brightness or glossy effects.
+
+CHARACTER CONSISTENCY:
+
+- Identical head shape and skin tone for every character.
+- Consistent facial feature style.
+- Consistent line thickness and shading technique.
+- Hairstyles, clothing, accessories and body proportions may vary.
+- Preserve each character's established appearance across scenes."""
+NEGATIVO_MASTER = "Pure white skin, glowing white face, bright white limbs, realistic skin tones, human facial anatomy, realistic nose, photorealistic face, 3D render, Pixar style, anime, manga, chibi, oversized head, short adult legs, flat vector art, plastic skin, overly saturated colors, inconsistent character design"
+ESTILO_PADRAO = ("Dark Cinematic Lo-Fi Cartoon 2D, hand-painted digital illustration, mature graphic novel aesthetic, clean slightly textured dark outlines, soft painterly "
+                 "shading with subtle brush textures, muted desaturated colors, cold blue-gray and dusty purple undertones. Perfectly round, smooth, spherical cartoon head; "
+                 "all skin in the same muted off-white grayish porcelain tone with cool-gray and lavender shadows; small black oval eyes, minimalist black eyebrows, small simple mouth; "
+                 "no realistic nose, ears or human facial anatomy; adults 6.5-7 heads tall, children 5-5.5 heads tall. Avoid: " + NEGATIVO_MASTER)
+NEGATIVO_REF = NEGATIVO_MASTER + ", text, logos, watermark."
+MODELO_REFERENCIA = """Create a professional 2D character model sheet.
+
+""" + MASTER_STYLE + """
 
 CHARACTER:
 {personagem}
@@ -68,11 +108,14 @@ Plain light-gray background with very subtle grounding shadows.
 
 Landscape composition, 3:2 aspect ratio.
 
-IMPORTANT STYLE REQUIREMENTS:
-{importante}
-
 NEGATIVE PROMPT:
 {negativo}"""
+FOLHAS = [
+ ("Folha 1: 8 ângulos", ["front view", "front three-quarter view facing right", "right side profile", "back three-quarter view facing right", "back view", "back three-quarter view facing left", "left side profile", "front three-quarter view facing left"]),
+ ("Folha 2: movimento", ["walking", "running", "jumping", "crawling on the ground", "crouching and hiding", "sitting on a chair", "sitting on the floor hugging the knees", "fallen on the ground"]),
+ ("Folha 3: ações", ["pointing with the arm extended", "pushing a door open", "reaching forward", "hugging someone (only this person, arms open)", "carrying a heavy box in both arms", "talking on a smartphone", "speaking into a handheld CB radio", "holding a flashlight and aiming it"]),
+ ("Folha 4: gestos", ["thinking, hand on the chin", "despair, hands on the head", "hand over the mouth", "finger on the lips asking for silence", "hand to the ear, listening", "hands up in surrender", "arms protecting the face", "hugging oneself and trembling"]),
+]
 VISTAS = {"frente": "de frente para a câmera", "34": "em três quartos (3/4), levemente virado", "lado": "de perfil (de lado)",
           "costas": "de costas para a câmera"}
 EMOCOES = {"neutro": "expressão neutra", "medo": "expressão de medo, olhos arregalados", "choque": "expressão de choque, boca aberta",
@@ -228,7 +271,34 @@ def prompt_referencia(nome, ficha):
     pers = ficha.get("ref_personagem")
     personagem = (pers[0] + "\n\n" + lista(pers[1:])) if isinstance(pers, list) else (pers or f"{nome.capitalize()}: {descricao(nome, ficha)}.")
     return MODELO_REFERENCIA.format(personagem=personagem, roupa=lista(ficha.get("ref_roupa", "Clothing as described above.")),
-                                    importante=ficha.get("ref_importante", IMPORTANTE_REF), negativo=ficha.get("ref_negativo", NEGATIVO_REF))
+                                    negativo=ficha.get("ref_negativo", NEGATIVO_REF))
+
+
+def _linha_elenco(n, nome, ficha):
+    """Uma linha do elenco: só o que muda entre os personagens (rosto e pele já estão no estilo)."""
+    p = ficha.get("ref_personagem")
+    if not isinstance(p, list): return f"Row {n}: {descricao(nome, ficha)}"
+    fora = ("cartoon face", "oval eyes", "eyebrows", "simplified mouth", "legs", "shoulder width")
+    tracos = [x.rstrip(".") for x in p[1:] if not any(f in x for f in fora)]
+    return f"Row {n}: {p[0].rstrip('.')}. " + "; ".join(tracos) + ". Wearing: " + "; ".join(x.rstrip(".") for x in ficha.get("ref_roupa", [])) + "."
+
+
+def folhas(pasta_serie):
+    """Folhas do elenco inteiro: cada personagem numa linha, 8 colunas. Saída: imagens_folhas.md."""
+    pasta, bib, fichas, estilo = _serie(pasta_serie)
+    nomes = [n for n in fichas if not (n.startswith("zombie") and n != "zombie")]
+    elenco = "\n".join(_linha_elenco(i + 1, n, fichas[n]) for i, n in enumerate(nomes))
+    out = os.path.join(pasta, "imagens_folhas.md")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("# Folhas do elenco\n\nCada personagem numa linha, 8 posições por linha. Para uma folha maior de um só personagem, deixe só a linha dele em CHARACTERS.\n\n")
+        for titulo, pos in FOLHAS:
+            colunas = "\n".join(f"{i + 1}. {x}." for i, x in enumerate(pos))
+            f.write(f"## {titulo}\n\n```\nCreate a professional 2D character sheet of the whole cast, with each character in one horizontal row, one below the other, "
+                    f"from top to bottom, in the exact order listed.\n\n{MASTER_STYLE}\n\nCHARACTERS, ONE ROW EACH:\n{elenco}\n\nCOLUMNS, THE SAME 8 POSITIONS IN EVERY ROW, FROM LEFT TO RIGHT:\n{colunas}\n\n"
+                    "COMPOSITION:\nA clean grid with one full-body figure per cell, evenly spaced, none overlapping or cropped, same scale for every adult. "
+                    "Keep every character's body, clothing, colors and accessories identical in all 8 positions. Plain light-gray background with very subtle grounding shadows. "
+                    f"Vertical composition, 2:3 aspect ratio.\n\nNEGATIVE PROMPT:\n{NEGATIVO_REF}\n```\n\n")
+    print("folhas ->", out); return out
 
 
 def referencias(pasta_serie):
@@ -381,6 +451,7 @@ if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "prompts": prompts(sys.argv[2], "--todas" in sys.argv)
     elif cmd == "referencias": referencias(sys.argv[2])
+    elif cmd == "folhas": folhas(sys.argv[2])
     elif cmd == "importar": importar(sys.argv[2], sys.argv[3], sys.argv[4])
     elif cmd == "faltam":
         f = faltam(sys.argv[2])
