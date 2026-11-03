@@ -1,0 +1,143 @@
+{
+ "_leia": "Fichas travadas da série Apagão. Valem para todos os episódios; mude só aqui, de propósito.",
+ "joao": {
+  "skin": "claro",
+  "top_style": "hoodie",
+  "top": [40, 40, 46],
+  "legs": [34, 36, 42],
+  "shoes": [28, 28, 30],
+  "hair": "short",
+  "hair_color": [36, 26, 22],
+  "facial": "stubble",
+  "facial_color": [36, 26, 22],
+  "backpack": [120, 28, 32],
+  "bag_termica": true,
+  "body": "thin",
+  "aparencia": "João, a 26-year-old male app delivery rider with a slim, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Perfectly round, off-white cartoon face. Thick, messy dark-brown hair with visible volume. Short dark stubble and a thin beard along the jaw. Small black oval eyes. Thick, expressive dark eyebrows. Small, simplified mouth. Determined, alert expression. Wearing: Charcoal-black hoodie jacket with two light-gray reflective stripes across the chest and arms and a small white arrow logo on the sleeve. Black T-shirt underneath. Dark cargo pants. Black fingerless gloves. Black wristwatch. Worn dark sneakers. Large dark-red insulated delivery backpack with black straps and a chest buckle.",
+  "ref_personagem": [
+   "João, a 26-year-old male app delivery rider with a slim, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Perfectly round, off-white cartoon face.",
+   "Thick, messy dark-brown hair with visible volume.",
+   "Short dark stubble and a thin beard along the jaw.",
+   "Small black oval eyes.",
+   "Thick, expressive dark eyebrows.",
+   "Small, simplified mouth.",
+   "Determined, alert expression."
+  ],
+  "ref_roupa": [
+   "Charcoal-black hoodie jacket with two light-gray reflective stripes across the chest and arms.",
+   "Small white arrow logo on the left sleeve.",
+   "Black T-shirt underneath.",
+   "Dark cargo pants with realistic fabric folds.",
+   "Black fingerless gloves and a black wristwatch.",
+   "Worn dark sneakers.",
+   "Large dark-red insulated delivery backpack with black straps and a chest buckle."
+  ]
+ },
+ "george": {
+  "skin": "claro",
+  "top_style": "uniform",
+  "top": [36, 58, 96],
+  "legs": [92, 86, 70],
+  "shoes": [40, 34, 30],
+  "hair": "short",
+  "hair_color": [168, 168, 170],
+  "facial": "mustache",
+  "facial_color": [168, 168, 170],
+  "glasses": true,
+  "body": "fat",
+  "acc": ["badge"],
+  "aparencia": "George, a 58-year-old male night-shift supermarket stocker with a heavy, sturdy, naturally proportioned adult body. Approximately 6.5 heads tall. Broad shoulders and a round belly. Perfectly round, off-white cartoon face. Short gray hair, slightly receding. Thick gray mustache. Thin rectangular glasses. Small black oval eyes behind the glasses. Thick gray eyebrows. Small, simplified mouth. Tired but stubborn expression. Wearing: Navy-blue supermarket polo uniform with a small orange logo and a name tag. Black lumbar support belt around the waist. Khaki work pants. Brown work boots. Yellow box cutter clipped to the belt.",
+  "ref_personagem": [
+   "George, a 58-year-old male night-shift supermarket stocker with a heavy, sturdy, naturally proportioned adult body.",
+   "Approximately 6.5 heads tall.",
+   "Broad shoulders and a round belly.",
+   "Perfectly round, off-white cartoon face.",
+   "Short gray hair, slightly receding.",
+   "Thick gray mustache.",
+   "Thin rectangular glasses.",
+   "Small black oval eyes behind the glasses.",
+   "Thick gray eyebrows.",
+   "Small, simplified mouth.",
+   "Tired but stubborn expression."
+  ],
+  "ref_roupa": [
+   "Navy-blue supermarket polo uniform with a small orange logo and a name tag reading GEORGE.",
+   "Black lumbar support belt around the waist.",
+   "Khaki work pants with realistic fabric folds.",
+   "Brown work boots.",
+   "Yellow box cutter clipped to the belt."
+  ]
+ },
+ "bia": {
+  "skin": "claro",
+  "top_style": "suit",
+  "top": [104, 30, 44],
+  "inner": [236, 232, 226],
+  "legs": [30, 30, 36],
+  "shoes": [24, 24, 26],
+  "hair": "bun",
+  "hair_color": [44, 30, 24],
+  "acc": ["earrings"],
+  "body": "thin",
+  "aparencia": "Bia, a 31-year-old female lawyer with a slim, naturally proportioned adult body. Approximately 7 heads tall. Long, naturally proportioned legs. Perfectly round, off-white cartoon face. Dark-brown hair pulled into a low, tight bun with a few loose strands. Small black oval eyes. Sharp, expressive dark eyebrows. Small, simplified mouth. Serious, controlled expression. Wearing: Fitted burgundy blazer over a white blouse. Dark tailored trousers. Black low-heel shoes. Small silver earrings. Black leather briefcase with a thick case file sticking out.",
+  "ref_personagem": [
+   "Bia, a 31-year-old female lawyer with a slim, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Long, naturally proportioned legs.",
+   "Perfectly round, off-white cartoon face.",
+   "Dark-brown hair pulled into a low, tight bun with a few loose strands.",
+   "Small black oval eyes.",
+   "Sharp, expressive dark eyebrows.",
+   "Small, simplified mouth.",
+   "Serious, controlled expression."
+  ],
+  "ref_roupa": [
+   "Fitted burgundy blazer over a white blouse.",
+   "Dark tailored trousers with realistic fabric folds.",
+   "Black low-heel shoes.",
+   "Small silver earrings.",
+   "Black leather briefcase with a thick case file sticking out."
+  ]
+ },
+ "dalva": {
+  "skin": "moreno",
+  "top_style": "leather",
+  "top": [70, 52, 36],
+  "legs": [44, 50, 66],
+  "shoes": [30, 26, 22],
+  "hair": "curly",
+  "hair_color": [30, 24, 20],
+  "hat": "headband",
+  "hat_color": [220, 170, 40],
+  "body": "tall",
+  "aparencia": "Dalva, a 45-year-old female community electrician with a tall, strong, naturally proportioned adult body. Approximately 7 heads tall. Perfectly round, off-white cartoon face. Voluminous dark curly hair held back by a yellow headband. Small black oval eyes. Heavy, confident eyebrows. Small, simplified mouth with a crooked half-smile. Wearing: Worn brown leather jacket over a gray tank top. Faded blue jeans. Heavy boots. Tool belt with pliers and electrical tape. Coils of orange extension cable over one shoulder.",
+  "ref_personagem": [
+   "Dalva, a 45-year-old female community electrician with a tall, strong, naturally proportioned adult body.",
+   "Approximately 7 heads tall.",
+   "Perfectly round, off-white cartoon face.",
+   "Voluminous dark curly hair held back by a yellow headband.",
+   "Small black oval eyes.",
+   "Heavy, confident eyebrows.",
+   "Small, simplified mouth with a crooked half-smile."
+  ],
+  "ref_roupa": [
+   "Worn brown leather jacket over a gray tank top.",
+   "Faded blue jeans with realistic fabric folds.",
+   "Heavy boots.",
+   "Tool belt with pliers and electrical tape.",
+   "Coils of orange extension cable over one shoulder."
+  ]
+ },
+ "zombie": {
+  "_nota": "os apagados: figurantes sem nome; variações prontas zombie_corredor, zombie_rastejante, zombie_policial",
+  "skin": "palido",
+  "top_style": "torn",
+  "top": [70, 70, 76],
+  "legs": [50, 50, 56],
+  "hair": "short",
+  "hair_color": [40, 40, 44]
+ }
+}

@@ -211,7 +211,7 @@ def conferir_fluxo(txt, caminho=None):
                 m = re.match(r"^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{1,30}(?:\s*\([^)]*\))?)\s*:\s*(.+)$", linha)
                 if not m: continue
                 rot = m.group(1).strip()
-                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO|CONSEQ|VIRADA|PENSAMENTO|O PLANO|NO BAL|PASSOS|SETAS|MAPA)", rot): continue
+                if re.match(r"^(CEN|PERSON|PLANO|LUZ|SOM|LEGENDA|TEXTO|TRANSI|LIGA|INSER|ENTRA|SAI|PEGA|LARGA|ABERTURA|PERGUNTA|O TEMPO|CONSEQ|VIRADA|PENSAMENTO|O PLANO|NO BAL|PASSOS|SETAS|MAPA|IMAGE|ANIMA|SUBTRAMA|CONFLITO|SEQU)", rot): continue
                 pal += len(re.sub(r"\[[^\]]*\]", "", m.group(2)).split())
             wps = pal / (c["b"] - c["a"])
             if wps > 3.3: avisos.append(f"CENA {c['n']}: {pal} palavras em {c['b'] - c['a']:g} s ({wps:.1f}/s) — fala demais para o tempo; aumente a cena ou corte texto")

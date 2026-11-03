@@ -1,0 +1,163 @@
+{
+ "lugares": {
+  "rota_joao": {
+   "cenarios": [
+    "rua",
+    "beco",
+    "viaduto",
+    "portao",
+    "entrada",
+    "escada",
+    "corredor",
+    "apartamento"
+   ],
+   "nota": "Méier e Engenho de Dentro, Zona Norte: a rua da última entrega e o prédio do cliente (portaria, escada, corredor e o apartamento do 6º andar)"
+  },
+  "hiper": {
+   "cenarios": [
+    "mercado",
+    "loja",
+    "deposito",
+    "camara_fria",
+    "cftv",
+    "estacionamento"
+   ],
+   "nota": "Hiper Central, onde o George repõe as prateleiras no turno da noite"
+  },
+  "linha_trem": {
+   "cenarios": [
+    "entrada_metro",
+    "metro",
+    "vagao"
+   ],
+   "nota": "estação e túnel do metrô, a ligação entre a Zona Norte e o Centro"
+  },
+  "centro": {
+   "cenarios": [
+    "rua_amanhecer",
+    "escada",
+    "corredor",
+    "delegacia"
+   ],
+   "nota": "Centro do Rio: a escadaria e os corredores do fórum onde a Bia estava em audiência"
+  },
+  "acesos": {
+   "cenarios": [
+    "posto",
+    "estacionamento",
+    "radio_portatil"
+   ],
+   "nota": "posto de gasolina com gerador, território da Dalva e dos Acesos"
+  },
+  "casa_familia": {
+   "cenarios": [
+    "apartamento",
+    "janela",
+    "escada",
+    "telhado",
+    "radio"
+   ],
+   "nota": "apartamento da família na Tijuca, 4º andar, com a laje no alto do prédio"
+  }
+ },
+ "ligacoes": [
+  [
+   "rota_joao",
+   "hiper",
+   "três quilômetros pela rua e pelo viaduto"
+  ],
+  [
+   "rota_joao",
+   "linha_trem",
+   "pela estação de metrô de Maria da Graça (Linha 2)"
+  ],
+  [
+   "hiper",
+   "linha_trem",
+   "pela passarela da estação ao lado do estacionamento"
+  ],
+  [
+   "linha_trem",
+   "centro",
+   "pelo túnel, até a estação Central"
+  ],
+  [
+   "hiper",
+   "acesos",
+   "pela avenida, até o posto da esquina"
+  ],
+  [
+   "acesos",
+   "casa_familia",
+   "subindo as ruas da Tijuca"
+  ],
+  [
+   "centro",
+   "casa_familia",
+   "pela avenida, a pé, cinco quilômetros"
+  ],
+  [
+   "linha_trem",
+   "casa_familia",
+   "pela estação da Tijuca"
+  ]
+ ],
+ "fim": {
+  "0": {
+   "lugar": "rota_joao",
+   "dia": 0,
+   "hora": "21:30",
+   "inventario": {
+    "joao": [
+     "celular",
+     "mochila",
+     "chave",
+     "lanterna",
+     "relogio"
+    ],
+    "george": [
+     "estilete",
+     "radio",
+     "oculos"
+    ],
+    "bia": [
+     "pasta",
+     "celular"
+    ],
+    "dalva": [
+     "gerador",
+     "cabo"
+    ]
+   },
+   "nota": "início: João na última entrega no Méier; George no hiper; Bia em audiência no fórum, no Centro"
+  },
+  "1": {
+   "lugar": "rota_joao",
+   "inventario": {
+    "joao": [
+     "celular",
+     "mochila",
+     "chave",
+     "lanterna",
+     "relogio"
+    ],
+    "george": [
+     "estilete",
+     "radio",
+     "oculos"
+    ],
+    "bia": [
+     "pasta",
+     "celular"
+    ],
+    "dalva": [
+     "gerador",
+     "cabo"
+    ]
+   },
+   "dia": 0,
+   "hora": "21:57",
+   "nota": "João sob a marquise da padaria, na rua do prédio do cliente (Méier), com a horda virada para a tela do celular; a bicicleta presa no poste em frente. George trancado na câmara fria do Hiper Central. Bia trancada na sala de audiência do fórum, no Centro."
+  }
+ }
+}
