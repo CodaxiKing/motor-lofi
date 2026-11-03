@@ -11,6 +11,7 @@
 
 ## CENA 0 · GANCHO (0–2 s)
 PLANO DE DETALHE: `olho` · TEXTO: ELES ESTÃO / OUVINDO
+FALA DO GANCHO: `roberta` "Eles estão vindo" (a mesma da CENA 9, em close no rosto dela)
 SOM: `heartbeat` 0 s
 
 ## ANTERIORMENTE EM… (2–7 s)

@@ -48,6 +48,12 @@ def check(path, frames=True):
             if (sp.get("episode") or 1) > 1 and not sp.get("voto"): err("falta \"voto\" (palavra da escolha da maioria) para o carimbo do selo")
             if not sp.get("episode"): err("falta \"episode\" (o selo EP X/Y usa episode e episodes_total)")
         elif not any(s.get("type") == "title" for s in shots): err("falta o plano de título com carimbo")
+    hk0 = next((s for s in shots if s.get("hook") and s["start"] < 0.5), None)
+    if hk0 and not sp.get("legado") and formato in ("extra", None, "episodio") and not (isinstance(hk0["hook"], dict) and hk0["hook"].get("fala")):
+        warn("gancho calado: use \"hook\": {\"fala\": \"<a fala mais forte do episódio>\"} e o rosto de quem fala em close; "
+             "o vídeo abre com a voz no 1º segundo")
+    if hk0 and isinstance(hk0["hook"], dict) and hk0["hook"].get("fala") and not any(c.get("gancho") for c in ep.clips):
+        err(f"a fala do gancho não foi achada nas legendas: {hk0['hook']['fala']!r}")
         final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
         if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
     for a, b in zip(shots, shots[1:]):

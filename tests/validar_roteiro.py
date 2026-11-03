@@ -238,6 +238,19 @@ def conferir_fluxo(txt, caminho=None):
     g = next((c for c in cenas if c["n"] == 0), None)
     if g and g["cen"] and not any(c["cen"] == g["cen"] for c in cenas if c["n"] > 0):
         avisos.append(f"GANCHO: o cenário `{g['cen']}` do gancho não aparece em nenhuma cena; o gancho tem que ser um momento real do episódio")
+    # gancho falado: o vídeo abre já com a fala mais forte (a mesma de uma cena de depois), nunca calado
+    if g:
+        fg = re.search(r"FALA DO GANCHO\s*:\s*(.*)", g["corpo"], re.I)
+        if not fg:
+            avisos.append("GANCHO calado: escreva `FALA DO GANCHO: `personagem` \"a fala mais forte do episódio\"` "
+                          "(a mesma de uma cena de depois; o vídeo abre com ela no 1º segundo, com o rosto de quem fala em close)")
+        else:
+            q = re.search(r"[\"“]([^\"”]+)[\"”]", fg.group(1))
+            def pal(x): return " ".join(re.sub(r"[^\w\s]", " ", sem_acento(x).replace("*", "").lower()).split())
+            if q and not any(pal(q.group(1)) in pal(c["corpo"]) for c in cenas if c["n"] > 0):
+                avisos.append(f"FALA DO GANCHO \"{q.group(1)}\" não aparece em nenhuma cena: tem que ser uma fala real do episódio (o motor reaproveita o áudio dela)")
+            if g["a"] is not None and g["b"] is not None and not (1.5 <= g["b"] - g["a"] <= 4):
+                avisos.append("GANCHO falado: dure de 2 a 3,5 s (o tempo da fala + meio segundo)")
     if not re.search(r"^#+\s*ESCALETA", txt, re.M | re.I):
         avisos.append("falta a ESCALETA (6–10 batidas antes das cenas)")
     return erros, avisos

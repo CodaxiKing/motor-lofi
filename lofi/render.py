@@ -79,7 +79,7 @@ class Episode:
         # 100% narrado: só o narrador fala; ninguém mexe a boca e a voz é de estúdio (sem eco do lugar)
         self.narrado = bool(sp.get("narrado", False))
         # personagens maiores em relação ao cenário (1.0 = tamanho antigo; episódios "legado" ficam como eram)
-        self.k_pers = float(sp.get("escala_personagens", 1.0 if sp.get("legado") else 1.18))   # névoa/brilho/granulado/partículas: "leve" (padrão), "normal" ou "nenhum"
+        self.k_pers = float(sp.get("escala_personagens", 1.0 if sp.get("legado") else 1.18))
         self._hook_end = max([s["end"] for s in self.shots if s.get("hook") or (s.get("type") in ("recap", "placar") and s["start"] < 20)] or [0.0])
         if self.redes and sp.get("loop", True) and self._hook_end and not any(s.get("type") == "loop" for s in self.shots):
             t0 = round(max(self.total, max(s["end"] for s in self.shots)), 3)   # último meio segundo = primeiro: o vídeo emenda
@@ -94,17 +94,57 @@ class Episode:
             if os.path.exists(cand):
                 self.locked = {k: v for k, v in json.load(open(cand, encoding="utf-8")).items() if not k.startswith("_")}; break
         self.custom = {**sp.get("characters", {}), **self.locked}
-        self.clips = sp.get("clips", [])
+        self.clips = list(sp.get("clips", []))
         self.subs = text.split_subs([(s["voice"], s["src"][0], s["src"][1], s["text"]) for s in sp.get("subs", [])], self.to_video)
+        self._fala_gancho()
         self.flashes = sp.get("lightning", [])
         self.word_subs = sp.get("word_captions", True)
         self.env = {}
         self._recap_cache = {}
 
+    def _fala_gancho(self):
+        """`"hook": {"fala": "ELES *ESCUTAM*."}` (ou {"voice", "src": [a, b]}): o gancho abre já com a fala mais forte do
+        episódio. O mesmo trecho de voz da cena de depois toca a partir do 1º quadro (a boca de quem fala mexe sozinha);
+        sem "text", o texto grande do gancho vira a própria fala."""
+        import re, sys as _sys
+        def pal(x): return re.sub(r"[^\w\s]", " ", x.replace("*", "").lower()).split()
+        for sh in self.shots:
+            hk = sh.get("hook")
+            if not isinstance(hk, dict) or not hk.get("fala"): continue
+            f = hk["fala"]; texto = None
+            if isinstance(f, dict) and "src" in f:
+                voz, (a, b) = f["voice"], f["src"]; texto = f.get("text")
+            else:
+                alvo = " ".join(pal(f if isinstance(f, str) else f.get("text", "")))
+                achou = None                                  # o menor trecho de legendas seguidas que contém a fala
+                for i in range(len(self.subs)):
+                    acc = []
+                    for j in range(i, min(i + 8, len(self.subs))):
+                        if self.subs[j][3] != self.subs[i][3]: break
+                        acc += pal(self.subs[j][2])
+                        if alvo and alvo in " ".join(acc):
+                            if achou is None or j - i < achou[1] - achou[0]: achou = (i, j)
+                            break
+                if not achou:
+                    print(f"[gancho] fala não encontrada nas legendas: {f!r}", file=_sys.stderr); continue
+                i, j = achou; A, B = self.subs[i][0], self.subs[j][1] - 0.12; voz = self.subs[i][3]
+                c = next((c for c in self.clips if c["voice"] == voz and c["at"] - 0.3 <= A <= c["at"] + c["src"][1] - c["src"][0] + 0.3), None)
+                if not c:
+                    print(f"[gancho] trecho da fala sem clipe: {f!r}", file=_sys.stderr); continue
+                a = max(c["src"][0], c["src"][0] + A - c["at"] - 0.06); b = min(c["src"][1], c["src"][0] + B - c["at"] + 0.12)
+                texto = " ".join(self.subs[k][2] for k in range(i, j + 1)) if not isinstance(f, str) else f
+            at = sh["start"] + float(hk.get("fala_t", 0.0))
+            self.clips.append({"voice": voz, "src": [round(a, 3), round(b, 3)], "at": at, "gancho": True})
+            if at + (b - a) > sh["end"] + 0.05:
+                print(f"[gancho] a fala ({b - a:.1f} s) passa do fim do gancho ({sh['end'] - sh['start']:.1f} s): aumente o plano", file=_sys.stderr)
+            if not hk.get("text") and texto:
+                ws = texto.replace("*", "").upper().split(); meio = (len(ws) + 1) // 2 if len(ws) > 4 else len(ws)
+                hk["text"] = " ".join(ws[:meio]) + ("\n" + " ".join(ws[meio:]) if ws[meio:] else "")
+
     def to_video(self, voice, t):
         for c in self.clips:
             a, b = c["src"]
-            if c["voice"] == voice and a - 0.25 <= t <= b + 0.25: return c["at"] + (t - a)
+            if c["voice"] == voice and not c.get("gancho") and a - 0.25 <= t <= b + 0.25: return c["at"] + (t - a)
         raise ValueError(f"fala fora dos clipes: {voice} {t}")
 
     # ---------------- áudio ----------------
@@ -742,6 +782,8 @@ class Episode:
             rel = t - shot["start"]; p = ease_out(c01(rel / 0.2))
             txt = hk["text"] if isinstance(hk, dict) else str(hk)
             y = hk.get("y", 860) if isinstance(hk, dict) else 860
+            if isinstance(hk, dict) and hk.get("fala") and "y" not in hk and self._heads:
+                y = self.pick_sub_y(shot) - (138 if "\n" in txt else 0)      # gancho falado: o texto fica fora do rosto
             lines = txt.split("\n")
             if self.redes:   # aparece palavra por palavra desde o 1º quadro (o 1º quadro vira a capa no feed)
                 passo = hk.get("passo", 0.16) if isinstance(hk, dict) else 0.16; n = 0

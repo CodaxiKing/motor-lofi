@@ -345,6 +345,10 @@ Ligado sozinho em todo episódio sem `"plano_padrao": "aberto"` (desliga com `"m
 - **Sem cartela de título.** Não use plano `title`: o gancho emenda direto na 1ª cena e um selo `EP X/Y` (com o nome da série)
   entra no canto direito por 3,5 s e depois fica discreto. A partir do ep. 2, `"voto": "TELHADO"` no topo do JSON mostra o carimbo
   "A MAIORIA ESCOLHEU" no alto, logo depois do gancho (com som `stamp`). O verificador pede `episode` e, do ep. 2 em diante, `voto`.
+- **Gancho falado (padrão).** `"hook": {"fala": "ELES *ESCUTAM*."}`: o motor acha essa fala nas legendas, copia o mesmo trecho de voz para o 1º quadro do
+  gancho (a boca de quem fala mexe sozinha; não precisa gravar de novo) e, sem `"text"`, usa a própria fala como texto grande, posto fora dos rostos.
+  Também aceita `{"fala": {"voice": "lia", "src": [8.8, 10.0]}}`. Mostre em close o rosto de quem fala; o gancho dura a fala + ~0,5 s.
+  O verificador avisa "gancho calado" e o validador de roteiro pede a linha `FALA DO GANCHO:`.
 - **Gancho com impacto.** O texto do `hook` aparece palavra por palavra desde o 1º quadro (`"passo": 0.16` s por palavra),
   a câmera entra num "soco" de zoom que assenta em 0,4 s e o motor põe `impact` + `whoosh` no quadro 0.
 - **Cortes automáticos.** Planos de 4,8 s ou mais com enquadramento automático (médio/conjunto) são divididos nas pausas da
