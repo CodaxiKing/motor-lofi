@@ -1,0 +1,55 @@
+{
+  "visual_mode": "DESENHO",
+  "visual_style": "cartoon sombrio",
+  "fps": 24,
+  "total": 3,
+  "out": "demo.mp4",
+  "shots": [
+    {
+      "start": 0,
+      "end": 3,
+      "type": "scene",
+      "image_scene": {
+        "layers": [
+          {
+            "path": "hospital.png",
+            "z": 0
+          },
+          {
+            "path": "porta.png",
+            "z": 1,
+            "x": 250,
+            "y": 300,
+            "motion": {
+              "sway_rotation": 2,
+              "frequency": 0.6
+            }
+          }
+        ],
+        "camera": {
+          "zoom": [
+            1,
+            1.08
+          ]
+        },
+        "effects": [
+          {
+            "type": "light_pulse",
+            "rate": 0.7,
+            "strength": 0.2
+          }
+        ]
+      },
+      "image_requirements": [
+        {
+          "kind": "environment",
+          "subject": "hospital"
+        },
+        {
+          "kind": "prop",
+          "subject": "porta"
+        }
+      ]
+    }
+  ]
+}

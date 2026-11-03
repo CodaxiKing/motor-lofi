@@ -526,3 +526,13 @@ desfocado na cor do episódio; frase = texto do gancho. Ajustes: `"capa": {"quem
 3 a 5 min, 18+ cenas, ESCALETA de 10–14 batidas em ATO 1/2/3 com VIRADA DO MEIO, `## SUBTRAMA` marcada em 2+ cenas (`SUBTRAMA:`),
 `CONFLITO:`, `SEQUÊNCIA:` de ação de 30 s+, 2+ PENSAMENTO/O PLANO e 4+ lugares. O validador avisa o que faltar (COMPLEXIDADE);
 `Complexidade: simples` na bíblia (ou `--simples`) desliga.
+
+## Modo DESENHO: cenas feitas de imagens prontas (visual-asset-library v5)
+Opcional, por episódio: `"visual_mode": "DESENHO"` + `"image_scene"` no plano troca o desenho por código daquele plano por imagens
+PNG em camadas (fundo, personagem recortado, objetos), com câmera (zoom/pan), respiração, balanço, flicker, névoa e vinheta.
+Não confundir com `"style": "desenho"` (o lo-fi com traço de nanquim). Planos sem `image_scene` continuam iguais.
+Módulos: `visual_assets` (biblioteca de imagens com busca e prompts das que faltam), `visual_compositor`, `image_scene_animator`,
+`character_motion` e `facial_timeline` (rosto em sprites: olhos, boca por cues do Rhubarb, expressões por tempo), `auto_rig` e
+`advanced_rig` (pontos do esqueleto por silhueta ou MediaPipe opcional; deformação por triângulos, não ARAP), `lipsync_pipeline`,
+`storyboard_planner`, `episode_export` (exporta só cenas DESENHO, sem legendas nem mixagem do motor) e `drawing_mode` (a ponte com
+`Episode.scene_frame`). Funciona em pé e deitado. Documentação completa e limites em `docs/desenho/`; skill em `skills/motor-lofi-desenho/`.

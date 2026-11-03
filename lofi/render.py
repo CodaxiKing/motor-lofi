@@ -596,6 +596,9 @@ class Episode:
 
     # ---------------- planos ----------------
     def scene_frame(self, shot, t, t_anim=None):
+        if self.spec.get('visual_mode') == 'DESENHO' and shot.get('image_scene') is not None:
+            from .drawing_mode import draw_shot          # modo DESENHO (imagens prontas em camadas; docs/desenho)
+            return draw_shot(shot, t, self.base, (W, H))
         t_anim = t if t_anim is None else t_anim
         trav = shot.get("travelling")
         tdir = trav.get("dir") if isinstance(trav, dict) else None
