@@ -4,9 +4,10 @@
    "cenarios": [
     "apartamento",
     "entrada",
-    "janela"
+    "janela",
+    "radio_portatil"
    ],
-   "nota": "quartinho do João numa vila do subúrbio"
+   "nota": "kitnet do João"
   },
   "vila": {
    "cenarios": [
@@ -17,139 +18,101 @@
    ],
    "nota": "corredor, escada, laje e portão da vila"
   },
-  "suburbio": {
+  "bairro": {
    "cenarios": [
     "rua",
     "beco",
-    "mercado"
+    "rua_amanhecer"
    ],
-   "nota": "ruas do bairro e cidade morta no caminho"
+   "nota": "6 km de ruas entre a kitnet e o mercado"
   },
-  "posto": {
-   "cenarios": [
-    "posto"
-   ],
-   "nota": "posto abandonado onde João acha o rádio PX"
-  },
-  "estrada": {
-   "cenarios": [
-    "viaduto",
-    "rua_amanhecer",
-    "estacionamento"
-   ],
-   "nota": "rodovia até a ponte do km 240"
-  },
-  "tunel": {
-   "cenarios": [
-    "metro",
-    "esgoto"
-   ],
-   "nota": "túnel da rodovia, atalho sugerido pelo Amaro"
-  },
-  "clinica": {
+  "mercado": {
    "cenarios": [
     "loja",
-    "deposito"
+    "mercado",
+    "estacionamento"
    ],
-   "nota": "clínica veterinária da Bia"
+   "nota": "caixas, corredores e a porta de aço"
   },
-  "mata": {
+  "fundos": {
    "cenarios": [
-    "floresta"
-   ],
-   "nota": "mata entre a clínica e a ponte; embaixo da ponte"
-  },
-  "ponte": {
-   "cenarios": [
-    "ponte",
-    "carro",
-    "radio_carro"
-   ],
-   "nota": "ponte do km 240 e a cabine do caminhão"
-  },
-  "represa": {
-   "cenarios": [
+    "deposito",
+    "camara_fria",
     "cftv",
     "radio"
    ],
-   "nota": "sala de controle e alto da represa do Amaro"
+   "nota": "estoque, câmara fria e escritório com cofre e rádio PX"
   }
  },
  "ligacoes": [
   [
    "casa_joao",
    "vila",
-   "pela porta do quarto"
+   "pela porta ou pela janela da kitnet"
   ],
   [
    "vila",
-   "suburbio",
+   "bairro",
    "pelo portão da vila"
   ],
   [
-   "suburbio",
-   "posto",
-   "pela avenida"
+   "bairro",
+   "mercado",
+   "pela porta de aço ou pelo estacionamento"
   ],
   [
-   "posto",
-   "estrada",
-   "pela saída do posto"
-  ],
-  [
-   "estrada",
-   "tunel",
-   "pela boca do túnel"
-  ],
-  [
-   "tunel",
-   "ponte",
-   "o túnel sai perto da ponte"
-  ],
-  [
-   "estrada",
-   "ponte",
-   "pela rodovia, na ponta sul da ponte"
-  ],
-  [
-   "clinica",
-   "mata",
-   "pelos fundos da clínica"
-  ],
-  [
-   "clinica",
-   "estrada",
-   "pela estrada vicinal"
-  ],
-  [
-   "mata",
-   "ponte",
-   "pela ponta norte e por baixo da ponte"
-  ],
-  [
-   "mata",
-   "represa",
-   "pela trilha de manutenção"
-  ],
-  [
-   "ponte",
-   "represa",
-   "pela escada lateral da barragem"
+   "mercado",
+   "fundos",
+   "pela porta de serviço"
   ]
  ],
  "fim": {
   "0": {
-   "lugar": "suburbio",
+   "lugar": "casa_joao",
    "dia": 0,
-   "hora": "16:30",
+   "hora": "14:10",
    "inventario": {
     "joao": [
      "celular",
      "mochila",
-     "bicicleta"
+     "chave",
+     "radio"
+    ],
+    "bia": [
+     "prancheta",
+     "pasta"
+    ],
+    "rubens": [
+     "controle"
+    ],
+    "geraldo": [
+     "chaves"
     ]
    },
-   "nota": "início: João fazendo entregas no subúrbio"
+   "nota": "início"
+  },
+  "1": {
+   "lugar": "casa_joao",
+   "inventario": {
+    "joao": [
+     "celular",
+     "mochila",
+     "chave",
+     "radio",
+     "radio",
+     "radio"
+    ],
+    "bia": [
+     "prancheta",
+     "pasta"
+    ],
+    "rubens": [
+     "controle"
+    ],
+    "geraldo": [
+     "chaves"
+    ]
+   }
   }
  }
 }
