@@ -596,6 +596,9 @@ class Episode:
 
     # ---------------- planos ----------------
     def scene_frame(self, shot, t, t_anim=None):
+        if shot.get("video_clip"):                      # clipe de vídeo como fundo do plano (lofi/video_clip.py)
+            from .video_clip import quadro as quadro_video
+            return quadro_video(shot, t, self.base, (W, H))
         if shot.get("imagens"):                         # estilo "imagens": cena montada com imagens geradas fora (lofi/imagens.py)
             from .imagens import quadro
             nv = None if self.narrado else (lambda v, tt: self.level(v, tt, smooth=2) * 1.3)
@@ -1038,6 +1041,18 @@ class Episode:
         img = apply_profile(img, self.visual_profile)
         return img
 
+    def frame_limpo(self, t):
+        """Só a cena (cenário, personagens, luz, câmera), sem legenda, selo, contador, barras nem efeitos de tela.
+        Serve de quadro inicial para animar o plano com IA (o resultado volta como "video_clip")."""
+        self._heads = []; self._beams = []; self._treal = t; self._avoid = []; self._cam = None
+        shot = next((s for s in self.shots if s["start"] <= t < s["end"]), self.shots[-1])
+        shot = {k: v for k, v in shot.items() if k != "video_clip"}
+        img = self.scene_frame(shot, t, t)
+        if shot.get("layers"):
+            progress = max(0.0, min(1.0, (t - shot["start"]) / max(0.001, shot["end"] - shot["start"])))
+            img = composite_layers(img, shot["layers"], self.base, progress)
+        return img
+
     def _quadro_em_pe(self, t):
         """Deitado: telas de texto e planos de detalhe vêm do vídeo em pé já renderizado, no centro da tela larga,
         com o próprio quadro desfocado e escurecido preenchendo as laterais."""
@@ -1096,7 +1111,11 @@ class Episode:
         h.update(json.dumps(glob_spec, sort_keys=True, ensure_ascii=False, default=str).encode())
         base = h.hexdigest(); shots = self.spec["shots"]; chaves = []
         for i, sh in enumerate(sorted(shots, key=lambda x: x["start"])):
-            k = hashlib.sha1((base + json.dumps(sh, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()[:20]
+            extra = ""
+            if sh.get("video_clip"):                     # o clipe pode ser refeito com o mesmo nome
+                vc = sh["video_clip"] if os.path.isabs(sh["video_clip"]) else os.path.join(self.base, sh["video_clip"])
+                if os.path.exists(vc): st = os.stat(vc); extra = f"{st.st_size}{st.st_mtime}"
+            k = hashlib.sha1((base + extra + json.dumps(sh, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()[:20]
             a, b = int(round(sh["start"] * self.fps)), int(round(sh["end"] * self.fps))
             chaves.append((k, a, min(b, int(self.total * self.fps))))
         return chaves
@@ -1178,6 +1197,10 @@ if __name__ == "__main__":
         j = int(sys.argv[sys.argv.index("--jobs") + 1])
         if "--sem-cache" in sys.argv: ep.render_parallel(j)
         else: ep.render_cache(j)
+        sys.exit()
+    if "--limpo" in sys.argv:          # quadros só da cena (sem legendas/selo/HUD), para animar com IA
+        for t in [float(x) for x in sys.argv[sys.argv.index("--limpo") + 1:]]:
+            path = os.path.join(ep.base, f"_limpo_{t:05.1f}.png"); ep.frame_limpo(t).save(path); print(path)
         sys.exit()
     if "--test" in sys.argv:
         ts = [float(x) for x in sys.argv[sys.argv.index("--test") + 1:]]
