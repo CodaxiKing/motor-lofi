@@ -7,9 +7,9 @@ from lofi import imagens
 
 def _serie(d):
     json.dump({"lia": {"top_style": "scrubs", "top": [96, 168, 178], "hair": "bun", "hair_color": [40, 28, 24]}},
-              open(os.path.join(d, "personagens.json"), "w"))
-    open(os.path.join(d, "biblia.md"), "w").write("Estilo: imagens\nPrompt de estilo: cartoon teste\n")
-    open(os.path.join(d, "ep01_roteiro.md"), "w").write(
+              open(os.path.join(d, "personagens.json"), "w", encoding="utf-8"))
+    open(os.path.join(d, "biblia.md"), "w", encoding="utf-8").write("Estilo: imagens\nPrompt de estilo: cartoon teste\n")
+    open(os.path.join(d, "ep01_roteiro.md"), "w", encoding="utf-8").write(
         "## CENA 1 — 0 s a 5 s\nIMAGENS: fundo `hospital` (corredor) · `lia_frente_medo`\n"
         "## CENA 2 — 5 s a 9 s\nIMAGENS: fundo `hospital` · `lia_lado_choque_correndo`\n")
 

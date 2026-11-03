@@ -1025,6 +1025,11 @@ class Episode:
         if tn and typ != "title": img = fx.tint(img, tn[:3], tn[3] if len(tn) > 3 else 0.15)
         if self.spec.get("style") == "desenho" and typ in ("scene", "detail", "choice", "pensamento", "plano"): img = fx.hand_drawn(img)
         img = fx.vignette(img, shot.get("vignette", 1.0)); img = fx.grain(img)
+        if shot.get("reticula"): img = fx.reticula(img, float(shot["reticula"]))     # tensão: moldura de retícula
+        gl = shot.get("glitch")
+        if gl:
+            ga = fx.glitch_amount(t, gl if isinstance(gl, list) else [shot["start"]])
+            if ga: img = fx.glitch(img, t, ga)
         tr = shot.get("transition", "cut"); dur = shot.get("transition_dur", 0.28)
         rel = t - shot["start"]
         if tr != "cut" and rel < dur: img = fx.transition(img, None, tr, rel / dur)
@@ -1034,7 +1039,10 @@ class Episode:
         if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano") and not shot.get("hook")):
             text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
             if self.spec["hud"].get("barras"): text.barras(img, t, self.spec["hud"]["barras"])
-        if not shot.get("hook") and typ != "recap":
+        if typ in ("scene", "detail"):
+            from . import interface
+            if interface.ativa(self, shot): img = interface.desenhar(self, img, shot, t)
+        if not shot.get("hook") and typ != "recap" and shot.get("legenda", True):
             sy = self.pick_sub_y(shot) if typ in ("scene", "detail") else shot.get("sub_y", 1590 if typ == "choice" else (1440 if typ == "pensamento" else None))
             text.subtitle(img, t, self.subs, self.speakers, sy, words=self.word_subs)
         if t > self.total - 0.6 and not self.redes: img = Image.blend(img, fx.BLACK, c01((t - (self.total - 0.6)) / 0.6))

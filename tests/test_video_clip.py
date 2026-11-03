@@ -29,3 +29,14 @@ def test_video_clip_como_fundo_e_quadro_limpo():
         assert not azul(ep.frame(3.0))                  # o plano seguinte volta ao cenário desenhado
         assert not azul(ep.frame_limpo(0.5))            # quadro limpo ignora o clipe: é a cena para animar
         assert ep.frame_limpo(0.5).size == ep.frame(0.5).size
+
+
+def test_clipe_em_pe_no_quadro_deitado_nao_corta():
+    from lofi.video_clip import quadro
+    with tempfile.TemporaryDirectory() as d:
+        _clip(os.path.join(d, "clip.mp4"), "blue", 1)          # 240x426 (em pé)
+        im = quadro({"start": 0, "video_clip": "clip.mp4"}, 0.5, d, (1920, 1080))
+        assert im.size == (1920, 1080)
+        centro, lateral = im.getpixel((960, 540)), im.getpixel((40, 540))
+        assert centro[2] > 200                                  # o clipe inteiro no centro
+        assert lateral[2] < centro[2] * 0.6                     # laterais: o próprio quadro escurecido

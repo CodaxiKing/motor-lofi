@@ -47,6 +47,20 @@ def quadro(shot, t, base, size):
     i = min(len(frames) - 1, max(0, int((t - shot["start"]) * fps)))
     im = Image.fromarray(frames[i])
     W, H = size
+    if (W / H) / (im.width / im.height) > 1.3 or (im.width / im.height) / (W / H) > 1.3:
+        # proporções muito diferentes (clipe em pé no vídeo deitado): clipe inteiro no centro,
+        # laterais com o próprio quadro desfocado e escurecido (como as telas em pé do motor)
+        from PIL import ImageEnhance, ImageFilter
+        cover = max(W / im.width, H / im.height)
+        fundo = im.resize((max(1, round(im.width * cover / 8)), max(1, round(im.height * cover / 8))))
+        fundo = fundo.filter(ImageFilter.GaussianBlur(3)).resize((round(im.width * cover), round(im.height * cover)))
+        fundo = ImageEnhance.Brightness(fundo).enhance(0.42)
+        fx_, fy_ = (fundo.width - W) // 2, (fundo.height - H) // 2
+        canvas = fundo.crop((fx_, fy_, fx_ + W, fy_ + H))
+        fit = min(W / im.width, H / im.height)
+        fg = im.resize((round(im.width * fit), round(im.height * fit)), Image.LANCZOS)
+        canvas.paste(fg, ((W - fg.width) // 2, (H - fg.height) // 2))
+        return canvas
     s = max(W / im.width, H / im.height)
     im = im.resize((max(W, round(im.width * s)), max(H, round(im.height * s))), Image.LANCZOS)
     x, y = (im.width - W) // 2, (im.height - H) // 2

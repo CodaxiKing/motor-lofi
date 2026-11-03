@@ -332,3 +332,40 @@ def darkness(img, amount, beams=(), circles=(), soft=40, soft_circles=()):
     m = fast_blur(m, soft)
     dark = Image.blend(img, Image.new("RGB", img.size, (2, 3, 8)), amount)
     return Image.composite(img, dark, m)
+
+
+# ---------- tensão: moldura de retícula e glitch ----------
+_RETICULA = {}
+def _reticula_mask(amount):
+    """Pontos de retícula que crescem em direção às bordas (alfa: 255 = ponto)."""
+    key = round(amount, 2)
+    if key not in _RETICULA:
+        if len(_RETICULA) > 6: _RETICULA.clear()
+        step = max(10, int(min(W, H) / 54))
+        yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+        nx, ny = (xx - W / 2) / (W / 2), (yy - H / 2) / (H / 2)
+        edge = np.clip((np.maximum(np.abs(nx), np.abs(ny)) ** 2.2 - 0.25) / 0.75, 0, 1) * amount
+        cx, cy = (xx % step) - step / 2, (yy % step) - step / 2
+        r = edge * step * 0.62
+        dots = (np.hypot(cx, cy) < r).astype(np.uint8) * 255
+        _RETICULA[key] = Image.fromarray(dots).filter(ImageFilter.GaussianBlur(0.6))
+    return _RETICULA[key]
+
+def reticula(img, amount=0.8):
+    """Moldura de pontinhos de quadrinho nas bordas (tensão, perigo chegando)."""
+    if amount <= 0.01: return img
+    return Image.composite(Image.new("RGB", img.size, (8, 8, 12)), img, _reticula_mask(min(1.0, amount)))
+
+def glitch(img, t, strength=1.0):
+    """Separação RGB + faixas deslocadas, sorteadas pelo tempo (impacto, susto, tensão)."""
+    rng = random.Random(int(t * 30))
+    out = chromatic(img, 6 + 18 * strength * rng.random())
+    for _ in range(int(3 + 5 * strength)):
+        y = rng.randint(0, H - 20); h = rng.randint(6, int(40 + 60 * strength))
+        dx = int(rng.uniform(-60, 60) * strength)
+        faixa = out.crop((0, y, W, min(H, y + h)))
+        out.paste(ImageChops.offset(faixa, dx, 0), (0, y))
+    return out
+
+def glitch_amount(t, times, dur=0.28):
+    return scare_amount(t, times, dur)
