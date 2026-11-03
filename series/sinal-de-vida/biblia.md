@@ -37,21 +37,31 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 | Por que o pai estava na estrada: uma caixa com o nome do João na cabine | ep. 3 | ep. 9 (a jaqueta da mãe e o bilhete que ele nunca mandou) | pendente |
 | Infectados repetem a última frase que disseram | ep. 1 (o vizinho repete "tá servido?") | ep. 8 (a voz no rádio pode não ser de gente viva) | pendente |
 | Uma música e um aviso distantes, à noite, no vale | ep. 2 | ep. 6 (são os alto-falantes do Amaro) | pendente |
+| Mapa do Amaro com outras represas marcadas | ep. 6 | temporada 2 | pendente |
+| A mordida de Geraldo demora mais que o normal | ep. 8 | temporada 2 | pendente |
+| Frequência nova no caderno do Téo, com a família numa lista de nomes | ep. 10 | temporada 2 | pendente |
 | Amaro sempre sabe quantos repetidores há na ponte | ep. 4 | ep. 6 (ele conta pela câmera da represa) | pendente |
 | No caderno do Téo, a voz do Amaro aparece em horas em que ele diz estar dormindo | ep. 5 | ep. 6 (Téo avisa os irmãos) | pendente |
 | O pai passa a falar sem dizer "câmbio, meu filho" | ep. 7 | ep. 8 (sinal de que está piorando) | pendente |
 
 ## Mistério central
 Pergunta que puxa a série: quem é o homem que ajuda a família pelo rádio, e por que a horda da ponte não para de crescer?
-A verdade: a família não tem nenhuma ligação com a origem do surto, que nunca é explicada. Geraldo só soube antes da TV porque escuta os caminhoneiros no rádio PX; estava na estrada para tentar fazer as pazes com o João. Amaro é o operador da represa acima da ponte. Sozinho, ele atrai os repetidores do vale com alto-falantes para abrir a comporta e afogar todos de uma vez, o que salvaria as cidades abaixo. A ponte é o centro do plano, e ele ajuda João e Bia de verdade, mas atrasa os dois porque cada dia a mais traz mais repetidores.
+A verdade: a família não tem nenhuma ligação com a origem do surto, que fica sem explicação nesta temporada. Geraldo só soube antes da TV porque escuta os caminhoneiros no rádio PX; estava na estrada para tentar fazer as pazes com o João. Amaro é o operador da represa acima da ponte. Sozinho, ele atrai os repetidores do vale com alto-falantes para abrir a comporta e afogar todos de uma vez, o que salvaria as cidades abaixo. A ponte é o centro do plano, e ele ajuda João e Bia de verdade, mas atrasa os dois porque cada dia a mais traz mais repetidores.
 
 ## Regras do universo
 1. Os infectados ("repetidores") caçam pelo som e repetem a última frase que disseram; uma voz pedindo socorro pode ser só um deles · 2. A mordida transforma em até 3 dias, mais depressa quanto mais perto do pescoço; primeiro vêm a febre e uma frase que não para de voltar · 3. A rede de celular cai na noite do DIA 0; só resta o rádio PX, sempre às 21h na frequência 19, quando cada um diz o nome: o "sinal de vida" · 4. Todo mundo que tem rádio escuta: falar dá notícia e também entrega a posição · 5. Cada chamada gasta a bateria; a do caminhão é a que mais preocupa · 6. Bicicleta é silenciosa e motor atrai horda · 7. Dentro da cabine, água e silêncio decidem quantos dias eles têm · 8. 14+: violência leve, sem gore; ataques em corte, sombra e som.
 
 ## Finais
-- A — SILÊNCIO (voto A no ep. 9, abrir a comporta): depois do reencontro, João abre a comporta a pedido do pai, que fica na ponte e chama a horda pelo rádio. O vale fica limpo e os três irmãos sobrevivem, mas João é quem mata o último laço com o pai. Última imagem: os três num telhado, o rádio chiando e, muito baixo, "não sai de casa, João". "FIM."
-- B — SINAL DE VIDA (voto B no ep. 9, não abrir): João trava a comporta e volta. A família passa as últimas horas de Geraldo juntos, e ele se vai do jeito dele. A horda continua no vale e as cidades abaixo seguem em perigo; João assume o rádio para guiar quem ainda está vivo. Última imagem: João às 21h dizendo os nomes da família, e várias vozes respondendo, entre elas uma que só repete. "FIM."
-- O reencontro acontece nos dois finais. Variações: voto do ep. 3 (Téo chega com a perna machucada, ou o pai chega sem forças); voto do ep. 4 (Bia chega antes de João, ou depois); voto do ep. 6 (Amaro ajuda até o fim, ou tenta impedir João); voto do ep. 7 (João sabe da mordida antes de chegar, ou descobre na cabine).
+Nos dois, a família se reencontra e a temporada fecha o conflito com o Amaro, mas a história fica aberta para a temporada 2.
+- A — SILÊNCIO (voto A no ep. 9, abrir a comporta): João abre a comporta a pedido do pai, que fica na ponte chamando a horda pelo rádio. A água leva a ponte e o vale fica livre. O caminhão e o corpo de Geraldo nunca aparecem. Última imagem: os três irmãos num telhado, às 21h, e o rádio chia: "câmbio, meu filho". Ele sobreviveu ou é só o que um repetidor ficou repetindo? "CONTINUA NA TEMPORADA 2."
+- B — SINAL DE VIDA (voto B no ep. 9, não abrir): João trava a comporta e volta. Geraldo passa as últimas horas com os filhos e, antes de virar, some sozinho na madrugada para que eles não vejam. A horda continua viva, e João assume o rádio para guiar quem restou. Última imagem: João às 21h dizendo os nomes da família, várias vozes respondendo, e uma delas diz: "câmbio, meu filho". "CONTINUA NA TEMPORADA 2."
+- Variações: voto do ep. 3 (Téo chega com a perna machucada, ou o pai chega sem forças); voto do ep. 4 (Bia chega antes de João, ou depois); voto do ep. 6 (Amaro ajuda até o fim, ou tenta impedir João); voto do ep. 7 (João sabe da mordida antes de chegar, ou descobre na cabine).
+
+## Ganchos para a temporada 2
+- Geraldo está vivo? Depois de quanto tempo um repetidor deixa de ser quem era? A mordida dele não evoluiu no tempo normal, e ninguém explica por quê.
+- Nos dois finais, antes da voz do pai, o caderno do Téo registra uma frequência nova: uma mulher lendo em voz alta nomes de sobreviventes do vale, e os nomes da família estão na lista. Quem é ela e como sabe?
+- A origem do surto continua sem explicação e sem ligação com a família.
+- Amaro não era o único: nas anotações dele há outras represas marcadas num mapa, com datas.
 
 ## Escolhas com custo
 | Ep. | Opção | GANHA | PERDE |
@@ -102,7 +112,7 @@ Ep. 1: B · Ep. 2: A · Ep. 3: A · Ep. 4: B · Ep. 5: A · Ep. 6: A · Ep. 7: A
 - **EP 7 · DIA 6 · "CÂMBIO"** (reviravolta, roxo) — O vidro da cabine cede. Geraldo protege o Téo e é mordido, e faz o filho prometer silêncio. João e Bia se aproximam sem saber, mais unidos pela primeira vez. A chamada termina sem "câmbio, meu filho". Gancho: Téo olhando a mão do pai ("NÃO CONTA / PRA ELES"). Pergunta: A) TÉO CONTA · B) TÉO GUARDA SEGREDO.
 - **EP 8 · DIA 7 · "REPETIDOR"** (escalada, azul) — João e Bia chegam às duas pontas da ponte, com a horda no meio. O rádio começa a repetir, sem parar, a voz de Geraldo, e ninguém sabe se ele ainda é ele. Amaro avisa: a comporta abre ao amanhecer. Gancho: a voz na frequência ("NÃO SAI / DE CASA"). Pergunta: A) POR CIMA DA HORDA · B) POR BAIXO DA PONTE.
 - **EP 9 · DIA 8 · "KM 240"** (clímax, azul) — O reencontro: os três filhos e o pai juntos na cabine pela primeira vez em anos. João abre a caixa com o nome dele e pede desculpa. Bia e Téo saem pela lateral, e João sobe até a represa para enfrentar Amaro. Com a mão na alavanca, ouve o pai no rádio: "Abre, meu filho." Gancho: pai e filho frente a frente ("CHEGUEI, / PAI"). Pergunta: A) ABRIR A COMPORTA · B) NÃO ABRIR.
-- **EP 10 · DIA 9 · "SINAL DE VIDA"** (final, dourado) — A última chamada de Geraldo às 21h, e a família decide o que vem depois, conforme os votos. Finais A e B acima. Gancho: ("CÂMBIO, / MEU FILHO"). Fecha com "FIM".
+- **EP 10 · DIA 9 · "SINAL DE VIDA"** (final, dourado) — A última chamada de Geraldo às 21h, e a família decide o que vem depois, conforme os votos. Finais A e B acima, com a história em aberto. Gancho: ("CÂMBIO, / MEU FILHO"). Fecha com "CONTINUA NA TEMPORADA 2".
 
 ## Cenários
 Estilo imagens: cada fundo é gerado no ChatGPT. A linha `CENÁRIO` usa o nome do motor mais próximo e a linha `IMAGENS` dá o fundo real. Fundos principais: `quarto_joao`, `corredor_vila`, `rua_suburbio`, `posto_abandonado`, `estrada_interior`, `cidade_morta`, `tunel_rodovia`, `clinica_veterinaria`, `mata_noite`, `cabine_caminhao`, `ponte_km240`, `sob_a_ponte`, `sala_da_represa`, `alto_da_represa`.
