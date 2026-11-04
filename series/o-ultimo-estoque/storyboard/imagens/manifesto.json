@@ -1,0 +1,96 @@
+{
+  "series": "O Último Estoque",
+  "episode": 1,
+  "protagonist": "João",
+  "without_backpack": true,
+  "provider": "chatgpt_native",
+  "generated_count": 4,
+  "planned_count": 24,
+  "final_video_size": [
+    1080,
+    1920
+  ],
+  "assets": [
+    {
+      "frame_id": "ep01_fonte_p002",
+      "file": "quadro_ep01_fonte_p002.png",
+      "provider": "chatgpt_native",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "sha256": "228f7a9ad76190fad5a2ec73274c30032265f2d461faaa66dbc046fba78105cd",
+      "must_keep": [
+        "fichas travadas",
+        "ação do roteiro",
+        "composição 9:16",
+        "sem texto",
+        "João substitui Léo",
+        "João sem mochila, alças ou bag de entregas",
+        "sem gore"
+      ],
+      "motion": "cinematic_image_only"
+    },
+    {
+      "frame_id": "ep01_fonte_p009",
+      "file": "quadro_ep01_fonte_p009.png",
+      "provider": "chatgpt_native",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "sha256": "14ffbb4144e4d980c5ba12b24882a613aaa2e51a60078c6bbcb37919db748271",
+      "must_keep": [
+        "fichas travadas",
+        "ação do roteiro",
+        "composição 9:16",
+        "sem texto",
+        "João substitui Léo",
+        "João sem mochila, alças ou bag de entregas",
+        "sem gore"
+      ],
+      "motion": "cinematic_image_only"
+    },
+    {
+      "frame_id": "ep01_fonte_p021",
+      "file": "quadro_ep01_fonte_p021.png",
+      "provider": "chatgpt_native",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "sha256": "1b5c8334cff1262cd3a88043f3240c4b7a7e0a305fa7bedd91fe5960cade9956",
+      "must_keep": [
+        "fichas travadas",
+        "ação do roteiro",
+        "composição 9:16",
+        "sem texto",
+        "João substitui Léo",
+        "João sem mochila, alças ou bag de entregas",
+        "sem gore"
+      ],
+      "motion": "cinematic_image_only"
+    },
+    {
+      "frame_id": "ep01_fonte_p025",
+      "file": "quadro_ep01_fonte_p025.png",
+      "provider": "chatgpt_native",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "sha256": "2d5ff1c38555599aad5418b9b267f460106271cd41d8b27532efdbc16e2e1d98",
+      "must_keep": [
+        "fichas travadas",
+        "ação do roteiro",
+        "composição 9:16",
+        "sem texto",
+        "João substitui Léo",
+        "João sem mochila, alças ou bag de entregas",
+        "sem gore"
+      ],
+      "motion": "cinematic_image_only"
+    }
+  ],
+  "videos": "native_motion_only"
+}
