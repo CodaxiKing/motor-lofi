@@ -17,9 +17,9 @@
       "provider": "chatgpt_native",
       "dimensions": [
         941,
-        1672
+        1671
       ],
-      "sha256": "228f7a9ad76190fad5a2ec73274c30032265f2d461faaa66dbc046fba78105cd",
+      "sha256": "320485e8e59c5b92090c30a3f2eb276d11ba17f35bfac7cbe44d193c45829741",
       "must_keep": [
         "fichas travadas",
         "ação do roteiro",
@@ -29,7 +29,10 @@
         "João sem mochila, alças ou bag de entregas",
         "sem gore"
       ],
-      "motion": "cinematic_image_only"
+      "motion": "cinematic_image_only",
+      "revision": 2,
+      "visual_review": "approved",
+      "review_sha256": "320485e8e59c5b92090c30a3f2eb276d11ba17f35bfac7cbe44d193c45829741"
     },
     {
       "frame_id": "ep01_fonte_p009",
@@ -39,7 +42,7 @@
         941,
         1672
       ],
-      "sha256": "14ffbb4144e4d980c5ba12b24882a613aaa2e51a60078c6bbcb37919db748271",
+      "sha256": "4bd37ae92d6fd799ca3e086ee9e907b1888ccd21c8f89da5a52893b3bb61905d",
       "must_keep": [
         "fichas travadas",
         "ação do roteiro",
@@ -49,7 +52,10 @@
         "João sem mochila, alças ou bag de entregas",
         "sem gore"
       ],
-      "motion": "cinematic_image_only"
+      "motion": "cinematic_image_only",
+      "revision": 2,
+      "visual_review": "approved",
+      "review_sha256": "4bd37ae92d6fd799ca3e086ee9e907b1888ccd21c8f89da5a52893b3bb61905d"
     },
     {
       "frame_id": "ep01_fonte_p021",
@@ -69,7 +75,10 @@
         "João sem mochila, alças ou bag de entregas",
         "sem gore"
       ],
-      "motion": "cinematic_image_only"
+      "motion": "cinematic_image_only",
+      "revision": 1,
+      "visual_review": "approved",
+      "review_sha256": "1b5c8334cff1262cd3a88043f3240c4b7a7e0a305fa7bedd91fe5960cade9956"
     },
     {
       "frame_id": "ep01_fonte_p025",
@@ -89,8 +98,12 @@
         "João sem mochila, alças ou bag de entregas",
         "sem gore"
       ],
-      "motion": "cinematic_image_only"
+      "motion": "cinematic_image_only",
+      "revision": 1,
+      "visual_review": "approved",
+      "review_sha256": "2d5ff1c38555599aad5418b9b267f460106271cd41d8b27532efdbc16e2e1d98"
     }
   ],
-  "videos": "native_motion_only"
+  "videos": "native_motion_only",
+  "visual_review_required": true
 }

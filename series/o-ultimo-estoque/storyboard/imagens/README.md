@@ -1,5 +1,11 @@
-# Imagens reais do episódio 1
+# Imagens do episódio 1 — revisão de detalhes
 
-Quatro quadros iniciais foram gerados pela ferramenta nativa do ChatGPT/Codex e salvos aqui: p002, p009, p021 e p025. João aparece sem mochila e sem alças. O manifesto registra nomes, dimensões e hashes.
+Quatro quadros iniciais gerados no ChatGPT nativo. João permanece sem mochila e sem alças.
 
-O episódio completo precisa de 24 mídias; estas quatro não representam cobertura completa. Imagens recebem câmera leve na montagem. Para usar um vídeo em qualquer plano, importe o clipe com o mesmo ID; ele fica em `../clips/` e mantém somente seu movimento original.
+- p002, revisão 2: pernas/botas contínuas, contato com o piso e caixa apoiada em carrinho.
+- p009, revisão 2: porta contida entre trilhos e batentes, sem extensão na parede.
+- p021 e p025: revisão visual registrada sem nova geração.
+
+`manifesto.json` guarda hashes, dimensões e revisão. `revisao-visual.json` registra a inspeção manual por arquivo; ela não representa detecção automática ou garantia absoluta de perfeição. Versões anteriores permanecem no histórico do Git.
+
+O episódio completo ainda precisa de outras 20 mídias. Imagens recebem movimento leve; clipes preservam seu movimento original.

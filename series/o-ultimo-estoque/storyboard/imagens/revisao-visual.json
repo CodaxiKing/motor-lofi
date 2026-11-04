@@ -1,0 +1,145 @@
+{
+  "method": "manual_visual_inspection",
+  "reports": [
+    {
+      "frame_id": "ep01_fonte_p002",
+      "status": "approved",
+      "reviewer": "Codex — inspeção visual dos arquivos gerados após feedback do usuário",
+      "sha256": "320485e8e59c5b92090c30a3f2eb276d11ba17f35bfac7cbe44d193c45829741",
+      "checks": {
+        "anatomy": {
+          "status": "pass",
+          "evidence": "Duas pernas contínuas do quadril às botas, sem fusão com o piso; mãos acompanham lata e caixa."
+        },
+        "geometry": {
+          "status": "pass",
+          "evidence": "Prateleiras e carrinho têm planos coerentes; caixa sobre plataforma metálica visível."
+        },
+        "contacts": {
+          "status": "pass",
+          "evidence": "Duas solas apoiadas no chão com sombra; rodas apoiam o carrinho; caixa repousa na plataforma."
+        },
+        "occlusion": {
+          "status": "pass",
+          "evidence": "Linhas/reflexos do piso terminam na silhueta opaca das calças e botas; caixa oculta apenas áreas plausíveis."
+        },
+        "continuity": {
+          "status": "pass",
+          "evidence": "João mantém cabelo, barba, jaqueta e luvas; sem mochila ou alças. Carrinho explicita o apoio da caixa."
+        },
+        "safe_areas": {
+          "status": "pass",
+          "evidence": "Rosto e ação com a lata ficam acima da faixa inferior de legenda; sem texto embutido."
+        }
+      },
+      "notes": "Revisão visual registrada para esta versão; não é garantia matemática ou detector automático de defeitos.",
+      "file": "imagens/quadro_ep01_fonte_p002.png",
+      "method": "manual_visual_inspection"
+    },
+    {
+      "frame_id": "ep01_fonte_p009",
+      "status": "approved",
+      "reviewer": "Codex — inspeção visual dos arquivos gerados após feedback do usuário",
+      "sha256": "4bd37ae92d6fd799ca3e086ee9e907b1888ccd21c8f89da5a52893b3bb61905d",
+      "checks": {
+        "anatomy": {
+          "status": "pass",
+          "evidence": "Dois braços e duas mãos agarram a barra inferior; duas pernas e botas completas em posição de esforço."
+        },
+        "geometry": {
+          "status": "pass",
+          "evidence": "Lâminas contidas entre trilhos; moldura e alvenaria laterais distinguíveis, sem continuação da porta na parede."
+        },
+        "contacts": {
+          "status": "pass",
+          "evidence": "Mãos apoiadas na barra; botas no piso; trilhos presos aos batentes e encontro legível com soleira."
+        },
+        "occlusion": {
+          "status": "pass",
+          "evidence": "João está na frente do vão; abertura inferior leva à rua e não atravessa a alvenaria."
+        },
+        "continuity": {
+          "status": "pass",
+          "evidence": "Mesmo João e roupas, sem mochila; preserva o fechamento da porta e silhueta externa indistinta."
+        },
+        "safe_areas": {
+          "status": "pass",
+          "evidence": "Rosto, mãos e trilhos visíveis na composição vertical; sem legendas ou interface incorporadas."
+        }
+      },
+      "notes": "Revisão visual registrada para esta versão; não é garantia matemática ou detector automático de defeitos.",
+      "file": "imagens/quadro_ep01_fonte_p009.png",
+      "method": "manual_visual_inspection"
+    },
+    {
+      "frame_id": "ep01_fonte_p021",
+      "status": "approved",
+      "reviewer": "Codex — inspeção visual dos arquivos gerados após feedback do usuário",
+      "sha256": "1b5c8334cff1262cd3a88043f3240c4b7a7e0a305fa7bedd91fe5960cade9956",
+      "checks": {
+        "anatomy": {
+          "status": "pass",
+          "evidence": "Postura sentada coerente; braços conectados ao tronco, mão na cabeça, duas pernas até botas distintas."
+        },
+        "geometry": {
+          "status": "pass",
+          "evidence": "Caixas empilhadas, guarda-corpo, janela e escada ocupam planos distintos sem atravessar o personagem."
+        },
+        "contacts": {
+          "status": "pass",
+          "evidence": "Corpo apoiado junto às caixas e botas no piso; sombra separa solas do concreto."
+        },
+        "occlusion": {
+          "status": "pass",
+          "evidence": "Pernas e braços ocultam fundo sem transparência; grade permanece ao fundo e lado do personagem."
+        },
+        "continuity": {
+          "status": "pass",
+          "evidence": "Mesmo cabelo, barba, luvas e jaqueta de João; sem mochila, sozinho no mezanino."
+        },
+        "safe_areas": {
+          "status": "pass",
+          "evidence": "Rosto e gesto de tensão ficam na região central superior; piso inferior sem texto para legenda."
+        }
+      },
+      "notes": "Revisão visual registrada para esta versão; não é garantia matemática ou detector automático de defeitos.",
+      "file": "imagens/quadro_ep01_fonte_p021.png",
+      "method": "manual_visual_inspection"
+    },
+    {
+      "frame_id": "ep01_fonte_p025",
+      "status": "approved",
+      "reviewer": "Codex — inspeção visual dos arquivos gerados após feedback do usuário",
+      "sha256": "2d5ff1c38555599aad5418b9b267f460106271cd41d8b27532efdbc16e2e1d98",
+      "checks": {
+        "anatomy": {
+          "status": "pass",
+          "evidence": "Somente rosto indistinto por trás do visor; não há mãos/pernas em primeiro plano ou fusões corporais visíveis."
+        },
+        "geometry": {
+          "status": "pass",
+          "evidence": "Porta industrial, moldura, dobradiças e visor possuem limites e perspectiva compatíveis."
+        },
+        "contacts": {
+          "status": "pass",
+          "evidence": "Crachá e cordão repousam no chão; cadeado aberto fica pendurado no mecanismo da porta."
+        },
+        "occlusion": {
+          "status": "pass",
+          "evidence": "Rosto atrás do vidro embaçado, prateleiras laterais fora do vão e crachá em primeiro plano."
+        },
+        "continuity": {
+          "status": "pass",
+          "evidence": "Preserva cadeado aberto, crachá caído e óculos por trás do vidro sem revelar claramente o gerente."
+        },
+        "safe_areas": {
+          "status": "pass",
+          "evidence": "Pistas principais na região central; crachá na base deve permanecer visível no render e fora do texto da legenda."
+        }
+      },
+      "notes": "Revisão visual registrada para esta versão; não é garantia matemática ou detector automático de defeitos.",
+      "file": "imagens/quadro_ep01_fonte_p025.png",
+      "method": "manual_visual_inspection"
+    }
+  ]
+}
