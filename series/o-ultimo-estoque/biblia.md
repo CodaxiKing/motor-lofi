@@ -64,7 +64,7 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | roteiro | A) Sair pela janela até o posto · B) Ficar e virar bunker | | |
+| 1 | 0 | início | montado | A) Sair pela janela até o posto · B) Ficar e virar bunker | | |
 | 2 | 0 | complicação | planejado | A) Abrir a câmara fria · B) Deixar trancada | | |
 | 3 | 1 | reviravolta | planejado | A) Abrir a porta de aço · B) Seguir a regra 4 | | |
 | 4 | 1 | escalada | planejado | A) Levar o estoque para a rua · B) Fazer do mercado o refúgio | | |
@@ -89,14 +89,14 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 ## Extras (curiosidades)
 | Nº | Depois do ep. | Tema | Status |
 |---|---|---|---|
-| 1 | 1 | O que houve com o gerente? (o Sérgio em 1ª pessoa) | roteiro |
+| 1 | 1 | O que houve com o gerente? (o Sérgio em 1ª pessoa) | montado |
 
 ## Cenários
 - Da biblioteca: `mercado` (salão), `loja` (frente de caixa: porta de vidro, `porta_aco`, `vultos`, `emergencia`; sempre com `folha` false, sem a folha do Turno da Noite), `deposito` (porta da câmara fria: `batida`, `rosto`), `camara_fria`, `cftv`, `radio_portatil` (o rádio dos seguranças), `rua`, `beco`, `delegacia`. Planos especiais: `pes`, `regra`, pensamento com lembrança (sépia).
 - Novo no motor: `mezanino` (o alto do estoque: paletes, guarda-corpo, escada escamoteável `escada`, janela basculante `janela`).
 
 ## Resumos
-- EP 1:
+- EP 1: 18:50, o Léo repõe enlatados sozinho quando o rádio corta a música com o alerta. Pelo vidro, a rua vira caos; ele baixa a porta de aço com um homem do lado de fora, o cadeado chama os vultos (REGRA 1) e a luz do bairro cai, fazendo dele uma silhueta no vidro (REGRA 2). Foge do hortifrúti invadido até o mezanino, ouve o canal A (portão leste até as 22h) e descobre que as batidas vêm de dentro da câmara fria, onde está alguém de óculos.
 - EP 2:
 - EP 3:
 - EP 4:
