@@ -1,0 +1,2132 @@
+{
+ "out": "ep01.mp4",
+ "fps": 30,
+ "total": 152.0,
+ "crf": 28,
+ "series_title": "O ÚLTIMO ESTOQUE",
+ "episode": 1,
+ "episodes_total": 5,
+ "episode_title": "A PORTA DE AÇO",
+ "efeitos": "nenhum",
+ "narrado": true,
+ "capa": {
+  "quem": "leo",
+  "emocao": "shock",
+  "vista": "3q",
+  "frase": "AS BATIDAS\nVÊM DE DENTRO",
+  "ameaca": "zombie",
+  "tempo": 140.5
+ },
+ "pergunta": {
+  "text": "VOCÊ ABAIXAVA A PORTA DE AÇO?",
+  "t": 52.0
+ },
+ "voices": {
+  "narrador": "ep01/narrador.mp3"
+ },
+ "clips": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.0,
+    148.92
+   ],
+   "at": 0.0
+  }
+ ],
+ "hud": {
+  "place": "MERCADO BOM PREÇO",
+  "sec_per_min": 60,
+  "days": [
+   [
+    0,
+    "DIA 0",
+    "18:50"
+   ],
+   [
+    16.3,
+    "DIA 0",
+    "18:52"
+   ],
+   [
+    30.9,
+    "DIA 0",
+    "18:54"
+   ],
+   [
+    43.9,
+    "DIA 0",
+    "18:55"
+   ],
+   [
+    50.9,
+    "DIA 0",
+    "18:56"
+   ],
+   [
+    58.0,
+    "DIA 0",
+    "18:57"
+   ],
+   [
+    66.0,
+    "DIA 0",
+    "18:59"
+   ],
+   [
+    72.4,
+    "DIA 0",
+    "19:00"
+   ],
+   [
+    78.6,
+    "DIA 0",
+    "19:04"
+   ],
+   [
+    89.08,
+    "DIA 0",
+    "19:05"
+   ],
+   [
+    100.95,
+    "DIA 0",
+    "19:06"
+   ],
+   [
+    106.72,
+    "DIA 0",
+    "19:07"
+   ],
+   [
+    110.7,
+    "DIA 0",
+    "19:10"
+   ],
+   [
+    125.0,
+    "DIA 0",
+    "19:12"
+   ],
+   [
+    130.2,
+    "DIA 0",
+    "19:14"
+   ],
+   [
+    143.25,
+    "DIA 0",
+    "19:15"
+   ]
+  ],
+  "barras": [
+   {
+    "label": "SILÊNCIO",
+    "color": [
+     120,
+     200,
+     150
+    ],
+    "value": [
+     [
+      0,
+      0.95
+     ],
+     [
+      58.1,
+      0.95
+     ],
+     [
+      58.5,
+      0.15
+     ],
+     [
+      66,
+      0.6
+     ],
+     [
+      89.0,
+      0.6
+     ],
+     [
+      89.7,
+      0.1
+     ],
+     [
+      106,
+      0.2
+     ],
+     [
+      112,
+      0.8
+     ],
+     [
+      131.5,
+      0.8
+     ],
+     [
+      137,
+      0.2
+     ],
+     [
+      152,
+      0.2
+     ]
+    ]
+   }
+  ]
+ },
+ "subs": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.0,
+    1.79
+   ],
+   "text": [
+    "AS BATIDAS",
+    "VÊM DE *DENTRO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    2.6,
+    3.95
+   ],
+   "text": [
+    "6:50",
+    "DA TARDE."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    4.5,
+    6.09
+   ],
+   "text": [
+    "O MERCADO BOM PREÇO",
+    "ESTÁ *VAZIO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    6.63,
+    8.39
+   ],
+   "text": [
+    "VOCÊ EMPURRA A CAIXA",
+    "DE MILHO EM LATA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    8.98,
+    9.52
+   ],
+   "text": [
+    "UMA LATA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    10.18,
+    10.72
+   ],
+   "text": [
+    "DUAS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    11.28,
+    11.69
+   ],
+   "text": [
+    "TRÊS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    12.29,
+    13.36
+   ],
+   "text": [
+    "FALTAM DUAS HORAS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    13.71,
+    14.54
+   ],
+   "text": [
+    "NINGUÉM PRA FALAR."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    15.09,
+    16.01
+   ],
+   "text": [
+    "E VOCÊ *GOSTA* ASSIM."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    16.54,
+    19.12
+   ],
+   "text": [
+    "NO BALCÃO, O RADINHO",
+    "TOCA UMA MÚSICA ANIMADA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    19.55,
+    21.73
+   ],
+   "text": [
+    "O TELEFONE DO MERCADO",
+    "TEM UMA *CHAMADA PERDIDA*:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    22.2,
+    24.49
+   ],
+   "text": [
+    "17H45."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    24.92,
+    26.11
+   ],
+   "text": [
+    "ENTÃO A MÚSICA *SOME*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    26.57,
+    27.46
+   ],
+   "text": [
+    "UMA VOZ DIZ:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    27.76,
+    28.76
+   ],
+   "text": [
+    "FIQUEM EM CASA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    29.18,
+    29.65
+   ],
+   "text": [
+    "NÃO É..."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    29.97,
+    30.69
+   ],
+   "text": [
+    "UM *EXERCÍCIO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    31.16,
+    33.57
+   ],
+   "text": [
+    "VOCÊ LARGA A PRANCHETA",
+    "E ANDA",
+    "ATÉ A FRENTE."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    34.06,
+    35.09
+   ],
+   "text": [
+    "O VIDRO ESTÁ *FRIO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    35.55,
+    37.2
+   ],
+   "text": [
+    "LÁ FORA, ALGUÉM",
+    "PASSA CORRENDO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    37.58,
+    39.81
+   ],
+   "text": [
+    "UM CARRO *BATIDO*.",
+    "O ALARME GRITANDO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    40.15,
+    41.01
+   ],
+   "text": [
+    "UMA MULHER CORRE."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    41.35,
+    42.4
+   ],
+   "text": [
+    "OUTRO CORRE ATRÁS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    42.79,
+    43.63
+   ],
+   "text": [
+    "E *DERRUBA* ELA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    44.09,
+    46.8
+   ],
+   "text": [
+    "VOCÊ DÁ UM PASSO",
+    "PRA TRÁS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    47.24,
+    48.39
+   ],
+   "text": [
+    "ISSO NÃO É",
+    "*BRIGA DE RUA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    48.78,
+    49.43
+   ],
+   "text": [
+    "QUEM CAIU..."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    49.77,
+    50.73
+   ],
+   "text": [
+    "ESTÁ SE *LEVANTANDO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    51.07,
+    54.92
+   ],
+   "text": [
+    "UM HOMEM CORRE",
+    "*PRA PORTA*.",
+    "ELE BATE NO VIDRO.",
+    "ATRÁS DELE, MAIS TRÊS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    55.24,
+    57.81
+   ],
+   "text": [
+    "VOCÊ PUXA A CORRENTE.",
+    "A PORTA DE AÇO",
+    "*DESCE*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    58.15,
+    59.23
+   ],
+   "text": [
+    "O CADEADO *BATE*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    59.56,
+    61.41
+   ],
+   "text": [
+    "O SOM ECOA",
+    "PELO MERCADO VAZIO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    61.82,
+    62.37
+   ],
+   "text": [
+    "LÁ FORA,"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    62.69,
+    63.23
+   ],
+   "text": [
+    "TUDO *PARA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    63.65,
+    64.22
+   ],
+   "text": [
+    "REGRA UM:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    64.61,
+    65.72
+   ],
+   "text": [
+    "ELES VÊM",
+    "PELO *BARULHO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    66.09,
+    67.8
+   ],
+   "text": [
+    "A PORTA DOS FUNDOS",
+    "ESTÁ *ABERTA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    68.16,
+    68.81
+   ],
+   "text": [
+    "VOCÊ TRANCA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    69.23,
+    70.43
+   ],
+   "text": [
+    "NO CHÃO, UM CRACHÁ:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    70.84,
+    72.17
+   ],
+   "text": [
+    "*SÉRGIO*, GERENTE."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    72.55,
+    74.33
+   ],
+   "text": [
+    "ÀS SEIS, ELE",
+    "APONTOU O RELÓGIO:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    74.79,
+    75.75
+   ],
+   "text": [
+    "*MAIS DUAS HORAS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    76.13,
+    78.36
+   ],
+   "text": [
+    "DEPOIS SAIU CORRENDO,",
+    "COM O CELULAR",
+    "NA ORELHA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    78.73,
+    79.33
+   ],
+   "text": [
+    "UM ESTALO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    79.69,
+    80.66
+   ],
+   "text": [
+    "A LUZ DO BAIRRO",
+    "*CAI*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    81.0,
+    82.89
+   ],
+   "text": [
+    "SÓ AS LUZES AMARELAS",
+    "DE EMERGÊNCIA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    83.27,
+    84.07
+   ],
+   "text": [
+    "E VOCÊ ENTENDE:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    84.54,
+    85.85
+   ],
+   "text": [
+    "VOCÊ VIROU",
+    "UMA *SILHUETA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    86.27,
+    89.05
+   ],
+   "text": [
+    "REGRA DOIS: NÃO FIQUE",
+    "NA FRENTE DO *VIDRO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    89.1,
+    92.47
+   ],
+   "text": [
+    "O VIDRO DO HORTIFRÚTI",
+    "*EXPLODE*.",
+    "LARANJAS ROLAM PELO CHÃO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    92.9,
+    93.94
+   ],
+   "text": [
+    "PASSOS ARRASTADOS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    94.29,
+    94.88
+   ],
+   "text": [
+    "*MUITOS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    95.23,
+    100.85
+   ],
+   "text": [
+    "VOCÊ PEGA A BARRA",
+    "DOS PALETES E *CORRE*.",
+    "PULA AS CAIXAS",
+    "DE FRUTAS.",
+    "NÃO OLHA PRA TRÁS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    100.95,
+    103.51
+   ],
+   "text": [
+    "VOCÊ PASSA",
+    "A PORTA VAIVÉM",
+    "E SE JOGA",
+    "NO CHÃO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    103.97,
+    105.77
+   ],
+   "text": [
+    "POR BAIXO DELA,",
+    "DOIS PÉS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    106.13,
+    106.7
+   ],
+   "text": [
+    "*PARADOS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    106.75,
+    108.31
+   ],
+   "text": [
+    "VOCÊ SOBE",
+    "A ESCADA DE FERRO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    108.63,
+    110.52
+   ],
+   "text": [
+    "PUXA ELA PRA CIMA.",
+    "A TRAVA *ESTALA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    110.84,
+    112.07
+   ],
+   "text": [
+    "CAIXAS ATÉ O TETO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    112.47,
+    113.53
+   ],
+   "text": [
+    "COMIDA *PRA ANOS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    113.89,
+    114.81
+   ],
+   "text": [
+    "E NINGUÉM PRA FALAR."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    115.32,
+    116.13
+   ],
+   "text": [
+    "IGUAL À SUA AVÓ:"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    116.54,
+    118.4
+   ],
+   "text": [
+    "NINGUÉM PERCEBEU",
+    "POR *DOIS DIAS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    118.75,
+    119.97
+   ],
+   "text": [
+    "O RÁDIO DOS SEGURANÇAS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    120.28,
+    120.92
+   ],
+   "text": [
+    "PILHA *FRACA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    121.29,
+    124.76
+   ],
+   "text": [
+    "UMA VOZ: PORTÃO LESTE,",
+    "ATÉ AS DEZ.",
+    "*VENHAM AGORA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    125.1,
+    127.62
+   ],
+   "text": [
+    "A JANELA BASCULANTE.",
+    "O CANO",
+    "ATÉ O BECO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    127.94,
+    129.92
+   ],
+   "text": [
+    "*TRÊS QUADRAS*.",
+    "SEM FAZER BARULHO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    130.41,
+    131.15
+   ],
+   "text": [
+    "ENTÃO COMEÇA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    131.6,
+    132.3
+   ],
+   "text": [
+    "UMA BATIDA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    132.69,
+    133.23
+   ],
+   "text": [
+    "DUAS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    133.64,
+    134.11
+   ],
+   "text": [
+    "TRÊS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    134.44,
+    135.86
+   ],
+   "text": [
+    "SEMPRE NO MESMO *RITMO*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    136.25,
+    137.04
+   ],
+   "text": [
+    "NÃO É O PORTÃO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    137.42,
+    138.89
+   ],
+   "text": [
+    "AS BATIDAS",
+    "VÊM DE DENTRO."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    139.28,
+    140.15
+   ],
+   "text": [
+    "DA CÂMARA *FRIA*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    140.58,
+    141.68
+   ],
+   "text": [
+    "E NO VIDRO EMBAÇADO,"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    142.06,
+    143.01
+   ],
+   "text": [
+    "ALGUÉM DE *ÓCULOS*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    143.4,
+    143.87
+   ],
+   "text": [
+    "E VOCÊ?"
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    144.27,
+    146.38
+   ],
+   "text": [
+    "SAÍA PELA JANELA",
+    "ATÉ O PORTÃO LESTE..."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    146.7,
+    148.92
+   ],
+   "text": [
+    "OU FICAVA NO ESTOQUE",
+    "COM QUEM ESTÁ",
+    "*LÁ DENTRO*?"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2.3,
+   "scene": "deposito",
+   "hook": {
+    "text": "AS BATIDAS\nVÊM DE DENTRO"
+   },
+   "camera": {
+    "plano": "close",
+    "handheld": 6
+   },
+   "props": {
+    "luz": 0.3,
+    "batida": 1,
+    "rosto": 0.4
+   },
+   "light": "neutra"
+  },
+  {
+   "start": 2.3,
+   "end": 12.0,
+   "scene": "mercado",
+   "transition": "glitch",
+   "props": {
+    "flicker": 0.15
+   },
+   "dust": 30,
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "frente_dir",
+     "view": "side",
+     "facing": -1,
+     "pose": "hold",
+     "emotion": "neutral"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 12.0,
+   "end": 16.3,
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes_now": 410
+   },
+   "hand": "leo"
+  },
+  {
+   "start": 16.3,
+   "end": 24.7,
+   "scene": "loja",
+   "props": {
+    "relogio": "18:52",
+    "folha": false
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "neutral"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 24.7,
+   "end": 30.9,
+   "scene": "radio_portatil",
+   "hand": "leo",
+   "camera": {
+    "handheld": 3
+   },
+   "props": {
+    "level": "auto"
+   },
+   "light": "neutra"
+  },
+  {
+   "start": 30.9,
+   "end": 37.4,
+   "scene": "loja",
+   "props": {
+    "relogio": "18:54",
+    "folha": false,
+    "vulto": [
+     [
+      0,
+      0
+     ],
+     [
+      4.6,
+      1
+     ],
+     [
+      6.2,
+      0
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "conjunto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": [
+      [
+       0,
+       "caixa"
+      ],
+      [
+       3.0,
+       "porta"
+      ]
+     ],
+     "view": "back",
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       3.0,
+       false
+      ]
+     ],
+     "emotion": "fear"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 37.4,
+   "end": 43.9,
+   "scene": "rua",
+   "insercao": true,
+   "time": "entardecer",
+   "rain": "nenhuma",
+   "camera": {
+    "plano": "aberto",
+    "handheld": 5
+   },
+   "crowd": {
+    "count": 3,
+    "area": [
+     -300,
+     1560,
+     200,
+     1640
+    ],
+    "dir": 1,
+    "speed": 70,
+    "seed": 4
+   },
+   "scare": [
+    42.8
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 43.9,
+   "end": 50.9,
+   "scene": "loja",
+   "props": {
+    "relogio": "18:55",
+    "folha": false,
+    "vulto": [
+     [
+      3.5,
+      0
+     ],
+     [
+      6.5,
+      0.8
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "close",
+    "vertigo": [
+     1.0,
+     1.25
+    ]
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "frente",
+     "view": "front",
+     "pose": "scared",
+     "emotion": "shock",
+     "breath": false
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 50.9,
+   "end": 58.0,
+   "scene": "loja",
+   "props": {
+    "relogio": "18:56",
+    "folha": false,
+    "vulto": [
+     [
+      0,
+      0
+     ],
+     [
+      1.2,
+      1
+     ]
+    ],
+    "vultos": [
+     [
+      0,
+      0
+     ],
+     [
+      3.0,
+      3
+     ]
+    ],
+    "porta_aco": [
+     [
+      0,
+      0
+     ],
+     [
+      4.3,
+      0
+     ],
+     [
+      6.9,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "aberto",
+    "handheld": 4
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "centro",
+     "view": "back",
+     "pose": "pull",
+     "emotion": "fear"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 58.0,
+   "end": 63.5,
+   "scene": "loja",
+   "props": {
+    "relogio": "18:57",
+    "folha": false,
+    "porta_aco": 1,
+    "vultos": 4
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "porta",
+     "view": "back",
+     "pose": "crouch",
+     "emotion": "fear"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 63.5,
+   "end": 66.0,
+   "type": "regra",
+   "n": 1,
+   "texto": "ELES VÊM PELO BARULHO",
+   "scene": "loja",
+   "props": {
+    "folha": false,
+    "porta_aco": 1
+   }
+  },
+  {
+   "start": 66.0,
+   "end": 72.4,
+   "scene": "deposito",
+   "props": {
+    "luz": 0.8,
+    "cadeado": true
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "frente_porta",
+     "view": "3q",
+     "facing": 1,
+     "pose": "reach",
+     "emotion": "suspicious"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 72.4,
+   "end": 78.6,
+   "type": "pensamento",
+   "quem": "leo",
+   "emotion": "sad",
+   "estilo": "memoria",
+   "texto": "18H00",
+   "fundo": {
+    "scene": "deposito",
+    "props": {
+     "luz": 0.8
+    }
+   },
+   "cena": {
+    "scene": "deposito",
+    "props": {
+     "luz": 1
+    },
+    "actors": [
+     {
+      "char": "sergio",
+      "mark": "gerador",
+      "view": "front",
+      "pose": "point",
+      "emotion": "angry"
+     }
+    ]
+   }
+  },
+  {
+   "start": 78.6,
+   "end": 86.1,
+   "scene": "loja",
+   "slowmo": 0.7,
+   "props": {
+    "folha": false,
+    "porta_aco": [
+     [
+      0,
+      1
+     ],
+     [
+      2.4,
+      1
+     ],
+     [
+      3.4,
+      0.55
+     ]
+    ],
+    "apagado": [
+     [
+      0,
+      false
+     ],
+     [
+      1.0,
+      true
+     ]
+    ],
+    "emergencia": [
+     [
+      0,
+      false
+     ],
+     [
+      2.4,
+      true
+     ]
+    ],
+    "vultos": [
+     [
+      2.4,
+      0
+     ],
+     [
+      6.5,
+      6
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "centro",
+     "view": "front",
+     "emotion": "shock",
+     "pose": "scared"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 86.1,
+   "end": 89.08,
+   "type": "regra",
+   "n": 2,
+   "texto": "NÃO FIQUE NA FRENTE DO VIDRO",
+   "scene": "loja",
+   "props": {
+    "folha": false,
+    "porta_aco": 1,
+    "apagado": true,
+    "emergencia": true,
+    "vultos": 6
+   }
+  },
+  {
+   "start": 89.08,
+   "end": 95.05,
+   "scene": "mercado",
+   "dark": 0.5,
+   "scare": [
+    89.6
+   ],
+   "camera": {
+    "plano": "aberto",
+    "handheld": 8
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "fundo",
+     "view": "back",
+     "pose": "proteger_rosto",
+     "emotion": "shock"
+    }
+   ]
+  },
+  {
+   "start": 95.05,
+   "end": 100.95,
+   "scene": "mercado",
+   "travelling": 420,
+   "dark": 0.5,
+   "camera": {
+    "handheld": 10
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "centro",
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "emotion": "panting"
+    },
+    {
+     "char": "zombie_corredor",
+     "mark": "esq",
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "enter": 2.5
+    }
+   ]
+  },
+  {
+   "start": 100.95,
+   "end": 106.72,
+   "type": "pes",
+   "x": [
+    [
+     0,
+     -160
+    ],
+    [
+     3.0,
+     520
+    ]
+   ],
+   "pes": "sapato",
+   "luz": [
+    200,
+    170,
+    110
+   ],
+   "piscar": true
+  },
+  {
+   "start": 106.72,
+   "end": 110.7,
+   "scene": "mezanino",
+   "props": {
+    "escada": [
+     [
+      0,
+      0
+     ],
+     [
+      2.4,
+      0
+     ],
+     [
+      3.6,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "plano": "aberto",
+    "handheld": 6
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "guarda_corpo",
+     "view": "back",
+     "pose": "pull",
+     "emotion": "panting"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 110.7,
+   "end": 118.6,
+   "scene": "mezanino",
+   "props": {
+    "escada": 1
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "centro",
+     "view": "front",
+     "pose": "sit",
+     "emotion": "sad"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 118.6,
+   "end": 125.0,
+   "scene": "radio_portatil",
+   "hand": "leo",
+   "props": {
+    "level": "auto"
+   },
+   "light": "neutra"
+  },
+  {
+   "start": 125.0,
+   "end": 130.2,
+   "type": "plano",
+   "titulo": "O PLANO",
+   "fundo": "papel",
+   "lugares": [
+    {
+     "id": "mezanino",
+     "nome": "MERCADO",
+     "x": 300,
+     "y": 1150,
+     "icone": "loja"
+    },
+    {
+     "id": "beco",
+     "nome": "BECO",
+     "x": 300,
+     "y": 760,
+     "icone": "porta"
+    },
+    {
+     "id": "avenida",
+     "nome": "AVENIDA",
+     "x": 640,
+     "y": 620,
+     "icone": "carro"
+    },
+    {
+     "id": "posto",
+     "nome": "POSTO",
+     "x": 820,
+     "y": 380,
+     "icone": "estrela"
+    }
+   ],
+   "setas": [
+    {
+     "de": "mezanino",
+     "para": "beco",
+     "t": 0.3,
+     "dur": 1.0,
+     "cor": "azul"
+    },
+    {
+     "de": "beco",
+     "para": "avenida",
+     "t": 1.6,
+     "dur": 1.0,
+     "cor": "azul"
+    },
+    {
+     "de": "avenida",
+     "para": "posto",
+     "t": 2.8,
+     "dur": 1.0,
+     "cor": "azul",
+     "tracejado": true
+    }
+   ],
+   "passos": [
+    {
+     "t": 0.2,
+     "texto": "1. JANELA BASCULANTE"
+    },
+    {
+     "t": 1.4,
+     "texto": "2. CANO ATÉ O BECO"
+    },
+    {
+     "t": 2.7,
+     "texto": "3. TRÊS QUADRAS"
+    }
+   ],
+   "fichas": [
+    {
+     "char": "leo",
+     "caminho": [
+      "mezanino",
+      "beco",
+      "avenida",
+      "posto"
+     ],
+     "t": [
+      0.5,
+      4.4
+     ]
+    }
+   ],
+   "perigos": [
+    {
+     "x": 640,
+     "y": 620,
+     "t": 3.6,
+     "texto": "BARULHO"
+    }
+   ]
+  },
+  {
+   "start": 130.2,
+   "end": 137.25,
+   "scene": "mezanino",
+   "props": {
+    "escada": 1
+   },
+   "camera": {
+    "plano": "close",
+    "handheld": 3
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "guarda_corpo",
+     "view": "front",
+     "pose": "ouvir",
+     "emotion": "fear"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 137.25,
+   "end": 143.25,
+   "scene": "deposito",
+   "insercao": true,
+   "slowmo": 0.7,
+   "scare": [
+    141.9
+   ],
+   "camera": {
+    "plano": "close",
+    "handheld": 3
+   },
+   "props": {
+    "luz": 0.3,
+    "batida": 1,
+    "rosto": [
+     [
+      0,
+      0
+     ],
+     [
+      3.6,
+      0.4
+     ],
+     [
+      4.6,
+      1
+     ]
+    ]
+   },
+   "light": "neutra"
+  },
+  {
+   "start": 143.25,
+   "end": 152.0,
+   "type": "choice",
+   "transition": "zoom",
+   "hud": false,
+   "a": {
+    "label": "SAIR",
+    "scene": "beco",
+    "time": "noite",
+    "rain": "nenhuma",
+    "actors": [
+     {
+      "char": "leo",
+      "mark": "meio",
+      "view": "back",
+      "emotion": "fear",
+      "walk": true
+     }
+    ]
+   },
+   "b": {
+    "label": "FICAR",
+    "scene": "mezanino",
+    "props": {
+     "escada": 1
+    },
+    "actors": [
+     {
+      "char": "leo",
+      "mark": "centro",
+      "view": "3q",
+      "facing": -1,
+      "pose": "push",
+      "emotion": "determined"
+     }
+    ]
+   },
+   "end_card": {
+    "t": 149.6,
+    "text": "CONTINUA NO EPISÓDIO 2"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.05,
+   "name": "bang"
+  },
+  {
+   "t": 1.3,
+   "name": "bang",
+   "gain": 0.8
+  },
+  {
+   "t": 0.4,
+   "name": "heartbeat",
+   "dur": 1.8
+  },
+  {
+   "t": 3.5,
+   "name": "shuffle"
+  },
+  {
+   "t": 12.3,
+   "name": "click"
+  },
+  {
+   "t": 20.0,
+   "name": "beep",
+   "gain": 0.5
+  },
+  {
+   "t": 24.9,
+   "name": "static",
+   "dur": 1.2,
+   "gain": 1.2
+  },
+  {
+   "t": 26.4,
+   "name": "beep"
+  },
+  {
+   "t": 27.2,
+   "name": "beep"
+  },
+  {
+   "t": 31.6,
+   "name": "step"
+  },
+  {
+   "t": 32.3,
+   "name": "step"
+  },
+  {
+   "t": 33.0,
+   "name": "step"
+  },
+  {
+   "t": 35.6,
+   "name": "crowd",
+   "dur": 2
+  },
+  {
+   "t": 37.5,
+   "name": "car_alarm",
+   "gain": 0.6
+  },
+  {
+   "t": 42.8,
+   "name": "impact",
+   "gain": 0.7
+  },
+  {
+   "t": 44.2,
+   "name": "heartbeat",
+   "dur": 6
+  },
+  {
+   "t": 51.5,
+   "name": "knock"
+  },
+  {
+   "t": 52.3,
+   "name": "knock"
+  },
+  {
+   "t": 53.1,
+   "name": "knock"
+  },
+  {
+   "t": 55.5,
+   "name": "crowd",
+   "dur": 2.5
+  },
+  {
+   "t": 57.5,
+   "name": "door_close"
+  },
+  {
+   "t": 58.2,
+   "name": "lock"
+  },
+  {
+   "t": 58.3,
+   "name": "bang",
+   "gain": 1.2
+  },
+  {
+   "t": 61.0,
+   "name": "growl",
+   "gain": 0.6
+  },
+  {
+   "t": 66.2,
+   "name": "door_open"
+  },
+  {
+   "t": 68.3,
+   "name": "lock"
+  },
+  {
+   "t": 72.6,
+   "name": "vibe",
+   "gain": 0.5
+  },
+  {
+   "t": 77.0,
+   "name": "door_close",
+   "gain": 0.6
+  },
+  {
+   "t": 78.75,
+   "name": "click",
+   "gain": 1.2
+  },
+  {
+   "t": 79.0,
+   "name": "static",
+   "dur": 0.4
+  },
+  {
+   "t": 82.5,
+   "name": "heartbeat",
+   "dur": 4
+  },
+  {
+   "t": 83.5,
+   "name": "crowd",
+   "dur": 3
+  },
+  {
+   "t": 89.6,
+   "name": "glass",
+   "gain": 1.2
+  },
+  {
+   "t": 92.9,
+   "name": "shuffle"
+  },
+  {
+   "t": 93.6,
+   "name": "growl"
+  },
+  {
+   "t": 95.5,
+   "name": "step"
+  },
+  {
+   "t": 95.9,
+   "name": "step"
+  },
+  {
+   "t": 96.3,
+   "name": "step"
+  },
+  {
+   "t": 96.7,
+   "name": "step"
+  },
+  {
+   "t": 98.6,
+   "name": "bang",
+   "gain": 0.7
+  },
+  {
+   "t": 99.5,
+   "name": "growl"
+  },
+  {
+   "t": 101.2,
+   "name": "door_close"
+  },
+  {
+   "t": 102.6,
+   "name": "breath",
+   "dur": 3
+  },
+  {
+   "t": 107.0,
+   "name": "step"
+  },
+  {
+   "t": 107.5,
+   "name": "step"
+  },
+  {
+   "t": 110.0,
+   "name": "bang",
+   "gain": 0.6
+  },
+  {
+   "t": 110.3,
+   "name": "lock"
+  },
+  {
+   "t": 111.0,
+   "name": "breath",
+   "dur": 2.5
+  },
+  {
+   "t": 118.7,
+   "name": "static",
+   "dur": 1.0
+  },
+  {
+   "t": 121.2,
+   "name": "static",
+   "dur": 3.5,
+   "gain": 0.6
+  },
+  {
+   "t": 131.6,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.7
+  },
+  {
+   "t": 132.7,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.7
+  },
+  {
+   "t": 133.65,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.7
+  },
+  {
+   "t": 135.0,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.7
+  },
+  {
+   "t": 137.4,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.8
+  },
+  {
+   "t": 139.3,
+   "name": "bang",
+   "onda": false,
+   "gain": 0.8
+  },
+  {
+   "t": 140.0,
+   "name": "growl",
+   "gain": 0.7
+  },
+  {
+   "t": 141.9,
+   "name": "impact"
+  }
+ ],
+ "music": [
+  {
+   "start": 2.3,
+   "end": 37.4,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.25
+  },
+  {
+   "start": 37.4,
+   "end": 78.6,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.6
+  },
+  {
+   "start": 78.6,
+   "end": 110.7,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.9
+  },
+  {
+   "start": 110.7,
+   "end": 130.2,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.4
+  },
+  {
+   "start": 130.2,
+   "end": 152.0,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.95
+  }
+ ]
+}

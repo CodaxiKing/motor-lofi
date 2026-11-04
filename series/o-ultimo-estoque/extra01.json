@@ -1,0 +1,610 @@
+{
+ "out": "extra01.mp4",
+ "fps": 30,
+ "total": 47.0,
+ "crf": 28,
+ "formato": "extra",
+ "series_title": "O ÚLTIMO ESTOQUE",
+ "episode": 1,
+ "episodes_total": 5,
+ "episode_title": "O QUE HOUVE COM O GERENTE?",
+ "efeitos": "nenhum",
+ "narrado": true,
+ "loop": false,
+ "pergunta": false,
+ "voices": {
+  "sergio": "extra01/sergio.mp3"
+ },
+ "clips": [
+  {
+   "voice": "sergio",
+   "src": [
+    0.0,
+    42.53
+   ],
+   "at": 0.0
+  }
+ ],
+ "hud": {
+  "place": "MERCADO BOM PREÇO",
+  "sec_per_min": 60,
+  "days": [
+   [
+    0,
+    "DIA 0",
+    "17:40"
+   ],
+   [
+    9.1,
+    "DIA 0",
+    "17:58"
+   ],
+   [
+    16.0,
+    "DIA 0",
+    "18:05"
+   ],
+   [
+    23.0,
+    "DIA 0",
+    "18:09"
+   ],
+   [
+    29.2,
+    "DIA 0",
+    "18:12"
+   ],
+   [
+    34.6,
+    "DIA 0",
+    "18:28"
+   ]
+  ]
+ },
+ "subs": [
+  {
+   "voice": "sergio",
+   "src": [
+    0.0,
+    1.66
+   ],
+   "text": [
+    "EU *SABIA*",
+    "ANTES DO LÉO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    2.27,
+    4.57
+   ],
+   "text": [
+    "17H40."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    5.05,
+    6.7
+   ],
+   "text": [
+    "O CELULAR VIBRA",
+    "NO MEU BOLSO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    7.11,
+    7.86
+   ],
+   "text": [
+    "É O MEU CUNHADO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    8.28,
+    8.78
+   ],
+   "text": [
+    "*POLICIAL*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    9.34,
+    10.66
+   ],
+   "text": [
+    "O LÉO ESTÁ",
+    "LÁ NO FUNDO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    11.09,
+    11.97
+   ],
+   "text": [
+    "EU PODIA CONTAR."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    12.45,
+    14.26
+   ],
+   "text": [
+    "MAS EU APONTO",
+    "O RELÓGIO E DIGO:"
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    14.68,
+    15.67
+   ],
+   "text": [
+    "*MAIS DUAS HORAS*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    16.14,
+    22.93
+   ],
+   "text": [
+    "TRÊS QUADRAS",
+    "ATÉ O POSTO.",
+    "NA AVENIDA, SIRENE,",
+    "ALARME, GENTE CORRENDO",
+    "PRO LADO *ERRADO*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    23.31,
+    25.6
+   ],
+   "text": [
+    "NO MEIO DA GENTE,",
+    "ALGUÉM PEGA",
+    "A MINHA *MÃO*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    26.08,
+    26.65
+   ],
+   "text": [
+    "EU PUXO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    27.01,
+    28.98
+   ],
+   "text": [
+    "EU TIRO A GRAVATA",
+    "E AMARRO NO PULSO."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    29.36,
+    30.5
+   ],
+   "text": [
+    "O POSTO",
+    "FICA PRA LÁ."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    30.92,
+    32.12
+   ],
+   "text": [
+    "O MERCADO, PRA CÁ."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    32.53,
+    34.34
+   ],
+   "text": [
+    "E EU DEIXEI",
+    "O LÉO",
+    "*SOZINHO*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    34.81,
+    36.02
+   ],
+   "text": [
+    "A PORTA DOS FUNDOS."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    36.47,
+    37.94
+   ],
+   "text": [
+    "EU ENTRO",
+    "E NÃO *FECHO*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    38.29,
+    39.1
+   ],
+   "text": [
+    "AS MÃOS TREMEM."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    39.44,
+    40.21
+   ],
+   "text": [
+    "O CRACHÁ *CAI*."
+   ]
+  },
+  {
+   "voice": "sergio",
+   "src": [
+    40.73,
+    42.53
+   ],
+   "text": [
+    "VOCÊ SABE",
+    "ONDE ELE ESTÁ AGORA."
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 2.1,
+   "scene": "beco",
+   "time": "noite",
+   "rain": "nenhuma",
+   "hook": {
+    "text": "EU SABIA\nANTES DELE",
+    "y": 1460
+   },
+   "camera": {
+    "plano": "close",
+    "handheld": 5
+   },
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "frente",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "panting"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 2.1,
+   "end": 9.1,
+   "scene": "loja",
+   "transition": "glitch",
+   "props": {
+    "relogio": "17:40",
+    "folha": false
+   },
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "pose": "phone",
+     "prop": "phone",
+     "emotion": [
+      [
+       0,
+       "neutral"
+      ],
+      [
+       3.5,
+       "shock"
+      ]
+     ]
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 9.1,
+   "end": 16.0,
+   "scene": "deposito",
+   "lembranca": true,
+   "props": {
+    "luz": 0.9
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "porta_camara",
+     "view": "back"
+    },
+    {
+     "char": "sergio",
+     "mark": "frente",
+     "view": "front",
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       3.4,
+       "point"
+      ]
+     ],
+     "emotion": "suspicious"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 16.0,
+   "end": 23.0,
+   "scene": "rua",
+   "time": "entardecer",
+   "rain": "nenhuma",
+   "travelling": 400,
+   "camera": {
+    "handheld": 8
+   },
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "centro",
+     "view": "side",
+     "facing": 1,
+     "walk": true,
+     "run": true,
+     "emotion": "panting"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 23.0,
+   "end": 29.2,
+   "scene": "rua",
+   "time": "entardecer",
+   "rain": "nenhuma",
+   "slowmo": 0.7,
+   "scare": [
+    24.8
+   ],
+   "crowd": {
+    "count": 4,
+    "area": [
+     700,
+     1560,
+     1300,
+     1640
+    ],
+    "dir": -1,
+    "speed": 50,
+    "seed": 2
+   },
+   "camera": {
+    "plano": "close"
+   },
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "calcada_esq",
+     "view": "front",
+     "pose": "segurar_barriga",
+     "emotion": "shock"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 29.2,
+   "end": 34.6,
+   "type": "pensamento",
+   "quem": "sergio",
+   "emotion": "sad",
+   "estilo": "medo",
+   "texto": "O LÉO SOZINHO",
+   "fundo": {
+    "scene": "rua",
+    "time": "noite",
+    "rain": "nenhuma"
+   },
+   "cena": {
+    "scene": "loja",
+    "props": {
+     "relogio": "18:12",
+     "folha": false
+    },
+    "actors": [
+     {
+      "char": "leo",
+      "mark": "caixa",
+      "view": "3q",
+      "emotion": "neutral"
+     }
+    ]
+   }
+  },
+  {
+   "start": 34.6,
+   "end": 47.0,
+   "scene": "beco",
+   "time": "noite",
+   "rain": "nenhuma",
+   "dark": 0.4,
+   "transition": "fade",
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "fundo",
+     "view": "back",
+     "pose": "open_door",
+     "emotion": "fear"
+    }
+   ],
+   "overlay": [
+    {
+     "type": "text",
+     "text": "A VOTAÇÃO DO EP. 1",
+     "y": 800,
+     "size": 90,
+     "t": [
+      42.7,
+      47
+     ]
+    },
+    {
+     "type": "text",
+     "text": "CONTINUA ABERTA",
+     "y": 920,
+     "size": 90,
+     "t": [
+      42.9,
+      47
+     ]
+    },
+    {
+     "type": "text",
+     "text": "COMENTA A OU B",
+     "y": 1060,
+     "size": 120,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      43.3,
+      47
+     ]
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.3,
+   "name": "heartbeat",
+   "dur": 1.8
+  },
+  {
+   "t": 4.8,
+   "name": "vibe"
+  },
+  {
+   "t": 5.6,
+   "name": "notif"
+  },
+  {
+   "t": 9.4,
+   "name": "shuffle"
+  },
+  {
+   "t": 15.4,
+   "name": "door_close",
+   "gain": 0.6
+  },
+  {
+   "t": 16.3,
+   "name": "siren",
+   "gain": 0.5
+  },
+  {
+   "t": 19.0,
+   "name": "car_alarm",
+   "gain": 0.5
+  },
+  {
+   "t": 20.5,
+   "name": "crowd",
+   "dur": 2.5
+  },
+  {
+   "t": 24.0,
+   "name": "growl"
+  },
+  {
+   "t": 24.8,
+   "name": "impact"
+  },
+  {
+   "t": 26.1,
+   "name": "breath",
+   "dur": 3
+  },
+  {
+   "t": 29.4,
+   "name": "heartbeat",
+   "dur": 5
+  },
+  {
+   "t": 35.0,
+   "name": "door_open"
+  },
+  {
+   "t": 37.0,
+   "name": "step"
+  },
+  {
+   "t": 39.5,
+   "name": "bang",
+   "gain": 0.5
+  }
+ ],
+ "music": [
+  {
+   "start": 2.1,
+   "end": 47,
+   "gain": [
+    0.03,
+    0.07
+   ],
+   "tense": 0.6
+  }
+ ]
+}

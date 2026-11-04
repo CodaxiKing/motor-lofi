@@ -88,6 +88,7 @@ def char_def(name, custom=None):
 # ---------------- luz por ambiente ----------------
 LIGHTS = {
     "night":   dict(key=(0.70, 0.76, 0.98), dir=-0.6, rim=(90, 130, 230), rim_side=1, rim_k=0.9),
+    "neutra":  dict(key=(1.0, 1.0, 1.0), dir=0.3, rim=(255, 255, 255), rim_side=1, rim_k=0.35),   # sem cor: o boneco como foi desenhado
     "warm":    dict(key=(1.00, 0.88, 0.74), dir=0.7, rim=(255, 190, 110), rim_side=-1, rim_k=0.8),
     "tv":      dict(key=(0.66, 0.74, 1.00), dir=-1.0, rim=(80, 150, 255), rim_side=-1, rim_k=1.0),
     "dawn":    dict(key=(0.80, 0.82, 0.88), dir=0.3, rim=(220, 200, 190), rim_side=1, rim_k=0.5),

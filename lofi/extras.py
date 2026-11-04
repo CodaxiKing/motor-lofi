@@ -228,7 +228,8 @@ def temporada(out, title, videos):
               "[0:v]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=30:3,eq=brightness=-0.15[bg];"
               "[0:v]scale=-2:1080[fg];[bg][fg]overlay=(W-w)/2:0,fps=30,format=yuv420p[v]",
               "-map", "[v]", "-map", "0:a", "-c:v", "libx264", "-crf", "24", "-preset", "veryfast", "-c:a", "aac", "-ar", "44100", "-ac", "2", ev])
-        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", ev], capture_output=True, text=True).stdout)
+        from .core import duracao
+        dur = duracao(ev)
         chapters.append(f"{int(tpos // 60):02d}:{int(tpos % 60):02d} Episódio {i}")
         parts += [cv, ev]; tpos += 2.5 + dur
     lst = os.path.join(tmp, "l.txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))

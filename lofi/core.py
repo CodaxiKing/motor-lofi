@@ -60,6 +60,18 @@ def grad(w, h, top, bot, horizontal=False):
     arr = (np.array(top) + (np.array(bot) - np.array(top)) * a) * np.ones((h, w, 1) if horizontal else (1, w, 1))
     return Image.fromarray(np.clip(arr, 0, 255).astype("uint8"))
 
+def duracao(path):
+    """Duração de um arquivo de mídia em segundos (ffprobe; sem ele, lê o "Duration:" do ffmpeg). 0.0 se não der."""
+    import shutil, subprocess, re as _re
+    if shutil.which("ffprobe"):
+        out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path],
+                             capture_output=True, text=True).stdout.strip()
+        try: return float(out or 0)
+        except ValueError: return 0.0
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-i", path], capture_output=True, text=True).stderr
+    m = _re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)", err)
+    return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3)) if m else 0.0
+
 def fast_blur(img, r):
     """Desfoque gaussiano rápido: em raios grandes, desfoca em resolução reduzida e amplia."""
     if r < 6: return img.filter(ImageFilter.GaussianBlur(r))

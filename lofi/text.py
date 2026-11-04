@@ -94,11 +94,11 @@ def subtitle(img, t, subs, speakers, y=None, words=True):
             fk = font("title", int(f.size * 1.2))
             return [fk if k else f for _, k in pw]
         fs = fontes(f)
-        space = d.textbbox((0, 0), " ", font=f)[2]
+        space = d.textbbox((0, 0), " ", font=f)[2] + 18          # + o contorno (9 px de cada lado), senão as palavras grudam
         widths = [d.textbbox((0, 0), w, font=ff)[2] - d.textbbox((0, 0), w, font=ff)[0] for (w, _, _), ff in zip(wt, fs)]
         total = sum(widths) + space * (len(wt) - 1)
         if total > SAFE_W:
-            f = font("title", int(f.size * SAFE_W / total)); fs = fontes(f); space = d.textbbox((0, 0), " ", font=f)[2]
+            f = font("title", int(f.size * SAFE_W / total)); fs = fontes(f); space = d.textbbox((0, 0), " ", font=f)[2] + 18
             widths = [d.textbbox((0, 0), w, font=ff)[2] - d.textbbox((0, 0), w, font=ff)[0] for (w, _, _), ff in zip(wt, fs)]
             total = sum(widths) + space * (len(wt) - 1)
         x = SAFE_CX - total / 2

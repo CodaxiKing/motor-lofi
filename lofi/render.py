@@ -9,7 +9,7 @@ import sys, os, json, math, subprocess
 if "--deitado" in sys.argv: os.environ["LOFI_DEITADO"] = "1"     # versão 16:9 (YouTube): antes de carregar o motor
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
-from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom
+from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom, duracao
 from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente, pes, regra
 from .visual_profiles import resolve_profile, apply_profile
 from .layers import composite_layers
@@ -1167,8 +1167,7 @@ class Episode:
         for pr in procs: pr.wait()
         for k, a, b in falta:
             tmp = os.path.join(cache, k + ".tmp.mp4")
-            got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", tmp],
-                                       capture_output=True, text=True).stdout.strip() or 0) if os.path.exists(tmp) else 0
+            got = duracao(tmp) if os.path.exists(tmp) else 0
             if abs(got - (b - a) / self.fps) > 0.2:
                 print(f"plano {a}-{b} incompleto; refazendo", flush=True); self.render_segment(a, b, tmp)
             os.replace(tmp, os.path.join(cache, k + ".mp4"))
@@ -1197,14 +1196,12 @@ class Episode:
         for k, (pr, part) in enumerate(zip(procs, parts)):
             want = (cuts[k + 1] - cuts[k]) / self.fps
             try:
-                got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", part],
-                                           capture_output=True, text=True).stdout.strip() or 0)
+                got = duracao(part)
             except ValueError: got = 0.0
             if pr.returncode != 0 or abs(got - want) > 0.5:
                 print(f"bloco {k} incompleto ({got:.1f}s de {want:.1f}s, código {pr.returncode}); refazendo sozinho", flush=True)
                 self.render_segment(cuts[k], cuts[k + 1], part)
-                got = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", part],
-                                           capture_output=True, text=True).stdout.strip() or 0)
+                got = duracao(part)
                 if abs(got - want) > 0.5: raise RuntimeError(f"bloco {k} continua incompleto ({got:.1f}s de {want:.1f}s)")
         lst = os.path.join(self.base, "_partes.txt")
         open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
