@@ -1,0 +1,88 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 2,
+ "gerado_em": "2026-11-04T10:27:01",
+ "candidatos": [
+  {
+   "estrategia": "revelacao_parcial",
+   "texto": "A mesma gravata.",
+   "cena": 8,
+   "total": 0.99,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.88,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "3 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "duração estimada 1.6 s"
+   ],
+   "id": "A",
+   "linhas": [
+    "A MESMA GRAVATA."
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "a consequência sem a explicação",
+   "visual": "cenário `deposito` da cena 8: Você encosta o crachá no vidro: a foto e o rosto do outro lado são o mesmo.",
+   "som": "bang"
+  },
+  {
+   "estrategia": "incongruencia",
+   "texto": "Ninguém vem hoje.",
+   "cena": 10,
+   "total": 0.955,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.74,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "3 palavras: lê em menos de 3 s",
+    "duração estimada 1.6 s"
+   ],
+   "id": "B",
+   "linhas": [
+    "NINGUÉM VEM HOJE."
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "algo fora do lugar dentro das regras do mundo",
+   "visual": "cenário `deposito` da cena 10: O ponteiro do diesel está no vermelho: o gerador para em poucas horas.",
+   "som": "static"
+  },
+  {
+   "estrategia": "lacuna_curiosidade",
+   "texto": "Travada por dentro. Óculos tortos.",
+   "cena": 7,
+   "total": 0.932,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.65,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "duração estimada 2.5 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "TRAVADA POR DENTRO.",
+    "ÓCULOS TORTOS."
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "uma informação intrigante que faz uma pergunta específica",
+   "visual": "cenário `deposito` da cena 7: O cadeado está aberto, pendurado na argola. A porta não abre: está travada por dentro.",
+   "som": "heartbeat"
+  }
+ ],
+ "escolhido": "C",
+ "criterio": "escolha do autor",
+ "evidencia_usada": null,
+ "historico": []
+}

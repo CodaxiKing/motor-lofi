@@ -1,0 +1,59 @@
+{
+ "recomendacoes": true,
+ "experimentos": [
+  {
+   "episodio": 1,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "revelacao_parcial",
+     "texto": "A tela acende",
+     "duracao_s": 1.65
+    },
+    {
+     "id": "B",
+     "estrategia": "antecipacao",
+     "texto": "O portal fecha.",
+     "duracao_s": 1.65
+    },
+    {
+     "id": "C",
+     "estrategia": "identificacao",
+     "texto": "Vai, magrelo. Você não vai.",
+     "duracao_s": 2.48
+    }
+   ],
+   "selecionada": "C",
+   "publicacoes": [],
+   "criterio": "escolha do autor",
+   "registrado_em": "2026-11-04T10:30:02"
+  },
+  {
+   "episodio": 2,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "lacuna_curiosidade",
+     "texto": "Tá com fome, meu ponto?",
+     "duracao_s": 2.48
+    },
+    {
+     "id": "B",
+     "estrategia": "incongruencia",
+     "texto": "ERRO. E o Prates sorri.",
+     "duracao_s": 2.48
+    },
+    {
+     "id": "C",
+     "estrategia": "identificacao",
+     "texto": "O que você viu lá dentro?",
+     "duracao_s": 2.9
+    }
+   ],
+   "selecionada": "B",
+   "publicacoes": [],
+   "criterio": "escolha do autor",
+   "registrado_em": "2026-11-04T10:30:02"
+  }
+ ]
+}

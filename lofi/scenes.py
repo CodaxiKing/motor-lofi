@@ -947,9 +947,17 @@ from .scenes_fenda import CENAS as _FENDA      # portais (Rank Zero): fenda, mas
 REGISTRY.update({c.name: c for c in _FENDA})
 from .scenes_escola import CENAS as _ESCOLA    # escola (O Último Sinal): sala_aula, quadra
 REGISTRY.update({c.name: c for c in _ESCOLA})
+import sys as _sys                                # cenário generativo: ambientes prontos (cozinha, quarto, cemitério...)
+_cg = _sys.modules.get(__package__ + ".cenario_gen")
+if _cg is None or hasattr(_cg, "registrar_ambientes"):   # (se o cenario_gen está sendo importado agora, ele registra no fim)
+    from .cenario_gen import registrar_ambientes as _amb
+    _amb()
 _inst = {}
 def get(name, travelling=False):
     """Cenário pronto (cacheado). travelling=True devolve a versão lateral que rola (lofi/travelling.py)."""
+    if isinstance(name, dict):                    # descrição de cenário generativo direto no "scene"
+        from .cenario_gen import registrar
+        name = registrar(name)
     if name not in _inst: _inst[name] = REGISTRY[name]()
     if not travelling: return _inst[name]
     chave = name + ("@frente" if travelling == "frente" else "@trav")

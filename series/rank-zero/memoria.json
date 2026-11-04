@@ -1,0 +1,138 @@
+{
+ "_leia": "Memória da história de Rank Zero (lofi/narrativa.py). Nenhum episódio foi escrito ainda: tudo vem da bíblia.",
+ "personagens": {
+  "caio": {
+   "estado": "vivo",
+   "ferimentos": [],
+   "objetivo": "dar uma casa boa para a avó",
+   "relacoes": {
+    "tanque": "melhor amigo",
+    "zefa": "avó, 'meu ponto'"
+   }
+  },
+  "tanque": {
+   "estado": "vivo",
+   "ferimentos": []
+  },
+  "vega": {
+   "estado": "vivo"
+  },
+  "zefa": {
+   "estado": "vivo"
+  },
+  "prates": {
+   "estado": "vivo"
+  }
+ },
+ "fatos": [
+  {
+   "id": "fendas_existem",
+   "texto": "Fendas se abrem pelo mundo e ninguém sabe o que são",
+   "status": "fato",
+   "publico_sabe": true,
+   "desde_ep": 1
+  },
+  {
+   "id": "tanque_vivo",
+   "texto": "o Tanque sobreviveu na Fenda como campeão de outro deus",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 5,
+   "palavras": [
+    "tanque está vivo",
+    "outro sistema",
+    "campeão de outro"
+   ]
+  },
+  {
+   "id": "zerar_custo",
+   "texto": "cada ZERAR apaga uma lembrança do Caio",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 3,
+   "palavras": [
+    "zerar",
+    "apaga uma lembrança"
+   ]
+  },
+  {
+   "id": "carregadores_isca",
+   "texto": "a Associação manda carregadores na frente como isca (a lista)",
+   "status": "suspeita",
+   "publico_sabe": false,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "isca",
+    "a lista"
+   ]
+  },
+  {
+   "id": "altos_votam",
+   "texto": "as escolhas do Caio são votadas por uma plateia de deuses (os Altos)",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 6,
+   "palavras": [
+    "plateia de deuses",
+    "os altos",
+    "anfitrião"
+   ]
+  },
+  {
+   "id": "prates_pacto",
+   "texto": "o Prates tem um pacto com o Anfitrião",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 7,
+   "palavras": [
+    "pacto"
+   ]
+  },
+  {
+   "id": "zefa_rank_zero",
+   "texto": "a dona Zefa foi a Rank Zero de 60 anos atrás e costurou a marca no cachecol",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 8,
+   "palavras": [
+    "primeira zero",
+    "zefa foi rank zero",
+    "marca costurada"
+   ]
+  },
+  {
+   "id": "anfitriao_cobrado",
+   "texto": "o Anfitrião nunca senta porque é cobrado se o trono ficar vazio",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 9,
+   "palavras": [
+    "nunca senta",
+    "cobrado"
+   ]
+  }
+ ],
+ "misterios": [
+  {
+   "id": "o_que_sao_fendas",
+   "pergunta": "o que são as Fendas, quem manda as missões e por que o rank do Caio é Zero",
+   "resolver_no_ep": 6
+  }
+ ],
+ "pendencias": [],
+ "objetos": {
+  "celular": {
+   "com": "caio",
+   "estado": "inteiro (racha na Fenda da Sé)"
+  },
+  "mochila": {
+   "com": "caio"
+  },
+  "cachecol": {
+   "com": "caio",
+   "nota": "costurado pela Zefa"
+  }
+ },
+ "locais": {},
+ "fim": {}
+}

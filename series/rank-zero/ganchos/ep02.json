@@ -1,0 +1,91 @@
+{
+ "serie": "rank-zero",
+ "episodio": 2,
+ "gerado_em": "2026-11-04T10:29:50",
+ "candidatos": [
+  {
+   "estrategia": "lacuna_curiosidade",
+   "texto": "Tá com fome, meu ponto?",
+   "cena": 5,
+   "total": 0.993,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.89,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 2.5 s"
+   ],
+   "id": "A",
+   "linhas": [
+    "TÁ COM FOME,",
+    "MEU PONTO?"
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "uma informação intrigante que faz uma pergunta específica",
+   "visual": "cenário `apartamento` da cena 5: A tela rachada acende: MISSÃO DIÁRIA. Ao mesmo tempo, o cachecol que a avó costurou brilha.",
+   "som": "heartbeat"
+  },
+  {
+   "estrategia": "incongruencia",
+   "texto": "ERRO. E o Prates sorri.",
+   "cena": 4,
+   "total": 0.99,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.88,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "duração estimada 2.5 s"
+   ],
+   "id": "B",
+   "linhas": [
+    "ERRO. E O",
+    "PRATES SORRI."
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "algo fora do lugar dentro das regras do mundo",
+   "visual": "cenário `associacao` da cena 4: O painel pisca: RANK / ERRO. Os caçadores olham. O Prates, no mezanino, sorri.",
+   "som": "static"
+  },
+  {
+   "estrategia": "identificacao",
+   "texto": "O que você viu lá dentro?",
+   "cena": 3,
+   "total": 0.925,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.62,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "6 palavras: lê em menos de 3 s",
+    "duração estimada 2.9 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "O QUE VOCÊ",
+    "VIU LÁ DENTRO?"
+   ],
+   "duracao_s": 2.9,
+   "descricao_estrategia": "uma situação humana com a qual o espectador se liga",
+   "visual": "cenário `hospital` da cena 3: A Vega está sentada na ponta da cama. Sobrenome. O que você viu lá dentro.",
+   "som": "heartbeat"
+  }
+ ],
+ "escolhido": "B",
+ "criterio": "escolha do autor",
+ "evidencia_usada": null,
+ "historico": []
+}

@@ -64,6 +64,26 @@ def markdown(c):
     for cena, ps in POSICOES.items():
         out += [f"- **{cena}:** " + ", ".join(f"`{n}` ({p['nota']})" for n, p in ps.items())]
     out += [""]
+    from .cenario_gen import AMBIENTES, PAREDES, PISOS, HORIZONTES, HORAS, LUZES
+    from .moveis import MOVEIS, PRODUTOS
+    out += ["## Cenário generativo (lofi/cenario_gen.py)", "",
+            "Ambientes prontos (use em `\"scene\"`) ou descrição no plano: `\"cenario\": {\"base\": \"cozinha\", \"luz\": \"escuro\", "
+            "\"mais\": [{\"m\": \"cracha\", \"em\": \"chao\", \"x\": 0.3, \"z\": 0.6}], \"sem\": [\"mesa_cozinha\"], "
+            "\"mudar\": [{\"m\": \"geladeira\", \"aberta\": true}]}`. Close do objeto da frase: "
+            "`\"cenario\": {\"close\": \"lata\", \"superficie\": \"prateleira\", \"ambiente\": \"corredor_mercado\"}` "
+            "com props `n`, `desliza`, `treme`, `cai`, `mao` (e `\"hand\": \"<personagem>\"`). "
+            "Folha com todos: [`examples/ambientes.jpg`](examples/ambientes.jpg).", ""]
+    out += [f"- **{n}** ({a.get('tipo')}): {a.get('nota', '')}" for n, a in AMBIENTES.items()]
+    out += ["", "**Paredes:** " + ", ".join(f"`{x}`" for x in PAREDES) + " · **Pisos/chão:** " + ", ".join(f"`{x}`" for x in PISOS),
+            "", "**Luz (`luz`):** " + ", ".join(f"`{x}`" for x in LUZES) + " · **Horizonte (externos):** "
+            + ", ".join(f"`{x}`" for x in HORIZONTES) + " · **Hora:** " + ", ".join(f"`{x}`" for x in HORAS),
+            "", "**Conteúdo de prateleira (`conteudo`):** " + ", ".join(f"`{x}`" for x in PRODUTOS), "",
+            "**Superfícies do close:** `prateleira`, `chao`, `mesa`, `balcao`, `parede`, `nenhuma`", ""]
+    nomes = {"piso": "No chão (encostado ou solto)", "parede": "Na parede", "teto": "No teto", "chao": "Pequenos, caídos no chão",
+             "cima": "Em cima de mesa/balcão (`itens`)", "fora": "Externos"}
+    for lug, tit in nomes.items():
+        ms = sorted(n for n, m in MOVEIS.items() if m.lugar == lug)
+        out += [f"**{tit}** ({len(ms)}): " + ", ".join(f"`{x}`" for x in ms), ""]
     return "\n".join(out)
 
 

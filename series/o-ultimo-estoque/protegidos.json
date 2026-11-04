@@ -1,0 +1,30 @@
+{
+ "motivo": "episódio 1 e extra 1 de O Último Estoque: cânone fixo, não modificar (pedido do autor, nov/2026)",
+ "arquivos": {
+  "ep01.json": "76abad3b93785e5779e5f80ead065041ee244f1316ec7264c107e464f95e8caa",
+  "ep01_roteiro.md": "65e85d09e5d370993519d1073b6dd6f50347675081436e9912f3b7fa7ab27ccf",
+  "extra01.json": "a2bac419385554e6c902ffdffa203898436bbbc3994f7d3e000ebcd1f293b9a7",
+  "extra01_roteiro.md": "13b822836d28b5c64bfa5cc8e230766455238e3256352babfd12b1335d9c5fc2",
+  "personagens.json": "bc348e81786987dccdcc120ea83174713e21724e10e2221a21dc7fa8ea8f91b8"
+ },
+ "trechos": {
+  "biblia.md": [
+   "- EP 1: verde-fluorescente do mercado · EP 2: azul da câmara fria · EP 3: âmbar das luzes de emergência · EP 4: vermelho da sirene · EP 5: branco do amanhecer",
+   "- Ep. 1 (A: SAIR / B: FICAR) → quem ele conhece primeiro: a Nanda no posto (A) ou a Nanda batendo na porta (B).",
+   "| 1 | ELES VÊM PELO BARULHO | ep. 1 (o cadeado bate e os vultos viram) | ep. 1, ep. 3 |",
+   "| 2 | NÃO FIQUE NA FRENTE DO VIDRO | ep. 1 (a luz de emergência faz do Léo uma silhueta) | ep. 3 |",
+   "| O crachá do Sérgio no chão do estoque, perto da câmara fria | ep. 1 | ep. 2 | pendente |",
+   "| O cadeado da câmara fria está aberto, pendurado na argola, mas a porta não abre: está travada por dentro | ep. 1 | ep. 2 | pendente |",
+   "| O telefone do mercado com uma chamada perdida às 17h45 | ep. 1 | ep. 4 | pendente |",
+   "| O chamado do canal A repete as mesmas palavras, com o mesmo chiado | ep. 1 | ep. 4 | pendente |",
+   "| A batida da câmara fria é lenta, sempre no mesmo ritmo | ep. 1 | ep. 2 | pendente |",
+   "| 1 | 0 | início | montado | A) Sair pela janela até o posto · B) Ficar e virar bunker | | |",
+   "- EP 1: A) SAIR — GANHA: a chance de encontrar gente e um resgate; PERDE: a comida, as paredes e o escuro está cheio. B) FICAR — GANHA: comida para anos e uma porta de aço; PERDE: o portão leste fecha às 22h e ele fica sozinho com o que bate na câmara fria.",
+   "- **EP 1 · DIA 0 · 18:50 · \"A PORTA DE AÇO\"** (início, verde) — Objetivo: apresentar o Léo, o mercado e as regras 1 e 2. Rotina, o rádio corta a música com o alerta, a rua pelo vidro, a porta de aço, a luz cai, o vidro do hortifrúti estoura, a fuga até o mezanino, o rádio dos seguranças com o canal A, e as batidas que vêm de dentro da câmara fria. Gancho: **\"AS BATIDAS / VÊM DE DENTRO\"**. Pergunta: A) SAIR PELA JANELA · B) FICAR NO ESTOQUE.",
+   "1. Ep. 1: o que houve com o gerente? (narrado pelo Sérgio, 1ª pessoa)",
+   "| 1 | 1 | O que houve com o gerente? (o Sérgio em 1ª pessoa) | montado |",
+   "- EP 1: 18:50, o Léo repõe enlatados sozinho quando o rádio corta a música com o alerta. Pelo vidro, a rua vira caos; ele baixa a porta de aço com um homem do lado de fora, o cadeado chama os vultos (REGRA 1) e a luz do bairro cai, fazendo dele uma silhueta no vidro (REGRA 2). Foge do hortifrúti invadido até o mezanino, ouve o canal A (portão leste até as 22h) e descobre que as batidas vêm de dentro da câmara fria, onde está alguém de óculos.",
+   "- Início do ep. 1: Léo sozinho no salão do mercado, DIA 0 · 18:50, repondo milho em lata. A porta dos fundos está destrancada desde as 18h."
+  ]
+ }
+}

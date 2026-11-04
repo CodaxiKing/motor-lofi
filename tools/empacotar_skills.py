@@ -24,7 +24,9 @@ def montar(nome):
                 cam = os.path.join(raiz, a)
                 info = zipfile.ZipInfo(os.path.relpath(cam, SKILLS).replace(os.sep, "/"), DATA)
                 info.external_attr = 0o100644 << 16; info.compress_type = zipfile.ZIP_DEFLATED
-                z.writestr(info, open(cam, "rb").read())
+                dados = open(cam, "rb").read()
+                if a.endswith((".md", ".txt", ".json", ".py", ".yml", ".yaml")): dados = dados.replace(b"\r\n", b"\n")   # Windows: mesmo zip do CI
+                z.writestr(info, dados)
     return buf.getvalue()
 
 

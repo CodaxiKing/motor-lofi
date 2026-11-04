@@ -1,0 +1,224 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 5,
+ "titulo": "O ÚLTIMO ESTOQUE",
+ "duracao_alvo_s": 225,
+ "estado_inicial": {
+  "por_voto": {
+   "A": {
+    "lugar": "loja",
+    "dia": 1,
+    "hora": "23:40",
+    "presentes": [
+     "leo",
+     "nanda"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "pincel",
+      "radio"
+     ]
+    }
+   },
+   "B": {
+    "lugar": "loja",
+    "dia": 1,
+    "hora": "23:40",
+    "presentes": [
+     "leo",
+     "nanda"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "pincel",
+      "radio"
+     ]
+    }
+   }
+  }
+ },
+ "objetivo": "decidir o que o último estoque vira, e de quem ele é",
+ "conflito": "o Léo que fugia das pessoas precisa escolher entre a porta fechada e a fila do lado de fora",
+ "obstaculos": [
+  "a mão da Nanda",
+  "o Sérgio na câmara (ou a lembrança dele)",
+  "a rua cheia"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 2,
+   "hora": "05:40",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "A madrugada do DIA 2.",
+   "acontecimento": "Você empilha carrinhos de compras cheios na frente da porta de aço.",
+   "reacao": "Você conta: quarenta e dois carrinhos.",
+   "consequencia": "A fila do portão leste voltou e está dormindo na calçada.",
+   "decisao": "Levar o estoque para a rua ao amanhecer.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "o relógio do caixa: a noite passa até 05:40"
+   },
+   "narracao": [
+    "DIA 2.",
+    "5:40.",
+    "Quarenta e dois carrinhos.",
+    "A fila *voltou*."
+   ],
+   "voto": "A"
+  },
+  {
+   "n": 2,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 2,
+   "hora": "05:40",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "A madrugada do DIA 2.",
+   "acontecimento": "Você escreve as regras do refúgio no papelão do vidro, com o pincel atômico.",
+   "reacao": "Regra cinco: quem bater do jeito certo, entra.",
+   "consequencia": "Você ensina o toc, toc-toc para quem está lá fora, pelo papelão.",
+   "decisao": "Fazer do mercado o refúgio de quem bater certo.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "o relógio do caixa: a noite passa até 05:40"
+   },
+   "narracao": [
+    "DIA 2.",
+    "5:40.",
+    "Regra cinco:",
+    "quem bater *certo*, entra."
+   ],
+   "voto": "B",
+   "usa": {
+    "leo": [
+     "pincel"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 2,
+   "hora": "05:55",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "Antes de abrir, você desce à câmara fria.",
+   "acontecimento": "O gerador parou. A câmara está morna. Do outro lado, nada bate.",
+   "reacao": "Você abre a porta, ou lembra do Sérgio apontando o relógio, se ele foi solto no ep. 3.",
+   "consequencia": "O crachá volta para o pescoço dele, ou para o prego da parede.",
+   "decisao": "Fechar o mercado do Sérgio do jeito que ele queria.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "do salão até o estoque pela porta vaivém (mesmo lugar: loja)"
+   },
+   "narracao": [
+    "A câmara está *morna*.",
+    "Nada bate.",
+    "Você devolve o crachá."
+   ],
+   "larga": {
+    "leo": [
+     "cracha_sergio"
+    ]
+   }
+  },
+  {
+   "n": 4,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 2,
+   "hora": "06:00",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "Amanhecer.",
+   "acontecimento": "A Nanda mostra a mão sem curativo: é uma mordida de raspão, de dois dias. Ela ainda está aqui. Ela ainda é ela.",
+   "reacao": "Você não recua.",
+   "consequencia": "O frio, a febre que passou: talvez nem toda mordida vire.",
+   "decisao": "Abrir a porta de aço.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Ela mostra a mão.",
+    "Dois dias.",
+    "E ela ainda é *ela*.",
+    "6:00."
+   ],
+   "revela": [
+    "nanda_mordida"
+   ]
+  },
+  {
+   "n": 5,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 2,
+   "hora": "06:02",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "A porta de aço sobe pela última vez nesta história.",
+   "acontecimento": "Do lado de fora, gente. Na sua mão, a corrente.",
+   "reacao": "Você fala pela primeira vez na série: pode entrar.",
+   "consequencia": "O estoquista que fugia das pessoas vira quem decide quem come.",
+   "decisao": "FIM.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "A porta *sobe*.",
+    "Gente.",
+    "E você diz:",
+    "pode entrar.",
+    "FIM."
+   ]
+  }
+ ],
+ "virada": 4,
+ "consequencias": [
+  "fim da série: a fila na porta (A) ou o refúgio com regras (B)"
+ ],
+ "pergunta": {},
+ "estado_final": {
+  "lugar": "loja",
+  "dia": 2,
+  "hora": "06:02",
+  "presentes": [
+   "leo",
+   "nanda"
+  ]
+ },
+ "ponte": {},
+ "final": true,
+ "gancho": {
+  "estrategia": "conflito_imediato",
+  "texto": "A câmara está morna. Nada bate.",
+  "cena": 3,
+  "linhas": [
+   "A CÂMARA ESTÁ",
+   "MORNA. NADA BATE."
+  ],
+  "id": "A"
+ }
+}

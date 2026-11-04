@@ -1,0 +1,89 @@
+{
+ "serie": "rank-zero",
+ "episodio": 1,
+ "gerado_em": "2026-11-04T10:29:50",
+ "candidatos": [
+  {
+   "estrategia": "revelacao_parcial",
+   "texto": "A tela acende",
+   "cena": 9,
+   "total": 1.0,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.92,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "3 palavras: lê em menos de 3 s",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 1.6 s"
+   ],
+   "id": "A",
+   "linhas": [
+    "A TELA ACENDE"
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "a consequência sem a explicação",
+   "visual": "cenário `masmorra` da cena 9: A tela rachada acende sozinha: MISSÃO: SOBREVIVER. Embaixo, um carimbo: A MAIORIA ESCOLHEU.",
+   "som": "bang"
+  },
+  {
+   "estrategia": "antecipacao",
+   "texto": "O portal fecha.",
+   "cena": 7,
+   "total": 0.995,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.9,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "3 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "duração estimada 1.6 s"
+   ],
+   "id": "B",
+   "linhas": [
+    "O PORTAL FECHA."
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "o risco ou o prazo antes do acontecimento (relógio correndo)",
+   "visual": "cenário `masmorra` da cena 7: O portal fecha com o time da Vega do lado de fora.",
+   "som": "click"
+  },
+  {
+   "estrategia": "identificacao",
+   "texto": "Vai, magrelo. Você não vai.",
+   "cena": 8,
+   "total": 0.952,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.73,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "duração estimada 2.5 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "VAI, MAGRELO. VOCÊ",
+    "NÃO VAI."
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "uma situação humana com a qual o espectador se liga",
+   "visual": "cenário `masmorra` da cena 8: Uma pedra cai na perna do Tanque.",
+   "som": "heartbeat"
+  }
+ ],
+ "escolhido": "C",
+ "criterio": "escolha do autor",
+ "evidencia_usada": null,
+ "historico": []
+}

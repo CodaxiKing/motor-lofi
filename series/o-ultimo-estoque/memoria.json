@@ -1,0 +1,238 @@
+{
+ "_leia": "Memória da história (lofi/narrativa.py). O ep. 1 é cânone fixo (protegidos.json): este arquivo só registra o que ele estabeleceu.",
+ "personagens": {
+  "leo": {
+   "estado": "vivo",
+   "ferimentos": [],
+   "objetivo": "ficar em paz, longe de gente",
+   "relacoes": {
+    "sergio": "o chefe que apontava o relógio",
+    "avo": "achou ela dois dias depois"
+   }
+  },
+  "sergio": {
+   "estado": "na câmara fria (o público só viu 'alguém de óculos')",
+   "ferimentos": [],
+   "relacoes": {
+    "leo": "funcionário que ele não quis machucar"
+   }
+  },
+  "nanda": {
+   "estado": "ainda não apareceu",
+   "ferimentos": []
+  }
+ },
+ "fatos": [
+  {
+   "id": "alguem_na_camara",
+   "texto": "tem alguém de óculos dentro da câmara fria, batendo devagar",
+   "status": "fato",
+   "publico_sabe": true,
+   "desde_ep": 1
+  },
+  {
+   "id": "sergio_na_camara",
+   "texto": "quem bate na câmara fria é o Sérgio",
+   "status": "suspeita",
+   "quem_sabe": [],
+   "publico_sabe": false,
+   "desde_ep": 1,
+   "revelar_no_ep": 2,
+   "palavras": [
+    "é o sérgio",
+    "o sérgio está na câmara"
+   ]
+  },
+  {
+   "id": "sergio_mordido",
+   "texto": "o Sérgio foi mordido no caminho e se trancou por dentro para não atacar o Léo",
+   "status": "fato",
+   "quem_sabe": [
+    "sergio"
+   ],
+   "publico_sabe": false,
+   "desde_ep": 1,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "sérgio foi mordido",
+    "se trancou para não"
+   ]
+  },
+  {
+   "id": "frio_lentos",
+   "texto": "o frio deixa os infectados lentos (REGRA 3)",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 2,
+   "palavras": [
+    "o frio deixa",
+    "regra três"
+   ]
+  },
+  {
+   "id": "sergio_sabia",
+   "texto": "o cunhado policial ligou às 17h40 mandando o Sérgio buscar a família",
+   "status": "fato",
+   "quem_sabe": [
+    "sergio"
+   ],
+   "publico_sabe": false,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "cunhado",
+    "busca a família"
+   ]
+  },
+  {
+   "id": "canal_a_gravacao",
+   "texto": "o chamado do canal A é uma gravação em repetição",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "gravação",
+    "gravado",
+    "em repetição"
+   ]
+  },
+  {
+   "id": "posto_vazio",
+   "texto": "o posto policial do portão leste está vazio",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "posto vazio",
+    "posto está vazio",
+    "não tem ninguém no posto"
+   ]
+  },
+  {
+   "id": "nanda_mordida",
+   "texto": "a Nanda foi mordida de raspão na mão e esconde com um curativo",
+   "status": "desconhecido",
+   "publico_sabe": false,
+   "revelar_no_ep": 5,
+   "palavras": [
+    "mordida de raspão",
+    "nanda foi mordida"
+   ]
+  },
+  {
+   "id": "telefone_1745",
+   "texto": "o Léo ouviu o telefone do mercado tocar às 17h45 e não atendeu",
+   "status": "fato",
+   "quem_sabe": [
+    "leo"
+   ],
+   "publico_sabe": false,
+   "revelar_no_ep": 4,
+   "palavras": [
+    "não atendeu",
+    "deixou tocar"
+   ]
+  }
+ ],
+ "misterios": [
+  {
+   "id": "por_que_sergio_saiu",
+   "pergunta": "por que o Sérgio saiu mais cedo e deixou a porta dos fundos aberta?",
+   "pistas": [
+    "crachá no chão",
+    "porta dos fundos aberta",
+    "chamada perdida 17h45"
+   ],
+   "resolver_no_ep": 4
+  }
+ ],
+ "pendencias": [
+  {
+   "id": "portao_22h",
+   "texto": "o portão leste fecha às 22h: o ep. 2 precisa mostrar o que acontece com o prazo",
+   "ate_ep": 2,
+   "palavras": [
+    "portão leste",
+    "dez da noite",
+    "22h"
+   ]
+  },
+  {
+   "id": "batidas_camara",
+   "texto": "as batidas na câmara fria pedem uma resposta",
+   "ate_ep": 2,
+   "palavras": [
+    "câmara fria"
+   ]
+  },
+  {
+   "id": "homem_da_porta",
+   "texto": "o homem que ficou do lado de fora da porta de aço (cena 8 do ep. 1)",
+   "ate_ep": 3,
+   "palavras": [
+    "homem da porta",
+    "o homem que ficou",
+    "bateu no vidro"
+   ]
+  },
+  {
+   "id": "chamada_1745",
+   "texto": "a chamada perdida das 17h45",
+   "ate_ep": 4,
+   "palavras": [
+    "17h45",
+    "chamada perdida"
+   ]
+  }
+ ],
+ "objetos": {
+  "radio_segurancas": {
+   "com": "leo",
+   "nota": "pilha fraca"
+  },
+  "cracha_sergio": {
+   "com": "leo"
+  },
+  "radinho_balcao": {
+   "onde": "caixa"
+  },
+  "barra_paletes": {
+   "onde": "mezanino"
+  },
+  "escada_mezanino": {
+   "estado": "recolhida, travada"
+  }
+ },
+ "locais": {
+  "porta_de_aco": "trancada com cadeado",
+  "porta_fundos": "trancada pelo Léo",
+  "luz_do_bairro": "caída; só emergência",
+  "vidro_hortifruti": "estourado; infectados no salão"
+ },
+ "fim": {
+  "1": {
+   "lugar": "loja",
+   "cenario": "mezanino",
+   "dia": 0,
+   "hora": "19:15",
+   "presentes": [
+    "leo"
+   ],
+   "inventario": {
+    "leo": [
+     "cracha",
+     "cracha_sergio",
+     "radio"
+    ]
+   },
+   "pergunta": {
+    "A": "Sair pela janela até o portão leste",
+    "B": "Ficar no estoque"
+   },
+   "ponte": {
+    "A": "o ep. 2 abre no beco, de noite, com a avenida cheia; o rádio morre no beco e o crachá do Sérgio fica para trás",
+    "B": "o ep. 2 abre no mezanino, 21:30, com a decisão de abrir ou não a câmara fria"
+   },
+   "fonte": "ep01_roteiro.md ('O que acontece em cada opção') e mundo.json, só leitura"
+  }
+ }
+}

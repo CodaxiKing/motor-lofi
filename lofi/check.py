@@ -221,6 +221,22 @@ def check(path, frames=True):
             sheet.paste(img.resize((tw, th)), (x, y)); d.text((x + 6, y + th + 4), f"{t:.1f}s", font=font("mono", 20), fill=(0, 0, 0))
         out = os.path.join(ep.base, "_revisao.png"); sheet.save(out)
         probs.append(("INFO", f"folha de revisão: {out} ({len(sheet_frames)} quadros)"))
+    if ep.spec.get("subs"):                  # ao pé da letra: cada frase com a imagem do que ela diz (lofi/literal.py)
+        try:
+            from . import literal
+            rel = literal.analisar(path)
+            nivel = "AVISO" if rel["nota"] < 0.8 and ep.spec.get("narrado") else "INFO"
+            probs.append((nivel, literal.resumo(rel) + ("; rode python3 -m lofi.literal <roteiro> --aplicar" if nivel == "AVISO" else "")))
+            for l in [l for l in rel["frases"] if l["falta"]][:6]:
+                probs.append(("INFO", f"literal {l['t']:.1f}s: '{l['texto'][:50]}' cita {', '.join(l['falta'])} e o plano não mostra"))
+        except Exception as e: probs.append(("INFO", f"literal: não conferido ({e})"))
+    try:                                         # história e continuidade audiovisual (lofi/validador_narrativo.py)
+        from . import validador_narrativo as VN
+        alvos = [path]; md = os.path.splitext(path)[0] + "_roteiro.md"
+        if os.path.isfile(md): alvos.append(md)
+        for a in alvos:
+            for nv, cod, _, msg in VN.validar(a): probs.append(("AVISO" if nv == "ERRO" else "INFO", f"narrativa ({os.path.basename(a)}) {cod}: {msg}"))
+    except Exception as e: probs.append(("INFO", f"narrativa: não conferida ({e})"))
     return probs
 
 if __name__ == "__main__":

@@ -1,0 +1,285 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 4,
+ "titulo": "CANAL A",
+ "duracao_alvo_s": 225,
+ "estado_inicial": {
+  "por_voto": {
+   "A": {
+    "lugar": "loja",
+    "dia": 1,
+    "hora": "19:42",
+    "presentes": [
+     "leo",
+     "nanda"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "pincel"
+     ]
+    }
+   },
+   "B": {
+    "lugar": "loja",
+    "dia": 1,
+    "hora": "19:42",
+    "presentes": [
+     "leo"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "pincel"
+     ]
+    }
+   }
+  }
+ },
+ "objetivo": "entender o canal A e descobrir que ninguém vai buscar ninguém",
+ "conflito": "a esperança do resgate contra a verdade do canal A; e a mão da Nanda",
+ "obstaculos": [
+  "a rua acordada pelo barulho",
+  "o rádio sem pilha (as pilhas estão no caixa)"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:43",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "Você abriu: a porta de aço sobe gritando.",
+   "acontecimento": "Quem estava lá fora entra rolando por baixo; você desce a porta com um vulto já com o braço dentro.",
+   "reacao": "Você chuta o braço e a porta fecha.",
+   "consequencia": "A rua inteira ouviu. As batidas na porta de aço começam: dezenas.",
+   "decisao": "Subir para o mezanino.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "mesmo segundo do fim do ep. 3"
+   },
+   "narracao": [
+    "A porta *grita*.",
+    "Elas rolam por baixo.",
+    "Um braço.",
+    "A porta fecha.",
+    "E a rua inteira *ouviu*."
+   ],
+   "voto": "A"
+  },
+  {
+   "n": 2,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:43",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você seguiu a regra.",
+   "acontecimento": "A Nanda não grita. Ela se encosta no vidro, do lado de fora, e fica olhando você pelo papelão rasgado.",
+   "reacao": "Você senta do lado de dentro, de costas para o mesmo vidro.",
+   "consequencia": "A noite inteira, separados por um vidro.",
+   "decisao": "Ficar acordado com ela.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "mesmo segundo do fim do ep. 3"
+   },
+   "narracao": [
+    "Você não abre.",
+    "Ela não grita.",
+    "Ela encosta no vidro.",
+    "Você também.",
+    "Do outro lado."
+   ],
+   "voto": "B"
+  },
+  {
+   "n": 3,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "23:10",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Pilhas novas no rádio dos seguranças, tiradas do caixa.",
+   "acontecimento": "O canal A volta: portão leste, até as dez. Venham agora.",
+   "reacao": "Você olha o relógio: 23:10. São as mesmas palavras de ontem.",
+   "consequencia": "O mesmo chiado, na mesma palavra, no mesmo segundo.",
+   "decisao": "Ouvir de novo.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "o relógio do caixa mostra 23:10"
+   },
+   "narracao": [
+    "23:10.",
+    "O canal A.",
+    "Portão leste, até as dez.",
+    "O *mesmo* chiado.",
+    "Na mesma palavra."
+   ],
+   "pega": {
+    "leo": [
+     "radio"
+    ]
+   }
+  },
+  {
+   "n": 4,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "23:14",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você reconhece o padrão.",
+   "acontecimento": "Você conta: a frase se repete a cada quarenta segundos, sempre igual.",
+   "reacao": "Você entende: não tem ninguém falando. É uma gravação.",
+   "consequencia": "Ninguém vai buscar ninguém.",
+   "decisao": "Contar para quem está com você.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "A cada quarenta segundos.",
+    "Sempre igual.",
+    "Não tem ninguém falando.",
+    "É uma *gravação*."
+   ],
+   "revela": [
+    "canal_a_gravacao",
+    "posto_vazio"
+   ],
+   "usa": {
+    "leo": [
+     "radio"
+    ]
+   }
+  },
+  {
+   "n": 5,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "23:20",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "No caixa, o telefone do mercado ainda mostra a chamada perdida das 17h45.",
+   "acontecimento": "Você aperta o botão da secretária. A mesma voz do canal A: Sérgio, é o seu cunhado. Busca a família. Fecha o mercado.",
+   "reacao": "Você lembra: o telefone tocou. Você ouviu. Você não atendeu.",
+   "consequencia": "Se tivesse atendido, teria sabido duas horas antes.",
+   "decisao": "Guardar isso só para você.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "17h45.",
+    "Você ouviu tocar.",
+    "E não atendeu.",
+    "A voz:",
+    "Busca a família."
+   ],
+   "revela": [
+    "sergio_sabia",
+    "telefone_1745",
+    "sergio_mordido"
+   ],
+   "resolve": [
+    "chamada_1745"
+   ]
+  },
+  {
+   "n": 6,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "23:31",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "A Nanda está perto do caixa (ou do outro lado do vidro).",
+   "acontecimento": "Quando ela levanta a mão, o curativo está escuro, úmido.",
+   "reacao": "Ela esconde a mão no bolso do jaleco.",
+   "consequencia": "Você viu. Ela sabe que você viu.",
+   "decisao": "Não perguntar. Ainda.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O curativo.",
+    "*Escuro*.",
+    "Ela esconde a mão.",
+    "Ela sabe que você viu."
+   ]
+  },
+  {
+   "n": 7,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "23:40",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Lá fora, a rua está cheia de gente que também ouviu o canal A.",
+   "acontecimento": "Pelo vidro, uma fila de sobreviventes andando para o portão leste.",
+   "reacao": "Você tem comida para anos atrás de você.",
+   "consequencia": "Eles vão chegar num portão onde não tem ninguém.",
+   "decisao": "A escolha.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Pelo vidro:",
+    "uma fila de gente.",
+    "Indo pro portão.",
+    "Onde não tem *ninguém*.",
+    "E você? Levava o estoque pra rua... ou fazia do mercado o refúgio?"
+   ]
+  }
+ ],
+ "virada": 4,
+ "consequencias": [
+  "o canal A é uma gravação: o resgate não existe",
+  "o Léo carrega a culpa da chamada das 17h45",
+  "a mão da Nanda"
+ ],
+ "pergunta": {
+  "A": "Levar o estoque para a rua",
+  "B": "Fazer do mercado o refúgio"
+ },
+ "estado_final": {
+  "lugar": "loja",
+  "dia": 1,
+  "hora": "23:40",
+  "presentes": [
+   "leo"
+  ]
+ },
+ "ponte": {
+  "A": "o ep. 5 abre com a porta de aço subindo de madrugada e o Léo empurrando um carrinho de compras para fora",
+  "B": "o ep. 5 abre com o Léo escrevendo as regras do refúgio no papelão do vidro"
+ },
+ "gancho": {
+  "estrategia": "identificacao",
+  "texto": "17h45. Você ouviu tocar.",
+  "cena": 5,
+  "linhas": [
+   "17H45. VOCÊ OUVIU TOCAR."
+  ],
+  "id": "B"
+ }
+}

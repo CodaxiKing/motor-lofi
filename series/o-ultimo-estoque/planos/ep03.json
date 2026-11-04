@@ -1,0 +1,311 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 3,
+ "titulo": "BATEM NA PORTA",
+ "duracao_alvo_s": 225,
+ "estado_inicial": {
+  "por_voto": {
+   "A": {
+    "lugar": "loja",
+    "dia": 0,
+    "hora": "22:52",
+    "presentes": [
+     "leo"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio"
+     ]
+    }
+   },
+   "B": {
+    "lugar": "loja",
+    "dia": 0,
+    "hora": "22:52",
+    "presentes": [
+     "leo"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio"
+     ]
+    }
+   }
+  }
+ },
+ "objetivo": "passar o primeiro dia e decidir quem pode entrar (REGRA 4)",
+ "conflito": "o Léo escreve uma regra para ficar seguro e a primeira pessoa que bate na porta é quem ele não consegue recusar",
+ "obstaculos": [
+  "o barulho da porta de aço chama a rua",
+  "o gerador na reserva",
+  "o Sérgio na câmara (aberta ou fechada)"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "loja",
+   "cenario": "camara_fria",
+   "dia": 0,
+   "hora": "22:53",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você abriu a câmara fria.",
+   "acontecimento": "O Sérgio sai devagar, e você o empurra de volta com a barra dos paletes, mas ele agarra o seu braço.",
+   "reacao": "Você fecha a porta com ele dentro de novo, agora com a chave do carro na sua mão.",
+   "consequencia": "Um arranhão no seu antebraço. Fino. Você não sabe se foi o metal.",
+   "decisao": "Lavar e esconder.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "o episódio abre no mesmo segundo em que o ep. 2 terminou"
+   },
+   "narracao": [
+    "Você abre.",
+    "O Sérgio sai... *devagar*.",
+    "A barra dos paletes.",
+    "Ele volta pra dentro.",
+    "Na sua mão: a chave."
+   ],
+   "voto": "A",
+   "pega": {
+    "leo": [
+     "chave_carro"
+    ]
+   },
+   "ferimentos": {
+    "leo": "arranhão no antebraço (metal ou mão?)"
+   }
+  },
+  {
+   "n": 2,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:53",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você deixou trancada.",
+   "acontecimento": "Você desliga o gerador para poupar diesel e liga de novo de hora em hora.",
+   "reacao": "Você fica sentado na frente da câmara, contando.",
+   "consequencia": "Quando o gerador para, as batidas aceleram; quando volta, diminuem.",
+   "decisao": "Usar o frio como relógio.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "o episódio abre no mesmo segundo em que o ep. 2 terminou"
+   },
+   "narracao": [
+    "Você deixa trancada.",
+    "Desliga o gerador.",
+    "As batidas *aceleram*.",
+    "Liga de novo.",
+    "Elas *diminuem*."
+   ],
+   "voto": "B"
+  },
+  {
+   "n": 3,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "06:10",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "A primeira manhã.",
+   "acontecimento": "A luz entra por baixo da porta de aço. Pelo vão, o sapato do homem que bateu no vidro ontem, parado na calçada.",
+   "reacao": "Você pega um pincel atômico no caixa e escreve na porta de aço, por dentro.",
+   "consequencia": "REGRA 4: NINGUÉM ENTRA DEPOIS DO ESCURO. Você assina: Léo.",
+   "decisao": "Passar o dia preparando o mercado.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "plano de detalhe relogio: a noite passa até 06:10 do DIA 1"
+   },
+   "narracao": [
+    "DIA 1.",
+    "6:10.",
+    "O sapato do homem que ficou.",
+    "Você pega o pincel.",
+    "Regra quatro:",
+    "ninguém entra *depois do escuro*."
+   ],
+   "pega": {
+    "leo": [
+     "pincel"
+    ]
+   },
+   "resolve": [
+    "homem_da_porta"
+   ]
+  },
+  {
+   "n": 4,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "18:50",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "O dia inteiro arrumando o mercado.",
+   "acontecimento": "Você empilha caixas atrás da porta de aço e tapa o vidro com papelão; às 18:50 o sol começa a cair.",
+   "reacao": "Você ri sozinho de uma piada que ninguém ouviu.",
+   "consequencia": "O mercado vira casa. E o sol começa a cair.",
+   "decisao": "Fechar tudo antes do escuro.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "montagem do dia: papelão no vidro, caixas, o relógio andando"
+   },
+   "narracao": [
+    "Papelão no vidro.",
+    "Caixas na porta.",
+    "O sol *cai*."
+   ],
+   "resolve": [
+    "gerador_diesel"
+   ]
+  },
+  {
+   "n": 5,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:40",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Escureceu há dez minutos.",
+   "acontecimento": "Três batidas na porta de aço. Rápidas, em ritmo de gente: toc, toc-toc.",
+   "reacao": "Você para de respirar. Não é o ritmo deles.",
+   "consequencia": "Uma voz de mulher, baixa: tem alguém aí?",
+   "decisao": "Responder ou fingir que não tem ninguém.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "19:40.",
+    "Toc.",
+    "Toc-toc.",
+    "Não é o ritmo *deles*.",
+    "Tem alguém aí?"
+   ]
+  },
+  {
+   "n": 6,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:41",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Do outro lado, a Nanda, de jaleco azul e mochila vermelha.",
+   "acontecimento": "Ela conta: veio do hospital, está há dois dias andando, a filha dela está do outro lado da cidade.",
+   "reacao": "Você olha a regra na porta. Sua letra.",
+   "consequencia": "Atrás dela, na rua, um vulto vira a cabeça na direção da voz.",
+   "decisao": "Decidir rápido.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "pela fresta de baixo da porta de aço (plano pes): os pés dela e o curativo na mão"
+   },
+   "narracao": [
+    "Ela se chama *Nanda*.",
+    "Mão com curativo.",
+    "Atrás dela...",
+    "um vulto *vira*."
+   ],
+   "voto": "B"
+  },
+  {
+   "n": 7,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:41",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "A Nanda desce do mezanino. Quem bate é uma mãe com uma criança no colo.",
+   "acontecimento": "A Nanda, que voltou do portão com você, reconhece: é a mulher da avenida.",
+   "reacao": "A Nanda olha para você. Você olha a regra.",
+   "consequencia": "Atrás da mulher, na rua, um vulto vira a cabeça na direção da voz.",
+   "decisao": "Decidir rápido.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "pela fresta de baixo da porta de aço (plano pes)"
+   },
+   "narracao": [
+    "Uma mãe.",
+    "Uma criança.",
+    "A Nanda olha pra você.",
+    "Atrás delas...",
+    "um vulto *vira*."
+   ],
+   "voto": "A",
+   "entram": [
+    "nanda"
+   ]
+  },
+  {
+   "n": 8,
+   "lugar": "loja",
+   "cenario": "loja",
+   "dia": 1,
+   "hora": "19:42",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Subir a porta de aço é barulho: a rua inteira vem.",
+   "acontecimento": "A corrente da porta está na sua mão. Ela leva trinta segundos para subir até a metade.",
+   "reacao": "Você conta. Trinta segundos é muito.",
+   "consequencia": "Lá fora, mais dois vultos viram a cabeça.",
+   "decisao": "A escolha.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Trinta segundos.",
+    "Pra porta subir.",
+    "Mais dois *viram*.",
+    "E você?",
+    "Abria a porta de aço... ou seguia a regra quatro?"
+   ]
+  }
+ ],
+ "virada": 5,
+ "consequencias": [
+  "REGRA 4 escrita pelo próprio Léo",
+  "alguém do lado de fora sabe que tem gente no mercado"
+ ],
+ "pergunta": {
+  "A": "Abrir a porta de aço",
+  "B": "Seguir a regra 4"
+ },
+ "estado_final": {
+  "lugar": "loja",
+  "dia": 1,
+  "hora": "19:42",
+  "presentes": [
+   "leo"
+  ]
+ },
+ "ponte": {
+  "A": "o ep. 4 abre com a porta subindo e o barulho chamando a rua",
+  "B": "o ep. 4 abre com quem bateu passando a noite encostado no vidro, olhando para o Léo pelo papelão rasgado"
+ },
+ "gancho": {
+  "estrategia": "incongruencia",
+  "texto": "Não é o ritmo deles.",
+  "cena": 5,
+  "linhas": [
+   "NÃO É O",
+   "RITMO DELES."
+  ],
+  "id": "A"
+ }
+}

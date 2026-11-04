@@ -1,0 +1,364 @@
+{
+ "serie": "rank-zero",
+ "episodio": 1,
+ "titulo": "O CARREGADOR",
+ "duracao_alvo_s": 240,
+ "estado_inicial": {
+  "lugar": "apartamento",
+  "dia": 0,
+  "hora": "20:40",
+  "presentes": [
+   "caio",
+   "zefa"
+  ],
+  "inventario": {
+   "caio": [
+    "celular",
+    "mochila"
+   ],
+   "zefa": [
+    "tesoura"
+   ]
+  }
+ },
+ "objetivo": "apresentar o mundo das Fendas e virar a vida do Caio na Fenda da Sé",
+ "conflito": "o Caio quer parar de ser carregado pela vida, mas é o mais fraco de São Paulo e a Associação manda os carregadores na frente",
+ "obstaculos": [
+  "Rank E",
+  "o chefe que acorda",
+  "o portal fechando"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "apartamento",
+   "cenario": "apartamento",
+   "dia": 0,
+   "hora": "20:40",
+   "presentes": [
+    "caio",
+    "zefa",
+    "reporter"
+   ],
+   "situacao": "Caio e a dona Zefa vendo a TV no Brás.",
+   "acontecimento": "A Sara Lins: são mais de duzentas, ninguém sabe o que são. A Zefa desliga a TV antes da palavra Fenda.",
+   "reacao": "O Caio pergunta por quê; ela pega a costura.",
+   "consequencia": "Ela não pergunta nada. Ele percebe.",
+   "decisao": "Deixar quieto.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "abertura: a Sara Lins entra pela TV"
+   },
+   "narracao": [
+    "São mais de duzentas.",
+    "A vó desliga a TV.",
+    "Antes da palavra Fenda.",
+    "Ponto dado não se desfaz."
+   ],
+   "entram": [
+    "reporter"
+   ]
+  },
+  {
+   "n": 2,
+   "lugar": "apartamento",
+   "cenario": "apartamento",
+   "dia": 120,
+   "hora": "21:00",
+   "presentes": [
+    "caio",
+    "zefa",
+    "reporter"
+   ],
+   "situacao": "Seis meses de TV.",
+   "acontecimento": "Pela TV: quem entra e volta fica mais forte; nasce a Associação, os ranks de E a S, o mercado de monstros.",
+   "reacao": "O Caio conta as contas da casa em cima da mesa.",
+   "consequencia": "Caçador ganha num dia o que a vó costura no ano.",
+   "decisao": "Ir medir o rank.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "a TV passando os meses (DIA 0 → DIA 120)"
+   },
+   "narracao": [
+    "Seis meses depois.",
+    "Quem volta,",
+    "volta mais forte.",
+    "Ranks de E a S."
+   ]
+  },
+  {
+   "n": 3,
+   "lugar": "associacao",
+   "cenario": "associacao",
+   "dia": 150,
+   "hora": "10:00",
+   "presentes": [
+    "caio",
+    "tanque"
+   ],
+   "situacao": "A fila da medição na Sé.",
+   "acontecimento": "O painel mede o Caio: RANK E. O Tanque, atrás dele, ri: magrelo, bem-vindo ao fundo do poço.",
+   "reacao": "O Caio assina como carregador, junto com o Tanque.",
+   "consequencia": "Carregador ganha pouco e vai na frente.",
+   "decisao": "Aceitar a vaga.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "do DIA 120 ao DIA 150; o Caio sai do apartamento, pega a rua e entra na sede da Associação"
+   },
+   "narracao": [
+    "Rank E.",
+    "O mais fraco da fila.",
+    "Bem-vindo,",
+    "magrelo."
+   ]
+  },
+  {
+   "n": 4,
+   "lugar": "fenda",
+   "cenario": "fenda",
+   "dia": 183,
+   "hora": "06:30",
+   "presentes": [
+    "caio",
+    "tanque",
+    "vega",
+    "prates"
+   ],
+   "situacao": "A Fenda da Sé, Rank C.",
+   "acontecimento": "O time da Vega chega. O Prates, de terno, aponta: carregadores na frente.",
+   "reacao": "O Tanque segura a mochila do Caio: fica atrás de mim.",
+   "consequencia": "Ninguém pergunta por que os carregadores vão primeiro.",
+   "decisao": "Entrar.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "do DIA 150 ao DIA 183: o primeiro trabalho, na praça da Sé isolada"
+   },
+   "narracao": [
+    "Dia 183.",
+    "Carregadores na frente.",
+    "Ninguém pergunta por quê."
+   ]
+  },
+  {
+   "n": 5,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:40",
+   "presentes": [
+    "caio",
+    "tanque",
+    "vega"
+   ],
+   "situacao": "Dentro da Fenda.",
+   "acontecimento": "Goblins viram pó de luz na frente do time da Vega; os carregadores juntam os cristais.",
+   "reacao": "O Caio carrega o dobro para o Tanque descansar a perna.",
+   "consequencia": "O Tanque promete: um dia a gente entra como caçador.",
+   "decisao": "Seguir o time.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "entrando pela Fenda (mundo.json: fenda → masmorra)"
+   },
+   "narracao": [
+    "Pó de luz.",
+    "Cristais na mochila.",
+    "Um dia, magrelo.",
+    "Um dia a gente entra de verdade."
+   ],
+   "entram": []
+  },
+  {
+   "n": 6,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:52",
+   "presentes": [
+    "caio",
+    "tanque",
+    "vega",
+    "monstro_guardiao"
+   ],
+   "situacao": "O salão do chefe.",
+   "acontecimento": "O Guardião abre os olhos. O time da Vega recua para o portal.",
+   "reacao": "O Caio fica parado com a mochila.",
+   "consequencia": "A ordem do rádio: carregadores segurem a posição.",
+   "decisao": "Correr para o portal.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O chefe acorda.",
+    "Segurem a posição.",
+    "Os caçadores *recuam*."
+   ],
+   "entram": [
+    "monstro_guardiao"
+   ]
+  },
+  {
+   "n": 7,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:55",
+   "presentes": [
+    "caio",
+    "tanque",
+    "monstro_guardiao"
+   ],
+   "situacao": "O portal está a vinte metros.",
+   "acontecimento": "O portal fecha com o time da Vega do lado de fora.",
+   "reacao": "O Caio bate no ar onde estava o portal.",
+   "consequencia": "Quem entra só sai quando o chefe cai ou o portal fecha.",
+   "decisao": "Esconder.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O portal *fecha*.",
+    "Do lado de fora,",
+    "a Vega.",
+    "Do lado de dentro,",
+    "você."
+   ],
+   "saem": [
+    "vega"
+   ]
+  },
+  {
+   "n": 8,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:57",
+   "presentes": [
+    "caio",
+    "tanque",
+    "monstro_guardiao"
+   ],
+   "situacao": "O Guardião varre o salão.",
+   "acontecimento": "Uma pedra cai na perna do Tanque.",
+   "reacao": "O Caio tenta levantar a pedra e não consegue.",
+   "consequencia": "O Tanque fala baixo: vai, magrelo.",
+   "decisao": "Não ir.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "A perna do Tanque.",
+    "Vai, magrelo.",
+    "Você não vai."
+   ],
+   "ferimentos": {
+    "tanque": "perna presa sob a pedra"
+   }
+  },
+  {
+   "n": 9,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:58",
+   "presentes": [
+    "caio",
+    "tanque"
+   ],
+   "situacao": "O Caio cai de costas e o celular racha na pedra.",
+   "acontecimento": "A tela rachada acende sozinha: MISSÃO: SOBREVIVER. Embaixo, um carimbo: A MAIORIA ESCOLHEU.",
+   "reacao": "O Caio olha para os lados: ninguém mais vê.",
+   "consequencia": "Só ele vê o Sistema.",
+   "decisao": "Ler a oferta.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O celular racha.",
+    "A tela acende:",
+    "MISSÃO: SOBREVIVER.",
+    "E um carimbo..."
+   ]
+  },
+  {
+   "n": 10,
+   "lugar": "masmorra",
+   "cenario": "masmorra",
+   "dia": 183,
+   "hora": "06:59",
+   "presentes": [
+    "caio",
+    "tanque"
+   ],
+   "situacao": "A oferta do Sistema.",
+   "acontecimento": "ACEITAR: poder e a saída. Só um. Atrás dele, o Tanque chama: magrelo.",
+   "reacao": "O polegar do Caio em cima do botão.",
+   "consequencia": "Aceitar é largar o Tanque; carregar é entrar no último segundo, ferido.",
+   "decisao": "A escolha.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Aceitar.",
+    "Só um.",
+    "Magrelo...",
+    "Você aceitava... ou carregava o Tanque?"
+   ]
+  }
+ ],
+ "virada": 7,
+ "consequencias": [
+  "o celular rachado com o Sistema",
+  "a pergunta: largar ou carregar o Tanque"
+ ],
+ "pergunta": {
+  "A": "Aceitar o Sistema",
+  "B": "Carregar o Tanque"
+ },
+ "estado_final": {
+  "lugar": "masmorra",
+  "dia": 183,
+  "hora": "06:59",
+  "presentes": [
+   "caio",
+   "tanque"
+  ]
+ },
+ "ponte": {
+  "A": "o ep. 2 abre com o Caio saindo sozinho da Fenda, inteiro, e o grito do Tanque cortado pelo portal",
+  "B": "o ep. 2 abre com o Caio acordando no hospital, com o ombro quebrado, sem o bônus inicial"
+ },
+ "novas_pendencias": [
+  {
+   "id": "destino_tanque",
+   "texto": "o que o mundo acha que aconteceu com o Tanque",
+   "ate_ep": 2,
+   "palavras": [
+    "tanque"
+   ]
+  },
+  {
+   "id": "painel_erro",
+   "texto": "o rank do Caio no painel depois da Fenda",
+   "ate_ep": 2,
+   "palavras": [
+    "painel",
+    "erro"
+   ]
+  }
+ ],
+ "gancho": {
+  "estrategia": "identificacao",
+  "texto": "Vai, magrelo. Você não vai.",
+  "cena": 8,
+  "linhas": [
+   "VAI, MAGRELO. VOCÊ",
+   "NÃO VAI."
+  ],
+  "id": "C"
+ }
+}

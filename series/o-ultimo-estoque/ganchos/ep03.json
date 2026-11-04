@@ -1,0 +1,92 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 3,
+ "gerado_em": "2026-11-04T10:27:02",
+ "candidatos": [
+  {
+   "estrategia": "incongruencia",
+   "texto": "Não é o ritmo deles.",
+   "cena": 5,
+   "total": 1.0,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 1.0,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 2.5 s"
+   ],
+   "id": "A",
+   "linhas": [
+    "NÃO É O",
+    "RITMO DELES."
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "algo fora do lugar dentro das regras do mundo",
+   "visual": "cenário `loja` da cena 5: Três batidas na porta de aço. Rápidas, em ritmo de gente: toc, toc-toc.",
+   "som": "static"
+  },
+  {
+   "estrategia": "identificacao",
+   "texto": "Você pega o pincel.",
+   "cena": 3,
+   "total": 0.915,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.58,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "4 palavras: lê em menos de 3 s",
+    "duração estimada 2.1 s"
+   ],
+   "id": "B",
+   "linhas": [
+    "VOCÊ PEGA O PINCEL."
+   ],
+   "duracao_s": 2.07,
+   "descricao_estrategia": "uma situação humana com a qual o espectador se liga",
+   "visual": "cenário `loja` da cena 3: A luz entra por baixo da porta de aço. Pelo vão, o sapato do homem que bateu no vidro ontem, parado na calçada.",
+   "som": "heartbeat"
+  },
+  {
+   "estrategia": "lacuna_curiosidade",
+   "texto": "Tem alguém aí?",
+   "cena": 5,
+   "total": 0.92,
+   "notas": {
+    "clareza": 0.6,
+    "relevancia": 1.0,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "pouca informação concreta para entender em 3 s",
+    "3 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 1.6 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "TEM ALGUÉM AÍ?"
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "uma informação intrigante que faz uma pergunta específica",
+   "visual": "cenário `loja` da cena 5: Três batidas na porta de aço. Rápidas, em ritmo de gente: toc, toc-toc.",
+   "som": "heartbeat"
+  }
+ ],
+ "escolhido": "A",
+ "criterio": "maior nota (1.0): 5 palavras: lê em menos de 3 s; vem da virada do episódio; vem do fim do episódio (flash-forward da consequência)",
+ "evidencia_usada": null,
+ "historico": []
+}

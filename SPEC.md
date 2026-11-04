@@ -244,6 +244,70 @@ Usado pela skill `serie-comentarios`: um personagem responde comentários dos se
   nenhum cartão vazio e **cartão cobrindo rosto = ERRO**.
 - Fontes do cartão: Inter (`font("sans")` e `font("sansb")`, licença OFL em `lofi/fonts/LICENSE-Inter.txt`).
 
+## Cenário generativo e ao pé da letra (`lofi/cenario_gen.py`, `lofi/moveis.py`, `lofi/literal.py`)
+
+**Regra da casa: toda cena é exatamente o que o áudio descreve, no mesmo segundo.** Se a narração diz "você empurra a
+caixa de milho", a tela mostra a caixa de milho sendo empurrada; "uma lata... duas... três" mostra uma, duas e três latas.
+
+- **Ambientes prontos** (35, além dos cenários desenhados): `quarto`, `quarto_crianca`, `sala_estar`, `cozinha`, `banheiro`,
+  `lavanderia`, `porao`, `sotao`, `cabana`, `velorio`, `corredor_mercado`, `hortifruti`, `farmacia`, `lanchonete`, `escritorio`,
+  `biblioteca`, `laboratorio`, `oficina`, `garagem`, `consultorio`, `quarto_hospital`, `sala_espera`, `celeiro`, `quintal`,
+  `frente_casa`, `rua_bairro`, `avenida`, `praca`, `parquinho`, `estrada`, `campo`, `cemiterio`, `acampamento`, `praia`,
+  `terreno_baldio`. Use como qualquer cenário: `"scene": "cozinha"`. Marcas automáticas: `centro`, `esq`, `dir`, `fundo`,
+  `frente` e uma marca na frente de cada móvel (`geladeira`, `fogao`, `cama`...). Folha: `examples/ambientes.jpg`.
+- **Descrição no plano** (o cenário é montado para aquela frase): `"cenario": {"base": "cozinha", "luz": "escuro",
+  "sem": ["mesa_cozinha"], "mudar": [{"m": "geladeira", "aberta": true}], "mais": [{"m": "cracha", "em": "chao", "x": 0.3, "z": 0.6}]}`
+  ou do zero: `{"tipo": "interior", "parede": ["azulejo", [200, 210, 200]], "piso": "xadrez", "luz": "fria", "largura": 400,
+  "lateral": {"conteudo": ["milho", "latas"]}, "moveis": [...]}`; externo: `{"tipo": "exterior", "chao": "grama",
+  "horizonte": "mata", "hora": "noite", "nevoa": 0.5, "chuva": "fraca", "moveis": [...]}`.
+  Móvel: `{"m": nome, "em": "fundo|parede|teto|chao|esq|dir|frente", "x": 0–1, "z": 0–1, "h": cm, "id": "marca"}` + opções do
+  desenho (`cor`, `aberta`, `aceso`, `texto`, `conteudo`, `itens`, `quebrada`, `visor`, `hora`...). Lista completa no CATALOGO.md.
+  Props do plano: `luz` 0–1, `flicker`, `tv` ("chiado"/"ligada"), `emergencia` 0–1.
+- **Close do objeto (inserto da frase):** `"cenario": {"close": "lata", "superficie": "prateleira", "ambiente": "corredor_mercado",
+  "opts": {...}}` + `"hand": "leo"`. Props: `n` (quantas cópias; keyframes contam), `desliza`, `treme`, `cai`, `mao` (0–1).
+- **Biblioteca de móveis/objetos** (`lofi/moveis.py`, ~135): casa, cozinha, banheiro, comércio, hospital, escritório, oficina,
+  objetos pequenos de chão (crachá, cadeado, chave, celular, poça, pegadas...), parede (janela, porta de madeira/metal/vidro/
+  vaivém/aço, placa, relógio, quadro de luz...), teto e externos (árvore, poste, carro, casa, prédio, cerca, lápide, fogueira...).
+  Cada objeto é desenhado em centímetros e acompanha a escala dos personagens.
+- **Conferir e consertar:** `python3 -m lofi.literal series/<serie>/epNN.json` lista cada frase, o que ela cita e se o plano
+  mostra. `--aplicar` abre o close do objeto no tempo exato da frase (cortando o plano em volta sem perder as animações),
+  conta "duas... três" no mesmo close, põe o estado dito pelo verbo (vidro que explode sai quebrado, porta aberta, luz
+  apagada, cadeado que bate treme), o horário dito no visor e o nome no crachá. O `lofi.check` mostra a nota
+  ("literal: 89% das frases...") e avisa abaixo de 80% nos episódios narrados.
+
+## Planejamento narrativo, ganchos e experimentos (`lofi/narrativa.py`, `lofi/ganchos.py`, `lofi/experimentos.py`, `lofi/validador_narrativo.py`, `lofi/protecao.py`)
+
+**Ordem de trabalho:** plano → validação → três ganchos → cenas → validador narrativo → montagem → publicação → métricas.
+
+- **Plano antes das cenas** (`series/<serie>/planos/epNN.json`): estado inicial (por voto do episódio anterior), objetivo, conflito,
+  obstáculos e a cadeia causal, um passo por cena: `situacao`, `acontecimento`, `reacao`, `consequencia`, `decisao`, `lugar`,
+  `cenario`, `dia`/`hora`, `presentes`/`entram`/`saem`, `pega`/`larga`/`usa`, `revela`, `resolve`, `ferimentos`, `narracao` e
+  `transicao` (`continuacao`, `deslocamento`, `passagem_tempo`, `perspectiva`, `revelacao`, `montagem`; `passa_tempo: true` quando
+  o deslocamento também pula horas). Cena com `"voto": "A"` só existe naquele caminho. Mais `virada`, `consequencias`,
+  `pergunta`, `estado_final` e `ponte` (como o próximo abre em cada opção). Último episódio: `"final": true`.
+  `python3 -m lofi.narrativa serie series/<serie>` valida todos os planos em cadeia, levando a memória adiante pelos dois caminhos.
+  `python3 -m lofi.narrativa esqueleto <plano> A` gera o esqueleto do roteiro no formato de `epNN_roteiro.md`.
+- **Memória da série** (`memoria.json`): personagens (estado, ferimentos, relações), fatos com `status` fato/suspeita/desconhecido,
+  `publico_sabe` e `revelar_no_ep` (o validador recusa contar antes), mistérios, pendências com `ate_ep`, objetos, locais e o `fim` de
+  cada episódio. `python3 -m lofi.narrativa fechar <plano> <voto>` grava o fim.
+- **Ganchos** (`ganchos/epNN.json`): três alternativas com estratégias diferentes (lacuna de curiosidade, antecipação, incongruência,
+  conflito imediato, mistério contextualizado, identificação, revelação parcial), cada uma tirada de uma cena comum a todos os
+  caminhos, com duração estimada (2,4 palavras/s), notas de clareza, relevância, originalidade, continuidade e duração, explicação,
+  visual e som sugeridos. Não entram: a pergunta final, frase genérica de clickbait, nem o que o próprio episódio revela.
+  `escolher ... A|B|C|auto` troca só o gancho (plano, `ESCOLHIDO`/`FALA DO GANCHO`/`TEXTO` da CENA 0 e o `hook.text` do JSON);
+  `gerar ... --regenerar` dá três novas sem tocar no episódio.
+- **Experimentos** (`experimentos.json`): variantes, a selecionada, publicações (`publicar`, sem publicar nada de fato) e métricas
+  importadas à mão (`importar` CSV/JSON: visualizações, tempo médio, retenção inicial/3 s/5 s, conclusão, replays,
+  compartilhamentos, comentários, seguidores). Ausente fica `null`. `comparar` só compara variantes da mesma plataforma, exige
+  ≥ 1000 visualizações e ≥ 48 h, lista as diferenças de data, duração e mudanças, e usa teste de duas proporções (p < 0,05) para
+  dizer "diferença observada" (associação, não causa). `recomendar` resume só resultados reais; `"recomendacoes": false` desliga.
+- **Validador narrativo** (também dentro de `tests/validar_roteiro.py` e do `lofi.check`): gancho desconectado, transição sem
+  contexto, salto de tempo, personagem ausente, informação indevida, cena redundante, fala artificial, exposição, consequência
+  ignorada, escolha artificial e continuidade audiovisual (luz, cenário gerado e figurino no mesmo lugar). `--corrigir` conserta
+  só LIGAÇÃO, O TEMPO PASSA e a referência do gancho, linha a linha, no máximo 3 rodadas.
+- **Arquivos travados** (`protegidos.json`): hashes de arquivos e linhas da bíblia que ninguém no motor pode alterar
+  (`python3 -m lofi.protecao conferir series/<serie>`). Em O Último Estoque, o ep. 1 e o extra 1 são cânone travado.
+
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.

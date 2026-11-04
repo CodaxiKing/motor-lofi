@@ -37,6 +37,23 @@ O repositório vem com **8 skills** (pasta [`skills/`](skills/)) que fazem todo 
 ---
 
 
+### Novidades: planejamento narrativo, ganchos e experimentos
+- **Plano antes das cenas:** cada episódio nasce de uma cadeia causal validada (`python3 -m lofi.narrativa serie series/<serie>`),
+  com os dois caminhos do voto, memória da série (o que é fato, suspeita ou segredo até o ep. N) e esqueleto do roteiro.
+- **Três aberturas por episódio** (`python3 -m lofi.ganchos gerar|escolher`): estratégias diferentes, duração estimada, notas
+  explicáveis, e a troca do gancho sem mexer no resto do roteiro.
+- **Experimentos com métricas reais** (`python3 -m lofi.experimentos`): importação manual do painel das redes, comparação justa
+  (mesma plataforma, amostra e tempo mínimos) e recomendações que dizem quando ainda não há evidência.
+- **Validador narrativo** com correção localizada e **arquivos travados** (`protegidos.json`) para episódios que não podem mudar.
+
+### Novidades: cenário generativo, ao pé da letra
+- **Toda cena é o que o áudio diz:** `python3 -m lofi.literal series/<serie>/epNN.json` confere cada frase da narração
+  contra o que aparece na tela e, com `--aplicar`, abre o close do objeto citado no segundo exato ("uma lata... duas...
+  três" vira 1, 2 e 3 latas na prateleira; "o vidro explode" mostra o vidro quebrado).
+- **Cenário generativo:** cenários montados por descrição (paredes, piso, luz e móveis) com **35 ambientes novos**
+  (cozinha, quarto, banheiro, porão, sótão, velório, farmácia, hortifrúti, cemitério, estrada, acampamento, praia...)
+  e **~135 móveis e objetos**. Veja [`examples/ambientes.jpg`](examples/ambientes.jpg) e o [SPEC.md](SPEC.md).
+
 ### Novidades: continuidade e produção
 - **Mapa da cidade** (`series/<serie>/mundo.json`): o roteiro só anda por caminhos que existem, começa onde o episódio anterior
   parou, o relógio nunca volta e os objetos só aparecem se alguém carrega (`python3 -m lofi.continuidade ...`).
@@ -74,7 +91,7 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 - **Guarda-roupa** completo: 8 tons de pele, 14 tipos de roupa, saia/shorts/calça, 12 cabelos, barba e bigode, 12 chapéus, 12 acessórios, capa e modo fantasma
 - **29 personagens prontos**: Roberta, Rafa, Lia, zumbis variados, soldado, detetive, cientista, estudantes, executivos, médica, policial, roqueiro, avós, criança, bruxa, rainha, chef, cowboy, fantasma, DJ, pirata
 
-**Cenários (20)** — apartamento, entrada, corredor, rua, rua de madrugada, vista da janela, escada, telhado, ponte, rádio, hospital, mercado, metrô, escola, delegacia, posto de gasolina, floresta, interior de carro, esgoto, igreja
+**Cenários (74, sendo 35 gerados por descrição)** — apartamento, entrada, corredor, rua, rua de madrugada, vista da janela, escada, telhado, ponte, rádio, hospital, mercado, metrô, escola, delegacia, posto de gasolina, floresta, interior de carro, esgoto, igreja
 - Camadas em paralaxe, desfoque de fundo, névoa, chuva forte ou fraca, neve, nuvens, poças com ondinhas, hora do dia
 - Detalhes vivos: ventilador girando, TV com chiado, cortina ao vento, sirene, limpador de para-brisa, velas
 
@@ -126,6 +143,14 @@ O formato completo do roteiro técnico (planos, câmera, atores, guarda-roupa, s
 lofi/          código do motor
   rig.py         personagens (poses, emoções, guarda-roupa)
   scenes.py      cenários
+  cenario_gen.py cenário generativo (ambientes por descrição e closes de objeto)
+  moveis.py      biblioteca de móveis e objetos
+  literal.py     confere/conserta: cada frase da narração com a sua imagem
+  narrativa.py   plano da história, memória da série e continuidade entre cenas e episódios
+  ganchos.py     três aberturas por episódio, avaliação e troca do gancho
+  experimentos.py variantes publicadas, métricas reais, comparação e recomendações
+  validador_narrativo.py  revisão da história com correção localizada
+  protecao.py    arquivos travados (cânone que o motor não pode alterar)
   render.py      montagem do vídeo a partir do roteiro
   fx.py          chuva, luz, câmera, transições, estilo
   particles.py   poeira, lanterna, bafo de frio, hordas

@@ -317,7 +317,7 @@
   },
   {
    "start": 2.1,
-   "end": 9.1,
+   "end": 4.95,
    "scene": "loja",
    "transition": "glitch",
    "props": {
@@ -347,8 +347,54 @@
    "light": "neutra"
   },
   {
+   "start": 4.95,
+   "end": 6.85,
+   "cenario": {
+    "close": "celular",
+    "superficie": "chao",
+    "ambiente": "corredor_mercado"
+   },
+   "camera": {
+    "handheld": 3,
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "cortes": false
+   },
+   "props": {},
+   "light": "neutra",
+   "literal": "O CELULAR VIBRA NO MEU BOLSO."
+  },
+  {
+   "start": 6.85,
+   "end": 9.1,
+   "scene": "loja",
+   "props": {
+    "relogio": "17:40",
+    "folha": false
+   },
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "caixa",
+     "view": "3q",
+     "facing": 1,
+     "pose": "phone",
+     "prop": "phone",
+     "emotion": [
+      [
+       0,
+       "shock"
+      ]
+     ]
+    }
+   ],
+   "light": "neutra"
+  },
+  {
    "start": 9.1,
-   "end": 16.0,
+   "end": 12.35,
    "scene": "deposito",
    "lembranca": true,
    "props": {
@@ -374,6 +420,58 @@
       ],
       [
        3.4,
+       "point"
+      ]
+     ],
+     "emotion": "suspicious"
+    }
+   ],
+   "light": "neutra"
+  },
+  {
+   "start": 12.35,
+   "end": 14.41,
+   "cenario": {
+    "close": "relogio_parede",
+    "superficie": "parede",
+    "ambiente": "porao"
+   },
+   "camera": {
+    "handheld": 3,
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "cortes": false
+   },
+   "props": {},
+   "light": "neutra",
+   "literal": "MAS EU APONTO O RELÓGIO E DIGO:"
+  },
+  {
+   "start": 14.41,
+   "end": 16.0,
+   "scene": "deposito",
+   "lembranca": true,
+   "props": {
+    "luz": 0.9
+   },
+   "camera": {
+    "plano": "aberto"
+   },
+   "actors": [
+    {
+     "char": "leo",
+     "mark": "porta_camara",
+     "view": "back"
+    },
+    {
+     "char": "sergio",
+     "mark": "frente",
+     "view": "front",
+     "pose": [
+      [
+       0,
        "point"
       ]
      ],
@@ -472,12 +570,117 @@
   },
   {
    "start": 34.6,
+   "end": 36.17,
+   "cenario": {
+    "close": "porta",
+    "superficie": "parede",
+    "ambiente": "terreno_baldio"
+   },
+   "camera": {
+    "handheld": 3,
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "cortes": false
+   },
+   "props": {},
+   "light": "neutra",
+   "literal": "A PORTA DOS FUNDOS.",
+   "transition": "fade"
+  },
+  {
+   "start": 36.17,
+   "end": 39.34,
+   "scene": "beco",
+   "time": "noite",
+   "rain": "nenhuma",
+   "dark": 0.4,
+   "actors": [
+    {
+     "char": "sergio",
+     "mark": "fundo",
+     "view": "back",
+     "pose": "open_door",
+     "emotion": "fear"
+    }
+   ],
+   "overlay": [
+    {
+     "type": "text",
+     "text": "A VOTAÇÃO DO EP. 1",
+     "y": 800,
+     "size": 90,
+     "t": [
+      42.7,
+      47
+     ]
+    },
+    {
+     "type": "text",
+     "text": "CONTINUA ABERTA",
+     "y": 920,
+     "size": 90,
+     "t": [
+      42.9,
+      47
+     ]
+    },
+    {
+     "type": "text",
+     "text": "COMENTA A OU B",
+     "y": 1060,
+     "size": 120,
+     "color": [
+      255,
+      214,
+      60
+     ],
+     "t": [
+      43.3,
+      47
+     ]
+    }
+   ]
+  },
+  {
+   "start": 39.34,
+   "end": 40.36,
+   "cenario": {
+    "close": "cracha",
+    "superficie": "chao",
+    "ambiente": "terreno_baldio"
+   },
+   "camera": {
+    "handheld": 3,
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "cortes": false
+   },
+   "props": {
+    "cai": [
+     [
+      0,
+      0.0
+     ],
+     [
+      0.45,
+      1.0
+     ]
+    ]
+   },
+   "light": "neutra",
+   "literal": "O CRACHÁ *CAI*."
+  },
+  {
+   "start": 40.36,
    "end": 47.0,
    "scene": "beco",
    "time": "noite",
    "rain": "nenhuma",
    "dark": 0.4,
-   "transition": "fade",
    "actors": [
     {
      "char": "sergio",

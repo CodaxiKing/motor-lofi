@@ -1,0 +1,89 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 4,
+ "gerado_em": "2026-11-04T10:27:02",
+ "candidatos": [
+  {
+   "estrategia": "revelacao_parcial",
+   "texto": "O curativo. Escuro.",
+   "cena": 6,
+   "total": 0.955,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.9,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "3 palavras: lê em menos de 3 s",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 1.6 s",
+    "estratégia 'revelacao_parcial' abriu um dos dois episódios anteriores"
+   ],
+   "id": "A",
+   "linhas": [
+    "O CURATIVO. ESCURO."
+   ],
+   "duracao_s": 1.65,
+   "descricao_estrategia": "a consequência sem a explicação",
+   "visual": "cenário `loja` da cena 6: Quando ela levanta a mão, o curativo está escuro, úmido.",
+   "som": "bang"
+  },
+  {
+   "estrategia": "identificacao",
+   "texto": "17h45. Você ouviu tocar.",
+   "cena": 5,
+   "total": 0.945,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.7,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "4 palavras: lê em menos de 3 s",
+    "duração estimada 2.1 s"
+   ],
+   "id": "B",
+   "linhas": [
+    "17H45. VOCÊ OUVIU TOCAR."
+   ],
+   "duracao_s": 2.07,
+   "descricao_estrategia": "uma situação humana com a qual o espectador se liga",
+   "visual": "cenário `loja` da cena 5: Você aperta o botão da secretária. A mesma voz do canal A: Sérgio, é o seu cunhado. Busca a família. Fecha o mercado.",
+   "som": "heartbeat"
+  },
+  {
+   "estrategia": "antecipacao",
+   "texto": "Portão leste, até as dez.",
+   "cena": 3,
+   "total": 0.92,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.6,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "5 palavras: lê em menos de 3 s",
+    "duração estimada 2.5 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "PORTÃO LESTE, ATÉ",
+    "AS DEZ."
+   ],
+   "duracao_s": 2.48,
+   "descricao_estrategia": "o risco ou o prazo antes do acontecimento (relógio correndo)",
+   "visual": "cenário `loja` da cena 3: O canal A volta: portão leste, até as dez. Venham agora.",
+   "som": "click"
+  }
+ ],
+ "escolhido": "B",
+ "criterio": "escolha do autor",
+ "evidencia_usada": null,
+ "historico": []
+}

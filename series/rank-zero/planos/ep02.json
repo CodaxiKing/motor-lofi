@@ -1,0 +1,264 @@
+{
+ "serie": "rank-zero",
+ "episodio": 2,
+ "titulo": "SÓ EU VOLTEI",
+ "duracao_alvo_s": 240,
+ "estado_inicial": {
+  "por_voto": {
+   "A": {
+    "lugar": "masmorra",
+    "dia": 183,
+    "hora": "06:59",
+    "presentes": [
+     "caio",
+     "tanque"
+    ],
+    "inventario": {
+     "caio": [
+      "celular",
+      "mochila"
+     ]
+    }
+   },
+   "B": {
+    "lugar": "masmorra",
+    "dia": 183,
+    "hora": "06:59",
+    "presentes": [
+     "caio",
+     "tanque"
+    ],
+    "inventario": {
+     "caio": [
+      "celular",
+      "mochila"
+     ]
+    }
+   }
+  }
+ },
+ "objetivo": "o preço de voltar: explicar o que ninguém pode saber",
+ "conflito": "o Caio precisa esconder o Sistema da Vega e da Associação, e o painel não deixa",
+ "obstaculos": [
+  "o interrogatório da Vega",
+  "o painel de ranks",
+  "o Prates"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "fenda",
+   "cenario": "fenda",
+   "dia": 183,
+   "hora": "07:00",
+   "presentes": [
+    "caio",
+    "vega"
+   ],
+   "situacao": "Você aceitou.",
+   "acontecimento": "O Caio sai da Fenda sozinho, sem um arranhão. Atrás dele, o grito do Tanque é cortado pelo portal.",
+   "reacao": "Ele cai de joelhos na praça da Sé.",
+   "consequencia": "Os caçadores apontam as armas para quem não devia ter voltado.",
+   "decisao": "Não contar nada.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "saindo pela Fenda (masmorra → fenda)"
+   },
+   "narracao": [
+    "Você aceitou.",
+    "Sem um arranhão.",
+    "O grito do Tanque...",
+    "*cortado*."
+   ],
+   "voto": "A",
+   "entram": [
+    "vega"
+   ]
+  },
+  {
+   "n": 2,
+   "lugar": "fenda",
+   "cenario": "fenda",
+   "dia": 183,
+   "hora": "07:00",
+   "presentes": [
+    "caio",
+    "vega"
+   ],
+   "situacao": "Você carregou o Tanque.",
+   "acontecimento": "O Caio sai da Fenda arrastando o peso no último segundo, com o ombro quebrado. Do lado de fora, o peso some: ele carregava só a mochila do Tanque.",
+   "reacao": "Ele olha para trás. O portal já fechou.",
+   "consequencia": "Ninguém viu o Tanque sair.",
+   "decisao": "Desmaiar.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "saindo pela Fenda (masmorra → fenda)"
+   },
+   "narracao": [
+    "Você carregou.",
+    "No último segundo.",
+    "Do lado de fora...",
+    "só a mochila dele."
+   ],
+   "voto": "B",
+   "entram": [
+    "vega"
+   ],
+   "ferimentos": {
+    "caio": "ombro quebrado"
+   }
+  },
+  {
+   "n": 3,
+   "lugar": "hospital",
+   "cenario": "hospital",
+   "dia": 184,
+   "hora": "08:00",
+   "presentes": [
+    "caio",
+    "vega"
+   ],
+   "situacao": "O Caio acorda no hospital.",
+   "acontecimento": "A Vega está sentada na ponta da cama. Sobrenome. O que você viu lá dentro.",
+   "reacao": "O Caio repete: o portal fechou, eu corri.",
+   "consequencia": "Ninguém viu o corpo do Tanque. A Vega anota.",
+   "decisao": "Mentir pela metade.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "pela avenida, de ambulância, da Sé ao hospital (fenda → rua → hospital); a noite passa e ele acorda no DIA 184 (corte com o relógio do hospital)",
+    "passa_tempo": true
+   },
+   "narracao": [
+    "Dia 184.",
+    "Sobrenome.",
+    "O que você viu lá dentro?",
+    "Ninguém viu o corpo dele."
+   ],
+   "resolve": [
+    "destino_tanque"
+   ]
+  },
+  {
+   "n": 4,
+   "lugar": "associacao",
+   "cenario": "associacao",
+   "dia": 184,
+   "hora": "15:00",
+   "presentes": [
+    "caio",
+    "prates"
+   ],
+   "situacao": "A Associação mede todo mundo que volta.",
+   "acontecimento": "O painel pisca: RANK / ERRO. Os caçadores olham. O Prates, no mezanino, sorri.",
+   "reacao": "O Caio esconde o celular no bolso.",
+   "consequencia": "O Prates não se surpreende.",
+   "decisao": "Sair rápido.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "do hospital pela avenida até a sede, na praça da Sé",
+    "passa_tempo": true
+   },
+   "narracao": [
+    "O painel pisca.",
+    "Rank...",
+    "ERRO.",
+    "E o Prates *sorri*."
+   ],
+   "entram": [
+    "prates"
+   ],
+   "resolve": [
+    "painel_erro"
+   ]
+  },
+  {
+   "n": 5,
+   "lugar": "apartamento",
+   "cenario": "apartamento",
+   "dia": 184,
+   "hora": "21:10",
+   "presentes": [
+    "caio",
+    "zefa"
+   ],
+   "situacao": "Em casa, a dona Zefa costura.",
+   "acontecimento": "A tela rachada acende: MISSÃO DIÁRIA. Ao mesmo tempo, o cachecol que a avó costurou brilha.",
+   "reacao": "O Caio cobre o cachecol com a mão. A avó não levanta os olhos da costura.",
+   "consequencia": "Ela pergunta só: tá com fome, meu ponto?",
+   "decisao": "Fazer a missão escondido.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "da Sé, pela rua e pelo portão do prédio, até o apartamento",
+    "passa_tempo": true
+   },
+   "narracao": [
+    "Missão diária.",
+    "O cachecol *brilha*.",
+    "Tá com fome, meu ponto?"
+   ],
+   "entram": [
+    "zefa"
+   ]
+  },
+  {
+   "n": 6,
+   "lugar": "apartamento",
+   "cenario": "apartamento",
+   "dia": 184,
+   "hora": "23:30",
+   "presentes": [
+    "caio"
+   ],
+   "situacao": "O Caio no escuro do quarto.",
+   "acontecimento": "PENSAMENTO: o último segundo na Fenda, o Tanque olhando para ele (no A, sozinho; no B, a mão escorregando).",
+   "reacao": "Ele aperta o celular contra a testa.",
+   "consequencia": "A Vega deixou um cartão com o número dela.",
+   "decisao": "A escolha.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O último segundo.",
+    "O cartão da Vega.",
+    "Você contava pra ela...",
+    "ou caçava sozinho?"
+   ],
+   "saem": [
+    "zefa"
+   ]
+  }
+ ],
+ "virada": 4,
+ "consequencias": [
+  "o painel com ERRO e o sorriso do Prates",
+  "o cachecol que brilha",
+  "a Vega desconfia"
+ ],
+ "pergunta": {
+  "A": "Contar para a Vega",
+  "B": "Caçar sozinho"
+ },
+ "estado_final": {
+  "lugar": "apartamento",
+  "dia": 184,
+  "hora": "23:30",
+  "presentes": [
+   "caio"
+  ]
+ },
+ "ponte": {
+  "A": "o ep. 3 abre com o Caio ligando para a Vega e ela marcando no esgoto",
+  "B": "o ep. 3 abre com o Caio descendo sozinho pela tampa do beco"
+ },
+ "gancho": {
+  "estrategia": "incongruencia",
+  "texto": "ERRO. E o Prates sorri.",
+  "cena": 4,
+  "linhas": [
+   "ERRO. E O",
+   "PRATES SORRI."
+  ],
+  "id": "B"
+ }
+}

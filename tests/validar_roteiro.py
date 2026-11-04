@@ -403,6 +403,10 @@ def validar(txt, final=False, caminho=None):
     if caminho and os.path.isfile(caminho):     # mapa da cidade, inventário e relógio da série (mundo.json)
         from lofi.continuidade import conferir as conferir_mundo
         erros += conferir_mundo(caminho, txt)
+        from lofi.validador_narrativo import validar_roteiro as narrativa   # gancho, transições, memória da série
+        for nv, cod, _, msg in narrativa(caminho, txt):
+            if cod == "salto_de_tempo": continue                            # já vem do lofi.continuidade acima
+            (erros if nv == "ERRO" else avisos).append(f"{cod}: {msg}")
     return erros, avisos
 
 

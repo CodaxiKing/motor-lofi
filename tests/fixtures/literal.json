@@ -1,0 +1,127 @@
+{
+ "out": "literal.mp4",
+ "fps": 30,
+ "total": 20.0,
+ "narrado": true,
+ "voices": {
+  "narrador": "literal/narrador.mp3"
+ },
+ "clips": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.0,
+    20.0
+   ],
+   "at": 0.0
+  }
+ ],
+ "subs": [
+  {
+   "voice": "narrador",
+   "src": [
+    0.5,
+    2.4
+   ],
+   "text": [
+    "VOCÊ EMPURRA A CAIXA",
+    "DE MILHO EM LATA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    3.0,
+    3.6
+   ],
+   "text": [
+    "UMA LATA."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    4.2,
+    4.7
+   ],
+   "text": [
+    "DUAS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    5.3,
+    5.8
+   ],
+   "text": [
+    "TRÊS."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    7.0,
+    9.0
+   ],
+   "text": [
+    "NO CHÃO, UM CRACHÁ."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    10.0,
+    12.5
+   ],
+   "text": [
+    "O VIDRO DA FRENTE",
+    "*EXPLODE*."
+   ]
+  },
+  {
+   "voice": "narrador",
+   "src": [
+    13.0,
+    15.0
+   ],
+   "text": [
+    "O TELEFONE TEM UMA",
+    "CHAMADA PERDIDA: 17H45."
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 7.0,
+   "scene": "mercado",
+   "actors": [
+    {
+     "char": "roberta",
+     "mark": "meio",
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       3.0,
+       false
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "start": 7.0,
+   "end": 12.8,
+   "scene": "beco"
+  },
+  {
+   "start": 12.8,
+   "end": 20.0,
+   "scene": "cozinha"
+  }
+ ]
+}

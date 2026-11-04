@@ -1,0 +1,440 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 2,
+ "titulo": "A CÂMARA FRIA",
+ "duracao_alvo_s": 225,
+ "estado_inicial": {
+  "por_voto": {
+   "A": {
+    "lugar": "loja",
+    "dia": 0,
+    "hora": "19:15",
+    "presentes": [
+     "leo"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "radio"
+     ]
+    }
+   },
+   "B": {
+    "lugar": "loja",
+    "dia": 0,
+    "hora": "19:15",
+    "presentes": [
+     "leo"
+    ],
+    "inventario": {
+     "leo": [
+      "cracha",
+      "cracha_sergio",
+      "radio"
+     ]
+    }
+   }
+  }
+ },
+ "objetivo": "descobrir quem bate na câmara fria e sobreviver à primeira noite (REGRA 3)",
+ "conflito": "o Léo quer ficar sozinho e em silêncio, mas o que está na câmara fria e o prazo do portão leste não deixam",
+ "obstaculos": [
+  "a avenida cheia (caminho A)",
+  "o rádio sem pilha",
+  "o gerador com pouco diesel: quando parar, a câmara esquenta"
+ ],
+ "cadeia": [
+  {
+   "n": 1,
+   "lugar": "rua",
+   "cenario": "beco",
+   "dia": 0,
+   "hora": "19:18",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você escolheu sair: a janela basculante, o cano até o beco.",
+   "acontecimento": "Você deixa o crachá do Sérgio no parapeito e desce pelo cano.",
+   "reacao": "O cano range; você para no meio.",
+   "consequencia": "No beco, o rádio chia uma última vez e morre.",
+   "decisao": "Seguir pelas sombras até a avenida.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "pela janela basculante do mezanino, descendo no beco (mundo.json)"
+   },
+   "narracao": [
+    "Você deixa o crachá / no parapeito.",
+    "O cano *range*.",
+    "No beco, o rádio chia...",
+    "e *morre*."
+   ],
+   "voto": "A",
+   "larga": {
+    "leo": [
+     "cracha_sergio",
+     "radio"
+    ]
+   }
+  },
+  {
+   "n": 2,
+   "lugar": "rua",
+   "cenario": "rua",
+   "dia": 0,
+   "hora": "19:31",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "A avenida está cheia: vultos parados no meio dos carros.",
+   "acontecimento": "Um alarme dispara do outro lado e todos viram para lá.",
+   "reacao": "Você corre agachado até um ônibus tombado.",
+   "consequencia": "Preso ali dentro, você espera o alarme acabar. Ele não acaba.",
+   "decisao": "Esperar escondido, contando os minutos até as 22h.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Três quadras.",
+    "A avenida está *cheia*.",
+    "Um alarme dispara.",
+    "Você entra no ônibus tombado."
+   ],
+   "voto": "A"
+  },
+  {
+   "n": 3,
+   "lugar": "rua",
+   "cenario": "rua",
+   "dia": 0,
+   "hora": "21:48",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "O tempo passa dentro do ônibus.",
+   "acontecimento": "O alarme morre às 21:47. A avenida esvazia devagar.",
+   "reacao": "Você sai e corre a última quadra.",
+   "consequencia": "Faltam doze minutos para as dez.",
+   "decisao": "Correr para o portão.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "o relógio do ônibus mostra as horas passando (plano de detalhe relogio)"
+   },
+   "narracao": [
+    "21:47.",
+    "O alarme *morre*.",
+    "Faltam doze minutos."
+   ],
+   "voto": "A"
+  },
+  {
+   "n": 4,
+   "lugar": "delegacia",
+   "cenario": "delegacia",
+   "dia": 0,
+   "hora": "22:01",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "O portão leste está na sua frente.",
+   "acontecimento": "O portão está fechado, com corrente. No alto, o alto-falante repete o chamado do canal A.",
+   "reacao": "Você não grita. Regra um.",
+   "consequencia": "Uma mulher de jaleco azul encosta no portão ao seu lado: ela também chegou tarde.",
+   "decisao": "Voltar para o único lugar trancado que você conhece.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "três quadras pela avenida, até o portão leste (mundo.json)"
+   },
+   "narracao": [
+    "22:01.",
+    "O portão está *fechado*.",
+    "O alto-falante repete:",
+    "portão leste, até as dez.",
+    "Do seu lado, uma mulher de jaleco."
+   ],
+   "voto": "A",
+   "entram": [
+    "nanda"
+   ]
+  },
+  {
+   "n": 5,
+   "lugar": "loja",
+   "cenario": "mezanino",
+   "dia": 0,
+   "hora": "22:34",
+   "presentes": [
+    "leo",
+    "nanda"
+   ],
+   "situacao": "Nanda e você voltam pelo beco.",
+   "acontecimento": "Vocês sobem pelo cano até a basculante; o crachá ainda está no parapeito.",
+   "reacao": "Você pega o crachá de volta sem dizer nada.",
+   "consequencia": "Pela primeira vez, tem alguém no mezanino com você.",
+   "decisao": "Descer até o estoque, porque as batidas continuam.",
+   "transicao": {
+    "tipo": "deslocamento",
+    "justificativa": "de volta pela avenida e pelo beco, subindo o cano até a janela basculante (mundo.json: delegacia → rua → loja)"
+   },
+   "narracao": [
+    "Vocês voltam pelo cano.",
+    "O crachá ainda está ali.",
+    "E as batidas...",
+    "*continuam*."
+   ],
+   "voto": "A",
+   "pega": {
+    "leo": [
+     "cracha_sergio"
+    ]
+   }
+  },
+  {
+   "n": 6,
+   "lugar": "loja",
+   "cenario": "mezanino",
+   "dia": 0,
+   "hora": "21:30",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você escolheu ficar. O mezanino, o escuro e as caixas.",
+   "acontecimento": "O rádio dos seguranças apaga: a pilha acabou.",
+   "reacao": "Você conta latas para não contar batidas.",
+   "consequencia": "Às 21:30 as batidas mudam: mais perto da porta da câmara.",
+   "decisao": "Descer a escada sem fazer barulho.",
+   "transicao": {
+    "tipo": "passagem_tempo",
+    "justificativa": "montagem do tempo passando no mezanino (relógio do celular, latas contadas, o rádio apagando)"
+   },
+   "narracao": [
+    "21:30.",
+    "O rádio *apaga*.",
+    "Você conta latas.",
+    "As batidas *mudam*."
+   ],
+   "voto": "B",
+   "larga": {
+    "leo": [
+     "radio"
+    ]
+   }
+  },
+  {
+   "n": 7,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:40",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Você está diante da porta da câmara fria.",
+   "acontecimento": "O cadeado está aberto, pendurado na argola. A porta não abre: está travada por dentro.",
+   "reacao": "Você encosta a mão no vidro embaçado.",
+   "consequencia": "Do outro lado, uma camisa azul-clara, uma gravata vinho e óculos tortos.",
+   "decisao": "Olhar mais perto.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": "as batidas levam até a porta (no caminho B, desce a escada às 21:41; no A, desce com a Nanda às 22:40)"
+   },
+   "narracao": [
+    "O cadeado está *aberto*.",
+    "Mas a porta não abre.",
+    "Travada por dentro.",
+    "Óculos tortos.",
+    "Gravata vinho."
+   ],
+   "revela": [
+    "alguem_na_camara"
+   ]
+  },
+  {
+   "n": 8,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:42",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Quem está lá dentro bate devagar, sempre no mesmo ritmo.",
+   "acontecimento": "Você encosta o crachá no vidro: a foto e o rosto do outro lado são o mesmo.",
+   "reacao": "Você recua um passo.",
+   "consequencia": "É o Sérgio. E ele se mexe devagar, como se estivesse com sono.",
+   "decisao": "Entender por que ele está lento.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Você encosta o crachá no vidro.",
+    "A mesma gravata.",
+    "É o Sérgio.",
+    "E ele se mexe... *devagar*."
+   ],
+   "revela": [
+    "sergio_na_camara"
+   ],
+   "resolve": [
+    "batidas_camara"
+   ],
+   "usa": {
+    "leo": [
+     "cracha_sergio"
+    ]
+   }
+  },
+  {
+   "n": 9,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:44",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "O frio da câmara embaça o vidro com a respiração dele.",
+   "acontecimento": "Lá fora, um infectado do salão bate na porta vaivém: rápido. O Sérgio, lá dentro, é lento.",
+   "reacao": "Você compara os dois ritmos.",
+   "consequencia": "REGRA 3: o frio deixa eles lentos.",
+   "decisao": "Proteger o frio da câmara.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "Lá fora: rápido.",
+    "Lá dentro: devagar.",
+    "Regra três:",
+    "o frio deixa eles *lentos*."
+   ],
+   "revela": [
+    "frio_lentos"
+   ]
+  },
+  {
+   "n": 10,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:47",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "A câmara fria é ligada no gerador do estoque.",
+   "acontecimento": "O ponteiro do diesel está no vermelho: o gerador para em poucas horas.",
+   "reacao": "Você calcula: sem gerador, a câmara esquenta. E o Sérgio acorda.",
+   "consequencia": "Longe, a sirene do portão leste: fecharam às dez, e ninguém volta para buscar ninguém hoje.",
+   "decisao": "Decidir antes do diesel acabar.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "O gerador está na *reserva*.",
+    "Sem ele, a câmara esquenta.",
+    "O portão leste fechou às dez.",
+    "Ninguém vem hoje."
+   ],
+   "resolve": [
+    "portao_22h"
+   ]
+  },
+  {
+   "n": 11,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:50",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "Dentro da câmara, uma luz acende no bolso do Sérgio.",
+   "acontecimento": "O celular dele toca, sem som, e ao lado brilha a chave do carro.",
+   "reacao": "Você olha a chave. Um carro é uma saída.",
+   "consequencia": "O que você precisa está lá dentro, com ele.",
+   "decisao": "A escolha: abrir ou deixar trancada.",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "No bolso dele,",
+    "o celular *acende*.",
+    "Do lado,",
+    "a chave do carro."
+   ]
+  },
+  {
+   "n": 12,
+   "lugar": "loja",
+   "cenario": "deposito",
+   "dia": 0,
+   "hora": "22:52",
+   "presentes": [
+    "leo"
+   ],
+   "situacao": "A porta da câmara entre você e o Sérgio.",
+   "acontecimento": "Ele para de bater e encosta a testa no vidro.",
+   "reacao": "Você segura o puxador.",
+   "consequencia": "Abrir é ter a chave do carro e a verdade. Deixar trancada é ter a noite.",
+   "decisao": "E você? Abria a câmara fria... ou deixava trancada?",
+   "transicao": {
+    "tipo": "continuacao",
+    "justificativa": ""
+   },
+   "narracao": [
+    "E você?",
+    "Abria a câmara fria...",
+    "ou deixava *trancada*?"
+   ]
+  }
+ ],
+ "virada": 8,
+ "consequencias": [
+  "o público sabe que é o Sérgio",
+  "REGRA 3 descoberta",
+  "o gerador vira um relógio: quando parar, a câmara esquenta",
+  "o prazo do portão leste acabou"
+ ],
+ "pergunta": {
+  "A": "Abrir a câmara fria",
+  "B": "Deixar trancada"
+ },
+ "estado_final": {
+  "lugar": "loja",
+  "dia": 0,
+  "hora": "22:52",
+  "presentes": [
+   "leo"
+  ]
+ },
+ "ponte": {
+  "A": "o ep. 3 abre com a câmara aberta e o Sérgio solto no estoque, lento, empurrado de volta com a barra dos paletes",
+  "B": "o ep. 3 abre com a câmara trancada, o gerador desligado para poupar diesel e a chave lá dentro"
+ },
+ "novas_pendencias": [
+  {
+   "id": "gerador_diesel",
+   "texto": "o gerador da câmara fria está na reserva",
+   "ate_ep": 3,
+   "palavras": [
+    "gerador",
+    "diesel"
+   ]
+  }
+ ],
+ "gancho": {
+  "estrategia": "lacuna_curiosidade",
+  "texto": "Travada por dentro. Óculos tortos.",
+  "cena": 7,
+  "linhas": [
+   "TRAVADA POR DENTRO.",
+   "ÓCULOS TORTOS."
+  ],
+  "id": "C"
+ }
+}

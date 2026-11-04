@@ -1,0 +1,93 @@
+{
+ "serie": "o-ultimo-estoque",
+ "episodio": 5,
+ "gerado_em": "2026-11-04T10:27:02",
+ "candidatos": [
+  {
+   "estrategia": "conflito_imediato",
+   "texto": "A câmara está morna. Nada bate.",
+   "cena": 3,
+   "total": 0.935,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.66,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "6 palavras: lê em menos de 3 s",
+    "duração estimada 2.9 s"
+   ],
+   "id": "A",
+   "linhas": [
+    "A CÂMARA ESTÁ",
+    "MORNA. NADA BATE."
+   ],
+   "duracao_s": 2.9,
+   "descricao_estrategia": "uma situação que exige reação agora",
+   "visual": "cenário `deposito` da cena 3: O gerador parou. A câmara está morna. Do outro lado, nada bate.",
+   "som": "impact"
+  },
+  {
+   "estrategia": "revelacao_parcial",
+   "texto": "Dois dias. E ela ainda é ela.",
+   "cena": 4,
+   "total": 0.89,
+   "notas": {
+    "clareza": 0.8,
+    "relevancia": 1.0,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "pronome sem nome: quem chega agora não sabe quem é 'ela/ele'",
+    "7 palavras: lê em menos de 3 s",
+    "vem da virada do episódio",
+    "vem do fim do episódio (flash-forward da consequência)",
+    "duração estimada 3.3 s",
+    "estratégia 'revelacao_parcial' abriu o episódio anterior (variar o formato)"
+   ],
+   "id": "B",
+   "linhas": [
+    "DOIS DIAS. E ELA",
+    "AINDA É ELA."
+   ],
+   "duracao_s": 3.32,
+   "descricao_estrategia": "a consequência sem a explicação",
+   "visual": "cenário `loja` da cena 4: A Nanda mostra a mão sem curativo: é uma mordida de raspão, de dois dias. Ela ainda está aqui. Ela ainda é ela.",
+   "som": "bang"
+  },
+  {
+   "estrategia": "lacuna_curiosidade",
+   "texto": "Nada bate. Você devolve o crachá.",
+   "cena": 3,
+   "total": 0.935,
+   "notas": {
+    "clareza": 1.0,
+    "relevancia": 0.66,
+    "originalidade": 1.0,
+    "continuidade": 1.0,
+    "duracao": 1.0
+   },
+   "explicacao": [
+    "6 palavras: lê em menos de 3 s",
+    "duração estimada 2.9 s"
+   ],
+   "id": "C",
+   "linhas": [
+    "NADA BATE. VOCÊ",
+    "DEVOLVE O CRACHÁ."
+   ],
+   "duracao_s": 2.9,
+   "descricao_estrategia": "uma informação intrigante que faz uma pergunta específica",
+   "visual": "cenário `deposito` da cena 3: O gerador parou. A câmara está morna. Do outro lado, nada bate.",
+   "som": "heartbeat"
+  }
+ ],
+ "escolhido": "A",
+ "criterio": "maior nota (0.935): 6 palavras: lê em menos de 3 s; duração estimada 2.9 s",
+ "evidencia_usada": null,
+ "historico": []
+}

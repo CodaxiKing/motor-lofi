@@ -333,9 +333,14 @@ def resolver_plano(shot):
     """Aplica as marcas em todos os atores de um plano (e dos lados A/B de uma escolha). Não altera o original.
     Plano com "travelling" usa as marcas do travelling lateral (TRAVELLING), iguais em qualquer cenário."""
     s = dict(shot)
+    from .cenario_gen import resolver_plano as _gerar      # "cenario": {...} -> "scene": nome registrado (cenário generativo)
+    _gerar(s)
+    if isinstance(s.get("scene"), dict): s["cenario"] = s["scene"]; _gerar(s)
     cena = "_travelling" if s.get("travelling") else s.get("scene")
     if "actors" in s: s["actors"] = [resolver(a, cena) for a in s["actors"]]
     for lado in ("a", "b"):
+        if isinstance(s.get(lado), dict) and (s[lado].get("cenario") or isinstance(s[lado].get("scene"), dict)):
+            s[lado] = dict(s[lado]); s[lado].setdefault("cenario", s[lado].get("scene")); _gerar(s[lado])
         if isinstance(s.get(lado), dict) and "actors" in s[lado]:
             s[lado] = dict(s[lado]); s[lado]["actors"] = [resolver(a, s[lado].get("scene")) for a in s[lado]["actors"]]
     return s

@@ -1,0 +1,113 @@
+{
+ "recomendacoes": true,
+ "experimentos": [
+  {
+   "episodio": 2,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "revelacao_parcial",
+     "texto": "A mesma gravata.",
+     "duracao_s": 1.65
+    },
+    {
+     "id": "B",
+     "estrategia": "incongruencia",
+     "texto": "Ninguém vem hoje.",
+     "duracao_s": 1.65
+    },
+    {
+     "id": "C",
+     "estrategia": "lacuna_curiosidade",
+     "texto": "Travada por dentro. Óculos tortos.",
+     "duracao_s": 2.48
+    }
+   ],
+   "selecionada": "C",
+   "publicacoes": [],
+   "criterio": "escolha do autor",
+   "registrado_em": "2026-11-04T10:27:12"
+  },
+  {
+   "episodio": 3,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "incongruencia",
+     "texto": "Não é o ritmo deles.",
+     "duracao_s": 2.48
+    },
+    {
+     "id": "B",
+     "estrategia": "identificacao",
+     "texto": "Você pega o pincel.",
+     "duracao_s": 2.07
+    },
+    {
+     "id": "C",
+     "estrategia": "lacuna_curiosidade",
+     "texto": "Tem alguém aí?",
+     "duracao_s": 1.65
+    }
+   ],
+   "selecionada": "A",
+   "publicacoes": [],
+   "criterio": "maior nota (1.0): 5 palavras: lê em menos de 3 s; vem da virada do episódio; vem do fim do episódio (flash-forward da consequência)",
+   "registrado_em": "2026-11-04T10:27:02"
+  },
+  {
+   "episodio": 4,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "revelacao_parcial",
+     "texto": "O curativo. Escuro.",
+     "duracao_s": 1.65
+    },
+    {
+     "id": "B",
+     "estrategia": "identificacao",
+     "texto": "17h45. Você ouviu tocar.",
+     "duracao_s": 2.07
+    },
+    {
+     "id": "C",
+     "estrategia": "antecipacao",
+     "texto": "Portão leste, até as dez.",
+     "duracao_s": 2.48
+    }
+   ],
+   "selecionada": "B",
+   "publicacoes": [],
+   "criterio": "escolha do autor",
+   "registrado_em": "2026-11-04T10:27:12"
+  },
+  {
+   "episodio": 5,
+   "variantes": [
+    {
+     "id": "A",
+     "estrategia": "conflito_imediato",
+     "texto": "A câmara está morna. Nada bate.",
+     "duracao_s": 2.9
+    },
+    {
+     "id": "B",
+     "estrategia": "revelacao_parcial",
+     "texto": "Dois dias. E ela ainda é ela.",
+     "duracao_s": 3.32
+    },
+    {
+     "id": "C",
+     "estrategia": "lacuna_curiosidade",
+     "texto": "Nada bate. Você devolve o crachá.",
+     "duracao_s": 2.9
+    }
+   ],
+   "selecionada": "A",
+   "publicacoes": [],
+   "criterio": "maior nota (0.935): 6 palavras: lê em menos de 3 s; duração estimada 2.9 s",
+   "registrado_em": "2026-11-04T10:27:02"
+  }
+ ]
+}
