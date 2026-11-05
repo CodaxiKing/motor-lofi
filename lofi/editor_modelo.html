@@ -1,0 +1,117 @@
+<title>Editor do Episódio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mesa de montagem escura: prévia em pé à esquerda, plano aberto à direita, tira de planos embaixo */
+:root{--mesa:#10141c;--painel:#181e2a;--borda:#2c3546;--texto:#eef0f4;--suave:#a4adbd;--ambar:#e7b43f;--tinta:#231a05;--alerta:#ee7a6b;
+--titulo:"Barlow Condensed","Arial Narrow",sans-serif;--corpo:"Barlow",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--mesa);color:var(--texto);font:15px/1.45 var(--corpo);padding-block:14px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,select,textarea{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,video:focus-visible{outline:2px solid var(--ambar);outline-offset:2px}
+.topo{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto 14px}
+h1{font:700 30px/1.05 var(--titulo);letter-spacing:.01em;margin:0;text-wrap:balance}
+.ep{color:var(--suave);font-size:14px}
+.acoes{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{border:1px solid var(--borda);background:var(--painel);border-radius:8px;padding:9px 14px;font-weight:600;cursor:pointer}
+.btn:hover{border-color:var(--suave)}.btn:disabled{opacity:.5;cursor:default}
+.btn.gerar{background:var(--ambar);color:var(--tinta);border-color:var(--ambar)}
+.aviso{max-width:1120px;margin:0 auto 12px;font-size:14px;color:var(--ambar);min-height:1.45em}
+.mesa{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:18px;max-width:1120px;margin:0 auto}
+.previa{min-width:0}
+video{display:block;width:100%;max-width:340px;aspect-ratio:9/16;max-height:66vh;margin:0 auto;background:#000;border-radius:10px}
+.cena{min-width:0;background:var(--painel);border:1px solid var(--borda);border-radius:10px;padding:16px;display:grid;gap:14px;align-content:start}
+.cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+h2{font:700 24px/1.1 var(--titulo);margin:0}
+.tempo{font:400 13px var(--mono);color:var(--suave);font-variant-numeric:tabular-nums}
+label{display:grid;gap:5px;font-size:13px;color:var(--suave);min-width:0}
+input,select,textarea{background:var(--mesa);border:1px solid var(--borda);border-radius:6px;padding:8px 10px;width:100%;color:var(--texto);font-size:15px}
+textarea{min-height:76px;resize:vertical}
+.linha{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dica{font-size:12.5px;color:var(--suave);margin:0}
+.tira{max-width:1120px;margin:16px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}
+.q{flex:none;width:66px;border:2px solid transparent;border-radius:7px;padding:0;background:none;cursor:pointer;position:relative;color:var(--suave)}
+.q img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:5px;background:var(--painel)}
+.q span{display:block;font:400 11px var(--mono);padding-block:3px;font-variant-numeric:tabular-nums}
+.q.ativo{border-color:var(--ambar);color:var(--texto)}
+.q.mudou::after{content:"";position:absolute;top:5px;right:5px;width:10px;height:10px;border-radius:50%;background:var(--ambar);border:2px solid var(--mesa)}
+@media(max-width:760px){.mesa{grid-template-columns:minmax(0,1fr)}h1{font-size:26px}video{max-height:58vh;max-width:280px}}
+@media(max-width:430px){.linha{grid-template-columns:minmax(0,1fr)}}
+</style>
+<div class="topo">
+  <div><h1 id="titulo">Editor do episódio</h1><div class="ep" id="ep">Carregando a prévia...</div></div>
+  <div class="acoes">
+    <button class="btn" id="desfazer">Desfazer esta cena</button>
+    <button class="btn" id="atualizar">Atualizar prévia</button>
+    <button class="btn gerar" id="gerar">Gerar vídeo</button>
+  </div>
+</div>
+<div class="aviso" id="aviso" role="status"></div>
+<div class="mesa">
+  <div class="previa"><video id="video" src="previa.mp4" controls playsinline preload="metadata"></video></div>
+  <section class="cena" aria-labelledby="ncena">
+    <div class="cab"><h2 id="ncena">Cena</h2><span class="tempo" id="tempo"></span></div>
+    <div id="frases" style="display:grid;gap:10px"></div>
+    <label id="ltela" hidden>Texto na tela do celular (uma linha por mensagem)<textarea id="tela"></textarea></label>
+    <div class="linha" id="corpo" hidden>
+      <label>Expressão<select id="emotion"></select></label>
+      <label>Pose<select id="pose"></select></label>
+      <label>Enquadramento<select id="plano"></select></label>
+    </div>
+    <label>Tempo a mais depois desta cena (segundos)<input id="extra" type="number" min="0" max="5" step="0.5" value="0"></label>
+    <label>O que mais mudar nesta cena?<textarea id="pedido" placeholder="Ex.: mostrar a mão dele tremendo mais perto da porta"></textarea></label>
+    <p class="dica">Na legenda, a barra separa os pedaços que aparecem na tela e os asteriscos destacam a palavra em vermelho. Suas mudanças ficam guardadas aqui até você atualizar a prévia ou gerar o vídeo.</p>
+  </section>
+</div>
+<div class="tira" id="tira" aria-label="Cenas do episódio"></div>
+<script>
+const NOME={neutral:"Neutra",fear:"Medo",shock:"Choque",angry:"Raiva",sad:"Triste",determined:"Decidida",happy:"Feliz",suspicious:"Desconfiada",cry:"Choro",panting:"Ofegante",
+idle:"Parado",sit:"Sentado",phone:"Com o celular",point:"Apontando",scared:"Assustado",ouvir:"Ouvindo",pensativo:"Pensativo",reach:"Estendendo a mão",hide:"Escondendo-se",mao_na_boca:"Mão na boca",proteger_rosto:"Protegendo o rosto",espiar_longe:"Espiando",desespero:"Desespero",chest:"Mão no peito",
+close:"Close",medio:"Médio",conjunto:"Corpo inteiro",aberto:"Aberto"};
+const $=i=>document.getElementById(i), mm=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,"0")}`;
+let D=null,E={},atual=0,chave="editor",confirma=false,enviado=false,avisoFixo=false;
+const guarda=()=>{try{localStorage.setItem(chave,JSON.stringify(E))}catch(e){}}, le=()=>{try{return JSON.parse(localStorage.getItem(chave)||"{}")}catch(e){return{}}};
+const plano=()=>D.planos[atual], ed=()=>E[plano().id]||(E[plano().id]={});
+function limpa(id){const e=E[id];if(e&&!Object.values(e).some(v=>v!==""&&v!==0&&v!=null&&!(typeof v==="object"&&!Object.keys(v).length)))delete E[id]}
+function marca(){document.querySelectorAll(".q").forEach(q=>q.classList.toggle("mudou",!!E[q.dataset.id]));const n=Object.keys(E).length;$("gerar").textContent=n?`Gerar vídeo (${n})`:"Gerar vídeo"}
+function opcoes(sel,lista,valor){sel.innerHTML="";lista.forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=NOME[v]||v;sel.append(o)});if(valor&&!lista.includes(valor)){const o=document.createElement("option");o.value=valor;o.textContent=NOME[valor]||valor;sel.prepend(o)}sel.value=valor||lista[0]}
+function mostra(i,buscar){atual=i;const p=plano(),e=E[p.id]||{};
+ document.querySelectorAll(".q").forEach((q,k)=>{q.classList.toggle("ativo",k===i);if(k===i)q.scrollIntoView({block:"nearest",inline:"center"})});
+ $("ncena").textContent=`Cena ${i+1} · ${p.rotulo}`;$("tempo").textContent=`${mm(p.inicio)} a ${mm(p.fim)}`;
+ const fr=$("frases");fr.innerHTML="";p.frases.forEach(f=>{const l=document.createElement("label");l.textContent=`Legenda (${f.voz.replace(/_.*|\d/g,"")})`;const inp=document.createElement("input");inp.id="frase"+f.sub;inp.value=(e.frases&&e.frases[f.sub])??f.texto;
+  inp.oninput=()=>{const x=ed();x.frases=x.frases||{};if(inp.value===f.texto)delete x.frases[f.sub];else x.frases[f.sub]=inp.value;limpa(p.id);guarda();marca()};l.append(inp);fr.append(l)});
+ $("ltela").hidden=!p.tela;if(p.tela)$("tela").value=(e.tela||p.tela).join("\n");
+ $("corpo").hidden=!p.ator;if(p.ator){opcoes($("emotion"),D.opcoes.emotion,e.emotion||p.emotion);opcoes($("pose"),D.opcoes.pose,e.pose||p.pose);opcoes($("plano"),D.opcoes.plano,e.plano||p.plano||"medio")}
+ $("extra").value=e.extra||0;$("pedido").value=e.pedido||"";
+ if(buscar){const v=$("video");v.currentTime=p.inicio+.02}}
+function campo(id,nome,base){$(id).addEventListener(id==="tela"||id==="pedido"||id==="extra"?"input":"change",()=>{const p=plano(),x=ed();let v=$(id).value;
+ if(id==="tela"){const a=v.split("\n");if(JSON.stringify(a)===JSON.stringify(p.tela))delete x.tela;else x.tela=a}
+ else if(id==="extra"){v=Math.max(0,Math.min(5,parseFloat(v)||0));if(v)x.extra=v;else delete x.extra}
+ else if(v===""||v===base(p))delete x[nome];else x[nome]=v;
+ limpa(p.id);guarda();marca();confirma=false})}
+async function envia(status){const a=$("aviso");a.textContent="Enviando...";const corpo=JSON.stringify({status,planos:E,enviado_em:new Date().toISOString()},null,1);
+ const art=window.claude?await claude.use("artifact"):null;
+ if(!art){a.textContent="Não consegui enviar daqui. Escreva “gerar” na conversa e descreva as mudanças por lá.";return false}
+ try{await art.publish({"edits.json":{content:corpo,contentType:"application/json"}});
+  const mcp=await claude.use("mcp");
+  if(!mcp||!D.tarefa||!D.url){a.textContent="Mudanças salvas. Escreva “gerar” na conversa para eu começar.";return true}
+  try{await mcp.callTool("Claude Code Remote","fire_trigger",{trigger_id:D.tarefa,text:D.url});return true}
+  catch(e){a.textContent="Mudanças salvas, mas não consegui iniciar sozinho. Escreva “gerar” na conversa.";avisoFixo=true;return true}}
+ catch(e){if(e.code==="conflict"){a.textContent="A página mudou enquanto você editava. Ela vai recarregar com as suas mudanças guardadas.";return false}
+  a.textContent=e.code==="not_writer"||e.code==="not_granted"?"Você pode ver esta prévia, mas não pode enviar mudanças nela.":"Não consegui enviar agora. Tente de novo em alguns segundos.";return false}}
+$("atualizar").onclick=async()=>{if(enviado)return;if(!Object.keys(E).length){$("aviso").textContent="Mude alguma cena antes de atualizar a prévia.";return}
+ if(await envia("previa")){enviado=true;if(!avisoFixo)$("aviso").textContent="Mudanças enviadas. A prévia nova chega aqui em alguns minutos.";$("gerar").disabled=$("atualizar").disabled=true}};
+$("gerar").onclick=async()=>{if(enviado)return;const n=Object.keys(E).length;
+ if(!confirma){confirma=true;$("aviso").textContent=n?`Clique de novo para gerar o vídeo final com ${n} ${n>1?"cenas alteradas":"cena alterada"}.`:"Clique de novo para gerar o vídeo final sem mudanças.";return}
+ if(await envia("gerar")){enviado=true;if(!avisoFixo)$("aviso").textContent="Pedido enviado. O render leva até 20 minutos, e você recebe um aviso quando o vídeo ficar pronto.";$("gerar").disabled=$("atualizar").disabled=true;try{localStorage.removeItem(chave)}catch(e){}}};
+$("desfazer").onclick=()=>{delete E[plano().id];guarda();marca();mostra(atual,false)};
+fetch("dados.json").then(r=>r.json()).then(d=>{D=d;chave=`editor-${d.titulo}-${d.episodio}`;E=le();document.title=`Editor · ${d.titulo}`;
+ $("titulo").textContent=d.titulo;$("ep").textContent=`Episódio ${d.episodio}/${d.total_eps} · ${d.nome_ep} · ${mm(d.duracao)}`;
+ if(d.estado==="pronto"){$("video").src="final.mp4";$("aviso").textContent="Vídeo final pronto. Os arquivos estão na tarefa do editor."}
+ const t=$("tira");d.planos.forEach((p,i)=>{const b=document.createElement("button");b.className="q";b.dataset.id=p.id;b.setAttribute("aria-label",`Cena ${i+1}: ${p.rotulo}, em ${mm(p.inicio)}`);
+  const im=document.createElement("img");im.src=`miniaturas/${String(p.id).padStart(3,"0")}.jpg`;im.alt="";im.loading="lazy";const s=document.createElement("span");s.textContent=mm(p.inicio);b.append(im,s);b.onclick=()=>mostra(i,true);t.append(b)});
+ campo("tela","tela");campo("emotion","emotion",p=>p.emotion);campo("pose","pose",p=>p.pose);campo("plano","plano",p=>p.plano||"medio");campo("extra","extra");campo("pedido","pedido",()=>"");
+ $("video").addEventListener("timeupdate",()=>{if($("video").paused)return;const c=$("video").currentTime;const i=d.planos.findIndex(p=>c>=p.inicio&&c<p.fim);if(i>=0&&i!==atual&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA")mostra(i,false)});
+ mostra(0,false);marca()}).catch(()=>{$("ep").textContent="Não consegui carregar os dados do episódio."});
+</script>

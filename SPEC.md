@@ -314,6 +314,9 @@ caixa de milho", a tela mostra a caixa de milho sendo empurrada; "uma lata... du
 - `python3 -m lofi.movimento epNN.json` (também no `lofi.check`): parado, deslizando, andando no lugar, sentado sem assento, abraço de longe, postura ou objeto que muda entre planos.
 - `python3 -m lofi.retencao importar epNN.json curva.txt tiktok` cruza a curva (`segundo,percentual`) com os planos e grava `retencao.json`; `relatorio series/<serie>` resume, e o `lofi.contexto` leva esse resumo ao próximo roteiro.
 
+## Editor do episódio
+`python3 -m lofi.editor preparar epNN.json` gera em `_editor/` a página, a prévia leve com áudio (2 quadros por segundo; só os planos alterados são refeitos), as miniaturas, os dados e uma cópia das vozes. Publique a pasta como artefato com a capacidade `artifact`: legenda, texto do celular, expressão, pose, enquadramento, tempo extra e pedido livre ficam em `edits.json`. O botão "Atualizar prévia" grava `status: previa` e "Gerar vídeo" grava `status: gerar`; depois de salvar, a página dispara a tarefa agendada "Render do editor motor-lofi" (`--tarefa trig_...` e `--url <artefato>` no `preparar`; a capacidade `mcp` declara `Claude Code Remote` com `fire_trigger`). A tarefa baixa as vozes do artefato, aplica as mudanças e publica a prévia nova ou o vídeo final. `python3 -m lofi.editor aplicar epNN.json edits.json` aplica tudo, mantém fala e som em sincronia e devolve os pedidos livres.
+
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.

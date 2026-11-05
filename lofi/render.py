@@ -61,7 +61,7 @@ GEST_DOWN = {"desculpa", "desculpe", "perdão", "perdi", "morreu", "sinto", "tri
 
 FORA_DO_CACHE = {"capas.py", "check.py", "extras.py", "experimentos.py", "narrativa.py", "ganchos.py", "literal.py", "previa.py", "continuidade.py",
                  "contexto.py", "transcribe.py", "catalogo.py", "validador_narrativo.py", "protecao.py", "ritmo.py", "pronuncia.py", "movimento.py",
-                 "retencao.py", "artes.py"}    # módulos que não desenham o vídeo: mexer neles não refaz o render
+                 "retencao.py", "artes.py", "editor.py"}    # módulos que não desenham o vídeo: mexer neles não refaz o render
 
 
 class Episode:
