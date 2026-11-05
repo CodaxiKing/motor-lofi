@@ -130,7 +130,7 @@ Cada série vive no repositório em `series/<nome-da-serie>/`:
 
 **Câmera e pós**
 - Plano de detalhe: `{"type": "detail", "subject": "macaneta|olho|celular|chave|relogio", "params": {...}}`
-  (macaneta: `turn`, `light` · olho: `pupil`, `look`, `blink_at`, `reflect`, `tear`, `brow` · celular: `text`, `notifs`, `signal`, `type_dur` · chave: `turn` · relogio: `minutes`).
+  (macaneta: `turn`, `light` · olho: `pupil`, `look`, `blink_at`, `reflect`, `tear`, `brow` · celular: `text`, `notifs`, `signal`, `type_dur`, `hora`, `chat` = conversa de mensagens: `{"nome", "visto", "destaque", "digita", "digita_dur", "msgs": [{"de": "ele"|"eu", "txt", "t", "type_dur"}]}` · chave: `turn` · relogio: `minutes`).
 - `camera.handheld: px` (câmera na mão) · `camera.vertigo: [1.0, 1.3]` (dolly zoom) · `"slowmo": 0.4` (câmera lenta) ·
   `"scare": [t]` (susto: tremor + aberração de cor + impacto) · `"lens_drops": true` (gotas na lente) · brilho nas luzes automático (`"bloom": false` desliga).
 - Estilo: `"style": "desenho"` (traço de nanquim + papel) e `"tint": [r, g, b, força]` (cor do episódio; também por plano).

@@ -83,11 +83,64 @@ def olho(t, p):
         d.ellipse([cx + 330, cy + 180 + dy, cx + 370, cy + 240 + dy], fill=(140, 190, 245))
     return img
 
+def _quebra(d, txt, fnt, larg):
+    linhas, atual = [], ""
+    for w in txt.split():
+        prova = (atual + " " + w).strip()
+        if d.textlength(prova, font=fnt) <= larg: atual = prova
+        else: linhas.append(atual); atual = w
+    return linhas + ([atual] if atual else [])
+
+
+def _conversa(img, t, p):
+    """Conversa de mensagens na tela do celular. params: "chat": {"nome", "visto", "destaque": true, "digita": "texto",
+    "digita_dur": s, "msgs": [{"de": "ele"|"eu", "txt": "...", "t": s, "type_dur": s}]}. `t` = quando a mensagem aparece."""
+    c = p["chat"]; d = ImageDraw.Draw(img)
+    d.rounded_rectangle([200, 300, 880, 1620], 50, fill=(17, 24, 30))
+    d.rounded_rectangle([200, 300, 880, 560], 50, fill=(30, 42, 50)); d.rectangle([200, 500, 880, 560], fill=(30, 42, 50))
+    d.text((240, 322), p.get("hora", "21:12"), font=font("mono", 34), fill=(205, 212, 220))
+    d.ellipse([236, 388, 326, 478], fill=(84, 96, 108)); text_center(d, "?", 281, 433, font("sansb", 54), (225, 230, 235))
+    d.text((346, 386), c.get("nome", "Número desconhecido"), font=font("sansb", 46), fill=(240, 243, 246))
+    visto = c.get("visto", "visto por último amanhã às 03:17")
+    if c.get("destaque"):
+        f = font("sansb", 42); ls = _quebra(d, visto, f, 620); y = 590
+        d.rounded_rectangle([222, y - 12, 858, y + 24 + 56 * len(ls)], 24, fill=(246, 206, 70))
+        for l in ls:
+            text_center(d, l, 540, y + 34, f, (28, 26, 22)); y += 56
+    else:
+        d.text((346, 442), visto, font=font("sans", 31), fill=(120, 214, 170))
+    y = 610 if not c.get("destaque") else 800
+    for m in c.get("msgs", []):
+        t0 = m.get("t", 0)
+        if t < t0: continue
+        txt = m["txt"]
+        if m.get("type_dur"): txt = txt[:int(c01((t - t0) / m["type_dur"]) * len(txt))]
+        f = font("sans", 56); meu = m.get("de") == "eu"; ls = _quebra(d, txt, f, 560) or [""]
+        w = max(d.textlength(l, font=f) for l in ls) + 56; h = 70 * len(ls) + 40
+        x0 = 850 - w if meu else 230
+        pop = 1 - c01((t - t0) / 0.14)
+        d.rounded_rectangle([x0, y + pop * 14, x0 + w, y + h], 28, fill=(0, 104, 84) if meu else (42, 54, 64))
+        for k, l in enumerate(ls):
+            d.text((x0 + 28, y + 16 + k * 70), l, font=f, fill=(244, 247, 248))
+        y += h + 24
+    d.rounded_rectangle([226, 1500, 854, 1592], 44, fill=(36, 46, 54))
+    dig = c.get("digita", "")
+    if dig:
+        n = int(c01(t / max(0.01, c.get("digita_dur", 1.0))) * len(dig))
+        d.text((262, 1524), dig[:n] + ("|" if int(t * 3) % 2 == 0 else ""), font=font("sans", 40), fill=(235, 238, 240))
+    return img
+
+
 def celular(t, p):
     img = Image.new("RGB", (W, H), (14, 16, 22)); d = ImageDraw.Draw(img)
     img = add_light(img, (40, 200, 1040, 1700), (60, 80, 140), 120, 140); d = ImageDraw.Draw(img)
     d.rounded_rectangle([170, 260, 910, 1660], 70, fill=(20, 20, 24), outline=(70, 70, 80), width=10)
     d.rounded_rectangle([200, 300, 880, 1620], 50, fill=(40, 46, 62))
+    if p.get("chat"):
+        _conversa(img, t, p)
+        v, pos = p.get("_hand", (None, None))
+        if v and pos: p.setdefault("_avoid", []).append(partes.braco(img, pos["ombro"], pos["mao"], v, larg=150, dedo=pos.get("dedo", False)))
+        return img
     d.text((240, 320), p.get("hora", "21:12"), font=font("mono", 40), fill=(220, 220, 230))
     sig = p.get("signal", 0)
     for k in range(4):
