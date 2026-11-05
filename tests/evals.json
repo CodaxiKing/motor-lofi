@@ -49,6 +49,8 @@
       "espera": [
         "python3 -m lofi.check sem ERRO antes do render",
         "revisor independente aprovou a folha _revisao.png",
+        "cada frase do áudio com a sua imagem, sem substituto genérico",
+        "movimentos, contato das mãos e postura conferidos em início, meio e fim dos planos",
         "MP4 de no mínimo 2 min",
         "teaser e capa gerados"
       ]
