@@ -74,8 +74,8 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | montado | A) Abrir a porta · B) Obedecer à mensagem | | |
-| 2 | 1 | complicação | planejado | A) Levar o crachá · B) Levar a fita | | |
+| 1 | 0 | início | montado | A) Abrir a porta · B) Obedecer à mensagem | ABRIR A PORTA (A) | |
+| 2 | 1 | complicação | roteiro | A) Levar o crachá · B) Levar a fita | | |
 | 3 | 2 | complicação | planejado | A) Confiar na Dra. Helena · B) Confiar no Téo | | |
 | 4 | 3 | complicação | planejado | A) Investigar a estrada · B) Investigar a sala branca | | |
 | 5 | 5 | reviravolta | planejado | A) Fugir do prédio · B) Fingir que não viu | | |
@@ -97,7 +97,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 Toda escolha do público fica aqui e volta nos roteiros seguintes.
 | Ep. | Decisão | Quando cobra | Resultado neste ciclo |
 |---|---|---|---|
-| 1 | Abrir ou obedecer | ep. 2 e ep. 5 | |
+| 1 | Abrir ou obedecer | ep. 2 e ep. 5 | Abriu a porta: Lucas ficou com a caixinha S-6 |
 | 2 | Crachá ou fita | ep. 3 e ep. 8 | |
 | 3 | Helena ou Téo | ep. 5 e ep. 8 | |
 | 4 | Estrada ou sala branca | ep. 5 e ep. 7 | |
