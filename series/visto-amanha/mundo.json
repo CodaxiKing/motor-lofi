@@ -1,16 +1,16 @@
 {
  "lugares": {
-  "apto_303": {
+  "apto_903": {
    "cenarios": ["apartamento", "quarto", "banheiro", "cozinha", "entrada", "janela"],
-   "nota": "apartamento de Lucas no Edifício Aurora, 3º andar"
+   "nota": "apartamento de Lucas no Edifício Aurora, 9º andar"
   },
   "predio": {
    "cenarios": ["corredor", "escada", "porao"],
-   "nota": "partes comuns do Edifício Aurora: corredor do 3º andar, escada e porão com as caixas dos moradores"
+   "nota": "partes comuns do Edifício Aurora: corredor do 9º andar, escada e porão com as caixas dos moradores"
   },
-  "apto_302": {
+  "apto_902": {
    "cenarios": ["sala_estar", "cftv"],
-   "nota": "apartamento de Dona Irene, vizinho do 303; atrás da sala fica a sala de observação"
+   "nota": "apartamento de Dona Irene, vizinho do 903; atrás da sala fica a sala de observação"
   },
   "rua": {
    "cenarios": ["portao", "rua_bairro", "avenida", "rua"],
@@ -34,18 +34,18 @@
   }
  },
  "ligacoes": [
-  ["apto_303", "predio", "pela porta do 303, para o corredor"],
-  ["apto_302", "predio", "pela porta do 302, para o corredor"],
-  ["predio", "rua", "pela escada até o portão do prédio"],
+  ["apto_903", "predio", "pela porta do 903, para o corredor"],
+  ["apto_902", "predio", "pela porta do 902, para o corredor"],
+  ["predio", "rua", "pelo elevador ou pela escada até o portão do prédio"],
   ["rua", "assistencia", "pela porta de enrolar da assistência"],
   ["rua", "delegacia", "pela entrada da delegacia"],
   ["rua", "viagem", "entrando no carro estacionado"],
   ["viagem", "clinica", "pela estrada até a garagem ou a recepção da Serenus"]
  ],
  "inicio": {
-  "lugar": "apto_303",
+  "lugar": "apto_903",
   "dia": 0,
-  "hora": "23:10",
+  "hora": "22:10",
   "inventario": {
    "lucas": ["celular"]
   },

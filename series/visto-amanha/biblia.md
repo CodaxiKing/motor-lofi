@@ -21,7 +21,7 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 - clara — irmã de Lucas, 31 anos, enfermeira, cabelo cacheado, pijama hospitalar azul-claro e colar prateado. Aparece em lembrança (sépia) até o ep. 8.
 - helena — Dra. Helena Vasques, 54 anos, psiquiatra da Clínica Serenus, alta, jaleco, coque grisalho, óculos e lenço verde-água. Calma demais.
 - teo — sócio e melhor amigo de Lucas, 29 anos, corpo grande, black power, camiseta laranja e fone no pescoço.
-- irene — Dona Irene, vizinha do 302, 78 anos, baixinha, coque branco, óculos e cardigã roxo.
+- irene — Dona Irene, vizinha do 902, 78 anos, baixinha, coque branco, óculos e cardigã roxo.
 - ruth — delegada Ruth Sales, 44 anos, jaqueta de couro azul-marinho, rabo de cavalo, distintivo e lenço vermelho.
 
 ## Personagens (motivação e voz)
@@ -38,7 +38,8 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 ## Pistas
 | Pista | Plantada em | Paga em | Status |
 |---|---|---|---|
-| O relógio do micro-ondas sempre volta para 03:17 quando a luz pisca | ep. 1 | ep. 7 | pendente |
+| O relógio da cozinha para em 03:17 quando a luz pisca | ep. 1 | ep. 7 | pendente |
+| A voz da porta repete a mesma frase, com a mesma entonação, e não responde à pergunta | ep. 1 | ep. 2 | pendente |
 | O contato não usa "vc" e sempre termina com ponto, como Lucas escreve os orçamentos | ep. 1 | ep. 7 | pendente |
 | A caixinha de som da porta traz a etiqueta "S-6" (voto A) ou uma manga roxa a recolhe (voto B) | ep. 2 | ep. 5 | pendente |
 | O objeto que não foi escolhido na caixa da Clara some do porão | ep. 2 | ep. 8 | pendente |
@@ -46,7 +47,7 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 | O número desconhecido está registrado no CPF do próprio Lucas | ep. 3 | ep. 7 | pendente |
 | O calendário da delegacia marca 48 dias a mais que o celular de Lucas | ep. 4 | ep. 7 | pendente |
 | A lembrança não escolhida no ep. 4 aparece no vídeo das 03:17 | ep. 4 | ep. 7 | pendente |
-| Quadro "CICLO 6 · DIA 5" no apartamento 302 | ep. 5 | ep. 7 | pendente |
+| Quadro "CICLO 6 · DIA 5" no apartamento 902 | ep. 5 | ep. 7 | pendente |
 | Nas telas do Painel, a frase "A MAIORIA ESCOLHEU" | ep. 1 a 5 (carimbo de abertura) | ep. 6 | pendente |
 
 ## Mistério central
@@ -83,11 +84,11 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 | 8 | 8 | final | planejado | — | | |
 
 ## Plano por episódio
-- **EP 1 · DIA 0 · "NÃO ABRE A PORTA"** (início, azul) — Objetivo: apresentar Lucas, a ausência da Clara e o contato de amanhã. Às 23:17, Lucas lê "Daqui a 8 dias você vai fazer a pior coisa da sua vida. Eu sei. Eu fiz." À 00:17, chega "Não abre a porta." A voz da Clara chama "Lu?" do corredor. Gancho de abertura: close no celular, "visto por último amanhã às 03:17" ("NÃO ABRE / A PORTA"). Pergunta: A) ABRIR A PORTA · B) OBEDECER À MENSAGEM.
+- **EP 1 · DIA 0 · "NÃO ABRE A PORTA"** (início, azul) — Objetivo: apresentar Lucas, a ausência da Clara e o contato de amanhã. Às 22:17, Lucas lê "Daqui a 8 dias você vai fazer a pior coisa da sua vida. Eu sei. Eu fiz." Às 23:17, chega "Não abre a porta." A voz da Clara chama "Lu?" do corredor, mas o olho mágico mostra o corredor vazio. Gancho de abertura: close no celular, "visto por último amanhã às 03:17" ("NÃO ABRE / A PORTA"). Pergunta: A) ABRIR A PORTA · B) OBEDECER À MENSAGEM.
 - **EP 2 · DIA 1 · "SÓ UMA COISA"** (complicação, âmbar) — Objetivo: mostrar a consequência do voto e abrir a caixa da Clara. Mensagem: "Desce ao porão. Leve só uma coisa da caixa dela." Lá, Lucas acha o crachá da Clínica Serenus e uma fita gravada por ela, antes de a luz cair e alguém descer a escada. Ele só tem tempo de levar um. Dona Irene diz "dorme bem, Lucas". Gancho: a mão do Lucas entre os dois objetos, passos no escuro ("SÓ DÁ / PRA LEVAR UM"). Pergunta: A) LEVAR O CRACHÁ · B) LEVAR A FITA.
 - **EP 3 · DIA 2 · "RESPIRA COMIGO"** (complicação, verde-água) — Objetivo: fazer Lucas duvidar da própria sanidade. O outro objeto sumiu. Na sessão, Helena abre o celular dele e as mensagens não estão lá. Téo diz que as viu e que o número é rastreável. Cada um acusa o outro. No banheiro, o reflexo de Lucas demora a piscar. Mensagem: "Um dos dois mente. Eu não lembro qual." Gancho: o reflexo fica parado quando Lucas se vira ("ELE NÃO / PISCOU"). Pergunta: A) CONFIAR NA DRA. HELENA · B) CONFIAR NO TÉO.
 - **EP 4 · DIA 3 · "9 DIAS"** (complicação, cinza) — Objetivo: abrir o passado. A delegada Ruth reabre o caso e mostra um vídeo: às 03:17, na noite do sumiço, Lucas carrega a mochila da Clara. Ele confessa o buraco de 9 dias. Duas lembranças voltam em flashes. O calendário da delegacia não bate com o celular. Gancho: a foto do vídeo sobre a mesa ("VOCÊ ESTAVA / LÁ"). Pergunta: A) INVESTIGAR A ESTRADA · B) INVESTIGAR A SALA BRANCA.
-- **EP 5 · DIA 5 · "O DIA QUE FALTOU"** (reviravolta, vermelho) — Objetivo: virar a série no meio. Lucas volta à lembrança escolhida e acorda no DIA 5, sem o DIA 4 e com 40 mensagens enviadas por ele. Dona Irene diz que ele saiu de novo às 03:17. Ele entra no 302: monitores mostram cada cômodo do 303, e o quadro diz "CICLO 6 · DIA 5". Gancho: Lucas se vê no monitor, de costas, olhando o monitor ("O PRÉDIO / É A JAULA"). Pergunta: A) FUGIR DO PRÉDIO · B) FINGIR QUE NÃO VIU.
+- **EP 5 · DIA 5 · "O DIA QUE FALTOU"** (reviravolta, vermelho) — Objetivo: virar a série no meio. Lucas volta à lembrança escolhida e acorda no DIA 5, sem o DIA 4 e com 40 mensagens enviadas por ele. Dona Irene diz que ele saiu de novo às 03:17. Ele entra no 902: monitores mostram cada cômodo do 903, e o quadro diz "CICLO 6 · DIA 5". Gancho: Lucas se vê no monitor, de costas, olhando o monitor ("O PRÉDIO / É A JAULA"). Pergunta: A) FUGIR DO PRÉDIO · B) FINGIR QUE NÃO VIU.
 - **EP 6 · DIA 6 · "O PAINEL"** (reviravolta, roxo) — Objetivo: incluir o público na trama. Lucas chega à Serenus (A: fugido, com Ruth em alerta; B: em consulta, com a chave de Dona Irene) e encontra o laboratório: uma tela com o rosto dele, dois botões e o carimbo "A MAIORIA ESCOLHEU". Helena olha para a câmera: "Eles decidem. Você só executa." Gancho: a tela com o carimbo que abriu todos os episódios ("QUEM ESTÁ / VOTANDO?"). Pergunta: A) OBEDECER À MENSAGEM · B) LIGAR PARA A RUTH.
 - **EP 7 · DIA 7 · "03:17"** (clímax, azul-escuro) — Objetivo: entregar a verdade. Lucas se filma dormindo. Às 03:17, o vídeo mostra Lucas levantar, pegar um segundo celular com a mão esquerda e digitar. Depois ele olha para a lente e fala. Ele conta os ciclos, o calendário e a assinatura original: "Ninguém te sequestrou. Você assinou. Você pediu pra esquecer." Falta uma assinatura para apagar a Clara. Gancho: Lucas no vídeo vira o rosto para a lente ("ELE SOU / EU"). Pergunta: A) TIRAR A CLARA DE LÁ · B) ESCREVER A ÚLTIMA MENSAGEM.
 - **EP 8 · DIA 8 · "VISTO HOJE"** (final, branco) — Objetivo: fechar a série conforme os votos (finais A e B acima; entram o objeto do ep. 2, a Ruth do ep. 6 e o Téo do ep. 3). Gancho: Helena estende a caneta às 03:16 ("ÚLTIMA / ASSINATURA"). Fecha com a notificação do placar real e "FIM".
@@ -112,7 +113,7 @@ Toda escolha do público fica aqui e volta nos roteiros seguintes.
 
 ## Cenários
 - Todos já existem no motor; nenhum cenário novo é necessário.
-- Apartamento 303: `apartamento`, `quarto`, `banheiro`, `cozinha`, `entrada`, `janela`. Prédio: `corredor`, `escada`, `porao`. Apartamento 302: `sala_estar`, `cftv`. Rua: `portao`, `rua_bairro`, `avenida`, `rua`. Assistência: `oficina`. Polícia: `delegacia`. Viagem: `carro`, `estrada`. Clínica Serenus: `sala_espera`, `consultorio`, `hospital`, `laboratorio`, `quarto_hospital`.
+- Apartamento 903: `apartamento`, `quarto`, `banheiro`, `cozinha`, `entrada`, `janela`. Prédio: `corredor`, `escada`, `porao`. Apartamento 902: `sala_estar`, `cftv`. Rua: `portao`, `rua_bairro`, `avenida`, `rua`. Assistência: `oficina`. Polícia: `delegacia`. Viagem: `carro`, `estrada`. Clínica Serenus: `sala_espera`, `consultorio`, `hospital`, `laboratorio`, `quarto_hospital`.
 - Detalhes: `celular`, `olho`, `relogio`, `macaneta`, `chave`.
 
 ## Resumos
@@ -130,4 +131,4 @@ Toda escolha do público fica aqui e volta nos roteiros seguintes.
 |---|---|---|---|
 
 ## Continuidade (onde eles estão)
-- Início do ep. 1: Lucas sozinho no apartamento 303 do Edifício Aurora, DIA 0 · 23:10, com o celular. A Clara está desaparecida há um ano; a caixa dela fica no porão do prédio.
+- Início do ep. 1: Lucas sozinho no apartamento 903 do Edifício Aurora, DIA 0 · 22:10, com o celular. A Clara está desaparecida há um ano; a caixa dela fica no porão do prédio.
