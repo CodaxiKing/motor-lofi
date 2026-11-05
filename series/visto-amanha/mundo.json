@@ -1,55 +1,130 @@
 {
  "lugares": {
   "apto_903": {
-   "cenarios": ["apartamento", "quarto", "banheiro", "cozinha", "entrada", "janela"],
+   "cenarios": [
+    "apartamento",
+    "quarto",
+    "banheiro",
+    "cozinha",
+    "entrada",
+    "janela"
+   ],
    "nota": "apartamento de Lucas no Edifício Aurora, 9º andar"
   },
   "predio": {
-   "cenarios": ["corredor", "escada", "porao"],
+   "cenarios": [
+    "corredor",
+    "escada",
+    "porao"
+   ],
    "nota": "partes comuns do Edifício Aurora: corredor do 9º andar, escada e porão com as caixas dos moradores"
   },
   "apto_902": {
-   "cenarios": ["sala_estar", "cftv"],
+   "cenarios": [
+    "sala_estar",
+    "cftv"
+   ],
    "nota": "apartamento de Dona Irene, vizinho do 903; atrás da sala fica a sala de observação"
   },
   "rua": {
-   "cenarios": ["portao", "rua_bairro", "avenida", "rua"],
+   "cenarios": [
+    "portao",
+    "rua_bairro",
+    "avenida",
+    "rua"
+   ],
    "nota": "o bairro em volta do Edifício Aurora"
   },
   "assistencia": {
-   "cenarios": ["oficina"],
+   "cenarios": [
+    "oficina"
+   ],
    "nota": "assistência técnica de celulares de Lucas e Téo"
   },
   "delegacia": {
-   "cenarios": ["delegacia"],
+   "cenarios": [
+    "delegacia"
+   ],
    "nota": "delegacia da Ruth"
   },
   "viagem": {
-   "cenarios": ["carro", "estrada"],
+   "cenarios": [
+    "carro",
+    "estrada"
+   ],
    "nota": "o carro e a estrada que sai da cidade rumo à clínica"
   },
   "clinica": {
-   "cenarios": ["sala_espera", "consultorio", "hospital", "laboratorio", "quarto_hospital"],
+   "cenarios": [
+    "sala_espera",
+    "consultorio",
+    "hospital",
+    "laboratorio",
+    "quarto_hospital"
+   ],
    "nota": "Clínica Serenus: recepção, consultório da Helena, corredor da Ala 3, laboratório do Painel e quarto da Clara"
   }
  },
  "ligacoes": [
-  ["apto_903", "predio", "pela porta do 903, para o corredor"],
-  ["apto_902", "predio", "pela porta do 902, para o corredor"],
-  ["predio", "rua", "pelo elevador ou pela escada até o portão do prédio"],
-  ["rua", "assistencia", "pela porta de enrolar da assistência"],
-  ["rua", "delegacia", "pela entrada da delegacia"],
-  ["rua", "viagem", "entrando no carro estacionado"],
-  ["viagem", "clinica", "pela estrada até a garagem ou a recepção da Serenus"]
+  [
+   "apto_903",
+   "predio",
+   "pela porta do 903, para o corredor"
+  ],
+  [
+   "apto_902",
+   "predio",
+   "pela porta do 902, para o corredor"
+  ],
+  [
+   "predio",
+   "rua",
+   "pelo elevador ou pela escada até o portão do prédio"
+  ],
+  [
+   "rua",
+   "assistencia",
+   "pela porta de enrolar da assistência"
+  ],
+  [
+   "rua",
+   "delegacia",
+   "pela entrada da delegacia"
+  ],
+  [
+   "rua",
+   "viagem",
+   "entrando no carro estacionado"
+  ],
+  [
+   "viagem",
+   "clinica",
+   "pela estrada até a garagem ou a recepção da Serenus"
+  ]
  ],
  "inicio": {
   "lugar": "apto_903",
   "dia": 0,
   "hora": "22:10",
   "inventario": {
-   "lucas": ["celular"]
+   "lucas": [
+    "celular"
+   ]
   },
   "nota": "Lucas sozinho em casa; a caixa da Clara fica no porão"
  },
- "fim": {}
+ "fim": {
+  "1": {
+   "lugar": "apto_903",
+   "inventario": {
+    "lucas": [
+     "celular"
+    ]
+   },
+   "dia": 0,
+   "hora": "23:17",
+   "rotulo": "DIA",
+   "nota": "Lucas na entrada do 903, com o celular, diante da porta; a voz da Clara está do outro lado"
+  }
+ }
 }

@@ -12,7 +12,7 @@ Lucas narra em 1ª pessoa, no presente, em frases curtas e voz baixa, como quem 
 - EP 1: azul de tela [70, 120, 220, 0.10] · EP 2: âmbar de porão [225, 160, 70, 0.10] · EP 3: verde-água de consultório [110, 195, 175, 0.10] · EP 4: cinza de delegacia [140, 150, 165, 0.10] · EP 5: vermelho do dia perdido [205, 55, 50, 0.12] · EP 6: roxo do Painel [130, 85, 190, 0.12] · EP 7: azul-escuro das 03:17 [50, 80, 150, 0.14] · EP 8: branco de ala [225, 225, 235, 0.10]
 
 ## Resumo
-Faz um ano que a irmã de Lucas sumiu. Numa madrugada, um contato desconhecido, "visto por último amanhã às 03:17", manda: "Não abre a porta". Do outro lado, a voz de Clara pede para entrar. Daqui a 8 dias Lucas fará a pior coisa da vida dele, e quem avisa jura que já fez.
+Faz um ano que a irmã de Lucas sumiu. Numa noite, um contato desconhecido, "visto por último amanhã às 03:17", manda: "Não abre a porta". Do outro lado, a voz de Clara pede para entrar. Daqui a 8 dias Lucas fará a pior coisa da vida dele, e quem avisa jura que já fez.
 
 ## Personagens (motor)
 Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episódios; não redefinir no roteiro.
@@ -38,22 +38,22 @@ Fichas travadas em `personagens.json` (mesma pasta). Valem para todos os episód
 ## Pistas
 | Pista | Plantada em | Paga em | Status |
 |---|---|---|---|
-| O relógio da cozinha para em 03:17 quando a luz pisca | ep. 1 | ep. 7 | pendente |
+| O relógio da cozinha está parado em 03:17 desde antes do ep. 1 | ep. 1 | ep. 7 | pendente |
 | A voz da porta repete a mesma frase, com a mesma entonação, e não responde à pergunta | ep. 1 | ep. 2 | pendente |
 | O contato não usa "vc" e sempre termina com ponto, como Lucas escreve os orçamentos | ep. 1 | ep. 7 | pendente |
-| A caixinha de som da porta traz a etiqueta "S-6" (voto A) ou uma manga roxa a recolhe (voto B) | ep. 2 | ep. 5 | pendente |
+| A caixinha de som da porta traz a etiqueta "S-6" (voto A) ou uma manga roxa leva um objeto preto (voto B) | ep. 2 | ep. 5 | pendente |
 | O objeto que não foi escolhido na caixa da Clara some do porão | ep. 2 | ep. 8 | pendente |
 | Dona Irene, Téo e a Dra. Helena dizem a mesma frase: "dorme bem, Lucas" | ep. 2 | ep. 5 | pendente |
 | O número desconhecido está registrado no CPF do próprio Lucas | ep. 3 | ep. 7 | pendente |
 | O calendário da delegacia marca 48 dias a mais que o celular de Lucas | ep. 4 | ep. 7 | pendente |
 | A lembrança não escolhida no ep. 4 aparece no vídeo das 03:17 | ep. 4 | ep. 7 | pendente |
 | Quadro "CICLO 6 · DIA 5" no apartamento 902 | ep. 5 | ep. 7 | pendente |
-| Nas telas do Painel, a frase "A MAIORIA ESCOLHEU" | ep. 1 a 5 (carimbo de abertura) | ep. 6 | pendente |
+| Nas telas do Painel, a frase "A MAIORIA ESCOLHEU" | ep. 2 a 5 (carimbo de abertura) | ep. 6 | pendente |
 
 ## Mistério central
 Quem manda as mensagens "de amanhã", o que aconteceu com a Clara e qual é a pior coisa que Lucas vai fazer no DIA 8?
 A verdade: há um ano, Lucas acreditou que a irmã estava delirando quando ela disse que a Clínica Serenus apagava memórias. Ele a levou até lá, assinou a internação como responsável e, destruído pela culpa quando entendeu o que tinha feito, pediu para esquecer. A Dra. Helena apagou os 9 dias e o colocou no Protocolo Recomeço: um ensaio de 8 dias, repetido em ciclos, em que Téo e Dona Irene o vigiam e o calendário do celular volta sempre ao aniversário do sumiço. Lá fora, cada ciclo soma 8 dias: já são 48 a mais. No DIA 8 de cada ciclo, Lucas assina uma autorização, e cada assinatura apaga um pedaço da Clara. Já foram cinco. Falta uma.
-Os votos são o produto: o Painel, um grupo de financiadores anônimos, decide os rumos do ensaio e aposta que ele sempre repete a escolha. A frase "A MAIORIA ESCOLHEU", vista desde o ep. 1, é a tela deles. Você faz parte do Painel.
+Os votos são o produto: o Painel, um grupo de financiadores anônimos, decide os rumos do ensaio e aposta que ele sempre repete a escolha. A frase "A MAIORIA ESCOLHEU", vista a partir do ep. 2, é a tela deles. Você faz parte do Painel.
 As mensagens vêm do próprio Lucas. A memória dele depende do estado em que foi apagada: toda noite, às 03:17, ele acorda em transe e volta a lembrar dos ciclos anteriores. Nesse estado, ele usa um segundo celular com a data adiantada e agenda mensagens para o Lucas do dia seguinte. É por isso que o contato aparece "visto por último amanhã".
 O que nunca se explica: as mensagens antecipam escolhas que ainda não aconteceram neste ciclo e, no fim, citam o placar real da votação do público. Pode ser previsão do ensaio, ou ele pode mesmo estar escrevendo do futuro.
 
@@ -64,7 +64,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 - A — A PORTA DA ALA 3 (voto A no ep. 7): Lucas invade a Ala 3. Com o CRACHÁ (voto A no ep. 2), abre a porta e tira a Clara de lá, mas ela o encara e pergunta "quem é você?"; sem a fita, ela não volta. Com a FITA (voto B no ep. 2), a porta não abre: ele toca a gravação pela fresta, Clara se lembra e escapa por dentro, mas Lucas fica preso do lado errado e ela é quem recebe a próxima mensagem.
 - B — A ÚLTIMA MENSAGEM (voto B no ep. 7): Lucas recusa a assinatura e deixa Helena apagá-lo, depois de agendar uma mensagem para si mesmo. A última cena repete a primeira do ep. 1, com uma diferença: a mensagem nova manda pegar o objeto ignorado no ep. 2. Carimbo: "CICLO 7 · A MAIORIA ESCOLHEU: RECOMEÇAR". Quem assistir de novo entende que a voz da porta é um teste, e não um milagre.
 - Nos dois finais, a última notificação cita o placar real do ep. 7 e diz: "Ele só seguiu vocês." Última tela: "FIM" + "ASSISTA DE NOVO: A PRIMEIRA PISTA ESTÁ NO EP. 1".
-- Ep. 1 (A: ABRIR) → Lucas fica com a caixinha "S-6" e o contato escreve "Eu avisei."; (B: OBEDECER) → Lucas vê pelo olho mágico a manga roxa recolher a caixinha e passa a seguir as mensagens.
+- Ep. 1 (A: ABRIR) → Lucas fica com a caixinha "S-6", que repete a gravação inteira (batidas e duas frases), e o contato escreve "Eu avisei." às 23:17; (B: OBEDECER) → Lucas vê pelo olho mágico a manga roxa levar um objeto preto, recebe "Boa." às 00:17 e passa a seguir as mensagens.
 - Ep. 2 (A: CRACHÁ / B: FITA) → define o objeto do ep. 8 e o objeto ignorado que falta lá. O outro some do porão.
 - Ep. 3 (A: HELENA) → Téo some da assistência no ep. 5, como se nunca tivesse existido, e Helena ganha acesso à memória de Lucas; (B: TÉO) → Téo mostra a Lucas o registro no CPF e confessa no ep. 5 que recebe da Serenus.
 - Ep. 4 (A: A ESTRADA / B: A SALA BRANCA) → (A) Lucas lembra que levou a Clara de carro até a clínica; (B) lembra da caneta e da própria assinatura. A outra lembrança só vem no ep. 7.
@@ -74,7 +74,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | planejado | A) Abrir a porta · B) Obedecer à mensagem | | |
+| 1 | 0 | início | roteiro | A) Abrir a porta · B) Obedecer à mensagem | | |
 | 2 | 1 | complicação | planejado | A) Levar o crachá · B) Levar a fita | | |
 | 3 | 2 | complicação | planejado | A) Confiar na Dra. Helena · B) Confiar no Téo | | |
 | 4 | 3 | complicação | planejado | A) Investigar a estrada · B) Investigar a sala branca | | |
@@ -89,7 +89,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 - **EP 3 · DIA 2 · "RESPIRA COMIGO"** (complicação, verde-água) — Objetivo: fazer Lucas duvidar da própria sanidade. O outro objeto sumiu. Na sessão, Helena abre o celular dele e as mensagens não estão lá. Téo diz que as viu e que o número é rastreável. Cada um acusa o outro. No banheiro, o reflexo de Lucas demora a piscar. Mensagem: "Um dos dois mente. Eu não lembro qual." Gancho: o reflexo fica parado quando Lucas se vira ("ELE NÃO / PISCOU"). Pergunta: A) CONFIAR NA DRA. HELENA · B) CONFIAR NO TÉO.
 - **EP 4 · DIA 3 · "9 DIAS"** (complicação, cinza) — Objetivo: abrir o passado. A delegada Ruth reabre o caso e mostra um vídeo: às 03:17, na noite do sumiço, Lucas carrega a mochila da Clara. Ele confessa o buraco de 9 dias. Duas lembranças voltam em flashes. O calendário da delegacia não bate com o celular. Gancho: a foto do vídeo sobre a mesa ("VOCÊ ESTAVA / LÁ"). Pergunta: A) INVESTIGAR A ESTRADA · B) INVESTIGAR A SALA BRANCA.
 - **EP 5 · DIA 5 · "O DIA QUE FALTOU"** (reviravolta, vermelho) — Objetivo: virar a série no meio. Lucas volta à lembrança escolhida e acorda no DIA 5, sem o DIA 4 e com 40 mensagens enviadas por ele. Dona Irene diz que ele saiu de novo às 03:17. Ele entra no 902: monitores mostram cada cômodo do 903, e o quadro diz "CICLO 6 · DIA 5". Gancho: Lucas se vê no monitor, de costas, olhando o monitor ("O PRÉDIO / É A JAULA"). Pergunta: A) FUGIR DO PRÉDIO · B) FINGIR QUE NÃO VIU.
-- **EP 6 · DIA 6 · "O PAINEL"** (reviravolta, roxo) — Objetivo: incluir o público na trama. Lucas chega à Serenus (A: fugido, com Ruth em alerta; B: em consulta, com a chave de Dona Irene) e encontra o laboratório: uma tela com o rosto dele, dois botões e o carimbo "A MAIORIA ESCOLHEU". Helena olha para a câmera: "Eles decidem. Você só executa." Gancho: a tela com o carimbo que abriu todos os episódios ("QUEM ESTÁ / VOTANDO?"). Pergunta: A) OBEDECER À MENSAGEM · B) LIGAR PARA A RUTH.
+- **EP 6 · DIA 6 · "O PAINEL"** (reviravolta, roxo) — Objetivo: incluir o público na trama. Lucas chega à Serenus (A: fugido, com Ruth em alerta; B: em consulta, com a chave de Dona Irene) e encontra o laboratório: uma tela com o rosto dele, dois botões e o carimbo "A MAIORIA ESCOLHEU". Helena olha para a câmera: "Eles decidem. Você só executa." Gancho: a tela com o carimbo que abre os episódios desde o ep. 2 ("QUEM ESTÁ / VOTANDO?"). Pergunta: A) OBEDECER À MENSAGEM · B) LIGAR PARA A RUTH.
 - **EP 7 · DIA 7 · "03:17"** (clímax, azul-escuro) — Objetivo: entregar a verdade. Lucas se filma dormindo. Às 03:17, o vídeo mostra Lucas levantar, pegar um segundo celular com a mão esquerda e digitar. Depois ele olha para a lente e fala. Ele conta os ciclos, o calendário e a assinatura original: "Ninguém te sequestrou. Você assinou. Você pediu pra esquecer." Falta uma assinatura para apagar a Clara. Gancho: Lucas no vídeo vira o rosto para a lente ("ELE SOU / EU"). Pergunta: A) TIRAR A CLARA DE LÁ · B) ESCREVER A ÚLTIMA MENSAGEM.
 - **EP 8 · DIA 8 · "VISTO HOJE"** (final, branco) — Objetivo: fechar a série conforme os votos (finais A e B acima; entram o objeto do ep. 2, a Ruth do ep. 6 e o Téo do ep. 3). Gancho: Helena estende a caneta às 03:16 ("ÚLTIMA / ASSINATURA"). Fecha com a notificação do placar real e "FIM".
 
