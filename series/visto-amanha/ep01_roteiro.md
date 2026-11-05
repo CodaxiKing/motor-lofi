@@ -111,7 +111,7 @@ LIGAÇÃO: Lucas levanta do sofá e vai até a cozinha, dentro do apartamento
 CENÁRIO: `cozinha` · noite · DIA 0 · 23:16
 PERSONAGENS: `lucas` andando (`walk`) da marca `esq` até `geladeira`, `3q`, emoção `neutral` mudando para `suspicious`
 PLANO: médio · TRANSIÇÃO: `whip`
-LUZ E DETALHES: `dark` 0.55, `flicker` rápido, `relogio_parede` na parede da cozinha
+LUZ E DETALHES: `dark` 0.55, `flicker` rápido, relógio de parede na cozinha (item relogio_parede do cenário)
 SOM: `click` 55 s · `step` 57 s
 NARRAÇÃO (Lucas): [uneasy] Vou até a cozinha. A luz pisca.
 LEGENDA: VOU ATÉ / A COZINHA / A LUZ PISCA
