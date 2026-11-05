@@ -211,6 +211,9 @@ def _pilula(d, txt, cx, cy, tam, alinhamento="centro"):
 # ---------------- capas ----------------
 VERTICAL = {
     "tiktok":    {"titulo_y": 330, "selo_y": 470, "frase_y": 1270, "cx": 495, "largura": 840, "cabeca": 500, "cab_y": 860},
+    # uma capa só para as duas redes: tudo no recorte 4:5 do Instagram (y 285–1635), acima da descrição do TikTok
+    # (até y 1440) e fora da coluna de botões da direita
+    "unica":     {"titulo_y": 420, "selo_y": 560, "frase_y": 1030, "cx": 480, "largura": 800, "cabeca": 450, "cab_y": 770},
     "instagram": {"titulo_y": 400, "selo_y": 545, "frase_y": 1330, "cx": 540, "largura": 920, "cabeca": 520, "cab_y": 920},
 }
 
@@ -273,13 +276,12 @@ def capa_youtube(spec_path, out=None):
 
 def _salvar(img, ep, spec_path, plataforma, out):
     nome = os.path.splitext(os.path.basename(spec_path))[0]
-    out = out or os.path.join(ep.base, f"{nome}_capa_{plataforma}.png")
+    out = out or os.path.join(ep.base, f"{nome}_capa.png" if plataforma == "unica" else f"{nome}_capa_{plataforma}.png")
     img.save(out); print(f"capa {plataforma}:", out); return out
 
 
 def todas(spec_path):
-    return {"capa_tiktok": capa_vertical(spec_path, "tiktok"), "capa_instagram": capa_vertical(spec_path, "instagram"),
-            "capa_youtube": capa_youtube(spec_path)}
+    return {"capa": capa_vertical(spec_path, "unica"), "capa_youtube": capa_youtube(spec_path)}
 
 
 if __name__ == "__main__":
@@ -288,4 +290,5 @@ if __name__ == "__main__":
     if "--youtube" in sys.argv: capa_youtube(p)
     elif "--tiktok" in sys.argv: capa_vertical(p, "tiktok")
     elif "--instagram" in sys.argv: capa_vertical(p, "instagram")
+    elif "--unica" in sys.argv: capa_vertical(p, "unica")
     else: todas(p)

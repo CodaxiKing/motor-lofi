@@ -170,6 +170,7 @@ class Episode:
             if s.get("type") == "title" and s.get("stamp"): sfx.append({"t": s["stamp"]["t"], "name": "stamp"})
             if s.get("type") == "recap": sfx.append({"t": s["start"], "name": "static", "dur": 0.5, "gain": 1.2})
             if s.get("type") == "placar": sfx += placar.sons(s)
+            if s.get("type") == "pausa": sfx += [{"t": s["start"], "name": "impact", "gain": 0.7}, {"t": s["start"] + 0.1, "name": "heartbeat", "dur": max(0.5, s["end"] - s["start"] - 0.2)}]
             if s.get("type") in ("pensamento", "plano"): sfx += mente.sons(s)
             if s.get("type") == "pes": sfx += pes.sons(self, s)
             if s.get("type") == "regra": sfx += regra.sons(s)
@@ -789,12 +790,17 @@ class Episode:
             img.paste(part, (0 if i == 0 else W // 2 + 6, py0))
         d = ImageDraw.Draw(img)
         d.rectangle([W // 2 - 6, py0, W // 2 + 6, py1], fill=(235, 232, 225))
-        p = ease_out(c01((t - shot["start"]) / 0.4)); y = lerp(py1 + 110, py1 - 120, p)
-        d.rounded_rectangle([40, y - 64, W // 2 - 40, y + 64], 26, fill=(235, 232, 225))
-        d.rounded_rectangle([W // 2 + 40, y - 64, W - 40, y + 64], 26, fill=RED)
-        for k, (lab, x, col) in enumerate(((shot["a"]["label"], 320, (20, 20, 20)), (shot["b"]["label"], W // 2 + 320, (255, 255, 255)))):
-            text_center(d, "AB"[k], x - 210, y, font("title", 84), col)
-            text_center(d, lab, x, y, font("title", 70 if len(lab) < 9 else 54), col)
+        p = ease_out(c01((t - shot["start"]) / 0.4))
+        # modo redes: botões e chamada acima da descrição do TikTok e fora da coluna de botões da direita
+        y = lerp(py1 + 110, 1090, p) if self.redes else lerp(py1 + 110, py1 - 120, p)
+        xb1 = W - 170 if self.redes else W - 40
+        caixas = ((40, W // 2 - 20, shot["a"]["label"], (20, 20, 20), (235, 232, 225)), (W // 2 + 20, xb1, shot["b"]["label"], (255, 255, 255), RED))
+        for k, (x0, x1, lab, col, fundo) in enumerate(caixas):
+            d.rounded_rectangle([x0, y - 64, x1, y + 64], 26, fill=fundo)
+            text_center(d, "AB"[k], x0 + 54, y, font("title", 84), col)
+            lx0 = x0 + 104; larg = x1 - lx0 - 18; tam = 70
+            while tam > 30 and d.textlength(lab, font=font("title", tam)) > larg: tam -= 2
+            text_center(d, lab, (lx0 + x1 - 18) / 2, y, font("title", tam), col)
         seg = shot.get("seguir", self.spec.get("seguir", "SIGA PARA ACOMPANHAR AS HISTÓRIAS"))
         if seg:      # chamada para seguir o perfil, fixa no alto da escolha (fora da área dos botões das redes)
             ks = ease_out(c01((t - shot["start"] - 0.5) / 0.35))
@@ -809,8 +815,38 @@ class Episode:
         ec = shot.get("end_card")
         if ec and t >= ec["t"]:
             k = c01((t - ec["t"]) / 0.4)
-            d.rectangle([0, 1690, W, 1880], fill=(int(200 * k), int(40 * k), int(35 * k)))
-            text_center(d, ec["text"], W / 2, 1785, font("title", 80), tuple(int(v * k) for v in CREAM))
+            if self.redes:   # quebra na " · " e ajusta o tamanho: nunca sai da tela nem entra na área dos botões
+                linhas = [l.strip() for l in ec["text"].split("·") if l.strip()]; cx = (40 + W - 170) / 2; larg = W - 270; tam = 80
+                while tam > 34 and max(d.textlength(l, font=font("title", tam)) for l in linhas) > larg: tam -= 2
+                h = int(tam * 1.18) * len(linhas) + 44; y0 = 1190
+                d.rounded_rectangle([40, y0, W - 170, y0 + h], 28, fill=(int(200 * k), int(40 * k), int(35 * k)))
+                for n, l in enumerate(linhas):
+                    text_center(d, l, cx, y0 + 22 + int(tam * 1.18) * (n + 0.5), font("title", tam), tuple(int(v * k) for v in CREAM))
+            else:
+                d.rectangle([0, 1690, W, 1880], fill=(int(200 * k), int(40 * k), int(35 * k)))
+                text_center(d, ec["text"], W / 2, 1785, font("title", 80), tuple(int(v * k) for v in CREAM))
+        return img
+
+    def pausa_frame(self, shot, t):
+        """Pausa para seguir: congela o último quadro do plano anterior, escurece e chama para seguir o perfil."""
+        rel = t - shot["start"]; dur = max(0.1, shot["end"] - shot["start"])
+        if getattr(self, "_pausa_de", None) != shot["start"]:
+            self._pausa_quadro = self.frame_limpo(max(0.0, shot["start"] - 1.0 / self.fps)).convert("RGB"); self._pausa_de = shot["start"]
+        k = ease_out(c01(rel / 0.25)); img = Image.blend(self._pausa_quadro, Image.new("RGB", (W, H), (8, 8, 12)), 0.62 * k); d = ImageDraw.Draw(img)
+        cx, cy = 480, 760; pulso = 1 + 0.05 * math.sin(rel * 6)
+        r = 118 * pulso * k
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(240, 236, 228))
+        bw, bh = 24 * pulso * k, 70 * pulso * k
+        for sx in (-44, 20): d.rounded_rectangle([cx + sx * pulso * k, cy - bh, cx + sx * pulso * k + bw, cy + bh], 8, fill=(20, 20, 22))
+        linhas = [l for l in shot.get("texto", "SIGA PARA NÃO PERDER\nO PRÓXIMO EPISÓDIO").split("\n") if l]
+        tam = 92
+        while tam > 40 and max(d.textlength(l, font=font("title", tam)) for l in linhas) > W - 280: tam -= 2
+        ks = c01((rel - 0.2) / 0.3)
+        if ks > 0:
+            h = int(tam * 1.2) * len(linhas) + 56; y0 = 960
+            d.rounded_rectangle([50, y0, W - 170, y0 + h], 30, fill=(int(200 * ks) + 8, int(40 * ks) + 8, int(35 * ks) + 12))
+            for n, l in enumerate(linhas):
+                text_center(d, l, (50 + W - 170) / 2, y0 + 28 + int(tam * 1.2) * (n + 0.5), font("title", tam), (255, 255, 255))
         return img
 
     def draw_overlays(self, img, shot, t):
@@ -1026,6 +1062,7 @@ class Episode:
         t_anim = shot["start"] + (t - shot["start"]) * slow if slow else t
         if typ == "title": img = self.title_frame(shot, t)
         elif typ == "choice": img = self.choice_frame(shot, t)
+        elif typ == "pausa": img = self.pausa_frame(shot, t)
         elif typ == "placar": img = placar.frame(self, shot, t)
         elif typ == "pensamento": img = mente.pensamento(self, shot, t)
         elif typ == "plano": img = mente.plano(self, shot, t)

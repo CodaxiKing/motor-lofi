@@ -316,7 +316,7 @@ caixa de milho", a tela mostra a caixa de milho sendo empurrada; "uma lata... du
 
 ## Extras
 - `python3 -m lofi.extras teaser epNN.json epNN.mp4` → teaser de ~15 s para Stories (gancho + 3 melhores momentos + cartela).
-- `python3 -m lofi.extras pacote epNN.json epNN.mp4 [tempo]` → **entrega padrão**: teaser + corte curto (60–75 s) + capa do TikTok + capa do Instagram.
+- `python3 -m lofi.extras pacote epNN.json epNN.mp4 [tempo]` → **entrega padrão**: corte curto (60–75 s) + capa única para TikTok e Instagram + capa do YouTube.
 - `python3 -m lofi.extras capa epNN.json [tempo] [--tiktok|--instagram] [--guias]` → `epNN_capa_tiktok.png` e `epNN_capa_instagram.png`
   (1080×1920; usam `series_title`, `episode`, `episodes_total`, `episode_title`). Texto dentro da área segura de cada rede:
   TikTok evita o topo (~200 px), a base (~480 px, legenda e música) e a coluna direita (~150 px, botões); Instagram mantém
@@ -559,6 +559,15 @@ lugar de ninguém). O validador avisa se o episódio não tiver nenhuma das duas
 A tela de escolha A/B mostra no alto (abaixo da área dos botões das redes) o selo "SIGA PARA ACOMPANHAR AS HISTÓRIAS", que entra
 0,5 s depois do começo da escolha e fica até o fim. Troque o texto com `"seguir": "..."` no plano `choice` ou no topo do episódio;
 `"seguir": false` tira.
+
+## Pausa para seguir (padrão, antes da escolha)
+Plano `{"start": 110, "end": 113, "type": "pausa"}` logo antes da escolha: congela o último quadro do plano anterior, escurece, mostra o
+sinal de pausa e "SIGA PARA NÃO PERDER O PRÓXIMO EPISÓDIO", com impacto e batimento. A contagem 3, 2, 1 corre por cima. Troque a frase com
+`"texto": "LINHA 1\nLINHA 2"`. O verificador avisa quando falta. Não muda o som da fala: nenhum clipe pode cair dentro da pausa.
+
+## Capa única
+`python3 -m lofi.capas epNN.json --unica` gera `epNN_capa.png` (1080×1920), a mesma imagem para TikTok e Instagram: o texto fica no recorte
+4:5 do Instagram, acima da descrição do TikTok e fora da coluna de botões. `pacote` já entrega essa capa e a do YouTube.
 
 ## Formato 100% narrado
 `"narrado": true` no topo do episódio: só o narrador fala (uma voz, ex.: `"voices": {"narrador": "ep03/narrador.mp3"}`); ninguém mexe

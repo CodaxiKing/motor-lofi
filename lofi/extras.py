@@ -153,7 +153,7 @@ def capa(spec_path, t=None, out=None, plataforma="tiktok", guias=False, camera=N
 
 
 def pacote(spec_path, video, t=None):
-    """Tudo o que vai para as redes a partir do episódio pronto: corte curto + capas do TikTok, do Instagram e do
+    """Tudo o que vai para as redes a partir do episódio pronto: corte curto + capa única para TikTok e Instagram e capa do
     YouTube (lofi/capas.py; ajustes em "capa" no JSON). Sem teaser (só com `teaser`, se pedirem)."""
     from . import capas
     if t is not None:

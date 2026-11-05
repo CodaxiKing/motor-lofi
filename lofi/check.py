@@ -56,6 +56,9 @@ def check(path, frames=True):
         err(f"a fala do gancho não foi achada nas legendas: {hk0['hook']['fala']!r}")
         final = any("FIM" in json.dumps(s.get("overlay", []), ensure_ascii=False) for s in shots)
         if not any(s.get("type") == "choice" for s in shots) and not final: err("falta a escolha A/B (ou 'FIM' no último episódio)")
+        ci = next((i for i, s in enumerate(shots) if s.get("type") == "choice"), None)
+        if ci and shots[ci - 1].get("type") != "pausa" and not sp.get("legado"):
+            regra_aviso('falta a pausa para seguir antes da escolha ({"type": "pausa"}, 3 s)')
     for a, b in zip(shots, shots[1:]):
         if abs(a["end"] - b["start"]) > 0.05: err(f"buraco/sobreposição entre planos em {a['end']:.2f}s e {b['start']:.2f}s")
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
