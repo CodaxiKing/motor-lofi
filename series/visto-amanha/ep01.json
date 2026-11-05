@@ -1,7 +1,7 @@
 {
  "out": "ep01.mp4",
  "fps": 30,
- "total": 122.28,
+ "total": 121.13,
  "crf": 28,
  "series_title": "VISTO AMANHÃ",
  "episode": 1,
@@ -15,12 +15,14 @@
  ],
  "style": "desenho",
  "pergunta": {
-  "text": "VOCÊ ABRIRIA?"
+  "text": "VOCÊ ABRIRIA?",
+  "t": 95.49
  },
  "voices": {
   "lucas": "ep01/lucas.mp3",
   "clara": "ep01/clara.mp3",
-  "clara_voz": "ep01/clara.mp3"
+  "clara_voz": "ep01/clara.mp3",
+  "clara_voz2": "ep01/clara.mp3"
  },
  "speakers": {
   "clara": {
@@ -38,6 +40,14 @@
     190,
     190
    ]
+  },
+  "clara_voz2": {
+   "label": "NA PORTA",
+   "color": [
+    255,
+    190,
+    190
+   ]
   }
  },
  "hud": {
@@ -49,17 +59,22 @@
     "22:10"
    ],
    [
-    20.35,
+    10.27,
+    "DIA 0",
+    "22:13"
+   ],
+   [
+    20.55,
     "DIA 0",
     "22:17"
    ],
    [
-    43.51,
+    44.36,
     "DIA 0",
     "23:16"
    ],
    [
-    53.35,
+    54.2,
     "DIA 0",
     "23:17"
    ]
@@ -68,12 +83,22 @@
  },
  "clips": [
   {
+   "voice": "clara_voz",
+   "src": [
+    8.9,
+    9.4
+   ],
+   "at": 1.7,
+   "gancho": true,
+   "acoustic": "abafado"
+  },
+  {
    "voice": "lucas",
    "src": [
     0,
     1.3
    ],
-   "at": 2.3
+   "at": 2.5
   },
   {
    "voice": "lucas",
@@ -81,7 +106,7 @@
     1.83,
     3.06
    ],
-   "at": 3.9
+   "at": 4.1
   },
   {
    "voice": "lucas",
@@ -89,7 +114,7 @@
     3.47,
     5.32
    ],
-   "at": 5.58
+   "at": 5.78
   },
   {
    "voice": "lucas",
@@ -97,7 +122,7 @@
     5.88,
     6.6
    ],
-   "at": 8.23
+   "at": 8.43
   },
   {
    "voice": "lucas",
@@ -105,7 +130,7 @@
     6.6,
     7.22
    ],
-   "at": 8.95
+   "at": 9.15
   },
   {
    "voice": "lucas",
@@ -113,7 +138,7 @@
     7.65,
     8.95
    ],
-   "at": 10.32
+   "at": 10.52
   },
   {
    "voice": "clara",
@@ -121,7 +146,7 @@
     0,
     5.73
    ],
-   "at": 12.97,
+   "at": 13.17,
    "radio": true
   },
   {
@@ -130,7 +155,7 @@
     9.42,
     10.75
    ],
-   "at": 22.25
+   "at": 22.45
   },
   {
    "voice": "lucas",
@@ -138,7 +163,7 @@
     11.17,
     13.62
    ],
-   "at": 23.78
+   "at": 23.98
   },
   {
    "voice": "lucas",
@@ -146,7 +171,7 @@
     13.62,
     15.26
    ],
-   "at": 26.28
+   "at": 26.48
   },
   {
    "voice": "lucas",
@@ -154,7 +179,7 @@
     15.66,
     16.47
    ],
-   "at": 28.67
+   "at": 29.37
   },
   {
    "voice": "lucas",
@@ -162,7 +187,7 @@
     16.91,
     19.91
    ],
-   "at": 29.73
+   "at": 30.43
   },
   {
    "voice": "lucas",
@@ -170,7 +195,7 @@
     20.24,
     21.85
    ],
-   "at": 33.48
+   "at": 34.18
   },
   {
    "voice": "lucas",
@@ -178,7 +203,7 @@
     21.85,
     23.18
    ],
-   "at": 35.44
+   "at": 36.14
   },
   {
    "voice": "lucas",
@@ -186,7 +211,7 @@
     23.57,
     24.05
    ],
-   "at": 38.72
+   "at": 39.42
   },
   {
    "voice": "lucas",
@@ -194,15 +219,23 @@
     24.45,
     25.11
    ],
-   "at": 39.55
+   "at": 40.25
   },
   {
    "voice": "lucas",
    "src": [
     25.49,
+    26.45
+   ],
+   "at": 42.11
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    26.45,
     27.29
    ],
-   "at": 41.41
+   "at": 43.22
   },
   {
    "voice": "lucas",
@@ -210,7 +243,7 @@
     27.63,
     29.08
    ],
-   "at": 44.01
+   "at": 44.86
   },
   {
    "voice": "lucas",
@@ -218,7 +251,7 @@
     29.41,
     30.54
    ],
-   "at": 46.46
+   "at": 47.31
   },
   {
    "voice": "lucas",
@@ -226,7 +259,7 @@
     30.54,
     31.26
    ],
-   "at": 47.79
+   "at": 48.64
   },
   {
    "voice": "lucas",
@@ -234,7 +267,7 @@
     31.59,
     33.24
    ],
-   "at": 49.21
+   "at": 50.06
   },
   {
    "voice": "lucas",
@@ -242,7 +275,7 @@
     33.6,
     34.69
    ],
-   "at": 51.26
+   "at": 52.11
   },
   {
    "voice": "lucas",
@@ -250,7 +283,7 @@
     35.06,
     35.87
    ],
-   "at": 55.05
+   "at": 55.9
   },
   {
    "voice": "lucas",
@@ -258,7 +291,7 @@
     36.28,
     36.82
    ],
-   "at": 56.11
+   "at": 56.96
   },
   {
    "voice": "lucas",
@@ -266,7 +299,7 @@
     37.18,
     38.23
    ],
-   "at": 61.65
+   "at": 62.5
   },
   {
    "voice": "clara_voz",
@@ -274,7 +307,7 @@
     6.2,
     7.6
    ],
-   "at": 65.1,
+   "at": 65.95,
    "acoustic": "abafado"
   },
   {
@@ -283,7 +316,7 @@
     8.9,
     9.4
    ],
-   "at": 66.85,
+   "at": 67.7,
    "acoustic": "abafado"
   },
   {
@@ -292,7 +325,7 @@
     38.63,
     38.9
    ],
-   "at": 69.25
+   "at": 70.1
   },
   {
    "voice": "lucas",
@@ -300,7 +333,7 @@
     39.24,
     40.37
    ],
-   "at": 70.72
+   "at": 71.57
   },
   {
    "voice": "lucas",
@@ -308,7 +341,7 @@
     40.7,
     41.32
    ],
-   "at": 73.05
+   "at": 73.9
   },
   {
    "voice": "clara_voz",
@@ -316,7 +349,7 @@
     9.72,
     13.24
    ],
-   "at": 76.07,
+   "at": 76.92,
    "acoustic": "abafado"
   },
   {
@@ -325,7 +358,7 @@
     41.63,
     43.49
    ],
-   "at": 80.19
+   "at": 81.04
   },
   {
    "voice": "lucas",
@@ -333,7 +366,7 @@
     43.8,
     45.08
    ],
-   "at": 82.95
+   "at": 83.8
   },
   {
    "voice": "lucas",
@@ -341,7 +374,7 @@
     45.52,
     46.08
    ],
-   "at": 86.83
+   "at": 87.68
   },
   {
    "voice": "lucas",
@@ -349,7 +382,7 @@
     46.46,
     46.74
    ],
-   "at": 88.69
+   "at": 89.54
   },
   {
    "voice": "lucas",
@@ -357,24 +390,24 @@
     47.11,
     48.03
    ],
-   "at": 89.27
+   "at": 90.12
   },
   {
-   "voice": "clara_voz",
+   "voice": "clara_voz2",
    "src": [
     6.2,
     7.6
    ],
-   "at": 91.49,
+   "at": 92.34,
    "acoustic": "abafado"
   },
   {
-   "voice": "clara_voz",
+   "voice": "clara_voz2",
    "src": [
     8.9,
     9.4
    ],
-   "at": 93.24,
+   "at": 94.09,
    "acoustic": "abafado"
   },
   {
@@ -383,7 +416,7 @@
     48.37,
     50.78
    ],
-   "at": 94.84
+   "at": 95.69
   },
   {
    "voice": "lucas",
@@ -391,7 +424,7 @@
     51.09,
     51.9
    ],
-   "at": 98.05
+   "at": 98.9
   },
   {
    "voice": "lucas",
@@ -399,7 +432,7 @@
     52.21,
     54.74
    ],
-   "at": 101.76
+   "at": 102.61
   },
   {
    "voice": "lucas",
@@ -407,7 +440,7 @@
     55.1,
     56.95
    ],
-   "at": 104.99
+   "at": 105.84
   },
   {
    "voice": "lucas",
@@ -415,7 +448,7 @@
     57.26,
     58.96
    ],
-   "at": 107.54
+   "at": 108.39
   },
   {
    "voice": "lucas",
@@ -423,7 +456,7 @@
     59.28,
     60.92
    ],
-   "at": 110.14
+   "at": 110.99
   }
  ],
  "subs": [
@@ -608,10 +641,20 @@
    "voice": "lucas",
    "src": [
     25.49,
+    26.45
+   ],
+   "text": [
+    "EU LIGO",
+    "DE *VOLTA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    26.45,
     27.29
    ],
    "text": [
-    "EU LIGO DE VOLTA",
     "CHAMA ATÉ *CAIR*"
    ]
   },
@@ -821,7 +864,7 @@
    ]
   },
   {
-   "voice": "clara_voz",
+   "voice": "clara_voz2",
    "src": [
     6.2,
     7.6
@@ -831,7 +874,7 @@
    ]
   },
   {
-   "voice": "clara_voz",
+   "voice": "clara_voz2",
    "src": [
     8.9,
     9.4
@@ -930,7 +973,7 @@
     "hora": "23:17"
    },
    "start": 0,
-   "end": 2.1,
+   "end": 2.3,
    "hook": {
     "text": "NÃO ABRE\nA PORTA",
     "fala": {
@@ -966,8 +1009,8 @@
     }
    ],
    "transition": "glitch",
-   "start": 2.1,
-   "end": 3.8
+   "start": 2.3,
+   "end": 4.0
   },
   {
    "type": "detail",
@@ -989,8 +1032,8 @@
      235
     ]
    },
-   "start": 3.8,
-   "end": 5.33,
+   "start": 4.0,
+   "end": 5.53,
    "transition": "cut"
   },
   {
@@ -1007,7 +1050,8 @@
     {
      "char": "lucas",
      "mark": "sofa",
-     "pose": "sit",
+     "dx": -240,
+     "dy": 60,
      "view": "front",
      "emotion": [
       [
@@ -1023,8 +1067,8 @@
     }
    ],
    "transition": "cut",
-   "start": 5.33,
-   "end": 7.93
+   "start": 5.53,
+   "end": 8.13
   },
   {
    "cenario": {
@@ -1042,7 +1086,7 @@
     {
      "char": "clara",
      "mark": "centro",
-     "dx": -130,
+     "dx": -70,
      "view": "3q",
      "facing": 1,
      "emotion": "happy",
@@ -1052,7 +1096,7 @@
     {
      "char": "lucas",
      "mark": "centro",
-     "dx": 130,
+     "dx": 70,
      "view": "3q",
      "facing": -1,
      "emotion": "happy",
@@ -1061,8 +1105,8 @@
     }
    ],
    "transition": "fade",
-   "start": 7.93,
-   "end": 8.95
+   "start": 8.13,
+   "end": 9.15
   },
   {
    "cenario": {
@@ -1088,8 +1132,8 @@
     }
    ],
    "transition": "flash",
-   "start": 8.95,
-   "end": 10.07
+   "start": 9.15,
+   "end": 10.27
   },
   {
    "type": "detail",
@@ -1113,8 +1157,8 @@
      "Recarga do plano: paga"
     ]
    },
-   "start": 10.07,
-   "end": 11.92,
+   "start": 10.27,
+   "end": 12.12,
    "transition": "cut"
   },
   {
@@ -1136,8 +1180,8 @@
      170
     ]
    },
-   "start": 11.92,
-   "end": 12.82,
+   "start": 12.12,
+   "end": 13.02,
    "transition": "cut"
   },
   {
@@ -1164,8 +1208,8 @@
     }
    ],
    "transition": "fade",
-   "start": 12.82,
-   "end": 18.85
+   "start": 13.02,
+   "end": 19.05
   },
   {
    "scene": "apartamento",
@@ -1193,8 +1237,8 @@
     }
    ],
    "transition": "cut",
-   "start": 18.85,
-   "end": 20.35
+   "start": 19.05,
+   "end": 20.55
   },
   {
    "type": "detail",
@@ -1211,8 +1255,8 @@
     },
     "hora": "22:17"
    },
-   "start": 20.35,
-   "end": 22.15,
+   "start": 20.55,
+   "end": 22.35,
    "transition": "cut"
   },
   {
@@ -1235,8 +1279,8 @@
     },
     "hora": "22:17"
    },
-   "start": 22.15,
-   "end": 23.68,
+   "start": 22.35,
+   "end": 23.88,
    "transition": "cut"
   },
   {
@@ -1254,29 +1298,54 @@
        "t": 0,
        "type_dur": 2.0
       }
-     ]
+     ],
+     "visto": "toque para ver"
     },
     "hora": "22:17"
    },
-   "start": 23.68,
-   "end": 26.23,
+   "start": 23.88,
+   "end": 26.43,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Daqui a 8 dias você vai fazer a pior coisa da sua vida.",
+       "t": 0
+      }
+     ],
+     "visto": "toque para ver"
+    },
+    "hora": "22:17"
+   },
+   "start": 26.43,
+   "end": 28.22,
    "transition": "cut"
   },
   {
    "type": "detail",
    "subject": "olho",
    "hand": "lucas",
+   "grade": "frio",
    "params": {
     "pupil": [
      0.45,
-     0.85
+     0.9
     ],
     "brow": -12,
     "reflect": true
    },
    "transition": "cut",
-   "start": 26.23,
-   "end": 28.52
+   "start": 28.22,
+   "end": 29.22
   },
   {
    "type": "detail",
@@ -1292,12 +1361,13 @@
        "txt": "Daqui a 8 dias você vai fazer a pior coisa da sua vida.",
        "t": 0
       }
-     ]
+     ],
+     "visto": "toque para ver"
     },
     "hora": "22:17"
    },
-   "start": 28.52,
-   "end": 29.58,
+   "start": 29.22,
+   "end": 30.28,
    "transition": "cut"
   },
   {
@@ -1319,8 +1389,8 @@
     },
     "hora": "22:17"
    },
-   "start": 29.58,
-   "end": 33.23,
+   "start": 30.28,
+   "end": 33.93,
    "transition": "cut"
   },
   {
@@ -1336,15 +1406,16 @@
     {
      "char": "lucas",
      "mark": "sofa",
-     "pose": "pensativo",
+     "pose": "sit",
+     "prop": "phone",
      "view": "3q",
      "facing": -1,
      "emotion": "suspicious"
     }
    ],
    "transition": "cut",
-   "start": 33.23,
-   "end": 35.29
+   "start": 33.93,
+   "end": 35.99
   },
   {
    "type": "detail",
@@ -1371,8 +1442,8 @@
     },
     "hora": "22:17"
    },
-   "start": 35.29,
-   "end": 36.87,
+   "start": 35.99,
+   "end": 37.57,
    "transition": "cut"
   },
   {
@@ -1398,8 +1469,8 @@
     },
     "hora": "22:17"
    },
-   "start": 36.87,
-   "end": 38.57,
+   "start": 37.57,
+   "end": 39.27,
    "transition": "cut"
   },
   {
@@ -1429,34 +1500,55 @@
     },
     "hora": "22:17"
    },
-   "start": 38.57,
-   "end": 41.11,
+   "start": 39.27,
+   "end": 41.81,
    "transition": "cut"
   },
   {
-   "scene": "apartamento",
-   "dark": 0.35,
-   "props": {
-    "tv": "static"
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
    },
-   "camera": {
-    "plano": "medio",
-    "cortes": false
+   "type": "detail",
+   "subject": "celular",
+   "params": {
+    "hora": "22:18",
+    "text": [
+     "CHAMANDO...",
+     "Número desconhecido"
+    ],
+    "color": [
+     240,
+     240,
+     235
+    ]
    },
-   "actors": [
-    {
-     "char": "lucas",
-     "mark": "sofa",
-     "pose": "phone",
-     "prop": "phone",
-     "view": "3q",
-     "facing": -1,
-     "emotion": "fear"
-    }
-   ],
-   "transition": "cut",
-   "start": 41.11,
-   "end": 43.51
+   "start": 41.81,
+   "end": 43.17,
+   "transition": "cut"
+  },
+  {
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "type": "detail",
+   "subject": "celular",
+   "params": {
+    "hora": "22:19",
+    "text": [
+     "CHAMADA",
+     "ENCERRADA"
+    ],
+    "color": [
+     255,
+     120,
+     110
+    ]
+   },
+   "start": 43.17,
+   "end": 44.36,
+   "transition": "cut"
   },
   {
    "scene": "apartamento",
@@ -1474,8 +1566,8 @@
      "type": "text",
      "text": "UMA HORA DEPOIS",
      "t": [
-      0.1,
-      2.0
+      44.46,
+      46.36
      ]
     }
    ],
@@ -1490,8 +1582,8 @@
     }
    ],
    "transition": "fade",
-   "start": 43.51,
-   "end": 45.86
+   "start": 44.36,
+   "end": 46.71
   },
   {
    "dark": 0.42,
@@ -1541,8 +1633,8 @@
     }
    ],
    "transition": "whip",
-   "start": 45.86,
-   "end": 47.69
+   "start": 46.71,
+   "end": 48.54
   },
   {
    "dark": 0.42,
@@ -1586,8 +1678,8 @@
     }
    ],
    "transition": "cut",
-   "start": 47.69,
-   "end": 49.11
+   "start": 48.54,
+   "end": 49.96
   },
   {
    "dark": 0.42,
@@ -1613,19 +1705,10 @@
     "cy": 0.42,
     "cortes": false
    },
-   "actors": [
-    {
-     "char": "lucas",
-     "mark": "geladeira",
-     "dx": -90,
-     "view": "back",
-     "emotion": "suspicious",
-     "lipsync": false
-    }
-   ],
+   "actors": [],
    "transition": "cut",
-   "start": 49.11,
-   "end": 51.06
+   "start": 49.96,
+   "end": 51.91
   },
   {
    "type": "detail",
@@ -1638,8 +1721,8 @@
    },
    "transition": "zoom",
    "grade": "frio",
-   "start": 51.06,
-   "end": 53.35
+   "start": 51.91,
+   "end": 54.2
   },
   {
    "type": "detail",
@@ -1659,8 +1742,8 @@
     },
     "hora": "23:17"
    },
-   "start": 53.35,
-   "end": 56.01,
+   "start": 54.2,
+   "end": 56.86,
    "transition": "cut"
   },
   {
@@ -1693,8 +1776,8 @@
     }
    ],
    "transition": "cut",
-   "start": 56.01,
-   "end": 57.15
+   "start": 56.86,
+   "end": 58.0
   },
   {
    "scene": "entrada",
@@ -1736,8 +1819,8 @@
      "prop": "phone"
     }
    ],
-   "start": 57.15,
-   "end": 59.15
+   "start": 58.0,
+   "end": 60.0
   },
   {
    "scene": "entrada",
@@ -1781,12 +1864,12 @@
     }
    ],
    "transition": "cut",
-   "start": 59.15,
-   "end": 61.45
+   "start": 60.0,
+   "end": 62.3
   },
   {
    "cenario": {
-    "close": "telefone",
+    "close": "interfone",
     "superficie": "parede",
     "ambiente": "sala_estar"
    },
@@ -1796,8 +1879,8 @@
     "cortes": false
    },
    "transition": "cut",
-   "start": 61.45,
-   "end": 63.0
+   "start": 62.3,
+   "end": 63.85
   },
   {
    "scene": "entrada",
@@ -1829,8 +1912,8 @@
     }
    ],
    "transition": "cut",
-   "start": 63.0,
-   "end": 64.3
+   "start": 63.85,
+   "end": 65.15
   },
   {
    "scene": "entrada",
@@ -1849,8 +1932,8 @@
    },
    "actors": [],
    "transition": "cut",
-   "start": 64.3,
-   "end": 67.85
+   "start": 65.15,
+   "end": 68.7
   },
   {
    "scene": "entrada",
@@ -1884,25 +1967,40 @@
     }
    ],
    "transition": "flash",
-   "start": 67.85,
-   "end": 70.42
+   "start": 68.7,
+   "end": 71.27
   },
   {
-   "type": "detail",
-   "subject": "olho",
-   "hand": "lucas",
-   "params": {
-    "pupil": [
-     0.8,
-     0.5
-    ],
-    "brow": -8,
-    "look": 0.0
+   "scene": "entrada",
+   "dark": 0.42,
+   "props": {
+    "under_door_light": 1
    },
+   "lights": [
+    [
+     690,
+     1080,
+     430
+    ]
+   ],
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "porta",
+     "dx": -110,
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear",
+     "pose": "espiar_longe"
+    }
+   ],
    "transition": "cut",
-   "dark": 0.4,
-   "start": 70.42,
-   "end": 72.05
+   "start": 71.27,
+   "end": 72.9
   },
   {
    "scene": "corredor",
@@ -1920,8 +2018,8 @@
    },
    "actors": [],
    "transition": "zoom",
-   "start": 72.05,
-   "end": 75.67
+   "start": 72.9,
+   "end": 76.52
   },
   {
    "cenario": {
@@ -1940,8 +2038,8 @@
      "type": "text",
      "text": "R$ 5,00",
      "t": [
-      0.6,
-      3.6
+      77.12,
+      80.12
      ]
     }
    ],
@@ -1968,8 +2066,8 @@
     }
    ],
    "transition": "fade",
-   "start": 75.67,
-   "end": 79.89
+   "start": 76.52,
+   "end": 80.74
   },
   {
    "scene": "entrada",
@@ -1998,8 +2096,8 @@
     }
    ],
    "transition": "cut",
-   "start": 79.89,
-   "end": 82.45
+   "start": 80.74,
+   "end": 83.3
   },
   {
    "type": "detail",
@@ -2008,13 +2106,13 @@
    "params": {
     "turn": [
      0,
-     0.45
+     28
     ],
     "light": 0.5
    },
    "transition": "cut",
-   "start": 82.45,
-   "end": 85.13
+   "start": 83.3,
+   "end": 85.98
   },
   {
    "type": "detail",
@@ -2038,8 +2136,8 @@
     },
     "hora": "23:17"
    },
-   "start": 85.13,
-   "end": 88.39,
+   "start": 85.98,
+   "end": 89.24,
    "transition": "cut"
   },
   {
@@ -2063,6 +2161,7 @@
     {
      "char": "lucas",
      "mark": "porta",
+     "dx": 70,
      "view": "3q",
      "facing": -1,
      "emotion": "fear",
@@ -2070,8 +2169,8 @@
     }
    ],
    "transition": "cut",
-   "start": 88.39,
-   "end": 91.29
+   "start": 89.24,
+   "end": 92.14
   },
   {
    "scene": "entrada",
@@ -2103,8 +2202,8 @@
    },
    "actors": [],
    "transition": "cut",
-   "start": 91.29,
-   "end": 94.64
+   "start": 92.14,
+   "end": 95.49
   },
   {
    "scene": "entrada",
@@ -2144,15 +2243,14 @@
     }
    ],
    "transition": "cut",
-   "start": 94.64,
-   "end": 97.55
+   "start": 95.49,
+   "end": 98.4
   },
   {
    "type": "pensamento",
    "quem": "lucas",
    "emotion": "fear",
    "estilo": "medo",
-   "texto": "ELA NÃO RESPONDEU",
    "cena": {
     "scene": "corredor",
     "actors": []
@@ -2161,8 +2259,8 @@
     "scene": "entrada"
    },
    "transition": "cut",
-   "start": 97.55,
-   "end": 100.06
+   "start": 98.4,
+   "end": 100.91
   },
   {
    "type": "detail",
@@ -2190,8 +2288,8 @@
     },
     "hora": "23:17"
    },
-   "start": 100.06,
-   "end": 104.59,
+   "start": 100.91,
+   "end": 105.44,
    "transition": "cut"
   },
   {
@@ -2199,7 +2297,6 @@
    "quem": "lucas",
    "emotion": "sad",
    "estilo": "memoria",
-   "texto": "SE FOR ELA",
    "cena": {
     "cenario": {
      "base": "cozinha",
@@ -2219,23 +2316,22 @@
     "scene": "entrada"
    },
    "transition": "cut",
-   "start": 104.59,
-   "end": 107.24
+   "start": 105.44,
+   "end": 108.09
   },
   {
    "type": "pensamento",
    "quem": "lucas",
    "emotion": "fear",
    "estilo": "medo",
-   "texto": "E SE NÃO FOR?",
    "cena": {
     "scene": "corredor",
-    "dark": 0.5,
+    "dark": 0.75,
     "actors": [
      {
       "char": "amanha",
-      "mark": "meio",
-      "view": "front",
+      "mark": "fundo",
+      "view": "back",
       "emotion": "neutral",
       "lipsync": false
      }
@@ -2245,8 +2341,8 @@
     "scene": "entrada"
    },
    "transition": "cut",
-   "start": 107.24,
-   "end": 109.84
+   "start": 108.09,
+   "end": 110.69
   },
   {
    "scene": "entrada",
@@ -2281,25 +2377,32 @@
     }
    ],
    "transition": "cut",
-   "start": 109.84,
-   "end": 112.28
+   "start": 110.69,
+   "end": 113.13
   },
   {
    "type": "choice",
    "hud": false,
-   "start": 112.28,
-   "end": 122.28,
+   "start": 113.13,
+   "end": 121.13,
    "a": {
     "label": "ABRIR A PORTA",
     "scene": "entrada",
     "props": {
      "under_door_light": 0
     },
-    "dark": 0.35,
+    "dark": 0.3,
+    "camera": {
+     "zoom": 1.3,
+     "cx": 0.6,
+     "cy": 0.72
+    },
+    "crop_x": 170,
     "actors": [
      {
       "char": "lucas",
       "mark": "porta",
+      "dx": -70,
       "view": "back",
       "pose": "reach",
       "emotion": "fear",
@@ -2313,13 +2416,16 @@
     "props": {
      "under_door_light": 0
     },
-    "dark": 0.35,
+    "dark": 0.3,
+    "camera": {
+     "plano": "medio"
+    },
+    "crop_x": 260,
     "actors": [
      {
       "char": "lucas",
       "mark": "frente_porta",
       "view": "front",
-      "pose": "phone",
       "prop": "phone",
       "emotion": "fear",
       "lipsync": false
@@ -2327,276 +2433,285 @@
     ]
    },
    "end_card": {
-    "t": 119.78,
-    "text": "CONTINUA NO EPISÓDIO 2"
+    "t": 116.63,
+    "text": "COMENTA A OU B · CONTINUA NO EPISÓDIO 2"
    }
   }
  ],
  "sfx": [
   {
    "t": 0.0,
-   "name": "vibe"
-  },
-  {
-   "t": 1.6,
-   "name": "knock",
+   "name": "vibe",
    "onda": false
   },
   {
-   "t": 2.2,
+   "t": 2.4,
    "name": "click"
   },
   {
-   "t": 4.1,
+   "t": 4.3,
    "name": "click"
   },
   {
-   "t": 8.95,
+   "t": 9.15,
    "name": "whoosh"
   },
   {
-   "t": 10.17,
+   "t": 10.37,
    "name": "click"
   },
   {
-   "t": 11.92,
-   "name": "beep"
+   "t": 12.12,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 12.42,
-   "name": "beep"
+   "t": 12.62,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 18.77,
-   "name": "beep"
+   "t": 18.97,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 19.05,
+   "t": 19.25,
    "name": "breath"
   },
   {
-   "t": 20.35,
+   "t": 20.55,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 20.85,
+   "t": 21.05,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 21.85,
+   "t": 22.05,
    "name": "notif",
    "onda": false
   },
   {
-   "t": 27.83,
+   "t": 28.27,
    "name": "heartbeat",
-   "dur": 1.2
+   "dur": 1.0
   },
   {
-   "t": 28.82,
+   "t": 29.52,
    "name": "click"
   },
   {
-   "t": 35.49,
+   "t": 36.19,
    "name": "click"
   },
   {
-   "t": 35.99,
+   "t": 36.69,
    "name": "click"
   },
   {
-   "t": 36.39,
+   "t": 37.09,
    "name": "click"
   },
   {
-   "t": 36.97,
-   "name": "vibe"
+   "t": 37.67,
+   "name": "vibe",
+   "onda": false
   },
   {
-   "t": 37.47,
-   "name": "vibe"
+   "t": 38.17,
+   "name": "vibe",
+   "onda": false
   },
   {
-   "t": 38.42,
-   "name": "notif"
+   "t": 39.12,
+   "name": "notif",
+   "onda": false
   },
   {
-   "t": 39.97,
+   "t": 40.67,
    "name": "heartbeat",
    "dur": 1.4
   },
   {
-   "t": 41.41,
-   "name": "beep"
+   "t": 42.11,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 42.21,
-   "name": "beep"
+   "t": 42.71,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 43.01,
-   "name": "beep"
+   "t": 43.27,
+   "name": "beep",
+   "onda": false
   },
   {
-   "t": 46.06,
+   "t": 43.87,
+   "name": "click"
+  },
+  {
+   "t": 46.91,
    "name": "step"
   },
   {
-   "t": 46.66,
+   "t": 47.51,
    "name": "step"
   },
   {
-   "t": 47.26,
+   "t": 48.11,
    "name": "step"
   },
   {
-   "t": 47.79,
+   "t": 48.64,
    "name": "click"
   },
   {
-   "t": 48.09,
+   "t": 48.94,
    "name": "click"
   },
   {
-   "t": 48.49,
+   "t": 49.34,
    "name": "click"
   },
   {
-   "t": 51.16,
+   "t": 52.01,
    "name": "click"
   },
   {
-   "t": 52.66,
+   "t": 53.51,
    "name": "click"
   },
   {
-   "t": 53.35,
+   "t": 54.2,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 53.85,
+   "t": 54.7,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 54.85,
+   "t": 55.7,
    "name": "notif",
    "onda": false
   },
   {
-   "t": 57.35,
+   "t": 58.2,
    "name": "step"
   },
   {
-   "t": 57.95,
+   "t": 58.8,
    "name": "step"
   },
   {
-   "t": 58.55,
+   "t": 59.4,
    "name": "step"
   },
   {
-   "t": 60.15,
+   "t": 61.0,
    "name": "knock"
   },
   {
-   "t": 60.65,
+   "t": 61.5,
    "name": "knock"
   },
   {
-   "t": 61.15,
+   "t": 62.0,
    "name": "knock"
   },
   {
-   "t": 63.1,
+   "t": 63.95,
    "name": "breath"
   },
   {
-   "t": 67.95,
+   "t": 68.8,
    "name": "heartbeat",
    "dur": 2.2
   },
   {
-   "t": 70.62,
+   "t": 71.47,
    "name": "step"
   },
   {
-   "t": 72.15,
+   "t": 73.0,
    "name": "breath"
   },
   {
-   "t": 82.95,
+   "t": 83.8,
    "name": "click"
   },
   {
-   "t": 85.13,
+   "t": 85.98,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 85.63,
+   "t": 86.48,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 86.63,
+   "t": 87.48,
    "name": "notif",
    "onda": false
   },
   {
-   "t": 87.73,
+   "t": 88.58,
    "name": "heartbeat",
    "dur": 1.2
   },
   {
-   "t": 94.09,
+   "t": 94.94,
    "name": "click"
   },
   {
-   "t": 94.94,
+   "t": 95.79,
    "name": "step"
   },
   {
-   "t": 100.06,
+   "t": 100.91,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 100.56,
+   "t": 101.41,
    "name": "vibe",
    "onda": false
   },
   {
-   "t": 101.56,
+   "t": 102.41,
    "name": "notif",
    "onda": false
   },
   {
-   "t": 107.54,
+   "t": 108.39,
    "name": "growl",
    "gain": 0.25
   },
   {
-   "t": 111.84,
+   "t": 112.69,
    "name": "knock",
    "gain": 0.8
   },
   {
-   "t": 112.28,
+   "t": 113.13,
    "name": "vibe"
   },
   {
-   "t": 115.28,
+   "t": 116.13,
    "name": "stamp"
   }
  ],
  "music": [
   {
    "start": 2,
-   "end": 20.35,
+   "end": 20.55,
    "gain": [
     0.03,
     0.05
@@ -2604,8 +2719,8 @@
    "tense": 0.3
   },
   {
-   "start": 20.35,
-   "end": 53.35,
+   "start": 20.55,
+   "end": 54.2,
    "gain": [
     0.04,
     0.08
@@ -2613,8 +2728,8 @@
    "tense": 0.6
   },
   {
-   "start": 53.35,
-   "end": 112.28000000000003,
+   "start": 54.2,
+   "end": 113.13000000000002,
    "gain": [
     0.05,
     0.11

@@ -881,6 +881,15 @@ def _mural(p, o):
         p.rect(x, y, x + 12, y + 14, fill=c); p.ell(x + 6, y + 13, 1.2, 1.2, fill=(200, 40, 40))
 
 
+@movel("interfone", "parede", 22, 34, ("interfone", "porteiro eletrônico"))
+def _interfone(p, o):
+    p.rect(-11, 0, 11, 34, fill=(216, 212, 200)); p.rect(-9, 2, 9, 32, fill=(232, 228, 216))
+    p.rect(-7, 22, -3, 30, fill=(70, 72, 78)); p.rect(3, 22, 7, 30, fill=(70, 72, 78)); p.rect(-7, 26, 7, 30, fill=(70, 72, 78))
+    for k in range(3):
+        for c in range(3): p.ell(-5 + c * 5, 7 + k * 5, 1.3, 1.3, fill=(112, 114, 120))
+    if o.get("aceso"): p.ell(7, 18, 1.2, 1.2, fill=(255, 60, 40))
+
+
 @movel("quadro_energia", "parede", 40, 55, ("quadro de luz", "disjuntor", "quadro de energia", "relógio de luz", "fusível"))
 def _qenergia(p, o):
     p.rect(-20, 0, 20, 55, fill=(150, 156, 160)); p.rect(-16, 4, 16, 51, fill=(70, 74, 80))
