@@ -187,7 +187,7 @@ def _serie(caminho):
 
 
 def existentes(pasta):
-    return {os.path.splitext(os.path.basename(f))[0] for f in glob.glob(os.path.join(pasta, PASTA, "*.png"))}
+    return {os.path.splitext(os.path.relpath(f, os.path.join(pasta, PASTA)))[0].replace("\\", "/") for f in glob.glob(os.path.join(pasta, PASTA, "**", "*.png"), recursive=True)}
 
 
 # ---------------------------------------------------------------- prompts
@@ -367,6 +367,8 @@ POS = {"esq": 0.28, "esquerda": 0.28, "centro": 0.5, "meio": 0.5, "dir": 0.72, "
 def quadro(shot, t, pasta_serie, size, nivel=None):
     """Desenha o plano `"imagens": {...}` no tempo t (segundos do episódio). nivel(voz, t) -> 0..1 faz quem fala se mexer."""
     W_, H_ = size; cfg = shot["imagens"]; rel = max(0.0, t - shot["start"])
+    if cfg.get('pasta_biblioteca'):
+        pasta_serie = os.path.normpath(os.path.join(pasta_serie, cfg['pasta_biblioteca']))
     dur = max(1e-3, shot["end"] - shot["start"]); u = min(1.0, rel / dur)
     largo = W_ > H_
     canvas = Image.new("RGB", size, (8, 8, 12))
@@ -384,17 +386,29 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
         layers.append((fundo, (W_ - fundo.width * s) / 2, (H_ - fundo.height * s) * fy, s, 0.3))
     alt_pad = 0.80 if largo else (0.52 if len(pessoas) > 1 else 0.60)
     for k, p in enumerate(pessoas):
-        im = carregar(pasta_serie, p["img"])
-        pisc = p.get("piscar", p["img"] + "_piscando")              # olhos fechados por 0,12 s a cada ~3,6 s
-        periodo = 3.6 + (k * 0.7)
+        from .core import keyframe
+        nome_img = keyframe(p.get('poses'), rel) if p.get('poses') else p['img']
+        nome_render = nome_img
+        im = carregar(pasta_serie, nome_img)
+        olhar = p.get('olhares', {}).get(nome_img)
+        if olhar:
+            variante = carregar(pasta_serie, olhar)
+            # Dissolve suave entre recortes completos; não deforma o rosto.
+            if variante.size != im.size: raise ValueError('Microposes precisam do mesmo canvas')
+            peso = .5 - .5 * math.cos(2 * math.pi * rel / 8)
+            im = Image.blend(im, variante, peso)
+        pisc = p.get("piscadas", {}).get(nome_img, p.get("piscar", nome_img + "_piscando"))              # olhos fechados por 0,12 s a cada ~3,6 s
+        periodo = max(.3, float(p.get("periodo_piscar", 3.6 + k * .7)))
         piscou = pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png"))
         if piscou:
             im = carregar(pasta_serie, pisc)
+            nome_render = pisc
         # boca: com a voz alta, troca pela variante de boca aberta (<img>_falando), se existir
-        boca = p.get("boca", p["img"] + "_falando")
+        boca = p.get('bocas', {}).get(nome_img, p.get("boca", nome_img + "_falando"))
         if (not piscou and nivel and p.get("fala") and boca and nivel(p["fala"], t) > 0.35
                 and os.path.exists(os.path.join(pasta_serie, PASTA, boca + ".png"))):
             im = carregar(pasta_serie, boca)
+            nome_render = boca
         if p.get("espelhar"): im = im.transpose(Image.FLIP_LEFT_RIGHT)
         pos = p.get("pos", "centro"); fx = POS.get(pos, pos if isinstance(pos, (int, float)) else 0.5)
         if p.get("andar"):                                           # atravessa a cena: [de, até] (esq/centro/dir ou 0–1)
@@ -404,13 +418,16 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
         alt = p.get("altura", alt_pad) * H_
         s = alt / im.height
         dy = 0.0
-        respiro = math.sin(2 * math.pi * rel * 0.22 + k) * H_ * 0.0025
+        respiro = math.sin(2 * math.pi * rel * 0.22 + k) * H_ * 0.0025 * p.get("respirar", 1.0)
         if p.get("andar"): respiro = -abs(math.sin(rel * 8)) * H_ * 0.006                   # passo: sobe e desce
         if nivel and p.get("fala"):
             n = max(0.0, min(1.0, nivel(p["fala"], t)))
             dy -= n * H_ * 0.006; s *= 1 + 0.012 * n
         chao = p.get("chao", 0.97 if largo else 0.93)
-        x = fx * W_ - im.width * s / 2; y = chao * H_ - im.height * s + dy + respiro
+        ancora = p.get('ancoras', {}).get(nome_render, p.get('ancora', [0.5, 1.0]))
+        fx += math.sin(rel * 1.1 + k) * .002 * p.get("balanco_corpo", 0)
+        x = fx * W_ - im.width * s * ancora[0]
+        y = chao * H_ - im.height * s * ancora[1] + dy + respiro
         layers.append((im, x, y, s, 1.0))
     def _obj(o, prof):
         im = carregar(pasta_serie, o["img"]); s = o.get("altura", 0.2) * H_ / im.height
@@ -444,13 +461,24 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
 
 def faltam(spec_path):
     sp = json.load(open(spec_path, encoding="utf-8")); pasta = os.path.dirname(os.path.abspath(spec_path))
-    ja = existentes(pasta); falta = []
+    falta = []
     for s in sp.get("shots", []):
         cfg = s.get("imagens")
         if not cfg: continue
-        nomes = [p["img"] for p in cfg.get("personagens", [])] + [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", [])]
+        base = os.path.normpath(os.path.join(pasta, cfg.get('pasta_biblioteca', '.')))
+        ja = existentes(base)
+        nomes = []
+        for p in cfg.get('personagens', []):
+            nomes.append(p['img'])
+            nomes.extend(nome for _, nome in p.get('poses', []))
+            # Variantes explícitas são necessárias; as automáticas continuam opcionais.
+            nomes.extend(p[campo] for campo in ('boca', 'piscar') if p.get(campo))
+            nomes.extend(p.get('bocas', {}).values())
+            nomes.extend(p.get('piscadas', {}).values())
+            nomes.extend(p.get('olhares', {}).values())
+        nomes += [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", [])]
         if cfg.get("fundo"): nomes.append(cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
-        falta += [(s["start"], n) for n in nomes if n not in ja]
+        falta += [(s["start"], n) for n in dict.fromkeys(nomes) if n not in ja]
     return falta
 
 

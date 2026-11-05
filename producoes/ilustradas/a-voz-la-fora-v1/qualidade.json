@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "shots": 10,
+  "duration": 90,
+  "findings": [
+    {
+      "severity": "info",
+      "code": "image_generation_unavailable",
+      "message": "image_generation: requer ferramenta externa opcional"
+    },
+    {
+      "severity": "info",
+      "code": "speech_generation_unavailable",
+      "message": "speech_generation: requer ferramenta externa opcional"
+    },
+    {
+      "severity": "warning",
+      "code": "no_voices",
+      "message": "Narração não associada; não declarar áudio pronto"
+    },
+    {
+      "severity": "warning",
+      "code": "no_subtitles",
+      "message": "Legendas não sincronizadas"
+    }
+  ],
+  "dramaturgy": {
+    "method": "declaracoes_editoriais_requerem_revisao",
+    "findings": [],
+    "criteria": {
+      "causalidade": "documentado",
+      "conflito_pessoal": "documentado",
+      "dialogo_intencional": "nao_se_aplica",
+      "revelacao_preparada": "documentado",
+      "escolha_dificil": "documentado",
+      "entrega_episodio": "documentado"
+    },
+    "ok": true
+  },
+  "rendered_video": false,
+  "notes": "Relatório estático; não comprova renderização, voz ou sincronização."
+}

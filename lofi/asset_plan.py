@@ -5,6 +5,12 @@ from pathlib import Path
 def build_asset_manifest(episode):
     if not isinstance(episode, dict):
         raise TypeError('episode deve ser dict')
+    if episode.get('character_rendering') == 'illustrated_library':
+        return {'render_mode': 'illustrated_library', 'status': 'existing_library_assets',
+                'shots': [{'shot': i+1, 'library': shot['imagens'].get('pasta_biblioteca'),
+                           'background': shot['imagens'].get('fundo'),
+                           'characters': shot['imagens'].get('personagens', [])}
+                          for i, shot in enumerate(episode.get('shots', [])) if shot.get('imagens')]}
     scenes = sorted({s['scene'] for s in episode.get('shots', []) if s.get('scene')})
     actors = sorted({a['char'] for s in episode.get('shots', []) for a in s.get('actors', []) if a.get('char')})
     style = episode.get('visual_profile', 'lofi_classic')

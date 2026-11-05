@@ -1,0 +1,799 @@
+{
+  "out": "episodio_ilustrado.mp4",
+  "fps": 24,
+  "total": 90,
+  "episode": 1,
+  "loop": false,
+  "duration_profile": "curto",
+  "character_rendering": "illustrated_library",
+  "narrado": true,
+  "series_title": "A voz que ficou lá fora",
+  "shots": [
+    {
+      "start": 0,
+      "end": 9.707,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_celular_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50153,
+              0.99127
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            }
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "medio",
+        "alvo": 0
+      },
+      "scene": "entrada",
+      "director_notes": {
+        "text": "Prometi voltar com Téo antes de amanhecer. A chuva parou. Ninguém veio buscar a gente. Então ouço três batidas e uma voz conhecida atrás da porta.",
+        "source_scene": 1,
+        "shot": "medio"
+      },
+      "hook": {
+        "text": "A VOZ ERA IGUAL.\nMAS VINHA DE FORA."
+      }
+    },
+    {
+      "start": 9.707,
+      "end": 18.667,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            }
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            }
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "entrada",
+      "director_notes": {
+        "text": "É a voz de Téo. Mas Téo está aqui comigo. A voz repete a frase inteira. Até a tosse no final sai exatamente igual.",
+        "source_scene": 2,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 18.667,
+      "end": 28.0,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_macaneta_recorte_v1",
+            "pos": 0.48,
+            "altura": 0.52,
+            "chao": 0.82,
+            "ancora": [
+              0.41081,
+              0.98628
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.17,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            }
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "entrada",
+      "director_notes": {
+        "text": "Alcanço a maçaneta. A porta está aberta. Téo pede que eu não responda. Quero investigar, mas prometi proteger quem veio comigo. Seguimos sem nos separar.",
+        "source_scene": 3,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 28.0,
+      "end": 36.96,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_corredor_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            }
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            }
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "medio",
+        "alvo": 0
+      },
+      "scene": "corredor",
+      "director_notes": {
+        "text": "O chamado vem da porta dos fundos. A frase se repete sem mudar uma sílaba. Faço uma pergunta que só nós sabemos responder. Silêncio.",
+        "source_scene": 4,
+        "shot": "medio"
+      }
+    },
+    {
+      "start": 36.96,
+      "end": 46.667,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_corredor_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            }
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            }
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "corredor",
+      "director_notes": {
+        "text": "Téo reconhece a gravação que fez antes de chegarmos. Alguém está copiando o áudio. A entrada principal se fechou. Precisamos procurar saída pela porta dos fundos.",
+        "source_scene": 5,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 46.667,
+      "end": 55.627,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_floresta_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_medo_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50255,
+              0.99065
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_medo_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5051,
+              0.98005
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "floresta",
+      "director_notes": {
+        "text": "Chegamos juntos à trilha atrás do abrigo. A voz vem das árvores. Eu paro. Téo está ao meu lado. Não precisamos seguir aquele chamado.",
+        "source_scene": 6,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 55.627,
+      "end": 64.214,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_floresta_v1",
+        "personagens": [
+          {
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.58,
+            "altura": 0.43,
+            "chao": 0.69,
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "lucas/lucas_34_medo_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50255,
+              0.99065
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_medo_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5051,
+              0.98005
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "floresta",
+      "director_notes": {
+        "text": "Uma forma alta aparece entre os troncos. O rosto está errado, mas a voz continua perfeita. Não era alguém perdido. Era uma armadilha.",
+        "source_scene": 7,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 64.214,
+      "end": 73.921,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_floresta_v1",
+        "personagens": [
+          {
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.58,
+            "altura": 0.43,
+            "chao": 0.69,
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "lucas/lucas_34_medo_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50255,
+              0.99065
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_medo_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5051,
+              0.98005
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "medio",
+        "alvo": 0
+      },
+      "scene": "floresta",
+      "director_notes": {
+        "text": "Recuo para perto de Téo. A criatura para quando deixamos de responder. Descobrimos quem chamou, mas ainda não saímos daqui. Uma luz aparece entre as árvores.",
+        "source_scene": 8,
+        "shot": "medio"
+      }
+    },
+    {
+      "start": 73.921,
+      "end": 84,
+      "imagens": {
+        "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+        "fundo": "fundo_floresta_v1",
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_medo_recorte_v1",
+            "pos": 0.3,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.50255,
+              0.99065
+            ],
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          },
+          {
+            "img": "teo/teo_medo_v1",
+            "pos": 0.72,
+            "altura": 0.6,
+            "chao": 0.93,
+            "ancora": [
+              0.5051,
+              0.98005
+            ],
+            "espelhar": true,
+            "piscar": false,
+            "respirar": 0.5,
+            "balanco_corpo": 0.5
+          }
+        ],
+        "aproximar": 0.2,
+        "balanco": 0.15,
+        "plano": "aberto",
+        "alvo": 0
+      },
+      "scene": "floresta",
+      "director_notes": {
+        "text": "Cumpri a promessa de não abandonar Téo. Agora precisamos decidir: seguir a luz e arriscar outra imitação, ou esperar juntos, sem abrigo, com a criatura por perto.",
+        "source_scene": 9,
+        "shot": "aberto"
+      }
+    },
+    {
+      "start": 84,
+      "end": 90,
+      "type": "choice",
+      "a": {
+        "label": "SEGUIR A LUZ",
+        "scene": "floresta",
+        "imagens": {
+          "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+          "fundo": "fundo_floresta_v1",
+          "personagens": [
+            {
+              "img": "lucas/lucas_34_medo_recorte_v1",
+              "pos": 0.3,
+              "altura": 0.6,
+              "chao": 0.93,
+              "ancora": [
+                0.50255,
+                0.99065
+              ],
+              "espelhar": false,
+              "piscar": false,
+              "respirar": 0.5,
+              "balanco_corpo": 0.5
+            },
+            {
+              "img": "teo/teo_medo_v1",
+              "pos": 0.72,
+              "altura": 0.6,
+              "chao": 0.93,
+              "ancora": [
+                0.5051,
+                0.98005
+              ],
+              "espelhar": true,
+              "piscar": false,
+              "respirar": 0.5,
+              "balanco_corpo": 0.5
+            }
+          ],
+          "aproximar": 0.2,
+          "balanco": 0.15,
+          "plano": "aberto",
+          "alvo": 0
+        }
+      },
+      "b": {
+        "label": "ESPERAR JUNTOS",
+        "scene": "floresta",
+        "imagens": {
+          "pasta_biblioteca": "..\\..\\..\\biblioteca\\ilustrada\\v1",
+          "fundo": "fundo_floresta_v1",
+          "personagens": [
+            {
+              "img": "lucas/lucas_34_medo_recorte_v1",
+              "pos": 0.3,
+              "altura": 0.6,
+              "chao": 0.93,
+              "ancora": [
+                0.50255,
+                0.99065
+              ],
+              "espelhar": false,
+              "piscar": false,
+              "respirar": 0.5,
+              "balanco_corpo": 0.5
+            },
+            {
+              "img": "teo/teo_medo_v1",
+              "pos": 0.72,
+              "altura": 0.6,
+              "chao": 0.93,
+              "ancora": [
+                0.5051,
+                0.98005
+              ],
+              "espelhar": true,
+              "piscar": false,
+              "respirar": 0.5,
+              "balanco_corpo": 0.5
+            }
+          ],
+          "aproximar": 0.2,
+          "balanco": 0.15,
+          "plano": "aberto",
+          "alvo": 0
+        }
+      }
+    }
+  ],
+  "voices": {},
+  "clips": [],
+  "subs": [],
+  "source_story": "# A voz que ficou lá fora\n\nPerfil de duração: curto\nFormato: 100% narrado\n\nEPISÓDIO 1/? · rascunho independente\n\n## CENA 1\nCENÁRIO: entrada\nACONTECIMENTO: O chamado inicia a investigação\nCONSEQUÊNCIA: O chamado inicia a investigação\nCONFLITO PESSOAL: lucas | DESEJO: Proteger Téo e voltar | CUSTO: Investigar o chamado pode separar o grupo\nRECORTES: lucas/celular, teo/neutro\nNARRAÇÃO: Prometi voltar com Téo antes de amanhecer. A chuva parou. Ninguém veio buscar a gente. Então ouço três batidas e uma voz conhecida atrás da porta.\n\n## CENA 2\nCENÁRIO: entrada\nACONTECIMENTO: O grupo sabe que não é a voz da pessoa presente\nCONSEQUÊNCIA: O grupo sabe que não é a voz da pessoa presente\nCAUSA: CENA 1 — As batidas exigem conferir de onde vem a voz\nPLANTA: voz_gravada | A frase e a tosse se repetem exatamente\nRECORTES: lucas/neutro, teo/neutro\nNARRAÇÃO: É a voz de Téo. Mas Téo está aqui comigo. A voz repete a frase inteira. Até a tosse no final sai exatamente igual.\n\n## CENA 3\nCENÁRIO: entrada\nACONTECIMENTO: A investigação continua com os dois juntos\nCONSEQUÊNCIA: A investigação continua com os dois juntos\nCAUSA: CENA 2 — A duplicação da voz faz o grupo investigar sem se separar\nRECORTES: lucas/macaneta, teo/neutro\nNARRAÇÃO: Alcanço a maçaneta. A porta está aberta. Téo pede que eu não responda. Quero investigar, mas prometi proteger quem veio comigo. Seguimos sem nos separar.\n\n## CENA 4\nCENÁRIO: corredor\nACONTECIMENTO: A voz falha ao responder uma pergunta\nCONSEQUÊNCIA: A voz falha ao responder uma pergunta\nCAUSA: CENA 3 — O corredor vazio leva a testar o chamado\nRECORTES: lucas/neutro, teo/neutro\nNARRAÇÃO: O chamado vem da porta dos fundos. A frase se repete sem mudar uma sílaba. Faço uma pergunta que só nós sabemos responder. Silêncio.\n\n## CENA 5\nCENÁRIO: corredor\nACONTECIMENTO: O grupo identifica a gravação e precisa buscar outra saída\nCONSEQUÊNCIA: O grupo identifica a gravação e precisa buscar outra saída\nCAUSA: CENA 4 — A repetição exata permite reconhecer a gravação\nREVELA: voz_gravada | A mensagem do celular está sendo imitada\nPAGA: voz_gravada | O grupo deixa de tratar a voz como pessoa pedindo socorro\nRECORTES: lucas/neutro, teo/neutro\nNARRAÇÃO: Téo reconhece a gravação que fez antes de chegarmos. Alguém está copiando o áudio. A entrada principal se fechou. Precisamos procurar saída pela porta dos fundos.\n\n## CENA 6\nCENÁRIO: floresta\nACONTECIMENTO: O grupo interrompe a aproximação ao chamado\nCONSEQUÊNCIA: O grupo interrompe a aproximação ao chamado\nCAUSA: CENA 5 — A entrada fechada obriga a buscar saída pela porta dos fundos\nRECORTES: lucas/medo, teo/medo\nNARRAÇÃO: Chegamos juntos à trilha atrás do abrigo. A voz vem das árvores. Eu paro. Téo está ao meu lado. Não precisamos seguir aquele chamado.\n\n## CENA 7\nCENÁRIO: floresta\nACONTECIMENTO: O imitador é identificado como ameaça\nCONSEQUÊNCIA: O imitador é identificado como ameaça\nCAUSA: CENA 6 — O chamado da trilha faz o grupo parar e observar\nRECORTES: mimico/neutro, lucas/medo, teo/medo\nNARRAÇÃO: Uma forma alta aparece entre os troncos. O rosto está errado, mas a voz continua perfeita. Não era alguém perdido. Era uma armadilha.\n\n## CENA 8\nCENÁRIO: floresta\nACONTECIMENTO: O grupo deixa de responder e se reúne\nCONSEQUÊNCIA: O grupo deixa de responder e se reúne\nCAUSA: CENA 7 — A presença da criatura revela o perigo de responder\nRESOLVE: quem_chama | O chamado vem de um imitador tentando atrair o grupo\nRECORTES: mimico/neutro, lucas/medo, teo/medo\nNARRAÇÃO: Recuo para perto de Téo. A criatura para quando deixamos de responder. Descobrimos quem chamou, mas ainda não saímos daqui. Uma luz aparece entre as árvores.\n\n## CENA 9\nCENÁRIO: floresta\nACONTECIMENTO: Uma escolha com risco em ambos os caminhos fica aberta\nCONSEQUÊNCIA: Uma escolha com risco em ambos os caminhos fica aberta\nCAUSA: CENA 8 — Recusar o chamado preserva o grupo, mas deixa a fuga sem solução\nABRE: luz_segura | A luz é uma saída ou outra armadilha?\nRECORTES: lucas/medo, teo/medo\nNARRAÇÃO: Cumpri a promessa de não abandonar Téo. Agora precisamos decidir: seguir a luz e arriscar outra imitação, ou esperar juntos, sem abrigo, com a criatura por perto.\n\n## ESCOLHA\nA) Seguir a luz | GANHA: chance de encontrar a estrada | PERDE: segurança de ficar junto ao abrigo | MOTIVO: A criatura pode imitar uma saída\nB) Esperar juntos | GANHA: evitar seguir o chamado | PERDE: tempo e abrigo antes da madrugada | MOTIVO: A criatura continua perto da trilha\n",
+  "narrative_plan": {
+    "metodo": "heuristica_requer_revisao",
+    "batidas": {
+      "objetivo": [
+        {
+          "texto": "Ninguém veio buscar a gente.",
+          "unidade": 14
+        },
+        {
+          "texto": "Quero investigar, mas prometi proteger quem veio comigo.",
+          "unidade": 36
+        },
+        {
+          "texto": "ACONTECIMENTO: O grupo identifica a gravação e precisa buscar outra saída",
+          "unidade": 50
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O grupo identifica a gravação e precisa buscar outra saída",
+          "unidade": 51
+        },
+        {
+          "texto": "Precisamos procurar saída pela porta dos fundos.",
+          "unidade": 59
+        },
+        {
+          "texto": "CAUSA: CENA 5 — A entrada fechada obriga a buscar saída pela porta dos fundos",
+          "unidade": 64
+        },
+        {
+          "texto": "Não precisamos seguir aquele chamado.",
+          "unidade": 70
+        },
+        {
+          "texto": "RESOLVE: quem_chama | O chamado vem de um imitador tentando atrair o grupo",
+          "unidade": 86
+        },
+        {
+          "texto": "Agora precisamos decidir: seguir a luz e arriscar outra imitação, ou esperar juntos, sem abrigo, com a criatura por perto.",
+          "unidade": 100
+        }
+      ],
+      "obstaculo": [
+        {
+          "texto": "Mas Téo está aqui comigo.",
+          "unidade": 24
+        },
+        {
+          "texto": "Quero investigar, mas prometi proteger quem veio comigo.",
+          "unidade": 36
+        },
+        {
+          "texto": "O rosto está errado, mas a voz continua perfeita.",
+          "unidade": 78
+        },
+        {
+          "texto": "Descobrimos quem chamou, mas ainda não saímos daqui.",
+          "unidade": 90
+        },
+        {
+          "texto": "CAUSA: CENA 8 — Recusar o chamado preserva o grupo, mas deixa a fuga sem solução",
+          "unidade": 96
+        }
+      ],
+      "virada": [
+        {
+          "texto": "REVELA: voz_gravada | A mensagem do celular está sendo imitada",
+          "unidade": 53
+        },
+        {
+          "texto": "CAUSA: CENA 7 — A presença da criatura revela o perigo de responder",
+          "unidade": 85
+        }
+      ],
+      "consequencia": [
+        {
+          "texto": "CONSEQUÊNCIA: O chamado inicia a investigação",
+          "unidade": 9
+        },
+        {
+          "texto": "Então ouço três batidas e uma voz conhecida atrás da porta.",
+          "unidade": 15
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O grupo sabe que não é a voz da pessoa presente",
+          "unidade": 19
+        },
+        {
+          "texto": "CONSEQUÊNCIA: A investigação continua com os dois juntos",
+          "unidade": 30
+        },
+        {
+          "texto": "CONSEQUÊNCIA: A voz falha ao responder uma pergunta",
+          "unidade": 41
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O grupo identifica a gravação e precisa buscar outra saída",
+          "unidade": 51
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O grupo interrompe a aproximação ao chamado",
+          "unidade": 63
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O imitador é identificado como ameaça",
+          "unidade": 74
+        },
+        {
+          "texto": "CONSEQUÊNCIA: O grupo deixa de responder e se reúne",
+          "unidade": 84
+        },
+        {
+          "texto": "CONSEQUÊNCIA: Uma escolha com risco em ambos os caminhos fica aberta",
+          "unidade": 95
+        },
+        {
+          "texto": "A) Seguir a luz | GANHA: chance de encontrar a estrada | PERDE: segurança de ficar junto ao abrigo | MOTIVO: A criatura pode imitar uma saída",
+          "unidade": 102
+        },
+        {
+          "texto": "B) Esperar juntos | GANHA: evitar seguir o chamado | PERDE: tempo e abrigo antes da madrugada | MOTIVO: A criatura continua perto da trilha",
+          "unidade": 103
+        }
+      ]
+    },
+    "dramaturgia": {
+      "method": "declaracoes_editoriais_requerem_revisao",
+      "findings": [],
+      "criteria": {
+        "causalidade": "documentado",
+        "conflito_pessoal": "documentado",
+        "dialogo_intencional": "nao_se_aplica",
+        "revelacao_preparada": "documentado",
+        "escolha_dificil": "documentado",
+        "entrega_episodio": "documentado"
+      },
+      "ok": true
+    },
+    "escolhas": {
+      "A": "Seguir a luz | GANHA: chance de encontrar a estrada | PERDE: segurança de ficar junto ao abrigo | MOTIVO: A criatura pode imitar uma saída",
+      "B": "Esperar juntos | GANHA: evitar seguir o chamado | PERDE: tempo e abrigo antes da madrugada | MOTIVO: A criatura continua perto da trilha"
+    },
+    "pendencias": []
+  },
+  "audio_plan": {
+    "target_s": 90,
+    "estimated_s": 75.0,
+    "synced": false
+  },
+  "production_status": "rascunho visual; gravar e sincronizar narração antes do vídeo final"
+}

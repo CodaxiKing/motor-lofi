@@ -47,9 +47,32 @@ Pedidos de criação/continuação de série, episódio, direção, atuação, c
 10. Atualizar memória **após aprovação** com `python tools/studio.py confirmar ...`; registrar fatos e ramificações sem inventar acontecimentos.
 
 ## Modos
+- Para histórias com recortes e fundos já gerados, use a especialidade opcional
+  `skills/motor-lofi-ilustrado/SKILL.md`. O catálogo fica em `biblioteca/ilustrada/v1/`.
+  O comando `python tools/studio.py ilustrado <pasta-nova>` prepara um rascunho;
+  os modos abaixo e as séries existentes continuam disponíveis.
 - `automatic`: gerar plano inicial com defaults; validar e sinalizar limites.
 - `hybrid`: plano inicial + revisão/ajustes do usuário.
 - `professional`: JSON editável com controle manual. Nenhum modo pressupõe geração real de voz/imagem.
 
 ## Entrega e integridade
 Quando o pedido for gerar o vídeo, a entrega padrão é **vídeo em pé + vídeo deitado para o YouTube (`python -m lofi.render ep.json --deitado --jobs 2`) + capas do TikTok, Instagram e YouTube** (`python -m lofi.extras pacote ep.json ep.mp4`). Entregar somente arquivos efetivamente produzidos. Indicar separadamente `planejado`, `gerado`, `validado` e `renderizado`. Nunca chamar o plano JSON de vídeo final. Não incluir credenciais no repositório. Nunca sobrescrever episódio existente sem confirmação. Preferir renderização vertical 9:16 e escolhas A/B quando fizerem sentido.
+
+## Escolha persistente e movimentos
+
+Leia `serie.json.render_mode` antes de planejar. Ausência significa `rig`.
+Quando o usuário escolher personagens recortados, salve uma vez com
+`python tools/studio.py modo series/<serie> --render-mode illustrated_library`.
+Para voltar: `--render-mode rig`. Não confunda este campo com paleta visual
+nem com `--mode hybrid`. Cada episódio pode sobrescrever `--render-mode`.
+No modo ilustrado, escreva `historia.json` estruturada e execute
+`python tools/studio.py planejar historia.json series/<serie> --episode N`.
+A criação e revisão de histórias continua sendo trabalho criativo da skill.
+
+O renderer aplica `respirar` e `balanco_corpo` com intensidade configurável
+(0 desliga). `piscadas` mapeia cada imagem à sua variante de olhos fechados;
+não use uma pose neutra para piscar durante outra ação. `olhares` permite uma
+transição suave para uma variante de cabeça inclinada no mesmo canvas.
+A biblioteca inclui piscadas neutras de Lucas, Téo e Clara e uma inclinação
+de Lucas. São variantes completas: não há rig facial nem movimento livre
+de cabeça independente. Não animar boca pela narração em off.

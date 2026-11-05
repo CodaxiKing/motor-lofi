@@ -1,0 +1,82 @@
+{
+  "out": "lucas_recortes_preview.mp4",
+  "fps": 24,
+  "total": 12.5,
+  "modo_redes": false,
+  "loop": false,
+  "bloom": false,
+  "character_rendering": "cutout_poses",
+  "purpose": "teste visual de poses, não episódio narrativo",
+  "shots": [
+    {
+      "start": 0,
+      "end": 12.5,
+      "imagens": {
+        "personagens": [
+          {
+            "img": "lucas_34_neutro_recorte_v1",
+            "altura": 0.75,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "ancoras": {
+              "lucas_34_neutro_recorte_v1": [
+                0.5,
+                0.99439
+              ],
+              "lucas_34_celular_recorte_v1": [
+                0.50153,
+                0.99127
+              ],
+              "lucas_34_falando_recorte_v1": [
+                0.50153,
+                0.99377
+              ],
+              "lucas_34_medo_recorte_v1": [
+                0.50255,
+                0.99065
+              ],
+              "lucas_34_macaneta_recorte_v1": [
+                0.41081,
+                0.98628
+              ]
+            },
+            "piscar": false,
+            "bocas": {
+              "lucas_34_neutro_recorte_v1": "lucas_34_falando_recorte_v1"
+            },
+            "poses": [
+              [
+                0.0,
+                "lucas_34_neutro_recorte_v1"
+              ],
+              [
+                2.5,
+                "lucas_34_celular_recorte_v1"
+              ],
+              [
+                5.0,
+                "lucas_34_falando_recorte_v1"
+              ],
+              [
+                7.5,
+                "lucas_34_medo_recorte_v1"
+              ],
+              [
+                10.0,
+                "lucas_34_macaneta_recorte_v1"
+              ]
+            ],
+            "fala": "lucas"
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0
+      }
+    }
+  ],
+  "voices": {},
+  "clips": [],
+  "subs": []
+}

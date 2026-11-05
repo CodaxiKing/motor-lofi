@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "titulo": "A voz que ficou lá fora",
+  "ideia_do_usuario": null,
+  "metodo": "rascunho por arco editorial editável; sem LLM oculto",
+  "perfil": "curto",
+  "duracao": 90,
+  "narrador": "lucas",
+  "cenas": [
+    {
+      "n": 1,
+      "cenario": "entrada",
+      "narracao": "Prometi voltar com Téo antes de amanhecer. A chuva parou. Ninguém veio buscar a gente. Então ouço três batidas e uma voz conhecida atrás da porta.",
+      "acontecimento": "O chamado inicia a investigação",
+      "consequencia": "O chamado inicia a investigação",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "celular",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "neutro",
+          "pos": 0.72
+        }
+      ],
+      "conflito_pessoal": {
+        "personagem": "lucas",
+        "desejo": "Proteger Téo e voltar",
+        "custo": "Investigar o chamado pode separar o grupo"
+      }
+    },
+    {
+      "n": 2,
+      "cenario": "entrada",
+      "narracao": "É a voz de Téo. Mas Téo está aqui comigo. A voz repete a frase inteira. Até a tosse no final sai exatamente igual.",
+      "acontecimento": "O grupo sabe que não é a voz da pessoa presente",
+      "consequencia": "O grupo sabe que não é a voz da pessoa presente",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "neutro",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "neutro",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 1,
+        "texto": "As batidas exigem conferir de onde vem a voz"
+      },
+      "planta": [
+        {
+          "id": "voz_gravada",
+          "texto": "A frase e a tosse se repetem exatamente"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "cenario": "entrada",
+      "narracao": "Alcanço a maçaneta. A porta está aberta. Téo pede que eu não responda. Quero investigar, mas prometi proteger quem veio comigo. Seguimos sem nos separar.",
+      "acontecimento": "A investigação continua com os dois juntos",
+      "consequencia": "A investigação continua com os dois juntos",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "macaneta",
+          "pos": 0.48,
+          "altura": 0.52,
+          "chao": 0.82,
+          "espelhar": false
+        },
+        {
+          "id": "teo",
+          "pose": "neutro",
+          "pos": 0.17
+        }
+      ],
+      "causa": {
+        "cena": 2,
+        "texto": "A duplicação da voz faz o grupo investigar sem se separar"
+      }
+    },
+    {
+      "n": 4,
+      "cenario": "corredor",
+      "narracao": "O chamado vem da porta dos fundos. A frase se repete sem mudar uma sílaba. Faço uma pergunta que só nós sabemos responder. Silêncio.",
+      "acontecimento": "A voz falha ao responder uma pergunta",
+      "consequencia": "A voz falha ao responder uma pergunta",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "neutro",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "neutro",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 3,
+        "texto": "O corredor vazio leva a testar o chamado"
+      }
+    },
+    {
+      "n": 5,
+      "cenario": "corredor",
+      "narracao": "Téo reconhece a gravação que fez antes de chegarmos. Alguém está copiando o áudio. A entrada principal se fechou. Precisamos procurar saída pela porta dos fundos.",
+      "acontecimento": "O grupo identifica a gravação e precisa buscar outra saída",
+      "consequencia": "O grupo identifica a gravação e precisa buscar outra saída",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "neutro",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "neutro",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 4,
+        "texto": "A repetição exata permite reconhecer a gravação"
+      },
+      "revela": [
+        {
+          "id": "voz_gravada",
+          "texto": "A mensagem do celular está sendo imitada"
+        }
+      ],
+      "paga": [
+        {
+          "id": "voz_gravada",
+          "texto": "O grupo deixa de tratar a voz como pessoa pedindo socorro"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "cenario": "floresta",
+      "narracao": "Chegamos juntos à trilha atrás do abrigo. A voz vem das árvores. Eu paro. Téo está ao meu lado. Não precisamos seguir aquele chamado.",
+      "acontecimento": "O grupo interrompe a aproximação ao chamado",
+      "consequencia": "O grupo interrompe a aproximação ao chamado",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "medo",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "medo",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 5,
+        "texto": "A entrada fechada obriga a buscar saída pela porta dos fundos"
+      }
+    },
+    {
+      "n": 7,
+      "cenario": "floresta",
+      "narracao": "Uma forma alta aparece entre os troncos. O rosto está errado, mas a voz continua perfeita. Não era alguém perdido. Era uma armadilha.",
+      "acontecimento": "O imitador é identificado como ameaça",
+      "consequencia": "O imitador é identificado como ameaça",
+      "personagens": [
+        {
+          "id": "mimico",
+          "pose": "neutro",
+          "pos": 0.58,
+          "altura": 0.43,
+          "chao": 0.69
+        },
+        {
+          "id": "lucas",
+          "pose": "medo",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "medo",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 6,
+        "texto": "O chamado da trilha faz o grupo parar e observar"
+      }
+    },
+    {
+      "n": 8,
+      "cenario": "floresta",
+      "narracao": "Recuo para perto de Téo. A criatura para quando deixamos de responder. Descobrimos quem chamou, mas ainda não saímos daqui. Uma luz aparece entre as árvores.",
+      "acontecimento": "O grupo deixa de responder e se reúne",
+      "consequencia": "O grupo deixa de responder e se reúne",
+      "personagens": [
+        {
+          "id": "mimico",
+          "pose": "neutro",
+          "pos": 0.58,
+          "altura": 0.43,
+          "chao": 0.69
+        },
+        {
+          "id": "lucas",
+          "pose": "medo",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "medo",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 7,
+        "texto": "A presença da criatura revela o perigo de responder"
+      },
+      "resolve": [
+        {
+          "id": "quem_chama",
+          "texto": "O chamado vem de um imitador tentando atrair o grupo"
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "cenario": "floresta",
+      "narracao": "Cumpri a promessa de não abandonar Téo. Agora precisamos decidir: seguir a luz e arriscar outra imitação, ou esperar juntos, sem abrigo, com a criatura por perto.",
+      "acontecimento": "Uma escolha com risco em ambos os caminhos fica aberta",
+      "consequencia": "Uma escolha com risco em ambos os caminhos fica aberta",
+      "personagens": [
+        {
+          "id": "lucas",
+          "pose": "medo",
+          "pos": 0.3
+        },
+        {
+          "id": "teo",
+          "pose": "medo",
+          "pos": 0.72
+        }
+      ],
+      "causa": {
+        "cena": 8,
+        "texto": "Recusar o chamado preserva o grupo, mas deixa a fuga sem solução"
+      },
+      "abre": [
+        {
+          "id": "luz_segura",
+          "texto": "A luz é uma saída ou outra armadilha?"
+        }
+      ]
+    }
+  ],
+  "escolhas": {
+    "A": {
+      "label": "SEGUIR A LUZ",
+      "texto": "Seguir a luz",
+      "ganha": "chance de encontrar a estrada",
+      "perde": "segurança de ficar junto ao abrigo",
+      "motivo": "A criatura pode imitar uma saída"
+    },
+    "B": {
+      "label": "ESPERAR JUNTOS",
+      "texto": "Esperar juntos",
+      "ganha": "evitar seguir o chamado",
+      "perde": "tempo e abrigo antes da madrugada",
+      "motivo": "A criatura continua perto da trilha"
+    }
+  }
+}

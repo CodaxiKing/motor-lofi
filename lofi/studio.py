@@ -26,12 +26,13 @@ def read_bible(series_dir):
             result[name] = json.loads(path.read_text(encoding='utf-8'))
     return result
 
-def initialize_series(series_dir, title, *, visual_style='horror_illustrated', duration_profile='tradicional'):
+def initialize_series(series_dir, title, *, visual_style='horror_illustrated', duration_profile='tradicional', render_mode='rig'):
+    if render_mode not in ('rig', 'illustrated_library'): raise ValueError('render_mode inválido')
     from .perfis_duracao import planejar
     planejar(duration_profile)
     folder = Path(series_dir)
     folder.mkdir(parents=True, exist_ok=True)
-    defaults = {'serie': {'title': title, 'last_episode': 0, 'branches': {}, 'duration_profile': duration_profile},
+    defaults = {'serie': {'title': title, 'last_episode': 0, 'branches': {}, 'duration_profile': duration_profile, 'render_mode': render_mode},
                 'personagens': {}, 'elenco': {}, 'cenarios': {}, 'acontecimentos': [],
                 'estilo_visual': {'profile': visual_style, 'notes': 'Preservar aparência entre episódios'},
                 'continuidade': {'facts': [], 'open_threads': [], 'decisions': {}}}
@@ -41,6 +42,15 @@ def initialize_series(series_dir, title, *, visual_style='horror_illustrated', d
             path.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     (folder / 'episodios').mkdir(exist_ok=True)
     return read_bible(folder)
+
+def configure_render_mode(series_dir, render_mode):
+    if render_mode not in ('rig', 'illustrated_library'): raise ValueError('render_mode inválido')
+    path = Path(series_dir) / 'serie.json'
+    data = json.loads(path.read_text(encoding='utf-8'))
+    data['render_mode'] = render_mode
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    return data
+
 
 def _text_units(story):
     return [x.strip() for x in re.split(r'(?<=[.!?])\s+|\n+', story) if x.strip()]
@@ -68,7 +78,8 @@ def quality_report(episode, *, story='', bible=None, capabilities=None, episode_
         from .perfis_duracao import planejar
         try:
             contrato = planejar(episode['duration_profile'], episode.get('total'))
-            if len([s for s in shots if not s.get('hook') and s.get('type', 'scene') == 'scene']) < contrato['min_cenas']:
+            if len([s for s in shots if s.get('type', 'scene') == 'scene'
+                    and not (s.get('hook') and s.get('end', 0)-s.get('start', 0) <= 3)]) < contrato['min_cenas']:
                 add('warning', 'too_few_shots', f"Perfil pede pelo menos {contrato['min_cenas']} cenas; desenvolva mais acontecimentos")
         except ValueError as exc:
             add('error', 'duration_profile', str(exc))
@@ -107,7 +118,7 @@ def quality_report(episode, *, story='', bible=None, capabilities=None, episode_
             'findings': findings, 'dramaturgy': drama, 'rendered_video': False,
             'notes': 'Relatório estático; não comprova renderização, voz ou sincronização.'}
 
-def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='roberta', scene='apartamento', mode='hybrid', duration=None, duration_profile=None, opening='A', elenco=None):
+def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='roberta', scene='apartamento', mode='hybrid', duration=None, duration_profile=None, opening='A', elenco=None, render_mode=None):
     if mode not in ('automatic', 'professional', 'hybrid'):
         raise ValueError('Modo deve ser automatic, professional ou hybrid')
     folder = Path(series_dir)
@@ -123,11 +134,26 @@ def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='rob
     if explicit is None and not re.search(r'Perfil de dura[çc][ãa]o\s*:', story, re.I):
         explicit = bible['serie'].get('duration_profile')
     profile, _ = selecionar(story, folder / 'ep.json', explicit)
-    ep = compile_story(story, title=bible['serie']['title'], episode=episode_number,
-                       actor=actor, scene=scene, visual_profile=style, duration=duration,
-                       duration_profile=profile, opening=opening, elenco=elenco if elenco is not None else bible.get('elenco'),
-                       locked_characters=bible.get('personagens'),
-                       world_state=bible.get('continuidade', {}).get('world_state'))
+    rendering = render_mode or bible['serie'].get('render_mode', 'rig')
+    if rendering not in ('rig', 'illustrated_library'): raise ValueError('render_mode inválido')
+    if rendering == 'illustrated_library':
+        from .historias_ilustradas import compilar, roteiro_md
+        try: historia = json.loads(story)
+        except json.JSONDecodeError as exc:
+            raise ValueError('Modo ilustrado requer historia.json estruturada; use a skill motor-lofi-ilustrado') from exc
+        if duration is not None: historia['duracao'] = duration
+        if duration_profile is not None: historia['perfil'] = duration_profile
+        ep = compilar(historia, pasta_saida=folder / 'episodios')
+        ep['episode'] = episode_number
+        ep['series_title'] = bible['serie']['title']
+        ep['world_state'] = bible.get('continuidade', {}).get('world_state', {})
+        story = roteiro_md(historia)
+    else:
+        ep = compile_story(story, title=bible['serie']['title'], episode=episode_number,
+                           actor=actor, scene=scene, visual_profile=style, duration=duration,
+                           duration_profile=profile, opening=opening, elenco=elenco if elenco is not None else bible.get('elenco'),
+                           locked_characters=bible.get('personagens'),
+                           world_state=bible.get('continuidade', {}).get('world_state'))
     ep['studio'] = {'mode': mode, 'branch': branch, 'source_story': story,
                     'requires_review': True, 'auto_generated': True}
     # Preserve human-editable episode and never silently rewrite series memory.
@@ -153,7 +179,7 @@ def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='rob
     opening_path.write_text(json.dumps({'candidatos': ep.get('opening_variants', []),
                             'selecionada': opening}, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     from .experimentos import registrar_variantes
-    registrar_variantes(str(folder), episode_number, ep.get('opening_variants', []), opening,
+    if ep.get('opening_variants'): registrar_variantes(str(folder), episode_number, ep.get('opening_variants', []), opening,
                         'Pacote de abertura escolhido pelo autor; sem previsão de desempenho')
     return {'episode': str(ep_path), 'assets': str(asset_path), 'quality': str(report_path),
             'openings': str(opening_path),

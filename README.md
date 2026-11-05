@@ -163,6 +163,62 @@ O perfil valida o planejamento; ele não corta nem acelera automaticamente o ví
 
 ### Encenação e identidade dos personagens
 
+#### Modo opcional de histórias ilustradas
+
+O módulo `lofi.historias_ilustradas` usa `biblioteca/ilustrada/v1/catalogo.json`
+para montar histórias com personagens e cenários já produzidos. Ele coexiste
+com o rig, o modo imagens e os recortes individuais. Nada migra automaticamente.
+
+```bash
+python -m lofi.historias_ilustradas listar
+python -m lofi.historias_ilustradas validar
+python tools/studio.py ilustrado producoes/ilustradas/minha-historia --apoio clara --vilao mimico
+python -m lofi.historias_ilustradas compilar historia.json producoes/ilustradas/outra-historia
+```
+
+A biblioteca contém Lucas, Clara, Téo, Lucas de Amanhã e o Mímico (criatura
+ficcional inspirada em skinwalker), além de entrada, corredor e floresta.
+O inventário mostra as poses realmente disponíveis; o compilador recusa poses,
+personagens e cenários ausentes e transições sem ligação no mapa da biblioteca.
+As novas artes foram geradas com `image_gen`, preservando o alfa dos recortes;
+os prompts e a origem ficam junto do catálogo.
+
+`criar`/`studio ilustrado` usa um arco local de imitação e gera um rascunho editável.
+`--ideia` registra um brief, não o interpreta semanticamente. A skill
+`motor-lofi-ilustrado` usa o catálogo e `video-script` para escrever planos originais;
+`compilar` monta esses planos. O exemplo independente está em
+`producoes/ilustradas/a-voz-la-fora-v1/`, sem alterar o cânone de Visto Amanhã.
+
+Cada produção inclui `historia.json`, `roteiro.md`, `narracao.txt`, `episodio.json`,
+`qualidade.json` e `dramaturgia.md`. A duração mínima é 90 s; narração gravada,
+alinhamento e legendas são etapas posteriores. A arte é reutilizada por referência,
+não baixada nem gerada novamente para cada episódio. Se mover o projeto, mantenha
+a relação entre a pasta de produções e a biblioteca, ou recompile o plano.
+
+#### Personagem ilustrado recortado por pose
+
+O primeiro pacote visual de Lucas, baseado na referência fornecida pelo usuário,
+fica em `series/visto-amanha/lucas_recortes_v1.json`: cinco PNGs transparentes em
+`imagens/`, sem substituir fichas ou episódios publicados. As poses são parado/atento,
+celular, falando, medo e alcançar maçaneta. Os prompts usados estão em
+`lucas_recortes_prompts_v1.md`; cada variante usa a mesma imagem-base para reduzir deriva.
+
+```bash
+python -m lofi.recortes validar series/visto-amanha/lucas_recortes_v1.json
+python -m lofi.render series/visto-amanha/lucas_recortes_demo_v1.json --test 1 4 6 9 11
+```
+
+A demonstração é um teste visual de 12,5 s, sem áudio ou cenário, não um episódio.
+No modo `imagens`, `personagens[].poses` aceita `[[segundo_local, nome_imagem], ...]`.
+As âncoras por imagem alinham os pés sem modificar os PNGs; `bocas` mapeia a
+variante de fala adequada a cada pose. Uma pose parada não é ciclo de caminhada.
+
+Para aplicar os recortes a uma cópia de um episódio técnico, registre os fundos
+ilustrados em `fundos` na biblioteca e execute
+`python -m lofi.recortes aplicar episodio.json biblioteca.json saida.json`.
+A saída deve ficar ao lado da biblioteca, preservando os caminhos de `imagens/`.
+O comando recusa personagens, movimentos ou ações sem arte correspondente.
+
 A geração agora prepara participantes, sujeito, alvo, ação e estado físico antes
 da composição de câmera. Nomes de personagens conhecidos, aliases e nomes simples
 em ações ou falas são reconhecidos. Pronomes usam antecedentes compatíveis; uma
@@ -345,3 +401,18 @@ examples/      roteiros de exemplo e imagens
 ```
 
 Áudios e vídeos não são versionados.
+
+
+A biblioteca guarda os recortes em `biblioteca/ilustrada/v1/imagens/<personagem>/`:
+`lucas`, `clara`, `teo`, `amanha` e `mimico`. O catálogo aponta para cada pose.
+São 15 poses, mais 4 microposes: piscadas neutras de Lucas, Clara e Téo,
+e uma inclinação de cabeça de Lucas. Os fundos continuam em `imagens/`.
+
+Escolha uma vez por série:
+```
+python tools/studio.py modo series/<serie> --render-mode illustrated_library
+python tools/studio.py planejar historia.json series/<serie> --episode 1
+```
+A skill lê a escolha persistida. `--render-mode rig` no episódio permite usar
+o modo anterior; o comando `modo` muda o padrão da série. A biblioteca usa
+respiração e balanço discretos. Só poses com variante compatível piscam.

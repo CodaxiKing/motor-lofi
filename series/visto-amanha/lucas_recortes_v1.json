@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "personagem": "lucas",
+  "rendering": "cutout_poses",
+  "status": "primeira biblioteca visual para revisão",
+  "generation": "built-in image_gen; uma geração base e quatro variantes da mesma referência",
+  "design_reference": "imagens/ref_design_recortes_v1.png",
+  "fundos": {},
+  "poses": {
+    "neutro": {
+      "img": "lucas_34_neutro_recorte_v1",
+      "ancora": [
+        0.5,
+        0.99439
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "alpha_bbox": [
+        33,
+        15,
+        887,
+        1604
+      ],
+      "sha256": "f28cdf6957bd1f0211e2b05aba5eb354d4edb5428ef3f52ba88cc099a04d93fa"
+    },
+    "celular": {
+      "img": "lucas_34_celular_recorte_v1",
+      "ancora": [
+        0.50153,
+        0.99127
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "alpha_bbox": [
+        17,
+        15,
+        953,
+        1594
+      ],
+      "sha256": "7e3f2a48df0031395e425a2b33b99d66bdca9079253b06aee5ad88508ee4fce0"
+    },
+    "falando": {
+      "img": "lucas_34_falando_recorte_v1",
+      "ancora": [
+        0.50153,
+        0.99377
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "alpha_bbox": [
+        16,
+        14,
+        830,
+        1604
+      ],
+      "sha256": "9f758e2032988e18f6b9e1eeb3e4350539858e0a8fde40a9abb4bb86d36540d0"
+    },
+    "medo": {
+      "img": "lucas_34_medo_recorte_v1",
+      "ancora": [
+        0.50255,
+        0.99065
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "alpha_bbox": [
+        51,
+        14,
+        961,
+        1591
+      ],
+      "sha256": "cbf6bd7a982bc457e5398ae2d483167837153dac6865701256f6b6283b2f69d8"
+    },
+    "macaneta": {
+      "img": "lucas_34_macaneta_recorte_v1",
+      "ancora": [
+        0.41081,
+        0.98628
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "alpha_bbox": [
+        27,
+        22,
+        945,
+        1587
+      ],
+      "sha256": "507a994749886419e68c7453e473678f16ac373e374ef23add508c76ef22f9d8"
+    }
+  }
+}

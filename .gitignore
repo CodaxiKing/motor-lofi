@@ -22,6 +22,9 @@ asset-library/
 
 # imagens do estilo "imagens" ficam no repositório (são reaproveitadas nos próximos episódios)
 !series/*/imagens/*.png
+!biblioteca/ilustrada/v1/imagens/*.png
 _cache_deitado/
 _editor/
 _editor_cache/
+
+!biblioteca/ilustrada/v1/imagens/**/*.png

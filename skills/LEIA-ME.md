@@ -15,6 +15,7 @@ da conta (envie o arquivo `.zip` de cada pasta ou o `SKILL.md`).
 | `serie-comentarios` | `/serie-comentarios` + comentários (texto ou print) → roteiro de respostas; com os áudios → vídeo |
 | `video-script` | Ideias, aberturas, roteiro e revisão com métricas reais; adaptada ao mínimo de 90 s e ao cânone da série |
 | `canvas-design` | Capas, pôsteres e direção de arte estática, preservando o estilo e as referências do elenco |
+| `motor-lofi-ilustrado` | Histórias narradas com personagens recortados por pose, fundos reutilizáveis e elenco da biblioteca ilustrada |
 | `skill-creator` | Criar, revisar e avaliar skills do motor, separando testes locais de avaliação comportamental |
 
 As três especialidades têm ZIPs próprios. Instale-as junto de `motor-lofi-studio`
