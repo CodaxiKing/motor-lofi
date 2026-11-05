@@ -1,0 +1,4538 @@
+{
+ "out": "ep02.mp4",
+ "fps": 30,
+ "total": 157.39,
+ "crf": 28,
+ "series_title": "VISTO AMANHÃ",
+ "episode": 2,
+ "episodes_total": 8,
+ "episode_title": "SÓ UMA COISA",
+ "tint": [
+  225,
+  160,
+  70,
+  0.1
+ ],
+ "style": "desenho",
+ "voto": "ABRIR A PORTA",
+ "pergunta": {
+  "text": "VOCÊ DESCERIA?",
+  "t": 94.84
+ },
+ "voices": {
+  "lucas": "ep02/lucas.mp3",
+  "irene": "ep02/irene.mp3",
+  "clara_voz": "ep01/clara.mp3"
+ },
+ "speakers": {
+  "clara_voz": {
+   "label": "NA CAIXINHA",
+   "color": [
+    255,
+    190,
+    190
+   ]
+  }
+ },
+ "hud": {
+  "place": "FALTAM 8 DIAS",
+  "days": [
+   [
+    0,
+    "DIA 0",
+    "23:17"
+   ],
+   [
+    59.75,
+    "DIA 0",
+    "23:18"
+   ],
+   [
+    79.84,
+    "DIA 1",
+    "02:40"
+   ],
+   [
+    88.74,
+    "DIA 1",
+    "21:17"
+   ],
+   [
+    94.84,
+    "DIA 1",
+    "22:10"
+   ],
+   [
+    102.63,
+    "DIA 1",
+    "22:13"
+   ],
+   [
+    108.84,
+    "DIA 1",
+    "22:14"
+   ],
+   [
+    118.79,
+    "DIA 1",
+    "22:15"
+   ],
+   [
+    122.24,
+    "DIA 1",
+    "22:16"
+   ],
+   [
+    129.74,
+    "DIA 1",
+    "22:17"
+   ]
+  ],
+  "sec_per_min": 9999
+ },
+ "clips": [
+  {
+   "voice": "lucas",
+   "src": [
+    0,
+    1.44
+   ],
+   "at": 7.3
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    2.01,
+    2.48
+   ],
+   "at": 9.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    3.0,
+    4.01
+   ],
+   "at": 11.31
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    4.55,
+    5.66
+   ],
+   "at": 12.72
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    6.04,
+    7.15
+   ],
+   "at": 14.23
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    7.56,
+    8.0
+   ],
+   "at": 15.74
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    8.4,
+    9.32
+   ],
+   "at": 16.68
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    9.73,
+    10.49
+   ],
+   "at": 18.0
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    6.2,
+    7.6
+   ],
+   "at": 19.16,
+   "radio": true
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    8.9,
+    9.4
+   ],
+   "at": 20.86,
+   "radio": true
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    10.84,
+    11.27
+   ],
+   "at": 21.86
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    11.89,
+    12.71
+   ],
+   "at": 22.74
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    13.1,
+    13.74
+   ],
+   "at": 23.96
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    14.14,
+    15.1
+   ],
+   "at": 25.15
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    15.57,
+    18.1
+   ],
+   "at": 26.41
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    18.46,
+    19.75
+   ],
+   "at": 29.34
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    20.06,
+    22.33
+   ],
+   "at": 31.03
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    9.72,
+    13.24
+   ],
+   "at": 33.6,
+   "radio": true
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    22.68,
+    23.6
+   ],
+   "at": 38.72
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    23.7,
+    25.74
+   ],
+   "at": 39.69
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    26.1,
+    27.32
+   ],
+   "at": 43.13
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    27.69,
+    29.66
+   ],
+   "at": 44.8
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    30.08,
+    31.8
+   ],
+   "at": 47.07
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    32.13,
+    34.81
+   ],
+   "at": 49.19
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    35.22,
+    36.25
+   ],
+   "at": 53.87
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    36.5,
+    38.5
+   ],
+   "at": 55.2
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    38.6,
+    40.5
+   ],
+   "at": 57.65
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    40.6,
+    42.35
+   ],
+   "at": 59.95
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    42.45,
+    43.15
+   ],
+   "at": 62.0
+  },
+  {
+   "voice": "irene",
+   "src": [
+    0,
+    1.44
+   ],
+   "at": 63.8
+  },
+  {
+   "voice": "irene",
+   "src": [
+    1.89,
+    3.28
+   ],
+   "at": 65.64
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    43.3,
+    44.65
+   ],
+   "at": 67.43
+  },
+  {
+   "voice": "irene",
+   "src": [
+    3.72,
+    5.33
+   ],
+   "at": 69.28
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    44.8,
+    45.9
+   ],
+   "at": 71.59
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    46.15,
+    47.65
+   ],
+   "at": 74.39
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    47.8,
+    50.85
+   ],
+   "at": 76.29
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    50.95,
+    51.6
+   ],
+   "at": 80.74
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    51.7,
+    53.0
+   ],
+   "at": 81.79
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    53.15,
+    53.95
+   ],
+   "at": 83.24
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    54.0,
+    54.85
+   ],
+   "at": 84.14
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    54.9,
+    55.8
+   ],
+   "at": 85.09
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    55.95,
+    57.9
+   ],
+   "at": 86.29
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    58.0,
+    59.4
+   ],
+   "at": 90.44
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    59.55,
+    61.65
+   ],
+   "at": 92.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    61.89,
+    63.88
+   ],
+   "at": 95.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    64.27,
+    65.2
+   ],
+   "at": 97.43
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    65.46,
+    66.81
+   ],
+   "at": 98.76
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    67.12,
+    69.04
+   ],
+   "at": 100.41
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    69.37,
+    70.63
+   ],
+   "at": 102.93
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    70.97,
+    71.63
+   ],
+   "at": 104.59
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    71.94,
+    73.1
+   ],
+   "at": 105.65
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    73.1,
+    74.78
+   ],
+   "at": 107.06
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    75.0,
+    75.8
+   ],
+   "at": 109.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    75.95,
+    77.85
+   ],
+   "at": 110.09
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    78.0,
+    79.3
+   ],
+   "at": 112.24
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    79.3,
+    81.5
+   ],
+   "at": 113.54
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    81.6,
+    82.3
+   ],
+   "at": 115.89
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    82.3,
+    83.1
+   ],
+   "at": 116.59
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    83.2,
+    84.15
+   ],
+   "at": 117.69
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    84.3,
+    84.7
+   ],
+   "at": 118.99
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    84.8,
+    85.95
+   ],
+   "at": 119.49
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    86.05,
+    86.95
+   ],
+   "at": 123.14
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    87.15,
+    87.8
+   ],
+   "at": 124.44
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    87.9,
+    89.2
+   ],
+   "at": 125.19
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    89.3,
+    90.05
+   ],
+   "at": 126.99
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    90.05,
+    91.05
+   ],
+   "at": 127.74
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    91.2,
+    93.3
+   ],
+   "at": 131.44
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    93.45,
+    94.3
+   ],
+   "at": 134.34
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    94.4,
+    95.2
+   ],
+   "at": 135.29
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    95.3,
+    97.15
+   ],
+   "at": 136.39
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    97.25,
+    99.0
+   ],
+   "at": 138.64
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    99.05,
+    99.65
+   ],
+   "at": 140.44
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    99.7,
+    100.6
+   ],
+   "at": 141.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    100.7,
+    102.0
+   ],
+   "at": 142.04
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    102.15,
+    102.95
+   ],
+   "at": 143.49
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    103.1,
+    104.05
+   ],
+   "at": 144.44
+  }
+ ],
+ "subs": [
+  {
+   "voice": "lucas",
+   "src": [
+    0,
+    1.44
+   ],
+   "text": [
+    "MINHA MÃO",
+    "*TERMINA* O GIRO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    2.01,
+    2.48
+   ],
+   "text": [
+    "EU *ABRO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    3.0,
+    4.01
+   ],
+   "text": [
+    "O CORREDOR",
+    "ESTÁ *VAZIO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    4.55,
+    5.66
+   ],
+   "text": [
+    "NENHUMA PORTA",
+    "*ABERTA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    6.04,
+    7.15
+   ],
+   "text": [
+    "NENHUM PASSO",
+    "NA *ESCADA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    7.56,
+    8.0
+   ],
+   "text": [
+    "*NINGUÉM*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    8.4,
+    9.32
+   ],
+   "text": [
+    "MAS A VOZ DELA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    9.73,
+    10.49
+   ],
+   "text": [
+    "*CONTINUA AQUI*"
+   ]
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    6.2,
+    7.6
+   ],
+   "text": [
+    "LU? SOU EU"
+   ]
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    8.9,
+    9.4
+   ],
+   "text": [
+    "*ABRE*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    10.84,
+    11.27
+   ],
+   "text": [
+    "*BAIXINHO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    11.89,
+    12.71
+   ],
+   "text": [
+    "PERTO DO",
+    "*MEU PÉ*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    13.1,
+    13.74
+   ],
+   "text": [
+    "VEM DO *CHÃO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    14.14,
+    15.1
+   ],
+   "text": [
+    "UMA *CAIXINHA*",
+    "DE SOM"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    15.57,
+    18.1
+   ],
+   "text": [
+    "PEQUENA, PRETA",
+    "DESSAS DE",
+    "*VINTE REAIS*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    18.46,
+    19.75
+   ],
+   "text": [
+    "A MINHA IRMÃ",
+    "*NUNCA ESTEVE*",
+    "AQUI"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    20.06,
+    22.33
+   ],
+   "text": [
+    "ERA SÓ ISSO",
+    "UMA *GRAVAÇÃO*",
+    "NO MEU CAPACHO"
+   ]
+  },
+  {
+   "voice": "clara_voz",
+   "src": [
+    9.72,
+    13.24
+   ],
+   "text": [
+    "VOCÊ AINDA",
+    "ME DEVE",
+    "*CINCO REAIS*",
+    "LEMBRA?"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    22.68,
+    23.6
+   ],
+   "text": [
+    "*TRÊS BATIDAS*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    23.7,
+    25.74
+   ],
+   "text": [
+    "ATÉ AS BATIDAS",
+    "ESTAVAM NA",
+    "*GRAVAÇÃO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    26.1,
+    27.32
+   ],
+   "text": [
+    "ALGUÉM *MONTOU*",
+    "ISSO PRA MIM"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    27.69,
+    29.66
+   ],
+   "text": [
+    "EMBAIXO",
+    "UMA *ETIQUETA*",
+    "ESCRITA À MÃO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    30.08,
+    31.8
+   ],
+   "text": [
+    "*S-6*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    32.13,
+    34.81
+   ],
+   "text": [
+    "SE EXISTE UMA 6",
+    "ONDE ESTÃO",
+    "AS *OUTRAS CINCO?*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    35.22,
+    36.25
+   ],
+   "text": [
+    "*EU AVISEI*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    36.5,
+    38.5
+   ],
+   "text": [
+    "AINDA SÃO",
+    "*23:17*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    38.6,
+    40.5
+   ],
+   "text": [
+    "ELE NÃO PRECISOU",
+    "ESPERAR",
+    "*NEM UM MINUTO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    40.6,
+    42.35
+   ],
+   "text": [
+    "A PORTA DO *902*",
+    "ABRE"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    42.45,
+    43.15
+   ],
+   "text": [
+    "*DONA IRENE*"
+   ]
+  },
+  {
+   "voice": "irene",
+   "src": [
+    0,
+    1.44
+   ],
+   "text": [
+    "TUDO BEM AÍ,",
+    "*MEU FILHO?*"
+   ]
+  },
+  {
+   "voice": "irene",
+   "src": [
+    1.89,
+    3.28
+   ],
+   "text": [
+    "OUVI UMA",
+    "*VOZ DE MOÇA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    43.3,
+    44.65
+   ],
+   "text": [
+    "ERA A *TELEVISÃO*",
+    "DONA IRENE"
+   ]
+  },
+  {
+   "voice": "irene",
+   "src": [
+    3.72,
+    5.33
+   ],
+   "text": [
+    "*DORME BEM,*",
+    "LUCAS"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    44.8,
+    45.9
+   ],
+   "text": [
+    "ELA OLHOU PARA",
+    "A *MINHA MÃO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    46.15,
+    47.65
+   ],
+   "text": [
+    "A DONA IRENE",
+    "DORME *ÀS OITO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    47.8,
+    50.85
+   ],
+   "text": [
+    "E AQUELA VOZ",
+    "ERA BAIXA DEMAIS",
+    "PRA ATRAVESSAR",
+    "A *PAREDE*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    50.95,
+    51.6
+   ],
+   "text": [
+    "NÃO *DURMO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    51.7,
+    53.0
+   ],
+   "text": [
+    "*ABRO* A CAIXINHA",
+    "ALI MESMO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    53.15,
+    53.95
+   ],
+   "text": [
+    "*SEM CHIP*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    54.0,
+    54.85
+   ],
+   "text": [
+    "*SEM REDE*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    54.9,
+    55.8
+   ],
+   "text": [
+    "SÓ UM *ARQUIVO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    55.95,
+    57.9
+   ],
+   "text": [
+    "GRAVADO NA SEMANA",
+    "EM QUE A CLARA",
+    "*SUMIU*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    58.0,
+    59.4
+   ],
+   "text": [
+    "*DESCE AO PORÃO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    59.55,
+    61.65
+   ],
+   "text": [
+    "LEVE *SÓ UMA COISA*",
+    "DA CAIXA DELA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    61.89,
+    63.88
+   ],
+   "text": [
+    "FICO *QUASE UMA HORA*",
+    "OLHANDO ESSA",
+    "MENSAGEM"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    64.27,
+    65.2
+   ],
+   "text": [
+    "O ELEVADOR",
+    "*NÃO VEM*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    65.46,
+    66.81
+   ],
+   "text": [
+    "DESÇO OS",
+    "*NOVE ANDARES*",
+    "A PÉ"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    67.12,
+    69.04
+   ],
+   "text": [
+    "EU NUNCA CONTEI",
+    "DAQUELA *CAIXA*",
+    "PRA NINGUÉM"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    69.37,
+    70.63
+   ],
+   "text": [
+    "FAZ *UM ANO*",
+    "QUE ELA",
+    "ESTÁ AQUI"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    70.97,
+    71.63
+   ],
+   "text": [
+    "EU *NUNCA* ABRI"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    71.94,
+    73.1
+   ],
+   "text": [
+    "EU DIGO QUE",
+    "É *SAUDADE*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    73.1,
+    74.78
+   ],
+   "text": [
+    "MAS TENHO *MEDO*",
+    "DO QUE TEM DENTRO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    75.0,
+    75.8
+   ],
+   "text": [
+    "UM *CRACHÁ*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    75.95,
+    77.85
+   ],
+   "text": [
+    "CLÍNICA *SERENUS*",
+    "ALA 3"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    78.0,
+    79.3
+   ],
+   "text": [
+    "*SERENUS* É ONDE",
+    "EU ME TRATO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    79.3,
+    81.5
+   ],
+   "text": [
+    "A CLARA *NUNCA*",
+    "ME FALOU",
+    "DESSA CLÍNICA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    81.6,
+    82.3
+   ],
+   "text": [
+    "EMBAIXO"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    82.3,
+    83.1
+   ],
+   "text": [
+    "UMA *FITA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    83.2,
+    84.15
+   ],
+   "text": [
+    "COM A *LETRA* DELA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    84.3,
+    84.7
+   ],
+   "text": [
+    "*LU*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    84.8,
+    85.95
+   ],
+   "text": [
+    "SE EU *ESQUECER*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    86.05,
+    86.95
+   ],
+   "text": [
+    "A LUZ *APAGA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    87.15,
+    87.8
+   ],
+   "text": [
+    "LÁ EM CIMA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    87.9,
+    89.2
+   ],
+   "text": [
+    "A PORTA DE FERRO",
+    "*FECHA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    89.3,
+    90.05
+   ],
+   "text": [
+    "EU *RECUO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    90.05,
+    91.05
+   ],
+   "text": [
+    "E *DERRUBO*",
+    "A CAIXA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    91.2,
+    93.3
+   ],
+   "text": [
+    "*SÓ DÁ TEMPO*",
+    "DE LEVAR UM"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    93.45,
+    94.3
+   ],
+   "text": [
+    "PASSOS NA *ESCADA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    94.4,
+    95.2
+   ],
+   "text": [
+    "SEM *LANTERNA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    95.3,
+    97.15
+   ],
+   "text": [
+    "QUEM DESCE CONHECE",
+    "O CAMINHO",
+    "NO *ESCURO*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    97.25,
+    99.0
+   ],
+   "text": [
+    "O *CRACHÁ* CAIU",
+    "PERTO DA ESTANTE"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    99.05,
+    99.65
+   ],
+   "text": [
+    "A *FITA*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    99.7,
+    100.6
+   ],
+   "text": [
+    "PERTO DA ESCADA"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    100.7,
+    102.0
+   ],
+   "text": [
+    "SÓ DÁ PRA",
+    "*LEVAR UM*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    102.15,
+    102.95
+   ],
+   "text": [
+    "*O CRACHÁ...*"
+   ]
+  },
+  {
+   "voice": "lucas",
+   "src": [
+    103.1,
+    104.05
+   ],
+   "text": [
+    "*OU A FITA?*"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.6,
+   "start": 0,
+   "end": 2.0,
+   "lights": [
+    [
+     560,
+     1250,
+     280
+    ]
+   ],
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "centro",
+     "view": "3q",
+     "facing": -1,
+     "pose": "crouch",
+     "prop": "phone",
+     "emotion": "fear",
+     "lipsync": false
+    }
+   ],
+   "hook": {
+    "text": "SÓ DÁ PRA\nLEVAR UM",
+    "fala": {
+     "voice": "lucas",
+     "src": [
+      100.7,
+      102.0
+     ]
+    }
+   }
+  },
+  {
+   "start": 2.0,
+   "end": 7.0,
+   "type": "recap",
+   "from": "ep01.json",
+   "times": [
+    57,
+    66,
+    90
+   ],
+   "label": "ANTERIORMENTE EM VISTO AMANHÃ",
+   "lines": [
+    "NÃO ABRE A PORTA",
+    "LU? SOU EU. ABRE",
+    "NÃO É ELA"
+   ]
+  },
+  {
+   "type": "detail",
+   "subject": "macaneta",
+   "hand": "lucas",
+   "params": {
+    "turn": [
+     28,
+     48
+    ],
+    "light": 0.5
+   },
+   "transition": "glitch",
+   "start": 7.0,
+   "end": 8.89
+  },
+  {
+   "scene": "entrada",
+   "dark": 0.42,
+   "props": {
+    "door": [
+     [
+      0,
+      0
+     ],
+     [
+      0.7,
+      1
+     ]
+    ],
+    "under_door_light": 0
+   },
+   "hud": false,
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "porta",
+     "dx": -90,
+     "view": "back",
+     "pose": "open_door",
+     "emotion": "fear",
+     "lipsync": false
+    }
+   ],
+   "start": 8.89,
+   "end": 10.31,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": [
+     [
+      0,
+      0.95
+     ],
+     [
+      0.7,
+      0.95
+     ],
+     [
+      0.8,
+      0.03
+     ]
+    ],
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": [
+      [
+       0,
+       "frente"
+      ],
+      [
+       1.3,
+       "frente_esq"
+      ]
+     ],
+     "view": "back",
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.3,
+       false
+      ]
+     ],
+     "emotion": "fear",
+     "prop": "phone",
+     "lipsync": false
+    }
+   ],
+   "start": 10.31,
+   "end": 12.52,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "zoom": [
+     1.5,
+     1.8
+    ],
+    "cx": 0.86,
+    "cy": 0.56,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 12.52,
+   "end": 14.03,
+   "transition": "cut"
+  },
+  {
+   "scene": "escada",
+   "dark": 0.2,
+   "insercao": true,
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [],
+   "start": 14.03,
+   "end": 15.54,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": [
+      [
+       0,
+       "3q"
+      ],
+      [
+       0.6,
+       "front"
+      ]
+     ],
+     "facing": [
+      [
+       0,
+       1
+      ],
+      [
+       0.3,
+       -1
+      ],
+      [
+       0.6,
+       1
+      ]
+     ],
+     "emotion": "fear",
+     "prop": "phone"
+    }
+   ],
+   "start": 15.54,
+   "end": 16.48,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "close",
+    "push": 0.08,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "fear"
+      ],
+      [
+       1.4,
+       "shock"
+      ]
+     ],
+     "pose": "ouvir",
+     "prop": "phone",
+     "tremble": 0.3
+    }
+   ],
+   "start": 16.48,
+   "end": 18.96,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true,
+    "caixinha": false
+   },
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "front",
+     "emotion": "shock",
+     "prop": "phone",
+     "look": [
+      0,
+      1
+     ],
+     "tremble": 0.5,
+     "lipsync": false
+    }
+   ],
+   "start": 18.96,
+   "end": 21.66,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true,
+    "caixinha": true
+   },
+   "camera": {
+    "zoom": [
+     2.0,
+     2.4
+    ],
+    "cx": 0.33,
+    "cy": 0.93,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "front",
+     "emotion": "fear",
+     "prop": "phone",
+     "lipsync": false,
+     "tremble": 0.3
+    }
+   ],
+   "start": 21.66,
+   "end": 23.76,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true,
+    "caixinha": true
+   },
+   "camera": {
+    "zoom": [
+     2.4,
+     3.4
+    ],
+    "cx": 0.3,
+    "cy": 0.95,
+    "cortes": false,
+    "handheld": 5
+   },
+   "actors": [],
+   "start": 23.76,
+   "end": 24.95,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": true,
+    "aceso": [
+     [
+      0,
+      1
+     ],
+     [
+      0.5,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      1.5,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ]
+   },
+   "hand": false,
+   "camera": {
+    "zoom": [
+     1.0,
+     1.15
+    ],
+    "cortes": false
+   },
+   "transition": "zoom",
+   "start": 24.95,
+   "end": 26.21
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": true,
+    "aceso": 1,
+    "mao": [
+     [
+      0,
+      0
+     ],
+     [
+      1.9,
+      1
+     ]
+    ]
+   },
+   "hand": "lucas",
+   "camera": {
+    "zoom": 1.15,
+    "cortes": false
+   },
+   "start": 26.21,
+   "end": 29.14,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "shock"
+      ],
+      [
+       0.7,
+       "sad"
+      ]
+     ],
+     "pose": "hold",
+     "prop": "caixinha"
+    }
+   ],
+   "start": 29.14,
+   "end": 30.83,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": false,
+    "aceso": 1
+   },
+   "hand": false,
+   "camera": {
+    "zoom": 1.25,
+    "cortes": false
+   },
+   "start": 30.83,
+   "end": 33.5,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": false,
+    "aceso": [
+     [
+      0,
+      1
+     ],
+     [
+      0.2,
+      0
+     ],
+     [
+      0.5,
+      1
+     ],
+     [
+      0.7,
+      0
+     ],
+     [
+      1.0,
+      1
+     ]
+    ],
+    "treme": [
+     [
+      0,
+      0.8
+     ],
+     [
+      1.2,
+      0.6
+     ]
+    ]
+   },
+   "hand": false,
+   "camera": {
+    "zoom": 1.25,
+    "cortes": false
+   },
+   "start": 33.5,
+   "end": 37.22,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "3q",
+     "facing": 1,
+     "emotion": [
+      [
+       0,
+       "sad"
+      ],
+      [
+       1.2,
+       "fear"
+      ]
+     ],
+     "pose": "hold",
+     "prop": "caixinha",
+     "tremble": 0.3
+    }
+   ],
+   "start": 37.22,
+   "end": 41.93,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": false,
+    "aceso": [
+     [
+      0,
+      1
+     ],
+     [
+      0.7,
+      0
+     ]
+    ]
+   },
+   "hand": false,
+   "camera": {
+    "zoom": 1.2,
+    "cortes": false
+   },
+   "start": 41.93,
+   "end": 42.93,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "medio",
+    "push": 0.08,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "front",
+     "emotion": "fear",
+     "pose": "hold",
+     "prop": "caixinha",
+     "look": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "start": 42.93,
+   "end": 44.6,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": false,
+    "baixo": true
+   },
+   "hand": false,
+   "camera": {
+    "zoom": [
+     1.0,
+     1.1
+    ],
+    "cortes": false
+   },
+   "start": 44.6,
+   "end": 46.87,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixinha",
+    "superficie": "chao",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "dark": 0.1,
+   "props": {
+    "capacho": false,
+    "baixo": true
+   },
+   "hand": false,
+   "camera": {
+    "zoom": [
+     1.35,
+     1.6
+    ],
+    "cx": 0.5,
+    "cy": 0.62,
+    "cortes": false
+   },
+   "start": 46.87,
+   "end": 48.99,
+   "transition": "cut"
+  },
+  {
+   "type": "pensamento",
+   "quem": "lucas",
+   "emotion": "fear",
+   "estilo": "medo",
+   "cena": {
+    "cenario": {
+     "close": "caixinha",
+     "superficie": "parede",
+     "ambiente": "sala_estar",
+     "luz": "noite",
+     "n": 6,
+     "opts": {
+      "numerar": true
+     }
+    },
+    "hand": false,
+    "dark": 0.05
+   },
+   "fundo": {
+    "scene": "corredor"
+   },
+   "start": 48.99,
+   "end": 52.17,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Eu avisei.",
+       "t": 1.55
+      }
+     ],
+     "visto": "visto por último amanhã às 03:17"
+    },
+    "hora": "23:17"
+   },
+   "start": 52.17,
+   "end": 55.15,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Eu avisei.",
+       "t": 0
+      }
+     ],
+     "visto": "visto por último amanhã às 03:17",
+     "destaque": true
+    },
+    "hora": "23:17"
+   },
+   "start": 55.15,
+   "end": 57.45,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": [
+      [
+       0,
+       "front"
+      ],
+      [
+       1.0,
+       "3q"
+      ]
+     ],
+     "facing": -1,
+     "emotion": "fear",
+     "prop": "phone",
+     "pose": "phone"
+    }
+   ],
+   "start": 57.45,
+   "end": 59.75,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": [
+     [
+      0,
+      0
+     ],
+     [
+      1.5,
+      1
+     ]
+    ],
+    "capacho": true
+   },
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "back",
+     "emotion": "shock",
+     "prop": "caixinha",
+     "lipsync": false
+    }
+   ],
+   "start": 59.75,
+   "end": 61.8,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 1,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "back",
+     "emotion": "shock",
+     "prop": "caixinha",
+     "lipsync": false
+    },
+    {
+     "char": "irene",
+     "x": [
+      [
+       0,
+       840
+      ],
+      [
+       1.6,
+       650
+      ]
+     ],
+     "y": 1530,
+     "view": "3q",
+     "facing": -1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.6,
+       false
+      ]
+     ],
+     "emotion": "neutral",
+     "lipsync": false
+    }
+   ],
+   "start": 61.8,
+   "end": 63.6,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 1,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "irene",
+     "mark": "meio",
+     "dx": 110,
+     "view": "3q",
+     "facing": -1,
+     "emotion": "happy",
+     "pose": "pedir_calma"
+    }
+   ],
+   "start": 63.6,
+   "end": 65.44,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 1,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "back",
+     "emotion": "fear",
+     "prop": "caixinha",
+     "lipsync": false
+    },
+    {
+     "char": "irene",
+     "mark": "meio",
+     "dx": 110,
+     "view": "3q",
+     "facing": -1,
+     "emotion": "neutral"
+    }
+   ],
+   "start": 65.44,
+   "end": 67.23,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 1,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "fear",
+     "prop": "caixinha"
+    }
+   ],
+   "start": 67.23,
+   "end": 69.08,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 1,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "irene",
+     "mark": "meio",
+     "dx": 110,
+     "view": "3q",
+     "facing": -1,
+     "emotion": "happy",
+     "look": [
+      -0.4,
+      1
+     ]
+    }
+   ],
+   "start": 69.08,
+   "end": 71.39,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": [
+     [
+      0,
+      1
+     ],
+     [
+      1.2,
+      0.6
+     ]
+    ],
+    "capacho": true
+   },
+   "camera": {
+    "zoom": [
+     1.5,
+     1.9
+    ],
+    "cx": 0.42,
+    "cy": 0.86,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "frente_esq",
+     "view": "back",
+     "emotion": "fear",
+     "prop": "caixinha",
+     "lipsync": false
+    }
+   ],
+   "start": 71.39,
+   "end": 72.89,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": [
+     [
+      0,
+      0.6
+     ],
+     [
+      1.2,
+      0
+     ]
+    ],
+    "capacho": true
+   },
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [],
+   "start": 72.89,
+   "end": 74.19,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "relogio",
+   "params": {
+    "minutes": [
+     480,
+     480
+    ]
+   },
+   "insercao": true,
+   "grade": "frio",
+   "start": 74.19,
+   "end": 76.09,
+   "transition": "cut"
+  },
+  {
+   "scene": "corredor",
+   "dark": 0.5,
+   "props": {
+    "flicker": 0.04,
+    "porta_903": 1,
+    "porta_902": 0,
+    "capacho": true
+   },
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": [
+      [
+       0,
+       "frente_esq"
+      ],
+      [
+       1.3,
+       "frente_dir"
+      ]
+     ],
+     "view": [
+      [
+       0,
+       "3q"
+      ]
+     ],
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.3,
+       false
+      ]
+     ],
+     "emotion": "suspicious",
+     "pose": [
+      [
+       0,
+       "idle"
+      ],
+      [
+       1.3,
+       "ouvir"
+      ]
+     ],
+     "prop": "caixinha"
+    }
+   ],
+   "start": 76.09,
+   "end": 79.84,
+   "transition": "cut"
+  },
+  {
+   "scene": "apartamento",
+   "dark": 0.45,
+   "overlay": [
+    {
+     "type": "text",
+     "text": "DE MADRUGADA",
+     "t": [
+      79.94,
+      81.44
+     ]
+    }
+   ],
+   "transition": "fade",
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "sofa",
+     "pose": "sit",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "suspicious",
+     "prop": "caixinha"
+    }
+   ],
+   "start": 79.84,
+   "end": 81.59
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "caixinha_aberta",
+    "superficie": "mesa",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "hand": "lucas",
+   "dark": 0.15,
+   "props": {
+    "mao": [
+     [
+      0,
+      0
+     ],
+     [
+      0.9,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": [
+     1.0,
+     1.1
+    ],
+    "cortes": false
+   },
+   "start": 81.59,
+   "end": 83.19,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "caixinha_aberta",
+    "superficie": "mesa",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {
+    "destaque": "chip"
+   },
+   "camera": {
+    "zoom": 1.5,
+    "cx": 0.56,
+    "cy": 0.57,
+    "cortes": false
+   },
+   "start": 83.19,
+   "end": 84.09,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "caixinha_aberta",
+    "superficie": "mesa",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {
+    "destaque": "rede"
+   },
+   "camera": {
+    "zoom": 1.5,
+    "cx": 0.62,
+    "cy": 0.57,
+    "cortes": false
+   },
+   "start": 84.09,
+   "end": 85.04,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "caixinha_aberta",
+    "superficie": "mesa",
+    "ambiente": "sala_estar",
+    "luz": "noite"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {
+    "destaque": "arquivo"
+   },
+   "camera": {
+    "zoom": 1.6,
+    "cx": 0.56,
+    "cy": 0.72,
+    "cortes": false
+   },
+   "start": 85.04,
+   "end": 86.09,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "hora": "02:41",
+    "text": [
+     "1 ARQUIVO",
+     "Gravado há 1 ano"
+    ],
+    "color": [
+     255,
+     226,
+     170
+    ]
+   },
+   "start": 86.09,
+   "end": 88.74,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Desce ao porão.",
+       "t": 1.55
+      }
+     ],
+     "visto": "visto por último amanhã às 03:17"
+    },
+    "hora": "21:17"
+   },
+   "transition": "fade",
+   "overlay": [
+    {
+     "type": "text",
+     "text": "NA NOITE SEGUINTE",
+     "t": [
+      88.84,
+      90.24
+     ],
+     "y": 1050,
+     "size": 84
+    }
+   ],
+   "start": 88.74,
+   "end": 91.94
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Desce ao porão.",
+       "t": 0
+      },
+      {
+       "txt": "Leve só uma coisa da caixa dela.",
+       "t": 0.1
+      }
+     ],
+     "visto": "visto por último amanhã às 03:17"
+    },
+    "hora": "21:17"
+   },
+   "start": 91.94,
+   "end": 94.84,
+   "transition": "cut"
+  },
+  {
+   "scene": "apartamento",
+   "dark": 0.45,
+   "camera": {
+    "plano": "aberto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "sofa",
+     "pose": "sit",
+     "view": "back",
+     "emotion": "sad",
+     "prop": "phone",
+     "lipsync": false
+    }
+   ],
+   "start": 94.84,
+   "end": 97.23,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "close": "elevador",
+    "superficie": "parede",
+    "ambiente": "sala_espera",
+    "luz": "noite",
+    "opts": {
+     "visor": "T"
+    }
+   },
+   "hand": "lucas",
+   "sub_y": 1560,
+   "props": {
+    "mao": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      1
+     ]
+    ],
+    "aceso": 1
+   },
+   "dark": 0.55,
+   "camera": {
+    "cortes": false
+   },
+   "start": 97.23,
+   "end": 98.56,
+   "transition": "cut"
+  },
+  {
+   "scene": "escada",
+   "dark": 0.4,
+   "transition": "whip",
+   "lights": [
+    [
+     560,
+     1120,
+     420
+    ]
+   ],
+   "camera": {
+    "plano": "aberto",
+    "handheld": 5,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": [
+      [
+       0,
+       "degrau_alto"
+      ],
+      [
+       1.8,
+       "degrau_meio"
+      ],
+      [
+       3.6,
+       "degrau_baixo"
+      ]
+     ],
+     "view": "side",
+     "facing": -1,
+     "walk": true,
+     "emotion": "fear",
+     "prop": "phone",
+     "pose": "phone"
+    }
+   ],
+   "start": 98.56,
+   "end": 102.63
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.35,
+   "transition": "cut",
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   },
+   "props": {
+    "flicker": 0.05
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": [
+      [
+       0,
+       "frente"
+      ],
+      [
+       1.3,
+       "caixa"
+      ]
+     ],
+     "view": "3q",
+     "facing": 1,
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       1.3,
+       false
+      ]
+     ],
+     "emotion": "sad",
+     "prop": "phone"
+    }
+   ],
+   "start": 102.63,
+   "end": 104.39
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixa",
+    "superficie": "chao",
+    "ambiente": "porao",
+    "luz": "escuro",
+    "opts": {
+     "texto": "CLARA"
+    }
+   },
+   "dark": 0.25,
+   "hand": false,
+   "camera": {
+    "zoom": [
+     1.0,
+     1.15
+    ],
+    "cortes": false
+   },
+   "start": 104.39,
+   "end": 105.45,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.35,
+   "camera": {
+    "plano": "close",
+    "push": 0.06,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "caixa",
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "sad"
+      ],
+      [
+       1.0,
+       "fear"
+      ]
+     ],
+     "prop": "phone",
+     "pose": "phone"
+    }
+   ],
+   "start": 105.45,
+   "end": 106.86,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixa",
+    "superficie": "chao",
+    "ambiente": "porao",
+    "luz": "escuro",
+    "opts": {
+     "texto": "CLARA"
+    }
+   },
+   "dark": 0.25,
+   "hand": "lucas",
+   "props": {
+    "mao": [
+     [
+      0,
+      0
+     ],
+     [
+      1.2,
+      1
+     ]
+    ],
+    "aberta": [
+     [
+      0,
+      0
+     ],
+     [
+      1.3,
+      1
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": 1.15,
+    "cortes": false
+   },
+   "start": 106.86,
+   "end": 108.84,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "cracha_clinica",
+    "superficie": "nenhuma",
+    "ambiente": "porao",
+    "luz": "escuro"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {
+    "cai": [
+     [
+      0,
+      0.4
+     ],
+     [
+      0.3,
+      1
+     ]
+    ]
+   },
+   "start": 108.84,
+   "end": 109.89,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1560,
+   "cenario": {
+    "close": "cracha_clinica",
+    "superficie": "nenhuma",
+    "ambiente": "porao",
+    "luz": "escuro"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {},
+   "camera": {
+    "zoom": [
+     1.2,
+     1.6
+    ],
+    "cx": 0.5,
+    "cy": 0.5,
+    "cortes": false
+   },
+   "start": 109.89,
+   "end": 112.09,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "consultorio",
+    "luz": "fria"
+   },
+   "lembranca": true,
+   "insercao": true,
+   "hud": false,
+   "transition": "fade",
+   "camera": {
+    "plano": "conjunto",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "centro",
+     "view": "3q",
+     "facing": 1,
+     "emotion": "neutral",
+     "lipsync": false,
+     "pose": "pensativo"
+    }
+   ],
+   "start": 112.09,
+   "end": 113.54
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.35,
+   "camera": {
+    "plano": "close",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "caixa",
+     "view": "front",
+     "emotion": "shock",
+     "prop": "phone",
+     "pose": "phone",
+     "tremble": 0.3
+    }
+   ],
+   "start": 113.54,
+   "end": 115.84,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixa",
+    "superficie": "chao",
+    "ambiente": "porao",
+    "luz": "escuro",
+    "opts": {
+     "texto": "CLARA"
+    }
+   },
+   "dark": 0.25,
+   "hand": "lucas",
+   "props": {
+    "aberta": 1,
+    "mao": [
+     [
+      0,
+      1
+     ],
+     [
+      0.5,
+      0.7
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": 1.3,
+    "cortes": false
+   },
+   "start": 115.84,
+   "end": 116.59,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "fita_cassete",
+    "superficie": "nenhuma",
+    "ambiente": "porao",
+    "luz": "escuro"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {
+    "cai": [
+     [
+      0,
+      0.5
+     ],
+     [
+      0.25,
+      1
+     ]
+    ]
+   },
+   "start": 116.59,
+   "end": 117.49,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "fita_cassete",
+    "superficie": "nenhuma",
+    "ambiente": "porao",
+    "luz": "escuro"
+   },
+   "hand": false,
+   "dark": 0.15,
+   "props": {},
+   "camera": {
+    "zoom": [
+     1.3,
+     1.7
+    ],
+    "cx": 0.5,
+    "cy": 0.5,
+    "cortes": false
+   },
+   "start": 117.49,
+   "end": 118.79,
+   "transition": "cut"
+  },
+  {
+   "type": "pensamento",
+   "quem": "lucas",
+   "emotion": "sad",
+   "estilo": "memoria",
+   "transition": "glitch",
+   "cena": {
+    "cenario": {
+     "base": "cozinha",
+     "luz": "quente"
+    },
+    "actors": [
+     {
+      "char": "clara",
+      "mark": "centro",
+      "view": "front",
+      "emotion": "happy",
+      "pose": "wave",
+      "lipsync": false
+     }
+    ]
+   },
+   "fundo": {
+    "scene": "porao"
+   },
+   "start": 118.79,
+   "end": 122.24
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.35,
+   "scare": [
+    0.9
+   ],
+   "props": {
+    "luz": [
+     [
+      0,
+      1
+     ],
+     [
+      0.9,
+      1
+     ],
+     [
+      0.95,
+      0.1
+     ]
+    ],
+    "flicker": 0.03
+   },
+   "lights": [
+    [
+     640,
+     1080,
+     260
+    ]
+   ],
+   "camera": {
+    "plano": "medio",
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "caixa",
+     "view": "front",
+     "emotion": [
+      [
+       0,
+       "sad"
+      ],
+      [
+       0.95,
+       "fear"
+      ]
+     ],
+     "prop": "phone",
+     "pose": "phone",
+     "tremble": [
+      [
+       0,
+       0
+      ],
+      [
+       0.95,
+       0.7
+      ]
+     ]
+    }
+   ],
+   "start": 122.24,
+   "end": 124.34,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "close": "porta",
+    "superficie": "parede",
+    "ambiente": "porao",
+    "luz": "escuro",
+    "opts": {
+     "tipo": "metal",
+     "aberta": 0
+    }
+   },
+   "hand": false,
+   "dark": 0.3,
+   "sub_y": 1560,
+   "props": {
+    "treme": [
+     [
+      0,
+      0
+     ],
+     [
+      0.85,
+      0
+     ],
+     [
+      0.9,
+      1
+     ],
+     [
+      1.4,
+      0
+     ]
+    ]
+   },
+   "camera": {
+    "cortes": false,
+    "zoom": [
+     1.2,
+     1.32
+    ]
+   },
+   "start": 124.34,
+   "end": 126.79,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.6,
+   "lights": [
+    [
+     600,
+     1120,
+     320
+    ]
+   ],
+   "camera": {
+    "plano": "medio",
+    "cortes": false,
+    "handheld": 6
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": [
+      [
+       0,
+       "caixa"
+      ],
+      [
+       0.8,
+       "caixa2"
+      ]
+     ],
+     "view": "front",
+     "walk": [
+      [
+       0,
+       true
+      ],
+      [
+       0.8,
+       false
+      ]
+     ],
+     "emotion": "fear",
+     "prop": "phone",
+     "pose": "phone"
+    }
+   ],
+   "start": 126.79,
+   "end": 127.74,
+   "transition": "cut"
+  },
+  {
+   "sub_y": 1520,
+   "cenario": {
+    "close": "caixa",
+    "superficie": "chao",
+    "ambiente": "porao",
+    "luz": "escuro",
+    "opts": {
+     "texto": "CLARA"
+    }
+   },
+   "dark": 0.45,
+   "hand": false,
+   "props": {
+    "aberta": 1,
+    "treme": [
+     [
+      0,
+      1
+     ],
+     [
+      0.6,
+      1
+     ],
+     [
+      1.0,
+      0
+     ]
+    ]
+   },
+   "camera": {
+    "zoom": [
+     1.1,
+     1.3
+    ],
+    "cortes": false,
+    "handheld": 8
+   },
+   "start": 127.74,
+   "end": 128.84,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.55,
+   "lights": [
+    [
+     540,
+     1500,
+     620
+    ]
+   ],
+   "sub_y": 1560,
+   "camera": {
+    "zoom": 1.3,
+    "cx": 0.5,
+    "cy": 0.82,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 128.84,
+   "end": 129.74,
+   "transition": "cut"
+  },
+  {
+   "type": "detail",
+   "subject": "celular",
+   "hand": {
+    "of": "lucas",
+    "at": "segurando"
+   },
+   "params": {
+    "chat": {
+     "msgs": [
+      {
+       "txt": "Só dá tempo de levar um.",
+       "t": 1.55
+      }
+     ],
+     "visto": "visto por último amanhã às 03:17"
+    },
+    "hora": "22:17"
+   },
+   "start": 129.74,
+   "end": 134.14,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "close": "escada_concreto",
+    "superficie": "parede",
+    "ambiente": "porao",
+    "luz": "escuro"
+   },
+   "hand": false,
+   "actors": [],
+   "dark": 0.45,
+   "sub_y": 1600,
+   "camera": {
+    "cortes": false,
+    "handheld": 4,
+    "zoom": [
+     1.05,
+     1.25
+    ]
+   },
+   "start": 134.14,
+   "end": 136.19,
+   "transition": "cut"
+  },
+  {
+   "type": "pensamento",
+   "quem": "lucas",
+   "emotion": "fear",
+   "estilo": "medo",
+   "cena": {
+    "cenario": {
+     "close": "escada_concreto",
+     "superficie": "parede",
+     "ambiente": "porao",
+     "luz": "escuro"
+    },
+    "hand": false,
+    "actors": [],
+    "dark": 0.3
+   },
+   "fundo": {
+    "cenario": {
+     "base": "porao",
+     "luz": "escuro",
+     "sem": [
+      "tambor"
+     ],
+     "mais": [
+      {
+       "m": "escada_concreto",
+       "em": "fundo",
+       "x": 0.33
+      },
+      {
+       "m": "cracha_clinica",
+       "em": "chao",
+       "x": 0.72,
+       "z": 0.6,
+       "esc": 2.4
+      },
+      {
+       "m": "fita_cassete",
+       "em": "chao",
+       "x": 0.38,
+       "z": 0.6,
+       "esc": 2.8
+      }
+     ],
+     "mudar": [
+      {
+       "m": "caixa",
+       "texto": "CLARA"
+      }
+     ]
+    },
+    "dark": 0.8
+   },
+   "start": 136.19,
+   "end": 138.44,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.5,
+   "lights": [
+    [
+     540,
+     1600,
+     330
+    ]
+   ],
+   "sub_y": 1180,
+   "camera": {
+    "zoom": [
+     1.7,
+     2.0
+    ],
+    "cx": 0.72,
+    "cy": 0.82,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 138.44,
+   "end": 140.44,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.5,
+   "lights": [
+    [
+     540,
+     1600,
+     330
+    ]
+   ],
+   "sub_y": 1180,
+   "camera": {
+    "zoom": [
+     1.7,
+     2.0
+    ],
+    "cx": 0.38,
+    "cy": 0.82,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 140.44,
+   "end": 141.99,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.6,
+   "lights": [
+    [
+     560,
+     1100,
+     280
+    ]
+   ],
+   "camera": {
+    "plano": "close",
+    "vertigo": [
+     1.0,
+     1.25
+    ],
+    "handheld": 6,
+    "cortes": false
+   },
+   "actors": [
+    {
+     "char": "lucas",
+     "mark": "centro",
+     "view": "front",
+     "emotion": "fear",
+     "prop": "phone",
+     "pose": "phone",
+     "tremble": 0.6
+    }
+   ],
+   "start": 141.99,
+   "end": 143.44,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.5,
+   "lights": [
+    [
+     540,
+     1600,
+     330
+    ]
+   ],
+   "sub_y": 1180,
+   "camera": {
+    "zoom": 2.2,
+    "cx": 0.72,
+    "cy": 0.82,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 143.44,
+   "end": 144.39,
+   "transition": "cut"
+  },
+  {
+   "cenario": {
+    "base": "porao",
+    "luz": "escuro",
+    "sem": [
+     "tambor"
+    ],
+    "mais": [
+     {
+      "m": "escada_concreto",
+      "em": "fundo",
+      "x": 0.33
+     },
+     {
+      "m": "cracha_clinica",
+      "em": "chao",
+      "x": 0.72,
+      "z": 0.6,
+      "esc": 2.4
+     },
+     {
+      "m": "fita_cassete",
+      "em": "chao",
+      "x": 0.38,
+      "z": 0.6,
+      "esc": 2.8
+     }
+    ],
+    "mudar": [
+     {
+      "m": "caixa",
+      "texto": "CLARA"
+     }
+    ]
+   },
+   "dark": 0.5,
+   "lights": [
+    [
+     540,
+     1600,
+     330
+    ]
+   ],
+   "sub_y": 1180,
+   "camera": {
+    "zoom": 2.2,
+    "cx": 0.38,
+    "cy": 0.82,
+    "cortes": false
+   },
+   "actors": [],
+   "start": 144.39,
+   "end": 146.39,
+   "transition": "cut"
+  },
+  {
+   "start": 146.39,
+   "end": 149.39,
+   "type": "pausa"
+  },
+  {
+   "type": "choice",
+   "hud": false,
+   "start": 149.39,
+   "end": 157.39,
+   "a": {
+    "label": "LEVAR O CRACHÁ",
+    "cenario": {
+     "close": "cracha_clinica",
+     "superficie": "chao",
+     "ambiente": "porao",
+     "luz": "escuro"
+    },
+    "dark": 0.2,
+    "hand": false,
+    "actors": [],
+    "crop_y": 420
+   },
+   "b": {
+    "label": "LEVAR A FITA",
+    "cenario": {
+     "close": "fita_cassete",
+     "superficie": "chao",
+     "ambiente": "porao",
+     "luz": "escuro"
+    },
+    "dark": 0.2,
+    "hand": false,
+    "actors": [],
+    "crop_y": 420
+   },
+   "end_card": {
+    "t": 149.89,
+    "text": "COMENTA A OU B · CONTINUA NO EPISÓDIO 3"
+   }
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.5,
+   "name": "echo_step"
+  },
+  {
+   "t": 1.2,
+   "name": "echo_step"
+  },
+  {
+   "t": 2.0,
+   "name": "static",
+   "dur": 0.6
+  },
+  {
+   "t": 7.5,
+   "name": "click"
+  },
+  {
+   "t": 9.09,
+   "name": "door_open",
+   "onda": false
+  },
+  {
+   "t": 10.41,
+   "name": "step"
+  },
+  {
+   "t": 10.91,
+   "name": "step"
+  },
+  {
+   "t": 11.16,
+   "name": "click"
+  },
+  {
+   "t": 23.76,
+   "name": "heartbeat",
+   "dur": 1.0
+  },
+  {
+   "t": 28.21,
+   "name": "click"
+  },
+  {
+   "t": 37.27,
+   "name": "knock"
+  },
+  {
+   "t": 37.77,
+   "name": "knock"
+  },
+  {
+   "t": 38.27,
+   "name": "knock"
+  },
+  {
+   "t": 42.63,
+   "name": "click"
+  },
+  {
+   "t": 44.7,
+   "name": "click"
+  },
+  {
+   "t": 52.17,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 52.67,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 53.67,
+   "name": "notif",
+   "onda": false
+  },
+  {
+   "t": 59.85,
+   "name": "door_open",
+   "onda": false
+  },
+  {
+   "t": 62.1,
+   "name": "shuffle"
+  },
+  {
+   "t": 62.7,
+   "name": "shuffle"
+  },
+  {
+   "t": 72.99,
+   "name": "door_close"
+  },
+  {
+   "t": 73.79,
+   "name": "lock"
+  },
+  {
+   "t": 74.29,
+   "name": "click"
+  },
+  {
+   "t": 76.29,
+   "name": "step"
+  },
+  {
+   "t": 76.89,
+   "name": "step"
+  },
+  {
+   "t": 81.89,
+   "name": "click"
+  },
+  {
+   "t": 82.39,
+   "name": "click"
+  },
+  {
+   "t": 83.29,
+   "name": "click"
+  },
+  {
+   "t": 85.24,
+   "name": "beep",
+   "onda": false
+  },
+  {
+   "t": 88.74,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 89.24,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 90.24,
+   "name": "notif",
+   "onda": false
+  },
+  {
+   "t": 91.94,
+   "name": "notif",
+   "onda": false
+  },
+  {
+   "t": 97.73,
+   "name": "click"
+  },
+  {
+   "t": 98.13,
+   "name": "click"
+  },
+  {
+   "t": 98.76,
+   "name": "echo_step"
+  },
+  {
+   "t": 99.36,
+   "name": "echo_step"
+  },
+  {
+   "t": 99.96,
+   "name": "echo_step"
+  },
+  {
+   "t": 100.56,
+   "name": "echo_step"
+  },
+  {
+   "t": 101.16,
+   "name": "echo_step"
+  },
+  {
+   "t": 101.76,
+   "name": "echo_step"
+  },
+  {
+   "t": 102.63,
+   "name": "door_open",
+   "onda": false
+  },
+  {
+   "t": 103.03,
+   "name": "step"
+  },
+  {
+   "t": 103.53,
+   "name": "step"
+  },
+  {
+   "t": 108.16,
+   "name": "click"
+  },
+  {
+   "t": 108.84,
+   "name": "heartbeat",
+   "dur": 1.5
+  },
+  {
+   "t": 118.89,
+   "name": "whoosh"
+  },
+  {
+   "t": 123.14,
+   "name": "click"
+  },
+  {
+   "t": 125.24,
+   "name": "bang"
+  },
+  {
+   "t": 126.99,
+   "name": "step"
+  },
+  {
+   "t": 127.39,
+   "name": "step"
+  },
+  {
+   "t": 128.04,
+   "name": "impact",
+   "onda": false
+  },
+  {
+   "t": 128.89,
+   "name": "shuffle"
+  },
+  {
+   "t": 129.74,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 130.24,
+   "name": "vibe",
+   "onda": false
+  },
+  {
+   "t": 131.24,
+   "name": "notif",
+   "onda": false
+  },
+  {
+   "t": 132.94,
+   "name": "echo_step"
+  },
+  {
+   "t": 134.24,
+   "name": "echo_step"
+  },
+  {
+   "t": 135.04,
+   "name": "echo_step"
+  },
+  {
+   "t": 135.74,
+   "name": "echo_step"
+  },
+  {
+   "t": 136.49,
+   "name": "echo_step"
+  },
+  {
+   "t": 137.39,
+   "name": "echo_step"
+  },
+  {
+   "t": 142.29,
+   "name": "echo_step"
+  },
+  {
+   "t": 142.29,
+   "name": "heartbeat",
+   "dur": 2.5
+  },
+  {
+   "t": 143.94,
+   "name": "echo_step"
+  },
+  {
+   "t": 145.39,
+   "name": "echo_step"
+  },
+  {
+   "t": 149.39,
+   "name": "vibe"
+  },
+  {
+   "t": 152.39,
+   "name": "stamp"
+  }
+ ],
+ "music": [
+  {
+   "start": 7.0,
+   "end": 59.75,
+   "gain": [
+    0.04,
+    0.07
+   ],
+   "tense": 0.5
+  },
+  {
+   "start": 59.75,
+   "end": 102.63,
+   "gain": [
+    0.03,
+    0.06
+   ],
+   "tense": 0.5
+  },
+  {
+   "start": 102.63,
+   "end": 146.39,
+   "gain": [
+    0.05,
+    0.11
+   ],
+   "tense": 0.9
+  }
+ ]
+}

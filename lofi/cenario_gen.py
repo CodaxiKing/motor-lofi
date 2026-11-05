@@ -753,7 +753,7 @@ class Close(Scene):
     def dynamic(self, img, t, camx, props):
         dx = -max(-110, min(110, camx * self.depths[0]))
         opts = dict(self.sp.get("opts") or {})
-        for k in ("aceso", "aberta", "aberto", "visor", "texto", "tv", "pisca", "nome", "cor", "ligado", "acesa", "conteudo", "hora", "batido", "farol"):
+        for k in ("aceso", "aberta", "aberto", "visor", "texto", "tv", "pisca", "nome", "cor", "ligado", "acesa", "conteudo", "hora", "batido", "farol", "baixo", "capacho", "destaque"):
             if k in props: opts[k] = props[k]
         n = int(round(float(props.get("n", self.sp.get("n", 1)) or 1)))
         mv = MOVEIS[self.obj]; k = min(self.k, 820 / (n * mv.larg * 1.12)) if n > 1 else self.k
@@ -771,7 +771,7 @@ class Close(Scene):
             if self.sup not in ("parede", "nenhuma") and mv.lugar != "teto":
                 from .core import darken
                 darken(img, [x - mv.larg * k * 0.6 + dx, y - 14, x + mv.larg * k * 0.6 + dx, y + 18], alpha=150, blur=10); d = ImageDraw.Draw(img)
-            luzes += MV.desenhar(d, self.obj, x, y, k, PP, opts, seed=i + 1, alpha=False, ss=1)
+            luzes += MV.desenhar(d, self.obj, x, y, k, PP, dict(opts, _i=i + 1), seed=i + 1, alpha=False, ss=1)
         for (lx, ly, raio, cor, a) in luzes:
             img.paste(add_light(img, (lx + dx - raio, ly - raio, lx + dx + raio, ly + raio), cor, max(6, int(raio * 0.5)), a))
         mao = props.get("mao"); hv = (props.get("_hand") or (None, None))[0]

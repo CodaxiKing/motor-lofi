@@ -237,7 +237,7 @@ def visemes(buf, step):
 
 def radio_filter(seg):
     seg = bp(seg, 350, 3200, 6); seg = np.tanh(seg * 4) / 2.0
-    return seg + bp(noise(len(seg) / SR), 800, 5000) * 0.02
+    return seg + np.resize(bp(noise(len(seg) / SR), 800, 5000), len(seg)) * 0.02
 
 def mix(total, clips, voices, sfx, music, ambience, out_path, fps=30, boca="rhubarb", cache_dir=None):
     """clips: [{voice, src:[a,b], at, radio?}], voices: {nome: caminho}, sfx: [{t, name, gain, dur}],

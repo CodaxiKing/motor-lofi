@@ -659,13 +659,17 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
             arm(arms[i], dark(topc, 0.86) if ESTILO["nome"] == "vetor" else topc, 44 * LIMBK, skin)
     # --- objeto na mão ---
     pr = prop or ("phone" if draw_pose == "phone" else ("flashlight" if draw_pose == "hold" else ("bag" if draw_pose == "remove_bag" else None)))
-    if pr and not back and draw_pose not in ("cross", "forward"):
+    if pr and (not back or pr == "caixinha") and draw_pose not in ("cross", "forward"):
         hx_, hy_ = arms[1][2]
         if walk:   # inércia: o objeto acompanha a mão com atraso e quica levemente
             hx_ += math.sin(2 * math.pi * ph - 0.7) * 5 * gk; hy_ += abs(math.sin(2 * math.pi * ph - 0.5)) * 6 * gk
         if pr == "phone":
             d.rounded_rectangle([hx_ - 19, hy_ - 44, hx_ + 19, hy_ + 22], 7, fill=(20, 20, 26, 255), outline=OUT, width=3)
             d.rounded_rectangle([hx_ - 13, hy_ - 38, hx_ + 13, hy_ + 14], 4, fill=(170, 200, 255, 255))
+        elif pr == "caixinha":  # caixinha de som preta na mão (também aparece de costas: a mão escondida atrás do corpo)
+            d.rounded_rectangle([hx_ - 34, hy_ - 26, hx_ + 34, hy_ + 26], 9, fill=(16, 16, 20, 255), outline=OUT, width=3)
+            d.ellipse([hx_ - 15, hy_ - 15, hx_ + 15, hy_ + 15], fill=(52, 52, 58, 255))
+            d.ellipse([hx_ + 20, hy_ - 19, hx_ + 27, hy_ - 12], fill=(90, 170, 255, 255))
         elif pr == "handset":   # fone de gancho do telefone fixo: cabo curvo, auricular em cima e bocal embaixo
             bege = (214, 206, 180, 255)
             d.arc([hx_ - 46, hy_ - 72, hx_ + 26, hy_ + 46], 100, 260, fill=TRACO, width=24)

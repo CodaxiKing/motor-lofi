@@ -962,10 +962,95 @@ def _lustre(p, o):
 
 
 # ============================== CHÃO (objetos pequenos) ==============================
-@movel("cracha", "chao", 10, 2, ("crachá", "cracha"))
+@movel("cracha", "chao", 10, 2, ("crachá caído",))
 def _cracha(p, o):
     p.poly([(-6, 0), (6, 0), (7, 2.4), (-5, 2.4)], fill=(240, 240, 236)); p.rect(-4, 0.6, -1, 1.8, fill=(180, 150, 130)); p.line([(-1, 2.4), (6, 8), (14, 4)], (30, 80, 160), 0.6)
     if o.get("nome"): p.text(3, 1.4, o["nome"], 1.0, (40, 40, 40))
+
+
+def manuscrito(p, cx, cy, s, size, cor, seed=5):
+    """Texto com cara de escrito à mão: cada letra com um pequeno desvio de altura e de largura."""
+    r = random.Random(seed); larg = size * 0.66; x = cx - larg * (len(s) - 1) / 2
+    for ch in s:
+        p.text(x + r.uniform(-0.05, 0.05) * size, cy + r.uniform(-0.09, 0.09) * size, ch, size * r.uniform(0.92, 1.08), cor, "sans")
+        x += larg
+
+
+@movel("caixinha", "chao", 13, 8, ("caixinha de som", "caixinha"), "caixa de som portátil preta; opts capacho, aceso, baixo (vista de baixo, com etiqueta), texto, numerar")
+def _caixinha(p, o):
+    if o.get("capacho"):
+        p.rect(-30, -5, 30, 12, fill=(70, 56, 40))
+        for x in range(-30, 30, 2): p.line([(x, -5), (x + 0.6, 12)], (92, 74, 52), 0.3)
+        p.rect(-30, -5, 30, -4, fill=(40, 32, 26))
+    if o.get("baixo"):
+        p.rrect(-6.5, 0, 6.5, 8, 1.2, fill=(30, 30, 34)); 
+        for x in (-5, 5): p.ell(x, 1.2, 0.5, 0.5, fill=(60, 60, 66))
+        p.rect(-4.6, 1.8, 4.6, 6.4, fill=(236, 230, 208)); p.rect(-4.6, 1.8, 4.6, 2.1, fill=(206, 200, 178))
+        manuscrito(p, 0, 4.1, o.get("texto", "S-6"), 2.6, (30, 30, 80))
+        return
+    p.rrect(-6.5, 0, 6.5, 8, 1.4, fill=(18, 18, 22), outline=(66, 66, 72), w=0.15)
+    for x in range(-5, 3):
+        for y in range(1, 8): p.ell(x + 0.4, y, 0.14, 0.14, fill=(44, 44, 50))
+    p.ell(-0.8, 4, 2.9, 2.9, fill=(34, 34, 40), outline=(70, 70, 76), w=0.15); p.ell(-0.8, 4, 1.0, 1.0, fill=(60, 60, 66))
+    p.rect(4.2, 1, 5.6, 7, fill=(30, 30, 36))
+    if o.get("aceso"):
+        p.ell(4.9, 6.2, 0.4, 0.4, fill=(90, 170, 255)); p.luz(4.9, 6.2, 7, (90, 170, 255), 130)
+    if o.get("numerar"): p.text(0, -1.4, f"S-{o.get('_i', 1)}", 1.9, (236, 230, 208), "sans")
+
+
+@movel("caixinha_aberta", "chao", 14, 9, ("caixinha aberta", "abro a caixinha", "sem chip", "sem rede"), "caixinha de som desmontada; opts destaque: chip, rede, arquivo")
+def _caixinha_aberta(p, o):
+    p.rrect(-7, 0, 7, 9, 0.8, fill=(18, 18, 22)); p.rect(-6.2, 0.8, 6.2, 8.2, fill=(26, 74, 56))
+    for k in range(7): p.line([(-5.8, 1.2 + k), (5.8 - k * 0.3, 1.4 + k)], (60, 140, 110), 0.1)
+    p.ell(-3.4, 4.6, 2.2, 2.2, fill=(60, 60, 66), outline=(30, 30, 34), w=0.15); p.ell(-3.4, 4.6, 0.8, 0.8, fill=(110, 110, 116))
+    p.rect(0.5, 5.1, 3.1, 7.4, fill=(30, 30, 34), outline=(150, 150, 150), w=0.1)        # encaixe do chip: vazio
+    p.rect(3.8, 5.1, 5.6, 7.4, fill=(36, 80, 62), outline=(90, 150, 130), w=0.1)         # lugar da antena: vazio
+    p.rect(0.8, 1.6, 3.4, 3.6, fill=(40, 40, 44)); p.rect(1.2, 2.0, 3.0, 3.8, fill=(240, 196, 70))   # cartão de memória
+    alvo = {"chip": (1.8, 6.25, 1.9), "rede": (4.7, 6.25, 1.5), "arquivo": (2.1, 2.9, 2.0)}.get(o.get("destaque"))
+    if alvo:
+        c = (255, 96, 90) if o.get("destaque") != "arquivo" else (255, 226, 120)
+        p.ell(alvo[0], alvo[1], alvo[2], alvo[2], outline=c, w=0.22); p.luz(alvo[0], alvo[1], 5, c, 110)
+    p.line([(-6.8, -0.3), (-3, -0.1)], (150, 150, 156), 0.25)                           # parafusos soltos
+    p.ell(-5, -0.8, 0.3, 0.3, fill=(170, 170, 176)); p.ell(5.5, -0.7, 0.3, 0.3, fill=(170, 170, 176))
+
+
+@movel("cracha_clinica", "chao", 9, 13, ("crachá da clínica", "crachá"), "crachá de pé com foto e cordão; opts linhas [clínica, nome, ala], esc")
+def _cracha_clinica(p, o):
+    p.k *= float(o.get("esc", 1))
+    ln = o.get("linhas", ["CLÍNICA SERENUS", "CLARA ANDRADE", "ALA 3"])
+    p.line([(-1.2, 12.2), (-2.6, 20)], (40, 90, 150), 0.5); p.line([(1.2, 12.2), (2.6, 20)], (40, 90, 150), 0.5)
+    p.rrect(-4.5, 0, 4.5, 12.4, 0.6, fill=(244, 244, 238), outline=(170, 170, 170), w=0.1)
+    p.rect(-4.5, 10, 4.5, 11.6, fill=(50, 120, 130)); p.text(0, 10.8, ln[0], 0.72, (255, 255, 255))
+    p.rect(-3.3, 4.4, 3.3, 9.4, fill=(208, 214, 220))
+    p.ell(0, 7.8, 1.3, 1.3, fill=(232, 190, 150)); p.ell(0, 8.3, 1.45, 1.0, fill=(60, 40, 30)); p.rrect(-1.9, 4.4, 1.9, 6.4, 0.8, fill=(70, 110, 150))
+    p.text(0, 3.2, ln[1], 0.72, (30, 30, 34)); p.rect(-2.6, 0.7, 2.6, 2.3, fill=(200, 60, 54)); p.text(0, 1.5, ln[2], 0.86, (255, 255, 255))
+
+
+@movel("fita_cassete", "chao", 11, 7, ("fita cassete", "fita"), "fita cassete com etiqueta escrita à mão; opts texto, esc")
+def _fita(p, o):
+    p.k *= float(o.get("esc", 1))
+    p.rrect(-5.5, 0, 5.5, 7, 0.4, fill=(40, 38, 44), outline=(90, 90, 96), w=0.1)
+    p.rect(-4.9, 2.9, 4.9, 6.5, fill=(238, 228, 200)); p.rect(-4.9, 2.9, 4.9, 3.2, fill=(200, 70, 60))
+    linhas = o.get("texto", "LU. SE EU|ESQUECER.").split("|")
+    for i, l in enumerate(linhas): manuscrito(p, 0, 5.5 - i * 1.1, l, 0.95, (30, 30, 90), seed=i + 3)
+    p.rrect(-3.2, 0.8, 3.2, 2.7, 0.8, fill=(24, 22, 26))
+    for x in (-1.9, 1.9):
+        p.ell(x, 1.75, 0.75, 0.75, fill=(230, 230, 226)); p.ell(x, 1.75, 0.35, 0.35, fill=(24, 22, 26))
+
+
+@movel("elevador", "parede", 110, 215, ("elevador",), "porta de elevador fechada; opts visor (texto do andar)")
+def _elevador(p, o):
+    p.rect(-58, 0, 58, 212, fill=(84, 84, 90)); p.rect(-52, 0, -1, 200, fill=(164, 168, 174)); p.rect(1, 0, 52, 200, fill=(158, 162, 168))
+    p.rect(-24, 204, 24, 216, fill=(14, 14, 18)); p.text(0, 210, o.get("visor", "T"), 9, (255, 80, 60), "mono")
+    p.rect(66, 96, 82, 130, fill=(190, 190, 196)); p.ell(74, 113, 4.5, 4.5, fill=(255, 120, 80) if o.get("aceso") else (90, 90, 96))
+
+
+@movel("escada_concreto", "piso", 170, 230, ("degraus", "escada do porão"), "escada de concreto que sobe e some no escuro")
+def _escada_concreto(p, o):
+    for i in range(9):
+        y = i * 25; x0 = -85 + i * 10
+        p.rect(x0, y, 85, y + 25, fill=esc((120, 118, 114), 1 - i * 0.07)); p.rect(x0, y + 23, 85, y + 25, fill=esc((160, 158, 154), 1 - i * 0.07))
+    p.rect(0, 225, 85, 238, fill=(16, 16, 18))
 
 
 @movel("cadeado", "chao", 8, 10, ("cadeado",))

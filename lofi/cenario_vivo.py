@@ -105,7 +105,7 @@ def objetos(sc):
             d.rounded_rectangle(P((x, 1520), (x + 42, 1546)), 10 * S, fill=(230, 230, 236, 255), outline=OUT, width=3 * S)
             d.line(P((x + 4, 1540), (x + 40, 1540)), fill=(200, 60, 60, 255), width=3 * S)
     elif nome == "corredor":
-        d.rounded_rectangle(P((352, 1170), (380, 1270)), 10 * S, fill=(196, 40, 36, 255), outline=OUT, width=3 * S)  # extintor
+        d.rounded_rectangle(P((408, 960), (424, 1030)), 6 * S, fill=(196, 40, 36, 255), outline=OUT, width=2 * S)  # extintor (no fundo: nunca atrás da cabeça em close)
         d.rectangle(P((358, 1158), (374, 1172)), fill=(40, 40, 44, 255)); d.line(P((372, 1166), (392, 1190)), fill=OUT, width=3 * S)
         d.rectangle(P((690, 1110), (740, 1170)), fill=(120, 70, 46, 255), outline=OUT, width=3 * S)                   # vaso
         for k in range(7):

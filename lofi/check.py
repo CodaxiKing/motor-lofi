@@ -169,9 +169,9 @@ def check(path, frames=True):
     for s in shots:   # travelling: quem está no plano tem que andar/correr no sentido do movimento
         tv = s.get("travelling")
         if not tv: continue
-        sp = (tv.get("speed", 300) if isinstance(tv, dict) else tv)
-        if sp is True: sp = 300
-        try: sp = float(sp)
+        vel = (tv.get("speed", 300) if isinstance(tv, dict) else tv)
+        if vel is True: vel = 300
+        try: vel = float(vel)
         except (TypeError, ValueError): err(f"travelling inválido em {s['start']}s: use um número (px/s) ou {{\"speed\": 300}}"); continue
         if s.get("type", "scene") != "scene": err(f"travelling só vale em plano de cenário ({s['start']}s)")
         tdir = tv.get("dir", "lado") if isinstance(tv, dict) else "lado"
@@ -191,8 +191,8 @@ def check(path, frames=True):
             w = a.get("walk"); anda = any(v for _, v in w) if isinstance(w, list) else bool(w)
             if not anda: warn(f"{a['char']} parado num travelling em {s['start']}s: vai parecer deslizando (use \"walk\": true / \"run\": true)")
             f = a.get("facing", 1)
-            if isinstance(f, (int, float)) and sp and (f > 0) != (sp > 0):
-                warn(f"{a['char']} virado contra o movimento do travelling em {s['start']}s (facing {f}, speed {sp:+.0f})")
+            if isinstance(f, (int, float)) and vel and (f > 0) != (vel > 0):
+                warn(f"{a['char']} virado contra o movimento do travelling em {s['start']}s (facing {f}, speed {vel:+.0f})")
     # ---------- quadros ----------
     sheet_frames = []
     if frames:

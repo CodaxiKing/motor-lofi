@@ -300,6 +300,28 @@ class Corredor(Scene):
         return down(back), None, None
     def dynamic(self, img, t, camx, props):
         k = int(t * 12); on = random.Random(k * 31 + 7).random() > props.get("flicker", 0.13)
+        dx = int(-camx * self.depths[0])
+        d = ImageDraw.Draw(img, "RGBA")
+        def porta(lado, ab):
+            """Porta da frente aberta: lado -1 = 903 (esquerda), 1 = 902 (direita); ab 0–1. Joga a luz do apartamento no chão."""
+            X = lambda x: (x if lado < 0 else 1080 - x) + dx
+            d.polygon([(X(-40), 430), (X(220), 590), (X(220), 1500), (X(-40), 1800)], fill=(246, 206, 130, 255))
+            borda = lerp(220, -30, ab)              # a folha gira para dentro do apartamento, a partir da dobradiça
+            if ab < 0.98:
+                f_ = (borda + 40) / 260
+                d.polygon([(X(-40), 430), (X(borda), lerp(430, 590, f_)), (X(borda), lerp(1800, 1500, f_)), (X(-40), 1800)], fill=(96, 60, 40, 255))
+            d.polygon([(X(220), 1500), (X(-40), 1800), (X(-40), 1930), (X(330), 1930)], fill=(246, 206, 130, int(120 * ab)))
+        ab3, ab2 = props.get("porta_903"), props.get("porta_902")
+        if ab2 is not None:
+            if float(ab2) > 0.01: porta(1, float(ab2))
+            d.text((980 + dx, 700), "902", font=font("mono", 40), fill=(200, 180, 130, 255))
+        if ab3 is not None and float(ab3) > 0.01: porta(-1, float(ab3))
+        if props.get("capacho"):                    # capacho do 903 e, em cima, a caixinha de som
+            d.polygon([(190 + dx, 1740), (400 + dx, 1740), (440 + dx, 1860), (150 + dx, 1860)], fill=(70, 56, 40, 255), outline=(30, 24, 20, 255))
+            if props.get("caixinha"):
+                d.rounded_rectangle([262 + dx, 1762, 340 + dx, 1812], 8, fill=(16, 16, 20, 255), outline=(60, 60, 66, 255), width=3)
+                d.ellipse([292 + dx, 1778, 312 + dx, 1798], fill=(50, 50, 56, 255))
+                if int(t * 3) % 2 == 0: d.ellipse([326 + dx, 1768, 334 + dx, 1776], fill=(90, 170, 255, 255))
         if not on: img.paste(Image.blend(img, Image.new("RGB", img.size, (0, 0, 0)), 0.62))
         props["_lamp_on"] = on
 
