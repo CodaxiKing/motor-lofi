@@ -75,7 +75,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
 | 1 | 0 | início | montado | A) Abrir a porta · B) Obedecer à mensagem | ABRIR A PORTA (A) | |
-| 2 | 1 | complicação | roteiro | A) Levar o crachá · B) Levar a fita | | |
+| 2 | 1 | complicação | montado | A) Levar o crachá · B) Levar a fita | | Lucas abriu a porta e descobriu que a voz da Clara era uma gravação de um ano atrás, numa caixinha com a etiqueta S-6. Dona Irene apareceu acordada e o contato o mandou ao porão. Na caixa havia um crachá da Serenus e uma fita "Lu. Se eu esquecer."; a luz apagou, os objetos caíram longe um do outro, alguém desceu e ele só pode levar um. |
 | 3 | 2 | complicação | planejado | A) Confiar na Dra. Helena · B) Confiar no Téo | | |
 | 4 | 3 | complicação | planejado | A) Investigar a estrada · B) Investigar a sala branca | | |
 | 5 | 5 | reviravolta | planejado | A) Fugir do prédio · B) Fingir que não viu | | |
