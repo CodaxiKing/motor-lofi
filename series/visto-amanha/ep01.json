@@ -2736,5 +2736,13 @@
    ],
    "tense": 0.9
   }
- ]
+ ],
+ "capa": {
+  "quem": "lucas",
+  "emocao": "fear",
+  "vista": "front",
+  "frase": "NÃO ABRE\nA PORTA",
+  "ameaca": "amanha",
+  "tempo": 69.0
+ }
 }

@@ -3,6 +3,7 @@
 8 episódios · Suspense e terror psicológico · 14+ (sem sangue nem gore) · Fase: início · Cor do episódio (`tint`): azul de tela [70, 120, 220, 0.10]
 Estilo do traço: desenho · Enquadramento: perto (médio e close por padrão; aberto só para situar o lugar) · Contador: DIA 0 · HH:MM (lugar "FALTAM 8 DIAS") · Duração: ~2 min 42 s · 18 cenas
 Voto: — (primeiro episódio)
+Montagem final: 2 min 02 s, 51 planos, com os tempos reais do áudio em `ep01.json`; o roteiro segue como referência de conteúdo.
 
 **Em jogo neste episódio**
 - Apresentar Lucas, o sumiço da Clara e o contato "visto por último amanhã às 03:17".
