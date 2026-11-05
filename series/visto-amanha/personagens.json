@@ -1,0 +1,17 @@
+{
+ "_leia": "Fichas travadas da série Visto Amanhã. Valem para todos os episódios; o motor ignora redefinições no roteiro. Mude só aqui, de propósito.",
+ "lucas": {"skin": "medio", "top_style": "leather", "top": [214, 158, 42], "inner": [30, 32, 38], "legs": [44, 56, 84], "shoes": [230, 228, 220],
+           "hair": "short", "hair_color": [28, 22, 20], "body": "thin"},
+ "amanha": {"skin": [176, 150, 128], "top_style": "leather", "top": [142, 106, 36], "inner": [20, 20, 24], "legs": [32, 38, 54], "shoes": [120, 118, 112],
+            "hair": "short", "hair_color": [28, 22, 20], "hat": "hood", "hat_color": [16, 16, 20], "body": "thin"},
+ "clara": {"skin": "medio", "top_style": "scrubs", "top": [120, 186, 214], "legs": [120, 186, 214], "shoes": [236, 236, 232],
+           "hair": "curly", "hair_color": [36, 24, 20], "acc": ["necklace"]},
+ "helena": {"skin": "claro", "top_style": "labcoat", "top": [236, 236, 230], "inner": [70, 84, 92], "legs": [46, 50, 58], "shoes": [40, 40, 44],
+            "hair": "bun", "hair_color": [150, 150, 156], "glasses": true, "scarf": [62, 170, 150], "body": "tall"},
+ "teo": {"skin": "escuro", "top_style": "tshirt", "top": [234, 120, 40], "legs": [50, 54, 66], "shoes": [235, 235, 230],
+         "hair": "afro", "hair_color": [20, 16, 16], "acc": ["headphones"], "body": "fat"},
+ "irene": {"skin": "claro", "top_style": "sweater", "top": [112, 66, 150], "inner": [232, 226, 214], "legs": [80, 74, 84], "shoes": [70, 50, 44],
+           "hair": "bun", "hair_color": [232, 232, 236], "glasses": true, "body": "old"},
+ "ruth": {"skin": "oliva", "top_style": "leather", "top": [34, 46, 76], "inner": [226, 226, 224], "legs": [30, 32, 40], "shoes": [24, 22, 22],
+          "hair": "ponytail", "hair_color": [44, 30, 24], "scarf": [176, 38, 44], "acc": ["badge", "earrings"]}
+}
