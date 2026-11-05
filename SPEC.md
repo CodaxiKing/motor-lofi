@@ -308,6 +308,12 @@ caixa de milho", a tela mostra a caixa de milho sendo empurrada; "uma lata... du
 - **Arquivos travados** (`protegidos.json`): hashes de arquivos e linhas da bíblia que ninguém no motor pode alterar
   (`python3 -m lofi.protecao conferir series/<serie>`). Em O Último Estoque, o ep. 1 e o extra 1 são cânone travado.
 
+## Ritmo, pronúncia, movimento e retenção
+- `python3 -m lofi.ritmo roteiro epNN_roteiro.md` estima a voz cena a cena (reticências e `[pause]`/`[long pause]` contam); `medir epNN.json` grava a velocidade real em `ritmo.json`. O validador avisa abaixo de 60% de ocupação.
+- `python3 -m lofi.pronuncia epNN_roteiro.md` compara os áudios de `epNN/` com a narração e lista o que conferir de ouvido; ALTA = número.
+- `python3 -m lofi.movimento epNN.json` (também no `lofi.check`): parado, deslizando, andando no lugar, sentado sem assento, abraço de longe, postura ou objeto que muda entre planos.
+- `python3 -m lofi.retencao importar epNN.json curva.txt tiktok` cruza a curva (`segundo,percentual`) com os planos e grava `retencao.json`; `relatorio series/<serie>` resume, e o `lofi.contexto` leva esse resumo ao próximo roteiro.
+
 ## Qualidade
 - `python3 -m lofi.check epNN.json` → erros de estrutura e de quadro (legenda no rosto, personagem cortado, cabeça sob o contador)
   + `_revisao.png` com um quadro por plano e por legenda, para um revisor independente aprovar antes do render.
@@ -395,8 +401,8 @@ Desligar: `"gestures": false` no ator ou na raiz. Gesto manual: `"gesture": "nod
 
 Exemplo completo: [`examples/demo4/demo4.json`](examples/demo4/demo4.json).
 
-**Velocidade.** ~3,5 s de processamento por segundo de vídeo com `--jobs 2` (episódio de 3 min ≈ 10–11 min).
-Esse é o único valor de referência; os números de versões antigas (7 s, 10 s) não valem mais.
+**Velocidade.** Em 2 núcleos, cerca de 6 a 9 s de processamento por segundo de vídeo com `--jobs 2`; closes pesam mais que planos abertos.
+O cache é por plano: legenda, fala, som e pergunta entram só na chave do plano que tocam, e módulos que não desenham (`FORA_DO_CACHE`) não refazem nada.
 
 ## Loja de conveniência 24h (`lofi/scenes_loja.py`)
 - `loja` — salão com o caixa à esquerda (o balcão fica na frente e tapa da cintura para baixo quem está na marca `caixa`), porta de vidro no fundo, geladeiras à direita, relógio digital e monitor na parede. Props: `relogio` ("03:00"), `vulto` (0–1, silhueta alta na porta), `reflexo` (0–1, vulto no vidro da geladeira), `flicker`, `apagado` (só as geladeiras acesas). Marcas: caixa, balcao, porta, geladeira, centro, frente.

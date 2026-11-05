@@ -361,6 +361,11 @@ def conferir_complexidade(txt, final=False):
     return av
 
 
+def conferir_ritmo(txt, caminho=None):
+    from lofi import ritmo
+    return ritmo.conferir(txt, caminho)
+
+
 def validar(txt, final=False, caminho=None):
     if "--extra" in sys.argv or (caminho and os.path.basename(caminho).startswith("extra")):
         return validar_extra(txt, caminho)
@@ -392,6 +397,7 @@ def validar(txt, final=False, caminho=None):
     e, a_ = conferir_fluxo(txt, caminho); erros += e; avisos += a_
     narrado = eh_narrado(txt, caminho)
     avisos += conferir_retencao(txt, final, narrado)
+    avisos += conferir_ritmo(txt, caminho)
     bib = os.path.join(os.path.dirname(os.path.abspath(caminho)), "biblia.md") if caminho else ""
     simples = re.search(r"^\W*Complexidade:\W*simples", txt + "\n" + (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else ""), re.M | re.I)
     if re.search(r"^\W*Estilo:\W*imagens", (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else "") + "\n" + txt, re.M | re.I):

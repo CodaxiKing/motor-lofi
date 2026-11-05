@@ -94,6 +94,9 @@ def gerar(pasta, n, extra=False):
               "- Nenhum personagem fala: tudo que seria diálogo vira NARRAÇÃO (o narrador conta o que foi dito: \"a Sônia mandou ele assinar\") ou imagem (bilhete, tela, gesto).",
               "- Toda cena tem uma linha NARRAÇÃO (ou 'sem narração' quando a imagem conta tudo); no máximo ~2,6 palavras por segundo.",
               "- O ElevenLabs tem um bloco só: o narrador. No JSON: \"narrado\": true e uma voz só (\"narrador\")."]
+    from . import retencao
+    if os.path.exists(os.path.join(pasta, "retencao.json")):
+        L += ["", "## 8b. Retenção real dos episódios (onde o público saiu; evite repetir o que derrubou)", retencao.relatorio(pasta)]
     L += ["", "## 9. Checklist antes de escrever",
           "- A 1ª cena começa no lugar, hora e estado em que o episódio anterior terminou (seção 4) e mostra a consequência do voto.",
           "- Escreva a ESCALETA (6–10 batidas) antes das cenas; cada cena serve a uma batida.",

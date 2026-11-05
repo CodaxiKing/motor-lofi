@@ -59,6 +59,11 @@ GEST_YES = {"sim", "isso", "claro", "certo", "beleza"}
 GEST_NO = {"não", "nao", "nunca", "jamais", "nada"}
 GEST_DOWN = {"desculpa", "desculpe", "perdão", "perdi", "morreu", "sinto", "triste", "sozinha", "sozinho"}
 
+FORA_DO_CACHE = {"capas.py", "check.py", "extras.py", "experimentos.py", "narrativa.py", "ganchos.py", "literal.py", "previa.py", "continuidade.py",
+                 "contexto.py", "transcribe.py", "catalogo.py", "validador_narrativo.py", "protecao.py", "ritmo.py", "pronuncia.py", "movimento.py",
+                 "retencao.py", "artes.py"}    # módulos que não desenham o vídeo: mexer neles não refaz o render
+
+
 class Episode:
     def __init__(self, spec_path):
         self.spec_path = os.path.abspath(spec_path)
@@ -1170,10 +1175,13 @@ class Episode:
         import hashlib, glob
         h = hashlib.sha1()
         for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "*.py"))):
-            h.update(open(f, "rb").read())
+            if os.path.basename(f) not in FORA_DO_CACHE: h.update(open(f, "rb").read())
         for f in [os.path.join(self.base, v) for v in (self.spec.get("voices") or {}).values()] + [os.path.join(self.base, "personagens.json")]:
             if os.path.exists(f): st = os.stat(f); h.update(f"{f}{st.st_size}{st.st_mtime}".encode())
-        glob_spec = {k: v for k, v in self.spec.items() if k not in ("shots", "sfx", "music", "out")}
+        # legenda, fala, som e pergunta entram só no plano que tocam: ajustar uma frase não refaz o episódio inteiro
+        pq = self.spec.get("pergunta"); pq_t = pq.get("t") if isinstance(pq, dict) else None
+        fora = {"shots", "sfx", "music", "out", "subs", "clips", "capa", "crf"} | ({"pergunta", "total"} if pq_t is not None else set())
+        glob_spec = {k: v for k, v in self.spec.items() if k not in fora}
         if DEITADO:   # o deitado depende do vídeo em pé (telas de texto) e tem cache próprio
             glob_spec["_deitado"] = os.path.getmtime(self.vertical) if os.path.exists(self.vertical) else 0
         h.update(json.dumps(glob_spec, sort_keys=True, ensure_ascii=False, default=str).encode())
@@ -1183,7 +1191,14 @@ class Episode:
             if sh.get("video_clip"):                     # o clipe pode ser refeito com o mesmo nome
                 vc = sh["video_clip"] if os.path.isabs(sh["video_clip"]) else os.path.join(self.base, sh["video_clip"])
                 if os.path.exists(vc): st = os.stat(vc); extra = f"{st.st_size}{st.st_mtime}"
-            k = hashlib.sha1((base + extra + json.dumps(sh, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()[:20]
+            a0, b0 = sh["start"] - 0.3, sh["end"] + 0.3      # o que aparece neste plano (com folga para legenda e onda)
+            viz = {"sfx": [x for x in self.spec.get("sfx", []) if a0 <= x["t"] < b0],
+                   "subs": [(round(x[0], 3), round(x[1], 3), x[2:]) for x in self.subs if x[1] > a0 and x[0] < b0],
+                   "clips": [c for c in self.clips if c["at"] < b0 and c["at"] + c["src"][1] - c["src"][0] > a0],
+                   "escolha": next((s["start"] for s in shots if s.get("type") == "choice"), None) if sh["end"] > self.total - 16 else None}
+            if pq_t is not None and pq_t - 0.5 < sh["end"] and sh["start"] < pq_t + pq.get("dur", 3) + 0.5: viz["pergunta"] = pq
+            if sh.get("type") == "pausa": viz["anterior"] = next((s for s in shots if abs(s["end"] - sh["start"]) < 0.02), None)
+            k = hashlib.sha1((base + extra + json.dumps([sh, viz], sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()[:20]
             a, b = int(round(sh["start"] * self.fps)), int(round(sh["end"] * self.fps))
             chaves.append((k, a, min(b, int(self.total * self.fps))))
         return chaves

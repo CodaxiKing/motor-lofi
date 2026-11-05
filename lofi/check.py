@@ -224,6 +224,8 @@ def check(path, frames=True):
             sheet.paste(img.resize((tw, th)), (x, y)); d.text((x + 6, y + th + 4), f"{t:.1f}s", font=font("mono", 20), fill=(0, 0, 0))
         out = os.path.join(ep.base, "_revisao.png"); sheet.save(out)
         probs.append(("INFO", f"folha de revisão: {out} ({len(sheet_frames)} quadros)"))
+    from . import movimento
+    for t_mov, msg_mov in movimento.analisar(sp): warn(f"movimento em {t_mov:.1f}s: {msg_mov}")
     if ep.spec.get("subs"):                  # ao pé da letra: cada frase com a imagem do que ela diz (lofi/literal.py)
         try:
             from . import literal

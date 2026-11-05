@@ -989,11 +989,15 @@ def _shade_vetor(im, light):
 def _shade(im, light):
     """Sombra suave no corpo (lado oposto à luz), tingimento ambiente e luz de borda."""
     if ESTILO["nome"] == "vetor": return _shade_vetor(im, light)
-    arr = np.asarray(im).astype(np.float32)
+    # só a área do personagem: num close o sprite é enorme e quase todo transparente
+    W_, H_ = im.size; bb = im.getchannel("A").getbbox()
+    if not bb: return im
+    x0, y0, x1, y1 = max(0, bb[0] - 10), max(0, bb[1] - 10), min(W_, bb[2] + 10), min(H_, bb[3] + 10)
+    arr = np.asarray(im.crop((x0, y0, x1, y1))).astype(np.float32)
     h, w = arr.shape[:2]
     A = arr[..., 3] / 255.0
-    xs = np.linspace(-1, 1, w)[None, :]
-    ys = np.linspace(0, 1, h)[:, None]
+    xs = np.linspace(-1, 1, W_)[x0:x1][None, :]
+    ys = np.linspace(0, 1, H_)[y0:y1][:, None]
     lx = light.get("dir", 0.0)
     shade = 1 - 0.30 * np.clip(-lx * xs, 0, 1) - 0.12 * ys
     key = np.array(light.get("key", (1, 1, 1)))
@@ -1008,7 +1012,9 @@ def _shade(im, light):
     rim = edge * side * light.get("rim_k", 0.0)
     arr[..., :3] += rim[..., None] * np.array(light.get("rim", (255, 255, 255))) * 0.9
     arr[..., :3] = np.clip(arr[..., :3], 0, 255)
-    return Image.fromarray(arr.astype("uint8"), "RGBA")
+    out = Image.new("RGBA", (W_, H_), (0, 0, 0, 0))
+    out.paste(Image.fromarray(arr.astype("uint8"), "RGBA"), (x0, y0))
+    return out
 
 _CACHE = {}
 _CACHE_PX = 0
