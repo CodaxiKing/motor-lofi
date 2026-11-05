@@ -412,7 +412,10 @@ def _caixa(p, o):
     c = o.get("cor", (190, 140, 86)); w = o.get("larg", 50) / 2; h = o.get("alt", 40)
     p.rect(-w, 0, w, h, fill=c); p.rect(-w, h - 4, w, h, fill=esc(c, 0.85)); p.rect(-3, 0, 3, h, fill=esc(c, 1.2))
     p.poly([(-w, h), (w, h), (w - 4, h + 6), (-w + 4, h + 6)], fill=esc(c, 1.1))
-    if o.get("aberta"): p.poly([(-w, h), (-w - 8, h + 14), (-4, h + 10), (0, h)], fill=esc(c, 0.9)); p.poly([(w, h), (w + 8, h + 14), (4, h + 10), (0, h)], fill=esc(c, 0.9))
+    ab = float(o.get("aberta", 0) or 0)
+    if ab > 0:                                          # as abas levantam aos poucos (0–1)
+        p.poly([(-w + 3, h), (w - 3, h), (w - 6, h + 5 * ab), (-w + 6, h + 5 * ab)], fill=(30, 24, 18))
+        p.poly([(-w, h), (-w - 8 * ab, h + 14 * ab), (-4, h + 10 * ab), (0, h)], fill=esc(c, 0.9)); p.poly([(w, h), (w + 8 * ab, h + 14 * ab), (4, h + 10 * ab), (0, h)], fill=esc(c, 0.9))
     if o.get("texto"): p.text(0, h * 0.45, o["texto"], h * 0.16, (60, 40, 24))
     if o.get("conteudo") and o.get("aberta"): encher(p, o["conteudo"], -w + 3, w - 3, h - 8, 14, seed=2)
 
@@ -968,11 +971,27 @@ def _cracha(p, o):
     if o.get("nome"): p.text(3, 1.4, o["nome"], 1.0, (40, 40, 40))
 
 
+TRACOS = {   # letras feitas à caneta: cada uma é uma lista de traços em caixa 1 × 1,4 (y para cima)
+    "S": [[(0.9, 1.25), (0.5, 1.4), (0.1, 1.15), (0.3, 0.8), (0.75, 0.6), (0.85, 0.25), (0.45, 0), (0.05, 0.15)]],
+    "6": [[(0.75, 1.4), (0.3, 0.95), (0.1, 0.4), (0.4, 0), (0.8, 0.25), (0.65, 0.65), (0.25, 0.6)]],
+    "-": [[(0.1, 0.7), (0.85, 0.72)]], ".": [[(0.4, 0.04), (0.5, 0.0), (0.45, 0.08)]],
+    "L": [[(0.25, 1.4), (0.15, 0.05), (0.85, 0.0)]], "U": [[(0.12, 1.35), (0.15, 0.3), (0.5, 0), (0.85, 0.3), (0.88, 1.35)]],
+    "E": [[(0.85, 1.35), (0.2, 1.3), (0.15, 0.05), (0.85, 0.0)], [(0.18, 0.7), (0.7, 0.72)]],
+    "Q": [[(0.5, 1.35), (0.1, 0.95), (0.15, 0.3), (0.55, 0.05), (0.9, 0.4), (0.85, 1.0), (0.5, 1.35)], [(0.55, 0.4), (0.95, -0.1)]],
+    "C": [[(0.9, 1.2), (0.5, 1.38), (0.12, 0.9), (0.15, 0.3), (0.55, 0), (0.9, 0.2)]],
+    "R": [[(0.18, 0), (0.2, 1.35), (0.8, 1.2), (0.7, 0.75), (0.22, 0.65), (0.85, 0)]],
+}
+
+
 def manuscrito(p, cx, cy, s, size, cor, seed=5):
-    """Texto com cara de escrito à mão: cada letra com um pequeno desvio de altura e de largura."""
-    r = random.Random(seed); larg = size * 0.66; x = cx - larg * (len(s) - 1) / 2
-    for ch in s:
-        p.text(x + r.uniform(-0.05, 0.05) * size, cy + r.uniform(-0.09, 0.09) * size, ch, size * r.uniform(0.92, 1.08), cor, "sans")
+    """Texto escrito à caneta: os traços de TRACOS com um tremor próprio; a linha sobe um pouco, como à mão livre."""
+    r = random.Random(seed); larg = size * 0.92; x = cx - larg * (len(s) - 1) / 2 - size * 0.4
+    for i, ch in enumerate(s):
+        y0 = cy - size * 0.55 + i * size * 0.02
+        e = size * r.uniform(0.88, 1.08); inc = r.uniform(0.05, 0.16)
+        for tr in TRACOS.get(ch, []):
+            pts = [(x + (a + b * inc) * e + r.uniform(-0.03, 0.03) * size, y0 + b * e * 0.8 + r.uniform(-0.03, 0.03) * size) for a, b in tr]
+            p.line(pts, cor, max(0.06, size * 0.1))
         x += larg
 
 
@@ -986,7 +1005,7 @@ def _caixinha(p, o):
         p.rrect(-6.5, 0, 6.5, 8, 1.2, fill=(30, 30, 34)); 
         for x in (-5, 5): p.ell(x, 1.2, 0.5, 0.5, fill=(60, 60, 66))
         p.rect(-4.6, 1.8, 4.6, 6.4, fill=(236, 230, 208)); p.rect(-4.6, 1.8, 4.6, 2.1, fill=(206, 200, 178))
-        manuscrito(p, 0, 4.1, o.get("texto", "S-6"), 2.6, (30, 30, 80))
+        manuscrito(p, 0, 4.1, o.get("texto", "S-6"), 2.5, (30, 30, 80))
         return
     p.rrect(-6.5, 0, 6.5, 8, 1.4, fill=(18, 18, 22), outline=(66, 66, 72), w=0.15)
     for x in range(-5, 3):
@@ -1010,7 +1029,7 @@ def _caixinha_aberta(p, o):
     if alvo:
         c = (255, 96, 90) if o.get("destaque") != "arquivo" else (255, 226, 120)
         p.ell(alvo[0], alvo[1], alvo[2], alvo[2], outline=c, w=0.22); p.luz(alvo[0], alvo[1], 5, c, 110)
-    p.line([(-6.8, -0.3), (-3, -0.1)], (150, 150, 156), 0.25)                           # parafusos soltos
+    p.rrect(-7, -2.6, -3.4, -1.4, 0.4, fill=(210, 60, 50)); p.line([(-3.4, -2), (2, -2.1)], (190, 190, 196), 0.3)   # chave de fenda
     p.ell(-5, -0.8, 0.3, 0.3, fill=(170, 170, 176)); p.ell(5.5, -0.7, 0.3, 0.3, fill=(170, 170, 176))
 
 
@@ -1018,7 +1037,7 @@ def _caixinha_aberta(p, o):
 def _cracha_clinica(p, o):
     p.k *= float(o.get("esc", 1))
     ln = o.get("linhas", ["CLÍNICA SERENUS", "CLARA ANDRADE", "ALA 3"])
-    p.line([(-1.2, 12.2), (-2.6, 20)], (40, 90, 150), 0.5); p.line([(1.2, 12.2), (2.6, 20)], (40, 90, 150), 0.5)
+    if o.get("cordao", True): p.line([(-1.2, 12.2), (-2.6, 20)], (40, 90, 150), 0.5); p.line([(1.2, 12.2), (2.6, 20)], (40, 90, 150), 0.5)
     p.rrect(-4.5, 0, 4.5, 12.4, 0.6, fill=(244, 244, 238), outline=(170, 170, 170), w=0.1)
     p.rect(-4.5, 10, 4.5, 11.6, fill=(50, 120, 130)); p.text(0, 10.8, ln[0], 0.72, (255, 255, 255))
     p.rect(-3.3, 4.4, 3.3, 9.4, fill=(208, 214, 220))
@@ -1032,16 +1051,34 @@ def _fita(p, o):
     p.rrect(-5.5, 0, 5.5, 7, 0.4, fill=(40, 38, 44), outline=(90, 90, 96), w=0.1)
     p.rect(-4.9, 2.9, 4.9, 6.5, fill=(238, 228, 200)); p.rect(-4.9, 2.9, 4.9, 3.2, fill=(200, 70, 60))
     linhas = o.get("texto", "LU. SE EU|ESQUECER.").split("|")
-    for i, l in enumerate(linhas): manuscrito(p, 0, 5.5 - i * 1.1, l, 0.95, (30, 30, 90), seed=i + 3)
+    for i, l in enumerate(linhas): manuscrito(p, 0, 5.65 - i * 1.25, l, 0.8, (30, 30, 90), seed=i + 3)
     p.rrect(-3.2, 0.8, 3.2, 2.7, 0.8, fill=(24, 22, 26))
     for x in (-1.9, 1.9):
         p.ell(x, 1.75, 0.75, 0.75, fill=(230, 230, 226)); p.ell(x, 1.75, 0.35, 0.35, fill=(24, 22, 26))
 
 
+@movel("caixinhas_fila", "chao", 44, 30, ("outras caixinhas",), "seis caixinhas de som iguais, em duas fileiras, com etiquetas S-1 a S-6")
+def _caixinhas_fila(p, o):
+    for i in range(6):
+        x = -14.5 + (i % 3) * 14.5; y = 16 if i < 3 else 1
+        p.rrect(x - 6.5, y, x + 6.5, y + 12, 1.4, fill=(18, 18, 22), outline=(66, 66, 72), w=0.2)
+        p.rect(x - 5.2, y + 2, x + 5.2, y + 10, fill=(236, 230, 208)); p.text(x, y + 6, f"S-{i + 1}", 3.8, (30, 30, 80), "sansb")
+
+
+@movel("caixa_tombada", "chao", 60, 34, ("caixa caída", "caixa tombada"), "caixa de papelão virada de lado, aberta, com a boca para a esquerda; opts texto")
+def _caixa_tombada(p, o):
+    p.k *= float(o.get("esc", 1))
+    c = (190, 140, 86)
+    p.poly([(-20, 0), (26, 0), (30, 26), (-16, 30)], fill=c); p.rect(-20, 4, 26, 7, fill=esc(c, 1.15))
+    p.poly([(-20, 0), (-16, 30), (-26, 22), (-30, 2)], fill=(30, 24, 18)); p.poly([(-16, 30), (-30, 36), (-26, 22)], fill=esc(c, 0.85)); p.poly([(-20, 0), (-34, -2), (-30, 2)], fill=esc(c, 0.85))
+    if o.get("texto"): p.text(4, 15, o["texto"], 6, (60, 40, 24))
+    for k, (x, y) in enumerate([(-32, 2), (-40, 0), (-37, 5)]): p.poly([(x, y), (x + 8, y + 1), (x + 7, y + 4), (x - 1, y + 3)], fill=(232, 228, 216))
+
+
 @movel("elevador", "parede", 110, 215, ("elevador",), "porta de elevador fechada; opts visor (texto do andar)")
 def _elevador(p, o):
     p.rect(-58, 0, 58, 212, fill=(84, 84, 90)); p.rect(-52, 0, -1, 200, fill=(164, 168, 174)); p.rect(1, 0, 52, 200, fill=(158, 162, 168))
-    p.rect(-24, 204, 24, 216, fill=(14, 14, 18)); p.text(0, 210, o.get("visor", "T"), 9, (255, 80, 60), "mono")
+    p.rect(-30, 200, 30, 222, fill=(14, 14, 18)); p.text(0, 211, o.get("visor", "T"), 18, (255, 80, 60), "mono")
     p.rect(66, 96, 82, 130, fill=(190, 190, 196)); p.ell(74, 113, 4.5, 4.5, fill=(255, 120, 80) if o.get("aceso") else (90, 90, 96))
 
 

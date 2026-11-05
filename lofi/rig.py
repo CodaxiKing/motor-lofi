@@ -109,6 +109,7 @@ POSES = {
     "knock2":  ((-8, 6), (120, -40)),
     "phone":   ((-8, 6), (28, 132)),
     "hold":    ((-8, 6), (40, 70)),
+    "atras":   ((-8, 6), (-16, -10)),     # mão atrás do corpo (de costas: a mão no meio das costas)
     "scared":  ((-40, -125), (40, 125)),
     "hands_up": ((-150, 10), (150, -10)),
     "wave":    ((-8, 6), (160, 20)),

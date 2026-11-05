@@ -778,6 +778,7 @@ class Close(Scene):
         if mao is not None and hv:
             from .partes import braco
             alvo = (x0 + (n - 1) * sx + ox + mv.larg * k * 0.25 + dx, self.base_y + oy - min(mv.alt * k * 0.55, 300))
+            if self.sp.get("alvo"): alvo = (x0 + ox + self.sp["alvo"][0] * k + dx, self.base_y + oy - self.sp["alvo"][1] * k)   # em cm a partir da base
             ini = (1250, 2200); f = float(mao)
             braco(img, (1300, 2350), (lerp(ini[0], alvo[0], f), lerp(ini[1], alvo[1], f)), hv)
         luz = props.get("luz")

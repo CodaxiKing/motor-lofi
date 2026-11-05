@@ -152,9 +152,10 @@ class Episode:
                 hk["text"] = " ".join(ws[:meio]) + ("\n" + " ".join(ws[meio:]) if ws[meio:] else "")
 
     def to_video(self, voice, t):
-        for c in self.clips:
-            a, b = c["src"]
-            if c["voice"] == voice and not c.get("gancho") and a - 0.25 <= t <= b + 0.25: return c["at"] + (t - a)
+        for folga in (0.0, 0.25):      # primeiro o clipe que contém o tempo exato; a folga só vale para quem caiu entre dois clipes
+            for c in self.clips:
+                a, b = c["src"]
+                if c["voice"] == voice and not c.get("gancho") and a - folga <= t <= b + folga: return c["at"] + (t - a)
         raise ValueError(f"fala fora dos clipes: {voice} {t}")
 
     # ---------------- áudio ----------------
@@ -258,7 +259,7 @@ class Episode:
         hh, mm = map(int, cur[2].split(":"))
         mins = hh * 60 + mm + int((t - cur[0]) / h.get("sec_per_min", 8))
         flash = max(0.0, 1 - (t - cur[0]) / 0.5) if cur[0] > 0 and t - cur[0] < 0.5 else 0.0
-        return cur[1], f"{(mins // 60) % 24:02d}:{mins % 60:02d}", h.get("place", ""), flash
+        return cur[1], f"{(mins // 60) % 24:02d}:{mins % 60:02d}", cur[3] if len(cur) > 3 else h.get("place", ""), flash
 
     # ---------------- personagens ----------------
     def actor_state(self, a, sc, rel, norm):
