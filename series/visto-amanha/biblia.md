@@ -74,7 +74,7 @@ O que nunca se explica: as mensagens antecipam escolhas que ainda não acontecer
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | roteiro | A) Abrir a porta · B) Obedecer à mensagem | | |
+| 1 | 0 | início | montado | A) Abrir a porta · B) Obedecer à mensagem | | |
 | 2 | 1 | complicação | planejado | A) Levar o crachá · B) Levar a fita | | |
 | 3 | 2 | complicação | planejado | A) Confiar na Dra. Helena · B) Confiar no Téo | | |
 | 4 | 3 | complicação | planejado | A) Investigar a estrada · B) Investigar a sala branca | | |
@@ -117,7 +117,7 @@ Toda escolha do público fica aqui e volta nos roteiros seguintes.
 - Detalhes: `celular`, `olho`, `relogio`, `macaneta`, `chave`.
 
 ## Resumos
-- EP 1:
+- EP 1: Faz um ano que a irmã de Lucas sumiu. Um contato "visto por último amanhã às 03:17" avisou que em 8 dias ele fará a pior coisa da vida dele e, às 23:17, mandou não abrir a porta. A voz da Clara pediu para entrar, mas o corredor estava vazio e ela repetiu a mesma frase, igual. Lucas tem até 23:18 para abrir ou obedecer.
 - EP 2:
 - EP 3:
 - EP 4:
