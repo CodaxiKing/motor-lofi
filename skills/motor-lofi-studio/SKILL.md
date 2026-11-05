@@ -4,6 +4,32 @@ description: Orquestra séries de animação 2D vertical de suspense, da histór
 ---
 # Motor Lo-Fi Studio 4.0 — skill principal
 
+## Especialidades integradas
+
+Use o checkout existente como raiz de trabalho. As três especialidades estão em
+`skills/` e têm ZIPs próprios para o Claude. Se não estiverem instaladas como
+skills na sessão, leia seus arquivos no repositório; não bloqueie o trabalho.
+As adaptações `references/motor-lofi.md` de cada pacote prevalecem sobre padrões
+genéricos para o formato, a duração e a identidade desta série.
+
+| Etapa | Skill | Entrada e saída |
+|---|---|---|
+| Ideias, roteiro, gancho e análise de publicação | `skills/video-script/SKILL.md` | Contexto da série e métricas reais → roteiro por cena, aberturas e hipóteses |
+| Capas, pôsteres e direção de arte estática | `skills/canvas-design/SKILL.md` | Bíblia, elenco e referências → PNG/PDF real e direção de arte `.md` |
+| Criar, melhorar ou avaliar skills, quando solicitado | `skills/skill-creator/SKILL.md` | Casos de avaliação → comparação e revisão da skill, com resultados medidos |
+
+Execute `python tools/skills_motor.py listar` para conferir os pacotes.
+`python tools/skills_motor.py contexto series/<serie> --episode N` prepara o
+brief de roteiro; `--skill canvas-design` prepara o brief visual.
+O motor prepara dados e valida arquivos; o Claude usa as skills para o trabalho
+criativo. Nunca apresente o brief como roteiro ou imagem já gerados.
+
+O perfil da série/episódio tem mínimo de **90 segundos**, prevalecendo sobre
+recomendações antigas de duração. Preserve `personagens.json`, cânone e voto;
+revise dramaturgia, encenação, referências, estado físico e áudio antes do render.
+Para manter a skill, consulte os casos em `evals/evals.json`. Testes locais não
+equivalem a um benchmark comportamental do Claude.
+
 ## Quando ativar
 Pedidos de criação/continuação de série, episódio, direção, atuação, cenários, narração, escolhas A/B, render ou auditoria de qualidade. **É uma skill que usa o motor existente, não um serviço de geração autônomo.**
 

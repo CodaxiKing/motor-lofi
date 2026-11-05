@@ -38,6 +38,24 @@ O repositório vem com **8 skills** (pasta [`skills/`](skills/)) que fazem todo 
 
 
 ### Novidades: planejamento narrativo, ganchos e experimentos
+
+O projeto inclui três skills complementares para o Claude: `video-script`
+(ideias, roteiro e revisão por métricas), `canvas-design` (capas e direção de arte)
+e `skill-creator` (melhoria e avaliação das próprias skills). Elas são acionadas
+conforme a etapa pela `motor-lofi-studio`, com adaptações ao cânone, ao estilo
+lo-fi e ao mínimo de 90 segundos. Os ZIPs instaláveis estão em `skills/`;
+consulte [`skills/LEIA-ME.md`](skills/LEIA-ME.md) para instalação e origem.
+
+```bash
+python tools/skills_motor.py listar
+python tools/skills_motor.py contexto series/visto-amanha --episode 2
+python tools/skills_motor.py contexto series/visto-amanha --episode 2 --skill canvas-design
+python tools/skills_motor.py evals
+```
+
+Esses comandos produzem contexto ou casos de avaliação; a escrita e o design
+criativos continuam sendo feitos pelo Claude. Benchmarks que executam o Claude
+dependem do runtime correspondente e não são simulados por testes locais.
 - **Plano antes das cenas:** cada episódio nasce de uma cadeia causal validada (`python3 -m lofi.narrativa serie series/<serie>`),
   com os dois caminhos do voto, memória da série (o que é fato, suspeita ou segredo até o ep. N) e esqueleto do roteiro.
 - **Três aberturas por episódio** (`python3 -m lofi.ganchos gerar|escolher`): estratégias diferentes, duração estimada, notas
@@ -119,6 +137,160 @@ Séries no repositório: [`series/dia-zero`](series/dia-zero/) (apocalipse zumbi
 ---
 
 ## Uso direto pelo terminal
+
+### Perfis de duração para experimentar formatos
+
+O validador aceita perfis editoriais (não são limites das redes):
+
+| Perfil | Duração | Mínimo de cenas |
+|---|---|---|
+| `curto` | 90–120 s | 9 |
+| `medio` | 120–180 s | 12 |
+| `longo` | 180–300 s | 18 |
+| `tradicional` | 90 s ou mais | 12 |
+
+Use `python tests/validar_roteiro.py serie/ep01_roteiro.md --perfil curto`,
+ou adicione `Perfil de duração: curto` ao roteiro ou à `biblia.md` da série.
+A prioridade é: argumento do terminal, roteiro, bíblia, padrão `tradicional`.
+Sem configuração, usa-se o perfil `tradicional`. Todos os perfis exigem pelo menos 90 segundos. Os novos perfis dispensam
+os avisos de complexidade de episódios tradicionais (18 cenas, subtramas e quatro lugares);
+as demais verificações de qualidade continuam ativas.
+
+Nos novos perfis, escreva os tempos no formato `## CENA 1 — 0 s a 10 s`.
+A duração é o último fim de cena, incluindo o tempo inicial reservado ao gancho e à abertura.
+Tempos mencionados em falas e efeitos sonoros não contam como duração do vídeo.
+O perfil valida o planejamento; ele não corta nem acelera automaticamente o vídeo.
+
+### Encenação e identidade dos personagens
+
+A geração agora prepara participantes, sujeito, alvo, ação e estado físico antes
+da composição de câmera. Nomes de personagens conhecidos, aliases e nomes simples
+em ações ou falas são reconhecidos. Pronomes usam antecedentes compatíveis; uma
+ambiguidade gera aviso e impede aplicar a ação física sem sujeito definido.
+Nos roteiros estruturados, use `PERSONAGENS: lia, rafa`, `SUJEITO: lia`,
+`DESTINATÁRIO: rafa`, `CENÁRIO: entrada` e `MARCA: porta` para direção explícita.
+
+As marcas do ambiente posicionam o elenco no chão; caminhadas usam trajetos,
+ações com objetos têm antecipação, contato e reação, e os ouvintes olham para
+quem fala. Abraços e empurrões entre participantes recebem aproximação e reação.
+Portas, objetos nas mãos, entregas e objetos abandonados persistem entre planos.
+Os objetos suportados são chave, mochila, lanterna, celular e rádio. O estado
+atual representa uma unidade por tipo; múltiplos objetos iguais exigem direção
+manual. A resolução linguística é baseada em regras, não compreensão geral:
+revise frases com várias ações e use sujeitos explícitos nos casos complexos.
+
+Um `elenco.json` opcional define identidade, relações e movimento:
+
+```json
+{
+  "lia": {
+    "nome": "Lia", "genero": "feminino", "aliases": ["doutora"],
+    "relacoes": {"irma": "ana"}, "movimento": "contido",
+    "visual": {"body": "tall", "face_shape": "square", "head_scale": 0.98}
+  },
+  "ana": {"nome": "Ana", "genero": "feminino", "movimento": "energico"}
+}
+```
+
+Movimentos disponíveis: `equilibrado`, `contido`, `energico`, `cauteloso`.
+Eles alteram postura, ritmo, respiração, balanço e atraso de reação. Identidades
+novas são estáveis por nome; presets existentes são preservados e a aparência
+de `personagens.json` sempre vence. Cabeça, tronco e formato de rosto podem ser
+personalizados além do guarda-roupa e dos corpos já existentes.
+
+Na geração por arquivo, `elenco.json` é procurado ao lado do roteiro;
+`--cast elenco.json` seleciona outro arquivo. No Studio, fica na pasta da série.
+Cada personagem recebe uma folha de referência local com quatro vistas e cinco
+expressões, na pasta `<episodio>.references`. `referencia` no elenco aponta para
+uma imagem existente que deve ser preservada. O manifesto registra essa referência,
+a identidade e os requisitos por plano para geração externa; não chama APIs de
+imagem automaticamente. As folhas produzidas localmente usam o próprio rig.
+
+```bash
+python -m lofi.personagens criar elenco.json ana bruno
+python -m lofi.personagens folha elenco.json ana ana_referencia.png
+python tools/gerar_episodio.py historia.md episodio.json --cast elenco.json --duration-profile curto --duration 90
+```
+
+O estado físico final fica em `<episodio>.state.json`. Para outra produção por
+arquivo, passe `--state episodio.state.json`. No Studio, o estado só entra na
+continuidade ao executar `confirmar`, junto da revisão explícita do episódio.
+
+### Critérios dramáticos no planejamento
+
+O planejamento, o validador narrativo e o Studio compartilham a revisão de:
+causa/consequência, conflito pessoal, intenção das falas, revelações preparadas,
+escolhas com custo e entrega de uma resposta com abertura de outra pergunta.
+O relatório aponta o critério, a cena, a linha do cabeçalho e uma sugestão localizada.
+Ao gerar por arquivo ou pelo Studio, também é salvo `<episodio>.dramaturgia.md`.
+
+Veja o contrato completo em [`examples/roteiro_dramatico.md`](examples/roteiro_dramatico.md).
+As cenas usam `ACONTECIMENTO`, `CONSEQUÊNCIA` e `CAUSA: CENA n — justificativa`;
+`CONFLITO PESSOAL` registra personagem, desejo e custo. `FALA` registra falante,
+alvo, intenção, objetivo e texto dito. `PLANTA`, `REVELA` e `PAGA` usam o mesmo
+identificador em ordem; `RESOLVE` e `ABRE` registram perguntas diferentes.
+Cada opção A/B registra `GANHA`, `PERDE`, `MOTIVO` e, opcionalmente, `ORIGEM: CENA n`.
+
+```bash
+python -m lofi.dramaturgia examples/roteiro_dramatico.md --markdown
+```
+
+Os campos documentam decisões do autor; não comprovam a qualidade literária por
+contagem de palavras. Informações ausentes geram avisos, referências impossíveis
+geram erros e episódios finais (`ENCERRAMENTO: final` ou `FIM` em linha própria)
+dispensam novo suspense e votação, mas ainda precisam entregar uma resposta.
+Roteiros antigos continuam legíveis e recebem pendências do que não documentam.
+As anotações não viram falas ou planos na compilação de roteiros estruturados.
+
+Nos planos JSON, `causa` pode ser um número de cena ou `{cena, texto}`;
+`conflito_pessoal` contém `personagem`, `desejo` e `custo`;
+`falas` contém objetos com `personagem`, `texto`, `alvo`, `intencao` e `objetivo`.
+As listas `planta`, `revela`, `paga`, `resolve` e `abre` aceitam `{id, texto}`
+(identificadores antigos continuam aceitos). Cada ramo A/B é revisado isoladamente.
+O fechamento explícito do plano guarda as pistas em `memoria.pistas` para episódios
+futuros; o Studio continua sem alterar a memória durante a geração de rascunhos.
+
+### Produção integrada, narrativa, atuação e aberturas
+
+Studio e os comandos `gerar_episodio.py`, `produzir.py` e `produzir_skill.py preparar`
+aceitam `--duration-profile curto|medio|longo|tradicional`, `--duration` e
+`--opening A|B|C`. `--profile` continua sendo o estilo visual.
+Na geração por arquivo, a prioridade é argumento, linha no texto, bíblia e tradicional.
+No Studio, o padrão de `serie.json` também pode definir o perfil; o texto do episódio
+vence esse padrão. A duração escolhida é registrada no JSON e no plano de áudio;
+a revisão e o verificador pré-render usam as mesmas faixas.
+
+```bash
+python tools/studio.py iniciar series/minha-serie --title "Minha série" --duration-profile curto
+python tools/studio.py planejar historia.txt series/minha-serie --duration 90 --opening A
+python tools/studio.py abertura series/minha-serie/episodios/ep01.json series/minha-serie/episodios/ep01_b.json --opening B
+python tools/studio.py revisar series/minha-serie/episodios/ep01_b.json
+```
+
+O compilador separa frases em planos, identifica evidências de objetivo, obstáculo,
+virada e consequência, e aponta lacunas e escolhas sem custo no relatório.
+Isso é uma análise por regras, que exige revisão editorial; não inventa acontecimentos
+nem garante qualidade narrativa. Escreva as alternativas em linhas `A) ...` e `B) ...`,
+incluindo os riscos. Quando há espaço na cena final, elas viram uma tela de votação.
+
+A atuação aplica deslocamento a quem anda/corre, poses para abrir portas e empurrar,
+reações de medo/tristeza/raiva e objetos suportados nas ações de pegar/segurar.
+A biblioteca continua limitada às ações e aos objetos existentes no rig.
+
+Cada episódio inclui `opening_variants`: três alternativas com texto, primeiro quadro,
+ação, legenda, som e plano técnico. A troca ocupa os três segundos iniciais e preserva
+o corpo após essa janela e a duração total. As imagens vêm do próprio episódio;
+revise as alternativas para evitar antecipar uma revelação. A exportação cria outro
+JSON no mesmo diretório e recusa sobrescrita. Gere/revise a abertura antes de sincronizar
+as vozes: as variantes não sintetizam nem realinham áudio existente.
+
+O Studio salva `.openings.json`, manifesto e relatório de qualidade, e registra as
+variantes em `experimentos.json`. O comando existente `python -m lofi.experimentos publicar`
+registra a publicação feita fora do motor, incluindo uma cópia completa da variante;
+edições posteriores não alteram essa cópia. Texto insuficiente para sustentar a duração
+gera aviso de revisão: o motor não produz falas novas para preencher o tempo.
+`compile_story` sem perfil permanece disponível como utilitário de baixo nível para
+prévias e testes curtos; os produtores por arquivo adotam os perfis de episódio.
 
 ```bash
 pip install --break-system-packages pillow numpy scipy          # obrigatório, + ffmpeg

@@ -57,6 +57,8 @@ def _narracao(corpo):
 
 CAMPOS = {"CENÁRIO", "CENARIO", "PERSONAGENS", "PLANO", "LUZ E DETALHES", "SOM", "IMAGENS", "VIRADA", "LIGAÇÃO", "INSERÇÃO", "IMAGEM (CHATGPT)",
           "ANIMAÇÃO", "NARRAÇÃO", "LEGENDA", "IMAGENS POR FRASE", "PEGA", "LARGA", "ENTRA", "SAI", "TEXTO", "FALA DO GANCHO", "PLANO DE DETALHE", "INSERTO"}
+CAMPOS.update({'CAUSA', 'ACONTECIMENTO', 'CONSEQUÊNCIA', 'CONFLITO PESSOAL', 'FALA',
+               'PLANTA', 'REVELA', 'PAGA', 'RESOLVE', 'ABRE', 'ENCERRAMENTO', 'SUJEITO', 'DESTINATÁRIO', 'MARCA'})
 
 
 def _falas(corpo):
@@ -152,6 +154,10 @@ def validar_roteiro(caminho, txt=None):
     for err in conferir(caminho, txt):
         m = re.match(r"CENA (\d+): pulo de", err)
         if m: e("salto_de_tempo", int(m.group(1)), err)
+    from .dramaturgia import avaliar_texto
+    for a in avaliar_texto(txt)['findings']:
+        P.append(('ERRO' if a['severity'] == 'error' else 'AVISO', 'drama_' + a['code'], a['scene'],
+                  a['message'] + ': ' + a['suggestion']))
     return P
 
 

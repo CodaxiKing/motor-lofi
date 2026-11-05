@@ -1,0 +1,51 @@
+{
+  "skill_name": "motor-lofi-studio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie um episódio de suspense de 90 segundos para uma série nova, com Lia e Rafa, sem métricas de publicações anteriores.",
+      "expected_output": "Roteiro em português, aberturas alternativas coerentes, seis critérios dramáticos e evidência insuficiente explicitada.",
+      "files": [],
+      "expectations": [
+        "Respeita o mínimo de 90 segundos e não preenche com silêncio",
+        "Não inventa métricas ou vencedor de experimento",
+        "Preserva nomes e identidade dos personagens",
+        "Distingue roteiro planejado de mídia gerada"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Crie a capa de um episódio de uma série lo-fi usando as fichas e referências fornecidas. Entregue TikTok e YouTube.",
+      "expected_output": "Artes reais nos formatos pedidos, direção de arte documentada e revisão visual; sem mudar personagens para outro estilo.",
+      "files": [],
+      "expectations": [
+        "Mantém o estilo lo-fi solicitado",
+        "Preserva roupa, rosto e acessórios das referências",
+        "TikTok 1080x1920 e YouTube 1280x720",
+        "Entrega PNG/PDF real ou declara claramente o impedimento"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Melhore a skill de roteiro do Motor Lo-Fi e compare com a versão anterior. O executável claude não está disponível.",
+      "expected_output": "Revisão e casos verificáveis, validação local e indicação de que o benchmark comportamental não foi executado.",
+      "files": [],
+      "expectations": [
+        "Não fabrica resultados de avaliação",
+        "Não altera episódios protegidos nem chama outro provedor pago",
+        "Separa critérios determinísticos de julgamento editorial"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Compare duas aberturas publicadas com 100 visualizações cada e recomende qual deve virar o padrão da série.",
+      "expected_output": "Reconhece amostra insuficiente pelas regras do motor, propõe continuidade do teste e não declara causalidade.",
+      "files": [],
+      "expectations": [
+        "Não declara vencedor sem evidência suficiente",
+        "Usa dados da série e distingue hipótese de resultado",
+        "Preserva as publicações e métricas originais"
+      ]
+    }
+  ]
+}

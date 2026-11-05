@@ -1,5 +1,9 @@
 # Roteiro
 
+Use `skills/video-script/SKILL.md` com `references/motor-lofi.md` para o trabalho
+criativo. Gere contexto com `python tools/skills_motor.py contexto series/<serie> --episode N`.
+O perfil escolhido tem mínimo de 90 s; os dados retornados não são um roteiro pronto.
+
 Defina gancho inicial, progressão de tensão, personagens, conflito, revelação e escolha A/B. Separe fatos narrados de sugestões visuais. Não invente continuidade. Evite frases excessivamente longas para legendas.
 
 ## Planejamento, ganchos e validação narrativa (lofi/narrativa.py, lofi/ganchos.py, lofi/validador_narrativo.py)

@@ -289,9 +289,9 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
     inf = cd["infected"]
     cx = CW / 2
     bt = cd.get("body", "normal")
-    TWK = {"fat": 1.36, "thin": 0.8, "child": 0.92, "tall": 0.96}.get(bt, 1.0)
+    TWK = {"fat": 1.36, "thin": 0.8, "child": 0.92, "tall": 0.96}.get(bt, 1.0) * max(.8, min(1.2, cd.get('torso_scale', 1.0)))
     LEGK = {"tall": 1.2, "child": 0.7, "old": 0.94}.get(bt, 1.0)
-    HEADK = {"child": 1.16}.get(bt, 1.0)
+    HEADK = {"child": 1.16}.get(bt, 1.0) * max(.85, min(1.15, cd.get('head_scale', 1.0)))
     LIMBK = {"thin": 0.8, "fat": 1.18, "child": 0.92}.get(bt, 1.0)
     HUNCH_ADD = {"old": 26}.get(bt, 0)
     q3 = view == "3q"
@@ -708,7 +708,10 @@ def _draw(cd, view, facing, emotion, pose, t, walk, run, look, seed, sway_k, bre
         im.info["lanterna"] = (hx_ + math.cos(math.radians(dir_)) * 63, hy_ + math.sin(math.radians(dir_)) * 63, dir_, back)
     # --- cabeça ---
     hx, hy = head_c
-    d.ellipse([hx - hr, hy - hr, hx + hr, hy + hr], fill=skin + (255,), outline=OUT, width=7)
+    if cd.get('face_shape') == 'square':
+        d.rounded_rectangle([hx - hr, hy - hr, hx + hr, hy + hr], hr * .45, fill=skin + (255,), outline=OUT, width=7)
+    else:
+        d.ellipse([hx - hr, hy - hr, hx + hr, hy + hr], fill=skin + (255,), outline=OUT, width=7)
     # sombra suave no rosto (lado de baixo)
     sh_l = Image.new("L", (CW, CH), 0)
     ImageDraw.Draw(sh_l).ellipse([hx - hr + 6, hy - hr * 0.1, hx + hr - 6, hy + hr - 6], fill=40)
@@ -1029,7 +1032,7 @@ def render_char(name, view="front", emotion="neutral", pose="idle", t=0.0, scale
     qph = round((phase % 1.0) * 48) / 48 if (walk and phase is not None) else None
     qgk = round(gait_k * 8) / 8
     key = (name, view, emotion, pose, qt, round(scale * cd["scale"], 3), id(light) if not isinstance(light, dict) else tuple(sorted((k, str(v)) for k, v in light.items())),
-           walk, run, int(look), facing, seed, str(custom), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None, None if aim is None else round(aim), ESTILO["nome"])
+           walk, run, int(look), facing, seed, str(custom), round(sway, 3), round(breath, 3), round(mouth * 6), round(talk * 4), pose_prev if pk < 1 else None, round(pk * 10), blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat if pose in ("sit", "chao") else None, None if aim is None else round(aim), ESTILO["nome"])
     if key in _CACHE: return _CACHE[key]
     im, anc = _draw(cd, view, facing, emotion, pose, qt, walk, run, look, seed, sway, breath, round(mouth * 6) / 6, round(talk * 4) / 4,
                     pose_prev, round(pk * 10) / 10, blink_force, sniff, prop, int(viseme), gesture, qph, qgk, seat=seat, aim=aim)

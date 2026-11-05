@@ -41,7 +41,12 @@ def check(path, frames=True):
         if not any(s.get("hook") and s["start"] < 0.5 for s in shots): err("falta o gancho (plano com 'hook' no início)")
         if any(s.get("type") == "choice" for s in shots): warn("extra não tem votação A/B")
     else:
-        if ep.total < 120: regra(f"duração {ep.total:.0f}s: o episódio precisa ter no mínimo 2 min (sem limite máximo)")
+        from .perfis_duracao import planejar
+        try:
+            regras_duracao = planejar(sp.get('duration_profile', 'tradicional'), ep.total)
+        except ValueError as exc:
+            regra(str(exc))
+            regras_duracao = {'min_cenas': 12}
         if not any(s.get("hook") and s["start"] < 0.5 for s in shots): regra("falta o gancho (plano com 'hook' no início)")
         if ep.redes:   # modo redes: sem cartela; o selo EP X/Y entra sozinho e o voto vai em "voto" (a partir do ep. 2)
             if any(s.get("type") == "title" for s in shots): warn("cartela de título no modo redes: troque pelo selo automático (tire o plano 'title')")
@@ -63,7 +68,8 @@ def check(path, frames=True):
         if abs(a["end"] - b["start"]) > 0.05: err(f"buraco/sobreposição entre planos em {a['end']:.2f}s e {b['start']:.2f}s")
     n_scene = sum(1 for s in shots if s.get("type", "scene") in ("scene", "detail"))
     if formato == "extra" and n_scene < 5: warn(f"só {n_scene} cenas (mínimo 5 no extra)")
-    if formato == "episodio" and n_scene < 12: regra_aviso(f"só {n_scene} cenas (mínimo 12)")
+    if formato == "episodio" and n_scene < regras_duracao['min_cenas']:
+        regra_aviso(f"só {n_scene} cenas (mínimo {regras_duracao['min_cenas']})")
     if any(s.get("imagens") for s in shots):        # estilo imagens: toda imagem citada precisa estar em imagens/
         from .imagens import faltam
         for t_, n_ in faltam(path): err(f"imagem faltando: imagens/{n_}.png (plano em {t_}s)")

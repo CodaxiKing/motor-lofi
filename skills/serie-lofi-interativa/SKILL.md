@@ -5,6 +5,17 @@ description: "Planejar, roteirizar e montar episódios de séries interativas em
 
 # Série lo-fi interativa (v13)
 
+## Especialidades do projeto
+
+Para ideias, ganchos, escrita e revisão por métricas, use `skills/video-script/SKILL.md`;
+para capas e direção de arte estática, `skills/canvas-design/SKILL.md`;
+para melhorar e avaliar as próprias skills, quando solicitado, `skills/skill-creator/SKILL.md`.
+Leia a referência `motor-lofi.md` de cada uma antes dos padrões upstream.
+Se a skill não estiver instalada na conta, os arquivos podem ser lidos no checkout.
+O formato da bíblia e o perfil de duração escolhido prevalecem: mínimo de 90 s
+por episódio, sem alongamento artificial. Preserve estilo lo-fi, fichas e cânone.
+As especialidades complementam a montagem existente e não exigem outro renderizador.
+
 Fluxo completo para séries verticais (9:16) de qualquer gênero (suspense, terror, mistério, comédia, romance, fantasia, policial...) em que o público vota A ou B no fim de cada episódio.
 O visual é desenhado e animado por código pelo **motor lo-fi**. Responda sempre em português do Brasil.
 **Escolhas por cartão (padrão):** em cada etapa com opções, mostre um cartão de escolha (AskUserQuestion) em vez de decidir sozinho: até 4 perguntas por cartão, 2 a 4 opções cada, a recomendada primeiro com "(Recomendado)", e o usuário sempre pode digitar outra. Junte num cartão só as decisões da mesma etapa e não pergunte o que os argumentos já responderam. Se o usuário não estiver presente (comando agendado ou sem resposta), siga com as recomendadas e diga quais foram. Os pontos de escolha de cada comando estão na skill do comando (/serie-planejar, /serie-roteiro, /serie-continuar, /serie-montar, /serie-aviso, /serie-agenda, /serie-comunidade).

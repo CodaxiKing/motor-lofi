@@ -5,11 +5,14 @@ from .autodirect import write_episode
 from .asset_plan import write_asset_manifest
 from .providers import synthesize, ProviderError
 
-def prepare(story_path, output_path, *, profile='horror_illustrated', actor='roberta', scene='apartamento', duration=None):
-    ep=write_episode(story_path,output_path,visual_profile=profile,actor=actor,scene=scene,duration=duration)
+def prepare(story_path, output_path, *, profile='horror_illustrated', actor='roberta', scene='apartamento', duration=None, duration_profile=None, opening=None, elenco=None, world_state=None):
+    ep=write_episode(story_path,output_path,visual_profile=profile,actor=actor,scene=scene,duration=duration, duration_profile=duration_profile, opening=opening, elenco=elenco, world_state=world_state)
     manifest_path=Path(output_path).with_suffix('.assets.json')
     manifest=write_asset_manifest(ep,manifest_path)
-    return {'episode':str(output_path),'manifest':str(manifest_path),'shots':len(ep['shots']), 'visual_assets':manifest}
+    from .studio import quality_report
+    report_path = Path(output_path).with_suffix('.quality.json')
+    report_path.write_text(json.dumps(quality_report(ep), ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    return {'episode':str(output_path),'manifest':str(manifest_path),'quality':str(report_path),'shots':len(ep['shots']), 'visual_assets':manifest}
 
 def generate_narration(story_path, output_path, *, provider='piper', model=None, voice=None):
     text=Path(story_path).read_text(encoding='utf-8')

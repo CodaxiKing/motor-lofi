@@ -5,6 +5,14 @@ description: "Comando para gerar o roteiro do próximo episódio de uma série l
 
 # /serie-roteiro
 
+## Integração de roteiro
+
+Antes de escrever ou revisar, consulte `skills/video-script/SKILL.md` e sua referência
+`references/motor-lofi.md`. Use `python tools/skills_motor.py contexto series/<serie> --episode N`
+para reunir cânone e métricas. O perfil de duração escolhido, com mínimo de 90 s,
+prevalece sobre mínimos antigos deste documento. Escreva as seis dimensões dramáticas,
+falas/imagens por cena e três aberturas; não invente resultados de publicação.
+
 Gera o roteiro do próximo episódio sem anexar nada nem colar mapa. Siga a skill **serie-lofi-interativa** (seções "Motor e bíblia" e "Roteiro"); as regras abaixo prevalecem. Para quem já sabe o voto, o atalho é /serie-continuar.
 Responda em português do Brasil.
 

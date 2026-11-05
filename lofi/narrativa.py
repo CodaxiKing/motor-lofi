@@ -53,6 +53,10 @@ def palavras(s):
     return set(w for w in re.findall(r"[a-z0-9]+", norm(s)) if len(w) > 3)
 
 
+def identificadores(itens):
+    return [p.get('id') if isinstance(p, dict) else p for p in itens]
+
+
 def minutos(dia, hora):
     h, m = (int(x) for x in str(hora).split(":")); return int(dia) * 1440 + h * 60 + m
 
@@ -176,12 +180,12 @@ def validar_plano(plano, memoria=None, mundo=None, personagens=None):
             # conhecimento: o público não pode saber antes da hora
             texto = " ".join([c.get("acontecimento", ""), c.get("consequencia", "")] + list(c.get("narracao", [])))
             for f in memoria.get("fatos", []):
-                if f["id"] in conhece or f["id"] in c.get("revela", []): continue
+                if f["id"] in conhece or f["id"] in identificadores(c.get("revela", [])): continue
                 alvo = f.get("revelar_no_ep")
                 if f.get("status") in ("desconhecido", "fato") and alvo and alvo > ep and f.get("palavras"):
                     if any(re.search(r"\b" + re.escape(norm(p)) + r"\b", norm(texto)) for p in f["palavras"]):
                         e("informacao_indevida", n, f"cena {n}{tag}: conta '{f['id']}' (só revelado no ep. {alvo})")
-            conhece |= set(c.get("revela", []))
+            conhece |= set(identificadores(c.get("revela", [])))
         # estado final coerente com a última cena
         ef = estados_iniciais({"estado_inicial": plano.get("estado_final") or {}})
         fimv = ef.get(voto) or ef.get(None)
@@ -190,7 +194,7 @@ def validar_plano(plano, memoria=None, mundo=None, personagens=None):
     # ---------------- virada, consequências, pendências e ponte ----------------
     if plano.get("virada") not in ns: e("sem_virada", None, "o plano não aponta a cena da virada ('virada': n)")
     if not plano.get("consequencias"): w("sem_consequencia", None, "o plano não diz o que muda depois do episódio ('consequencias')")
-    resolvidas = {r for c in cadeia for r in c.get("resolve", [])}
+    resolvidas = {r for c in cadeia for r in identificadores(c.get("resolve", []))}
     tudo = norm(json.dumps(cadeia, ensure_ascii=False))
     for pd in memoria.get("pendencias", []):
         if pd.get("ate_ep") == ep and pd["id"] not in resolvidas and not any(norm(p) in tudo for p in pd.get("palavras", [])):
@@ -207,6 +211,10 @@ def validar_plano(plano, memoria=None, mundo=None, personagens=None):
         if not alvo: e("gancho_desconectado", None, f"o gancho aponta a cena {g.get('cena')}, que não existe")
         elif not palavras(g.get("texto", "")) & palavras(json.dumps(alvo, ensure_ascii=False)):
             e("gancho_desconectado", None, f"o gancho '{g.get('texto')}' não tem nada da cena {g.get('cena')}")
+    from .dramaturgia import avaliar_plano
+    for a in avaliar_plano(plano, memoria)['findings']:
+        P.append(('ERRO' if a['severity'] == 'error' else 'AVISO', 'drama_' + a['code'], a['scene'],
+                  a['message'] + (' (caminho ' + str(a['branch']) + ')' if a.get('branch') else '') + ': ' + a['suggestion']))
     return P
 
 
@@ -224,11 +232,19 @@ def fechar(plano, memoria, voto=None):
                 if it in inv.get(q, []): inv[q].remove(it)
         for q, fer in (c.get("ferimentos") or {}).items():
             m["personagens"].setdefault(q, {}).setdefault("ferimentos", []).append({"ep": int(ep), "texto": fer})
-        for fid in c.get("revela", []):
+        for fid in identificadores(c.get("revela", [])):
             for f in m["fatos"]:
                 if f["id"] == fid: f["publico_sabe"] = True; f["status"] = "fato"; f["revelado_no_ep"] = int(ep)
-        for pid in c.get("resolve", []):
+        for pid in identificadores(c.get("resolve", [])):
             m["pendencias"] = [p for p in m["pendencias"] if p["id"] != pid]
+        for pista in c.get('planta', []):
+            p = pista if isinstance(pista, dict) else {'id': pista, 'texto': c.get('consequencia', '')}
+            if not any(x['id'] == p['id'] for x in m.setdefault('pistas', [])):
+                m['pistas'].append(dict(p, publico_sabe=True, plantada_no_ep=int(ep)))
+        for pid in identificadores(c.get('paga', [])):
+            for p in m.get('pistas', []):
+                if p['id'] == pid:
+                    p['paga_no_ep'] = int(ep)
     ult = cenas[-1] if cenas else {}
     m["fim"][ep] = {"lugar": ult.get("lugar", est.get("lugar")), "dia": ult.get("dia", est.get("dia")), "hora": ult.get("hora", est.get("hora")),
                     "presentes": ult.get("presentes", est.get("presentes")), "inventario": inv, "voto_de_entrada": voto,
@@ -280,10 +296,27 @@ def esqueleto(plano, voto=None, mundo=None):
           f"FALA DO GANCHO: `narrador` \"{g.get('texto', '')}\"" + (f" (a mesma da CENA {alvo})" if alvo else ""),
           "TEXTO: " + " / ".join(g.get("linhas", [])), f"ESTRATÉGIA: {g.get('estrategia', '')}", "", "---", ""]
     ini = estados_iniciais(plano); lugar_cen = {}; ant = (ini.get(voto) or ini.get(None) or {}).get("lugar")
+    referencia = {c.get('n'): i for i, c in enumerate(cenas, 1)}
     for i, c in enumerate(cenas, 1):
         cen = lugar_cen.setdefault((c.get("lugar"), c.get("cenario")), c.get("cenario"))
         tr = c.get("transicao") or {}
         L.append(f"## CENA {i} · {c.get('situacao', '')[:48]}")
+        L.append(f"ACONTECIMENTO: {c.get('acontecimento', '')}")
+        L.append(f"CONSEQUÊNCIA: {c.get('consequencia', '')}")
+        causa = c.get('causa')
+        if isinstance(causa, int): causa = {'cena': causa, 'texto': c.get('situacao', '')}
+        if isinstance(causa, dict):
+            L.append(f"CAUSA: CENA {referencia.get(causa.get('cena'), causa.get('cena'))} — {causa.get('texto', '')}")
+        pessoal = c.get('conflito_pessoal') or {}
+        if isinstance(pessoal, dict) and pessoal:
+            L.append(f"CONFLITO PESSOAL: {pessoal.get('personagem', pessoal.get('texto', ''))} | DESEJO: {pessoal.get('desejo', '')} | CUSTO: {pessoal.get('custo', '')}")
+        for campo in ('planta', 'revela', 'paga', 'resolve', 'abre'):
+            for item in c.get(campo, []):
+                identificador = item.get('id') if isinstance(item, dict) else item
+                descricao = item.get('texto', '') if isinstance(item, dict) else c.get('consequencia', '')
+                L.append(f"{campo.upper()}: {identificador} | {descricao}")
+        for fala in c.get('falas', []):
+            L.append(f"FALA: {fala.get('personagem', '')} | ALVO: {fala.get('alvo', '')} | INTENÇÃO: {fala.get('intencao', '')} | OBJETIVO: {fala.get('objetivo', '')} | TEXTO: {fala.get('texto', '')}")
         if tr.get("tipo") in ("passagem_tempo",) or tr.get("passa_tempo"): L.append(f"O TEMPO PASSA: {tr.get('justificativa', '')}")
         if ant and c.get("lugar") != ant and tr.get("tipo") == "deslocamento": L.append(f"LIGAÇÃO: {tr.get('justificativa', '')}")
         if tr.get("tipo") in ("perspectiva", "revelacao", "montagem"): L.append(f"INSERÇÃO: {tr.get('justificativa', '')}")
@@ -296,7 +329,15 @@ def esqueleto(plano, voto=None, mundo=None):
         L += [f"(acontecimento: {c.get('acontecimento', '')} · reação: {c.get('reacao', '')} · decisão: {c.get('decisao', '')})", ""]
         ant = c.get("lugar")
     if plano.get("pergunta"):
-        L += ["## A ESCOLHA"] + [f"{k}) {v.upper()}" for k, v in plano["pergunta"].items()] + [""]
+        L += ["## A ESCOLHA"]
+        for k, v in plano['pergunta'].items():
+            if isinstance(v, dict):
+                v = v.get('texto', '') + ''.join(f' | {campo.upper()}: {v[campo]}' for campo in ('ganha', 'perde', 'motivo', 'origem') if campo in v)
+            v = re.sub(r'(ORIGEM:\s*CENA\s+)(\d+)', lambda m: m[1] + str(referencia.get(int(m[2]), int(m[2]))), v, flags=re.I)
+            L.append(f'{k}) {v}')
+        L.append('')
+    if plano.get('final'):
+        L.append('ENCERRAMENTO: final')
     return "\n".join(L)
 
 

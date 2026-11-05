@@ -1,0 +1,14 @@
+{
+  "repository": "anthropics/skills",
+  "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+  "path": "skills/canvas-design",
+  "url": "https://github.com/anthropics/skills/tree/ca45fc496a3436251f191354091d557da31c15b5/skills/canvas-design",
+  "retrieved_on": "2026-11-05",
+  "license": "Apache-2.0",
+  "upstream_skill_sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+  "local_changes": [
+    "Added references/motor-lofi.md and integration precedence notice",
+    "Added provenance and retained licenses",
+    "Removed assertion of a user request that was not made"
+  ]
+}

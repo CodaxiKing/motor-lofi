@@ -1,0 +1,13 @@
+{
+  "repository": "goodnight000/cstack",
+  "commit": "72c4a9be18c1a7d455ecc3f5a4d4547725970a10",
+  "path": "skills/video-script",
+  "url": "https://github.com/goodnight000/cstack/tree/72c4a9be18c1a7d455ecc3f5a4d4547725970a10/skills/video-script",
+  "retrieved_on": "2026-11-05",
+  "license": "MIT",
+  "upstream_skill_sha256": "4076a751004a8759b962f567fee826c597519244f6a50cd82e130747664f8346",
+  "local_changes": [
+    "Added references/motor-lofi.md and integration precedence notice",
+    "Added provenance and retained licenses"
+  ]
+}

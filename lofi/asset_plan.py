@@ -13,8 +13,16 @@ def build_asset_manifest(episode):
          'prompt': f'2D cartoon background, {sc}, {style}, vertical 9:16, no text, no characters',
          'status': 'optional'} for sc in scenes],
         'characters': [{'id': char, 'status': 'rendered_by_builtin_rig',
-                        'reference_prompt': f'Character design sheet of {char}, {style}, consistent proportions, no text'}
-                       for char in actors]}
+                        'reference': episode.get('cast', {}).get(char, {}).get('referencia'),
+                        'identity_hash': episode.get('cast', {}).get(char, {}).get('identity_hash'),
+                        'visual_identity': episode.get('cast', {}).get(char, {}).get('visual', {}),
+                        'reference_prompt': f'Character design sheet of {char}, {style}, front/back/side/three-quarter, expressions, same silhouette, face, outfit and proportions as reference; no text. Identity: ' + json.dumps(episode.get('cast', {}).get(char, {}).get('visual', {}), ensure_ascii=False)}
+                       for char in actors],
+        'shot_references': [{'shot': i + 1, 'characters': [
+            {'id': a['char'], 'reference': episode.get('cast', {}).get(a['char'], {}).get('referencia'),
+             'identity_hash': episode.get('cast', {}).get(a['char'], {}).get('identity_hash'),
+             'view': a.get('view'), 'pose': a.get('pose'), 'emotion': a.get('emotion')}
+            for a in s.get('actors', [])]} for i, s in enumerate(episode.get('shots', []))]}
 
 def write_asset_manifest(episode, path):
     result = build_asset_manifest(episode)

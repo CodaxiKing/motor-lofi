@@ -368,8 +368,8 @@ class Episode:
         sx = (wx - x0) * z + (math.sin(t * 61) * 4 * trem if trem else 0)
         sy = (y - y0) * z
         pop = 1.0
-        emo, emo_prev, emo_dt = change(a.get("emotion", "neutral"), rel)
-        pose, pose_prev, pose_dt = change(a.get("pose", "idle"), rel)
+        emo, emo_prev, emo_dt = change(a.get('emotion_track', a.get("emotion", "neutral")), rel)
+        pose, pose_prev, pose_dt = change(a.get('pose_track', a.get("pose", "idle")), rel)
         if emo_dt < 0.25: pop = 1 + 0.07 * (1 - emo_dt / 0.25)
         scale = base_scale * z * pop
         voice = a.get("voice", a["char"])
@@ -393,21 +393,32 @@ class Episode:
         view = val(a.get("view", "front"), rel, norm)
         facing = val(a.get("facing", 1), rel, norm)
         fl = a.get("flashlight")
-        aim = None; prop_ = val(a.get("prop"), rel, norm)
+        aim = None; prop_ = val(a.get('prop_track', a.get("prop")), rel, norm)
         if fl:
             ang_w = val(fl, rel, norm) if not isinstance(fl, bool) else None
             ang_w = ang_w if isinstance(ang_w, (int, float)) and not isinstance(ang_w, bool) else (12 if facing >= 0 else 168)
             aim = ang_w if facing >= 0 else 180 - ang_w
             if not prop_: prop_ = "flashlight"
-        spr, anc = render_char(a["char"], view=view, emotion=emo, pose=pose, t=t * a.get("_limp", 1.0), scale=scale, light=light,
+        visual = dict({**(a.get('custom') or {}), **self.locked[a['char']]} if a['char'] in self.locked
+                      else (a.get('custom') or self.custom.get(a['char'])) or {})
+        if val(a.get('equipment', {}).get('backpack'), rel, norm) is False:
+            visual['backpack'] = None
+        spr, anc = render_char(a["char"], view=view, emotion=emo, pose=pose, t=t * a.get("_limp", 1.0) * a.get('motion_speed', 1.0), scale=scale, light=light,
                                walk=bool(walk), run=run_, phase=phase, gait_k=gk, look=val(a.get("look", 0), rel, norm),
-                               facing=facing, custom=({**(a.get("custom") or {}), **self.locked[a["char"]]} if a["char"] in self.locked
-                                                      else (a.get("custom") or self.custom.get(a["char"]))), seed=a.get("seed"),
+                               facing=facing, custom=visual, seed=a.get("seed"), sway=a.get('sway', 1), breath=a.get('breath', 1),
                                mouth=mouth if view != "back" else 0, talk=talk, pose_prev=pose_prev,
                                viseme=self.viseme(voice, self._treal) if lips and view != "back" else 0, gesture=gesture,
                                pk=c01(pose_dt / 0.32) if pose_prev else 1.0, blink_force=emo_dt < 0.1,
                                sniff=bool(val(a.get("sniff", False), rel, norm)), prop=prop_,
                                seat=a.get("assento", "banco"), aim=aim)
+        if emo_prev and 0 <= emo_dt < .3:
+            anterior, _ = render_char(a['char'], view=view, emotion=emo_prev, pose=pose,
+                                      t=t, scale=scale, light=light, walk=bool(walk), run=run_,
+                                      phase=phase, gait_k=gk, look=val(a.get('look', 0), rel, norm),
+                                      facing=facing, custom=visual, sway=a.get('sway', 1),
+                                      breath=a.get('breath', 1), prop=prop_)
+            if anterior.size == spr.size:
+                spr = Image.blend(anterior, spr, ease(c01(emo_dt / .3)))
         ponta = spr.info.get("lanterna") if prop_ == "flashlight" else None
         rot = val(a.get("rot"), rel, norm)
         if rot is None: rot = {"fallen": 86, "crawl": 72}.get(pose, 0) * (1 if facing >= 0 else -1)
@@ -658,6 +669,8 @@ class Episode:
             if focus_on is not None: dof = max(dof, 2.5)
             if dof > 0.3: img = fast_blur(img, dof) if dof >= 6 else img.filter(ImageFilter.BoxBlur(dof * 0.8))
         light_name, light = self.resolve_light(shot, sc, t_anim)
+        from .objetos_cena import desenhar as desenhar_objetos
+        desenhar_objetos(img, shot, rel, cam, camx, sc.depths[1], XO)
         actors = list(shot.get("actors", []))
         crowd = shot.get("crowd")
         if crowd:

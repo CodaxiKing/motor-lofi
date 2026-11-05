@@ -1,0 +1,13 @@
+{
+  "repository": "anthropics/skills",
+  "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+  "path": "skills/skill-creator",
+  "url": "https://github.com/anthropics/skills/tree/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator",
+  "retrieved_on": "2026-11-05",
+  "license": "Apache-2.0",
+  "upstream_skill_sha256": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+  "local_changes": [
+    "Added references/motor-lofi.md and integration precedence notice",
+    "Added provenance and retained licenses"
+  ]
+}

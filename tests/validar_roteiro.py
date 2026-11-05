@@ -3,7 +3,9 @@
     python3 tests/validar_roteiro.py series/dia-zero/ep03_roteiro.md [--final]
 
 Estrutura: gancho no início, abertura com carimbo, 12 cenas ou mais, pergunta A/B + "CONTINUA NO EPISÓDIO"
-(ou "FIM" no último), narração ElevenLabs por personagem, legendas com até 4 palavras por pedaço, duração mínima de 2 min (sem máximo).
+(ou "FIM" no último), narração ElevenLabs por personagem, legendas com até 4 palavras por pedaço.
+Sem perfil: mínimo de 90 s e 12 cenas. Use --perfil curto|medio|longo|tradicional
+ou a linha "Perfil de duração: curto" no roteiro/bíblia para escolher outra faixa.
 
 Nomes do motor: nas linhas CENÁRIO, PERSONAGENS, PLANO/TRANSIÇÃO, LUZ e SOM, todo nome entre crases (`bang`, `escada`,
 `fear`...) precisa existir no motor (CATALOGO.md) ou em personagens.json da série. Nome errado é ERRO, com sugestão.
@@ -366,15 +368,20 @@ def conferir_ritmo(txt, caminho=None):
     return ritmo.conferir(txt, caminho)
 
 
-def validar(txt, final=False, caminho=None):
+def validar(txt, final=False, caminho=None, perfil=None):
     if "--extra" in sys.argv or (caminho and os.path.basename(caminho).startswith("extra")):
         return validar_extra(txt, caminho)
     erros, avisos = [], []
+    from lofi.perfis_duracao import selecionar, conferir_duracao
+    try:
+        nome_perfil, regras = selecionar(txt, caminho, perfil)
+    except ValueError as exc:
+        return [str(exc)], []
     up = txt.upper()
     if "GANCHO" not in up: erros.append("falta a CENA 0 · GANCHO")
     if "A MAIORIA ESCOLHEU" not in up and "EPISÓDIO 1/" not in up: erros.append("falta o carimbo 'A MAIORIA ESCOLHEU'")
     cenas = set(int(n) for n in re.findall(r"^[#\s*\-]*CENA\s+(\d+)", up, re.M) if int(n) > 0)
-    if len(cenas) < 12: erros.append(f"{len(cenas)} cenas (mínimo 12)")
+    if len(cenas) < regras["min_cenas"]: erros.append(f"{len(cenas)} cenas (mínimo {regras['min_cenas']} no perfil {nome_perfil})")
     elif sorted(cenas) != list(range(1, max(cenas) + 1)): avisos.append(f"numeração das cenas com falhas: {sorted(cenas)}")
     if final:
         if "FIM" not in up: erros.append("último episódio sem 'FIM'")
@@ -387,8 +394,7 @@ def validar(txt, final=False, caminho=None):
     for m in re.finditer(r"LEGENDA[^:\n]*:\s*(.+)", txt, re.I):
         for piece in re.split(r"\s*/\s*", m.group(1)):
             if len(piece.split()) > 4: avisos.append(f"legenda com mais de 4 palavras: '{piece.strip()}'")
-    tempos = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*s\b", re.sub(r"(\d),(\d)", r"\1.\2", txt))]
-    if tempos and max(tempos) < 120: erros.append(f"maior tempo citado {max(tempos):.0f}s: o episódio precisa ter no mínimo 2 min")
+    erros += conferir_duracao(txt, nome_perfil, regras)
     cat, motivo = carregar_nomes(caminho or ".")
     if cat is None: avisos.append(motivo)
     else:
@@ -402,7 +408,7 @@ def validar(txt, final=False, caminho=None):
     simples = re.search(r"^\W*Complexidade:\W*simples", txt + "\n" + (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else ""), re.M | re.I)
     if re.search(r"^\W*Estilo:\W*imagens", (open(bib, encoding="utf-8").read() if bib and os.path.exists(bib) else "") + "\n" + txt, re.M | re.I):
         e_, a_ = conferir_imagens(txt, caminho); erros += e_; avisos += a_
-    if "--simples" not in sys.argv and not simples:
+    if "--simples" not in sys.argv and not simples and nome_perfil == "tradicional":
         avisos += conferir_complexidade(txt, final)
     if narrado:
         e, a_ = conferir_narrado(txt, caminho); erros += e; avisos += a_
@@ -417,8 +423,17 @@ def validar(txt, final=False, caminho=None):
 
 
 if __name__ == "__main__":
-    caminho = sys.argv[1]
-    e, a = validar(open(caminho, encoding="utf-8").read(), "--final" in sys.argv, caminho)
+    import argparse
+    from lofi.perfis_duracao import PERFIS
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("caminho")
+    parser.add_argument("--perfil", choices=PERFIS)
+    parser.add_argument("--final", action="store_true")
+    parser.add_argument("--extra", action="store_true")
+    parser.add_argument("--simples", action="store_true")
+    args = parser.parse_args()
+    caminho = args.caminho
+    e, a = validar(open(caminho, encoding="utf-8").read(), args.final, caminho, args.perfil)
     for x in e: print("[ERRO]", x)
     for x in a: print("[AVISO]", x)
     print("OK" if not e else f"{len(e)} erro(s)")

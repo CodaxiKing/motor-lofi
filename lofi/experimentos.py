@@ -23,7 +23,7 @@ Arquivo da série: series/<serie>/experimentos.json
     python3 -m lofi.experimentos comparar  series/x 2
     python3 -m lofi.experimentos recomendar series/x                   (ou series/ para todas as séries)
 """
-import csv, datetime, json, math, os, re, sys
+import copy, csv, datetime, json, math, os, re, sys
 
 METRICAS = ("visualizacoes", "tempo_medio_s", "retencao_inicial", "retencao_3s", "retencao_5s", "conclusao", "replays",
             "compartilhamentos", "comentarios", "seguidores")
@@ -64,9 +64,11 @@ def _exp(d, ep):
 def registrar_variantes(pasta, ep, candidatos, selecionada, criterio=""):
     """Guarda as alternativas geradas e qual entrou no roteiro. Re-registrar preserva as publicações e o histórico."""
     d = carregar(pasta); e = _exp(d, ep)
-    if e["variantes"] and [v["texto"] for v in e["variantes"]] != [c["texto"] for c in candidatos]:
+    novas = [{"id": c["id"], "estrategia": c["estrategia"], "texto": c["texto"], "duracao_s": c.get("duracao_s"),
+              **({'abertura': copy.deepcopy(c)} if 'primeiro_quadro' in c else {})} for c in candidatos]
+    if e["variantes"] and e['variantes'] != novas:
         e.setdefault("historico", []).append({"variantes": e["variantes"], "selecionada": e["selecionada"], "ate": _agora()})
-    e["variantes"] = [{"id": c["id"], "estrategia": c["estrategia"], "texto": c["texto"], "duracao_s": c.get("duracao_s")} for c in candidatos]
+    e["variantes"] = novas
     e["selecionada"] = selecionada; e["criterio"] = criterio; e["registrado_em"] = _agora()
     salvar(pasta, d); return e
 
@@ -80,7 +82,8 @@ def publicar(pasta, ep, variante, plataforma, publicado_em, pub_id=None, duracao
     pub_id = pub_id or f"{plataforma}-ep{int(ep):02d}-{variante.lower()}-{publicado_em}"
     if any(p["id"] == pub_id for x in d["experimentos"] for p in x["publicacoes"]): raise ValueError(f"publicação '{pub_id}' já existe")
     e["publicacoes"].append({"id": pub_id, "variante": variante, "plataforma": plataforma, "publicado_em": publicado_em,
-                             "duracao_video_s": duracao_video_s, "mudancas": list(mudancas), "url": url, "metricas": []})
+                             "duracao_video_s": duracao_video_s, "mudancas": list(mudancas), "url": url, "metricas": [],
+                             "variante_publicada": copy.deepcopy(next((v for v in e['variantes'] if v['id'] == variante), None))})
     salvar(pasta, d); return pub_id
 
 
