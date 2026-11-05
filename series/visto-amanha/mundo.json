@@ -125,6 +125,18 @@
    "hora": "23:17",
    "rotulo": "DIA",
    "nota": "Lucas na entrada do 903, com o celular, diante da porta; a voz da Clara está do outro lado"
+  },
+  "2": {
+   "lugar": "predio",
+   "inventario": {
+    "lucas": [
+     "celular",
+     "caixinha"
+    ]
+   },
+   "dia": 1,
+   "hora": "22:17",
+   "rotulo": "DIA"
   }
  }
 }
