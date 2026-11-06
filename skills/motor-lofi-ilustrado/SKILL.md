@@ -35,6 +35,14 @@ para uma história original, escreva o plano conforme as etapas acima.
 
 ## Biblioteca e arte
 
+Leia `biblioteca/ilustrada/v1/FLUIDEZ.md` para calibrar passada e contatos dos pés,
+congelar voz antes da atuação e usar camadas independentes de cenário. Prepare a
+história com `python -m lofi.atuacao_voz` depois de definir a gravação; use `--previa`
+somente para vozes temporárias. Antes do vídeo completo, execute
+`python -m lofi.revisao_cenas episodio.json --saida <pasta-nova>` e confira os clipes
+com áudio, folhas e relatório por cena. Marque o que não tem marcos/voz final como
+pendente; a trava de apoio não recupera uma passada incompatível com o desenho.
+
 Antes de criar qualquer identidade, leia `biblioteca/ilustrada/v1/PADRAO_CRIACAO.md`
 e `padrao_criacao.json`. Gere a ficha com `python -m lofi.padrao_personagens novo`.
 Complete as dez vistas, ações, transições e revisão antes de registrar como pronta.

@@ -30,6 +30,8 @@ _editor_cache/
 .test-tmp/
 
 !biblioteca/ilustrada/v1/previas/primeira_pessoa_v1.png
+!producoes/revisoes/fluidez-v2/cena_*.mp4
+!producoes/revisoes/fluidez-v2/cena_*.png
 
 !biblioteca/ilustrada/v1/imagens/**/*.png
 

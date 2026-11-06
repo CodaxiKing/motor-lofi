@@ -109,6 +109,8 @@ def validar_ficha(ficha, base=BASE, padrao=None):
             c = ler_ciclo(base, nome)
             if c.get('tipo') != 'corpo_inteiro':
                 raise ValueError('Movimento precisa do corpo inteiro')
+            if acao in ('andar','correr') and (not c.get('deslocamento_corpo_ciclo') or not c.get('contatos_solo')):
+                raise ValueError('Locomoção exige passada e contatos_solo calibrados')
             if c.get('identidade') != identidade or c.get('angulo') != angulo or c.get('acao') != acao:
                 raise ValueError('Identidade, ângulo ou ação do ciclo não correspondem à ficha')
             if len(c['frames']) < minimo:

@@ -11,6 +11,21 @@ def validar(ciclo):
     if not frames or ciclo.get('tipo') not in ('corpo_inteiro','retrato'):raise ValueError('Ciclo precisa de quadros completos de corpo ou retrato')
     if not 0<ciclo.get('fps_quadros',0)<=60:raise ValueError('Cadência de quadros inválida')
     if not 0<ciclo['referencia']['altura_corpo']<=1:raise ValueError('Referência de corpo inválida')
+    if 'deslocamento_corpo_ciclo' in ciclo:
+        valor=ciclo['deslocamento_corpo_ciclo']
+        if not isinstance(valor,(int,float)) or not math.isfinite(valor) or valor<0:raise ValueError('Comprimento de passada inválido')
+    for contato in ciclo.get('contatos_solo',[]):
+        a,b=contato.get('inicio',-1),contato.get('fim',-1)
+        if not 0<=a<1 or not a<b<=a+1:raise ValueError('Intervalo de apoio inválido')
+        for f in frames:
+            ponto=f.get('marcos',{}).get(contato.get('marco'))
+            if not ponto or len(ponto)!=2 or not all(isinstance(v,(int,float)) and math.isfinite(v) and 0<=v<=1 for v in ponto):
+                raise ValueError('Marco do pé não calibrado em todos os quadros')
+    contatos=ciclo.get('contatos_solo',[])
+    for i,c in enumerate(contatos):
+        for d in contatos[i+1:]:
+            if any(max(c['inicio'],d['inicio']+v)<min(c['fim'],d['fim']+v)-1e-8 for v in (-1,0,1)):
+                raise ValueError('Escolha um apoio de referência por intervalo; contatos sobrepostos')
     for f in frames:
         r=f.get('regiao',[0,0,1,1] if f.get('img') else []);a=f.get('ancora',[])
         if not f.get('img') and not ciclo.get('atlas'):raise ValueError('Quadro precisa de PNG próprio ou atlas')
@@ -40,7 +55,7 @@ def indice(ciclo,t,modo='loop',velocidade=1):
     n=len(ciclo['frames']);ordem=ciclo.get('ordem',list(range(n)))
     if not ordem or any(not isinstance(i,int) or not 0<=i<n for i in ordem):raise ValueError('Ordem de quadros inválida')
     if not math.isfinite(velocidade) or velocidade<=0:raise ValueError('Velocidade de ciclo inválida')
-    k=max(0,int(t*ciclo['fps_quadros']*velocidade))
+    k=max(0,int(t*ciclo['fps_quadros']*velocidade+1e-9))
     if modo=='loop':return ordem[k%len(ordem)]
     if modo=='uma_vez':return ordem[min(len(ordem)-1,k)]
     if modo=='ida_volta':

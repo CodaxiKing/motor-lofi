@@ -642,7 +642,62 @@
           }
         ],
         "calibracao": "Luz lateral do luar; vetor descreve a direção da sombra no piso"
-      }
+      },
+      "camadas_cenario": [
+        {
+          "id": "nevoa_fundo",
+          "tipo": "nevoa",
+          "plano": "fundo",
+          "faixa": [
+            0.46,
+            1
+          ],
+          "opacidade": 0.12,
+          "velocidade": 0.035,
+          "profundidade": 0.4
+        },
+        {
+          "id": "arvore_frente",
+          "tipo": "imagem",
+          "img": "objetos/arvore_v2",
+          "plano": "frente",
+          "x": 1.5,
+          "y": 0.51,
+          "altura": 1.05,
+          "opacidade": 1,
+          "profundidade": 1.4
+        },
+        {
+          "id": "nevoa_frente",
+          "tipo": "nevoa",
+          "plano": "frente",
+          "faixa": [
+            0.74,
+            1
+          ],
+          "opacidade": 0.12,
+          "velocidade": -0.03,
+          "profundidade": 1.2
+        },
+        {
+          "id": "luar",
+          "tipo": "luz",
+          "plano": "fundo",
+          "x": 0.66,
+          "y": 0.3,
+          "opacidade": 0.12,
+          "cor": [
+            150,
+            185,
+            220
+          ],
+          "raio": [
+            0.4,
+            0.45
+          ],
+          "pulsar": 0.08
+        }
+      ]
     },
     "trilha_lateral": {
       "img": "fundo_trilha_lateral_v1",

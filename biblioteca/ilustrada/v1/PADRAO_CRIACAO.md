@@ -39,6 +39,9 @@ Novos monstros ficam em `imagens/monstros/<id>/`; novos humanos em
 `imagens/personagens/<id>/`. Os arquivos antigos conservam seus caminhos.
 Cada JSON de ciclo declara `identidade`, `angulo` e `acao`, além do schema de
 [QUADROS.md](QUADROS.md). Seus PNGs e atlas pertencem à mesma identidade.
+Andar e correr também precisam de `deslocamento_corpo_ciclo`, `contatos_solo`
+e marcos dos pés por quadro. Consulte [FLUIDEZ.md](FLUIDEZ.md) para o fluxo
+de calibração, voz de referência, camadas e revisão por cena.
 
 Zumbis têm pés arrastados, tronco caído, assimetria, arrancadas cambaleantes e
 queda pesada. Skinwalkers têm corrida baixa, contorções, rastejo assimétrico e

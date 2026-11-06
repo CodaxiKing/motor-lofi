@@ -1,0 +1,223 @@
+{
+  "cenas": [
+    {
+      "cena": 1,
+      "scene": "trilha_lateral",
+      "intervalo": [
+        0,
+        4
+      ],
+      "cena_completa": true,
+      "video": "cena_001.mp4",
+      "apoios": [
+        {
+          "id": "lucas",
+          "ciclo": "lucas/hd/andar_apoios_v2.json",
+          "passada": true,
+          "contatos_calibrados": true,
+          "trava_ativa": true
+        }
+      ],
+      "contatos": "não aplicável",
+      "enquadramento": [
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_00_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_01_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_02_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_03_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_04_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_05_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_06_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        },
+        {
+          "ampliacao": 0.399,
+          "fonte": "lucas/hd/andar_07_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "plano_sem_variante",
+          "personagem": "lucas",
+          "pixels_origem": [
+            627,
+            627
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 1.05,
+          "zoom_pedido": 1.05
+        }
+      ],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": true,
+        "pico_antes_atenuacao": 0.0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 2,
+      "scene": "entrada",
+      "intervalo": [
+        4,
+        8
+      ],
+      "cena_completa": true,
+      "video": "cena_002.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [
+        {
+          "ampliacao": 0.488,
+          "fonte": "lucas/lucas_34_neutro_recorte_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": "fala_exige_boca_hd_calibrada",
+          "personagem": "lucas",
+          "pixels_origem": [
+            981,
+            1604
+          ],
+          "variante_hd": false,
+          "zoom_aplicado": 2.589,
+          "zoom_pedido": 2.589
+        },
+        {
+          "ampliacao": 0.488,
+          "fonte": "lucas/lucas_34_neutro_recorte_v1",
+          "insuficiente_na_origem": false,
+          "limite": 1.25,
+          "motivo_variante": null,
+          "personagem": "lucas",
+          "pixels_origem": [
+            981,
+            1604
+          ],
+          "variante_hd": true,
+          "zoom_aplicado": 2.589,
+          "zoom_pedido": 2.589
+        }
+      ],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": true,
+        "trilha_voz_exportada": true,
+        "pico_antes_atenuacao": 0.118743896484375,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [
+        "Voz de referência ainda não marcada como final: lucas"
+      ],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    }
+  ],
+  "fps_previa": 24,
+  "resolucao_previa": [
+    270,
+    480
+  ],
+  "ok_tecnico": true,
+  "metodo": "Compositor real; voz no tempo original do episódio; quadros e relatório por cena."
+}

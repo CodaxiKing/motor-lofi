@@ -87,7 +87,7 @@
   },
   "preferencia_animacao": "quadros",
   "ciclos_quadros": {
-    "andar": "lucas/hd/andar_quadros_v1.json",
+    "andar": "lucas/hd/andar_apoios_v2.json",
     "correr": "lucas/hd/correr_quadros_v1.json",
     "levantar_braco": "lucas/braco_corpo_v1.json",
     "agachar": "lucas/agachar_corpo_v2.json",

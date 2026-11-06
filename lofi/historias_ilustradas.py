@@ -240,6 +240,8 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
     if pendencias: raise ValueError('; '.join(pendencias))
     base = Path(caminho).resolve().parent
     pasta = Path(pasta_saida or base).resolve()
+    from .atuacao_voz import validar_snapshot
+    validar_snapshot(historia, pasta_audio or pasta)
     raiz_relativa = os.path.relpath(base, pasta)
     total = historia['duracao']; corpo = total-6; shots = []; clock = 0
     from .dialogos import texto_cena
@@ -292,7 +294,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
             pessoas[-1]['marcos_camera'] = copy.deepcopy(p.get('composicao',{}).get('marcos_camera',{}))
             if a.get('trajeto'): pessoas[-1]['trajeto'] = copy.deepcopy(a['trajeto'])
             pessoas[-1]['arte_por_plano']=copy.deepcopy(p.get('composicao',{}).get('arte_por_plano',{}))
-            for campo in ('sombra','elevacao','interacoes','seguir_piso','expressao','usar_variantes','piscar_hd'):
+            for campo in ('sombra','elevacao','interacoes','seguir_piso','expressao','usar_variantes','piscar_hd','travar_apoios','sincronizar_passada','limite_correcao_apoio'):
                 if campo in a: pessoas[-1][campo] = copy.deepcopy(a[campo])
             if a.get('animacao') == 'camadas':
                 variante = a.get('rig_variante', 'perfil' if a['pose']=='perfil' else 'frente')
@@ -314,6 +316,10 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
                'personagens': pessoas, 'aproximar': 0, 'balanco': 0, 'plano': 'aberto', 'alvo': 0,
                'camera_ilustrada': config_camera}
         if lugar.get('perspectiva'): cfg['perspectiva'] = lugar['perspectiva']
+        camadas = s.get('camadas_cenario', lugar.get('camadas_cenario', []))
+        if camadas:
+            from .camadas_cenario import validar as validar_camadas
+            cfg['camadas_cenario'] = copy.deepcopy(validar_camadas(camadas))
         if s.get('travelling'): cfg['travelling'] = copy.deepcopy(s['travelling'])
         if 'iluminacao' in s: cfg['iluminacao'] = copy.deepcopy(s['iluminacao'])
         elif lugar.get('iluminacao'): cfg['iluminacao'] = copy.deepcopy(lugar['iluminacao'])
@@ -345,6 +351,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
             'production_status': 'rascunho visual; gravar e sincronizar narração antes do vídeo final'}
     from .dialogos import compilar as compilar_dialogos
     eventos, vozes, clips, subs = compilar_dialogos(historia['cenas'], shots, pasta, pasta_audio)
+    if historia.get('producao'):resultado['producao']=copy.deepcopy(historia['producao'])
     if eventos:
         resultado.update(dialogue_events=eventos, voices=vozes, clips=clips, subs=subs, narrado=not any(e['speaker']!='narrador' for e in eventos))
         resultado['audio_plan']['synced'] = all(e['audio_pronto'] for e in eventos) and not any(s.get('narracao','').strip() for s in historia['cenas'])
@@ -353,10 +360,11 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
         resultado['speakers'] = {e['voice']: {'label': c['personagens'].get(e['speaker'], {}).get('nome', 'NARRADOR')} for e in eventos}
         for shot in shots:
             for ator in shot.get('imagens', {}).get('personagens', []):
-                ator['gestos'] = [dict(e) for e in eventos if e['speaker']==ator['id'] and e['start']>=shot['start'] and e['end']<=shot['end']]
+                from .atuacao_voz import gestos as gestos_por_voz
+                ator['gestos'] = [g for e in eventos if e['speaker']==ator['id'] and e['start']>=shot['start'] and e['end']<=shot['end'] for g in gestos_por_voz(e)]
                 if ator.get('rig_camadas'):
                     ator['acoes'] += [{'tipo': e['intencao'], 'start': e['start']-shot['start'], 'end': e['end']-shot['start']} for e in ator['gestos']]
-                ator['gestos'] += [dict(e, start=e['start']+.25, end=e['end']+.15, intencao='ouvir') for e in eventos if e['speaker'] not in (ator['id'],'narrador') and e['start']>=shot['start'] and e['end']<=shot['end']]
+                ator['gestos'] += [dict(e, start=e['start']+.1, end=min(shot['end'],e['end']), intencao='ouvir') for e in eventos if e.get('audio_pronto') and e['speaker'] not in (ator['id'],'narrador') and e['start']>=shot['start'] and e['end']<=shot['end']]
     from .composicao import aplicar_episodio
     from .direcao_ilustrada import planejar as planejar_camera
     for s,shot in zip(historia['cenas'],shots):

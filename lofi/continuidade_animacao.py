@@ -20,6 +20,25 @@ def analisar(spec,base,amostras_s=8):
         cfg=s.get('imagens')
         if not cfg:continue
         pasta=(Path(base)/cfg.get('pasta_biblioteca','.')).resolve()
+        if cfg.get('fundo'):
+            from .imagens import carregar,nome_fundo
+            cfg=dict(cfg,_fundo_pixels=carregar(pasta,nome_fundo(cfg['fundo'])).size)
+        from .ciclos_quadros import carregar as ler_ciclo
+        for pessoa in cfg.get('personagens',[]):
+            for ac in pessoa.get('animacoes_quadros',[]):
+                c=ler_ciclo(pasta,ac['ciclo'])
+                if c.get('acao') not in ('andar','correr'):continue
+                if not c.get('deslocamento_corpo_ciclo'):
+                    add('passada_sem_calibracao',f'{pessoa.get("id")}: ciclo sem distância calibrada',s['start']+ac['inicio'])
+                elif not c.get('contatos_solo'):
+                    add('apoio_sem_marcos',f'{pessoa.get("id")}: passada sincronizada, mas pés sem marcos de contato',s['start']+ac['inicio'])
+                movel=pessoa.get('trajeto') or pessoa.get('andar') or cfg.get('travelling') and pessoa.get('seguir_travelling')
+                travar=pessoa.get('travar_apoios',bool(c.get('contatos_solo') and movel))
+                if travar and c.get('contatos_solo'):
+                    from .locomocao_ilustrada import correcao_apoio
+                    for rel in np.linspace(ac['inicio'],min(ac['fim'],s['end']-s['start'])-1e-6,8):
+                        try:correcao_apoio(dict(pessoa,travar_apoios=travar),cfg,c,ac,float(rel),size,s['end']-s['start'],pasta,pessoa.get('espelhar',False))
+                        except ValueError as exc:add('apoio_incompativel',f'{pessoa.get("id")}: {exc}',s['start']+rel,'error')
         if cfg.get('mapa_composicao'):cfg,_=planejar(cfg,pasta,size,auditoria=False)
         times=np.linspace(s['start'],max(s['start'],s['end']-1e-5),max(2,round((s['end']-s['start'])*amostras_s)))
         extras=[]

@@ -1,5 +1,8 @@
 # Biblioteca ilustrada v1
 
+Passada calibrada, atuação pela voz, cenários em camadas e prévia por cena:
+[FLUIDEZ.md](FLUIDEZ.md).
+
 Modo opcional do Motor Lo-Fi: 5 identidades, recortes, ciclos completos e 15 fundos/ângulos.
 Lucas mantém as cinco poses iniciais e ganha perfil, costas e uma pose de corrida.
 Clara e Téo têm poses de atenção e medo. Lucas de Amanhã tem uma pose de ameaça

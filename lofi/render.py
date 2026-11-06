@@ -70,6 +70,8 @@ class Episode:
         self.spec_path = os.path.abspath(spec_path)
         self.base = os.path.dirname(self.spec_path)
         self.spec = json.load(open(spec_path, encoding="utf-8"))
+        from .atuacao_voz import validar_eventos
+        validar_eventos(self.spec,self.base)
         # versão deitada (YouTube): sai como <nome>_youtube.mp4; as telas de texto (escolha, placar, recap...) vêm do vídeo em pé
         self.vertical = os.path.join(self.base, self.spec.get("out", "episodio.mp4"))
         if DEITADO: self.spec["out"] = os.path.splitext(os.path.basename(self.vertical))[0] + "_youtube.mp4"

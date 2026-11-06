@@ -412,6 +412,10 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
     from .sombras_ilustradas import iluminacao as ler_luz, piso as ler_piso, gerar as gerar_sombras
     luz_cena = ler_luz(cfg,pasta_serie)
     piso_sombra = ler_piso(luz_cena,size,fundo_info)
+    from .camadas_cenario import gerar as gerar_camadas
+    camadas_cenario = gerar_camadas(cfg.get('camadas_cenario',[]), rel, size,
+                                   lambda nome:carregar(pasta_serie,nome), cfg.get('travelling'))
+    cfg_passada=dict(cfg,_fundo_pixels=fundo_info[0]) if fundo_info else cfg
     alt_pad = 0.80 if largo else (0.52 if len(pessoas) > 1 else 0.60)
     pessoas_render = []
     for k, p in enumerate(pessoas):
@@ -431,15 +435,10 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
             animacao = ativo(p['animacoes_quadros'], rel)
             if animacao:
                 ciclo = ler_ciclo(pasta_serie, animacao['ciclo'])
-                tempo_ciclo = rel-animacao['inicio']
-                if not (cfg.get('travelling') and p.get('seguir_travelling') and ciclo.get('deslocamento_corpo_ciclo')):
-                    tempo_ciclo += animacao.get('fase_inicial',0)*len(ciclo['frames'])/ciclo['fps_quadros']
-                if cfg.get('travelling') and p.get('seguir_travelling') and ciclo.get('deslocamento_corpo_ciclo'):
-                    from .travelling import estado as estado_trilho
-                    distancia = estado_trilho(cfg['travelling'], rel)[0]-estado_trilho(cfg['travelling'], animacao['inicio'])[0]
-                    ciclos_percorridos = distancia/(p.get('altura',.68)*ciclo['deslocamento_corpo_ciclo'])+animacao.get('fase_inicial',0)
-                    tempo_ciclo = ciclos_percorridos*len(ciclo['frames'])/ciclo['fps_quadros']
-                im, ancora_quadro, fator_quadro, indice_quadro = ler_quadro(ciclo, None, tempo_ciclo, animacao.get('modo','loop'), animacao.get('velocidade',1),base=pasta_serie)
+                from .locomocao_ilustrada import fase, periodo
+                fase_ciclo = fase(p_original,cfg_passada,ciclo,animacao,rel,size,dur)
+                tempo_ciclo = fase_ciclo*periodo(ciclo)
+                im, ancora_quadro, fator_quadro, indice_quadro = ler_quadro(ciclo, None, tempo_ciclo, animacao.get('modo','loop'),base=pasta_serie)
                 quadro_inteiro = ciclo
                 frame_sombra = ciclo['frames'][indice_quadro]
         boca_config = p.get('bocas_locais', {}).get(nome_img)
@@ -472,10 +471,17 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
             # Dissolve suave entre recortes completos; não deforma o rosto.
             if variante.size != im.size: raise ValueError('Microposes precisam do mesmo canvas')
             peso = .5 - .5 * math.cos(2 * math.pi * rel / 8)
+            if p.get('gestos'):
+                from .atuacao import envoltoria
+                peso=max((envoltoria(t,e['start'],e['end']) for e in p['gestos']),default=0)
             im = Image.blend(im, variante, peso)
         pisc = p.get("piscadas", {}).get(nome_img, p.get("piscar", nome_img + "_piscando"))              # olhos fechados por 0,12 s a cada ~3,6 s
         periodo = max(.3, float(p.get("periodo_piscar", 3.6 + k * .7)))
         piscou = pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png"))
+        eventos_voz=[e for e in p.get('eventos_fala',[]) if e.get('atuacao_voz')]
+        if eventos_voz:
+            pausas=[e['start']+(v['inicio']+v['fim'])/2 for e in eventos_voz for v in e['atuacao_voz'].get('pausas',[])]
+            piscou=bool(pisc and any(abs(t-a)<.06 for a in pausas) and os.path.exists(os.path.join(pasta_serie,PASTA,pisc+'.png')))
         if piscou and not p.get('rig_camadas') and not quadro_inteiro:
             fechados = carregar(pasta_serie, pisc)
             regioes = p.get('piscadas_locais', {}).get(nome_img)
@@ -528,6 +534,13 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
         if espelhado: ancora = [1-ancora[0], ancora[1]]
         x = fx * W_ - im.width * s * ancora[0]
         y = chao * H_ - im.height * s * ancora[1] + dy + respiro
+        movel = p_original.get('trajeto') or p_original.get('andar') or cfg.get('travelling') and p_original.get('seguir_travelling')
+        trava_apoios = p.get('travar_apoios',bool(quadro_inteiro and quadro_inteiro.get('contatos_solo') and movel))
+        if quadro_inteiro and trava_apoios and ciclo.get('deslocamento_corpo_ciclo'):
+            from .locomocao_ilustrada import correcao_apoio
+            dx_apoio,dy_apoio=correcao_apoio(dict(p_original,travar_apoios=trava_apoios),cfg_passada,ciclo,animacao,rel,size,dur,pasta_serie,espelhado)
+            x+=dx_apoio;y+=dy_apoio
+            fx+=dx_apoio/W_;chao+=dy_apoio/H_
         portal_ator = p.get('portal') if not (isinstance(p.get('portal'), dict) and chao >= p['portal'].get('ate_chao', 2)) else None
         p_sombra = dict(p,_ancora_sombra=ancora)
         for sombra,sx,sy in gerar_sombras(im,x,y,s,p_sombra,cfg,luz_cena,size,fundo_info,rel,espelhado,quadro_inteiro,frame_sombra,base=pasta_serie):
@@ -597,7 +610,9 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
     bg_count = 1 if cfg.get('fundo') else 0
     profundos=[l for l in layers[bg_count:] if l[-1] and (l[-1].get('ator') or l[-1].get('oclusor'))]
     fixos=[l for l in layers[bg_count:] if not (l[-1] and (l[-1].get('ator') or l[-1].get('oclusor')))]
-    render_layers = layers[:bg_count]+sombras_chao+sorted(profundos,key=lambda l:l[-1]['chao'])+fixos
+    fundo_camadas = [l for l in camadas_cenario if l[-1]['plano_camada']=='fundo']
+    frente_camadas = [l for l in camadas_cenario if l[-1]['plano_camada']=='frente']
+    render_layers = layers[:bg_count]+fundo_camadas+sombras_chao+sorted(profundos,key=lambda l:l[-1]['chao'])+fixos+frente_camadas
     for im, x, y, s, prof, portal, mov in render_layers:
         ss = s * z; w, h = max(1, int(im.width * ss)), max(1, int(im.height * ss))
         spr = redimensionar(im,(w,h))
@@ -663,6 +678,7 @@ def faltam(spec_path):
                     rig = ler_rig(base, p['rig_camadas']); nomes.append(rig['atlas'])
                 except FileNotFoundError: falta.append((s['start'], 'rig:' + p['rig_camadas']))
         nomes += [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", []) + cfg.get('oclusores',[])]
+        nomes += [c['img'] for c in cfg.get('camadas_cenario',[]) if c.get('tipo')=='imagem']
         if cfg.get("fundo"): nomes.append(nome_fundo(cfg['fundo']))
         falta += [(s["start"], n) for n in dict.fromkeys(nomes) if n not in ja]
     return falta

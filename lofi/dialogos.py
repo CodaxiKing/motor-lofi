@@ -61,6 +61,7 @@ def compilar(cenas,shots,pasta_saida,pasta_audio=None):
             if start<shot['start'] or end>shot['end']+.001:raise ValueError('Fala não cabe na cena; aumente duração ou ajuste o áudio')
             e={'speaker':f['personagem'],'voice':voice,'start':start,'end':end,'text':f['texto'],
                'intencao':f.get('intencao','afirmar'),'audio_pronto':bool(audio),'mouth_cues':f.get('mouth_cues',[]),'cue_format':f.get('cue_format','viseme')}
+            if f.get('atuacao_voz'):e['atuacao_voz']=f['atuacao_voz']
             for anterior in eventos:
                 if anterior['speaker']==e['speaker'] and max(anterior['start'],start)<min(anterior['end'],end):
                     raise ValueError('Falas simultâneas do mesmo personagem')

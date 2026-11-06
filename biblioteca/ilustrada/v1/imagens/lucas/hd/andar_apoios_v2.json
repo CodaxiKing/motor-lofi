@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "tipo": "corpo_inteiro",
+  "acao": "andar",
+  "fps_quadros": 8,
+  "aspecto_celula": 1,
+  "referencia": {
+    "altura_corpo": 0.9074960127591707,
+    "altura_referencia": 0.98
+  },
+  "frames": [
+    {
+      "img": "lucas/hd/andar_00_v1",
+      "ancora": [
+        0.5,
+        0.9135948963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11148325358851675
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805,
+        "pe_solo": [
+          0.32,
+          0.912
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_01_v1",
+      "ancora": [
+        0.5,
+        0.9266348963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.10988835725677831
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.22647527910685805,
+        "pe_solo": [
+          0.55502,
+          0.92504
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_02_v1",
+      "ancora": [
+        0.5,
+        0.9537448963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11403508771929824
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805,
+        "pe_solo": [
+          0.45614,
+          0.95215
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_03_v1",
+      "ancora": [
+        0.5,
+        0.9457748963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11323763955342903
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805,
+        "pe_solo": [
+          0.35407,
+          0.94418
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_04_v1",
+      "ancora": [
+        0.5,
+        0.9489648963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5247208931419458,
+          0.10925039872408293
+        ],
+        "topo_cabeca": 0.01594896331738437,
+        "largura_rosto": 0.23285486443381181,
+        "pe_solo": [
+          0.41946,
+          0.94737
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_05_v1",
+      "ancora": [
+        0.5,
+        0.9505548963317385
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.49920255183413076,
+          0.10940988835725676
+        ],
+        "topo_cabeca": 0.01594896331738437,
+        "largura_rosto": 0.23285486443381181,
+        "pe_solo": [
+          0.54386,
+          0.94896
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_06_v1",
+      "ancora": [
+        0.5,
+        0.9569348963317384
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5207336523125997,
+          0.11291866028708136
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.23444976076555024,
+        "pe_solo": [
+          0.51037,
+          0.95534
+        ]
+      }
+    },
+    {
+      "img": "lucas/hd/andar_07_v1",
+      "ancora": [
+        0.5,
+        0.9569348963317384
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5007974481658692,
+          0.11291866028708136
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.23604465709728867,
+        "pe_solo": [
+          0.30941,
+          0.95534
+        ]
+      }
+    }
+  ],
+  "deslocamento_corpo_ciclo": 0.388135699824253,
+  "formato": "png_por_quadro",
+  "contatos_solo": [
+    {
+      "inicio": 0.125,
+      "fim": 0.625,
+      "marco": "pe_solo"
+    },
+    {
+      "inicio": 0.625,
+      "fim": 1.125,
+      "marco": "pe_solo"
+    }
+  ],
+  "calibracao_apoios": {
+    "metodo": "Sola conferida na folha de oito desenhos; passada calculada pelo recuo dos dois apoios; chão comum a um pixel da sola.",
+    "referencia": "andar_quadros_v1.json",
+    "nota": "Um apoio por vez; rever no trajeto final. Não altera os desenhos originais.",
+    "deslocamento_anterior": 0.294
+  }
+}

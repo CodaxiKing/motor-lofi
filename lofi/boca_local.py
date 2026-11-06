@@ -13,6 +13,10 @@ def estado(p,t,nivel=None,visema=None,permitir=True):
     if eventos and e is None:return 'rest',None
     voz=e['voice'] if e else p.get('fala')
     if not voz:return 'rest',None
+    if e and e.get('atuacao_voz'):
+        rel=t-e['start']
+        if any(v['inicio']<=rel<v['fim'] for v in e['atuacao_voz'].get('pausas',[])):
+            return 'rest',e
     if e and e.get('mouth_cues'):
         rel=t-e['start']
         cue=next((c for c in e['mouth_cues'] if c['start']<=rel<c['end']),None)

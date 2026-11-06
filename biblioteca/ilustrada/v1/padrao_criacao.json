@@ -141,6 +141,7 @@
     "preferencia_animacao": "quadros",
     "corpo": "PNG transparente completo, roupa/proporção/iluminação consistentes; nenhum frame humano emprestado a monstros.",
     "min_altura_corpo_px": 600,
+    "locomocao": "Andar/correr exigem deslocamento_corpo_ciclo, contatos_solo e marcos dos pés em todos os desenhos.",
     "apoios": "Âncora e altura física fixas; pés em suspensão têm apoio=false.",
     "revisao": [
       "silhueta",

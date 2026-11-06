@@ -30,8 +30,13 @@ def planejar(movimentos,ciclos,transicoes):
         if origem!=acao:
             ponte=transicoes.get(origem+'>'+acao)
             if ponte:
+                for campo in ('fase_origem','fase_destino'):
+                    v=ponte.get(campo,0)
+                    if not isinstance(v,(int,float)) or not math.isfinite(v) or not 0<=v<1:
+                        raise ValueError('Fase de transição inválida: '+campo)
                 if saida and saida[-1].get('modo')=='loop' and ponte.get('periodo_origem'):
                     prev=saida[-1];prev.setdefault('fase_inicial',(-(prev['fim']-prev['inicio'])/ponte['periodo_origem'])%1)
+                    prev.setdefault('fase_final',ponte.get('fase_origem',0))
                 dur=ponte['duracao']
                 if not isinstance(dur,(int,float)) or not math.isfinite(dur) or not 0<dur<fim-inicio:
                     raise ValueError(f'Tempo insuficiente para transição {origem}>{acao}')
@@ -41,6 +46,9 @@ def planejar(movimentos,ciclos,transicoes):
             elif anterior is not None and acao not in ('interagir','alcancar'):
                 raise ValueError(f'Gere desenhos de ligação para {origem}>{acao}')
         modo=item.get('modo','uma_vez' if acao in ('parado','interagir','alcancar') else 'loop')
-        saida.append(dict(item,ciclo=ciclos[acao],inicio=inicio,modo=modo))
+        config=dict(item,ciclo=ciclos[acao],inicio=inicio,modo=modo)
+        if origem!=acao and transicoes.get(origem+'>'+acao):
+            config.setdefault('fase_inicial',transicoes[origem+'>'+acao].get('fase_destino',0))
+        saida.append(config)
         anterior=acao;fim_anterior=fim
     return saida
