@@ -364,7 +364,7 @@ def carregar(pasta_serie, nome):
 POS = {"esq": 0.28, "esquerda": 0.28, "centro": 0.5, "meio": 0.5, "dir": 0.72, "direita": 0.72}
 
 
-def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=True):
+def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=True,diagnostico=None):
     """Desenha o plano `"imagens": {...}` no tempo t (segundos do episódio). nivel(voz, t) -> 0..1 faz quem fala se mexer."""
     W_, H_ = size; cfg = shot["imagens"]; rel = max(0.0, t - shot["start"])
     camera_ilustrada = cfg.get('camera_ilustrada', shot.get('camera') if isinstance(shot.get('camera'), dict) else None)
@@ -435,7 +435,7 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
                     distancia = estado_trilho(cfg['travelling'], rel)[0]-estado_trilho(cfg['travelling'], animacao['inicio'])[0]
                     ciclos_percorridos = distancia/(p.get('altura',.68)*ciclo['deslocamento_corpo_ciclo'])+animacao.get('fase_inicial',0)
                     tempo_ciclo = ciclos_percorridos*len(ciclo['frames'])/ciclo['fps_quadros']
-                im, ancora_quadro, fator_quadro, indice_quadro = ler_quadro(ciclo, carregar(pasta_serie, ciclo['atlas']), tempo_ciclo, animacao.get('modo','loop'), animacao.get('velocidade',1))
+                im, ancora_quadro, fator_quadro, indice_quadro = ler_quadro(ciclo, None, tempo_ciclo, animacao.get('modo','loop'), animacao.get('velocidade',1),base=pasta_serie)
                 quadro_inteiro = ciclo
                 frame_sombra = ciclo['frames'][indice_quadro]
         boca_config = p.get('bocas_locais', {}).get(nome_img)
@@ -528,8 +528,9 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
         p_sombra = dict(p,_ancora_sombra=ancora)
         for sombra,sx,sy in gerar_sombras(im,x,y,s,p_sombra,cfg,luz_cena,size,fundo_info,rel,espelhado,quadro_inteiro,frame_sombra,base=pasta_serie):
             sombras_chao.append((sombra,sx,sy,1.,1.,portal_ator,{'sombra':True,'piso':piso_sombra}))
-        layers.append((im, x, y, s, 1.0, portal_ator, {'ator':True,'chao':chao,'rig': None if p.get('rig_camadas') else puppet, 'espelhado': espelhado, 'gestos': p.get('gestos', [])}))
-        estado_camera=dict(p,pos=fx,chao=chao,_origem_camera=p_original,_frame_camera=frame_sombra,_ciclo_camera=quadro_inteiro,_flip_camera=espelhado)
+        fonte_real=(frame_sombra.get('img') or str(quadro_inteiro.get('atlas'))+'#'+str(indice_quadro)) if quadro_inteiro else nome_render
+        layers.append((im, x, y, s, 1.0, portal_ator, {'ator':True,'id':p.get('id',p['img']),'fonte':fonte_real,'p':p,'ciclo':quadro_inteiro,'frame':frame_sombra,'chao':chao,'rig': None if p.get('rig_camadas') else puppet, 'espelhado': espelhado, 'gestos': p.get('gestos', [])}))
+        estado_camera=dict(p,id=p.get('id',p['img']),pos=fx,chao=chao,_origem_camera=p_original,_frame_camera=frame_sombra,_ciclo_camera=quadro_inteiro,_flip_camera=espelhado)
         estado_camera.pop('trajeto',None);estado_camera.pop('andar',None)
         pessoas_render.append(estado_camera)
     def _obj(o, prof):
@@ -555,6 +556,38 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
         from .camera_ilustrada import resolver
         camera_resolvida = resolver(camera_ilustrada, pessoas_render, pasta_serie, size, rel, dur)
         z,ox,oy = (camera_resolvida[k] for k in ('z','ox','oy'))
+    else:
+        alvos=[pessoas_render[min(cfg.get('alvo',0),len(pessoas_render)-1)]['id']] if plano in ('medio','close') and pessoas_render and isinstance(cfg.get('alvo',0),int) else []
+        camera_resolvida={'z':z,'ox':ox,'oy':oy,'plano':plano,'alvos':alvos}
+    from .qualidade_visual import escolher,substituir,ajustar_camera,redimensionar,acomodar_retratos
+    originais={};camera_pedida=dict(camera_resolvida)
+    if cfg.get('qualidade_visual',{}) is not False:
+        from .camera_ilustrada import caixas as caixas_camera
+        rostos={r['id']:r for r in caixas_camera(pessoas_render,pasta_serie,size,rel)}
+        for i,layer in enumerate(layers):
+            mov=layer[-1]
+            if not mov or not mov.get('ator'):continue
+            if camera_resolvida.get('alvos') and mov['id'] not in camera_resolvida['alvos']:continue
+            arte,motivo=escolher(pasta_serie,mov['p'],camera_resolvida['plano'],rel,mov.get('ciclo'),mov.get('frame'),tempo_global=t)
+            mov['motivo_variante']=motivo
+            if arte and mov['id'] in rostos:
+                nova=substituir(layer,arte,rostos[mov['id']],pasta_serie,camera_resolvida,size,exigir_cobertura=False)
+                if nova:
+                    originais[i]=(layer,arte,rostos[mov['id']]);layers[i]=nova
+                else:mov['motivo_variante']='retrato_nao_cobre_enquadramento'
+    for tentativa in range(len(originais)+1):
+        camera_resolvida=acomodar_retratos(camera_pedida,layers,originais,size)
+        camera_resolvida,review=ajustar_camera(camera_resolvida,layers,cfg,size)
+        camera_resolvida=acomodar_retratos(camera_resolvida,layers,originais,size)
+        falhas=[]
+        for i,(original,arte,rosto) in originais.items():
+            if substituir(original,arte,rosto,pasta_serie,camera_resolvida,size) is None:falhas.append(i)
+        if not falhas:break
+        for i in falhas:
+            original,_,_=originais.pop(i);layers[i]=original
+            original[-1]['motivo_variante']='limite_exige_plano_mais_aberto'
+    z,ox,oy=(camera_resolvida[k] for k in ('z','ox','oy'))
+    if diagnostico is not None:diagnostico.extend(review)
     # All floor shadows precede all bodies: a later actor's shadow must not
     # paint over another actor's legs. Foreground props still occlude both.
     bg_count = 1 if cfg.get('fundo') else 0
@@ -563,7 +596,7 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
     render_layers = layers[:bg_count]+sombras_chao+sorted(profundos,key=lambda l:l[-1]['chao'])+fixos
     for im, x, y, s, prof, portal, mov in render_layers:
         ss = s * z; w, h = max(1, int(im.width * ss)), max(1, int(im.height * ss))
-        spr = im.resize((w, h), Image.BILINEAR)
+        spr = redimensionar(im,(w,h))
         if mov and mov.get('rig'):
             from .puppet import carregar as ler_puppet, deformar
             from .atuacao import aplicar as atuar
@@ -614,9 +647,11 @@ def faltam(spec_path):
             nomes.extend(p.get('piscadas', {}).values())
             nomes.extend(p.get('olhares', {}).values())
             nomes.extend(c['atlas'] for c in p.get('bocas_locais', {}).values())
+            from .qualidade_visual import perfil as perfil_arte
+            nomes.extend(a['img'] for banco in perfil_arte(base,p).values() for a in banco.values())
             for ac in p.get('animacoes_quadros', []):
-                from .ciclos_quadros import carregar as ler_ciclo
-                try: nomes.append(ler_ciclo(base, ac['ciclo'])['atlas'])
+                from .ciclos_quadros import carregar as ler_ciclo,arquivos as arquivos_ciclo
+                try: nomes.extend(arquivos_ciclo(ler_ciclo(base, ac['ciclo'])))
                 except FileNotFoundError: falta.append((s['start'], 'ciclo:' + ac['ciclo']))
             if p.get('rig_camadas'):
                 from .articulado import carregar as ler_rig

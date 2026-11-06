@@ -1,0 +1,441 @@
+{
+  "tamanho": [
+    432,
+    768
+  ],
+  "amostras": [
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/ligacoes_atlas_v1#0",
+      "pixels_origem": [
+        237,
+        237
+      ],
+      "ampliacao": 5.914,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": true,
+      "variante_hd": false,
+      "motivo_variante": "variante_desativada",
+      "tempo": 0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/ligacoes_atlas_v1#0",
+      "pixels_origem": [
+        237,
+        237
+      ],
+      "ampliacao": 5.914,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": true,
+      "variante_hd": false,
+      "motivo_variante": "variante_desativada",
+      "tempo": 1.0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/ligacoes_atlas_v1#0",
+      "pixels_origem": [
+        237,
+        237
+      ],
+      "ampliacao": 5.914,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": true,
+      "variante_hd": false,
+      "motivo_variante": "variante_desativada",
+      "tempo": 1.958
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_piscando_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 2
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 3.0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 3.958
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_medo_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 4
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_medo_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 5.0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/retrato_medo_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.514,
+      "limite": 1.25,
+      "zoom_pedido": 3.814,
+      "zoom_aplicado": 3.814,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 5.958
+    },
+    {
+      "personagem": "teo",
+      "fonte": "teo/hd/retrato_piscando_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.465,
+      "limite": 1.25,
+      "zoom_pedido": 3.244,
+      "zoom_aplicado": 3.244,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 6.0
+    },
+    {
+      "personagem": "teo",
+      "fonte": "teo/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.465,
+      "limite": 1.25,
+      "zoom_pedido": 3.244,
+      "zoom_aplicado": 3.244,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 6.75
+    },
+    {
+      "personagem": "teo",
+      "fonte": "teo/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.465,
+      "limite": 1.25,
+      "zoom_pedido": 3.244,
+      "zoom_aplicado": 3.244,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 7.458
+    },
+    {
+      "personagem": "clara",
+      "fonte": "clara/hd/retrato_piscando_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.387,
+      "limite": 1.25,
+      "zoom_pedido": 2.67,
+      "zoom_aplicado": 2.67,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 7.5
+    },
+    {
+      "personagem": "clara",
+      "fonte": "clara/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.387,
+      "limite": 1.25,
+      "zoom_pedido": 2.67,
+      "zoom_aplicado": 2.67,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 8.25
+    },
+    {
+      "personagem": "clara",
+      "fonte": "clara/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.387,
+      "limite": 1.25,
+      "zoom_pedido": 2.67,
+      "zoom_aplicado": 2.67,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 8.958
+    },
+    {
+      "personagem": "amanha",
+      "fonte": "amanha/hd/retrato_piscando_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.451,
+      "limite": 1.25,
+      "zoom_pedido": 3.203,
+      "zoom_aplicado": 3.203,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 9.0
+    },
+    {
+      "personagem": "amanha",
+      "fonte": "amanha/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.451,
+      "limite": 1.25,
+      "zoom_pedido": 3.203,
+      "zoom_aplicado": 3.203,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 9.75
+    },
+    {
+      "personagem": "amanha",
+      "fonte": "amanha/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.451,
+      "limite": 1.25,
+      "zoom_pedido": 3.203,
+      "zoom_aplicado": 3.203,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 10.458
+    },
+    {
+      "personagem": "mimico",
+      "fonte": "mimico/hd/retrato_piscando_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.409,
+      "limite": 1.25,
+      "zoom_pedido": 2.46,
+      "zoom_aplicado": 2.46,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 10.5
+    },
+    {
+      "personagem": "mimico",
+      "fonte": "mimico/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.409,
+      "limite": 1.25,
+      "zoom_pedido": 2.46,
+      "zoom_aplicado": 2.46,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 11.25
+    },
+    {
+      "personagem": "mimico",
+      "fonte": "mimico/hd/retrato_neutro_v1",
+      "pixels_origem": [
+        1024,
+        1536
+      ],
+      "ampliacao": 0.409,
+      "limite": 1.25,
+      "zoom_pedido": 2.46,
+      "zoom_aplicado": 2.46,
+      "insuficiente_na_origem": false,
+      "variante_hd": true,
+      "motivo_variante": null,
+      "tempo": 11.958
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/andar_00_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 1.024,
+      "limite": 1.25,
+      "zoom_pedido": 1.816,
+      "zoom_aplicado": 1.816,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 12
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/andar_00_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 1.024,
+      "limite": 1.25,
+      "zoom_pedido": 1.816,
+      "zoom_aplicado": 1.816,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 13.0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/andar_07_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 1.024,
+      "limite": 1.25,
+      "zoom_pedido": 1.816,
+      "zoom_aplicado": 1.816,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 13.958
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/correr_00_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 0.967,
+      "limite": 1.25,
+      "zoom_pedido": 1.729,
+      "zoom_aplicado": 1.729,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 14
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/correr_06_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 0.967,
+      "limite": 1.25,
+      "zoom_pedido": 1.729,
+      "zoom_aplicado": 1.729,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 15.0
+    },
+    {
+      "personagem": "lucas",
+      "fonte": "lucas/hd/correr_03_v1",
+      "pixels_origem": [
+        627,
+        627
+      ],
+      "ampliacao": 0.967,
+      "limite": 1.25,
+      "zoom_pedido": 1.729,
+      "zoom_aplicado": 1.729,
+      "insuficiente_na_origem": false,
+      "variante_hd": false,
+      "motivo_variante": "plano_sem_variante",
+      "tempo": 15.958
+    }
+  ],
+  "metodo": "pixels de origem versus projeção; não cria detalhe ausente"
+}

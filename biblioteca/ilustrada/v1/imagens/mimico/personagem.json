@@ -59,5 +59,96 @@
       "duracao": 0.5,
       "periodo_origem": 0.8
     }
+  },
+  "arte_por_plano": {
+    "close": {
+      "neutro": {
+        "img": "mimico/hd/retrato_neutro_v1",
+        "rosto": [
+          0.0263671875,
+          0.0032552083333333335,
+          0.873046875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "mimico/mimico_neutro_v1"
+        ]
+      },
+      "medo": {
+        "img": "mimico/hd/retrato_medo_v1",
+        "rosto": [
+          0.0263671875,
+          0.0032552083333333335,
+          0.873046875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "mimico/mimico_neutro_v1"
+        ]
+      },
+      "ameaca": {
+        "img": "mimico/hd/retrato_medo_v1",
+        "rosto": [
+          0.0263671875,
+          0.0032552083333333335,
+          0.873046875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "mimico/mimico_neutro_v1"
+        ]
+      },
+      "piscando": {
+        "img": "mimico/hd/retrato_piscando_v1",
+        "rosto": [
+          0.0263671875,
+          0.0032552083333333335,
+          0.873046875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "mimico/mimico_neutro_v1"
+        ]
+      }
+    },
+    "medio": {
+      "neutro": {
+        "img": "mimico/mimico_neutro_v1",
+        "rosto": [
+          0.23001856269113152,
+          0.0,
+          0.6028014373088685,
+          0.17724438902743142
+        ],
+        "pixels_origem": [
+          981,
+          1604
+        ],
+        "cobertura": "corpo_inteiro",
+        "poses_compativeis": [
+          "mimico/mimico_neutro_v1"
+        ]
+      }
+    }
   }
 }

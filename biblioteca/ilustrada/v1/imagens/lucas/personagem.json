@@ -87,8 +87,8 @@
   },
   "preferencia_animacao": "quadros",
   "ciclos_quadros": {
-    "andar": "lucas/andar_corpo_v1.json",
-    "correr": "lucas/correr_corpo_v1.json",
+    "andar": "lucas/hd/andar_quadros_v1.json",
+    "correr": "lucas/hd/correr_quadros_v1.json",
     "levantar_braco": "lucas/braco_corpo_v1.json",
     "agachar": "lucas/agachar_corpo_v2.json",
     "levantar": "lucas/levantar_corpo_v2.json",
@@ -127,5 +127,83 @@
       "duracao": 0.5,
       "periodo_origem": 0.5714285714285714
     }
+  },
+  "arte_por_plano": {
+    "close": {
+      "neutro": {
+        "img": "lucas/hd/retrato_neutro_v1",
+        "rosto": [
+          0.1748046875,
+          0.007161458333333333,
+          0.849609375,
+          0.396484375
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "lucas/lucas_34_neutro_recorte_v1"
+        ]
+      },
+      "medo": {
+        "img": "lucas/hd/retrato_medo_v1",
+        "rosto": [
+          0.1748046875,
+          0.007161458333333333,
+          0.849609375,
+          0.396484375
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "lucas/lucas_34_neutro_recorte_v1"
+        ]
+      },
+      "piscando": {
+        "img": "lucas/hd/retrato_piscando_v1",
+        "rosto": [
+          0.1748046875,
+          0.007161458333333333,
+          0.849609375,
+          0.396484375
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "lucas/lucas_34_neutro_recorte_v1"
+        ]
+      }
+    },
+    "medio": {
+      "neutro": {
+        "img": "lucas/lucas_34_neutro_recorte_v1",
+        "rosto": [
+          0.2989296636085627,
+          0.003220074812967576,
+          0.7010703363914373,
+          0.22457294264339153
+        ],
+        "pixels_origem": [
+          981,
+          1604
+        ],
+        "cobertura": "corpo_inteiro",
+        "poses_compativeis": [
+          "lucas/lucas_34_neutro_recorte_v1"
+        ]
+      }
+    }
+  },
+  "ciclos_anteriores": {
+    "andar": "lucas/andar_corpo_v1.json",
+    "correr": "lucas/correr_corpo_v1.json"
   }
 }

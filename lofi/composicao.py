@@ -113,27 +113,26 @@ def envelope(p, base):
 
 @lru_cache(maxsize=128)
 def _caixas_ciclo(base,nome,stamp,atlas_stamp):
-    from .ciclos_quadros import carregar
+    from .ciclos_quadros import carregar,imagem_frame
     c=carregar(base,nome);out=[]
-    with Image.open(Path(base)/'imagens'/(c['atlas']+'.png')) as atlas:
-        w,h=atlas.size
-        fator=c['referencia'].get('altura_referencia',.98)/c['referencia']['altura_corpo']
-        for f in c['frames']:
-            im=atlas.crop(tuple(round(v*(w if j%2==0 else h)) for j,v in enumerate(f['regiao'])))
-            box=im.getchannel('A').point(lambda a:255 if a>20 else 0).getbbox()
-            if not box:continue
-            ax,ay=f['ancora'];iw,ih=im.size
-            ff=fator*ih/c['referencia']['altura_celula_px'] if c['referencia'].get('altura_celula_px') else fator
-            out.append(((box[0]-ax*iw)/ih*ff,(box[1]-ay*ih)/ih*ff,
-                        (box[2]-ax*iw)/ih*ff,(box[3]-ay*ih)/ih*ff))
+    fator=c['referencia'].get('altura_referencia',.98)/c['referencia']['altura_corpo']
+    for i,f in enumerate(c['frames']):
+        im=imagem_frame(c,i,base=base)
+        box=im.getchannel('A').point(lambda a:255 if a>20 else 0).getbbox()
+        if not box:continue
+        ax,ay=f['ancora'];iw,ih=im.size
+        ff=fator*ih/c['referencia']['altura_celula_px'] if c['referencia'].get('altura_celula_px') else fator
+        out.append(((box[0]-ax*iw)/ih*ff,(box[1]-ay*ih)/ih*ff,
+                    (box[2]-ax*iw)/ih*ff,(box[3]-ay*ih)/ih*ff))
     return tuple(out)
 
 
 def caixas_quadros(p,base):
-    from .ciclos_quadros import carregar
+    from .ciclos_quadros import carregar,arquivos
     for nome in {a['ciclo'] for a in p.get('animacoes_quadros',[])}:
         c=carregar(base,nome);root=Path(base)/'imagens'
-        for l,t,r,b in _caixas_ciclo(str(base),nome,(root/nome).stat().st_mtime_ns,(root/(c['atlas']+'.png')).stat().st_mtime_ns):
+        stamps=tuple((n,(root/(n+'.png')).stat().st_mtime_ns) for n in arquivos(c))
+        for l,t,r,b in _caixas_ciclo(str(base),nome,(root/nome).stat().st_mtime_ns,stamps):
             yield (-r,t,-l,b) if p.get('espelhar') else (l,t,r,b)
 
 

@@ -60,16 +60,21 @@ def validar_catalogo(caminho=CATALOGO):
             if len(ancora) != 2 or not all(isinstance(v, (int, float)) and math.isfinite(v) and 0 <= v <= 1 for v in ancora):
                 problemas.append(f'{chave}/{pose}: âncora inválida')
         from .puppet import carregar as ler_puppet
-        from .ciclos_quadros import carregar as ler_ciclo
+        from .ciclos_quadros import carregar as ler_ciclo,arquivos as arquivos_ciclo
         perfil_animacao=pessoa.get('composicao',{})
         arquivos_ciclos=dict(perfil_animacao.get('ciclos_quadros',{}),**{'transicao_'+k:v['ciclo'] for k,v in perfil_animacao.get('transicoes',{}).items()})
         for acao, nome in arquivos_ciclos.items():
             try:
                 ciclo = ler_ciclo(Path(caminho).resolve().parent, nome)
-                if not arquivo(caminho, ciclo['atlas']).is_file():
-                    problemas.append(f'{chave}/{acao}: atlas de corpo inteiro ausente')
+                for imagem in arquivos_ciclo(ciclo):
+                    if not arquivo(caminho, imagem).is_file():problemas.append(f'{chave}/{acao}: imagem do ciclo ausente: {imagem}')
             except (ValueError, KeyError, FileNotFoundError) as exc:
                 problemas.append(f'{chave}/{acao}: ciclo inválido: {exc}')
+        for plano,banco in perfil_animacao.get('arte_por_plano',{}).items():
+            for estado,arte in banco.items():
+                if not arquivo(caminho,arte['img']).is_file():problemas.append(f'{chave}/{plano}/{estado}: arte HD ausente')
+                r=arte.get('rosto',[])
+                if len(r)!=4 or not 0<=r[0]<r[2]<=1 or not 0<=r[1]<r[3]<=1:problemas.append(f'{chave}/{plano}/{estado}: rosto não calibrado')
         for rig in set(pessoa.get('composicao', {}).get('puppets', {}).values()):
             try: ler_puppet(Path(caminho).resolve().parent, rig)
             except (ValueError, FileNotFoundError) as exc: problemas.append(f'{chave}: rig inválido: {exc}')
@@ -91,7 +96,7 @@ def inventario(caminho=CATALOGO):
     c = carregar(caminho)
     for p in c['personagens'].values():
         p['ciclos_quadros'] = list(p.get('composicao', {}).get('ciclos_quadros', {}))
-    return {'personagens': {k: {'nome': p['nome'], 'tipo': p.get('tipo', 'pessoa'), 'poses': list(p['poses']), 'ciclos_quadros': p['ciclos_quadros'], 'sustos': list(p.get('composicao', {}).get('sustos', {})), 'transicoes': list(p.get('composicao', {}).get('transicoes', {})), 'ciclos': list(p.get('ciclos', {})), 'altura_m': p.get('composicao', {}).get('altura_m'), 'animacao_camadas': bool(p.get('composicao', {}).get('rig_camadas')), 'poses_com_boca': list(p.get('composicao', {}).get('bocas_locais', {}))}
+    return {'personagens': {k: {'nome': p['nome'], 'tipo': p.get('tipo', 'pessoa'), 'poses': list(p['poses']), 'ciclos_quadros': p['ciclos_quadros'], 'sustos': list(p.get('composicao', {}).get('sustos', {})), 'transicoes': list(p.get('composicao', {}).get('transicoes', {})), 'ciclos': list(p.get('ciclos', {})), 'altura_m': p.get('composicao', {}).get('altura_m'), 'animacao_camadas': bool(p.get('composicao', {}).get('rig_camadas')), 'poses_com_boca': list(p.get('composicao', {}).get('bocas_locais', {})), 'arte_por_plano': {plano: list(estados) for plano, estados in p.get('composicao', {}).get('arte_por_plano', {}).items()}}
                             for k, p in c['personagens'].items()},
             'cenarios': {k: p['descricao'] for k, p in c['cenarios'].items()},
             'cameras': {k: list(p.get('cameras', {})) for k,p in c['cenarios'].items() if p.get('cameras')},
@@ -266,7 +271,8 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
                 pessoas[-1]['seguir_travelling'] = a.get('seguir_travelling', bool(s.get('travelling')))
             pessoas[-1]['marcos_camera'] = copy.deepcopy(p.get('composicao',{}).get('marcos_camera',{}))
             if a.get('trajeto'): pessoas[-1]['trajeto'] = copy.deepcopy(a['trajeto'])
-            for campo in ('sombra','elevacao','interacoes','seguir_piso'):
+            pessoas[-1]['arte_por_plano']=copy.deepcopy(p.get('composicao',{}).get('arte_por_plano',{}))
+            for campo in ('sombra','elevacao','interacoes','seguir_piso','expressao','usar_variantes','piscar_hd'):
                 if campo in a: pessoas[-1][campo] = copy.deepcopy(a[campo])
             if a.get('animacao') == 'camadas':
                 variante = a.get('rig_variante', 'perfil' if a['pose']=='perfil' else 'frente')
@@ -291,6 +297,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
         if 'iluminacao' in s: cfg['iluminacao'] = copy.deepcopy(s['iluminacao'])
         elif lugar.get('iluminacao'): cfg['iluminacao'] = copy.deepcopy(lugar['iluminacao'])
         if 'sombras' in s: cfg['sombras'] = s['sombras']
+        if 'qualidade_visual' in s: cfg['qualidade_visual']=copy.deepcopy(s['qualidade_visual'])
         cfg['frente'] = [dict(c.get('objetos', {})[obj['objeto']], **{k:v for k,v in obj.items() if k!='objeto'}) for obj in s.get('frente', [])]
         cfg['oclusores'] = [dict(c.get('objetos', {})[obj['objeto']], **{k:v for k,v in obj.items() if k!='objeto'}) for obj in s.get('oclusores', [])]
         if s.get('pontos_interacao'):cfg['pontos_interacao']=copy.deepcopy(s['pontos_interacao'])

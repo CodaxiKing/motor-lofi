@@ -35,6 +35,14 @@ para uma história original, escreva o plano conforme as etapas acima.
 
 ## Biblioteca e arte
 
+Para nitidez e closes, leia `biblioteca/ilustrada/v1/NITIDEZ.md`. Consulte
+`arte_por_plano` no personagem: o renderer escolhe retratos compatíveis com plano,
+pose e expressão e limita a ampliação pelo número de pixels disponíveis.
+Não force um retrato neutro sobre corrida, contato ou fala sem boca HD calibrada.
+Revise o relatório com `python -m lofi.qualidade_visual spec.json --out nitidez.json`
+na resolução final. Para ciclos novos, prefira PNGs completos por quadro ou folhas
+com poucas células grandes; ampliar uma célula pequena não recupera detalhes.
+
 Gere assets novos somente quando necessários e autorizados: um PNG transparente
 por pose/personagem e fundos separados, sem pessoas ou texto. Use o mesmo personagem
 base para as variantes. Preserve as imagens antigas; adicione nomes/versionamentos

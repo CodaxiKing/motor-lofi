@@ -12,6 +12,7 @@ def perfil(base, registro, referencia_m=1.70):
     if not p.is_relative_to(raiz):raise ValueError('Ficha fora da biblioteca')
     ficha=json.loads(p.read_text(encoding='utf-8'))
     out['transicoes']=ficha.get('transicoes',{})
+    out['arte_por_plano']=ficha.get('arte_por_plano',{})
     altura=ficha.get('altura_m')
     if not isinstance(altura,(int,float)) or not math.isfinite(altura) or not .2<=altura<=5:
         raise ValueError(f'Altura física inválida: {p.name}')

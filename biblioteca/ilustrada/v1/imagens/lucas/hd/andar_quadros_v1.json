@@ -1,0 +1,143 @@
+{
+  "version": 2,
+  "tipo": "corpo_inteiro",
+  "acao": "andar",
+  "fps_quadros": 8,
+  "aspecto_celula": 1,
+  "referencia": {
+    "altura_corpo": 0.9074960127591707,
+    "altura_referencia": 0.98
+  },
+  "frames": [
+    {
+      "img": "lucas/hd/andar_00_v1",
+      "ancora": [
+        0.5,
+        0.9282296650717703
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11148325358851675
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805
+      }
+    },
+    {
+      "img": "lucas/hd/andar_01_v1",
+      "ancora": [
+        0.5,
+        0.9266347687400319
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.10988835725677831
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.22647527910685805
+      }
+    },
+    {
+      "img": "lucas/hd/andar_02_v1",
+      "ancora": [
+        0.5,
+        0.9537480063795853
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11403508771929824
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805
+      }
+    },
+    {
+      "img": "lucas/hd/andar_03_v1",
+      "ancora": [
+        0.5,
+        0.9457735247208932
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5119617224880383,
+          0.11323763955342903
+        ],
+        "topo_cabeca": 0.02073365231259968,
+        "largura_rosto": 0.22647527910685805
+      }
+    },
+    {
+      "img": "lucas/hd/andar_04_v1",
+      "ancora": [
+        0.5,
+        0.94896331738437
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5247208931419458,
+          0.10925039872408293
+        ],
+        "topo_cabeca": 0.01594896331738437,
+        "largura_rosto": 0.23285486443381181
+      }
+    },
+    {
+      "img": "lucas/hd/andar_05_v1",
+      "ancora": [
+        0.5,
+        0.9505582137161085
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.49920255183413076,
+          0.10940988835725676
+        ],
+        "topo_cabeca": 0.01594896331738437,
+        "largura_rosto": 0.23285486443381181
+      }
+    },
+    {
+      "img": "lucas/hd/andar_06_v1",
+      "ancora": [
+        0.5,
+        0.9569377990430622
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5207336523125997,
+          0.11291866028708136
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.23444976076555024
+      }
+    },
+    {
+      "img": "lucas/hd/andar_07_v1",
+      "ancora": [
+        0.5,
+        0.9569377990430622
+      ],
+      "apoio": true,
+      "marcos": {
+        "centro_rosto": [
+          0.5007974481658692,
+          0.11291866028708136
+        ],
+        "topo_cabeca": 0.019138755980861243,
+        "largura_rosto": 0.23604465709728867
+      }
+    }
+  ],
+  "deslocamento_corpo_ciclo": 0.294,
+  "formato": "png_por_quadro"
+}

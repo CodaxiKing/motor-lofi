@@ -127,5 +127,79 @@
       "duracao": 0.5,
       "periodo_origem": 0.8
     }
+  },
+  "arte_por_plano": {
+    "close": {
+      "neutro": {
+        "img": "teo/hd/retrato_neutro_v1",
+        "rosto": [
+          0.1357421875,
+          0.004557291666666667,
+          0.880859375,
+          0.3795572916666667
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "teo/teo_neutro_v1"
+        ]
+      },
+      "medo": {
+        "img": "teo/hd/retrato_medo_v1",
+        "rosto": [
+          0.1357421875,
+          0.004557291666666667,
+          0.880859375,
+          0.3795572916666667
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "teo/teo_neutro_v1"
+        ]
+      },
+      "piscando": {
+        "img": "teo/hd/retrato_piscando_v1",
+        "rosto": [
+          0.1357421875,
+          0.004557291666666667,
+          0.880859375,
+          0.3795572916666667
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "teo/teo_neutro_v1"
+        ]
+      }
+    },
+    "medio": {
+      "neutro": {
+        "img": "teo/teo_neutro_v1",
+        "rosto": [
+          0.2859607339449541,
+          0.0,
+          0.7221992660550459,
+          0.22986284289276807
+        ],
+        "pixels_origem": [
+          981,
+          1604
+        ],
+        "cobertura": "corpo_inteiro",
+        "poses_compativeis": [
+          "teo/teo_neutro_v1"
+        ]
+      }
+    }
   }
 }

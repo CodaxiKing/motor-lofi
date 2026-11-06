@@ -48,5 +48,79 @@
       "duracao": 0.5,
       "periodo_origem": 0.8
     }
+  },
+  "arte_por_plano": {
+    "close": {
+      "neutro": {
+        "img": "amanha/hd/retrato_neutro_v1",
+        "rosto": [
+          0.0869140625,
+          0.00390625,
+          0.85546875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "amanha/amanha_neutro_v1"
+        ]
+      },
+      "medo": {
+        "img": "amanha/hd/retrato_medo_v1",
+        "rosto": [
+          0.0869140625,
+          0.00390625,
+          0.85546875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "amanha/amanha_neutro_v1"
+        ]
+      },
+      "piscando": {
+        "img": "amanha/hd/retrato_piscando_v1",
+        "rosto": [
+          0.0869140625,
+          0.00390625,
+          0.85546875,
+          0.4700520833333333
+        ],
+        "pixels_origem": [
+          1024,
+          1536
+        ],
+        "cobertura": "retrato",
+        "poses_compativeis": [
+          "amanha/amanha_neutro_v1"
+        ]
+      }
+    },
+    "medio": {
+      "neutro": {
+        "img": "amanha/amanha_neutro_v1",
+        "rosto": [
+          0.18252051860202928,
+          0.006798196166854567,
+          0.7396794813979708,
+          0.2575197294250282
+        ],
+        "pixels_origem": [
+          887,
+          1774
+        ],
+        "cobertura": "corpo_inteiro",
+        "poses_compativeis": [
+          "amanha/amanha_neutro_v1"
+        ]
+      }
+    }
   }
 }

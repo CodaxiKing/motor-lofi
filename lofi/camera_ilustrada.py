@@ -76,7 +76,8 @@ def caixas(pessoas,base,size,rel,seguir=True):
             altura=q.get('altura',.6)*H*fator;aspecto=ciclo.get('aspecto_celula',1)
             face_x=x+(mx-ax)*altura*aspecto;face_top=floor+(fm['topo_cabeca']-ay)*altura
             face_y=floor+(my-ay)*altura;face_width=fm['largura_rosto']*altura*aspecto
-            top=face_top;bh=bot-top
+            # Keep physical body height stable across gait frames. Face
+            # landmarks guide close-ups without pumping whole-body zoom.
         for k,v in marcos.items():
             if not isinstance(v,(int,float)) or not math.isfinite(v) or not 0<v<1:
                 raise ValueError(f'Marco anatômico inválido: {k}')
@@ -126,13 +127,14 @@ def resolver(camera,pessoas,base,size,rel=0,duracao=1):
         plano=('inteiro' if amplos else 'medio') if len(acts)==1 else 'conjunto'
     if not acts or plano=='aberto':return {'z':1.,'ox':0.,'oy':0.,'plano':'aberto','alvos':[]}
     if plano not in ('inteiro','conjunto') and not alvo:acts=acts[:1]
-    top=min(a['top'] for a in acts)
+    top=min(a['face_top'] if plano in ('close','detalhe') else a['top'] for a in acts)
     if plano in ('inteiro','conjunto'):
         bot=max(a['bot'] for a in acts);left=min(a['left'] for a in acts);right=max(a['right'] for a in acts)
         headroom=.06;footroom=.06
     else:
         frac={'americano':'joelhos','medio':'cintura','close':'ombros','detalhe':'centro_rosto'}[plano]
         bot=max(a['top']+a['h']*a['marcos'][frac] for a in acts)
+        if plano=='close':bot=max(a['face_top']+a['h']*a['marcos']['ombros'] for a in acts)
         if plano=='detalhe':
             top=min(a['top']+a['h']*max(0,a['marcos']['centro_rosto']-.11) for a in acts)
             bot=max(a['top']+a['h']*(a['marcos']['centro_rosto']+.14) for a in acts)

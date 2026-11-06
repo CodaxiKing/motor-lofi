@@ -4,6 +4,12 @@ description: Orquestra séries de animação 2D vertical de suspense, da histór
 ---
 # Motor Lo-Fi Studio 4.0 — skill principal
 
+No modo biblioteca ilustrada, siga também `biblioteca/ilustrada/v1/NITIDEZ.md`.
+Use as variantes por enquadramento e revise a ampliação na resolução de entrega
+com `python -m lofi.qualidade_visual spec.json --out nitidez.json`. A troca de arte
+deve preservar ação, expressão, objetos e fala; solicite arte compatível quando
+o relatório indicar que a fonte não tem pixels suficientes.
+
 ## Especialidades integradas
 
 Use o checkout existente como raiz de trabalho. As três especialidades estão em

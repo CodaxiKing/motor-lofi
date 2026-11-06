@@ -1,0 +1,440 @@
+{
+  "fps": 24,
+  "preview_size": [
+    432,
+    768
+  ],
+  "total": 16,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 2,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.105,
+              "largura_rosto": 0.25
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ],
+            "usar_variantes": false
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "lucas"
+        },
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": {
+          "limitar_zoom": false
+        }
+      }
+    },
+    {
+      "start": 2,
+      "end": 4,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.105,
+              "largura_rosto": 0.25
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "lucas"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 4,
+      "end": 6,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.105,
+              "largura_rosto": 0.25
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ],
+            "expressao": "medo"
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "lucas"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 6.0,
+      "end": 7.5,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "referencia_escala": "teo/teo_neutro_v1",
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4705882352941177,
+            "altura_m": 1.6,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.3,
+              "centro_rosto": 0.11,
+              "largura_rosto": 0.27
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "teo/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "teo"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 7.5,
+      "end": 9.0,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "clara",
+            "img": "clara/clara_neutro_v1",
+            "referencia_escala": "clara/clara_neutro_v1",
+            "ancora": [
+              0.49796,
+              0.9919
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.5147058823529412,
+            "altura_m": 1.75,
+            "marcos_camera": {
+              "cintura": 0.52,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.12,
+              "largura_rosto": 0.28
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "clara/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "clara"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 9.0,
+      "end": 10.5,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "amanha",
+            "img": "amanha/amanha_neutro_v1",
+            "referencia_escala": "amanha/amanha_neutro_v1",
+            "ancora": [
+              0.4611,
+              0.99775
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.5,
+            "altura_m": 1.7,
+            "marcos_camera": {
+              "cintura": 0.56,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.13,
+              "largura_rosto": 0.28
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "amanha/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "amanha"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 10.5,
+      "end": 12.0,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "mimico",
+            "img": "mimico/mimico_neutro_v1",
+            "referencia_escala": "mimico/mimico_neutro_v1",
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.6176470588235294,
+            "altura_m": 2.1,
+            "marcos_camera": {
+              "cintura": 0.54,
+              "joelhos": 0.79,
+              "ombros": 0.28,
+              "centro_rosto": 0.085,
+              "largura_rosto": 0.23
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "mimico/parado_ligacoes_v1.json",
+                "inicio": 0,
+                "fim": 20,
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "close",
+          "alvo": "mimico"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 12,
+      "end": 14,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.105,
+              "largura_rosto": 0.25
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/hd/andar_quadros_v1.json",
+                "inicio": 0,
+                "fim": 2,
+                "modo": "loop"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "inteiro",
+          "alvo": "lucas"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 14,
+      "end": 16,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.5,
+            "chao": 0.9,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "marcos_camera": {
+              "cintura": 0.55,
+              "joelhos": 0.79,
+              "ombros": 0.31,
+              "centro_rosto": 0.105,
+              "largura_rosto": 0.25
+            },
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "espelhar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/hd/correr_quadros_v1.json",
+                "inicio": 0,
+                "fim": 2,
+                "modo": "loop"
+              }
+            ]
+          }
+        ],
+        "camera_ilustrada": {
+          "plano": "inteiro",
+          "alvo": "lucas"
+        },
+        "aproximar": 0,
+        "balanco": 0
+      }
+    }
+  ]
+}
