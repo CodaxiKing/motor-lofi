@@ -237,7 +237,8 @@ def roteiro_md(historia):
             p = s['conflito_pessoal']; linhas.append(f'CONFLITO PESSOAL: {p["personagem"]} | DESEJO: {p["desejo"]} | CUSTO: {p["custo"]}')
         for campo in ('planta', 'revela', 'paga', 'resolve', 'abre'):
             for p in s.get(campo, []): linhas.append(f'{campo.upper()}: {p["id"]} | {p["texto"]}')
-        linhas += ['RECORTES: ' + ', '.join(a['id']+'/'+a['pose'] for a in s['personagens']), f'NARRAÇÃO: {s.get("narracao", "")}', '']
+        recortes=', '.join(a['id']+'/'+a['pose'] for a in s['personagens']) or 'sem personagem em quadro'
+        linhas += ['RECORTES: ' + recortes, f'NARRAÇÃO: {s.get("narracao", "")}', '']
         for f in s.get('falas', []): linhas += [f"{f['personagem'].upper()}: {f['texto']} | INTENÇÃO: {f.get('intencao', 'afirmar')}"]
     linhas += ['## ESCOLHA']
     for letra, op in historia['escolhas'].items():

@@ -20,7 +20,7 @@ CONSEQUÊNCIA: Mara decide conferir sem abandonar o retorno
 CAUSA: CENA 1 — A transmissão oferece uma rota de resgate motiva a próxima observação
 PLANTA: data_chamada | O rádio diz quinta-feira, mas é sábado
 PLANTA: duas_piscadas | Somente duas piscadas confirmam a equipe
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: O rádio repete: quinta-feira, equipe na torre depois do escuro. Mara guarda a instrução que vem em seguida: duas piscadas curtas. Uma luz parada não confirma a presença de ninguém. O chiado cobre o fim da mensagem.
 
 ## CENA 3
@@ -36,7 +36,7 @@ CENÁRIO: floresta_torre
 ACONTECIMENTO: A torre não mostra atividade
 CONSEQUÊNCIA: Outra luz chama a atenção
 CAUSA: CENA 3 — Mara decide conferir sem abandonar o retorno motiva a próxima observação
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: Da clareira, a torre aparece entre as árvores. Nenhuma janela está acesa. A mensagem parecia próxima; a construção, agora diante dela, parece abandonada. Mara espera o tempo de uma nova chamada sem avançar pela escada.
 
 ## CENA 5
@@ -44,7 +44,7 @@ CENÁRIO: floresta_torre
 ACONTECIMENTO: Outra luz chama a atenção
 CONSEQUÊNCIA: O posto explica a origem da luz
 CAUSA: CENA 4 — A torre não mostra atividade motiva a próxima observação
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: Nada pisca na cabine. Mais abaixo, porém, um brilho amarelo atravessa os galhos. Ela poderia chamar por socorro, mas o sinal combinado ainda não apareceu. Segue apenas até a curva de onde consegue identificar aquela luz.
 
 ## CENA 6
@@ -52,7 +52,7 @@ CENÁRIO: posto_estrada
 ACONTECIMENTO: O posto explica a origem da luz
 CONSEQUÊNCIA: A luz falha no teste combinado
 CAUSA: CENA 5 — Outra luz chama a atenção motiva a próxima observação
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: O brilho vem de um posto vazio. Uma lâmpada presa à cobertura ilumina o asfalto molhado. Não há veículo de resgate nem sinal na janela da loja. A luz é abrigo possível, mas não é a resposta prometida pelo rádio.
 
 ## CENA 7
@@ -61,7 +61,7 @@ ACONTECIMENTO: A luz falha no teste combinado
 CONSEQUÊNCIA: A data revela que a mensagem é antiga
 CAUSA: CENA 6 — O posto explica a origem da luz motiva a próxima observação
 PAGA: duas_piscadas | A luz fixa do posto não é tratada como resgate
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: A lâmpada permanece acesa, sem uma única piscada. Mara percebe que quase trocou uma instrução verificável pela vontade de acreditar em qualquer luz. Recusa aquela pista e retorna ao abrigo pela mesma trilha.
 
 ## CENA 8
@@ -71,7 +71,7 @@ CONSEQUÊNCIA: Mara decide o próximo objetivo
 CAUSA: CENA 7 — A luz falha no teste combinado motiva a próxima observação
 REVELA: data_chamada | A chamada está desatualizada
 RESOLVE: resgate | A mensagem antiga não confirma resgate presente
-RECORTES: 
+RECORTES: sem personagem em quadro
 NARRAÇÃO: De volta, o rádio repete a chamada inteira. Quinta-feira. Só agora Mara junta a data da mensagem ao sábado que marcou antes de sair. A transmissão está atrasada. A confirmação evitou que ela passasse a noite esperando um resgate antigo.
 
 ## CENA 9
