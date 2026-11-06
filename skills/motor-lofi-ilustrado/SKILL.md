@@ -24,6 +24,8 @@ Seu contrato de animações mantém dez vistas e movimentos próprios para monst
 Os campos `abertura.situacao` e `abertura.premissa` entram na primeira narração,
 explicando imediatamente a situação e o objetivo/perigo. As composições, HUD e
 insertos ficam no perfil; confira a prévia e a análise da referência fornecida.
+O HUD padrão da Crônicas mostra apenas o horário HH:MM: sem recursos, missão,
+atalhos, dia da semana ou marcadores de interação. Preserve `somente_horario: true`.
 Em cenas livres, use `batida_visual` para estabelecer, sustentar, detalhar, mostrar
 reação, inserto ou decisão. Câmeras explícitas prevalecem. Finalize a voz antes
 de ajustar a montagem. `--biblioteca cronicas criar` é um exemplo editorial fixo,

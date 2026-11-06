@@ -56,8 +56,9 @@ composições copiadas da geometria do vídeo são apenas presets opcionais.
 
 As batidas são decisões editoriais na história, não uma interpretação automática
 do significado da voz. A auditoria confere presença textual de situação/premissa;
-a clareza criativa continua sendo revisada. Valores do HUD devem ser atualizados
-pela história, sem reiniciar recursos entre cortes.
+a clareza criativa continua sendo revisada. O HUD padrão mantém somente o horário
+HH:MM, atualizado pela história e contínuo entre cortes. Recursos, missão, atalhos
+e marcadores de interação ficam ocultos.
 
 Os cenários desta biblioteca foram feitos aqui com `image_gen`. A edição da
 prévia é do motor Python/FFmpeg, com câmera interpolada e interface em camadas.

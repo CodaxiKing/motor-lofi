@@ -25,8 +25,8 @@ exigem camadas próprias. Não pintar ameaças nos fundos reutilizáveis nem sim
 caminhada arrastando a pose parada. Correr, saltar e manipular objetos exigem
 quadros reais e revisão dos apoios, conforme `padrao_criacao.json`.
 
-HUD amarelo discreto, indicadores verdes/vermelhos e relógio na parte inferior
-esquerda. Telefone entra sobre ambiente desfocado; escolhas escurecem a cena sem
-trocar o enquadramento. Círculos brancos de interação são gráficos animados de tela.
-A vinheta é configurável. Conferir legibilidade, rosto e foco da ação na resolução
-final. Os valores demonstrativos dos recursos são dados de ficção editáveis.
+O HUD padrão exibe somente o horário HH:MM, discreto na parte inferior esquerda.
+Sem missão, barras de recursos, atalhos, dia da semana ou círculos de interação.
+Telefone e escolhas são insertos narrativos explícitos: o telefone entra sobre
+ambiente desfocado e a escolha escurece a cena sem trocar o enquadramento.
+A vinheta é configurável. Conferir legibilidade, rosto e foco da ação na resolução final.

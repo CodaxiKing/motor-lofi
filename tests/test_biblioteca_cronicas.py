@@ -106,6 +106,10 @@ def test_interface_responsiva_estado_e_insertos(size):
     assert a.size == b.size == size
     assert a.tobytes() != b.tobytes()
     assert a.getpixel((size[0]//2, size[1]//2)) == fundo.getpixel((0, 0))
+    # O HUD padrão ocupa somente a região do horário, sem recursos ou atalhos.
+    bbox=ImageChops.difference(a,fundo).getbbox()
+    assert bbox[2]<=round(size[0]*.24)+1 and bbox[1]>=round(size[1]*.665)
+    assert bbox[3]<=round(size[1]*.698)+1
     hidden = dict(shots[0], interface=False)
     assert interface.desenhar_previa(spec, BASE, fundo, hidden, 1).tobytes() == fundo.tobytes()
     for chave, valor in [('telefone', {'contato': 'Irmã'}),
@@ -134,7 +138,8 @@ def test_direcao_padrao_livre_e_overrides(tmp_path):
     assert normal['perfil_direcao']=='cronicas_situacional_v1'
     assert normal['interface']['layout']=='sobrevivencia_compacta'
     assert normal['interface']['relogio']['seg_por_min']==60
-    assert normal['interface']['status'][0]['texto']=='1L'
+    assert normal['interface']['somente_horario'] is True
+    assert not any(k in normal['interface'] for k in ('status','missao','atalhos'))
     assert normal['cenas'][0]['camera']=={'plano':'aberto','zoom':1}
     assert normal['cenas'][1]['camera']['cx']==.12  # detalhe explicitamente dirigido
     assert normal['cenas'][2]['camera']['zoom']==[1,1.035]

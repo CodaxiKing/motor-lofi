@@ -64,11 +64,11 @@ O campo `biblioteca` explícito na história prevalece sobre o padrão da série
 arbitrários. Para outro conflito, escreva a história com a skill e os assets reais.
 O [exemplo estruturado](exemplos/a_luz_que_nao_respondeu_v1.json) é um rascunho sem voz.
 
-A interface `sobrevivencia_compacta` oferece missão, recursos persistentes,
-relógio, atalhos, diálogo, cartela, notificação, alerta, telefone e escolha.
-`hora`, `status` e `missao` mudam o estado a partir do plano. Neste layout,
-`interface: false` esconde o HUD; insertos explicitamente pedidos ainda aparecem.
-Arte, interface e sinais de interação permanecem separados.
+O HUD padrão mostra **apenas o horário HH:MM**, com `somente_horario: true`.
+Missão, recursos, atalhos, dia da semana e marcadores de interação ficam ocultos.
+`hora` atualiza o relógio a partir do plano e `interface: false` o esconde.
+Telefone, diálogo e escolha são insertos narrativos usados somente quando pedidos
+na cena. Arte e interface permanecem separados.
 
 ## Estado e reprodução
 

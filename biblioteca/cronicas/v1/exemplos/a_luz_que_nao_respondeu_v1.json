@@ -231,31 +231,10 @@
     }
   ],
   "interface": {
-    "missao": {
-      "titulo": "CONFIRME O SINAL",
-      "prazo": ""
-    },
     "relogio": {
       "dia": "SÁB",
       "inicio": "23:00"
-    },
-    "status": [
-      {
-        "rotulo": "ÁGUA",
-        "valor": 0.15,
-        "texto": "1L"
-      },
-      {
-        "rotulo": "COMIDA",
-        "valor": 0.25,
-        "texto": "1d"
-      },
-      {
-        "rotulo": "CEL",
-        "valor": 0.22,
-        "texto": "22%"
-      }
-    ]
+    }
   },
   "pendencias": [
     "Gravar e sincronizar narração e transmissão do rádio",

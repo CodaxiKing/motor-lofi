@@ -29,9 +29,9 @@ def desenhar(ep,img,shot,t):
     def box(rect,fill=(8,15,21,190),outline=None,r=7):
         d.rounded_rectangle((*xy(rect[0],rect[1]),*xy(rect[2],rect[3])),radius=max(1,round(r*s)),fill=fill,outline=outline,width=max(1,round(s)))
     def text(x,y,txt,n=14,color=ink,bold=False):d.text(xy(x,y),str(txt),font=font(n,bold),fill=color)
-    top=cfg.get('topo',.125)
+    top=cfg.get('topo',.125);somente_horario=cfg.get('somente_horario',False)
     sinal=shot.get('interacao_visual')
-    if sinal and sinal.get('inicio',0)<=rel<sinal.get('fim',shot['end']-shot['start']):
+    if sinal and not somente_horario and sinal.get('inicio',0)<=rel<sinal.get('fim',shot['end']-shot['start']):
         cx,cy=xy(*sinal.get('centro',[.5,.35]));periodo=sinal.get('periodo',1.2)
         if periodo<=0:raise ValueError('Período de interação inválido')
         for atraso in (0,.35):
@@ -39,12 +39,12 @@ def desenhar(ep,img,shot,t):
             r=max(1,round(W*sinal.get('raio',.13)*fase))
             d.ellipse((cx-r,cy-r,cx+r,cy+r),outline=(235,241,245,round((1-fase)*180)),width=max(1,round(2*s)))
     if shot.get('interface') is not False:
-        m=_mission_now(ep,t)
+        m=_mission_now(ep,t) if not somente_horario else None
         if m:
             box((.09,top,.56,top+.035))
             text(.11,top+.009,m.get('titulo','SOBREVIVA'),12)
             text(.40,top+.008,m.get('prazo',''),15,accent,True)
-        for i,(nome,(valor,label)) in enumerate(_status_now(ep,t).items()):
+        for i,(nome,(valor,label)) in enumerate((_status_now(ep,t) if not somente_horario else {}).items()):
             y=top+i*.037
             box((.635,y,.91,y+.032))
             text(.65,y+.008,nome,13)
@@ -56,12 +56,16 @@ def desenhar(ep,img,shot,t):
         clock=_clock_now(ep,t)
         if clock:
             dia,hora=clock;y=cfg.get('relogio_y',.665)
-            box((.09,y,.295,y+.045))
-            text(.158,y+.001,dia,12,dim,True);text(.15,y+.016,hora,24,accent,True)
-            cx,cy=xy(.124,y+.027);r=max(3,round(8*s))
-            d.ellipse((cx-r,cy-r,cx+r,cy+r),outline=accent,width=max(1,round(2*s)))
-            d.line((cx,cy-r*.65,cx,cy,cx+r*.55,cy+r*.3),fill=accent,width=max(1,round(2*s)))
-            for i,tipo in enumerate(cfg.get('atalhos',[])):
+            if somente_horario:
+                box((.09,y,.24,y+.033))
+                text(.107,y+.005,hora,24,accent,True)
+            else:
+                box((.09,y,.295,y+.045))
+                text(.158,y+.001,dia,12,dim,True);text(.15,y+.016,hora,24,accent,True)
+                cx,cy=xy(.124,y+.027);r=max(3,round(8*s))
+                d.ellipse((cx-r,cy-r,cx+r,cy+r),outline=accent,width=max(1,round(2*s)))
+                d.line((cx,cy-r*.65,cx,cy,cx+r*.55,cy+r*.3),fill=accent,width=max(1,round(2*s)))
+            for i,tipo in enumerate(cfg.get('atalhos',[]) if not somente_horario else []):
                 x=.09+i*.103;box((x,y+.057,x+.088,y+.105),outline=accent+(160,),r=12)
                 ix,iy=xy(x+.044,y+.081);r=max(4,round(10*s));lw=max(1,round(2*s))
                 if tipo=='bike':

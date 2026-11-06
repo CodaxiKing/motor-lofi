@@ -48,7 +48,8 @@
     "vinheta": 0.22,
     "mostrar_texto_gancho": false,
     "interface_editavel": true,
-    "personagem": "Identidade original Mara; cabeça redonda, cabelo curto com presilha, roupa verde-petróleo, sem importar o personagem do vídeo."
+    "personagem": "Identidade original Mara; cabeça redonda, cabelo curto com presilha, roupa verde-petróleo, sem importar o personagem do vídeo.",
+    "interface": "Somente horário HH:MM no HUD persistente, sem dia, indicadores, missão ou atalhos."
   },
   "interface": {
     "layout": "sobrevivencia_compacta",
@@ -57,46 +58,14 @@
       191,
       83
     ],
-    "status": [
-      {
-        "rotulo": "ÁGUA",
-        "valor": 0.78,
-        "texto": "28L"
-      },
-      {
-        "rotulo": "COMIDA",
-        "valor": 0.45,
-        "texto": "4d"
-      },
-      {
-        "rotulo": "BIKE",
-        "valor": 0.31,
-        "texto": "31%"
-      },
-      {
-        "rotulo": "CEL",
-        "valor": 0.8,
-        "texto": "80%"
-      }
-    ],
     "relogio": {
       "dia": "SÁB",
       "inicio": "22:55",
       "seg_por_min": 60
     },
-    "missao": {
-      "titulo": "SOBREVIVA 72H",
-      "prazo": "56:00"
-    },
-    "atalhos": [
-      "mochila",
-      "mapa",
-      "objetivo",
-      "bike"
-    ],
-    "topo": 0.125,
     "relogio_y": 0.665,
-    "vinheta": 0.22
+    "vinheta": 0.22,
+    "somente_horario": true
   },
   "composicoes": {
     "quarto_janela": {

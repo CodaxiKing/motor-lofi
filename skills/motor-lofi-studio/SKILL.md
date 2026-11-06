@@ -8,6 +8,7 @@ Para o tipo Crônicas, selecione `--profile cronicas` ao iniciar a série: isso
 persiste biblioteca Crônicas e modo ilustrado. Leia `biblioteca/cronicas/v1/LEIA-ME.md`,
 `ROTEIRO.md` e `EDICAO.md`. Preserve a linguagem da referência com histórias e
 cenários originais. O catálogo herda direção de câmera, HUD e abertura situacional.
+O HUD da Crônicas mantém apenas o horário HH:MM, sem recursos, missão ou atalhos.
 As poses atuais são estáticas; use prévia visual enquanto as animações estiverem pendentes.
 
 No modo biblioteca ilustrada, siga também `biblioteca/ilustrada/v1/NITIDEZ.md`.
