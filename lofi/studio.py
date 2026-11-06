@@ -26,7 +26,12 @@ def read_bible(series_dir):
             result[name] = json.loads(path.read_text(encoding='utf-8'))
     return result
 
-def initialize_series(series_dir, title, *, visual_style='horror_illustrated', duration_profile='tradicional', render_mode='rig'):
+def initialize_series(series_dir, title, *, visual_style='horror_illustrated', duration_profile='tradicional', render_mode=None, biblioteca=None):
+    biblioteca=biblioteca or ('cronicas' if visual_style=='cronicas' else None)
+    if biblioteca is not None:
+        from .historias_ilustradas import catalogo_historia
+        catalogo_historia({'biblioteca':biblioteca})
+    render_mode=render_mode or ('illustrated_library' if biblioteca else 'rig')
     if render_mode not in ('rig', 'illustrated_library'): raise ValueError('render_mode inválido')
     from .perfis_duracao import planejar
     planejar(duration_profile)
@@ -36,6 +41,7 @@ def initialize_series(series_dir, title, *, visual_style='horror_illustrated', d
                 'personagens': {}, 'elenco': {}, 'cenarios': {}, 'acontecimentos': [],
                 'estilo_visual': {'profile': visual_style, 'notes': 'Preservar aparência entre episódios'},
                 'continuidade': {'facts': [], 'open_threads': [], 'decisions': {}}}
+    if biblioteca:defaults['serie']['biblioteca']=biblioteca
     for name, value in defaults.items():
         path = folder / (name + '.json')
         if not path.exists():
@@ -43,11 +49,15 @@ def initialize_series(series_dir, title, *, visual_style='horror_illustrated', d
     (folder / 'episodios').mkdir(exist_ok=True)
     return read_bible(folder)
 
-def configure_render_mode(series_dir, render_mode):
+def configure_render_mode(series_dir, render_mode, biblioteca=None):
     if render_mode not in ('rig', 'illustrated_library'): raise ValueError('render_mode inválido')
+    if biblioteca is not None:
+        from .historias_ilustradas import catalogo_historia
+        catalogo_historia({'biblioteca':biblioteca})
     path = Path(series_dir) / 'serie.json'
     data = json.loads(path.read_text(encoding='utf-8'))
     data['render_mode'] = render_mode
+    if biblioteca:data['biblioteca']=biblioteca
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     return data
 
@@ -146,6 +156,8 @@ def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='rob
         try: historia = json.loads(story)
         except json.JSONDecodeError as exc:
             raise ValueError('Modo ilustrado requer historia.json estruturada; use a skill motor-lofi-ilustrado') from exc
+        biblioteca=bible['serie'].get('biblioteca') or ('cronicas' if style=='cronicas' else None)
+        if biblioteca:historia.setdefault('biblioteca',biblioteca)
         if duration is not None: historia['duracao'] = duration
         if duration_profile is not None: historia['perfil'] = duration_profile
         ep = compilar(historia, pasta_saida=folder / 'episodios', pasta_audio=pasta_audio)

@@ -29,7 +29,8 @@
       "só suspense sem explicar o conflito",
       "números de retenção inventados",
       "mesma história ou regra copiada em todos os episódios"
-    ]
+    ],
+    "originalidade": "Criar conflitos, lugares, personagens e soluções próprios. A referência orienta a estrutura e a edição, sem exigir cenas idênticas."
   },
   "visual": {
     "proporcao": [
@@ -37,7 +38,7 @@
       16
     ],
     "camera": "Planos fixos sustentados; cortes para detalhes e novas vistas desenhadas; aproximações curtas.",
-    "composicao": "manual",
+    "composicao": "Livre e original, preservando o estilo; presets do vídeo são opcionais",
     "movimento": "Poucas ações legíveis, expressões e contato com objetos; não movimentar tudo continuamente.",
     "paleta": [
       "azul carvão",
@@ -335,5 +336,46 @@
     "Novas vozes e revisão da sincronização para um roteiro original.",
     "Ciclos completos de Mara nas dez vistas; poses de estudo não equivalem a animação certificada."
   ],
-  "biblioteca": "cronicas"
+  "biblioteca": "cronicas",
+  "edicao": {
+    "linguagem": "Ilustração narrada em camadas, cortes motivados pela informação, poses sustentadas e aproximações discretas.",
+    "cortes": "Trocar plano ao mostrar pista, reação, consequência ou decisão. Não cortar apenas por tempo decorrido.",
+    "audio": "Finalizar voz primeiro; marcar pausas, ruídos e transições antes de sincronizar atuação.",
+    "planos": {
+      "estabelecer": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "sustentar": {
+        "plano": "aberto",
+        "zoom": [
+          1,
+          1.035
+        ],
+        "cx": 0.5,
+        "cy": 0.5
+      },
+      "detalhe": {
+        "plano": "detalhe",
+        "zoom": [
+          1.55,
+          1.6
+        ],
+        "cx": 0.5,
+        "cy": 0.5
+      },
+      "reacao": {
+        "plano": "close",
+        "push": 0.5
+      },
+      "inserto": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "decisao": {
+        "plano": "aberto",
+        "zoom": 1
+      }
+    }
+  }
 }

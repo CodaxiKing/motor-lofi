@@ -34,7 +34,8 @@ def historia():
 def test_assets_separados_transparentes_e_rastreaveis():
     catalogo = H.carregar(H.CATALOGOS['cronicas'])
     assert set(catalogo['personagens']) == {'mara'}
-    assert len(catalogo['cenarios']) == 7
+    assert len(catalogo['cenarios']) == 13
+    assert sum(bool(c.get('criacao_original')) for c in catalogo['cenarios'].values()) == 6
     assert H.validar_catalogo(H.CATALOGOS['cronicas']) == []
     pessoa = catalogo['personagens']['mara']
     assert len(pessoa['poses']) == 4
@@ -122,3 +123,69 @@ def test_telefone_sem_hud_global():
     spec = {'shots': [shot]}
     im = Image.new('RGB', (270, 480), 'navy')
     assert interface.desenhar_previa(spec, BASE, im, shot, 1).tobytes() != im.tobytes()
+
+
+def test_direcao_padrao_livre_e_overrides(tmp_path):
+    from lofi.cronicas import rascunho
+    h=rascunho();antes=copy.deepcopy(h)
+    assert 'perfil_direcao' not in h
+    normal=P.aplicar(h,BASE)
+    assert h==antes
+    assert normal['perfil_direcao']=='cronicas_situacional_v1'
+    assert normal['interface']['layout']=='sobrevivencia_compacta'
+    assert normal['interface']['relogio']['seg_por_min']==60
+    assert normal['interface']['status'][0]['texto']=='1L'
+    assert normal['cenas'][0]['camera']=={'plano':'aberto','zoom':1}
+    assert normal['cenas'][1]['camera']['cx']==.12  # detalhe explicitamente dirigido
+    assert normal['cenas'][2]['camera']['zoom']==[1,1.035]
+    assert normal['cenas'][-1]['camera']['plano']=='close'
+    ep=H.compilar(h,pasta_saida=tmp_path)
+    assert ep['abertura_review']['ok'] and ep['total']==120
+    assert ep['biblioteca']=='cronicas'
+    assert ep['shots'][-1]['type']=='choice' and ep['shots'][-1]['escolha_ref']['opcoes']==['SUBIR À TORRE','IR AO MERCADO']
+    assert ep['shots'][-1]['imagens']['camera_ilustrada']=={'plano':'aberto','zoom':1}
+    assert ep['shots'][0]['imagens']['fundo'].endswith('abrigo_radio_v1')
+    from lofi.camera_ilustrada import resolver
+    cam=normal['cenas'][2]['camera']
+    assert resolver(cam,[],BASE,(270,480),rel=0,duracao=3)['z']==1
+    assert resolver(cam,[],BASE,(270,480),rel=3,duracao=3)['z']==pytest.approx(1.035)
+    assert P.aplicar({'cenas':[]})=={'cenas':[]}  # biblioteca antiga não herda o estilo
+    normal=P.aplicar({'cenas':[{'cenario':'posto_estrada','camera':{'plano':'aberto','zoom':1.2}}]},BASE)
+    assert normal['cenas'][0]['camera']['zoom']==1.2
+    with pytest.raises(ValueError,match='Batida visual'):
+        P.aplicar({'cenas':[{'cenario':'posto_estrada','batida_visual':'inventada'}]},BASE)
+
+
+def test_decisao_compilada_usa_interface_cronicas(tmp_path,monkeypatch):
+    from lofi.cronicas import rascunho
+    from lofi.render import Episode
+    r=H.salvar(rascunho(),tmp_path/'rascunho')
+    ep=Episode(r['episode']);shot=ep.shots[-1];t=shot['start']+2
+    fundo=Image.new('RGB',(270,480),'navy')
+    monkeypatch.setattr(ep,'scene_frame',lambda s,t:fundo.copy())
+    esperado=interface.desenhar(ep,fundo,shot,t)
+    assert ep.choice_frame(shot,t).tobytes()==esperado.tobytes()
+    assert esperado.tobytes()!=fundo.tobytes()
+
+
+def test_serie_cronicas_seleciona_biblioteca_e_aceita_override(tmp_path):
+    from lofi.cronicas import rascunho
+    from lofi.studio import initialize_series,plan_episode,configure_render_mode
+    serie=tmp_path/'serie'
+    bible=initialize_series(serie,'Crônicas novas',visual_style='cronicas')
+    assert bible['serie']['biblioteca']=='cronicas'
+    assert bible['serie']['render_mode']=='illustrated_library'
+    h=rascunho();h.pop('biblioteca')
+    r=plan_episode(json.dumps(h),series_dir=serie)
+    ep=json.loads(open(r['episode'],encoding='utf-8').read())
+    assert ep['perfil_direcao']=='cronicas_situacional_v1'
+    assert ep['shots'][0]['imagens']['fundo'].endswith('abrigo_radio_v1')
+    h=H.gerar_historia();h['biblioteca']='ilustrada'
+    r=plan_episode(json.dumps(h),series_dir=serie,episode_number=2)
+    ep=json.loads(open(r['episode'],encoding='utf-8').read())
+    assert 'perfil_direcao' not in ep
+    assert ep['shots'][0]['imagens']['fundo'].endswith('fundo_entrada_v1')
+    data=configure_render_mode(serie,'illustrated_library',biblioteca='cronicas')
+    assert data['biblioteca']=='cronicas'
+    with pytest.raises(ValueError,match='desconhecida'):
+        configure_render_mode(serie,'illustrated_library',biblioteca='ausente')

@@ -1,0 +1,192 @@
+{
+  "version": 2,
+  "biblioteca": "cronicas",
+  "ferramenta": "image_gen integrado",
+  "direcao": "Cenários originais; conservar pintura e edição, sem copiar geometria do vídeo.",
+  "fundos": [
+    {
+      "id": "posto_estrada",
+      "nome": "Posto de estrada — apagão",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_posto_estrada_v1",
+      "source": "exec-3e5eb42e-54e5-4819-9dda-687d31a3e12b.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: An abandoned roadside gas station at night in a rural Brazilian setting, three-quarter eye-level view from an empty forecourt. Two old unmarked fuel pumps on the LEFT under a cracked low canopy, small dark convenience shop on the RIGHT with closed glass door, unlit road disappearing into mist in the distance. A single weak amber emergency lamp. Wet asphalt foreground with a large clean central standing area, no close foreground pump blocking the actor. Original location and camera, not a reconstruction of the reference.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0,
+          0.62
+        ],
+        [
+          1,
+          0.62
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "hospital_corredor",
+      "nome": "Hospital — ala sem energia",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_hospital_corredor_v1",
+      "source": "exec-3c4af9a3-0ed9-45f4-b75f-ff419794b7c0.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: Inside a deserted small hospital at night: long blue-gray tiled corridor, camera at human eye level, deep perspective toward a slightly open fire door with a dim cold light beyond. Empty reception recess to the LEFT, an empty gurney parked against RIGHT wall at mid-distance, scattered papers confined to edges, dark doorways and failing ceiling fixture. Large clear central foreground floor for modular actors. No bodies, gore or symbols/letters. Original believable architecture.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0.25,
+          0.48
+        ],
+        [
+          0.75,
+          0.48
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "mercado_saqueado",
+      "nome": "Mercado — depois do saque",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_mercado_saqueado_v1",
+      "source": "exec-581486be-65c4-4513-9871-12e372eef871.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: Small looted neighborhood grocery after midnight, view from entrance into two aisles, chest-height eye-level camera. Half-empty metal shelving on the LEFT, a broken checkout counter at RIGHT edge, rear refrigerators dark and closed, scattered blank unlabeled packaging at floor edges. Moonlight from offscreen storefront forms a cool diagonal across dusty tiles; faint dying green light from a rear room. Open central floor and clear depth for modular actors. No writing on any package or sign, no people.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0.28,
+          0.45
+        ],
+        [
+          0.72,
+          0.45
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "metro_plataforma",
+      "nome": "Metrô — última plataforma",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_metro_plataforma_v1",
+      "source": "exec-9d9fd139-bd42-4bef-8432-a387a0f0af5d.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: An abandoned underground metro station platform during a blackout. Eye-level viewpoint standing safely on a wide empty platform. Track trench recedes along RIGHT side into a dark tunnel, support columns line the LEFT third, a worn empty bench at left midground, tiled curved ceiling, disconnected cable along wall. Sparse dim blue emergency lights and one muted amber lamp create depth, distant haze only. Broad clear foreground platform for actors. No train, no people, no signs, symbols or text.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0,
+          0.48
+        ],
+        [
+          0.55,
+          0.48
+        ],
+        [
+          0.8,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "floresta_torre",
+      "nome": "Floresta — torre de vigia",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_floresta_torre_v1",
+      "source": "exec-cc431acb-feed-4099-9f04-cf93164db7e5.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: Moonlit pine and scrub forest with a narrow dirt service path, three-quarter eye-level view from a clearing. A tall old timber fire-watch tower stands in the LEFT middle distance, crooked steps and cabin silhouette, a sagging wire fence along RIGHT edge. Low cold fog behind trunks, deep purple-blue sky with a small broken moon through cloud. Path opens into an unobstructed foreground clearing for modular actors. Ominous but readable, no creature silhouettes, no glowing eyes or text.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0.35,
+          0.54
+        ],
+        [
+          0.65,
+          0.54
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "abrigo_radio",
+      "nome": "Abrigo — sala do rádio",
+      "tipo": "fundo",
+      "original": true,
+      "img": "cenarios/fundo_abrigo_radio_v1",
+      "source": "exec-e5c6d5c3-8c80-47eb-8dee-2e032b531f2d.png",
+      "prompt": "Use case: illustration-story. Asset type: original reusable background for Biblioteca Crônicas, a serious illustrated survival horror video. Use the attached image ONLY as a reference for the painted 2D illustration style: restrained ink contours, subtle textured brushwork, cool navy, charcoal and muted violet shadows, worn physical materials, low night lighting with readable middle tones. Invent the requested architecture and composition independently; do NOT recreate its house, gate, framing or objects. Flat 2D narrative illustration with painted volume, not photorealistic or glossy 3D. Vertical 9:16 high resolution, one continuous opaque scene, full bleed. Separate background asset with NO characters, monsters, human silhouettes, faces, bodies, animals, text, letters, digits, logos, watermark, HUD, interface, frame or collage. Keep props static, crisp and spatially coherent; leave useful negative space for modular actor placement.\nSCENE: Interior of an improvised rural emergency shelter during a blackout, a modest concrete room painted desaturated blue, eye-level camera toward the back wall. Old wooden workbench against the LEFT wall holds a compact dark radio with knobs and an unlettered dim green display, loose cable and an unlit flashlight. A barred small window on RIGHT wall gives cold moonlight; shelves of blank unlabeled supplies at back right; a closed heavy steel door at center back. One weak warm desk light, empty central floor foreground for modular actors. No bed or sleeping bag. No people, no lettering or HUD.",
+      "referencias": [
+        "imagens/cenarios/fundo_fachada_rua_v1.png — somente estilo"
+      ],
+      "piso": [
+        [
+          0,
+          0.66
+        ],
+        [
+          0.5,
+          0.55
+        ],
+        [
+          1,
+          0.66
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  ]
+}

@@ -11,6 +11,12 @@ Não crie `~/.video-script/profile.md` como requisito: a pasta da série é o pe
 Se não houver métricas, proponha hipóteses e mantenha a evidência como insuficiente.
 Não peça vídeos anteriores como condição para começar uma série nova.
 
+Para séries do tipo Crônicas, use a biblioteca `cronicas` e leia seus
+`ROTEIRO.md` e `EDICAO.md`. A abertura explica a situação concreta e a premissa
+nas primeiras frases; desenvolver preparação, escalada, resposta e escolha com
+custo. A edição acompanha informação, reação e detalhe. Cenários e conflitos
+devem poder ser originais, preservando a linguagem do vídeo sem copiar sua trama.
+
 ## Contrato do roteiro
 
 - Português do Brasil, formato da bíblia e perfil de duração escolhido, com mínimo de 90 s.

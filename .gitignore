@@ -38,6 +38,8 @@ _editor_cache/
 !biblioteca/cronicas/v1/previas/*.mp4
 !biblioteca/cronicas/v1/previas/cenas-v1/*.png
 !biblioteca/cronicas/v1/previas/cenas-v1/*.mp4
+!biblioteca/cronicas/v1/previas/cenas-originais-v2/*.png
+!biblioteca/cronicas/v1/previas/cenas-originais-v2/*.mp4
 
 # Quadros de análise do vídeo fornecido; não são assets finais da biblioteca.
 referencias/video_modelo_v1/quadros/

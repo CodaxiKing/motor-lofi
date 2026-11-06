@@ -225,9 +225,8 @@ def validar_historia(historia, catalogo):
 
 
 def roteiro_md(historia):
-    if historia.get('perfil_direcao') and any(s.get('composicao_ref') for s in historia['cenas']):
-        from .perfis_referencia import aplicar
-        historia=aplicar(historia,catalogo_historia(historia).parent)
+    from .perfis_referencia import aplicar
+    historia=aplicar(historia,catalogo_historia(historia).parent)
     linhas = [f'# {historia["titulo"]}', '', f'Perfil de duração: {historia["perfil"]}',
               ('Formato: diálogos' if any(c.get('falas') for c in historia['cenas']) else 'Formato: 100% narrado'), '', 'EPISÓDIO 1/? · rascunho independente', '']
     for s in historia['cenas']:
@@ -361,6 +360,12 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
                              'imagens': copy.deepcopy(shots[-1]['imagens'])}
              for letra, op in historia['escolhas'].items()}
     shots.append(dict(start=clock, end=total, type='choice', **lados))
+    if (historia.get('interface') or {}).get('layout')=='sobrevivencia_compacta':
+        escolha=shots[-1]
+        escolha['imagens']=copy.deepcopy(shots[-2]['imagens'])
+        escolha['imagens']['camera_ilustrada']={'plano':'aberto','zoom':1}
+        escolha['escolha_ref']={'titulo':historia.get('pergunta','Qual caminho seguir?'),
+                               'opcoes':[historia['escolhas'][k]['label'] for k in ('A','B')]}
     from .editorial import estruturar
     texto = roteiro_md(historia)
     estimado = sum(duracoes)/3
@@ -378,6 +383,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
     if historia.get('interface'):resultado['interface']=copy.deepcopy(historia['interface'])
     if c.get('estado_producao'):
         resultado['biblioteca_estado']=c['estado_producao']
+    if c.get('biblioteca'):resultado['biblioteca']=c['biblioteca']
     if historia.get('producao'):resultado['producao']=copy.deepcopy(historia['producao'])
     if eventos:
         resultado.update(dialogue_events=eventos, voices=vozes, clips=clips, subs=subs, narrado=not any(e['speaker']!='narrador' for e in eventos))
@@ -440,9 +446,9 @@ if __name__ == '__main__':
     parser.add_argument('--biblioteca',choices=tuple(CATALOGOS),default='ilustrada')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('listar'); sub.add_parser('validar')
-    p = sub.add_parser('criar'); p.add_argument('destino'); p.add_argument('--titulo', default='A voz que ficou lá fora')
+    p = sub.add_parser('criar'); p.add_argument('destino'); p.add_argument('--titulo')
     p.add_argument('--ideia'); p.add_argument('--protagonista', default='lucas'); p.add_argument('--apoio', default='teo')
-    p.add_argument('--vilao', default='mimico'); p.add_argument('--duration', type=float, default=90)
+    p.add_argument('--vilao', default='mimico'); p.add_argument('--duration', type=float)
     p = sub.add_parser('compilar'); p.add_argument('historia'); p.add_argument('destino')
     args = parser.parse_args()
     args.catalogo=args.catalogo or str(CATALOGOS[args.biblioteca])
@@ -451,7 +457,11 @@ if __name__ == '__main__':
         resultado = validar_catalogo(args.catalogo)
         print(json.dumps(resultado, ensure_ascii=False, indent=2)); raise SystemExit(bool(resultado))
     else:
-        historia = carregar(args.historia) if args.command == 'compilar' else gerar_historia(args.catalogo,
-            titulo=args.titulo, protagonista=args.protagonista, apoio=args.apoio, vilao=args.vilao, ideia=args.ideia, duracao=args.duration)
+        if args.command=='compilar':historia=carregar(args.historia)
+        elif carregar(args.catalogo).get('biblioteca')=='cronicas':
+            from .cronicas import rascunho
+            historia=rascunho(titulo=args.titulo,ideia=args.ideia,duracao=args.duration or 120)
+        else:historia=gerar_historia(args.catalogo,titulo=args.titulo or 'A voz que ficou lá fora',
+            protagonista=args.protagonista,apoio=args.apoio,vilao=args.vilao,ideia=args.ideia,duracao=args.duration or 90)
         resultado = salvar(historia, args.destino, args.catalogo, Path(args.historia).resolve().parent if args.command == 'compilar' else None)
     print(json.dumps(resultado, ensure_ascii=False, indent=2))

@@ -5,9 +5,13 @@ vídeo fornecido. A biblioteca ilustrada continua disponível com seu próprio e
 O catálogo Crônicas contém **Mara**, personagem original com cabeça redonda,
 cabelo preto curto, presilha cobre, jaqueta verde-petróleo e bolsa de lona.
 
-Há sete fundos noturnos e quatro poses transparentes: em pé, apoiada na janela,
+Há treze fundos noturnos e quatro poses transparentes: em pé, apoiada na janela,
 deitada no saco de dormir e sentada na laje. Nove composições calibradas combinam
 esses assets; dois insertos demonstram telefone e decisão.
+
+Seis ambientes novos são originais: posto de estrada, hospital, mercado saqueado,
+metrô, floresta com torre e abrigo com rádio. O padrão preserva pintura, edição
+e construção narrativa; os lugares e enquadramentos podem ser diferentes do vídeo.
 
 - [Mara e poses](previas/mara_v1.png)
 - [Cenários](previas/fundos_v1.png)
@@ -16,6 +20,8 @@ esses assets; dois insertos demonstram telefone e decisão.
 - [Comparação local com o vídeo](previas/index.html)
 - [Análise do roteiro e das câmeras](../../../referencias/video_modelo_v1/ANALISE.md)
 - [Estilo](ESTILO.md) e [modelo de roteiro](ROTEIRO.md)
+- [Novos ambientes](previas/ambientes_originais_v2.png) e [prévia de 18 s](previas/ambientes_originais_v2.mp4)
+- [Padrão de edição e como produzir cenas assim](EDICAO.md)
 
 ## Seleção no motor
 
@@ -29,7 +35,6 @@ Em histórias estruturadas, selecione explicitamente:
 ```json
 {
   "biblioteca": "cronicas",
-  "perfil_direcao": "cronicas_situacional_v1",
   "producao": {"etapa": "previa_visual"},
   "abertura": {
     "situacao": "Mara está presa no quarto enquanto alguém testa a janela.",
@@ -41,9 +46,23 @@ Em histórias estruturadas, selecione explicitamente:
 Cada cena pode usar `composicao_ref`, como `quarto_janela`, `janela_close` ou
 `laje_sentado`. O perfil fornece cenário, câmera e pose compatíveis; substituições
 explícitas são preservadas. A primeira narração começa com a situação declarada e
-inclui a premissa. Consulte o [perfil](perfis/cronicas_situacional_v1.json).
-O gerador antigo `criar` permanece ligado ao arco do elenco ilustrado; para
-Crônicas, escreva uma história estruturada com este elenco e seus assets reais.
+inclui a premissa. O [perfil](perfis/cronicas_situacional_v1.json) é herdado do
+catálogo: não é preciso repetir `perfil_direcao`. Cenas livres usam cenário e
+`batida_visual`: `estabelecer`, `sustentar`, `detalhe`, `reacao`, `inserto` ou
+`decisao`. A câmera explícita prevalece. Sem batida, um novo ambiente recebe plano
+aberto; a continuidade no mesmo local recebe aproximação discreta.
+
+```powershell
+python tools/studio.py iniciar series/minhas-cronicas --title "Minhas Crônicas" --profile cronicas
+python tools/studio.py modo series/minha-serie --render-mode illustrated_library --biblioteca cronicas
+python -m lofi.historias_ilustradas --biblioteca cronicas criar producoes/cronicas/meu-rascunho
+```
+
+Novas séries com `--profile cronicas` herdam biblioteca e modo ilustrado.
+O campo `biblioteca` explícito na história prevalece sobre o padrão da série.
+`criar` entrega um exemplo original editável de 120 s; não interpreta briefs
+arbitrários. Para outro conflito, escreva a história com a skill e os assets reais.
+O [exemplo estruturado](exemplos/a_luz_que_nao_respondeu_v1.json) é um rascunho sem voz.
 
 A interface `sobrevivencia_compacta` oferece missão, recursos persistentes,
 relógio, atalhos, diálogo, cartela, notificação, alerta, telefone e escolha.
@@ -71,16 +90,19 @@ neste catálogo inicial.
 python -m lofi.padrao_personagens --base biblioteca/cronicas/v1 auditar
 python tools/registrar_biblioteca_cronicas.py
 python tools/previa_cronicas.py
+python tools/previa_cronicas.py --originais
 ```
 
 A auditoria completa retorna pendências por projeto. O registrador recalcula
 hashes/âncoras e preserva o catálogo ilustrado. O último comando atualiza folhas e
-comparações; `--render` cria clipes na pasta nova `previas/cenas-v1`, que deve estar
-ausente antes dessa execução. As prévias já estão incluídas neste pacote.
+comparações; `--render` cria clipes em `previas/cenas-v1` ou, com `--originais`,
+`previas/cenas-originais-v2`. A pasta correspondente deve estar ausente antes
+dessa execução. As prévias já estão incluídas neste pacote.
 
 As imagens foram geradas com a ferramenta integrada `image_gen`; prompts completos,
 referências e origem estão em [fundos](atlas/geracao_fundos_v1.json) e
-[Mara](atlas/geracao_mara_v1.json). O estudo anterior à correção da cabeça fica
+[Mara](atlas/geracao_mara_v1.json) e [cenários originais](atlas/geracao_fundos_originais_v2.json).
+O estudo anterior à correção da cabeça fica
 arquivado no atlas e não é uma pose ativa. Quadros e transcrição do vídeo original
 são referências locais, fora dos assets e do Git; a comparação continua exibindo
 as novas composições quando esses arquivos locais não estiverem presentes.

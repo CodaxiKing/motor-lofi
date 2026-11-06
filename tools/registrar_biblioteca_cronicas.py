@@ -29,10 +29,13 @@ def registrar():
         'biblioteca':'cronicas','estado_producao':'estudo_visual','padrao_criacao':'padrao_criacao.json',
         'direcao_padrao':'cronicas_situacional_v1','escala_referencia_m':1.70,
         'personagens':{},'cenarios':{},'objetos':{}}
-    fundos=ler(BASE/'atlas/geracao_fundos_v1.json')['fundos']
+    fundos=[f for manifesto in sorted((BASE/'atlas').glob('geracao_fundos*.json')) for f in ler(manifesto)['fundos']]
     mapa_ligacoes=[('quarto_janela','quarto_deitado'),('quarto_janela','cozinha_escuta'),
                   ('quarto_janela','portao_dentro'),('portao_dentro','fachada_rua'),
-                  ('fachada_rua','rua_alta'),('rua_alta','laje_cidade'),('quarto_janela','laje_cidade')]
+                  ('fachada_rua','rua_alta'),('rua_alta','laje_cidade'),('quarto_janela','laje_cidade'),
+                  ('rua_alta','posto_estrada'),('posto_estrada','mercado_saqueado'),
+                  ('mercado_saqueado','hospital_corredor'),('hospital_corredor','metro_plataforma'),
+                  ('posto_estrada','floresta_torre'),('floresta_torre','abrigo_radio'),('abrigo_radio','posto_estrada')]
     pisos={
         'quarto_janela':[[0,.72],[.38,.61],[.62,.61],[1,.76],[1,1],[0,1]],
         'quarto_deitado':[[0,.42],[1,.42],[1,1],[0,1]],
@@ -50,8 +53,9 @@ def registrar():
             pixels=list(im.size)
         cat['cenarios'][f['id']]={'img':f['img'],'descricao':f['nome'],'pixels':pixels,
             'sha256':hashlib.sha256(png.read_bytes()).hexdigest(),'estilo_visual':'cronicas',
+            'criacao_original':f.get('original',False),
             'ligacoes':[b if a==f['id'] else a for a,b in mapa_ligacoes if f['id'] in (a,b)],
-            'iluminacao':{'espaco':'cenario','ambiente':.22,'piso':pisos[f['id']],
+            'iluminacao':{'espaco':'cenario','ambiente':.22,'piso':f.get('piso',pisos.get(f['id'])),
                 'luzes':[{'id':'luz_fraca','tipo':'pontual','posicao':[.6,.72],'altura_m':3,
                           'intensidade':.28,'suavidade':.9}],
                 'calibracao':'Inicial para estudo; conferir contatos e luz antes de certificar a cena.'}}

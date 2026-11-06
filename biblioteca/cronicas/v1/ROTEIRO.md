@@ -6,6 +6,11 @@ Declare `abertura.situacao` e `abertura.premissa`; a primeira cena deve narrar
 ambas nessa ordem. A auditoria textual ajuda a conferir essa presença, mas a
 clareza e a qualidade do gancho dependem de revisão editorial.
 
+Este é o padrão herdado de toda história da biblioteca Crônicas. Preserve a
+construção do vídeo de referência e invente lugares, conflitos e soluções próprios.
+As posições e os cenários não precisam ser idênticos. Consulte `EDICAO.md` para
+escolher a batida visual que acompanha cada mudança dramática.
+
 Exemplos originais de abertura para Mara:
 
 1. “Mara está trancada em casa quando o portão começa a bater sozinho. Para sair,

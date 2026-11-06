@@ -86,5 +86,38 @@ def preparar(render=False):
     print(out)
 
 
+def preparar_originais(render=False):
+    from lofi.perfis_referencia import aplicar
+    cat=carregar(BASE/'catalogo.json');out=BASE/'previas';out.mkdir(exist_ok=True)
+    assets=json.loads((BASE/'atlas/geracao_fundos_originais_v2.json').read_text(encoding='utf-8'))['fundos']
+    historia=aplicar({'biblioteca':'cronicas','cenas':[{'cenario':a['id'],'batida_visual':'sustentar'} for a in assets]},BASE)
+    shots=[]
+    for i,cena in enumerate(historia['cenas']):
+        shots.append({'start':i*3,'end':(i+1)*3,'scene':cena['cenario'],
+                      'imagens':{'pasta_biblioteca':'..','fundo':cat['cenarios'][cena['cenario']]['img'],
+                                 'personagens':[],'aproximar':0,'balanco':0,'qualidade_visual':False,
+                                 'camera_ilustrada':cena['camera']}})
+    spec={'fps':24,'total':len(shots)*3,'loop':False,'narrado':True,'sem_audio_intencional':True,
+          'biblioteca':'cronicas','biblioteca_estado':'estudo_visual','perfil_direcao':historia['perfil_direcao'],
+          'producao':{'etapa':'previa_visual'},'interface':historia['interface'],'shots':shots,
+          'nota':'Cenários originais com câmera discreta e HUD; sem áudio ou animação de corpo.'}
+    salvar(out/'ambientes_originais_v2.json',spec)
+    font=ImageFont.truetype('C:/Windows/Fonts/arial.ttf',15)
+    sheet=Image.new('RGB',(270*3,508*2),'#10151d');draw=ImageDraw.Draw(sheet)
+    for i,(shot,asset) in enumerate(zip(shots,assets)):
+        t=shot['start']+1.5
+        im=desenhar_previa(spec,out,quadro(shot,t,out,(270,480)),shot,t)
+        x,y=i%3*270,i//3*508;sheet.paste(im,(x,y+28));draw.text((x+8,y+6),asset['nome'],font=font,fill='#e2c779')
+    sheet.save(out/'ambientes_originais_v2.png')
+    if render:
+        from lofi.revisao_cenas import revisar
+        pasta=out/'cenas-originais-v2';revisar(spec,out,pasta,max_segundos=3,size=(270,480))
+        lista=out/'concat_originais.txt'
+        lista.write_text('\n'.join("file 'cenas-originais-v2/"+f'cena_{i:03d}.mp4'+"'" for i in range(1,len(shots)+1))+'\n',encoding='utf-8')
+        subprocess.run([ffmpeg(),'-v','error','-y','-f','concat','-safe','0','-i',str(lista),'-c','copy','-movflags','+faststart',str(out/'ambientes_originais_v2.mp4')],check=True)
+    print(out/'ambientes_originais_v2.png')
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--render',action='store_true');args=p.parse_args();preparar(args.render)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--render',action='store_true');p.add_argument('--originais',action='store_true')
+    args=p.parse_args();(preparar_originais if args.originais else preparar)(args.render)

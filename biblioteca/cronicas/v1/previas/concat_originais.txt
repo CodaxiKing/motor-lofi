@@ -1,0 +1,6 @@
+file 'cenas-originais-v2/cena_001.mp4'
+file 'cenas-originais-v2/cena_002.mp4'
+file 'cenas-originais-v2/cena_003.mp4'
+file 'cenas-originais-v2/cena_004.mp4'
+file 'cenas-originais-v2/cena_005.mp4'
+file 'cenas-originais-v2/cena_006.mp4'

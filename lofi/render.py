@@ -801,6 +801,9 @@ class Episode:
         return img
 
     def choice_frame(self, shot, t):
+        if shot.get('escolha_ref') and shot.get('imagens'):
+            from .interface import desenhar
+            return desenhar(self,self.scene_frame(shot,t),shot,t)
         img = Image.new("RGB", (W, H), (10, 10, 14))
         for i, key in enumerate(("a", "b")):
             opt = shot[key]

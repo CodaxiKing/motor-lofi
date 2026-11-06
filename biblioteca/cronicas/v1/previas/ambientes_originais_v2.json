@@ -1,0 +1,196 @@
+{
+  "fps": 24,
+  "total": 18,
+  "loop": false,
+  "narrado": true,
+  "sem_audio_intencional": true,
+  "biblioteca": "cronicas",
+  "biblioteca_estado": "estudo_visual",
+  "perfil_direcao": "cronicas_situacional_v1",
+  "producao": {
+    "etapa": "previa_visual"
+  },
+  "interface": {
+    "layout": "sobrevivencia_compacta",
+    "cor": [
+      222,
+      191,
+      83
+    ],
+    "status": [
+      {
+        "rotulo": "ÁGUA",
+        "valor": 0.78,
+        "texto": "28L"
+      },
+      {
+        "rotulo": "COMIDA",
+        "valor": 0.45,
+        "texto": "4d"
+      },
+      {
+        "rotulo": "BIKE",
+        "valor": 0.31,
+        "texto": "31%"
+      },
+      {
+        "rotulo": "CEL",
+        "valor": 0.8,
+        "texto": "80%"
+      }
+    ],
+    "relogio": {
+      "dia": "SÁB",
+      "inicio": "22:55",
+      "seg_por_min": 60
+    },
+    "missao": {
+      "titulo": "SOBREVIVA 72H",
+      "prazo": "56:00"
+    },
+    "atalhos": [
+      "mochila",
+      "mapa",
+      "objetivo",
+      "bike"
+    ],
+    "topo": 0.125,
+    "relogio_y": 0.665,
+    "vinheta": 0.22
+  },
+  "shots": [
+    {
+      "start": 0,
+      "end": 3,
+      "scene": "posto_estrada",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_posto_estrada_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    },
+    {
+      "start": 3,
+      "end": 6,
+      "scene": "hospital_corredor",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_hospital_corredor_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    },
+    {
+      "start": 6,
+      "end": 9,
+      "scene": "mercado_saqueado",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_mercado_saqueado_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    },
+    {
+      "start": 9,
+      "end": 12,
+      "scene": "metro_plataforma",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_metro_plataforma_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    },
+    {
+      "start": 12,
+      "end": 15,
+      "scene": "floresta_torre",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_floresta_torre_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    },
+    {
+      "start": 15,
+      "end": 18,
+      "scene": "abrigo_radio",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_abrigo_radio_v1",
+        "personagens": [],
+        "aproximar": 0,
+        "balanco": 0,
+        "qualidade_visual": false,
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": [
+            1,
+            1.035
+          ],
+          "cx": 0.5,
+          "cy": 0.5
+        }
+      }
+    }
+  ],
+  "nota": "Cenários originais com câmera discreta e HUD; sem áudio ou animação de corpo."
+}

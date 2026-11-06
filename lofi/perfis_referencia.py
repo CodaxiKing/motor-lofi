@@ -15,23 +15,43 @@ def carregar(nome,base=BASE):
 
 def aplicar(historia,base=BASE):
     nome=historia.get('perfil_direcao')
+    if 'perfil_direcao' not in historia:
+        catalogo=Path(base)/'catalogo.json'
+        if catalogo.is_file():nome=json.loads(catalogo.read_text(encoding='utf-8')).get('direcao_padrao')
     if not nome:return historia
     perfil=carregar(nome,base);out=copy.deepcopy(historia)
+    out['perfil_direcao']=nome
     out.setdefault('interface',copy.deepcopy(perfil.get('interface',{})))
+    if isinstance(out.get('interface'),dict):
+        cfg=copy.deepcopy(perfil.get('interface',{}))
+        for campo,valor in out['interface'].items():
+            cfg[campo]=dict(cfg.get(campo,{ }),**valor) if isinstance(valor,dict) and isinstance(cfg.get(campo),dict) else valor
+        out['interface']=cfg
+    anterior=None
     for cena in out['cenas']:
         chave=cena.get('composicao_ref')
-        if not chave:continue
-        if chave not in perfil['composicoes']:raise ValueError('Composição de referência ausente: '+chave)
-        preset=perfil['composicoes'][chave]
-        cena.setdefault('cenario',preset['cenario'])
-        cena.setdefault('composicao','manual')
-        cena.setdefault('camera',copy.deepcopy(preset['camera']))
-        cena.setdefault('direcao_narrativa',False)
-        cena.setdefault('qualidade_visual',False)  # composição calibrada; revisão de pixels é etapa separada
-        if 'personagens' not in cena:
-            cena['personagens']=[copy.deepcopy(preset['ator'])] if preset.get('ator') else []
-        if 'interface' not in cena and preset.get('interface') is False:cena['interface']=False
-        if preset.get('interacao_visual'):cena.setdefault('interacao_visual',copy.deepcopy(preset['interacao_visual']))
+        if chave:
+            if chave not in perfil['composicoes']:raise ValueError('Composição de referência ausente: '+chave)
+            preset=perfil['composicoes'][chave]
+            cena.setdefault('cenario',preset['cenario'])
+            cena.setdefault('composicao','manual')
+            cena.setdefault('camera',copy.deepcopy(preset['camera']))
+            cena.setdefault('direcao_narrativa',False)
+            cena.setdefault('qualidade_visual',False)  # composição calibrada; revisão de pixels é etapa separada
+            if 'personagens' not in cena:
+                cena['personagens']=[copy.deepcopy(preset['ator'])] if preset.get('ator') else []
+            if 'interface' not in cena and preset.get('interface') is False:cena['interface']=False
+            if preset.get('interacao_visual'):cena.setdefault('interacao_visual',copy.deepcopy(preset['interacao_visual']))
+        elif perfil.get('edicao',{}).get('planos'):
+            cena.setdefault('personagens',[])
+            planos=perfil['edicao']['planos']
+            batida=cena.get('batida_visual','estabelecer' if cena.get('cenario')!=anterior else 'sustentar')
+            if batida not in planos:raise ValueError('Batida visual desconhecida: '+str(batida))
+            camera=planos[batida]
+            if batida=='reacao' and not cena.get('personagens'):camera=planos['detalhe']
+            cena.setdefault('camera',copy.deepcopy(camera))
+            cena.setdefault('direcao_narrativa',False)
+        anterior=cena.get('cenario')
     return out
 
 

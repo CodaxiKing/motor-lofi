@@ -106,3 +106,11 @@ continuidade. A interface não deve cobrir o rosto nem o objeto que prova a aç�
 Os frames do vídeo são material de análise; não entram como fundos finais no
 catálogo. Os assets novos mantêm arquivos separados e prompts próprios. A marca
 d'água do vídeo não é transferida para as novas artes ou para a interface.
+
+## Diretriz atual para Crônicas
+
+A expansão usa ambientes e histórias originais, preservando a linguagem de
+edição e a abertura situacional. Os presets que aproximam posições do vídeo são
+opcionais. O padrão e a explicação dos processos possíveis de animação estão em
+`biblioteca/cronicas/v1/EDICAO.md`. O arquivo analisado não permite confirmar
+se o autor usou IA ou atribuir sua produção a uma ferramenta específica.

@@ -8,9 +8,11 @@ Tudo é desenhado e animado por código, no estilo lo-fi flat: personagens expre
 ![Bocas e atuação](examples/atuacao.png)
 
 A [Biblioteca Crônicas](biblioteca/cronicas/v1/LEIA-ME.md) oferece um estilo visual
-separado: Mara original de cabeça redonda, sete cenários noturnos, quatro poses e
+separado: Mara original de cabeça redonda, treze cenários noturnos, quatro poses e
 direção de câmera baseada na referência fornecida. Inclui uma prévia de composição;
 o catálogo está em estudo visual, com animações completas ainda pendentes.
+O tipo de série `cronicas` seleciona essa biblioteca e seu padrão de roteiro e
+edição, com liberdade para criar cenários e histórias diferentes da referência.
 
 ---
 

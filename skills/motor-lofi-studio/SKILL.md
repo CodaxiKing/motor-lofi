@@ -4,6 +4,12 @@ description: Orquestra séries de animação 2D vertical de suspense, da histór
 ---
 # Motor Lo-Fi Studio 4.0 — skill principal
 
+Para o tipo Crônicas, selecione `--profile cronicas` ao iniciar a série: isso
+persiste biblioteca Crônicas e modo ilustrado. Leia `biblioteca/cronicas/v1/LEIA-ME.md`,
+`ROTEIRO.md` e `EDICAO.md`. Preserve a linguagem da referência com histórias e
+cenários originais. O catálogo herda direção de câmera, HUD e abertura situacional.
+As poses atuais são estáticas; use prévia visual enquanto as animações estiverem pendentes.
+
 No modo biblioteca ilustrada, siga também `biblioteca/ilustrada/v1/NITIDEZ.md`.
 Use as variantes por enquadramento e revise a ampliação na resolução de entrega
 com `python -m lofi.qualidade_visual spec.json --out nitidez.json`. A troca de arte
