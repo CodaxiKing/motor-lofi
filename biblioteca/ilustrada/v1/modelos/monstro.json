@@ -1,0 +1,410 @@
+{
+  "version": 2,
+  "padrao_criacao": 1,
+  "id": "modelo_monstro",
+  "nome": "modelo_monstro",
+  "tipo_movimento": "monstro",
+  "estado_producao": "rascunho",
+  "altura_m": null,
+  "preferencia_animacao": "quadros",
+  "pasta_assets": "monstros/modelo_monstro",
+  "perfil_movimento": {
+    "regra": "Descrever a anatomia, apoios, cadência e intenção de cada ação exclusiva antes de produzir arte."
+  },
+  "ciclos_direcionais": {
+    "frente": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "frente_direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "costas_direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "costas": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "costas_esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "frente_esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "cima": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    },
+    "baixo": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "espreitar": null,
+      "rastejar": null,
+      "atacar": null,
+      "avancar": null
+    }
+  },
+  "transicoes_direcionais": {
+    "frente": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "frente_direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas_direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas_esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "frente_esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "cima": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "baixo": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    }
+  },
+  "encaixes_items": {},
+  "items_obrigatorios": [],
+  "items_direcionais": {},
+  "revisao_visual": {
+    "silhueta": false,
+    "apoios": false,
+    "escala": false,
+    "loop": false,
+    "anatomia": false,
+    "encaixes": false
+  },
+  "notas": "Preencher com PNGs e ciclos reais. Nenhum caminho nulo representa animação pronta."
+}

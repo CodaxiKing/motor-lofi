@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "ferramenta": "image_gen integrado",
+  "referencia": "imagens/fundo_corredor_v1.png (somente estilo)",
+  "cenarios": [
+    {
+      "id": "pov_rua_quarentena",
+      "nome": "Rua em quarentena — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_rua_quarentena_v1",
+      "iluminacao": {"piso":[[0,0.74],[0.36,0.59],[0.64,0.59],[1,0.76],[1,1],[0,1]],"ambiente":0.16,"luzes":[{"id":"luar","tipo":"direcional","direcao":[0.65,0.4],"intensidade":0.3,"suavidade":0.9},{"id":"alarme","tipo":"pontual","posicao":[0.63,0.64],"altura_m":3.4,"intensidade":0.25,"suavidade":0.6}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At eye level 1.6m, standing in a narrow ruined street at midnight looking toward a half-open quarantine barrier. Abandoned cars only at margins, broken windows, slack overhead wires, deep blue cold moonlight, one faint red warning beacon, low ground mist. Forward escape route readable.",
+      "source": "exec-c192a0a6-b04a-41a8-a121-0bb48100c02e.png",
+      "ligacoes": [
+        "pov_hospital",
+        "pov_metro",
+        "pov_igreja",
+        "pov_floresta"
+      ]
+    },
+    {
+      "id": "pov_hospital",
+      "nome": "Hospital abandonado — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_hospital_v1",
+      "iluminacao": {"piso":[[0,0.94],[0.35,0.61],[0.65,0.61],[1,0.94],[1,1],[0,1]],"ambiente":0.13,"luzes":[{"id":"emergencia","tipo":"pontual","posicao":[0.5,0.68],"altura_m":2.7,"intensidade":0.5,"suavidade":0.65},{"id":"janela","tipo":"pontual","posicao":[0.19,0.83],"altura_m":2.5,"intensidade":0.3,"suavidade":0.9}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At human eye height looking directly down the derelict hospital ward corridor at midnight. Very near peeling doorway framing left and right edges, gurneys at sides, broken ceiling panels and dark rooms, cold green emergency fluorescent in far distance, a subtle pool of moonlight. Threatening depth, empty center.",
+      "source": "exec-5a23c3cc-4e7f-4041-81c5-a701da232045.png",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_escadaria"
+      ]
+    },
+    {
+      "id": "pov_abrigo",
+      "nome": "Abrigo barricado — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_abrigo_v1",
+      "iluminacao": {"piso":[[0.23,1],[0.3,0.67],[0.65,0.67],[0.66,0.79],[0.48,0.85],[0.46,1]],"ambiente":0.18,"luzes":[{"id":"lanternim","tipo":"pontual","posicao":[0.28,0.76],"altura_m":1.8,"intensidade":0.7,"suavidade":0.7},{"id":"porta","tipo":"pontual","posicao":[0.51,0.67],"altura_m":2.3,"intensidade":0.2,"suavidade":0.95}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: Inside a decrepit boarded wooden survival shelter at eye level, very near wooden table lower right edge and open doorway center revealing a dark foggy forest. Splintered barricade boards, discarded supplies at sides, just one small dim amber lantern contrasted with deep midnight navy, suspenseful cinematic composition.",
+      "source": "exec-12ad375b-0a52-4cdf-afcb-d711ff59694a.png",
+      "ligacoes": [
+        "pov_floresta"
+      ]
+    },
+    {
+      "id": "pov_floresta",
+      "nome": "Trilha macabra — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_floresta_v1",
+      "iluminacao": {"piso":[[0.19,1],[0.36,0.72],[0.52,0.61],[0.61,0.62],[0.65,0.7],[0.61,0.82],[0.81,1]],"ambiente":0.12,"luzes":[{"id":"luar","tipo":"direcional","direcao":[-0.6,0.7],"intensidade":0.3,"suavidade":0.95}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At eye height on a narrow winding forest trail in the dead of night. Near twisted bare tree branches surround the top and side edges, distant pale moon rays through fog, damp leaves and stones, low gray mist, dim cold navy blue atmosphere. Dense ominous woods, clearly seen path but unseen bend.",
+      "source": "exec-6f25805d-9df9-4124-9590-8da6b38cd8e3.png",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_abrigo"
+      ]
+    },
+    {
+      "id": "pov_metro",
+      "nome": "Metrô interditado — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_metro_v1",
+      "iluminacao": {"piso":[[0,1],[0.31,0.51],[0.44,0.51],[0.47,0.64],[0.67,1]],"ambiente":0.16,"luzes":[{"id":"fluorescente","tipo":"pontual","posicao":[0.27,0.8],"altura_m":3,"intensidade":0.6,"suavidade":0.65},{"id":"fundo","tipo":"pontual","posicao":[0.42,0.55],"altura_m":2.8,"intensidade":0.18,"suavidade":0.8}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At human eye level on a deserted decayed subway platform at midnight. Close concrete pillars to one side, corroded train with open doors on other side, broken tiled walls, flooded tracks beyond platform, a few failing green fixtures and distant red signal in black tunnel. Floor safe and readable, eerie claustrophobic depth.",
+      "source": "exec-d97c6f73-aae8-4ce5-b4ae-a190da021a2c.png",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_esgoto"
+      ]
+    },
+    {
+      "id": "pov_esgoto",
+      "nome": "Galeria subterrânea — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_esgoto_v1",
+      "iluminacao": {"piso":[[0,1],[0.34,0.6],[0.46,0.6],[0.46,0.72],[0.57,1]],"ambiente":0.15,"luzes":[{"id":"arandela","tipo":"pontual","posicao":[0.2,0.75],"altura_m":2.2,"intensidade":0.6,"suavidade":0.7},{"id":"abertura","tipo":"pontual","posicao":[0.5,0.6],"altura_m":2.5,"intensidade":0.22,"suavidade":0.9}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At human eye level looking forward along a damp brick sewer maintenance walkway, arched tunnel ceiling overhead, wet rusted pipes near both edges, shallow water channel to right, sparse very dim green utility light, cold pale mist drifting from far opening. Intimidating blue-black shadows, distinct walkway.",
+      "source": "exec-9d3ebba1-2789-4ac5-96b3-64c01a2338a2.png",
+      "ligacoes": [
+        "pov_metro"
+      ]
+    },
+    {
+      "id": "pov_igreja",
+      "nome": "Igreja em ruínas — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_igreja_v1",
+      "iluminacao": {"piso":[[0.22,1],[0.38,0.67],[0.62,0.67],[0.79,1]],"ambiente":0.14,"luzes":[{"id":"luar_telhado","tipo":"pontual","posicao":[0.63,0.84],"altura_m":7,"intensidade":0.45,"suavidade":0.9}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: From human eye height at the rear of an abandoned gothic stone chapel, looking down center aisle between broken pews toward a distant ruined altar and shattered stained glass. Partial collapsed roof reveals cold midnight moonlight, muted desaturated blue-gray, low mist and torn cloth, heavy deep shadows, empty center aisle.",
+      "source": "exec-fcdc6437-f103-46af-ab2a-841d689098a0.png",
+      "ligacoes": [
+        "pov_rua_quarentena"
+      ]
+    },
+    {
+      "id": "pov_escadaria",
+      "nome": "Escadaria de emergência — primeira pessoa",
+      "img": "cenarios/primeira_pessoa/fundo_pov_escadaria_v1",
+      "iluminacao": {"piso":[[0,0.91],[0.49,0.58],[0.83,0.6],[1,0.86],[1,1],[0,1]],"ambiente":0.13,"luzes":[{"id":"alarme","tipo":"pontual","posicao":[0.68,0.67],"altura_m":2.7,"intensidade":0.5,"suavidade":0.65},{"id":"janela","tipo":"pontual","posicao":[0.2,0.77],"altura_m":3.3,"intensidade":0.32,"suavidade":0.85}],"espaco":"cenario","calibracao":"Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."},
+      "prompt": "Use case: illustration-story. Create ONE finished opaque cinematic dark horror environment background in vertical 9:16 format, high resolution at least 1024x1792. Reference image is STYLE ONLY: match its painterly textured 2D graphic novel illustration, coherent architectural lines, detailed worn surfaces, soft volumetric lighting, restrained brushwork. NEW first-person POV environment seen through the eyes of a person physically inside the space, eye-level perspective, foreground elements close to lens at edges and deep vanishing point. Dark cinematic survival horror / zombie apocalypse setting at night, cold desaturated navy and blue-gray, subtle limited light accents, threatening atmospheric depth while retaining visible environmental detail. Do not show the viewer body, hands, weapons or flashlight; keep optional modular hand/item overlays separate for later compositing. No humans, zombies, creatures, silhouettes, corpses, gore, blood, glowing eyes, readable text, logos, UI, frames, grids or watermarks. One single immersive scene, no panels. Do not force a third-person stage or large empty lower third; authentic first-person framing is essential.\nEnvironment: At human eye height from a small concrete landing, looking diagonally down a derelict emergency stairwell. Near rusty handrail crossing lower edge, broken paint, puddles, ominous half-open steel door below, faint red emergency lamp and blue moonlight through narrow upper window. Strong cinematic depth and convincing inhabitable perspective.",
+      "source": "exec-90ab32b9-8b47-48c9-925c-9c5dedc46a5b.png",
+      "ligacoes": [
+        "pov_hospital"
+      ]
+    }
+  ]
+}

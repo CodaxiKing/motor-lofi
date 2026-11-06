@@ -42,7 +42,7 @@ def iluminacao(cfg,base):
     if 'iluminacao' in cfg:return copy.deepcopy(cfg['iluminacao'])
     path=Path(base)/'catalogo.json'
     if path.is_file():
-        nome=cfg.get('fundo','');nome=nome if nome.startswith('fundo_') else 'fundo_'+nome
+        nome=cfg.get('fundo','');nome=nome if '/' in nome or nome.startswith(('fundo_','ref_')) else 'fundo_'+nome
         c=_catalogo(str(path),path.stat().st_mtime_ns).get(nome)
         if c is not None:return copy.deepcopy(c)
     return copy.deepcopy(PADRAO)

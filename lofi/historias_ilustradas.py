@@ -47,6 +47,10 @@ def arquivo(catalogo_path, nome):
 
 def validar_catalogo(caminho=CATALOGO):
     catalogo = carregar(caminho); problemas = []
+    if catalogo.get('padrao_criacao'):
+        from .padrao_personagens import auditar_catalogo
+        for identidade, resultado in auditar_catalogo(catalogo, Path(caminho).resolve().parent).items():
+            problemas.extend(f'{identidade}: {erro}' for erro in resultado.get('erros', []))
     for chave, pessoa in catalogo.get('personagens', {}).items():
         for pose, item in {**pessoa.get('poses', {}), **pessoa.get('microposes', {}), **{f'ciclo_{c}_{i}': f for c, ciclo in pessoa.get('ciclos', {}).items() for i, f in enumerate(ciclo['frames'])}}.items():
             p = arquivo(caminho, item['img'])
@@ -100,6 +104,8 @@ def inventario(caminho=CATALOGO):
                             for k, p in c['personagens'].items()},
             'cenarios': {k: p['descricao'] for k, p in c['cenarios'].items()},
             'cameras': {k: list(p.get('cameras', {})) for k,p in c['cenarios'].items() if p.get('cameras')},
+            'primeira_pessoa': [k for k,p in c['cenarios'].items() if p.get('perspectiva')=='primeira_pessoa'],
+            'padrao_criacao': c.get('padrao_criacao'),
             'objetos': list(c.get('objetos', {})),
             'enquadramentos': ['auto','aberto','conjunto','inteiro','americano','medio','close','detalhe'],
             'grupos': {'personagens': [k for k,p in c['personagens'].items() if p.get('tipo')!='criatura'],
@@ -256,16 +262,30 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
                             'chao': a.get('chao', .93), 'ancora': ficha.get('ancora', [.5,1]),
                             'espelhar': a.get('espelhar', False if s.get('travelling') else a.get('pos', .5) > .5), 'piscar': False,
                             'respirar': a.get('respirar', .5), 'balanco_corpo': a.get('balanco_corpo', .5)})
-            if a.get('animacao') == 'quadros' or a.get('movimentos'):
+            direcional = p.get('composicao', {}).get('ciclos_direcionais', {})
+            angulo_ator = a.get('angulo', 'frente')
+            if direcional and angulo_ator not in direcional:
+                raise ValueError(f'Ângulo ausente: {a["id"]}/{angulo_ator}')
+            if direcional and a.get('animacao', 'quadros') != 'quadros':
+                raise ValueError('Novas identidades direcionais usam animacao=quadros')
+            if direcional:
+                pessoas[-1].update(orientacao=a.get('orientacao','manual'), espelhar=a.get('espelhar',False))
+            if a.get('animacao') == 'quadros' or a.get('movimentos') or direcional:
                 ciclos = p.get('composicao', {}).get('ciclos_quadros', {})
+                transicoes = p.get('composicao', {}).get('transicoes', {})
+                if direcional:
+                    ciclos = direcional[angulo_ator]
+                    transicoes = p.get('composicao', {}).get('transicoes_direcionais', {}).get(angulo_ator, {})
                 seq = []
                 if a.get('movimentos'):
                     if a.get('animacoes_quadros'):raise ValueError('Use movimentos ou animacoes_quadros')
                     from .transicoes_ilustradas import planejar as planejar_movimentos
-                    seq=planejar_movimentos(a['movimentos'],ciclos,p.get('composicao',{}).get('transicoes',{}))
+                    seq=planejar_movimentos(a['movimentos'],ciclos,transicoes)
                 for ac in a.get('animacoes_quadros', []):
                     if ac['acao'] not in ciclos: raise ValueError(f'Ciclo ausente: {a["id"]}/{ac["acao"]}')
                     seq.append(dict(ac, ciclo=ciclos[ac['acao']]))
+                if not seq and direcional:
+                    seq = [{'acao':'parado','ciclo':ciclos['parado'],'inicio':0,'fim':fim-clock,'modo':'loop'}]
                 if not seq: raise ValueError('Informe animacoes_quadros')
                 pessoas[-1]['animacoes_quadros'] = seq
                 pessoas[-1]['seguir_travelling'] = a.get('seguir_travelling', bool(s.get('travelling')))
@@ -293,6 +313,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
         cfg = {'pasta_biblioteca': raiz_relativa, 'fundo': lugar['img'],
                'personagens': pessoas, 'aproximar': 0, 'balanco': 0, 'plano': 'aberto', 'alvo': 0,
                'camera_ilustrada': config_camera}
+        if lugar.get('perspectiva'): cfg['perspectiva'] = lugar['perspectiva']
         if s.get('travelling'): cfg['travelling'] = copy.deepcopy(s['travelling'])
         if 'iluminacao' in s: cfg['iluminacao'] = copy.deepcopy(s['iluminacao'])
         elif lugar.get('iluminacao'): cfg['iluminacao'] = copy.deepcopy(lugar['iluminacao'])
@@ -344,7 +365,7 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
             for e in eventos:
                 if e['speaker']!='narrador' and shot['start']<=e['start']<e['end']<=shot['end'] and e['end']-e['start']>=.8:
                     batidas.append({'tipo':'fala','inicio':e['start']-shot['start'],'fim':e['end']-shot['start'],'alvo':e['speaker']})
-            if not batidas and (s.get('revela') or s.get('resolve')) and dur>=3:
+            if not batidas and s['personagens'] and (s.get('revela') or s.get('resolve')) and dur>=3:
                 batidas=[{'tipo':'descoberta','inicio':dur-2,'fim':dur,'alvo':s['personagens'][0]['id']}]
         if batidas and s.get('direcao_narrativa',True) and not cfg['camera_ilustrada'].get('cortes'):
             cfg['camera_ilustrada']['cortes']=planejar_camera(batidas,dur,cfg['personagens'])

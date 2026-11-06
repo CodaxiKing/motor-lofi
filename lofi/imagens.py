@@ -356,12 +356,16 @@ def carregar(pasta_serie, nome):
     if k not in _CACHE:
         if len(_CACHE) > 60: _CACHE.clear()
         im = Image.open(cam).convert("RGBA")
-        if not nome.startswith(("fundo_", "ref_")) and im.split()[3].getextrema()[0] >= 250: im = tirar_fundo(im)
+        if not os.path.basename(nome).startswith(("fundo_", "ref_")) and im.split()[3].getextrema()[0] >= 250: im = tirar_fundo(im)
         _CACHE[k] = im
     return _CACHE[k]
 
 
 POS = {"esq": 0.28, "esquerda": 0.28, "centro": 0.5, "meio": 0.5, "dir": 0.72, "direita": 0.72}
+
+
+def nome_fundo(nome):
+    return nome if '/' in nome or nome.startswith(('fundo_', 'ref_')) else 'fundo_' + nome
 
 
 def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=True,diagnostico=None):
@@ -396,7 +400,7 @@ def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=T
     sombras_chao = []; fundo_info = None
     sway = math.sin(t * 0.65) * W_ * 0.006 * cfg.get("balanco", 1.0)      # câmera balança de leve; o fundo mexe menos (paralaxe)
     if cfg.get("fundo"):
-        fundo = carregar(pasta_serie, cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
+        fundo = carregar(pasta_serie, nome_fundo(cfg['fundo']))
         s = max(W_ / fundo.width, H_ / fundo.height) * 1.03
         fy = cfg.get("fundo_y", 0.5)
         fundo_x = (W_ - fundo.width*s)/2
@@ -659,7 +663,7 @@ def faltam(spec_path):
                     rig = ler_rig(base, p['rig_camadas']); nomes.append(rig['atlas'])
                 except FileNotFoundError: falta.append((s['start'], 'rig:' + p['rig_camadas']))
         nomes += [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", []) + cfg.get('oclusores',[])]
-        if cfg.get("fundo"): nomes.append(cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
+        if cfg.get("fundo"): nomes.append(nome_fundo(cfg['fundo']))
         falta += [(s["start"], n) for n in dict.fromkeys(nomes) if n not in ja]
     return falta
 

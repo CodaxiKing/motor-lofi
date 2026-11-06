@@ -1,10 +1,16 @@
 # Biblioteca ilustrada v1
 
-Modo opcional do Motor Lo-Fi: 5 identidades, 15 recortes por pose e 3 fundos.
+Modo opcional do Motor Lo-Fi: 5 identidades, recortes, ciclos completos e 15 fundos/ângulos.
 Lucas mantém as cinco poses iniciais e ganha perfil, costas e uma pose de corrida.
 Clara e Téo têm poses de atenção e medo. Lucas de Amanhã tem uma pose de ameaça
 encapuzada. O Mímico tem poses de presença e chamado; é uma criatura ficcional
-inspirada em skinwalker. Os ambientes são entrada, corredor e floresta.
+inspirada em skinwalker. Os ambientes originais são entrada, corredor e floresta.
+O catálogo também inclui ângulos do abrigo e oito ambientes dark cinematic em
+[primeira pessoa](PRIMEIRA_PESSOA.md).
+
+Novas criações seguem o [padrão do motor](PADRAO_CRIACAO.md): dez vistas,
+repertório obrigatório, transições e coreografias próprias para monstros.
+Os modelos e o validador ficam salvos no repositório para uso em outro computador.
 
 Os PNGs em `imagens/` são arte real gerada com image_gen. O catálogo registra
 dimensões, âncoras dos pés e hashes dos recortes. `prompts.md` guarda os prompts

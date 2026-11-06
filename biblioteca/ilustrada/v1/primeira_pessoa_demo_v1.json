@@ -1,0 +1,100 @@
+{
+  "fps": 24,
+  "size": [
+    432,
+    768
+  ],
+  "total": 24,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 3,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_rua_quarentena_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 3,
+      "end": 6,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_hospital_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 6,
+      "end": 9,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_abrigo_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 9,
+      "end": 12,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_floresta_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 12,
+      "end": 15,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_metro_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 15,
+      "end": 18,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_esgoto_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 18,
+      "end": 21,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_igreja_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    },
+    {
+      "start": 21,
+      "end": 24,
+      "imagens": {
+        "fundo": "cenarios/primeira_pessoa/fundo_pov_escadaria_v1",
+        "personagens": [],
+        "perspectiva": "primeira_pessoa",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    }
+  ]
+}

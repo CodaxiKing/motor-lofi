@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "escopo": "Novas identidades da biblioteca ilustrada; os modos rig/imagens continuam disponíveis.",
+  "angulos": [
+    "frente",
+    "frente_direita",
+    "direita",
+    "costas_direita",
+    "costas",
+    "costas_esquerda",
+    "esquerda",
+    "frente_esquerda",
+    "cima",
+    "baixo"
+  ],
+  "vistas": {
+    "cima": "Câmera acima olhando para baixo.",
+    "baixo": "Câmera abaixo olhando para cima, em direção ao teto."
+  },
+  "acoes_comuns": {
+    "parado": {
+      "min_quadros": 8,
+      "modo": "loop",
+      "descricao": "Respiração, equilíbrio e retorno limpo à pose inicial."
+    },
+    "andar": {
+      "min_quadros": 8,
+      "modo": "loop",
+      "descricao": "Passada completa, alternância dos apoios e deslocamento calibrado."
+    },
+    "correr": {
+      "min_quadros": 8,
+      "modo": "loop",
+      "descricao": "Impulso, suspensão e aterrissagem; não acelerar o andar."
+    },
+    "agachar": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Descida contínua até posição baixa sustentada."
+    },
+    "levantar": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Retorno da posição baixa; pode inverter o ciclo agachar."
+    },
+    "pular": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Preparação, impulso, voo, contato e acomodação; chão virtual fixo."
+    },
+    "levantar_braco": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Preparação, elevação, pausa e retorno."
+    },
+    "interagir": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Alcance, contato com palma calibrada e retorno."
+    },
+    "reagir_medo": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Percepção, recuo e acomodação coerentes com a identidade."
+    },
+    "reagir_dano": {
+      "min_quadros": 8,
+      "modo": "uma_vez",
+      "descricao": "Impacto, desequilíbrio e recuperação sem troca de proporções."
+    }
+  },
+  "acoes_humanos": {
+    "segurar_item": {
+      "min_quadros": 8,
+      "modo": "loop",
+      "descricao": "Mão vazia preparada para objeto modular; manter encaixe por quadro."
+    }
+  },
+  "acoes_monstros": {
+    "espreitar": {
+      "min_quadros": 16,
+      "modo": "loop",
+      "descricao": "Coreografia própria da espécie, desenhada com seu corpo e ritmo."
+    },
+    "rastejar": {
+      "min_quadros": 16,
+      "modo": "loop",
+      "descricao": "Coreografia própria da espécie, desenhada com seu corpo e ritmo."
+    },
+    "atacar": {
+      "min_quadros": 16,
+      "modo": "uma_vez",
+      "descricao": "Coreografia própria da espécie, desenhada com seu corpo e ritmo."
+    },
+    "avancar": {
+      "min_quadros": 16,
+      "modo": "uma_vez",
+      "descricao": "Coreografia própria da espécie, desenhada com seu corpo e ritmo."
+    }
+  },
+  "transicoes": [
+    "parado>andar",
+    "andar>parado",
+    "andar>correr",
+    "correr>andar",
+    "correr>parado"
+  ],
+  "min_quadros_transicao": 4,
+  "items": [
+    "lanterna",
+    "estojo_medico",
+    "radio",
+    "chave_inglesa"
+  ],
+  "perfis_monstros": {
+    "zumbi": {
+      "andar": "Arrastar pés, coluna caída, ombros assimétricos e braços à frente.",
+      "correr": "Avanço cambaleante em arrancadas, sem passada atlética humana.",
+      "agachar": "Dobrar corpo de forma pesada e instável.",
+      "pular": "Impulso desajeitado, queda pesada e recuperação lenta.",
+      "espreitar": "Balanço irregular quase imóvel.",
+      "rastejar": "Arrastar pernas e puxar corpo com antebraços.",
+      "atacar": "Alcance abrupto e agarrão com perda de equilíbrio.",
+      "avancar": "Investida curta e trôpega."
+    },
+    "skinwalker": {
+      "andar": "Passos alongados desconfortáveis e pausas abruptas.",
+      "correr": "Corrida baixa predatória com tronco torcido e mãos próximas do chão.",
+      "agachar": "Contorcer tronco e dobrar articulações dentro da anatomia da criatura.",
+      "pular": "Salto predatório com compressão e extensão longa.",
+      "espreitar": "Imobilidade tensa com inclinações descontínuas do rosto e ombros.",
+      "rastejar": "Apoio quadrúpede assimétrico e deslocamento furtivo.",
+      "atacar": "Bote macabro com extensão dos membros e recuo.",
+      "avancar": "Investida frontal própria, compatível com retratos de susto."
+    },
+    "monstro": {
+      "regra": "Descrever a anatomia, apoios, cadência e intenção de cada ação exclusiva antes de produzir arte."
+    }
+  },
+  "qualidade": {
+    "preferencia_animacao": "quadros",
+    "corpo": "PNG transparente completo, roupa/proporção/iluminação consistentes; nenhum frame humano emprestado a monstros.",
+    "min_altura_corpo_px": 600,
+    "apoios": "Âncora e altura física fixas; pés em suspensão têm apoio=false.",
+    "revisao": [
+      "silhueta",
+      "apoios",
+      "escala",
+      "loop",
+      "anatomia",
+      "encaixes"
+    ],
+    "rostos": "Piscar, olhar e falar só com recortes locais calibrados para a pose e ângulo; narração não move a boca."
+  },
+  "legados": [
+    "lucas",
+    "clara",
+    "teo",
+    "amanha",
+    "mimico"
+  ]
+}

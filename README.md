@@ -165,6 +165,10 @@ O perfil valida o planejamento; ele não corta nem acelera automaticamente o ví
 
 #### Modo opcional de histórias ilustradas
 
+Novos personagens e monstros seguem um [contrato de criação persistido](biblioteca/ilustrada/v1/PADRAO_CRIACAO.md),
+com dez vistas, ciclos completos, transições e coreografias próprias por criatura.
+Há também oito [cenários dark cinematic em primeira pessoa](biblioteca/ilustrada/v1/PRIMEIRA_PESSOA.md).
+
 O módulo `lofi.historias_ilustradas` usa `biblioteca/ilustrada/v1/catalogo.json`
 para montar histórias com personagens e cenários já produzidos. Ele coexiste
 com o rig, o modo imagens e os recortes individuais. Nada migra automaticamente.

@@ -962,6 +962,552 @@
         ],
         "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
       }
+    },
+    "pov_rua_quarentena": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_rua_quarentena_v1",
+      "descricao": "Rua em quarentena — primeira pessoa",
+      "ligacoes": [
+        "pov_hospital",
+        "pov_metro",
+        "pov_igreja",
+        "pov_floresta"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "8c2f05ae1a6ffb38b27870dccb5ae391f09c7c1fee283243cbff5c387de0fbb8",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0,
+            0.74
+          ],
+          [
+            0.36,
+            0.59
+          ],
+          [
+            0.64,
+            0.59
+          ],
+          [
+            1,
+            0.76
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "ambiente": 0.16,
+        "luzes": [
+          {
+            "id": "luar",
+            "tipo": "direcional",
+            "direcao": [
+              0.65,
+              0.4
+            ],
+            "intensidade": 0.3,
+            "suavidade": 0.9
+          },
+          {
+            "id": "alarme",
+            "tipo": "pontual",
+            "posicao": [
+              0.63,
+              0.64
+            ],
+            "altura_m": 3.4,
+            "intensidade": 0.25,
+            "suavidade": 0.6
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_hospital": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_hospital_v1",
+      "descricao": "Hospital abandonado — primeira pessoa",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_escadaria"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "18e16218e5ec551373263fd1870c9e68181adf81b5fdcd6eeb18bb1b3f9a7639",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0,
+            0.94
+          ],
+          [
+            0.35,
+            0.61
+          ],
+          [
+            0.65,
+            0.61
+          ],
+          [
+            1,
+            0.94
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "ambiente": 0.13,
+        "luzes": [
+          {
+            "id": "emergencia",
+            "tipo": "pontual",
+            "posicao": [
+              0.5,
+              0.68
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.5,
+            "suavidade": 0.65
+          },
+          {
+            "id": "janela",
+            "tipo": "pontual",
+            "posicao": [
+              0.19,
+              0.83
+            ],
+            "altura_m": 2.5,
+            "intensidade": 0.3,
+            "suavidade": 0.9
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_abrigo": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_abrigo_v1",
+      "descricao": "Abrigo barricado — primeira pessoa",
+      "ligacoes": [
+        "pov_floresta"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "3ffc9d921e55792782da6401e801436cade24ae15b55145145a13d5c898c4568",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0.23,
+            1
+          ],
+          [
+            0.3,
+            0.67
+          ],
+          [
+            0.65,
+            0.67
+          ],
+          [
+            0.66,
+            0.79
+          ],
+          [
+            0.48,
+            0.85
+          ],
+          [
+            0.46,
+            1
+          ]
+        ],
+        "ambiente": 0.18,
+        "luzes": [
+          {
+            "id": "lanternim",
+            "tipo": "pontual",
+            "posicao": [
+              0.28,
+              0.76
+            ],
+            "altura_m": 1.8,
+            "intensidade": 0.7,
+            "suavidade": 0.7
+          },
+          {
+            "id": "porta",
+            "tipo": "pontual",
+            "posicao": [
+              0.51,
+              0.67
+            ],
+            "altura_m": 2.3,
+            "intensidade": 0.2,
+            "suavidade": 0.95
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_floresta": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_floresta_v1",
+      "descricao": "Trilha macabra — primeira pessoa",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_abrigo"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "501629072331d4fb35f6c17a2bb20dae3e4828244fb8906068b7969e37c5f6bf",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0.19,
+            1
+          ],
+          [
+            0.36,
+            0.72
+          ],
+          [
+            0.52,
+            0.61
+          ],
+          [
+            0.61,
+            0.62
+          ],
+          [
+            0.65,
+            0.7
+          ],
+          [
+            0.61,
+            0.82
+          ],
+          [
+            0.81,
+            1
+          ]
+        ],
+        "ambiente": 0.12,
+        "luzes": [
+          {
+            "id": "luar",
+            "tipo": "direcional",
+            "direcao": [
+              -0.6,
+              0.7
+            ],
+            "intensidade": 0.3,
+            "suavidade": 0.95
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_metro": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_metro_v1",
+      "descricao": "Metrô interditado — primeira pessoa",
+      "ligacoes": [
+        "pov_rua_quarentena",
+        "pov_esgoto"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "43ae8166f138be32120fd0caa2e5b45ea8223a6171d443093134901f6294c260",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0,
+            1
+          ],
+          [
+            0.31,
+            0.51
+          ],
+          [
+            0.44,
+            0.51
+          ],
+          [
+            0.47,
+            0.64
+          ],
+          [
+            0.67,
+            1
+          ]
+        ],
+        "ambiente": 0.16,
+        "luzes": [
+          {
+            "id": "fluorescente",
+            "tipo": "pontual",
+            "posicao": [
+              0.27,
+              0.8
+            ],
+            "altura_m": 3,
+            "intensidade": 0.6,
+            "suavidade": 0.65
+          },
+          {
+            "id": "fundo",
+            "tipo": "pontual",
+            "posicao": [
+              0.42,
+              0.55
+            ],
+            "altura_m": 2.8,
+            "intensidade": 0.18,
+            "suavidade": 0.8
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_esgoto": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_esgoto_v1",
+      "descricao": "Galeria subterrânea — primeira pessoa",
+      "ligacoes": [
+        "pov_metro"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "77493d3132db75a633515e432796fce3e5e2f2c9cbf6d1e4f1a7413529330dd2",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0,
+            1
+          ],
+          [
+            0.34,
+            0.6
+          ],
+          [
+            0.46,
+            0.6
+          ],
+          [
+            0.46,
+            0.72
+          ],
+          [
+            0.57,
+            1
+          ]
+        ],
+        "ambiente": 0.15,
+        "luzes": [
+          {
+            "id": "arandela",
+            "tipo": "pontual",
+            "posicao": [
+              0.2,
+              0.75
+            ],
+            "altura_m": 2.2,
+            "intensidade": 0.6,
+            "suavidade": 0.7
+          },
+          {
+            "id": "abertura",
+            "tipo": "pontual",
+            "posicao": [
+              0.5,
+              0.6
+            ],
+            "altura_m": 2.5,
+            "intensidade": 0.22,
+            "suavidade": 0.9
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_igreja": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_igreja_v1",
+      "descricao": "Igreja em ruínas — primeira pessoa",
+      "ligacoes": [
+        "pov_rua_quarentena"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "fbc198ae2456aa19ffef279ca1bacb5188d91e54b4da07532c69c3954ed23444",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0.22,
+            1
+          ],
+          [
+            0.38,
+            0.67
+          ],
+          [
+            0.62,
+            0.67
+          ],
+          [
+            0.79,
+            1
+          ]
+        ],
+        "ambiente": 0.14,
+        "luzes": [
+          {
+            "id": "luar_telhado",
+            "tipo": "pontual",
+            "posicao": [
+              0.63,
+              0.84
+            ],
+            "altura_m": 7,
+            "intensidade": 0.45,
+            "suavidade": 0.9
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
+    },
+    "pov_escadaria": {
+      "img": "cenarios/primeira_pessoa/fundo_pov_escadaria_v1",
+      "descricao": "Escadaria de emergência — primeira pessoa",
+      "ligacoes": [
+        "pov_hospital"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "dedb3da4ad8b00b070b795c40da85cfbf5c26d6e27ec71ba4c2a1f69971d255a",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0,
+            0.91
+          ],
+          [
+            0.49,
+            0.58
+          ],
+          [
+            0.83,
+            0.6
+          ],
+          [
+            1,
+            0.86
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "ambiente": 0.13,
+        "luzes": [
+          {
+            "id": "alarme",
+            "tipo": "pontual",
+            "posicao": [
+              0.68,
+              0.67
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.5,
+            "suavidade": 0.65
+          },
+          {
+            "id": "janela",
+            "tipo": "pontual",
+            "posicao": [
+              0.2,
+              0.77
+            ],
+            "altura_m": 3.3,
+            "intensidade": 0.32,
+            "suavidade": 0.85
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      }
     }
   },
   "escala_referencia_m": 1.7,
@@ -990,5 +1536,6 @@
       "x": 0.5,
       "y": 0.74
     }
-  }
+  },
+  "padrao_criacao": "padrao_criacao.json"
 }

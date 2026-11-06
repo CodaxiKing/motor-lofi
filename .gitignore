@@ -26,6 +26,10 @@ asset-library/
 _cache_deitado/
 _editor/
 _editor_cache/
+.test-deps/
+.test-tmp/
+
+!biblioteca/ilustrada/v1/previas/primeira_pessoa_v1.png
 
 !biblioteca/ilustrada/v1/imagens/**/*.png
 

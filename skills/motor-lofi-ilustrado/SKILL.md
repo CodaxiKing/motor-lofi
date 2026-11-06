@@ -35,6 +35,15 @@ para uma história original, escreva o plano conforme as etapas acima.
 
 ## Biblioteca e arte
 
+Antes de criar qualquer identidade, leia `biblioteca/ilustrada/v1/PADRAO_CRIACAO.md`
+e `padrao_criacao.json`. Gere a ficha com `python -m lofi.padrao_personagens novo`.
+Complete as dez vistas, ações, transições e revisão antes de registrar como pronta.
+Zumbis e skinwalkers usam perfis próprios; monstros ficam em `imagens/monstros/<id>`
+e não reutilizam desenhos humanos. Consulte a auditoria para distinguir identidades
+legadas de novas criações certificadas. Não declare um modelo nulo como arte pronta.
+Para ambientes dark cinematic POV, consulte `biblioteca/ilustrada/v1/PRIMEIRA_PESSOA.md`
+e o inventário `primeira_pessoa`; use os fundos existentes antes de gerar variantes.
+
 Para nitidez e closes, leia `biblioteca/ilustrada/v1/NITIDEZ.md`. Consulte
 `arte_por_plano` no personagem: o renderer escolhe retratos compatíveis com plano,
 pose e expressão e limita a ampliação pelo número de pixels disponíveis.
