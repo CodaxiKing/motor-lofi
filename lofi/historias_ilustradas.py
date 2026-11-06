@@ -13,6 +13,14 @@ from .perfis_duracao import planejar
 
 RAIZ = Path(__file__).resolve().parents[1]
 CATALOGO = RAIZ / 'biblioteca' / 'ilustrada' / 'v1' / 'catalogo.json'
+CATALOGOS={'ilustrada':CATALOGO,'cronicas':RAIZ/'biblioteca/cronicas/v1/catalogo.json'}
+
+
+def catalogo_historia(historia,caminho=CATALOGO):
+    nome=historia.get('biblioteca')
+    if nome is not None and nome not in CATALOGOS:raise ValueError('Biblioteca desconhecida: '+str(nome))
+    if nome and Path(caminho).resolve()==CATALOGO.resolve():return CATALOGOS[nome]
+    return Path(caminho)
 
 
 def camera_cena(cena):
@@ -47,7 +55,7 @@ def arquivo(catalogo_path, nome):
 
 def validar_catalogo(caminho=CATALOGO):
     catalogo = carregar(caminho); problemas = []
-    if catalogo.get('padrao_criacao'):
+    if catalogo.get('padrao_criacao') and catalogo.get('estado_producao')!='estudo_visual':
         from .padrao_personagens import auditar_catalogo
         for identidade, resultado in auditar_catalogo(catalogo, Path(caminho).resolve().parent).items():
             problemas.extend(f'{identidade}: {erro}' for erro in resultado.get('erros', []))
@@ -102,6 +110,7 @@ def inventario(caminho=CATALOGO):
         p['ciclos_quadros'] = list(p.get('composicao', {}).get('ciclos_quadros', {}))
     return {'personagens': {k: {'nome': p['nome'], 'tipo': p.get('tipo', 'pessoa'), 'poses': list(p['poses']), 'ciclos_quadros': p['ciclos_quadros'], 'sustos': list(p.get('composicao', {}).get('sustos', {})), 'transicoes': list(p.get('composicao', {}).get('transicoes', {})), 'ciclos': list(p.get('ciclos', {})), 'altura_m': p.get('composicao', {}).get('altura_m'), 'animacao_camadas': bool(p.get('composicao', {}).get('rig_camadas')), 'poses_com_boca': list(p.get('composicao', {}).get('bocas_locais', {})), 'arte_por_plano': {plano: list(estados) for plano, estados in p.get('composicao', {}).get('arte_por_plano', {}).items()}}
                             for k, p in c['personagens'].items()},
+            'biblioteca':c.get('nome','Biblioteca ilustrada'),'estado_producao':c.get('estado_producao'),
             'cenarios': {k: p['descricao'] for k, p in c['cenarios'].items()},
             'cameras': {k: list(p.get('cameras', {})) for k,p in c['cenarios'].items() if p.get('cameras')},
             'primeira_pessoa': [k for k,p in c['cenarios'].items() if p.get('perspectiva')=='primeira_pessoa'],
@@ -216,6 +225,9 @@ def validar_historia(historia, catalogo):
 
 
 def roteiro_md(historia):
+    if historia.get('perfil_direcao') and any(s.get('composicao_ref') for s in historia['cenas']):
+        from .perfis_referencia import aplicar
+        historia=aplicar(historia,catalogo_historia(historia).parent)
     linhas = [f'# {historia["titulo"]}', '', f'Perfil de duração: {historia["perfil"]}',
               ('Formato: diálogos' if any(c.get('falas') for c in historia['cenas']) else 'Formato: 100% narrado'), '', 'EPISÓDIO 1/? · rascunho independente', '']
     for s in historia['cenas']:
@@ -235,7 +247,13 @@ def roteiro_md(historia):
 
 
 def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
-    c = carregar(caminho); validar_historia(historia, c)
+    caminho=catalogo_historia(historia,caminho)
+    c = carregar(caminho)
+    from .perfis_referencia import aplicar,auditar_abertura
+    historia=aplicar(historia,Path(caminho).resolve().parent)
+    if c.get('estado_producao')=='estudo_visual' and historia.get('producao',{}).get('etapa')!='previa_visual':
+        raise ValueError('Biblioteca em estudo visual: use producao.etapa=previa_visual; certifique as animações antes da produção final')
+    validar_historia(historia, c)
     pendencias = validar_catalogo(caminho)
     if pendencias: raise ValueError('; '.join(pendencias))
     base = Path(caminho).resolve().parent
@@ -334,7 +352,10 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
             cfg['composicao'] = s.get('composicao', 'auto')
         shot = {'start': clock, 'end': fim, 'imagens': cfg, 'scene': s['cenario'],
                 'director_notes': {'text': texto_cena(s), 'source_scene': s['n'], 'shot': plano}}
-        if i == 0: shot['hook'] = {'text': 'A VOZ ERA IGUAL.\nMAS VINHA DE FORA.'}
+        for campo in ('hora','status','missao','interface','dialogo','notificacao','alerta','telefone','escolha_ref','cartela','interacao_visual'):
+            if campo in s:shot[campo]=copy.deepcopy(s[campo])
+        if i == 0 and historia.get('mostrar_gancho',not bool(historia.get('perfil_direcao'))):
+            shot['hook'] = {'text':historia.get('abertura',{}).get('situacao') or texto_cena(s).split('. ')[0]}
         shots.append(shot); clock = fim
     lados = {letra.lower(): {'label': op['label'], 'scene': historia['cenas'][-1]['cenario'],
                              'imagens': copy.deepcopy(shots[-1]['imagens'])}
@@ -351,6 +372,12 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
             'production_status': 'rascunho visual; gravar e sincronizar narração antes do vídeo final'}
     from .dialogos import compilar as compilar_dialogos
     eventos, vozes, clips, subs = compilar_dialogos(historia['cenas'], shots, pasta, pasta_audio)
+    if historia.get('perfil_direcao'):
+        resultado['perfil_direcao']=historia['perfil_direcao']
+        resultado['abertura_review']=auditar_abertura(historia)
+    if historia.get('interface'):resultado['interface']=copy.deepcopy(historia['interface'])
+    if c.get('estado_producao'):
+        resultado['biblioteca_estado']=c['estado_producao']
     if historia.get('producao'):resultado['producao']=copy.deepcopy(historia['producao'])
     if eventos:
         resultado.update(dialogue_events=eventos, voices=vozes, clips=clips, subs=subs, narrado=not any(e['speaker']!='narrador' for e in eventos))
@@ -385,6 +412,9 @@ def compilar(historia, caminho=CATALOGO, pasta_saida=None, pasta_audio=None):
 
 
 def salvar(historia, destino, caminho=CATALOGO, pasta_audio=None):
+    caminho=catalogo_historia(historia,caminho)
+    from .perfis_referencia import aplicar
+    historia=aplicar(historia,Path(caminho).resolve().parent)
     destino = Path(destino).resolve()
     ep = compilar(historia, caminho, destino, pasta_audio)
     if destino.exists(): raise FileExistsError(f'Escolha uma pasta nova: {destino}')
@@ -406,7 +436,8 @@ def salvar(historia, destino, caminho=CATALOGO, pasta_audio=None):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--catalogo', default=str(CATALOGO))
+    parser.add_argument('--catalogo')
+    parser.add_argument('--biblioteca',choices=tuple(CATALOGOS),default='ilustrada')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('listar'); sub.add_parser('validar')
     p = sub.add_parser('criar'); p.add_argument('destino'); p.add_argument('--titulo', default='A voz que ficou lá fora')
@@ -414,6 +445,7 @@ if __name__ == '__main__':
     p.add_argument('--vilao', default='mimico'); p.add_argument('--duration', type=float, default=90)
     p = sub.add_parser('compilar'); p.add_argument('historia'); p.add_argument('destino')
     args = parser.parse_args()
+    args.catalogo=args.catalogo or str(CATALOGOS[args.biblioteca])
     if args.command == 'listar': resultado = inventario(args.catalogo)
     elif args.command == 'validar':
         resultado = validar_catalogo(args.catalogo)

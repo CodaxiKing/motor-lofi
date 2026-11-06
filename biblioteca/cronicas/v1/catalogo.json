@@ -1,0 +1,462 @@
+{
+  "version": 1,
+  "nome": "Biblioteca Crônicas",
+  "biblioteca": "cronicas",
+  "estado_producao": "estudo_visual",
+  "padrao_criacao": "padrao_criacao.json",
+  "direcao_padrao": "cronicas_situacional_v1",
+  "escala_referencia_m": 1.7,
+  "personagens": {
+    "mara": {
+      "nome": "Mara",
+      "tipo": "humano",
+      "estado_producao": "estudo_visual",
+      "arquivo_ficha": "personagens/mara/personagem.json",
+      "poses": {
+        "neutro": {
+          "img": "personagens/mara/neutro_v1",
+          "ancora": [
+            0.4989373007438895,
+            0.9922202274087373
+          ],
+          "pixels": [
+            941,
+            1671
+          ],
+          "caixa_visivel": [
+            231,
+            14,
+            708,
+            1658
+          ],
+          "sha256": "96cebf9d3faa8fe6ea57fdb80f3bd8c1c112f4c12f9c4bef268ad12ddc3150b1",
+          "descricao": "Mara — em pé",
+          "estado": "pose_estatica"
+        },
+        "janela_costas": {
+          "img": "personagens/mara/janela_costas_v1",
+          "ancora": [
+            0.4696132596685083,
+            0.988950276243094
+          ],
+          "pixels": [
+            1086,
+            1448
+          ],
+          "caixa_visivel": [
+            79,
+            28,
+            941,
+            1432
+          ],
+          "sha256": "ddca37daebad44be2513cb953e73136364966fdd3bb0fdafb9944f14f76d4045",
+          "descricao": "Mara — apoiada na janela",
+          "estado": "pose_estatica"
+        },
+        "deitada_saco": {
+          "img": "personagens/mara/deitada_saco_v1",
+          "ancora": [
+            0.49362380446333687,
+            0.9814593301435407
+          ],
+          "pixels": [
+            941,
+            1672
+          ],
+          "caixa_visivel": [
+            161,
+            98,
+            768,
+            1641
+          ],
+          "sha256": "e760e849784ba90bfba18626250e615fb949127146a17830b7342d0855781fc3",
+          "descricao": "Mara — deitada no abrigo",
+          "estado": "pose_estatica"
+        },
+        "sentada_laje": {
+          "img": "personagens/mara/sentada_laje_v1",
+          "ancora": [
+            0.4972375690607735,
+            0.9820441988950276
+          ],
+          "pixels": [
+            1086,
+            1448
+          ],
+          "caixa_visivel": [
+            157,
+            32,
+            923,
+            1422
+          ],
+          "sha256": "00a3cc6fbcc4abe648de512266c3e9a00f0048b8ff4bc6952e3eaa90592fb894",
+          "descricao": "Mara — sentada na laje",
+          "estado": "pose_estatica"
+        }
+      },
+      "microposes": {},
+      "ciclos": {}
+    }
+  },
+  "cenarios": {
+    "quarto_janela": {
+      "img": "cenarios/fundo_quarto_janela_v1",
+      "descricao": "Quarto — janela e abrigo",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "ae9eec1c810ceb6515eb38aea76a1e02f178b2c42c902b7236daa8213ad538ed",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "quarto_deitado",
+        "cozinha_escuta",
+        "portao_dentro",
+        "laje_cidade"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.38,
+            0.61
+          ],
+          [
+            0.62,
+            0.61
+          ],
+          [
+            1,
+            0.76
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "quarto_deitado": {
+      "img": "cenarios/fundo_quarto_deitado_v1",
+      "descricao": "Quarto — posição deitada",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "2793c7d0d972c3571f60cd8c3430f09e46ca8bdaed02ae0f774609010e7f4f29",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "quarto_janela"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.42
+          ],
+          [
+            1,
+            0.42
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "cozinha_escuta": {
+      "img": "cenarios/fundo_cozinha_escuta_v1",
+      "descricao": "Cozinha — escuta na parede",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "7fb9bf0083658fa7477cc7ac13d7722c3033c175cbb58dbf70fd74280d6ef585",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "quarto_janela"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.95
+          ],
+          [
+            1,
+            0.95
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "portao_dentro": {
+      "img": "cenarios/fundo_portao_dentro_v1",
+      "descricao": "Portão — vista de dentro",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "28467a008057012ce9b6a0ea7c2eacee10a267c689d95f5f4913b1d6cfa588ac",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "quarto_janela",
+        "fachada_rua"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.66
+          ],
+          [
+            1,
+            0.66
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "fachada_rua": {
+      "img": "cenarios/fundo_fachada_rua_v1",
+      "descricao": "Fachada — vista da rua",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "e667085d42cc36e2664f952d325a782e1cdcfe7dfccc5383500aa0b279aba230",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "portao_dentro",
+        "rua_alta"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.58
+          ],
+          [
+            1,
+            0.58
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "laje_cidade": {
+      "img": "cenarios/fundo_laje_cidade_v1",
+      "descricao": "Laje — cidade ao fundo",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "96400ff1068fe33c88bfac71c4f510f9e559095f1c7c2ca1dbc8d4f49ecd1ad6",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "rua_alta",
+        "quarto_janela"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.51
+          ],
+          [
+            1,
+            0.51
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    },
+    "rua_alta": {
+      "img": "cenarios/fundo_rua_alta_v1",
+      "descricao": "Rua — vista do alto",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "deb430b3984e79f65e343fbd66304537812a5191c206c20a43d73cef6bfab580",
+      "estilo_visual": "cronicas",
+      "ligacoes": [
+        "fachada_rua",
+        "laje_cidade"
+      ],
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0.28,
+            0.6
+          ],
+          [
+            0.7,
+            0.6
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luz_fraca",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.72
+            ],
+            "altura_m": 3,
+            "intensidade": 0.28,
+            "suavidade": 0.9
+          }
+        ],
+        "calibracao": "Inicial para estudo; conferir contatos e luz antes de certificar a cena."
+      }
+    }
+  },
+  "objetos": {}
+}

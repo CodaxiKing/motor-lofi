@@ -70,6 +70,8 @@ class Episode:
         self.spec_path = os.path.abspath(spec_path)
         self.base = os.path.dirname(self.spec_path)
         self.spec = json.load(open(spec_path, encoding="utf-8"))
+        if self.spec.get('biblioteca_estado')=='estudo_visual' and self.spec.get('producao',{}).get('etapa')!='previa_visual':
+            raise ValueError('Esta biblioteca ainda é estudo visual; use prévia até certificar as animações')
         from .atuacao_voz import validar_eventos
         validar_eventos(self.spec,self.base)
         # versão deitada (YouTube): sai como <nome>_youtube.mp4; as telas de texto (escolha, placar, recap...) vêm do vídeo em pé

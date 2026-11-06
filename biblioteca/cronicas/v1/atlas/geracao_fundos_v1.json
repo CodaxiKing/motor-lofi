@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "biblioteca": "cronicas",
+  "ferramenta": "image_gen integrado",
+  "fundos": [
+    {
+      "id": "quarto_janela",
+      "nome": "Quarto — janela e abrigo",
+      "tipo": "fundo",
+      "referencia_s": 0,
+      "source": "exec-9c09ab4c-8d38-4f9b-9f8c-7daf1d844af7.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Match the room perspective and ALL object placements of the reference: small blue-purple bedroom, curtained window centered near x=.49,y=.35-.55, rectangular mattress propped upright against it, low wooden bench against left wall, tall dark wooden wardrobe along right edge, wooden tiled floor, a long EMPTY olive sleeping bag in foreground from x=.28-.75 y=.65-.98, water bottles and stacked delivery bags right. Leave a plausible clear standing area near window x=.38-.6 y=.35-.7. Remove every human completely, including the standing person and any face/hands inside the sleeping bag. Keep the sleeping bag unoccupied. No UI.",
+      "img": "cenarios/fundo_quarto_janela_v1"
+    },
+    {
+      "id": "quarto_deitado",
+      "nome": "Quarto — posição deitada",
+      "tipo": "fundo",
+      "referencia_s": 14,
+      "source": "exec-eab5ef30-c16b-4a3c-8539-20f486f8d5b1.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Match reference camera looking down the narrow bedroom from the foot of the sleeping bag toward the curtained window. Cropped wooden bench along left edge, blue-purple mattress propped along back wall, bottles and boxes at upper right, floor tiles. REMOVE the character AND the ENTIRE sleeping bag/blanket, leaving empty tiled floor in the central rectangle x=.23-.74 y=.30-.98 for a separate modular supine sleeping-bag character sprite. Frame architecture and surrounding props in virtually the same positions as reference.",
+      "img": "cenarios/fundo_quarto_deitado_v1"
+    },
+    {
+      "id": "cozinha_escuta",
+      "nome": "Cozinha — escuta na parede",
+      "tipo": "fundo",
+      "referencia_s": 12,
+      "source": "exec-dcd72e73-aa2a-41f4-89aa-0b2f2752bb94.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Precisely match this eye-level close first-person kitchen framing: dark blue bare wall upper 27 percent; square pale blue gray tiled backsplash from y=.27 to .64; long reddish wooden counter at y=.64-.70; stainless sink basin to RIGHT at x=.65-.98 and faucet rises to y=.55; dark wooden cabinet doors occupy bottom .70-.95; a narrow tiled floor strip at very bottom. Cool dim night directional light from the right. Remove the white interaction rings and all overlaid text.",
+      "img": "cenarios/fundo_cozinha_escuta_v1"
+    },
+    {
+      "id": "portao_dentro",
+      "nome": "Portão — vista de dentro",
+      "tipo": "fundo",
+      "referencia_s": 45,
+      "source": "exec-9fb5f60a-812c-44b1-a7ef-f893605e93ce.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Reconstruct exactly this night front-gate composition with NO zombie: viewpoint from inside a small tiled porch looking toward the street. Black/dark metal front gate runs across the frame at y=.50-.78, rail top y=.50 with narrow vertical bars, slight porch floor perspective at bottom. Empty opposite sidewalk and low plain neighborhood houses across the road around y=.25-.46, huge cold blue night sky upper quarter, faint moonlit blue lighting. Remove monster entirely, keep street and gate clean, no blur or chromatic aberration.",
+      "img": "cenarios/fundo_portao_dentro_v1"
+    },
+    {
+      "id": "fachada_rua",
+      "nome": "Fachada — vista da rua",
+      "tipo": "fundo",
+      "referencia_s": 60,
+      "source": "exec-31a7420c-1333-41b6-b922-8d19850441f3.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Match this reverse street-side view toward a small modest house: flat parapet roof at y=.22-.32, little rooftop water tank upper center-right, central wooden door and shuttered window beneath roof, low railing/gate in foreground around y=.68-.85, pale blue-gray night cloudy sky top quarter. REMOVE every humanoid and the cat, remove comic speed lines and halftone vignette, no creatures. Keep clear vertical space before the door for separately composited figures. Same architectural camera and vanishing points.",
+      "img": "cenarios/fundo_fachada_rua_v1"
+    },
+    {
+      "id": "laje_cidade",
+      "nome": "Laje — cidade ao fundo",
+      "tipo": "fundo",
+      "referencia_s": 140,
+      "source": "exec-dbd0d56e-a972-475b-9978-fb8db85967bc.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Reconstruct the rooftop composition: high but human-facing camera aimed toward a low concrete parapet extending across frame at y=.34-.57, open flat rooftop floor covers bottom 43 percent. Behind parapet a dense nighttime Brazilian neighborhood of small roofs, water tanks, power cables, and a distant small green pharmacy-style plus light around x=.6,y=.07. REMOVE sitting man entirely and remove yellow delivery bag; leave center x=.35-.67,y=.30-.65 and right x=.7-.92,y=.45-.64 clear for modular character/props. Preserve the same perspective, charcoal-blue shadows, muted small amber/green distant lamps.",
+      "img": "cenarios/fundo_laje_cidade_v1"
+    },
+    {
+      "id": "rua_alta",
+      "nome": "Rua — vista do alto",
+      "tipo": "fundo",
+      "referencia_s": 125,
+      "source": "exec-64d873d3-023d-42d8-96cd-c0c5545f5c12.png",
+      "prompt": "Use case: illustration-story. Create ONE production asset for an illustrated survival-horror video library. Match the supplied reference closely in camera angle, geometric composition, negative space and restrained 2D painted comic rendering. Muted dark navy, blue-gray and charcoal palette, fine drawn contours, textured shading, readable night detail, sober proportions. Vertical 9:16, at least 1024x1792. For background assets: opaque, one continuous environment, no people, humans, zombies, monsters, animals, faces or bodies, no embedded motion/blur. For character assets: true transparent surroundings, keep the established character identity from first image. Absolutely no interface/HUD, letters, digits, logos, watermarks, usernames, dialogue boxes, counters, interaction circles, borders or grids. The reference is for visual layout, not permission to reproduce any text or watermark.\nASSET SPECIFICATION: Match reference high rooftop downward view into a narrow deserted neighborhood street at night. Buildings and roofs frame both sides and tall power poles/cables cross toward distant vanishing point center y=.3. Abandoned blue-gray compact cars and scattered debris align margins. Empty asphalt street central bottom with readable deep perspective. Cold moonlit desaturated palette. Remove UI, all text and figures.",
+      "img": "cenarios/fundo_rua_alta_v1"
+    }
+  ]
+}

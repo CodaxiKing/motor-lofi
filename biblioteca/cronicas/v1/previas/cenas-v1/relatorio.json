@@ -1,0 +1,286 @@
+{
+  "cenas": [
+    {
+      "cena": 1,
+      "scene": "quarto_janela",
+      "intervalo": [
+        0,
+        2
+      ],
+      "cena_completa": true,
+      "video": "cena_001.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 2,
+      "scene": "quarto_janela",
+      "intervalo": [
+        2,
+        4
+      ],
+      "cena_completa": true,
+      "video": "cena_002.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 3,
+      "scene": "quarto_deitado",
+      "intervalo": [
+        4,
+        6
+      ],
+      "cena_completa": true,
+      "video": "cena_003.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 4,
+      "scene": "quarto_deitado",
+      "intervalo": [
+        6,
+        8
+      ],
+      "cena_completa": true,
+      "video": "cena_004.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 5,
+      "scene": "cozinha_escuta",
+      "intervalo": [
+        8,
+        10
+      ],
+      "cena_completa": true,
+      "video": "cena_005.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 6,
+      "scene": "portao_dentro",
+      "intervalo": [
+        10,
+        12
+      ],
+      "cena_completa": true,
+      "video": "cena_006.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 7,
+      "scene": "fachada_rua",
+      "intervalo": [
+        12,
+        14
+      ],
+      "cena_completa": true,
+      "video": "cena_007.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 8,
+      "scene": "laje_cidade",
+      "intervalo": [
+        14,
+        16
+      ],
+      "cena_completa": true,
+      "video": "cena_008.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 9,
+      "scene": "rua_alta",
+      "intervalo": [
+        16,
+        18
+      ],
+      "cena_completa": true,
+      "video": "cena_009.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 10,
+      "scene": "laje_cidade",
+      "intervalo": [
+        18,
+        20
+      ],
+      "cena_completa": true,
+      "video": "cena_010.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    },
+    {
+      "cena": 11,
+      "scene": "laje_cidade",
+      "intervalo": [
+        20,
+        22
+      ],
+      "cena_completa": true,
+      "video": "cena_011.mp4",
+      "apoios": [],
+      "contatos": "não aplicável",
+      "enquadramento": [],
+      "sombras": "habilitadas",
+      "audio": {
+        "voz_presente": false,
+        "trilha_voz_exportada": false,
+        "pico_antes_atenuacao": 0,
+        "mix": "vozes secas; música e efeitos requerem revisão na mixagem completa"
+      },
+      "continuidade": [],
+      "erros": [],
+      "avisos": [],
+      "revisao_visual": "pendente de assistir ao clipe; verificações automáticas não aprovam atuação",
+      "ok_tecnico": true
+    }
+  ],
+  "fps_previa": 24,
+  "resolucao_previa": [
+    270,
+    480
+  ],
+  "ok_tecnico": true,
+  "metodo": "Compositor real; voz no tempo original do episódio; quadros e relatório por cena."
+}

@@ -38,7 +38,7 @@ def _clamp01(x):
 
 
 def _status_now(ep, t):
-    base = {s["rotulo"]: [float(s.get("valor", 1.0)), s.get("texto")] for s in ep.spec["interface"].get("status", [])}
+    base = {s["rotulo"]: [float(s.get("valor", 1.0)), s.get("texto")] for s in (ep.spec.get("interface") or {}).get("status", [])}
     for sh in ep.shots:
         if sh["start"] > t:
             break
@@ -49,7 +49,7 @@ def _status_now(ep, t):
 
 
 def _clock_now(ep, t):
-    cfg = ep.spec["interface"].get("relogio")
+    cfg = (ep.spec.get("interface") or {}).get("relogio")
     if not cfg:
         return None
     ref_t, ref = 0.0, cfg.get("inicio", "00:00")
@@ -64,7 +64,7 @@ def _clock_now(ep, t):
 
 
 def _mission_now(ep, t):
-    m = ep.spec["interface"].get("missao")
+    m = (ep.spec.get("interface") or {}).get("missao")
     for sh in ep.shots:
         if sh["start"] > t:
             break
@@ -99,6 +99,9 @@ def _wrap(d, txt, f, width):
 
 def desenhar(ep, img, shot, t):
     """Desenha a interface; devolve a imagem (RGB)."""
+    if (ep.spec.get('interface') or {}).get('layout')=='sobrevivencia_compacta' or shot.get('telefone') or shot.get('escolha_ref'):
+        from .interface_referencia import desenhar as desenhar_referencia
+        return desenhar_referencia(ep,img,shot,t)
     if shot.get("interface") is False:
         return img
     cfg = ep.spec.get("interface") or {}
@@ -241,4 +244,14 @@ def desenhar(ep, img, shot, t):
 
 
 def ativa(ep, shot):
-    return bool(ep.spec.get("interface")) or any(k in shot for k in ("dialogo", "notificacao", "alerta", "cartela"))
+    return bool(ep.spec.get("interface")) or any(k in shot for k in ("dialogo", "notificacao", "alerta", "cartela",'telefone','escolha_ref'))
+
+
+def desenhar_previa(spec,base,img,shot,t):
+    from types import SimpleNamespace
+    ep=SimpleNamespace(spec=spec,shots=spec['shots'],base=str(base),redes=False)
+    if not ativa(ep,shot):return img
+    if (spec.get('interface') or {}).get('layout')=='sobrevivencia_compacta' or shot.get('telefone') or shot.get('escolha_ref'):
+        return desenhar(ep,img,shot,t)
+    original=img.size
+    return desenhar(ep,img.resize((W,H),Image.Resampling.LANCZOS),shot,t).resize(original,Image.Resampling.LANCZOS)

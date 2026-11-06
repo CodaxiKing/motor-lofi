@@ -1,0 +1,472 @@
+{
+  "fps": 24,
+  "preview_size": [
+    270,
+    480
+  ],
+  "total": 22,
+  "loop": false,
+  "narrado": true,
+  "biblioteca": "cronicas",
+  "biblioteca_estado": "estudo_visual",
+  "producao": {
+    "etapa": "previa_visual"
+  },
+  "sem_audio_intencional": true,
+  "interface": {
+    "layout": "sobrevivencia_compacta",
+    "cor": [
+      222,
+      191,
+      83
+    ],
+    "status": [
+      {
+        "rotulo": "ÁGUA",
+        "valor": 0.78,
+        "texto": "28L"
+      },
+      {
+        "rotulo": "COMIDA",
+        "valor": 0.45,
+        "texto": "4d"
+      },
+      {
+        "rotulo": "BIKE",
+        "valor": 0.31,
+        "texto": "31%"
+      },
+      {
+        "rotulo": "CEL",
+        "valor": 0.8,
+        "texto": "80%"
+      }
+    ],
+    "relogio": {
+      "dia": "SÁB",
+      "inicio": "22:55",
+      "seg_por_min": 60
+    },
+    "missao": {
+      "titulo": "SOBREVIVA 72H",
+      "prazo": "56:00"
+    },
+    "atalhos": [
+      "mochila",
+      "mapa",
+      "objetivo",
+      "bike"
+    ],
+    "topo": 0.125,
+    "relogio_y": 0.665,
+    "vinheta": 0.22
+  },
+  "shots": [
+    {
+      "start": 0,
+      "end": 2,
+      "scene": "quarto_janela",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_quarto_janela_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.385,
+            "altura": 0.360968660968661,
+            "chao": 0.6950000000000001,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/janela_costas_v1",
+            "ancora": [
+              0.4696132596685083,
+              0.988950276243094
+            ],
+            "referencia_escala": "personagens/mara/janela_costas_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "quarto_janela",
+      "interacao_visual": {
+        "centro": [
+          0.44,
+          0.27
+        ],
+        "raio": 0.14,
+        "periodo": 1.2,
+        "inicio": 0,
+        "fim": 4
+      }
+    },
+    {
+      "start": 2,
+      "end": 4,
+      "scene": "quarto_janela",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_quarto_janela_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.385,
+            "altura": 0.360968660968661,
+            "chao": 0.6950000000000001,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/janela_costas_v1",
+            "ancora": [
+              0.4696132596685083,
+              0.988950276243094
+            ],
+            "referencia_escala": "personagens/mara/janela_costas_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 2.1,
+          "cx": 0.31,
+          "cy": 0.43
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "janela_close"
+    },
+    {
+      "start": 4,
+      "end": 6,
+      "scene": "quarto_deitado",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_quarto_deitado_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.495,
+            "altura": 0.7260142579390797,
+            "chao": 0.97,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/deitada_saco_v1",
+            "ancora": [
+              0.49362380446333687,
+              0.9814593301435407
+            ],
+            "referencia_escala": "personagens/mara/deitada_saco_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "deitado_geral"
+    },
+    {
+      "start": 6,
+      "end": 8,
+      "scene": "quarto_deitado",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_quarto_deitado_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.495,
+            "altura": 0.7260142579390797,
+            "chao": 0.97,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/deitada_saco_v1",
+            "ancora": [
+              0.49362380446333687,
+              0.9814593301435407
+            ],
+            "referencia_escala": "personagens/mara/deitada_saco_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1.85,
+          "cx": 0.5,
+          "cy": 0.35
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "deitado_close"
+    },
+    {
+      "start": 8,
+      "end": 10,
+      "scene": "cozinha_escuta",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_cozinha_escuta_v1",
+        "personagens": [],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "cozinha_escuta",
+      "interface": false,
+      "interacao_visual": {
+        "centro": [
+          0.5,
+          0.4
+        ],
+        "raio": 0.12,
+        "periodo": 1.6,
+        "inicio": 0,
+        "fim": 3
+      }
+    },
+    {
+      "start": 10,
+      "end": 12,
+      "scene": "portao_dentro",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_portao_dentro_v1",
+        "personagens": [],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "portao_frontal",
+      "interface": false
+    },
+    {
+      "start": 12,
+      "end": 14,
+      "scene": "fachada_rua",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_fachada_rua_v1",
+        "personagens": [],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "fachada_contraplano",
+      "interface": false
+    },
+    {
+      "start": 14,
+      "end": 16,
+      "scene": "laje_cidade",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_laje_cidade_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.5,
+            "altura": 0.34897841726618706,
+            "chao": 0.62,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/sentada_laje_v1",
+            "ancora": [
+              0.4972375690607735,
+              0.9820441988950276
+            ],
+            "referencia_escala": "personagens/mara/sentada_laje_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "laje_sentado"
+    },
+    {
+      "start": 16,
+      "end": 18,
+      "scene": "rua_alta",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_rua_alta_v1",
+        "personagens": [],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "rua_do_alto",
+      "interface": false
+    },
+    {
+      "start": 18,
+      "end": 20,
+      "scene": "laje_cidade",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_laje_cidade_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.5,
+            "altura": 0.34897841726618706,
+            "chao": 0.62,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/sentada_laje_v1",
+            "ancora": [
+              0.4972375690607735,
+              0.9820441988950276
+            ],
+            "referencia_escala": "personagens/mara/sentada_laje_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "telefone",
+      "telefone": {
+        "hora": "23:05",
+        "contato": "Irmã",
+        "mensagens": [
+          {
+            "tipo": "audio",
+            "duracao": "0:11"
+          },
+          {
+            "tipo": "texto",
+            "texto": "Estou no prédio da esquina."
+          }
+        ]
+      }
+    },
+    {
+      "start": 20,
+      "end": 22,
+      "scene": "laje_cidade",
+      "imagens": {
+        "pasta_biblioteca": "..",
+        "fundo": "cenarios/fundo_laje_cidade_v1",
+        "personagens": [
+          {
+            "id": "mara",
+            "pos": 0.5,
+            "altura": 0.34897841726618706,
+            "chao": 0.62,
+            "orientacao": "manual",
+            "espelhar": false,
+            "respirar": 0,
+            "balanco_corpo": 0,
+            "img": "personagens/mara/sentada_laje_v1",
+            "ancora": [
+              0.4972375690607735,
+              0.9820441988950276
+            ],
+            "referencia_escala": "personagens/mara/sentada_laje_v1",
+            "altura_m": 1.68,
+            "sombra": {
+              "intensidade": 0.4
+            }
+          }
+        ],
+        "composicao": "manual",
+        "camera_ilustrada": {
+          "plano": "aberto",
+          "zoom": 1
+        },
+        "qualidade_visual": false,
+        "aproximar": 0,
+        "balanco": 0
+      },
+      "composicao_ref": "escolha",
+      "escolha_ref": {
+        "titulo": "Buscar a irmã ou esperar o rádio?",
+        "opcoes": [
+          "IR ATÉ LÁ",
+          "ESPERAR"
+        ]
+      }
+    }
+  ],
+  "nota": "Estudo de enquadramento sem áudio e sem animações de corpo certificadas."
+}

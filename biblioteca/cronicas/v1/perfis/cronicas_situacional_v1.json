@@ -1,0 +1,339 @@
+{
+  "version": 1,
+  "id": "cronicas_situacional_v1",
+  "fonte": {
+    "arquivo": "SaveClip.App_AQMHo6uN7T1war937bY1p_0SjYReb_0gHiJxwTYtDJGF-IDRJg5fzt078LJj2Sr-KsNgdLZ2yfWPgKvRPwhgzlam-ZNy9ToBqu9bwgU.mp4",
+    "sha256": "874e8d4ede08dacb31a1c85f01e4814c772c5934af89a6f4c7f2e049570acc0c",
+    "duracao_s": 163.7333
+  },
+  "roteiro": {
+    "abertura_obrigatoria": [
+      "situacao",
+      "premissa"
+    ],
+    "primeiras_frases": "Apresentar situação concreta, protagonista/lugar e perigo ou objetivo imediatamente.",
+    "gancho": "Situação + regra ou contradição de sobrevivência + promessa de solução visível.",
+    "voz": "Narrador em terceira pessoa limitada, com falas pontuais dos personagens.",
+    "estrutura": [
+      "situação e premissa",
+      "contexto temporal breve",
+      "objetivo e escolha com custo",
+      "ameaça concreta e escalada",
+      "tentativa que agrava o perigo",
+      "solução usando elemento plantado",
+      "entrega da promessa",
+      "nova informação e escolha final"
+    ],
+    "evitar": [
+      "gancho genérico sem situação",
+      "só suspense sem explicar o conflito",
+      "números de retenção inventados",
+      "mesma história ou regra copiada em todos os episódios"
+    ]
+  },
+  "visual": {
+    "proporcao": [
+      9,
+      16
+    ],
+    "camera": "Planos fixos sustentados; cortes para detalhes e novas vistas desenhadas; aproximações curtas.",
+    "composicao": "manual",
+    "movimento": "Poucas ações legíveis, expressões e contato com objetos; não movimentar tudo continuamente.",
+    "paleta": [
+      "azul carvão",
+      "cinza arroxeado",
+      "amarelo discreto na interface"
+    ],
+    "vinheta": 0.22,
+    "mostrar_texto_gancho": false,
+    "interface_editavel": true,
+    "personagem": "Identidade original Mara; cabeça redonda, cabelo curto com presilha, roupa verde-petróleo, sem importar o personagem do vídeo."
+  },
+  "interface": {
+    "layout": "sobrevivencia_compacta",
+    "cor": [
+      222,
+      191,
+      83
+    ],
+    "status": [
+      {
+        "rotulo": "ÁGUA",
+        "valor": 0.78,
+        "texto": "28L"
+      },
+      {
+        "rotulo": "COMIDA",
+        "valor": 0.45,
+        "texto": "4d"
+      },
+      {
+        "rotulo": "BIKE",
+        "valor": 0.31,
+        "texto": "31%"
+      },
+      {
+        "rotulo": "CEL",
+        "valor": 0.8,
+        "texto": "80%"
+      }
+    ],
+    "relogio": {
+      "dia": "SÁB",
+      "inicio": "22:55",
+      "seg_por_min": 60
+    },
+    "missao": {
+      "titulo": "SOBREVIVA 72H",
+      "prazo": "56:00"
+    },
+    "atalhos": [
+      "mochila",
+      "mapa",
+      "objetivo",
+      "bike"
+    ],
+    "topo": 0.125,
+    "relogio_y": 0.665,
+    "vinheta": 0.22
+  },
+  "composicoes": {
+    "quarto_janela": {
+      "cenario": "quarto_janela",
+      "pose": "janela_costas",
+      "caixa": [
+        0.18,
+        0.345,
+        0.59,
+        0.695
+      ],
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 0,
+      "descricao": "Corpo de costas junto à janela, bagagem em primeiro plano.",
+      "interacao_visual": {
+        "centro": [
+          0.44,
+          0.27
+        ],
+        "raio": 0.14,
+        "periodo": 1.2,
+        "inicio": 0,
+        "fim": 4
+      },
+      "ator": {
+        "id": "mara",
+        "pose": "janela_costas",
+        "pos": 0.385,
+        "altura": 0.360968660968661,
+        "chao": 0.6950000000000001,
+        "orientacao": "manual",
+        "espelhar": false,
+        "respirar": 0,
+        "balanco_corpo": 0
+      },
+      "caixa_resultante": [
+        0.19399018676796456,
+        0.34500000000000003,
+        0.5760098132320355,
+        0.6950000000000001
+      ]
+    },
+    "janela_close": {
+      "cenario": "quarto_janela",
+      "pose": "janela_costas",
+      "caixa": [
+        0.18,
+        0.345,
+        0.59,
+        0.695
+      ],
+      "camera": {
+        "plano": "aberto",
+        "zoom": 2.1,
+        "cx": 0.31,
+        "cy": 0.43
+      },
+      "referencia_s": 5.9,
+      "descricao": "Recorte de costas próximo à janela; parte inferior deliberadamente fora de quadro.",
+      "ator": {
+        "id": "mara",
+        "pose": "janela_costas",
+        "pos": 0.385,
+        "altura": 0.360968660968661,
+        "chao": 0.6950000000000001,
+        "orientacao": "manual",
+        "espelhar": false,
+        "respirar": 0,
+        "balanco_corpo": 0
+      },
+      "caixa_resultante": [
+        0.19399018676796456,
+        0.34500000000000003,
+        0.5760098132320355,
+        0.6950000000000001
+      ]
+    },
+    "deitado_geral": {
+      "cenario": "quarto_deitado",
+      "pose": "deitada_saco",
+      "caixa": [
+        0.23,
+        0.3,
+        0.76,
+        0.97
+      ],
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 14,
+      "descricao": "Deitado visto dos pés, cabeça no terço superior e saco na metade inferior.",
+      "ator": {
+        "id": "mara",
+        "pose": "deitada_saco",
+        "pos": 0.495,
+        "altura": 0.7260142579390797,
+        "chao": 0.97,
+        "orientacao": "manual",
+        "espelhar": false,
+        "respirar": 0,
+        "balanco_corpo": 0
+      },
+      "caixa_resultante": [
+        0.260714697198819,
+        0.30000000000000004,
+        0.729285302801181,
+        0.97
+      ]
+    },
+    "deitado_close": {
+      "cenario": "quarto_deitado",
+      "pose": "deitada_saco",
+      "caixa": [
+        0.23,
+        0.3,
+        0.76,
+        0.97
+      ],
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1.85,
+        "cx": 0.5,
+        "cy": 0.35
+      },
+      "referencia_s": 33,
+      "descricao": "Aproximação ao rosto da pose deitada; não trocar para retrato em pé.",
+      "ator": {
+        "id": "mara",
+        "pose": "deitada_saco",
+        "pos": 0.495,
+        "altura": 0.7260142579390797,
+        "chao": 0.97,
+        "orientacao": "manual",
+        "espelhar": false,
+        "respirar": 0,
+        "balanco_corpo": 0
+      },
+      "caixa_resultante": [
+        0.260714697198819,
+        0.30000000000000004,
+        0.729285302801181,
+        0.97
+      ]
+    },
+    "cozinha_escuta": {
+      "cenario": "cozinha_escuta",
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 12,
+      "descricao": "Inserto POV da pia e parede; sem corpo do observador.",
+      "interface": false,
+      "interacao_visual": {
+        "centro": [
+          0.5,
+          0.4
+        ],
+        "raio": 0.12,
+        "periodo": 1.6,
+        "inicio": 0,
+        "fim": 3
+      }
+    },
+    "portao_frontal": {
+      "cenario": "portao_dentro",
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 45,
+      "descricao": "Do interior para rua; portão na metade inferior. Ameaça requer arte própria atrás das barras.",
+      "interface": false
+    },
+    "fachada_contraplano": {
+      "cenario": "fachada_rua",
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 60,
+      "descricao": "Da rua para a casa; não é zoom da vista interna.",
+      "interface": false
+    },
+    "laje_sentado": {
+      "cenario": "laje_cidade",
+      "pose": "sentada_laje",
+      "caixa": [
+        0.31,
+        0.285,
+        0.69,
+        0.62
+      ],
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 140,
+      "descricao": "Sentado junto ao parapeito; skyline acima e chão abaixo.",
+      "ator": {
+        "id": "mara",
+        "pose": "sentada_laje",
+        "pos": 0.5,
+        "altura": 0.34897841726618706,
+        "chao": 0.62,
+        "orientacao": "manual",
+        "espelhar": false,
+        "respirar": 0,
+        "balanco_corpo": 0
+      },
+      "caixa_resultante": [
+        0.33590087929656276,
+        0.28500000000000003,
+        0.6640991207034372,
+        0.62
+      ]
+    },
+    "rua_do_alto": {
+      "cenario": "rua_alta",
+      "camera": {
+        "plano": "aberto",
+        "zoom": 1
+      },
+      "referencia_s": 125,
+      "descricao": "Vista alta da rua; nova perspectiva desenhada.",
+      "interface": false
+    }
+  },
+  "pendencias_reproducao_integral": [
+    "Multidão de zumbis com movimentos e vistas próprios, ainda não certificada neste checkout.",
+    "Mãos interagindo com telefone, power bank e arremesso em quadros completos.",
+    "Oclusão do portão calibrada por ator/pose e sequência.",
+    "Novas vozes e revisão da sincronização para um roteiro original.",
+    "Ciclos completos de Mara nas dez vistas; poses de estudo não equivalem a animação certificada."
+  ],
+  "biblioteca": "cronicas"
+}

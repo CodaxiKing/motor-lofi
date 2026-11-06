@@ -76,6 +76,8 @@ def revisar(spec, base, saida, cenas=None, max_segundos=8, size=(432,768), fps=2
             for n in range(math.ceil((b-a)*fps)):
                 t=min(b-1e-6,a+n/fps)
                 frame=imagens.quadro(shot,t,base,size,nivel,visema,not spec.get('narrado',False),diagnostico)
+                from .interface import desenhar_previa
+                frame=desenhar_previa(spec,base,frame,shot,t)
                 proc.stdin.write(frame.convert('RGB').tobytes())
                 if n in alvos:amostras.append((t,frame.copy()))
             proc.stdin.close();stderr=proc.stderr.read();code=proc.wait()

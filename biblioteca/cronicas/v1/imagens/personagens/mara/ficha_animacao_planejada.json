@@ -1,0 +1,703 @@
+{
+  "version": 2,
+  "padrao_criacao": 1,
+  "id": "mara",
+  "nome": "Mara",
+  "tipo_movimento": "humano",
+  "estado_producao": "rascunho",
+  "altura_m": 1.68,
+  "preferencia_animacao": "quadros",
+  "pasta_assets": "personagens/mara",
+  "perfil_movimento": {},
+  "ciclos_direcionais": {
+    "frente": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "frente_direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "costas_direita": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "costas": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "costas_esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "frente_esquerda": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "cima": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    },
+    "baixo": {
+      "parado": null,
+      "andar": null,
+      "correr": null,
+      "agachar": null,
+      "levantar": null,
+      "pular": null,
+      "levantar_braco": null,
+      "interagir": null,
+      "reagir_medo": null,
+      "reagir_dano": null,
+      "segurar_item": null
+    }
+  },
+  "transicoes_direcionais": {
+    "frente": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "frente_direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas_direita": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "costas_esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "frente_esquerda": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "cima": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    },
+    "baixo": {
+      "parado>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "andar>correr": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>andar": {
+        "ciclo": null,
+        "duracao": 0.5
+      },
+      "correr>parado": {
+        "ciclo": null,
+        "duracao": 0.5
+      }
+    }
+  },
+  "encaixes_items": {
+    "frente": {
+      "frames": []
+    },
+    "frente_direita": {
+      "frames": []
+    },
+    "direita": {
+      "frames": []
+    },
+    "costas_direita": {
+      "frames": []
+    },
+    "costas": {
+      "frames": []
+    },
+    "costas_esquerda": {
+      "frames": []
+    },
+    "esquerda": {
+      "frames": []
+    },
+    "frente_esquerda": {
+      "frames": []
+    },
+    "cima": {
+      "frames": []
+    },
+    "baixo": {
+      "frames": []
+    }
+  },
+  "items_obrigatorios": [
+    "lanterna",
+    "estojo_medico",
+    "radio",
+    "chave_inglesa"
+  ],
+  "items_direcionais": {
+    "lanterna": {
+      "frente": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "cima": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "baixo": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "estojo_medico": {
+      "frente": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "cima": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "baixo": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "radio": {
+      "frente": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "cima": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "baixo": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "chave_inglesa": {
+      "frente": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_direita": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "costas_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "frente_esquerda": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "cima": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      },
+      "baixo": {
+        "img": null,
+        "ancora": [
+          0.5,
+          0.5
+        ]
+      }
+    }
+  },
+  "revisao_visual": {
+    "silhueta": false,
+    "apoios": false,
+    "escala": false,
+    "loop": false,
+    "anatomia": false,
+    "encaixes": false
+  },
+  "notas": "Preencher com PNGs e ciclos reais. Nenhum caminho nulo representa animação pronta."
+}

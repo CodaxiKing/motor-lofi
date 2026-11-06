@@ -1,0 +1,140 @@
+[
+  {
+    "composicao": "quarto_janela",
+    "referencia_s": 0,
+    "imagem": "comp_quarto_janela.png",
+    "caixa_referencia": [
+      0.18,
+      0.345,
+      0.59,
+      0.695
+    ],
+    "caixa_mara": [
+      0.19399018676796456,
+      0.34500000000000003,
+      0.5760098132320355,
+      0.6950000000000001
+    ],
+    "nota": "Corpo de costas junto à janela, bagagem em primeiro plano."
+  },
+  {
+    "composicao": "janela_close",
+    "referencia_s": 5.9,
+    "imagem": "comp_janela_close.png",
+    "caixa_referencia": [
+      0.18,
+      0.345,
+      0.59,
+      0.695
+    ],
+    "caixa_mara": [
+      0.19399018676796456,
+      0.34500000000000003,
+      0.5760098132320355,
+      0.6950000000000001
+    ],
+    "nota": "Recorte de costas próximo à janela; parte inferior deliberadamente fora de quadro."
+  },
+  {
+    "composicao": "deitado_geral",
+    "referencia_s": 14,
+    "imagem": "comp_deitado_geral.png",
+    "caixa_referencia": [
+      0.23,
+      0.3,
+      0.76,
+      0.97
+    ],
+    "caixa_mara": [
+      0.260714697198819,
+      0.30000000000000004,
+      0.729285302801181,
+      0.97
+    ],
+    "nota": "Deitado visto dos pés, cabeça no terço superior e saco na metade inferior."
+  },
+  {
+    "composicao": "deitado_close",
+    "referencia_s": 33,
+    "imagem": "comp_deitado_close.png",
+    "caixa_referencia": [
+      0.23,
+      0.3,
+      0.76,
+      0.97
+    ],
+    "caixa_mara": [
+      0.260714697198819,
+      0.30000000000000004,
+      0.729285302801181,
+      0.97
+    ],
+    "nota": "Aproximação ao rosto da pose deitada; não trocar para retrato em pé."
+  },
+  {
+    "composicao": "cozinha_escuta",
+    "referencia_s": 12,
+    "imagem": "comp_cozinha_escuta.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Inserto POV da pia e parede; sem corpo do observador."
+  },
+  {
+    "composicao": "portao_frontal",
+    "referencia_s": 45,
+    "imagem": "comp_portao_frontal.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Do interior para rua; portão na metade inferior. Ameaça requer arte própria atrás das barras."
+  },
+  {
+    "composicao": "fachada_contraplano",
+    "referencia_s": 60,
+    "imagem": "comp_fachada_contraplano.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Da rua para a casa; não é zoom da vista interna."
+  },
+  {
+    "composicao": "laje_sentado",
+    "referencia_s": 140,
+    "imagem": "comp_laje_sentado.png",
+    "caixa_referencia": [
+      0.31,
+      0.285,
+      0.69,
+      0.62
+    ],
+    "caixa_mara": [
+      0.33590087929656276,
+      0.28500000000000003,
+      0.6640991207034372,
+      0.62
+    ],
+    "nota": "Sentado junto ao parapeito; skyline acima e chão abaixo."
+  },
+  {
+    "composicao": "rua_do_alto",
+    "referencia_s": 125,
+    "imagem": "comp_rua_do_alto.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Vista alta da rua; nova perspectiva desenhada."
+  },
+  {
+    "composicao": "telefone",
+    "referencia_s": 133,
+    "imagem": "comp_telefone.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Interface editável sobre a cena da Mara"
+  },
+  {
+    "composicao": "escolha",
+    "referencia_s": 161,
+    "imagem": "comp_escolha.png",
+    "caixa_referencia": null,
+    "caixa_mara": null,
+    "nota": "Interface editável sobre a cena da Mara"
+  }
+]

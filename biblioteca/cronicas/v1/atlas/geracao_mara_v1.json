@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "biblioteca": "cronicas",
+  "identidade": "Mara, personagem original; cabeça redonda; estilo separado da biblioteca ilustrada",
+  "ferramenta": "image_gen integrado",
+  "prompt_origem": "Use case: illustration-story. Create ONE NEW ORIGINAL adult woman named Mara for a separate 2D illustrated survival-horror library, Biblioteca Crônicas. The input image is ONLY a reference for the muted handpainted 2D rendering, thin dark contours, simple gray-head facial language and restrained nighttime shading. Do NOT reproduce the male character in that image, his bald head, goatee, uniform or identity. Mara is visibly different: adult woman age about 28, natural slender adult proportions, slightly narrow rounded light-gray face, small black oval eyes, thin expressive dark eyebrows, short uneven black bob ending around jaw with a side part and a small copper hair clip. No beard, no hat, no bald scalp. Outfit: muted dark petrol-teal utility jacket with small practical pockets and a short raised collar, charcoal-olive cargo trousers, worn dark brown ankle work boots, dark gray fingerless gloves; a small canvas cross-body satchel may rest at one hip. No reflective courier stripe. Calm but wary expression. Three-quarter front standing full body, empty hands relaxed, both feet on same virtual floor. Same sober textured blue-purple shadows as reference; no photorealism, no glossy 3D, no chibi or oversized child head. High resolution vertical 9:16 at least 1024x1792, one figure with generous clear transparent margins and complete hands and soles. Genuine transparent background; no floor, cast shadow, props, text, HUD, logos, watermarks or panels.",
+  "poses": [
+    {
+      "id": "mara_neutro",
+      "nome": "Mara — em pé",
+      "pose": "neutro",
+      "img": "personagens/mara/neutro_v1",
+      "source": "exec-3bdb8874-a2a7-4055-8c68-9af9903a2257.png",
+      "prompt": "Edit FIRST image, preserving Mara's exact outfit, body, hands, boots, satchel, hairstyle and hair clip, scale, stance and transparent background. Change ONLY the HEAD AND FACE SHAPE to satisfy an explicitly requested round-headed illustrated style. Her head must be a geometrically ROUND SPHERE, equal apparent width and height, with a clearly circular light-gray facial outline: NO human jaw, pointed chin, oval face, human nose, nostrils or realistic lips. Keep her black bob and copper hair clip, but fit them around the round spherical head rather than giving a human skull shape. Face uses ONLY two simple solid BLACK OVAL eyes, two thin expressive black eyebrow strokes and a small simple curved worried mouth. NO nose, no ears visible, no beard. SECOND image is reference for simplified round-head geometry and line language ONLY; do not copy its male bald character or clothes. Keep Mara an original woman through her short dark bob, hair clip and petrol-teal jacket. All body proportions and painting quality of first image remain unchanged. One full isolated body, generous clear margins, no text or backdrop. Preserve true transparent background.",
+      "referencias": [
+        "atlas/mara_origem_estudo_v1.png",
+        "referencias/video_modelo_v1/quadros/140.00.jpg"
+      ]
+    },
+    {
+      "id": "mara_janela",
+      "nome": "Mara — apoiada na janela",
+      "pose": "janela_costas",
+      "img": "personagens/mara/janela_costas_v1",
+      "source": "exec-eecbae9a-f870-4b53-ba47-32e29b079e18.png",
+      "prompt": "Create one full isolated Mara pose, preserving the character identity and outfit from the FIRST image. The head is a perfectly round gray sphere with simple black oval eyes, thin eyebrows and tiny curved mouth, NO nose, no pointed chin, no realistic human facial anatomy. Keep her short black bob with copper clip and petrol-teal jacket. SECOND image is only a pose and camera reference. True transparent background, generous transparent margin, high resolution vertical 9:16, one figure, no scenery, text, HUD or watermarks.\nPreserve the exact original Mara identity from FIRST image: short uneven black bob, side part and copper hair clip, gray face (mostly unseen from back), petrol-teal utility jacket WITHOUT courier reflective stripe, charcoal-olive cargo trousers, brown ankle boots and gray fingerless gloves. Use SECOND image ONLY for pose and perspective: back toward camera, leaning forward bracing an invisible mattress/window, elbows bent and open palms raised to either side at shoulder/head height, feet separated and right heel slightly up. Her entire body, hands and soles visible. No male survivor, no bald head, no goatee. ONLY the isolated original Mara, no wall, floor, bag or sleeping bag. Genuine transparent surroundings, sober painted 2D shadows and fine outlines matching first image.",
+      "referencias": [
+        "imagens/personagens/mara/neutro_v1.png",
+        "referencias/video_modelo_v1/quadros/000.00.jpg"
+      ]
+    },
+    {
+      "id": "mara_deitada",
+      "nome": "Mara — deitada no abrigo",
+      "pose": "deitada_saco",
+      "img": "personagens/mara/deitada_saco_v1",
+      "source": "exec-d7754633-aba2-4581-824f-6b5687dee9ee.png",
+      "prompt": "Create one full isolated Mara pose, preserving the character identity and outfit from the FIRST image. The head is a perfectly round gray sphere with simple black oval eyes, thin eyebrows and tiny curved mouth, NO nose, no pointed chin, no realistic human facial anatomy. Keep her short black bob with copper clip and petrol-teal jacket. SECOND image is only a pose and camera reference. True transparent background, generous transparent margin, high resolution vertical 9:16, one figure, no scenery, text, HUD or watermarks.\nPreserve Mara from FIRST image, an ORIGINAL adult woman with short black bob, side part, copper hair clip, rounded light-gray face, simple black oval eyes, thin expressive eyebrows, no beard. Same petrol-teal jacket and gray fingerless gloves. SECOND image supplies ONLY the pose/camera: Mara lying supine inside a long worn dark olive sleeping bag, head near upper center, feet foreshortened toward bottom, face looking up with worried expression, one gloved hand resting on belly and other arm near top of bag. Include the complete character and sleeping bag as an independent sprite, no background, floor, furniture or bottle. Do not reproduce the male bald character in second reference. Transparent surroundings, all contained with margins, sober textured 2D painted style.",
+      "referencias": [
+        "imagens/personagens/mara/neutro_v1.png",
+        "referencias/video_modelo_v1/quadros/014.00.jpg"
+      ]
+    },
+    {
+      "id": "mara_sentada",
+      "nome": "Mara — sentada na laje",
+      "pose": "sentada_laje",
+      "img": "personagens/mara/sentada_laje_v1",
+      "source": "exec-3ff18915-dac8-4c1a-8b9b-315a98327b91.png",
+      "prompt": "Create one full isolated Mara pose, preserving the character identity and outfit from the FIRST image. The head is a perfectly round gray sphere with simple black oval eyes, thin eyebrows and tiny curved mouth, NO nose, no pointed chin, no realistic human facial anatomy. Keep her short black bob with copper clip and petrol-teal jacket. SECOND image is only a pose and camera reference. True transparent background, generous transparent margin, high resolution vertical 9:16, one figure, no scenery, text, HUD or watermarks.\nPreserve EXACT original Mara from FIRST image: adult woman with short uneven black bob, side part, copper hair clip, rounded light-gray face, black oval eyes, petrol-teal utility jacket, charcoal-olive cargo trousers, gray fingerless gloves and brown ankle boots. SECOND image supplies ONLY seated posture: sitting on invisible ground with back resting against an invisible low wall, knees raised and spread, feet planted ahead, forearms on thighs, empty hands loosely together at lap. Face tired and alert, looking toward camera. No beard, no bald head, no courier stripe, no male source character. Entire isolated seated woman, no wall, city, phone, bag, props, writing or HUD. Genuine transparent surroundings, complete boots, generous margin, painterly blue-purple 2D shadows.",
+      "referencias": [
+        "imagens/personagens/mara/neutro_v1.png",
+        "referencias/video_modelo_v1/quadros/140.00.jpg"
+      ]
+    }
+  ]
+}

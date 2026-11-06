@@ -32,6 +32,18 @@ _editor_cache/
 !biblioteca/ilustrada/v1/previas/primeira_pessoa_v1.png
 !producoes/revisoes/fluidez-v2/cena_*.mp4
 !producoes/revisoes/fluidez-v2/cena_*.png
+!biblioteca/cronicas/v1/imagens/**/*.png
+!biblioteca/cronicas/v1/atlas/*.png
+!biblioteca/cronicas/v1/previas/*.png
+!biblioteca/cronicas/v1/previas/*.mp4
+!biblioteca/cronicas/v1/previas/cenas-v1/*.png
+!biblioteca/cronicas/v1/previas/cenas-v1/*.mp4
+
+# Quadros de análise do vídeo fornecido; não são assets finais da biblioteca.
+referencias/video_modelo_v1/quadros/
+referencias/video_modelo_v1/abertura.jpg
+referencias/video_modelo_v1/geral.jpg
+referencias/video_modelo_v1/transcricao_asr.json
 
 !biblioteca/ilustrada/v1/imagens/**/*.png
 

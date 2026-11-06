@@ -181,6 +181,7 @@ def auditar_catalogo(catalogo, base=BASE):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--base',type=Path,default=BASE,help='Pasta da biblioteca a auditar ou validar')
     sub = parser.add_subparsers(dest='comando', required=True)
     novo = sub.add_parser('novo')
     novo.add_argument('id')
@@ -191,18 +192,18 @@ def main():
     sub.add_parser('auditar')
     args = parser.parse_args()
     if args.comando == 'novo':
-        dados = modelo(args.id, args.tipo)
+        dados = modelo(args.id, args.tipo,carregar(args.base))
         args.saida.parent.mkdir(parents=True, exist_ok=True)
         with args.saida.open('x', encoding='utf-8') as f:
             f.write(json.dumps(dados, ensure_ascii=False, indent=2) + '\n')
         print(args.saida)
     elif args.comando == 'validar':
-        erros = validar_ficha(json.loads(args.ficha.read_text(encoding='utf-8')))
+        erros = validar_ficha(json.loads(args.ficha.read_text(encoding='utf-8')),args.base)
         print(json.dumps(erros, ensure_ascii=False, indent=2))
         return bool(erros)
     else:
-        cat = json.loads((BASE / 'catalogo.json').read_text(encoding='utf-8'))
-        relatorio = auditar_catalogo(cat)
+        cat = json.loads((args.base / 'catalogo.json').read_text(encoding='utf-8'))
+        relatorio = auditar_catalogo(cat,args.base)
         print(json.dumps(relatorio, ensure_ascii=False, indent=2))
         return any(r['estado'] == 'pendente' for r in relatorio.values())
     return 0

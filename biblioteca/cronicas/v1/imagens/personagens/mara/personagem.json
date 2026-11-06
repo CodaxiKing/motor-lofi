@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "id": "mara",
+  "nome": "Mara",
+  "altura_m": 1.68,
+  "tipo_movimento": "humano",
+  "padrao_criacao": 1,
+  "estado_producao": "rascunho",
+  "preferencia_animacao": "quadros",
+  "ciclos_quadros": {},
+  "ciclos_direcionais": {},
+  "plano_animacao": "personagens/mara/ficha_animacao_planejada.json",
+  "visual": {
+    "cabeca": "esfera redonda cinza, olhos pretos simples, sem nariz",
+    "identidade": "Mara original: cabelo preto curto, presilha cobre, jaqueta verde-petróleo"
+  },
+  "marcos_camera": {
+    "cintura": 0.54,
+    "joelhos": 0.79,
+    "ombros": 0.3,
+    "centro_rosto": 0.12,
+    "largura_rosto": 0.28
+  }
+}

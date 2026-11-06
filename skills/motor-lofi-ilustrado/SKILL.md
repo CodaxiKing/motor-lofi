@@ -8,6 +8,20 @@ description: Criar histórias interativas narradas ou dialogadas usando personag
 Use o checkout do Motor Lo-Fi existente. Este é um modo opcional: não migre o
 rig, o modo imagens ou as séries existentes sem pedido do usuário.
 
+## Biblioteca Crônicas separada
+
+Para o estilo Crônicas, leia `biblioteca/cronicas/v1/LEIA-ME.md`, `ESTILO.md`
+e `ROTEIRO.md`. Liste com `--biblioteca cronicas listar`; selecione na história
+`biblioteca: "cronicas"` e `perfil_direcao: "cronicas_situacional_v1"`.
+Use somente o catálogo escolhido. Mara é original, com cabeça redonda, cabelo
+preto curto e presilha cobre; preserve o visual aprovado. A biblioteca está em
+estudo visual, com sete fundos e quatro poses estáticas. Exige
+`producao.etapa: "previa_visual"`; não declare ciclos completos ou produção final.
+Seu contrato de animações mantém dez vistas e movimentos próprios para monstros.
+Os campos `abertura.situacao` e `abertura.premissa` entram na primeira narração,
+explicando imediatamente a situação e o objetivo/perigo. As composições, HUD e
+insertos ficam no perfil; confira a prévia e a análise da referência fornecida.
+
 ## História original a partir dos assets
 
 1. Rode `python -m lofi.historias_ilustradas listar` e leia
