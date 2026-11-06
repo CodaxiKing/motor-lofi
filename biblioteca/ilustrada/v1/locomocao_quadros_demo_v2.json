@@ -1,0 +1,70 @@
+{
+  "purpose": "teste de caminhada/corrida em quadros completos com cenário móvel",
+  "out": "locomocao_quadros_v2.mp4",
+  "fps": 24,
+  "total": 5.4,
+  "narrado": true,
+  "loop": false,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 5.4,
+      "imagens": {
+        "fundo": "fundo_trilha_lateral_v1",
+        "aproximar": 0,
+        "balanco": 0,
+        "travelling": {
+          "velocidades": [
+            [
+              0,
+              0.2
+            ],
+            [
+              2.4,
+              0.2
+            ],
+            [
+              3,
+              0.7
+            ],
+            [
+              5.4,
+              0.7
+            ]
+          ]
+        },
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_perfil_v1",
+            "pos": 0.44,
+            "altura": 0.58,
+            "chao": 0.84,
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "seguir_travelling": true,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 2.7,
+                "ciclo": "lucas/andar_corpo_v1.json"
+              },
+              {
+                "inicio": 2.7,
+                "fim": 5.5,
+                "ciclo": "lucas/correr_corpo_v1.json",
+                "fase_inicial": 0.33172061928219687
+              }
+            ],
+            "altura_m": 1.45
+          }
+        ]
+      }
+    }
+  ]
+}

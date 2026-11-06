@@ -1,0 +1,82 @@
+{
+  "purpose": "teste técnico de caminhada/corrida com câmera lateral",
+  "out": "andar_correr_cenario_v1.mp4",
+  "total": 8,
+  "fps": 24,
+  "narrado": true,
+  "loop": false,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 8,
+      "imagens": {
+        "fundo": "fundo_trilha_lateral_v1",
+        "aproximar": 0,
+        "balanco": 0,
+        "travelling": {
+          "velocidades": [
+            [
+              0,
+              0.09
+            ],
+            [
+              3.7,
+              0.09
+            ],
+            [
+              4.4,
+              0.22
+            ],
+            [
+              8,
+              0.22
+            ]
+          ]
+        },
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_perfil_v1",
+            "seguir_travelling": true,
+            "orientacao": "manual",
+            "espelhar": false,
+            "pos": 0.44,
+            "altura": 0.68,
+            "chao": 0.84,
+            "ancora": [
+              0.5,
+              1
+            ],
+            "respirar": 0,
+            "piscar": false,
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/andar_corpo_v1.json",
+                "inicio": 0,
+                "fim": 1000,
+                "modo": "loop"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "animation_review": {
+    "ok": true,
+    "achados": [
+      {
+        "code": "pe_deslizando",
+        "message": "lucas: apoio pe_e desliza durante contato",
+        "t": 4.317,
+        "severity": "warning"
+      }
+    ],
+    "amostras_s": 8,
+    "nota": "Auditoria geométrica e acústica amostrada; não substitui revisão visual."
+  }
+}

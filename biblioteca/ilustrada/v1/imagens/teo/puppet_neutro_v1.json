@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "metodo": "TPS inversa + malha quad",
+  "pose": "neutro",
+  "aspecto": 0.6115960099750624,
+  "colunas": 12,
+  "pins": {
+    "cabeca_0_0": {
+      "pos": [
+        0.33,
+        0.035
+      ]
+    },
+    "cabeca_1_0": {
+      "pos": [
+        0.49,
+        0.035
+      ]
+    },
+    "cabeca_2_0": {
+      "pos": [
+        0.65,
+        0.035
+      ]
+    },
+    "cabeca_0_1": {
+      "pos": [
+        0.33,
+        0.12
+      ]
+    },
+    "cabeca_1_1": {
+      "pos": [
+        0.49,
+        0.12
+      ]
+    },
+    "cabeca_2_1": {
+      "pos": [
+        0.65,
+        0.12
+      ]
+    },
+    "cabeca_0_2": {
+      "pos": [
+        0.33,
+        0.205
+      ]
+    },
+    "cabeca_1_2": {
+      "pos": [
+        0.49,
+        0.205
+      ]
+    },
+    "cabeca_2_2": {
+      "pos": [
+        0.65,
+        0.205
+      ]
+    },
+    "pescoco": {
+      "pos": [
+        0.49,
+        0.25
+      ],
+      "fixo": true
+    },
+    "ombro_e": {
+      "pos": [
+        0.39,
+        0.29
+      ],
+      "amplitude": [
+        -0.003,
+        -0.004
+      ],
+      "periodo": 4
+    },
+    "ombro_d": {
+      "pos": [
+        0.63,
+        0.29
+      ],
+      "amplitude": [
+        0.003,
+        -0.004
+      ],
+      "periodo": 4
+    },
+    "peito": {
+      "pos": [
+        0.5,
+        0.39
+      ],
+      "amplitude": [
+        0.001,
+        -0.004
+      ],
+      "periodo": 4
+    },
+    "cotovelo_e": {
+      "pos": [
+        0.34,
+        0.45
+      ],
+      "amplitude": [
+        -0.004,
+        -0.003
+      ],
+      "periodo": 4
+    },
+    "cotovelo_d": {
+      "pos": [
+        0.66,
+        0.45
+      ],
+      "amplitude": [
+        0.006,
+        -0.005
+      ],
+      "periodo": 4
+    },
+    "mao_e": {
+      "pos": [
+        0.34,
+        0.64
+      ],
+      "amplitude": [
+        -0.006,
+        -0.003
+      ],
+      "periodo": 4
+    },
+    "mao_d": {
+      "pos": [
+        0.68,
+        0.64
+      ],
+      "keys": [
+        [
+          0,
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          1,
+          [
+            -0.01,
+            -0.014
+          ]
+        ],
+        [
+          2,
+          [
+            0.006,
+            -0.023
+          ]
+        ],
+        [
+          3,
+          [
+            0,
+            0
+          ]
+        ]
+      ],
+      "loop_s": 4
+    },
+    "quadril": {
+      "pos": [
+        0.51,
+        0.59
+      ],
+      "fixo": true
+    },
+    "joelho_e": {
+      "pos": [
+        0.43,
+        0.79
+      ],
+      "fixo": true
+    },
+    "joelho_d": {
+      "pos": [
+        0.6,
+        0.79
+      ],
+      "fixo": true
+    },
+    "pe_e": {
+      "pos": [
+        0.4,
+        0.98
+      ],
+      "fixo": true
+    },
+    "pe_d": {
+      "pos": [
+        0.65,
+        0.98
+      ],
+      "fixo": true
+    }
+  },
+  "grupos_rigidos": [
+    {
+      "pins": [
+        "cabeca_0_0",
+        "cabeca_1_0",
+        "cabeca_2_0",
+        "cabeca_0_1",
+        "cabeca_1_1",
+        "cabeca_2_1",
+        "cabeca_0_2",
+        "cabeca_1_2",
+        "cabeca_2_2"
+      ],
+      "centro": [
+        0.49,
+        0.235
+      ],
+      "graus": 2.2,
+      "periodo": 4
+    }
+  ],
+  "notas": "Pins calibrados para esta pose; gestos pequenos, pés e quadril fixos."
+}

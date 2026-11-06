@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "tipo": "corpo_inteiro",
+  "atlas": "lucas/braco_corpo_atlas_v1",
+  "fps_quadros": 8,
+  "referencia": {
+    "altura_corpo": 0.8038277511961722,
+    "altura_referencia": 0.98,
+    "diametro_cabeca": 0.18660287081339713,
+    "metodo": "marcos de cabeça e pés; escala comum, nunca a caixa da mão elevada"
+  },
+  "frames": [
+    {
+      "regiao": [
+        0.0,
+        0.0,
+        0.25,
+        0.5
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.25,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.5,
+        0.0,
+        0.75,
+        0.5
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.75,
+        0.0,
+        1.0,
+        0.5
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.0,
+        0.5,
+        0.25,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.25,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.5,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.75,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9298245614035088
+      ],
+      "apoio": true,
+      "marcos": {
+        "topo_cabeca": 0.12599681020733652,
+        "linha_solo": 0.9298245614035088,
+        "eixo_corpo_x": 0.5
+      }
+    }
+  ],
+  "deslocamento_corpo_ciclo": 0,
+  "ordem": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+  ]
+}

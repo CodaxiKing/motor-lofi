@@ -39,3 +39,26 @@ python tools/studio.py planejar historia.json series/<serie> --episode 1
 A skill lê a escolha persistida. `--render-mode rig` no episódio permite usar
 o modo anterior; o comando `modo` muda o padrão da série. A biblioteca usa
 respiração e balanço discretos. Só poses com variante compatível piscam.
+
+
+O módulo também aceita diálogos, bocas locais sincronizadas e ações com peças
+articuladas. Consulte `ANIMACAO.md`. As demonstrações MP4 têm vozes de teste
+reaproveitadas dos exemplos; as vozes finais ainda precisam ser gravadas.
+
+
+Animação por desenhos completos: Lucas possui ciclos de andar, correr e levantar
+o braço, com oito desenhos por ação. Consulte [QUADROS.md](QUADROS.md) para gerar e alinhar novos ciclos.
+
+
+Câmeras, movimentos do elenco e criaturas e objetos: [EXPANSAO.md](EXPANSAO.md).
+
+
+Câmera cinematográfica da biblioteca: corpo inteiro, americano, cintura e close.
+Veja [CAMERA.md](CAMERA.md). O mapa organiza o elenco antes de aplicar o enquadramento.
+
+
+Sombras de contato e silhueta seguem as luzes calibradas do cenário.
+Veja [SOMBRAS.md](SOMBRAS.md) para luzes, piso, movimento e saltos.
+
+
+Contato com objetos, ligações de movimento e câmera narrativa: [DIRECAO_INTERACOES.md](DIRECAO_INTERACOES.md).

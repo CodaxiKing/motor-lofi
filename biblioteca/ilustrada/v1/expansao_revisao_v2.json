@@ -1,0 +1,156 @@
+{
+  "catalogo": [],
+  "personagens": {
+    "lucas": {
+      "lucas/agachar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "lucas/andar_corpo_v1.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "lucas/braco_corpo_v1.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "lucas/correr_corpo_v1.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "lucas/levantar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      }
+    },
+    "clara": {
+      "clara/agachar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "clara/andar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "clara/correr_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "clara/levantar_braco_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "clara/levantar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      }
+    },
+    "teo": {
+      "teo/agachar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "teo/andar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "teo/correr_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "teo/levantar_braco_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "teo/levantar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      }
+    },
+    "amanha": {
+      "amanha/agachar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "amanha/andar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "amanha/correr_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "amanha/levantar_braco_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "amanha/levantar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      }
+    },
+    "mimico": {
+      "mimico/agachar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/andar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/avancar_16_corpo_v2.json": {
+        "frames": 16,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/correr_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/espreitar_16_corpo_v2.json": {
+        "frames": 16,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/levantar_braco_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      },
+      "mimico/levantar_corpo_v2.json": {
+        "frames": 8,
+        "achados": [],
+        "metodo": "alfa, margens e apoio; articulações requerem revisão visual"
+      }
+    }
+  },
+  "gerador": "image_gen integrado",
+  "cameras": [
+    "esquerda",
+    "direita",
+    "baixo"
+  ]
+}

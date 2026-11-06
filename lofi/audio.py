@@ -167,12 +167,8 @@ def drone(d, base=55.0, tense=0.0):
 
 # ------------------- mixagem -------------------
 def load_voice(path):
-    tmp = f"{path}.{os.getpid()}.44.wav"     # um arquivo por processo: blocos em paralelo não se atropelam
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", path, "-ar", str(SR), "-ac", "1", tmp], check=True)
-    try:
-        x, _ = sf.read(tmp); return x
-    finally:
-        if os.path.exists(tmp): os.remove(tmp)
+    from .sincronia import ler_audio
+    return ler_audio(path, SR)[0]
 
 # ------------------- acústica por ambiente -------------------
 ACOUSTICS = {

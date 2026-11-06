@@ -416,3 +416,49 @@ python tools/studio.py planejar historia.json series/<serie> --episode 1
 A skill lê a escolha persistida. `--render-mode rig` no episódio permite usar
 o modo anterior; o comando `modo` muda o padrão da série. A biblioteca usa
 respiração e balanço discretos. Só poses com variante compatível piscam.
+
+
+### Composição automática do elenco ilustrado
+
+Os cenários da biblioteca têm mapas de chão, profundidade e zonas de ocupação.
+O módulo `lofi.composicao` padroniza a escala visível, distribui o grupo,
+considera o envelope das animações e emite avisos de corte e sobreposição.
+Histórias ilustradas novas já usam o cálculo; composições manuais continuam
+possíveis. Consulte `biblioteca/ilustrada/v1/COMPOSICAO.md` e a prévia
+`cena_animada_preview_v2.gif` nessa pasta.
+
+
+As alturas físicas agora pertencem ao `personagem.json` de cada pasta da
+biblioteca ilustrada. O protótipo `lofi.puppet` anima recortes com pins,
+movimentos contínuos e malha suave, integrado ao renderer e ao recorte da porta.
+Consulte `biblioteca/ilustrada/v1/PUPPET.md` para configuração, prévia e limites.
+
+
+### Diálogos e animação por peças
+
+O módulo ilustrado aceita falas por personagem, bocas locais por visema,
+gestos com intenção, reações de escuta e preparação/acomodação suaves.
+Lucas tem um primeiro rig com membros e pés independentes, pivôs e IK.
+A auditoria aponta saltos, escala, apoio, boca no silêncio e loops.
+Veja `biblioteca/ilustrada/v1/ANIMACAO.md` e as duas prévias MP4 com som.
+
+
+Animação por desenhos completos: Lucas possui ciclos de andar, correr e levantar
+o braço, com oito desenhos por ação. Consulte [QUADROS.md](biblioteca/ilustrada/v1/QUADROS.md) para gerar e alinhar novos ciclos.
+
+
+A expansão da biblioteca traz câmeras do mesmo abrigo, esconderijos com objetos
+e ciclos individuais para todo o elenco. Veja [EXPANSAO.md](biblioteca/ilustrada/v1/EXPANSAO.md).
+
+
+Câmera cinematográfica da biblioteca: corpo inteiro, americano, cintura e close.
+Veja [CAMERA.md](biblioteca/ilustrada/v1/CAMERA.md). O mapa organiza o elenco antes de aplicar o enquadramento.
+
+
+Sombras de contato e silhueta seguem as luzes calibradas do cenário.
+Veja [SOMBRAS.md](biblioteca/ilustrada/v1/SOMBRAS.md) para luzes, piso, movimento e saltos.
+
+
+Para histórias com as imagens prontas, escolha o modo ilustrado e planeje
+com a biblioteca. Contato, transições e câmera por batidas estão descritos em
+[DIRECAO_INTERACOES.md](biblioteca/ilustrada/v1/DIRECAO_INTERACOES.md).

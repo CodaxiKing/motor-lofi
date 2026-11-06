@@ -1,0 +1,80 @@
+{
+  "fps": 24,
+  "size": [
+    768,
+    768
+  ],
+  "total": 9,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 9,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "mimico",
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.7288235294117646,
+            "chao": 0.94,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 1.2,
+                "ciclo": "mimico/andar_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 1.2,
+                "fim": 2.4,
+                "ciclo": "mimico/correr_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 2.4,
+                "fim": 3.6,
+                "ciclo": "mimico/levantar_braco_corpo_v2.json",
+                "modo": "loop",
+                "velocidade": 2
+              },
+              {
+                "inicio": 3.6,
+                "fim": 4.6,
+                "ciclo": "mimico/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 4.6,
+                "fim": 5.6,
+                "ciclo": "mimico/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 5.6,
+                "fim": 7.1,
+                "ciclo": "mimico/espreitar_16_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 7.1,
+                "fim": 9.01,
+                "ciclo": "mimico/avancar_16_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto"
+      }
+    }
+  ]
+}

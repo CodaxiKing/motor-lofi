@@ -1,0 +1,93 @@
+{
+  "purpose": "teste de caminhada em enquadramento vertical; personagem em primeiro plano",
+  "out": "lucas_caminhada_enquadrada_v2.mp4",
+  "fps": 20,
+  "total": 2.4,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 2.4,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "fundo_y": 0.5,
+        "aproximar": 0,
+        "balanco": 0,
+        "personagens": [
+          {
+            "img": "lucas/lucas_andando_01_v1",
+            "poses": [
+              [
+                0.0,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                0.2,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                0.4,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                0.6,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                0.8,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                1.0,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                1.2,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                1.4,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                1.6,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                1.8,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                2.0,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                2.2,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                2.4,
+                "lucas/lucas_andando_01_v1"
+              ]
+            ],
+            "ancora": [
+              0.5,
+              0.98
+            ],
+            "altura": 0.78,
+            "chao": 0.94,
+            "andar": [
+              0.48,
+              0.52
+            ],
+            "piscar": false,
+            "respirar": 0
+          }
+        ]
+      }
+    }
+  ]
+}

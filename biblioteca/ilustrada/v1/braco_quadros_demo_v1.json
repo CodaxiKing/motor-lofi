@@ -1,0 +1,45 @@
+{
+  "purpose": "teste de oito quadros completos para levantar e baixar o braço",
+  "out": "braco_quadros_v1.mp4",
+  "fps": 24,
+  "total": 6,
+  "narrado": true,
+  "loop": false,
+  "seamless_loop": true,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 6,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "aproximar": 0,
+        "balanco": 0,
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.48,
+            "altura": 0.4264705882352941,
+            "chao": 0.94,
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "manual",
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 6.01,
+                "ciclo": "lucas/braco_corpo_v1.json",
+                "modo": "loop"
+              }
+            ],
+            "altura_m": 1.45
+          }
+        ]
+      }
+    }
+  ]
+}

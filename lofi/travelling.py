@@ -468,3 +468,31 @@ def make_frente(base):
             if flashes and self.cfg["fora"]: img = fx.lightning(img, t, flashes)
             return img
     return Frente()
+
+
+# Travelling dos cenários raster da biblioteca ilustrada.
+"""Distância e velocidade contínuas da câmera lateral, em alturas de tela."""
+import math
+
+
+def estado(config,t):
+    keys=config.get('velocidades',[])
+    if not keys:return 0.,0.
+    pts=sorted((float(a),float(v)) for a,v in keys)
+    if any(not math.isfinite(a) or not math.isfinite(v) or a<0 for a,v in pts):raise ValueError('Trilho inválido')
+    if len({a for a,_ in pts})!=len(pts):raise ValueError('Tempos repetidos no trilho')
+    t=max(0.,float(t));dist=pts[0][1]*min(t,pts[0][0])
+    if t<=pts[0][0]:return dist,pts[0][1]
+    for (a,v0),(b,v1) in zip(pts,pts[1:]):
+        dt=b-a;u=min(1,max(0,(t-a)/dt))
+        dist+=v0*dt*u+(v1-v0)*dt*(u**3-.5*u**4)
+        if t<=b:return dist,v0+(v1-v0)*(3*u*u-2*u*u*u)
+    dist+=(t-pts[-1][0])*pts[-1][1]
+    return dist,pts[-1][1]
+
+
+def deslocamento(config,t,size,fundo_size):
+    distance,speed=estado(config,t);W,H=size;w,h=fundo_size;s=max(W/w,H/h)*1.03
+    x=float(config.get('inicio_x',0))-distance*H
+    if x>1 or x+w*s<W-1:raise ValueError('Panorama insuficiente para o travelling; reduza percurso ou amplie cenário')
+    return x,speed

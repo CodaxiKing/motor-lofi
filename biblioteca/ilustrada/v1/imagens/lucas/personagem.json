@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "id": "lucas",
+  "nome": "Lucas",
+  "altura_m": 1.45,
+  "origem_altura": "Ajustado em 2026-11-06: protagonista menor que os demais, conforme pedido do autor",
+  "puppets": {
+    "lucas/lucas_34_neutro_recorte_v1": "lucas/puppet_neutro_v1.json",
+    "lucas/lucas_neutro_piscando_v1": "lucas/puppet_neutro_v1.json"
+  },
+  "margem_puppet": 0.025,
+  "piscadas_locais": {
+    "lucas/lucas_34_neutro_recorte_v1": [
+      {
+        "destino": [
+          0.468,
+          0.13,
+          0.548,
+          0.178
+        ],
+        "origem": [
+          0.461,
+          0.13,
+          0.547,
+          0.178
+        ]
+      },
+      {
+        "destino": [
+          0.566,
+          0.132,
+          0.626,
+          0.178
+        ],
+        "origem": [
+          0.555,
+          0.13,
+          0.627,
+          0.178
+        ]
+      }
+    ]
+  },
+  "bocas_locais": {
+    "lucas/lucas_34_neutro_recorte_v1": {
+      "atlas": "lucas/bocas_atlas_v1",
+      "formas": {
+        "M": [
+          0.4283854166666667,
+          0.2099609375,
+          0.5716145833333334,
+          0.3564453125
+        ],
+        "A": [
+          0.76171875,
+          0.2099609375,
+          0.9049479166666666,
+          0.3564453125
+        ],
+        "E": [
+          0.09505208333333333,
+          0.7080078125,
+          0.23828125,
+          0.8544921875
+        ],
+        "O": [
+          0.4283854166666667,
+          0.7080078125,
+          0.5716145833333334,
+          0.8544921875
+        ],
+        "U": [
+          0.76171875,
+          0.7080078125,
+          0.9049479166666666,
+          0.8544921875
+        ]
+      },
+      "regiao": [
+        0.5,
+        0.176,
+        0.6,
+        0.217
+      ],
+      "igualar_pele": true
+    }
+  },
+  "preferencia_animacao": "quadros",
+  "ciclos_quadros": {
+    "andar": "lucas/andar_corpo_v1.json",
+    "correr": "lucas/correr_corpo_v1.json",
+    "levantar_braco": "lucas/braco_corpo_v1.json",
+    "agachar": "lucas/agachar_corpo_v2.json",
+    "levantar": "lucas/levantar_corpo_v2.json",
+    "abaixar": "lucas/agachar_corpo_v2.json",
+    "se_esconder": "lucas/agachar_corpo_v2.json",
+    "parado": "lucas/parado_ligacoes_v1.json",
+    "interagir": "lucas/interagir_v1.json",
+    "alcancar": "lucas/interagir_v1.json"
+  },
+  "grupo_animacao": "personagens",
+  "marcos_camera": {
+    "cintura": 0.55,
+    "joelhos": 0.79,
+    "ombros": 0.31,
+    "centro_rosto": 0.105,
+    "largura_rosto": 0.25
+  },
+  "transicoes": {
+    "parado>andar": {
+      "ciclo": "lucas/iniciar_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>parado": {
+      "ciclo": "lucas/frear_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>correr": {
+      "ciclo": "lucas/acelerar_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "correr>parado": {
+      "ciclo": "lucas/frear_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 0.5714285714285714
+    }
+  }
+}

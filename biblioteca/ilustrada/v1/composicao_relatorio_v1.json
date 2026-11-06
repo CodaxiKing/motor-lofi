@@ -1,0 +1,179 @@
+{
+  "size": [
+    432,
+    768
+  ],
+  "planos": [
+    {
+      "ajustes": [
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": null,
+            "altura": 0.7,
+            "chao": 0.94,
+            "andar": [
+              0.38,
+              0.46
+            ]
+          },
+          "depois": {
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "andar": [
+              0.3098498223693712,
+              0.3181831557027045
+            ]
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.8115481010826838,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": []
+    },
+    {
+      "ajustes": [
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.8115481010826838,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": []
+    },
+    {
+      "ajustes": [
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.8115481010826838,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": []
+    },
+    {
+      "ajustes": [
+        {
+          "id": "mimico",
+          "zona": "porta",
+          "antes": {
+            "pos": 0.59,
+            "altura": 0.34,
+            "chao": 0.7,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.6176573026792133,
+            "altura": 0.373829792583281,
+            "chao": 0.7059999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.3156435158445606,
+            "altura": 0.5866492234104217,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.8121971595186218,
+            "altura": 0.5840583435593978,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": []
+    }
+  ],
+  "metodo": "geometria e mapas calibrados; revisar interação e perspectiva"
+}

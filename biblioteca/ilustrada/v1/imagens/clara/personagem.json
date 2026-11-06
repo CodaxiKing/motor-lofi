@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "clara",
+  "nome": "Clara",
+  "altura_m": 1.75,
+  "origem_altura": "sugestão aprovada pelo autor em 2026-11-06",
+  "puppets": {},
+  "margem_puppet": 0.025,
+  "preferencia_animacao": "quadros",
+  "grupo_animacao": "personagens",
+  "ciclos_quadros": {
+    "andar": "clara/andar_corpo_v2.json",
+    "correr": "clara/correr_corpo_v2.json",
+    "levantar_braco": "clara/levantar_braco_corpo_v2.json",
+    "agachar": "clara/agachar_corpo_v2.json",
+    "levantar": "clara/levantar_corpo_v2.json",
+    "abaixar": "clara/agachar_corpo_v2.json",
+    "se_esconder": "clara/agachar_corpo_v2.json",
+    "parado": "clara/parado_ligacoes_v1.json",
+    "interagir": "clara/interagir_v1.json",
+    "alcancar": "clara/interagir_v1.json"
+  },
+  "marcos_camera": {
+    "cintura": 0.52,
+    "joelhos": 0.79,
+    "ombros": 0.31,
+    "centro_rosto": 0.12,
+    "largura_rosto": 0.28
+  },
+  "transicoes": {
+    "parado>andar": {
+      "ciclo": "clara/iniciar_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>parado": {
+      "ciclo": "clara/frear_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>correr": {
+      "ciclo": "clara/acelerar_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "correr>parado": {
+      "ciclo": "clara/frear_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 0.8
+    }
+  }
+}

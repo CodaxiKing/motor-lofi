@@ -62,6 +62,11 @@ def quality_report(episode, *, story='', bible=None, capabilities=None, episode_
     findings = []
     def add(level, code, message):
         findings.append({'severity': level, 'code': code, 'message': message})
+    for f in episode.get('animation_review', {}).get('achados', []):
+        add(f.get('severity','warning'), 'animation_' + f['code'], f['message'])
+    for plano in episode.get('composicao_relatorio', {}).get('planos', []):
+        for f in plano.get('achados', []):
+            add('warning', 'composicao_' + f['code'], f['message'])
     for f in episode.get('staging_findings', []):
         findings.append(dict(f, severity='warning'))
     for chave, ficha in episode.get('cast', {}).items():
@@ -118,7 +123,7 @@ def quality_report(episode, *, story='', bible=None, capabilities=None, episode_
             'findings': findings, 'dramaturgy': drama, 'rendered_video': False,
             'notes': 'Relatório estático; não comprova renderização, voz ou sincronização.'}
 
-def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='roberta', scene='apartamento', mode='hybrid', duration=None, duration_profile=None, opening='A', elenco=None, render_mode=None):
+def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='roberta', scene='apartamento', mode='hybrid', duration=None, duration_profile=None, opening='A', elenco=None, render_mode=None, pasta_audio=None):
     if mode not in ('automatic', 'professional', 'hybrid'):
         raise ValueError('Modo deve ser automatic, professional ou hybrid')
     folder = Path(series_dir)
@@ -143,7 +148,7 @@ def plan_episode(story, *, series_dir, episode_number=1, branch=None, actor='rob
             raise ValueError('Modo ilustrado requer historia.json estruturada; use a skill motor-lofi-ilustrado') from exc
         if duration is not None: historia['duracao'] = duration
         if duration_profile is not None: historia['perfil'] = duration_profile
-        ep = compilar(historia, pasta_saida=folder / 'episodios')
+        ep = compilar(historia, pasta_saida=folder / 'episodios', pasta_audio=pasta_audio)
         ep['episode'] = episode_number
         ep['series_title'] = bible['serie']['title']
         ep['world_state'] = bible.get('continuidade', {}).get('world_state', {})

@@ -1,0 +1,108 @@
+{
+  "size": [
+    432,
+    768
+  ],
+  "planos": [
+    {
+      "ajustes": [
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.7901844653401858,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.7901844653401858,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": []
+    },
+    {
+      "ajustes": [
+        {
+          "id": "mimico",
+          "zona": "porta",
+          "antes": {
+            "pos": 0.630158897351863,
+            "altura": 0.3550593050210686,
+            "chao": 0.7059999999999998,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.630158897351863,
+            "altura": 0.3550593050210686,
+            "chao": 0.7059999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "lucas",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.31381424550230025,
+            "altura": 0.5862376895488198,
+            "chao": 0.9531999999999998,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.31381424550230025,
+            "altura": 0.5862376895488198,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        },
+        {
+          "id": "teo",
+          "zona": "frente",
+          "antes": {
+            "pos": 0.7896665103875555,
+            "altura": 0.5836486271975001,
+            "chao": 0.9531999999999998,
+            "andar": null
+          },
+          "depois": {
+            "pos": 0.7896665103875555,
+            "altura": 0.5836486271975001,
+            "chao": 0.9531999999999998,
+            "andar": null
+          }
+        }
+      ],
+      "achados": [
+        {
+          "code": "cabeca_oculta",
+          "message": "mimico/teo: revisar oclusão da região da cabeça"
+        },
+        {
+          "code": "cabeca_oculta",
+          "message": "mimico/lucas: revisar oclusão da região da cabeça"
+        }
+      ]
+    }
+  ],
+  "metodo": "geometria e mapas calibrados; revisar interação e perspectiva"
+}

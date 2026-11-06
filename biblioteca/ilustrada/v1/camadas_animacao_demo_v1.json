@@ -1,0 +1,1341 @@
+{
+  "purpose": "teste técnico de diálogo e animação; vozes reaproveitadas dos exemplos, não são vozes finais",
+  "out": "dialogos_camadas.mp4",
+  "fps": 24,
+  "total": 6.8,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 6.8,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "mimico",
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.6297088963804494,
+            "altura": 0.4361347580138278,
+            "chao": 0.7059999999999998,
+            "zona": "porta",
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "centro",
+            "portal": "porta",
+            "referencia_escala": "mimico/mimico_neutro_v1",
+            "escala_relativa": 1.2352941176470589,
+            "altura_m": 2.1,
+            "puppets": {},
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "direcoes_originais": {
+              "mimico/mimico_andando_frente_01_v1": "frente",
+              "mimico/mimico_andando_frente_02_v1": "frente",
+              "mimico/mimico_andando_frente_03_v1": "frente",
+              "mimico/mimico_andando_frente_04_v1": "frente"
+            },
+            "envelope_poses": [
+              "mimico/mimico_neutro_v1"
+            ],
+            "espelhar": true,
+            "bocas_locais": {},
+            "gestos": [
+              {
+                "speaker": "lucas",
+                "voice": "lucas_fala_000",
+                "start": 1.05,
+                "end": 2.65,
+                "text": "Por que você demorou?",
+                "intencao": "ouvir",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.12496598639455782,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.12496598639455782,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.2082766439909297,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.2082766439909297,
+                    "end": 0.24993197278911564,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.24993197278911564,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.5415192743764172,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.5415192743764172,
+                    "end": 0.666485260770975,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.666485260770975,
+                    "end": 0.8331065759637188,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.8331065759637188,
+                    "end": 0.8747619047619047,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.8747619047619047,
+                    "end": 0.9164172335600907,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 0.9997278911564625,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9997278911564625,
+                    "end": 1.0413832199546484,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.0413832199546484,
+                    "end": 1.1663492063492062,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1663492063492062,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.6662131519274377,
+                    "shape": "rest"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              },
+              {
+                "speaker": "teo",
+                "voice": "teo_fala_001",
+                "start": 3.45,
+                "end": 4.98,
+                "text": "Eu não sabia se era gente.",
+                "intencao": "ouvir",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.4582086167800454,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.4582086167800454,
+                    "end": 0.9164172335600907,
+                    "shape": "rest"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 1.1246938775510205,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1246938775510205,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.33297052154195,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.33297052154195,
+                    "end": 1.416281179138322,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.416281179138322,
+                    "end": 1.5829024943310657,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.5829024943310657,
+                    "end": 1.6245578231292517,
+                    "shape": "O"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              }
+            ],
+            "eventos_fala": []
+          },
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.2958188356039591,
+            "altura": 0.6982320172129504,
+            "chao": 0.9531999999999998,
+            "zona": "frente",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.7,
+            "orientacao": "centro",
+            "piscadas": {},
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "periodo_piscar": 3.2,
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "escala_relativa": 1.0,
+            "altura_m": 1.7,
+            "puppets": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/puppet_neutro_v1.json",
+              "lucas/lucas_neutro_piscando_v1": "lucas/puppet_neutro_v1.json"
+            },
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "envelope_poses": [
+              "lucas/lucas_34_neutro_recorte_v1",
+              "lucas/lucas_neutro_piscando_v1"
+            ],
+            "espelhar": false,
+            "piscadas_locais": {
+              "lucas/lucas_34_neutro_recorte_v1": [
+                {
+                  "destino": [
+                    0.468,
+                    0.13,
+                    0.548,
+                    0.178
+                  ],
+                  "origem": [
+                    0.461,
+                    0.13,
+                    0.547,
+                    0.178
+                  ]
+                },
+                {
+                  "destino": [
+                    0.566,
+                    0.132,
+                    0.626,
+                    0.178
+                  ],
+                  "origem": [
+                    0.555,
+                    0.13,
+                    0.627,
+                    0.178
+                  ]
+                }
+              ]
+            },
+            "bocas_locais": {
+              "lucas/lucas_34_neutro_recorte_v1": {
+                "atlas": "lucas/bocas_atlas_v1",
+                "formas": {
+                  "M": [
+                    0.4283854166666667,
+                    0.2099609375,
+                    0.5716145833333334,
+                    0.3564453125
+                  ],
+                  "A": [
+                    0.76171875,
+                    0.2099609375,
+                    0.9049479166666666,
+                    0.3564453125
+                  ],
+                  "E": [
+                    0.09505208333333333,
+                    0.7080078125,
+                    0.23828125,
+                    0.8544921875
+                  ],
+                  "O": [
+                    0.4283854166666667,
+                    0.7080078125,
+                    0.5716145833333334,
+                    0.8544921875
+                  ],
+                  "U": [
+                    0.76171875,
+                    0.7080078125,
+                    0.9049479166666666,
+                    0.8544921875
+                  ]
+                },
+                "regiao": [
+                  0.5,
+                  0.176,
+                  0.6,
+                  0.217
+                ],
+                "igualar_pele": true
+              }
+            },
+            "gestos": [
+              {
+                "speaker": "lucas",
+                "voice": "lucas_fala_000",
+                "start": 0.8,
+                "end": 2.5,
+                "text": "Por que você demorou?",
+                "intencao": "perguntar",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.12496598639455782,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.12496598639455782,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.2082766439909297,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.2082766439909297,
+                    "end": 0.24993197278911564,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.24993197278911564,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.5415192743764172,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.5415192743764172,
+                    "end": 0.666485260770975,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.666485260770975,
+                    "end": 0.8331065759637188,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.8331065759637188,
+                    "end": 0.8747619047619047,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.8747619047619047,
+                    "end": 0.9164172335600907,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 0.9997278911564625,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9997278911564625,
+                    "end": 1.0413832199546484,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.0413832199546484,
+                    "end": 1.1663492063492062,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1663492063492062,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.6662131519274377,
+                    "shape": "rest"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              },
+              {
+                "speaker": "teo",
+                "voice": "teo_fala_001",
+                "start": 3.45,
+                "end": 4.98,
+                "text": "Eu não sabia se era gente.",
+                "intencao": "ouvir",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.4582086167800454,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.4582086167800454,
+                    "end": 0.9164172335600907,
+                    "shape": "rest"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 1.1246938775510205,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1246938775510205,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.33297052154195,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.33297052154195,
+                    "end": 1.416281179138322,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.416281179138322,
+                    "end": 1.5829024943310657,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.5829024943310657,
+                    "end": 1.6245578231292517,
+                    "shape": "O"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              }
+            ],
+            "eventos_fala": [
+              {
+                "speaker": "lucas",
+                "voice": "lucas_fala_000",
+                "start": 0.8,
+                "end": 2.5,
+                "text": "Por que você demorou?",
+                "intencao": "perguntar",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.12496598639455782,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.12496598639455782,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.2082766439909297,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.2082766439909297,
+                    "end": 0.24993197278911564,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.24993197278911564,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.5415192743764172,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.5415192743764172,
+                    "end": 0.666485260770975,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.666485260770975,
+                    "end": 0.8331065759637188,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.8331065759637188,
+                    "end": 0.8747619047619047,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.8747619047619047,
+                    "end": 0.9164172335600907,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 0.9997278911564625,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9997278911564625,
+                    "end": 1.0413832199546484,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.0413832199546484,
+                    "end": 1.1663492063492062,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1663492063492062,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.6662131519274377,
+                    "shape": "rest"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              }
+            ],
+            "animacoes_quadros": [
+              {
+                "ciclo": "lucas/andar_corpo_v1.json",
+                "inicio": 0,
+                "fim": 1000,
+                "modo": "loop"
+              }
+            ]
+          },
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.7392371677241978,
+            "altura": 0.6542572637072769,
+            "chao": 0.9531999999999998,
+            "zona": "frente",
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.7,
+            "orientacao": "centro",
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 3.2,
+            "referencia_escala": "teo/teo_neutro_v1",
+            "escala_relativa": 0.9411764705882354,
+            "altura_m": 1.6,
+            "puppets": {
+              "teo/teo_neutro_v1": "teo/puppet_neutro_v1.json",
+              "teo/teo_neutro_piscando_v1": "teo/puppet_neutro_v1.json"
+            },
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "envelope_poses": [
+              "teo/teo_neutro_piscando_v1",
+              "teo/teo_neutro_v1"
+            ],
+            "espelhar": true,
+            "piscadas_locais": {
+              "teo/teo_neutro_v1": [
+                {
+                  "destino": [
+                    0.503,
+                    0.123,
+                    0.562,
+                    0.164
+                  ],
+                  "origem": [
+                    0.482,
+                    0.128,
+                    0.56,
+                    0.166
+                  ]
+                },
+                {
+                  "destino": [
+                    0.577,
+                    0.123,
+                    0.622,
+                    0.162
+                  ],
+                  "origem": [
+                    0.573,
+                    0.123,
+                    0.626,
+                    0.162
+                  ]
+                }
+              ]
+            },
+            "bocas_locais": {
+              "teo/teo_neutro_v1": {
+                "atlas": "lucas/bocas_atlas_v1",
+                "formas": {
+                  "M": [
+                    0.4283854166666667,
+                    0.2099609375,
+                    0.5716145833333334,
+                    0.3564453125
+                  ],
+                  "A": [
+                    0.76171875,
+                    0.2099609375,
+                    0.9049479166666666,
+                    0.3564453125
+                  ],
+                  "E": [
+                    0.09505208333333333,
+                    0.7080078125,
+                    0.23828125,
+                    0.8544921875
+                  ],
+                  "O": [
+                    0.4283854166666667,
+                    0.7080078125,
+                    0.5716145833333334,
+                    0.8544921875
+                  ],
+                  "U": [
+                    0.76171875,
+                    0.7080078125,
+                    0.9049479166666666,
+                    0.8544921875
+                  ]
+                },
+                "regiao": [
+                  0.52,
+                  0.165,
+                  0.61,
+                  0.205
+                ],
+                "igualar_pele": true
+              }
+            },
+            "gestos": [
+              {
+                "speaker": "lucas",
+                "voice": "lucas_fala_000",
+                "start": 1.05,
+                "end": 2.65,
+                "text": "Por que você demorou?",
+                "intencao": "ouvir",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.12496598639455782,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.12496598639455782,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.2082766439909297,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.2082766439909297,
+                    "end": 0.24993197278911564,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.24993197278911564,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.5415192743764172,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.5415192743764172,
+                    "end": 0.666485260770975,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.666485260770975,
+                    "end": 0.8331065759637188,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.8331065759637188,
+                    "end": 0.8747619047619047,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.8747619047619047,
+                    "end": 0.9164172335600907,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 0.9997278911564625,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.9997278911564625,
+                    "end": 1.0413832199546484,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.0413832199546484,
+                    "end": 1.1663492063492062,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1663492063492062,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.6662131519274377,
+                    "shape": "rest"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              },
+              {
+                "speaker": "teo",
+                "voice": "teo_fala_001",
+                "start": 3.2,
+                "end": 4.83,
+                "text": "Eu não sabia se era gente.",
+                "intencao": "esconder",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.4582086167800454,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.4582086167800454,
+                    "end": 0.9164172335600907,
+                    "shape": "rest"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 1.1246938775510205,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1246938775510205,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.33297052154195,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.33297052154195,
+                    "end": 1.416281179138322,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.416281179138322,
+                    "end": 1.5829024943310657,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.5829024943310657,
+                    "end": 1.6245578231292517,
+                    "shape": "O"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              }
+            ],
+            "eventos_fala": [
+              {
+                "speaker": "teo",
+                "voice": "teo_fala_001",
+                "start": 3.2,
+                "end": 4.83,
+                "text": "Eu não sabia se era gente.",
+                "intencao": "esconder",
+                "audio_pronto": true,
+                "mouth_cues": [
+                  {
+                    "start": 0.0,
+                    "end": 0.16662131519274376,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.16662131519274376,
+                    "end": 0.29158730158730156,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.29158730158730156,
+                    "end": 0.4165532879818594,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 0.4165532879818594,
+                    "end": 0.4582086167800454,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.4582086167800454,
+                    "end": 0.9164172335600907,
+                    "shape": "rest"
+                  },
+                  {
+                    "start": 0.9164172335600907,
+                    "end": 0.9580725623582766,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 0.9580725623582766,
+                    "end": 1.1246938775510205,
+                    "shape": "O"
+                  },
+                  {
+                    "start": 1.1246938775510205,
+                    "end": 1.2080045351473923,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.2080045351473923,
+                    "end": 1.33297052154195,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.33297052154195,
+                    "end": 1.416281179138322,
+                    "shape": "E"
+                  },
+                  {
+                    "start": 1.416281179138322,
+                    "end": 1.5829024943310657,
+                    "shape": "A"
+                  },
+                  {
+                    "start": 1.5829024943310657,
+                    "end": 1.6245578231292517,
+                    "shape": "O"
+                  }
+                ],
+                "cue_format": "viseme",
+                "metodo_sincronia": "espectro_aproximado"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto",
+        "mapa_composicao": {
+          "version": 1,
+          "zonas": {
+            "frente": {
+              "x": [
+                0.035,
+                0.965
+              ],
+              "chao": 0.94,
+              "altura": 0.7
+            },
+            "porta": {
+              "x": [
+                0.46,
+                0.78
+              ],
+              "chao": 0.7,
+              "altura": 0.34,
+              "altura_minima": 0.22
+            }
+          },
+          "altura_minima": 0.48,
+          "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+          "interacoes": {
+            "macaneta": [
+              0.77,
+              0.49
+            ]
+          },
+          "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+          "portais": {
+            "porta": {
+              "poligono": [
+                [
+                  0.449,
+                  0.26
+                ],
+                [
+                  0.791,
+                  0.26
+                ],
+                [
+                  0.722,
+                  0.283
+                ],
+                [
+                  0.722,
+                  0.69
+                ],
+                [
+                  0.449,
+                  0.69
+                ]
+              ],
+              "descricao": "Abertura visível do corredor; parede, batente e folha aberta ficam à frente"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "composicao_relatorio": {
+    "size": [
+      432,
+      768
+    ],
+    "planos": [
+      {
+        "ajustes": [
+          {
+            "id": "mimico",
+            "zona": "porta",
+            "antes": {
+              "pos": 0.6300643779481895,
+              "altura": 0.4617897437793471,
+              "chao": 0.7059999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.6297088963804494,
+              "altura": 0.4361347580138278,
+              "chao": 0.7059999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "lucas",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.2958188356039591,
+              "altura": 0.6982320172129504,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.2958188356039591,
+              "altura": 0.6982320172129504,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "teo",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.7392371677241978,
+              "altura": 0.6542572637072769,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.7392371677241978,
+              "altura": 0.6542572637072769,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          }
+        ],
+        "achados": [
+          {
+            "code": "cabeca_oculta",
+            "message": "mimico/teo: revisar oclusão da região da cabeça"
+          }
+        ]
+      }
+    ],
+    "metodo": "geometria e mapas calibrados; revisar interação e perspectiva"
+  },
+  "narrado": false,
+  "loop": false,
+  "boca": "espectro",
+  "dialogue_events": [
+    {
+      "speaker": "lucas",
+      "voice": "lucas_fala_000",
+      "start": 0.8,
+      "end": 2.5,
+      "text": "Por que você demorou?",
+      "intencao": "perguntar",
+      "audio_pronto": true,
+      "mouth_cues": [
+        {
+          "start": 0.0,
+          "end": 0.12496598639455782,
+          "shape": "E"
+        },
+        {
+          "start": 0.12496598639455782,
+          "end": 0.16662131519274376,
+          "shape": "O"
+        },
+        {
+          "start": 0.16662131519274376,
+          "end": 0.2082766439909297,
+          "shape": "E"
+        },
+        {
+          "start": 0.2082766439909297,
+          "end": 0.24993197278911564,
+          "shape": "O"
+        },
+        {
+          "start": 0.24993197278911564,
+          "end": 0.29158730158730156,
+          "shape": "E"
+        },
+        {
+          "start": 0.29158730158730156,
+          "end": 0.4165532879818594,
+          "shape": "A"
+        },
+        {
+          "start": 0.4165532879818594,
+          "end": 0.5415192743764172,
+          "shape": "O"
+        },
+        {
+          "start": 0.5415192743764172,
+          "end": 0.666485260770975,
+          "shape": "E"
+        },
+        {
+          "start": 0.666485260770975,
+          "end": 0.8331065759637188,
+          "shape": "O"
+        },
+        {
+          "start": 0.8331065759637188,
+          "end": 0.8747619047619047,
+          "shape": "A"
+        },
+        {
+          "start": 0.8747619047619047,
+          "end": 0.9164172335600907,
+          "shape": "O"
+        },
+        {
+          "start": 0.9164172335600907,
+          "end": 0.9580725623582766,
+          "shape": "A"
+        },
+        {
+          "start": 0.9580725623582766,
+          "end": 0.9997278911564625,
+          "shape": "O"
+        },
+        {
+          "start": 0.9997278911564625,
+          "end": 1.0413832199546484,
+          "shape": "A"
+        },
+        {
+          "start": 1.0413832199546484,
+          "end": 1.1663492063492062,
+          "shape": "O"
+        },
+        {
+          "start": 1.1663492063492062,
+          "end": 1.2080045351473923,
+          "shape": "E"
+        },
+        {
+          "start": 1.2080045351473923,
+          "end": 1.6662131519274377,
+          "shape": "rest"
+        }
+      ],
+      "cue_format": "viseme",
+      "metodo_sincronia": "espectro_aproximado"
+    },
+    {
+      "speaker": "teo",
+      "voice": "teo_fala_001",
+      "start": 3.2,
+      "end": 4.83,
+      "text": "Eu não sabia se era gente.",
+      "intencao": "esconder",
+      "audio_pronto": true,
+      "mouth_cues": [
+        {
+          "start": 0.0,
+          "end": 0.16662131519274376,
+          "shape": "O"
+        },
+        {
+          "start": 0.16662131519274376,
+          "end": 0.29158730158730156,
+          "shape": "E"
+        },
+        {
+          "start": 0.29158730158730156,
+          "end": 0.4165532879818594,
+          "shape": "O"
+        },
+        {
+          "start": 0.4165532879818594,
+          "end": 0.4582086167800454,
+          "shape": "E"
+        },
+        {
+          "start": 0.4582086167800454,
+          "end": 0.9164172335600907,
+          "shape": "rest"
+        },
+        {
+          "start": 0.9164172335600907,
+          "end": 0.9580725623582766,
+          "shape": "E"
+        },
+        {
+          "start": 0.9580725623582766,
+          "end": 1.1246938775510205,
+          "shape": "O"
+        },
+        {
+          "start": 1.1246938775510205,
+          "end": 1.2080045351473923,
+          "shape": "E"
+        },
+        {
+          "start": 1.2080045351473923,
+          "end": 1.33297052154195,
+          "shape": "A"
+        },
+        {
+          "start": 1.33297052154195,
+          "end": 1.416281179138322,
+          "shape": "E"
+        },
+        {
+          "start": 1.416281179138322,
+          "end": 1.5829024943310657,
+          "shape": "A"
+        },
+        {
+          "start": 1.5829024943310657,
+          "end": 1.6245578231292517,
+          "shape": "O"
+        }
+      ],
+      "cue_format": "viseme",
+      "metodo_sincronia": "espectro_aproximado"
+    }
+  ],
+  "voices": {
+    "lucas_fala_000": "audio\\lucas_teste.wav",
+    "teo_fala_001": "audio\\teo_teste.wav"
+  },
+  "clips": [
+    {
+      "voice": "lucas_fala_000",
+      "src": [
+        0,
+        1.7
+      ],
+      "at": 0.8,
+      "acoustic": null
+    },
+    {
+      "voice": "teo_fala_001",
+      "src": [
+        0,
+        1.63
+      ],
+      "at": 3.2,
+      "acoustic": null
+    }
+  ],
+  "subs": [
+    {
+      "voice": "lucas_fala_000",
+      "src": [
+        0,
+        1.7
+      ],
+      "text": [
+        "Por que você demorou?"
+      ]
+    },
+    {
+      "voice": "teo_fala_001",
+      "src": [
+        0,
+        1.63
+      ],
+      "text": [
+        "Eu não sabia se era gente."
+      ]
+    }
+  ],
+  "animation_review": {
+    "ok": true,
+    "achados": [],
+    "amostras_s": 8,
+    "nota": "Auditoria geométrica e acústica amostrada; não substitui revisão visual."
+  }
+}

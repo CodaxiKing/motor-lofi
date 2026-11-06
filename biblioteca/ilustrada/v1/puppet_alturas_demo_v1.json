@@ -1,0 +1,259 @@
+{
+  "purpose": "previa de alturas fisicas e deformacao por pins; sem audio",
+  "out": "puppet_alturas.mp4",
+  "fps": 24,
+  "total": 6,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 6,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "mimico",
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.6297088963804494,
+            "altura": 0.4361347580138278,
+            "chao": 0.7059999999999998,
+            "zona": "porta",
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "piscar": false,
+            "respirar": 0.7,
+            "orientacao": "centro",
+            "portal": "porta",
+            "referencia_escala": "mimico/mimico_neutro_v1",
+            "escala_relativa": 1.2352941176470589,
+            "altura_m": 2.1,
+            "puppets": {},
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "direcoes_originais": {
+              "mimico/mimico_andando_frente_01_v1": "frente",
+              "mimico/mimico_andando_frente_02_v1": "frente",
+              "mimico/mimico_andando_frente_03_v1": "frente",
+              "mimico/mimico_andando_frente_04_v1": "frente"
+            },
+            "envelope_poses": [
+              "mimico/mimico_neutro_v1"
+            ],
+            "espelhar": true
+          },
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.2958188356039591,
+            "altura": 0.6982320172129504,
+            "chao": 0.9531999999999998,
+            "zona": "frente",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.7,
+            "orientacao": "centro",
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "periodo_piscar": 3.2,
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "escala_relativa": 1.0,
+            "altura_m": 1.7,
+            "puppets": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/puppet_neutro_v1.json",
+              "lucas/lucas_neutro_piscando_v1": "lucas/puppet_neutro_v1.json"
+            },
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "envelope_poses": [
+              "lucas/lucas_34_neutro_recorte_v1",
+              "lucas/lucas_neutro_piscando_v1"
+            ],
+            "espelhar": false
+          },
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.7392371677241978,
+            "altura": 0.6542572637072769,
+            "chao": 0.9531999999999998,
+            "zona": "frente",
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.7,
+            "orientacao": "centro",
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 3.2,
+            "referencia_escala": "teo/teo_neutro_v1",
+            "escala_relativa": 0.9411764705882354,
+            "altura_m": 1.6,
+            "puppets": {
+              "teo/teo_neutro_v1": "teo/puppet_neutro_v1.json",
+              "teo/teo_neutro_piscando_v1": "teo/puppet_neutro_v1.json"
+            },
+            "margem_puppet": 0.025,
+            "direcao_original": "direita",
+            "envelope_poses": [
+              "teo/teo_neutro_piscando_v1",
+              "teo/teo_neutro_v1"
+            ],
+            "espelhar": true
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto",
+        "mapa_composicao": {
+          "version": 1,
+          "zonas": {
+            "frente": {
+              "x": [
+                0.035,
+                0.965
+              ],
+              "chao": 0.94,
+              "altura": 0.7
+            },
+            "porta": {
+              "x": [
+                0.46,
+                0.78
+              ],
+              "chao": 0.7,
+              "altura": 0.34,
+              "altura_minima": 0.22
+            }
+          },
+          "altura_minima": 0.48,
+          "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+          "interacoes": {
+            "macaneta": [
+              0.77,
+              0.49
+            ]
+          },
+          "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+          "portais": {
+            "porta": {
+              "poligono": [
+                [
+                  0.449,
+                  0.26
+                ],
+                [
+                  0.791,
+                  0.26
+                ],
+                [
+                  0.722,
+                  0.283
+                ],
+                [
+                  0.722,
+                  0.69
+                ],
+                [
+                  0.449,
+                  0.69
+                ]
+              ],
+              "descricao": "Abertura visível do corredor; parede, batente e folha aberta ficam à frente"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "composicao_relatorio": {
+    "size": [
+      432,
+      768
+    ],
+    "planos": [
+      {
+        "ajustes": [
+          {
+            "id": "mimico",
+            "zona": "porta",
+            "antes": {
+              "pos": 0.6300643779481895,
+              "altura": 0.4617897437793471,
+              "chao": 0.7059999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.6297088963804494,
+              "altura": 0.4361347580138278,
+              "chao": 0.7059999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "lucas",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.2958188356039591,
+              "altura": 0.6982320172129504,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.2958188356039591,
+              "altura": 0.6982320172129504,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "teo",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.7392371677241978,
+              "altura": 0.6542572637072769,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.7392371677241978,
+              "altura": 0.6542572637072769,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          }
+        ],
+        "achados": [
+          {
+            "code": "cabeca_oculta",
+            "message": "mimico/teo: revisar oclusão da região da cabeça"
+          }
+        ]
+      }
+    ],
+    "metodo": "geometria e mapas calibrados; revisar interação e perspectiva"
+  }
+}

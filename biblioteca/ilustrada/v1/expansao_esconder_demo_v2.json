@@ -1,0 +1,147 @@
+{
+  "fps": 24,
+  "size": [
+    432,
+    768
+  ],
+  "total": 12,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 4,
+      "imagens": {
+        "fundo": "fundo_entrada_esquerda_v2",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.5,
+            "altura": 0.46,
+            "chao": 0.91,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 2.5,
+                "ciclo": "lucas/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 2.5,
+                "fim": 4.01,
+                "ciclo": "lucas/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto",
+        "frente": [
+          {
+            "img": "objetos/bau_v2",
+            "altura": 0.34,
+            "x": 0.5,
+            "y": 0.7699999999999999
+          }
+        ]
+      }
+    },
+    {
+      "start": 4,
+      "end": 8,
+      "imagens": {
+        "fundo": "fundo_entrada_direita_v2",
+        "personagens": [
+          {
+            "id": "clara",
+            "img": "clara/clara_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.4735294117647059,
+            "chao": 0.91,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 2.5,
+                "ciclo": "clara/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 2.5,
+                "fim": 4.01,
+                "ciclo": "clara/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto",
+        "frente": [
+          {
+            "img": "objetos/armario_baixo_v2",
+            "altura": 0.34,
+            "x": 0.5,
+            "y": 0.7699999999999999
+          }
+        ]
+      }
+    },
+    {
+      "start": 8,
+      "end": 12,
+      "imagens": {
+        "fundo": "fundo_entrada_baixo_v2",
+        "personagens": [
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.43294117647058833,
+            "chao": 0.91,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 2.5,
+                "ciclo": "teo/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 2.5,
+                "fim": 4.01,
+                "ciclo": "teo/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto",
+        "frente": [
+          {
+            "img": "objetos/bau_v2",
+            "altura": 0.34,
+            "x": 0.5,
+            "y": 0.7699999999999999
+          }
+        ]
+      }
+    }
+  ]
+}

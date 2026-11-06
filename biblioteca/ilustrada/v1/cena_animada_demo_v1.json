@@ -1,0 +1,317 @@
+{
+  "purpose": "previa tecnica de cena com multiplas animacoes; sem audio",
+  "out": "cena_animada_v1.mp4",
+  "fps": 20,
+  "total": 8.4,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 2.4,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0.3,
+        "personagens": [
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8
+          },
+          {
+            "img": "lucas/lucas_andando_01_v1",
+            "poses": [
+              [
+                0.0,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                0.2,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                0.4,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                0.6,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                0.8,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                1.0,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                1.2,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                1.4,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                1.6,
+                "lucas/lucas_andando_01_v1"
+              ],
+              [
+                1.8,
+                "lucas/lucas_andando_02_v1"
+              ],
+              [
+                2.0,
+                "lucas/lucas_andando_03_v1"
+              ],
+              [
+                2.2,
+                "lucas/lucas_andando_04_v1"
+              ],
+              [
+                2.4,
+                "lucas/lucas_andando_01_v1"
+              ]
+            ],
+            "ancora": [
+              0.5,
+              0.98
+            ],
+            "altura": 0.7,
+            "chao": 0.94,
+            "andar": [
+              0.38,
+              0.46
+            ],
+            "piscar": false,
+            "respirar": 0
+          }
+        ],
+        "efeitos": []
+      }
+    },
+    {
+      "start": 2.4,
+      "end": 4.8,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0.3,
+        "personagens": [
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8
+          },
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            }
+          }
+        ],
+        "efeitos": []
+      }
+    },
+    {
+      "start": 4.8,
+      "end": 5.2,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0.3,
+        "personagens": [
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8
+          },
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            }
+          }
+        ],
+        "efeitos": [
+          "flicker"
+        ]
+      }
+    },
+    {
+      "start": 5.2,
+      "end": 8.4,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0.3,
+        "personagens": [
+          {
+            "img": "mimico/mimico_neutro_v1",
+            "pos": 0.59,
+            "altura": 0.34,
+            "chao": 0.7,
+            "ancora": [
+              0.41641,
+              0.99564
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "poses": [
+              [
+                0,
+                "mimico/mimico_neutro_v1"
+              ],
+              [
+                1,
+                "mimico/mimico_chamando_v1"
+              ]
+            ],
+            "ancoras": {
+              "mimico/mimico_neutro_v1": [
+                0.41641,
+                0.99564
+              ],
+              "mimico/mimico_chamando_v1": [
+                0.41692,
+                0.99688
+              ]
+            }
+          },
+          {
+            "img": "teo/teo_medo_v1",
+            "pos": 0.78,
+            "altura": 0.57,
+            "chao": 0.93,
+            "ancora": [
+              0.5051,
+              0.98005
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6
+          },
+          {
+            "img": "lucas/lucas_34_medo_recorte_v1",
+            "pos": 0.46,
+            "altura": 0.7,
+            "chao": 0.94,
+            "ancora": [
+              0.50255,
+              0.99065
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6
+          }
+        ],
+        "efeitos": [
+          "flicker"
+        ]
+      }
+    }
+  ]
+}

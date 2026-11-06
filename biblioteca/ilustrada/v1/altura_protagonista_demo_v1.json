@@ -1,0 +1,56 @@
+{
+  "fps": 24,
+  "preview_size": [
+    432,
+    768
+  ],
+  "total": 3,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 3,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "pos": 0.34,
+            "altura": 0.4264705882352941,
+            "altura_m": 1.45,
+            "chao": 0.9,
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "centro",
+            "direcao_original": "direita"
+          },
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "pos": 0.7,
+            "altura": 0.4705882352941177,
+            "altura_m": 1.6,
+            "chao": 0.9,
+            "piscar": false,
+            "respirar": 0,
+            "orientacao": "centro",
+            "direcao_original": "direita"
+          }
+        ],
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "personagem": "lucas",
+  "status": "previa de quatro poses; revisar continuidade e contato dos pes",
+  "cycle_s": 0.8,
+  "frames": [
+    {
+      "img": "lucas/lucas_andando_01_v1",
+      "ancora": [
+        0.5,
+        0.98
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "sha256": "66bc99881f03a86366e81128f3f63f083e4b93c7f541d1a5497eecedb79b78d2"
+    },
+    {
+      "img": "lucas/lucas_andando_02_v1",
+      "ancora": [
+        0.5,
+        0.98
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "sha256": "f91a39382a77bf5ae1de35c3628d1044a525ff83e56d68893b09813dac961083"
+    },
+    {
+      "img": "lucas/lucas_andando_03_v1",
+      "ancora": [
+        0.5,
+        0.98
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "sha256": "456bb8fde6e806400483bdaeed8437d2cfdcdc1b14e7ea1a3d9d8fa594187f40"
+    },
+    {
+      "img": "lucas/lucas_andando_04_v1",
+      "ancora": [
+        0.5,
+        0.98
+      ],
+      "pixels": [
+        981,
+        1604
+      ],
+      "sha256": "3b729097de91d1e2f00c301d03b8b568463e2be2215a9b8c286113b823a2effc"
+    }
+  ]
+}

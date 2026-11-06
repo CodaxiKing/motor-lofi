@@ -1,0 +1,627 @@
+{
+  "purpose": "previa tecnica: orientacao para o centro e monstro atravessando o portal",
+  "out": "cena_porta_v3.mp4",
+  "fps": 20,
+  "total": 8.8,
+  "preview_size": [
+    432,
+    768
+  ],
+  "shots": [
+    {
+      "start": 0,
+      "end": 1.6,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0,
+        "personagens": [
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.31401648903603785,
+            "altura": 0.5866482052480655,
+            "chao": 0.9531999999999998,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            },
+            "id": "lucas",
+            "zona": "frente",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "envelope_poses": [
+              "lucas/lucas_34_medo_recorte_v1",
+              "lucas/lucas_34_neutro_recorte_v1",
+              "lucas/lucas_andando_01_v1",
+              "lucas/lucas_andando_02_v1",
+              "lucas/lucas_andando_03_v1",
+              "lucas/lucas_andando_04_v1",
+              "lucas/lucas_neutro_olhar_v1",
+              "lucas/lucas_neutro_piscando_v1"
+            ],
+            "direcao_original": "direita",
+            "orientacao": "centro",
+            "espelhar": false
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.7901844653401858,
+            "altura": 0.5840573298936577,
+            "chao": 0.9531999999999998,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "id": "teo",
+            "zona": "frente",
+            "referencia_escala": "teo/teo_neutro_v1",
+            "envelope_poses": [
+              "teo/teo_medo_v1",
+              "teo/teo_neutro_piscando_v1",
+              "teo/teo_neutro_v1"
+            ],
+            "direcao_original": "direita",
+            "orientacao": "centro",
+            "espelhar": true
+          }
+        ],
+        "efeitos": [],
+        "mapa_composicao": {
+          "version": 1,
+          "zonas": {
+            "frente": {
+              "x": [
+                0.035,
+                0.965
+              ],
+              "chao": 0.94,
+              "altura": 0.7
+            },
+            "porta": {
+              "x": [
+                0.46,
+                0.78
+              ],
+              "chao": 0.7,
+              "altura": 0.36,
+              "altura_minima": 0.22
+            }
+          },
+          "altura_minima": 0.48,
+          "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+          "interacoes": {
+            "macaneta": [
+              0.77,
+              0.49
+            ]
+          },
+          "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+          "portais": {
+            "porta": {
+              "poligono": [
+                [
+                  0.449,
+                  0.26
+                ],
+                [
+                  0.791,
+                  0.26
+                ],
+                [
+                  0.722,
+                  0.283
+                ],
+                [
+                  0.722,
+                  0.69
+                ],
+                [
+                  0.449,
+                  0.69
+                ]
+              ],
+              "descricao": "Abertura visível do corredor; parede, batente e folha aberta ficam à frente"
+            }
+          }
+        }
+      }
+    },
+    {
+      "start": 1.6,
+      "end": 8.8,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "plano": "aberto",
+        "aproximar": 0,
+        "balanco": 0,
+        "personagens": [
+          {
+            "id": "mimico",
+            "img": "mimico/mimico_andando_frente_01_v1",
+            "poses": [
+              [
+                0.0,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                0.3,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                0.6,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                0.9,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                1.2,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                1.5,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                1.8,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                2.1,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                2.4,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                2.7,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                3.0,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                3.3,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                3.6,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                3.9,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                4.2,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                4.5,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                4.8,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                5.1,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                5.4,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                5.7,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                6.0,
+                "mimico/mimico_andando_frente_01_v1"
+              ],
+              [
+                6.3,
+                "mimico/mimico_andando_frente_02_v1"
+              ],
+              [
+                6.6,
+                "mimico/mimico_andando_frente_03_v1"
+              ],
+              [
+                6.9,
+                "mimico/mimico_andando_frente_04_v1"
+              ],
+              [
+                7.2,
+                "mimico/mimico_andando_frente_01_v1"
+              ]
+            ],
+            "pos": 0.630158897351863,
+            "chao": 0.7059999999999998,
+            "altura": 0.3550593050210686,
+            "zona": "porta",
+            "ancora": [
+              0.5,
+              0.99
+            ],
+            "direcao_original": "frente",
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "passo": true,
+            "respirar": 0,
+            "portal": {
+              "nome": "porta",
+              "ate_chao": 0.7
+            },
+            "trajeto": {
+              "pos": [
+                [
+                  0,
+                  0.64
+                ],
+                [
+                  2.4,
+                  0.62
+                ],
+                [
+                  4.8,
+                  0.59
+                ],
+                [
+                  7.2,
+                  0.55
+                ]
+              ],
+              "chao": [
+                [
+                  0,
+                  0.53
+                ],
+                [
+                  2.4,
+                  0.6
+                ],
+                [
+                  4.8,
+                  0.69
+                ],
+                [
+                  7.2,
+                  0.86
+                ]
+              ],
+              "altura": [
+                [
+                  0,
+                  0.13
+                ],
+                [
+                  2.4,
+                  0.23
+                ],
+                [
+                  4.8,
+                  0.35
+                ],
+                [
+                  7.2,
+                  0.52
+                ]
+              ]
+            },
+            "direcoes_originais": {
+              "mimico/mimico_andando_frente_01_v1": "frente",
+              "mimico/mimico_andando_frente_02_v1": "frente",
+              "mimico/mimico_andando_frente_03_v1": "frente",
+              "mimico/mimico_andando_frente_04_v1": "frente"
+            },
+            "referencia_escala": "mimico/mimico_andando_frente_01_v1",
+            "envelope_poses": [
+              "mimico/mimico_andando_frente_01_v1",
+              "mimico/mimico_andando_frente_02_v1",
+              "mimico/mimico_andando_frente_03_v1",
+              "mimico/mimico_andando_frente_04_v1"
+            ],
+            "ciclo_passo": 1.2
+          },
+          {
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.31381424550230025,
+            "altura": 0.5862376895488198,
+            "chao": 0.9531999999999998,
+            "ancora": [
+              0.5,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "lucas/lucas_neutro_piscando_v1": [
+                0.47349643221202853,
+                1.0
+              ],
+              "lucas/lucas_34_medo_recorte_v1": [
+                0.50255,
+                0.99065
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "olhares": {
+              "lucas/lucas_34_neutro_recorte_v1": "lucas/lucas_neutro_olhar_v1"
+            },
+            "id": "lucas",
+            "zona": "frente",
+            "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+            "envelope_poses": [
+              "lucas/lucas_34_medo_recorte_v1",
+              "lucas/lucas_34_neutro_recorte_v1",
+              "lucas/lucas_andando_01_v1",
+              "lucas/lucas_andando_02_v1",
+              "lucas/lucas_andando_03_v1",
+              "lucas/lucas_andando_04_v1",
+              "lucas/lucas_neutro_olhar_v1",
+              "lucas/lucas_neutro_piscando_v1"
+            ],
+            "direcao_original": "direita",
+            "orientacao": "centro",
+            "poses": [
+              [
+                0,
+                "lucas/lucas_34_neutro_recorte_v1"
+              ],
+              [
+                3.6,
+                "lucas/lucas_34_medo_recorte_v1"
+              ]
+            ],
+            "espelhar": false
+          },
+          {
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.7896665103875555,
+            "altura": 0.5836486271975001,
+            "chao": 0.9531999999999998,
+            "ancora": [
+              0.50408,
+              0.99439
+            ],
+            "piscar": false,
+            "respirar": 0.8,
+            "balanco_corpo": 0.6,
+            "piscadas": {
+              "teo/teo_neutro_v1": "teo/teo_neutro_piscando_v1"
+            },
+            "ancoras": {
+              "teo/teo_neutro_piscando_v1": [
+                0.48980632008154945,
+                1.0
+              ],
+              "teo/teo_medo_v1": [
+                0.5051,
+                0.98005
+              ]
+            },
+            "periodo_piscar": 2.8,
+            "id": "teo",
+            "zona": "frente",
+            "referencia_escala": "teo/teo_neutro_v1",
+            "envelope_poses": [
+              "teo/teo_medo_v1",
+              "teo/teo_neutro_piscando_v1",
+              "teo/teo_neutro_v1"
+            ],
+            "direcao_original": "direita",
+            "orientacao": "centro",
+            "poses": [
+              [
+                0,
+                "teo/teo_neutro_v1"
+              ],
+              [
+                3.6,
+                "teo/teo_medo_v1"
+              ]
+            ],
+            "espelhar": true
+          }
+        ],
+        "efeitos": [],
+        "mapa_composicao": {
+          "version": 1,
+          "zonas": {
+            "frente": {
+              "x": [
+                0.035,
+                0.965
+              ],
+              "chao": 0.94,
+              "altura": 0.7
+            },
+            "porta": {
+              "x": [
+                0.46,
+                0.78
+              ],
+              "chao": 0.7,
+              "altura": 0.36,
+              "altura_minima": 0.22
+            }
+          },
+          "altura_minima": 0.48,
+          "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+          "interacoes": {
+            "macaneta": [
+              0.77,
+              0.49
+            ]
+          },
+          "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+          "portais": {
+            "porta": {
+              "poligono": [
+                [
+                  0.449,
+                  0.26
+                ],
+                [
+                  0.791,
+                  0.26
+                ],
+                [
+                  0.722,
+                  0.283
+                ],
+                [
+                  0.722,
+                  0.69
+                ],
+                [
+                  0.449,
+                  0.69
+                ]
+              ],
+              "descricao": "Abertura visível do corredor; parede, batente e folha aberta ficam à frente"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "composicao_relatorio": {
+    "size": [
+      432,
+      768
+    ],
+    "planos": [
+      {
+        "ajustes": [
+          {
+            "id": "lucas",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.31401648903603785,
+              "altura": 0.5866482052480655,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.31401648903603785,
+              "altura": 0.5866482052480655,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "teo",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.8115481010826838,
+              "altura": 0.5840573298936577,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.7901844653401858,
+              "altura": 0.5840573298936577,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          }
+        ],
+        "achados": []
+      },
+      {
+        "ajustes": [
+          {
+            "id": "mimico",
+            "zona": "porta",
+            "antes": {
+              "pos": 0.64,
+              "altura": 0.13,
+              "chao": 0.53,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.630158897351863,
+              "altura": 0.3550593050210686,
+              "chao": 0.7059999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "lucas",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.31401648903603785,
+              "altura": 0.5866482052480655,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.31381424550230025,
+              "altura": 0.5862376895488198,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          },
+          {
+            "id": "teo",
+            "zona": "frente",
+            "antes": {
+              "pos": 0.8115481010826838,
+              "altura": 0.5840573298936577,
+              "chao": 0.9531999999999998,
+              "andar": null
+            },
+            "depois": {
+              "pos": 0.7896665103875555,
+              "altura": 0.5836486271975001,
+              "chao": 0.9531999999999998,
+              "andar": null
+            }
+          }
+        ],
+        "achados": []
+      }
+    ],
+    "metodo": "geometria e mapas calibrados; revisar interação e perspectiva"
+  }
+}

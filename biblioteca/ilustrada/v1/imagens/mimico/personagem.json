@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "id": "mimico",
+  "nome": "Mímico",
+  "altura_m": 2.1,
+  "origem_altura": "sugestão aprovada pelo autor em 2026-11-06",
+  "puppets": {},
+  "margem_puppet": 0.025,
+  "preferencia_animacao": "quadros",
+  "grupo_animacao": "criaturas",
+  "ciclos_quadros": {
+    "andar": "mimico/andar_corpo_v2.json",
+    "correr": "mimico/correr_corpo_v2.json",
+    "levantar_braco": "mimico/levantar_braco_corpo_v2.json",
+    "agachar": "mimico/agachar_corpo_v2.json",
+    "levantar": "mimico/levantar_corpo_v2.json",
+    "abaixar": "mimico/agachar_corpo_v2.json",
+    "se_esconder": "mimico/agachar_corpo_v2.json",
+    "espreitar": "mimico/espreitar_16_corpo_v2.json",
+    "avancar": "mimico/avancar_16_corpo_v2.json",
+    "jumpscare_salto": "mimico/jumpscare_salto_v1.json",
+    "jumpscare_rosto": "mimico/jumpscare_rosto_v1.json",
+    "parado": "mimico/parado_ligacoes_v1.json",
+    "interagir": "mimico/interagir_v1.json",
+    "alcancar": "mimico/interagir_v1.json"
+  },
+  "sustos": {
+    "jumpscare": {
+      "salto": "mimico/jumpscare_salto_v1.json",
+      "rosto": "mimico/jumpscare_rosto_v1.json",
+      "corte_intencional": true
+    }
+  },
+  "marcos_camera": {
+    "cintura": 0.54,
+    "joelhos": 0.79,
+    "ombros": 0.28,
+    "centro_rosto": 0.085,
+    "largura_rosto": 0.23
+  },
+  "transicoes": {
+    "parado>andar": {
+      "ciclo": "mimico/iniciar_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>parado": {
+      "ciclo": "mimico/frear_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>correr": {
+      "ciclo": "mimico/acelerar_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "correr>parado": {
+      "ciclo": "mimico/frear_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 0.8
+    }
+  }
+}

@@ -23,7 +23,7 @@ def check(path, frames=True):
     shots = ep.shots
     formato = sp.get("formato", "episodio")
     if sp.get("narrado"):   # 100% narrado: uma voz só (o narrador) e ninguém mexendo a boca
-        vozes = set((sp.get("voices") or {}).keys())
+        vozes = ({e['speaker'] for e in sp['dialogue_events']} if sp.get('dialogue_events') else set((sp.get("voices") or {}).keys()))
         if len(vozes) > 1: err(f"episódio 100% narrado com {len(vozes)} vozes ({', '.join(sorted(vozes))}): use só o áudio do narrador")
         for s in shots:
             for a in s.get("actors", []):

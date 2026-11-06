@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "amanha",
+  "nome": "Lucas de Amanhã",
+  "altura_m": 1.7,
+  "origem_altura": "sugestão aprovada pelo autor em 2026-11-06",
+  "puppets": {},
+  "margem_puppet": 0.025,
+  "preferencia_animacao": "quadros",
+  "grupo_animacao": "personagens",
+  "ciclos_quadros": {
+    "andar": "amanha/andar_corpo_v2.json",
+    "correr": "amanha/correr_corpo_v2.json",
+    "levantar_braco": "amanha/levantar_braco_corpo_v2.json",
+    "agachar": "amanha/agachar_corpo_v2.json",
+    "levantar": "amanha/levantar_corpo_v2.json",
+    "abaixar": "amanha/agachar_corpo_v2.json",
+    "se_esconder": "amanha/agachar_corpo_v2.json",
+    "parado": "amanha/parado_ligacoes_v1.json",
+    "interagir": "amanha/interagir_v1.json",
+    "alcancar": "amanha/interagir_v1.json"
+  },
+  "marcos_camera": {
+    "cintura": 0.56,
+    "joelhos": 0.79,
+    "ombros": 0.31,
+    "centro_rosto": 0.13,
+    "largura_rosto": 0.28
+  },
+  "transicoes": {
+    "parado>andar": {
+      "ciclo": "amanha/iniciar_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>parado": {
+      "ciclo": "amanha/frear_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>correr": {
+      "ciclo": "amanha/acelerar_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "correr>parado": {
+      "ciclo": "amanha/frear_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 0.8
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ---
 name: motor-lofi-ilustrado
-description: Criar histórias interativas narradas e planos usando personagens recortados por pose e cenários da biblioteca ilustrada do Motor Lo-Fi, ou ampliar essa biblioteca mantendo os outros modos de produção disponíveis.
+description: Criar histórias interativas narradas ou dialogadas usando personagens recortados por pose, puppet ou ciclos de quadros completos e cenários da biblioteca ilustrada do Motor Lo-Fi, ou ampliar essa biblioteca mantendo os outros modos de produção disponíveis.
 ---
 
 # Histórias com biblioteca ilustrada
@@ -17,16 +17,16 @@ rig, o modo imagens ou as séries existentes sem pedido do usuário.
    enredo inteiro. Preserve as escolhas do usuário, o cânone da série e o mínimo de 90 s.
 3. Escreva uma história nova no schema de
    `producoes/ilustradas/a-voz-la-fora-v1/historia.json`: título, perfil, duração,
-   narrador, cenas numeradas e escolhas A/B. Cada cena define cenário, narração,
+   narrador quando houver, cenas numeradas e escolhas A/B. Cada cena define cenário, narração ou falas,
    acontecimento, consequência, causa e personagens `{id, pose, pos}`.
    `altura`, `chao` e `espelhar` permitem ajustar o blocking ao fundo.
 4. Planeje causa/consequência, conflito pessoal, pista/revelação/pagamento e
    entrega de uma resposta. Cada alternativa tem benefício, perda e motivo.
-   Este compilador é interativo e narrado; use os fluxos existentes quando o
-   formato pedido não couber nesse contrato.
+   O compilador aceita narração e diálogos por personagem; consulte `ANIMACAO.md`
+   para falas com áudio e bocas locais; leia QUADROS.md para ações completas.
 5. Compile em pasta nova com
    `python -m lofi.historias_ilustradas compilar historia.json producoes/ilustradas/<nome>`.
-   Revise roteiro, narração, relatório e quadros do render antes de gravar a voz.
+   Revise roteiro, falas, relatórios e quadros; depois confira o render com as vozes reais.
 
 `python tools/studio.py ilustrado producoes/ilustradas/<nome>` gera um rascunho
 pelo arco local de imitação. É um ponto de partida editável, não um LLM nem um
@@ -71,3 +71,124 @@ transição suave para uma variante de cabeça inclinada no mesmo canvas.
 A biblioteca inclui piscadas neutras de Lucas, Téo e Clara e uma inclinação
 de Lucas. São variantes completas: não há rig facial nem movimento livre
 de cabeça independente. Não animar boca pela narração em off.
+
+
+## Composição e proporção do elenco
+
+No modo ilustrado, use os mapas de `catalogo.json.cenarios` para chão,
+profundidade e espaço disponível. Leia `biblioteca/ilustrada/v1/COMPOSICAO.md`.
+A composição automática padroniza a altura visível por referência neutra,
+reserva espaço para todas as poses e produz `composicao_relatorio`.
+Personagens da mesma profundidade usam escala física consistente; diferenças
+intencionais usam `escala_relativa`. Para colocar alguém na porta ou distante,
+defina `zona` explicitamente. Não reduza um único personagem para fazê-lo caber.
+Revise avisos e uma imagem de diagnóstico antes do vídeo. Mapas de novos fundos
+precisam de calibração; o motor não reconhece perspectiva ou móveis sozinho.
+Interações precisas podem usar `composicao: "manual"`, mantendo a auditoria.
+O mapeamento também se aplica a JSONs existentes com `python -m lofi.composicao`.
+
+
+### Orientação e portais
+
+Verifique a orientação em toda cena ilustrada: quem está à esquerda deve
+olhar à direita e quem está à direita deve olhar à esquerda. Use `orientacao:
+"centro"` com a direção original do asset; não suponha que todos os PNGs têm
+a mesma orientação. Exceções narrativas usam `orientacao: "manual"` explicitamente.
+Para chegar de outro ambiente, use os portais calibrados do mapa e `trajeto`
+com escala e chão variando por profundidade. O recorte da porta deve esconder
+o corpo atrás de parede/batente até o cruzamento do limiar. Não simule caminhada
+apenas deslizando a pose neutra: consulte os ciclos reais do catálogo.
+Revise começo, meio, cruzamento da porta e final, incluindo os olhares do elenco.
+
+
+### Altura individual e puppet
+
+A altura física vem de `biblioteca/ilustrada/v1/imagens/<id>/personagem.json`,
+campo `altura_m`. Preserve as diferenças entre pessoas; não padronize todos
+para a mesma altura visível. A composição aplica profundidade e reduz o grupo
+junto se necessário. Leia `biblioteca/ilustrada/v1/PUPPET.md` antes de animar.
+Rigs por pins ficam associados ao PNG em `personagem.json.puppets`.
+Use-os para movimentos locais contínuos de cabeça, ombros e mãos. Não aplique
+um rig de pose neutra a outra pose sem calibrar os pins. O primeiro protótipo
+usa arquivos JSON e malha; não oferece o editor visual completo do After Effects.
+Caminhadas e gestos usam preferencialmente ciclos de desenhos completos disponíveis na ficha.
+
+
+### Diálogos, atuação e rig articulado
+
+Leia `biblioteca/ilustrada/v1/ANIMACAO.md`. Cenas ilustradas aceitam `falas`
+com personagem, texto, áudio, tempo e intenção; não force o modo narrado quando
+há diálogo. O narrador não aciona bocas. Use somente bocas locais calibradas
+para a pose e preserve âncora/corpo. A análise espectral é aproximada;
+marcações revisadas ou Rhubarb instalado podem melhorar a sincronização.
+Sem áudio, registre fala pendente e não declare lipsync pronto.
+Os atlas de membros separados foram retirados; use ciclos completos do elenco.
+Use somente ações registradas na ficha do personagem. Gestos têm preparação,
+acomodação e reações de escuta. Revise `animation_review`, a boca no silêncio,
+o apoio dos pés, mudanças de escala e o loop. Renderize e assista à prévia
+com áudio antes de declarar o diálogo final. As vozes das demos são temporárias.
+
+
+### Preferência por quadros completos
+
+Leia `biblioteca/ilustrada/v1/QUADROS.md`. Para caminhar, correr ou levantar
+o braço, consulte `ciclos_quadros` no inventário e use `animacao: "quadros"`
+com `animacoes_quadros`. Prefira desenhos completos aos novos recortes de membros.
+Lucas tem oito desenhos por ação. Preserve escala pela cabeça/corpo e âncora
+do chão; a mão elevada não deve reduzir o personagem. Com cenário móvel, use
+`seguir_travelling`. Revise os apoios e o fechamento do ciclo. Não aplique
+bocas ou olhos de outra pose sobre estes atlas sem calibração facial específica.
+
+
+Para trocar o ângulo do mesmo cenário ou esconder alguém com objetos, leia
+`biblioteca/ilustrada/v1/EXPANSAO.md`. Consulte `cameras`, `objetos`, `grupos`
+e `ciclos_quadros` do inventário. Selecione `camera` na cena e objetos em
+`frente`. Agachar/abaixar e se esconder usam `uma_vez` para manter a posição
+final; levantar reproduz os desenhos na ordem inversa. Não use o mapa de porta
+de um ângulo em outro. Cada criatura usa seus próprios desenhos e movimentos,
+sem substituir o corpo por frames humanos. Preserve a altura física individual.
+
+
+Para jumpscare do skinwalker/Mímico saltando em direção à câmera, consulte
+`biblioteca/ilustrada/v1/JUMPSCARE.md` e os `sustos` do inventário. A sequência
+usa salto frontal e retratos completos; mantenha a expressão aberta no corte
+e o foco ancorado no rosto. As escalas de aproximação são cinematográficas,
+sem alterar a altura física da ficha.
+
+
+### Câmera da biblioteca ilustrada
+
+Leia `biblioteca/ilustrada/v1/CAMERA.md` ao montar enquadramentos. O mapa
+primeiro posiciona os atores; `camera_ilustrada` depois aplica o plano. Use
+`camera: {"angulo":"esquerda", "plano":"medio", "alvo":"lucas"}` na história.
+`medio` é cintura para cima; `inteiro` conserva cabeça e pés; `americano` vai
+até joelhos; `close` mostra rosto/ombros. Para andar, correr, levantar o braço
+e esconder-se, prefira inteiro; para falas, médio; para reações, close.
+A altura física permanece na ficha e os marcos anatômicos são individuais.
+`auto` mantém grupo em conjunto e ações amplas em inteiro, sem mudar o zoom
+a cada pose. Não aplique a câmera automática sobre a coreografia do jumpscare.
+
+
+### Sombras e iluminação da biblioteca
+
+Leia `biblioteca/ilustrada/v1/SOMBRAS.md`. Todos os atores recebem sombra
+de contato e projeção de silhueta conforme `iluminacao` do cenário. Ao criar
+ou trocar o ângulo de um cenário, calibre luzes e polígono do piso; a posição
+da fonte é sua projeção no chão e a altura é física. Preserve sombras sob
+os pés e atrás de corpos/objetos. Saltos perdem contato e suavizam a projeção;
+retratos sem pés não ganham sombra. Confira câmera, porta e travelling na
+prévia. Não confunda os metadados com detecção automática da luz na imagem.
+
+
+### Contato, ligações e direção por narrativa
+
+Leia `biblioteca/ilustrada/v1/DIRECAO_INTERACOES.md`. Consulte `transicoes`
+e `ciclos_quadros` nas fichas. Use `movimentos` para parado/andar/correr/parar;
+o motor insere desenhos reais de ligação. Para alcançar objetos, use o ciclo
+`interagir` com marco `palma_d` e ponto do cenário calibrado. Faça o trajeto
+terminar no bloqueio do contato; não deslize os pés para corrigir um braço.
+Use `oclusores` para passar atrás e à frente de móveis. Planeje `batidas`
+para ação, fala, reação, descoberta e preparação do susto. Os cortes não
+reiniciam o relógio da animação. Confira contato, apoios, fases, oclusão e
+closes em uma prévia. Reutilize a biblioteca; gere arte nova apenas quando
+o movimento ou enquadramento necessário não estiver disponível.

@@ -1,0 +1,236 @@
+{
+  "fps": 24,
+  "size": [
+    432,
+    768
+  ],
+  "total": 20,
+  "narrado": true,
+  "loop": false,
+  "shots": [
+    {
+      "start": 0,
+      "end": 5,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "lucas",
+            "img": "lucas/lucas_34_neutro_recorte_v1",
+            "pos": 0.5,
+            "altura": 0.6,
+            "chao": 0.94,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 1,
+                "ciclo": "lucas/andar_corpo_v1.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 1,
+                "fim": 2,
+                "ciclo": "lucas/correr_corpo_v1.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 2,
+                "fim": 3,
+                "ciclo": "lucas/braco_corpo_v1.json",
+                "modo": "loop",
+                "velocidade": 2.5
+              },
+              {
+                "inicio": 3,
+                "fim": 4,
+                "ciclo": "lucas/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 4,
+                "fim": 5.01,
+                "ciclo": "lucas/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto"
+      }
+    },
+    {
+      "start": 5,
+      "end": 10,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "teo",
+            "img": "teo/teo_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.5647058823529412,
+            "chao": 0.94,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 1,
+                "ciclo": "teo/andar_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 1,
+                "fim": 2,
+                "ciclo": "teo/correr_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 2,
+                "fim": 3,
+                "ciclo": "teo/levantar_braco_corpo_v2.json",
+                "modo": "loop",
+                "velocidade": 2.5
+              },
+              {
+                "inicio": 3,
+                "fim": 4,
+                "ciclo": "teo/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 4,
+                "fim": 5.01,
+                "ciclo": "teo/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto"
+      }
+    },
+    {
+      "start": 10,
+      "end": 15,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "clara",
+            "img": "clara/clara_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.6176470588235294,
+            "chao": 0.94,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 1,
+                "ciclo": "clara/andar_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 1,
+                "fim": 2,
+                "ciclo": "clara/correr_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 2,
+                "fim": 3,
+                "ciclo": "clara/levantar_braco_corpo_v2.json",
+                "modo": "loop",
+                "velocidade": 2.5
+              },
+              {
+                "inicio": 3,
+                "fim": 4,
+                "ciclo": "clara/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 4,
+                "fim": 5.01,
+                "ciclo": "clara/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto"
+      }
+    },
+    {
+      "start": 15,
+      "end": 20,
+      "imagens": {
+        "fundo": "fundo_entrada_v1",
+        "personagens": [
+          {
+            "id": "amanha",
+            "img": "amanha/amanha_neutro_v1",
+            "pos": 0.5,
+            "altura": 0.6,
+            "chao": 0.94,
+            "orientacao": "manual",
+            "espelhar": false,
+            "piscar": false,
+            "respirar": 0,
+            "animacoes_quadros": [
+              {
+                "inicio": 0,
+                "fim": 1,
+                "ciclo": "amanha/andar_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 1,
+                "fim": 2,
+                "ciclo": "amanha/correr_corpo_v2.json",
+                "modo": "loop"
+              },
+              {
+                "inicio": 2,
+                "fim": 3,
+                "ciclo": "amanha/levantar_braco_corpo_v2.json",
+                "modo": "loop",
+                "velocidade": 2.5
+              },
+              {
+                "inicio": 3,
+                "fim": 4,
+                "ciclo": "amanha/agachar_corpo_v2.json",
+                "modo": "uma_vez"
+              },
+              {
+                "inicio": 4,
+                "fim": 5.01,
+                "ciclo": "amanha/levantar_corpo_v2.json",
+                "modo": "uma_vez"
+              }
+            ]
+          }
+        ],
+        "aproximar": 0,
+        "balanco": 0,
+        "plano": "aberto"
+      }
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "tipo": "corpo_inteiro",
+  "atlas": "mimico/movimentos_corpo_atlas_v2",
+  "fps_quadros": 8,
+  "referencia": {
+    "altura_corpo": 0.9613259668508287,
+    "altura_referencia": 0.98,
+    "metodo": "Escala fixa da postura ereta; chão virtual constante"
+  },
+  "frames": [
+    {
+      "regiao": [
+        0.0,
+        0.8333333333333334,
+        0.25,
+        0.9166666666666666
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.25,
+        0.8333333333333334,
+        0.5,
+        0.9166666666666666
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.5,
+        0.8333333333333334,
+        0.75,
+        0.9166666666666666
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.75,
+        0.8333333333333334,
+        1.0,
+        0.9166666666666666
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.0,
+        0.9166666666666666,
+        0.25,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.25,
+        0.9166666666666666,
+        0.5,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.5,
+        0.9166666666666666,
+        0.75,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    },
+    {
+      "regiao": [
+        0.75,
+        0.9166666666666666,
+        1.0,
+        1.0
+      ],
+      "ancora": [
+        0.5,
+        0.9779005524861878
+      ],
+      "apoio": false,
+      "marcos": {
+        "linha_solo": 0.9779005524861878,
+        "eixo_corpo_x": 0.5
+      }
+    }
+  ],
+  "grupo": "criaturas",
+  "acao": "avancar",
+  "deslocamento_corpo_ciclo": 0
+}

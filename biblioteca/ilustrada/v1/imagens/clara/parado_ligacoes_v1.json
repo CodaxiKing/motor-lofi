@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "tipo": "corpo_inteiro",
+  "atlas": "clara/ligacoes_atlas_v1",
+  "fps_quadros": 1,
+  "aspecto_celula": 1,
+  "referencia": {
+    "altura_corpo": 0.864406779661017,
+    "altura_referencia": 0.98
+  },
+  "frames": [
+    {
+      "regiao": [
+        0.0,
+        0.0,
+        0.25,
+        0.125
+      ],
+      "ancora": [
+        0.5,
+        0.9364406779661016
+      ],
+      "apoio": true,
+      "marcos": {
+        "linha_solo": 0.9364406779661016,
+        "centro_rosto": [
+          0.5805084745762712,
+          0.15847457627118647
+        ],
+        "topo_cabeca": 0.07203389830508475,
+        "largura_rosto": 0.2966101694915254
+      }
+    }
+  ],
+  "acao": "parado"
+}

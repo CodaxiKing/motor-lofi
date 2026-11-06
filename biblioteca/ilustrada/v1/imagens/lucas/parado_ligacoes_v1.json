@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "tipo": "corpo_inteiro",
+  "atlas": "lucas/ligacoes_atlas_v1",
+  "fps_quadros": 1,
+  "aspecto_celula": 1,
+  "referencia": {
+    "altura_corpo": 0.8734177215189873,
+    "altura_referencia": 0.98
+  },
+  "frames": [
+    {
+      "regiao": [
+        0.0,
+        0.0,
+        0.25,
+        0.125
+      ],
+      "ancora": [
+        0.5,
+        0.9367088607594937
+      ],
+      "apoio": true,
+      "marcos": {
+        "linha_solo": 0.9367088607594937,
+        "centro_rosto": [
+          0.6118143459915611,
+          0.1506329113924051
+        ],
+        "topo_cabeca": 0.06329113924050633,
+        "largura_rosto": 0.25316455696202533
+      }
+    }
+  ],
+  "acao": "parado"
+}

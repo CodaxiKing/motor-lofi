@@ -364,34 +364,106 @@ def carregar(pasta_serie, nome):
 POS = {"esq": 0.28, "esquerda": 0.28, "centro": 0.5, "meio": 0.5, "dir": 0.72, "direita": 0.72}
 
 
-def quadro(shot, t, pasta_serie, size, nivel=None):
+def quadro(shot, t, pasta_serie, size, nivel=None, visema=None, permitir_falas=True):
     """Desenha o plano `"imagens": {...}` no tempo t (segundos do episódio). nivel(voz, t) -> 0..1 faz quem fala se mexer."""
     W_, H_ = size; cfg = shot["imagens"]; rel = max(0.0, t - shot["start"])
+    camera_ilustrada = cfg.get('camera_ilustrada', shot.get('camera') if isinstance(shot.get('camera'), dict) else None)
+    if camera_ilustrada is not None:
+        from .camera_ilustrada import configurar
+        # Resolve numeric actor indices before the depth map sorts the cast.
+        camera_ilustrada = configurar(camera_ilustrada, cfg.get('personagens', []))
     if cfg.get('pasta_biblioteca'):
         pasta_serie = os.path.normpath(os.path.join(pasta_serie, cfg['pasta_biblioteca']))
+    if any(p.get('movimentos') for p in cfg.get('personagens',[])):
+        from .transicoes_ilustradas import preparar_ator
+        cfg=dict(cfg,personagens=[preparar_ator(p,pasta_serie) for p in cfg['personagens']])
+    if cfg.get('mapa_composicao'):
+        from .composicao import planejar
+        cfg, _ = planejar(cfg, pasta_serie, size, auditoria=False)
     dur = max(1e-3, shot["end"] - shot["start"]); u = min(1.0, rel / dur)
     largo = W_ > H_
     canvas = Image.new("RGB", size, (8, 8, 12))
     pessoas = cfg.get("personagens", [])
+    if cfg.get("mapa_composicao"):
+        from .composicao import animar
+        pessoas = sorted(pessoas, key=lambda p: animar(p, rel).get("chao", .94))
     # câmera: aproximação lenta por padrão; "plano": "medio" / "close" aproxima de quem está em "alvo" (padrão: o 1º)
     plano = cfg.get("plano", "aberto")
     z = {"aberto": 1.0, "medio": 1.35, "close": 2.0}.get(plano, 1.0)
     z *= 1 + 0.06 * u * cfg.get("aproximar", 1.0)
+    if camera_ilustrada is not None: z = 1.0
     layers = []                          # (imagem, x, y, escala, profundidade)
+    sombras_chao = []; fundo_info = None
     sway = math.sin(t * 0.65) * W_ * 0.006 * cfg.get("balanco", 1.0)      # câmera balança de leve; o fundo mexe menos (paralaxe)
     if cfg.get("fundo"):
         fundo = carregar(pasta_serie, cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
         s = max(W_ / fundo.width, H_ / fundo.height) * 1.03
         fy = cfg.get("fundo_y", 0.5)
-        layers.append((fundo, (W_ - fundo.width * s) / 2, (H_ - fundo.height * s) * fy, s, 0.3))
+        fundo_x = (W_ - fundo.width*s)/2
+        if cfg.get('travelling'):
+            from .travelling import deslocamento
+            fundo_x, _ = deslocamento(cfg['travelling'], rel, size, fundo.size)
+        layers.append((fundo, fundo_x, (H_ - fundo.height * s) * fy, s, 0.3, None, None))
+        fundo_info = (fundo.size, fundo_x, (H_ - fundo.height*s)*fy, s)
+    from .sombras_ilustradas import iluminacao as ler_luz, piso as ler_piso, gerar as gerar_sombras
+    luz_cena = ler_luz(cfg,pasta_serie)
+    piso_sombra = ler_piso(luz_cena,size,fundo_info)
     alt_pad = 0.80 if largo else (0.52 if len(pessoas) > 1 else 0.60)
+    pessoas_render = []
     for k, p in enumerate(pessoas):
         from .core import keyframe
+        from .composicao import animar
+        p_original = p
+        p = animar(p, rel)
+        if p.get('movimentos'):
+            from .transicoes_ilustradas import preparar_ator
+            p=preparar_ator(p,pasta_serie)
         nome_img = keyframe(p.get('poses'), rel) if p.get('poses') else p['img']
         nome_render = nome_img
         im = carregar(pasta_serie, nome_img)
+        quadro_inteiro = None; ancora_quadro = None; fator_quadro = 1; frame_sombra = None
+        if p.get('animacoes_quadros'):
+            from .ciclos_quadros import ativo, carregar as ler_ciclo, quadro as ler_quadro
+            animacao = ativo(p['animacoes_quadros'], rel)
+            if animacao:
+                ciclo = ler_ciclo(pasta_serie, animacao['ciclo'])
+                tempo_ciclo = rel-animacao['inicio']
+                if not (cfg.get('travelling') and p.get('seguir_travelling') and ciclo.get('deslocamento_corpo_ciclo')):
+                    tempo_ciclo += animacao.get('fase_inicial',0)*len(ciclo['frames'])/ciclo['fps_quadros']
+                if cfg.get('travelling') and p.get('seguir_travelling') and ciclo.get('deslocamento_corpo_ciclo'):
+                    from .travelling import estado as estado_trilho
+                    distancia = estado_trilho(cfg['travelling'], rel)[0]-estado_trilho(cfg['travelling'], animacao['inicio'])[0]
+                    ciclos_percorridos = distancia/(p.get('altura',.68)*ciclo['deslocamento_corpo_ciclo'])+animacao.get('fase_inicial',0)
+                    tempo_ciclo = ciclos_percorridos*len(ciclo['frames'])/ciclo['fps_quadros']
+                im, ancora_quadro, fator_quadro, indice_quadro = ler_quadro(ciclo, carregar(pasta_serie, ciclo['atlas']), tempo_ciclo, animacao.get('modo','loop'), animacao.get('velocidade',1))
+                quadro_inteiro = ciclo
+                frame_sombra = ciclo['frames'][indice_quadro]
+        boca_config = p.get('bocas_locais', {}).get(nome_img)
+        from .boca_local import estado as estado_boca
+        forma_boca, evento = estado_boca(p, t, nivel, visema, permitir_falas)
+        if quadro_inteiro: boca_config = None
+        if p.get('rig_camadas') and not quadro_inteiro:
+            from .articulado import carregar as ler_camadas, renderizar as desenhar_camadas
+            rig_c = ler_camadas(pasta_serie, p['rig_camadas'])
+            atlas_c = carregar(pasta_serie, rig_c['atlas'])
+            bc = {'atlas': carregar(pasta_serie, boca_config['atlas']), 'shape': forma_boca} if boca_config else None
+            acoes_c = [dict(a) for a in p.get('acoes', [])]
+            if p.get('andar'):
+                velocidade = (p['andar'][1]-p['andar'][0])*W_/(p.get('altura',.7)*H_)*rig_c['canvas'][1]/rig_c['canvas'][0]/dur
+                for acao in acoes_c:
+                    if acao['tipo']=='caminhar': acao['velocidade_x']=velocidade
+            render_h = max(64, round(p.get('altura', .7)*H_*z))
+            render_size = (max(1,round(render_h*rig_c['canvas'][0]/rig_c['canvas'][1])), render_h)
+            if cfg.get('travelling') and p.get('seguir_travelling'):
+                from .travelling import estado as estado_trilho
+                _, vcam = estado_trilho(cfg['travelling'], rel)
+                for acao in acoes_c:
+                    if acao['tipo'] in ('caminhar','correr'):
+                        acao['trilho'] = cfg['travelling']
+                        acao['fator_trilho'] = 1/p.get('altura',.7)*rig_c['canvas'][1]/rig_c['canvas'][0]
+            im = desenhar_camadas(rig_c, atlas_c, render_size, rel, acoes_c, bc)
         olhar = p.get('olhares', {}).get(nome_img)
-        if olhar:
+        if olhar and not quadro_inteiro and not (p.get('puppets', {}).get(nome_img) or p.get('puppet')):
             variante = carregar(pasta_serie, olhar)
             # Dissolve suave entre recortes completos; não deforma o rosto.
             if variante.size != im.size: raise ValueError('Microposes precisam do mesmo canvas')
@@ -400,55 +472,117 @@ def quadro(shot, t, pasta_serie, size, nivel=None):
         pisc = p.get("piscadas", {}).get(nome_img, p.get("piscar", nome_img + "_piscando"))              # olhos fechados por 0,12 s a cada ~3,6 s
         periodo = max(.3, float(p.get("periodo_piscar", 3.6 + k * .7)))
         piscou = pisc and (t + k * 1.3) % periodo < 0.12 and os.path.exists(os.path.join(pasta_serie, PASTA, pisc + ".png"))
-        if piscou:
-            im = carregar(pasta_serie, pisc)
-            nome_render = pisc
+        if piscou and not p.get('rig_camadas') and not quadro_inteiro:
+            fechados = carregar(pasta_serie, pisc)
+            regioes = p.get('piscadas_locais', {}).get(nome_img)
+            if regioes:
+                from .piscadas import compor
+                im = compor(im, fechados, regioes)
+            else:
+                im = fechados
+                nome_render = pisc
         # boca: com a voz alta, troca pela variante de boca aberta (<img>_falando), se existir
+        if boca_config and not p.get('rig_camadas'):
+            from .boca_local import compor as compor_boca
+            im = compor_boca(im, carregar(pasta_serie, boca_config['atlas']), boca_config, forma_boca)
         boca = p.get('bocas', {}).get(nome_img, p.get("boca", nome_img + "_falando"))
-        if (not piscou and nivel and p.get("fala") and boca and nivel(p["fala"], t) > 0.35
+        if (not quadro_inteiro and not boca_config and not piscou and permitir_falas and nivel and p.get("fala") and boca and nivel(p["fala"], t) > 0.35
                 and os.path.exists(os.path.join(pasta_serie, PASTA, boca + ".png"))):
             im = carregar(pasta_serie, boca)
             nome_render = boca
-        if p.get("espelhar"): im = im.transpose(Image.FLIP_LEFT_RIGHT)
+        if p.get('interacoes') or p.get('seguir_piso'):
+            from .interacoes_ilustradas import aplicar as aplicar_contato
+            from .composicao import espelhamento as flip_contato
+            if p.get('andar'):
+                a0,b0=[POS.get(v,v) if isinstance(v,str) else v for v in p['andar']]
+                p=dict(p,pos=a0+(b0-a0)*u)
+            pos_contato=POS.get(p.get('pos'),p.get('pos',.5))
+            p=aplicar_contato(p,cfg,rel,size,fundo_info,quadro_inteiro,frame_sombra,flip_contato(p,pos_contato,nome_render))
         pos = p.get("pos", "centro"); fx = POS.get(pos, pos if isinstance(pos, (int, float)) else 0.5)
         if p.get("andar"):                                           # atravessa a cena: [de, até] (esq/centro/dir ou 0–1)
             a_, b_ = [POS.get(v, v) if isinstance(v, str) else v for v in p["andar"]]
             fx = a_ + (b_ - a_) * u
         if not largo and len(pessoas) > 1 and isinstance(pos, str) and not p.get("andar"): fx = 0.5 + (fx - 0.5) * 1.15
-        alt = p.get("altura", alt_pad) * H_
+        from .composicao import espelhamento
+        espelhado = espelhamento(p, fx, nome_render)
+        alt = p.get("altura", alt_pad) * H_ * fator_quadro
         s = alt / im.height
         dy = 0.0
+        elevacao = float(keyframe(p.get('elevacao',0),rel))
+        if not math.isfinite(elevacao) or elevacao<0: raise ValueError('Elevação precisa ser finita e não negativa')
+        dy -= elevacao*H_
+        puppet = None if quadro_inteiro else p.get('puppets', {}).get(nome_render, p.get('puppet'))
         respiro = math.sin(2 * math.pi * rel * 0.22 + k) * H_ * 0.0025 * p.get("respirar", 1.0)
-        if p.get("andar"): respiro = -abs(math.sin(rel * 8)) * H_ * 0.006                   # passo: sobe e desce
-        if nivel and p.get("fala"):
+        if p.get("andar") or p.get("passo"): respiro = -abs(math.sin(rel * 2 * math.pi / max(.1, p.get("ciclo_passo", .8)))) * H_ * 0.006                   # passo: sobe e desce
+        if puppet or quadro_inteiro: respiro = 0
+        if nivel and p.get("fala") and not boca_config and not quadro_inteiro:
             n = max(0.0, min(1.0, nivel(p["fala"], t)))
             dy -= n * H_ * 0.006; s *= 1 + 0.012 * n
         chao = p.get("chao", 0.97 if largo else 0.93)
-        ancora = p.get('ancoras', {}).get(nome_render, p.get('ancora', [0.5, 1.0]))
-        fx += math.sin(rel * 1.1 + k) * .002 * p.get("balanco_corpo", 0)
+        ancora = ancora_quadro or p.get('ancoras', {}).get(nome_render, p.get('ancora', [0.5, 1.0]))
+        fx += math.sin(rel * 1.1 + k) * .002 * (0 if puppet or quadro_inteiro else p.get("balanco_corpo", 0))
+        if espelhado: ancora = [1-ancora[0], ancora[1]]
         x = fx * W_ - im.width * s * ancora[0]
         y = chao * H_ - im.height * s * ancora[1] + dy + respiro
-        layers.append((im, x, y, s, 1.0))
+        portal_ator = p.get('portal') if not (isinstance(p.get('portal'), dict) and chao >= p['portal'].get('ate_chao', 2)) else None
+        p_sombra = dict(p,_ancora_sombra=ancora)
+        for sombra,sx,sy in gerar_sombras(im,x,y,s,p_sombra,cfg,luz_cena,size,fundo_info,rel,espelhado,quadro_inteiro,frame_sombra,base=pasta_serie):
+            sombras_chao.append((sombra,sx,sy,1.,1.,portal_ator,{'sombra':True,'piso':piso_sombra}))
+        layers.append((im, x, y, s, 1.0, portal_ator, {'ator':True,'chao':chao,'rig': None if p.get('rig_camadas') else puppet, 'espelhado': espelhado, 'gestos': p.get('gestos', [])}))
+        estado_camera=dict(p,pos=fx,chao=chao,_origem_camera=p_original,_frame_camera=frame_sombra,_ciclo_camera=quadro_inteiro,_flip_camera=espelhado)
+        estado_camera.pop('trajeto',None);estado_camera.pop('andar',None)
+        pessoas_render.append(estado_camera)
     def _obj(o, prof):
         im = carregar(pasta_serie, o["img"]); s = o.get("altura", 0.2) * H_ / im.height
         y = o.get("y", 0.7) * H_
         if o.get("flutuar"): y += math.sin(rel * o.get("velocidade", 1.0) * 2) * H_ * 0.006
         if o.get("pulsar"): s *= 1 + 0.02 * math.sin(rel * 3)
-        return (im, o.get("x", 0.5) * W_ - im.width * s / 2, y - im.height * s / 2, s, prof)
+        return (im, o.get("x", 0.5) * W_ - im.width * s / 2, y - im.height * s / 2, s, prof, None, None)
     for o in cfg.get("objetos", []): layers.append(_obj(o, 1.0))
     for o in cfg.get("frente", []): layers.append(_obj(dict({"altura": 0.5, "y": 0.85}, **o), 1.4))   # primeiro plano (mexe mais)
+    for o in cfg.get('oclusores',[]):
+        layer=list(_obj(o,1.));layer[-1]={'oclusor':True,'chao':o.get('chao',o.get('y',.7)+o.get('altura',.2)/2)}
+        layers.append(tuple(layer))
     # ponto que a câmera segue
     if z > 1.0 and pessoas:
-        al = cfg.get("alvo", 0); im, x, y, s, _ = layers[(1 if cfg.get("fundo") else 0) + min(al, len(pessoas) - 1)]
+        al = cfg.get("alvo", 0); im, x, y, s, _, _portal, _mov = layers[(1 if cfg.get("fundo") else 0) + min(al, len(pessoas) - 1)]
         alvo_x = x + im.width * s / 2; alvo_y = y + im.height * s * (0.16 if plano == "close" else 0.32)
     else:
         alvo_x, alvo_y = W_ / 2, H_ / 2
     ox = W_ / 2 - alvo_x * z; oy = (H_ * (0.42 if z > 1.0 else 0.5)) - alvo_y * z
     ox = min(0, max(W_ - W_ * z, ox)); oy = min(0, max(H_ - H_ * z, oy))
-    for im, x, y, s, prof in layers:
+    if camera_ilustrada is not None:
+        from .camera_ilustrada import resolver
+        camera_resolvida = resolver(camera_ilustrada, pessoas_render, pasta_serie, size, rel, dur)
+        z,ox,oy = (camera_resolvida[k] for k in ('z','ox','oy'))
+    # All floor shadows precede all bodies: a later actor's shadow must not
+    # paint over another actor's legs. Foreground props still occlude both.
+    bg_count = 1 if cfg.get('fundo') else 0
+    profundos=[l for l in layers[bg_count:] if l[-1] and (l[-1].get('ator') or l[-1].get('oclusor'))]
+    fixos=[l for l in layers[bg_count:] if not (l[-1] and (l[-1].get('ator') or l[-1].get('oclusor')))]
+    render_layers = layers[:bg_count]+sombras_chao+sorted(profundos,key=lambda l:l[-1]['chao'])+fixos
+    for im, x, y, s, prof, portal, mov in render_layers:
         ss = s * z; w, h = max(1, int(im.width * ss)), max(1, int(im.height * ss))
         spr = im.resize((w, h), Image.BILINEAR)
-        canvas.paste(spr, (int((x + sway * prof) * z + ox), int(y * z + oy)), spr)
+        if mov and mov.get('rig'):
+            from .puppet import carregar as ler_puppet, deformar
+            from .atuacao import aplicar as atuar
+            rig_p = atuar(ler_puppet(pasta_serie, mov['rig']), mov.get('gestos', []), t)
+            spr = deformar(spr, rig_p, rel)
+        if mov and mov.get('espelhado'): spr = spr.transpose(Image.FLIP_LEFT_RIGHT)
+        origem = (int((x + sway * prof) * z + ox), int(y * z + oy))
+        if mov and mov.get('sombra'):
+            from .sombras_ilustradas import recortar_piso
+            spr = recortar_piso(spr,origem,mov.get('piso'),(z,ox+sway*.3*z,oy))
+        if portal:
+            from .portais import recortar
+            nome_portal = portal['nome'] if isinstance(portal, dict) else portal
+            portais = cfg.get('portais', cfg.get('mapa_composicao', {}).get('portais', {}))
+            if nome_portal not in portais: raise ValueError(f'Portal inexistente: {nome_portal}')
+            if not cfg.get('fundo'): raise ValueError('Portal requer cenário')
+            spr = recortar(spr, origem, portais[nome_portal], fundo.size, size,
+                           cfg.get('fundo_y', .5), (z,ox+sway*.3*z,oy))
+        canvas.paste(spr, origem, spr)
     for ef in cfg.get("efeitos", []):
         nomef = ef if isinstance(ef, str) else ef.get("tipo")
         if nomef == "flicker":
@@ -469,6 +603,9 @@ def faltam(spec_path):
         ja = existentes(base)
         nomes = []
         for p in cfg.get('personagens', []):
+            if p.get('movimentos'):
+                from .transicoes_ilustradas import preparar_ator
+                p=preparar_ator(p,base)
             nomes.append(p['img'])
             nomes.extend(nome for _, nome in p.get('poses', []))
             # Variantes explícitas são necessárias; as automáticas continuam opcionais.
@@ -476,7 +613,17 @@ def faltam(spec_path):
             nomes.extend(p.get('bocas', {}).values())
             nomes.extend(p.get('piscadas', {}).values())
             nomes.extend(p.get('olhares', {}).values())
-        nomes += [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", [])]
+            nomes.extend(c['atlas'] for c in p.get('bocas_locais', {}).values())
+            for ac in p.get('animacoes_quadros', []):
+                from .ciclos_quadros import carregar as ler_ciclo
+                try: nomes.append(ler_ciclo(base, ac['ciclo'])['atlas'])
+                except FileNotFoundError: falta.append((s['start'], 'ciclo:' + ac['ciclo']))
+            if p.get('rig_camadas'):
+                from .articulado import carregar as ler_rig
+                try:
+                    rig = ler_rig(base, p['rig_camadas']); nomes.append(rig['atlas'])
+                except FileNotFoundError: falta.append((s['start'], 'rig:' + p['rig_camadas']))
+        nomes += [o["img"] for o in cfg.get("objetos", []) + cfg.get("frente", []) + cfg.get('oclusores',[])]
         if cfg.get("fundo"): nomes.append(cfg["fundo"] if cfg["fundo"].startswith("fundo_") else "fundo_" + cfg["fundo"])
         falta += [(s["start"], n) for n in dict.fromkeys(nomes) if n not in ja]
     return falta

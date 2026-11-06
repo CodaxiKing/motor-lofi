@@ -134,7 +134,13 @@
           ],
           "sha256": "bb809066a19bcc7fc80de90cbd8cfaaf2ce65050f685772300b4c5aca4a5f765"
         }
-      }
+      },
+      "composicao": {
+        "referencia_escala": "lucas/lucas_34_neutro_recorte_v1",
+        "escala_relativa": 1,
+        "direcao_original": "direita"
+      },
+      "arquivo_ficha": "lucas/personagem.json"
     },
     "clara": {
       "nome": "Clara",
@@ -179,7 +185,13 @@
           ],
           "sha256": "a67842d2e1e7ebe5e57f6e416210119a36fe369acd62f10ca3391861b0814fe8"
         }
-      }
+      },
+      "composicao": {
+        "referencia_escala": "clara/clara_neutro_v1",
+        "escala_relativa": 1,
+        "direcao_original": "direita"
+      },
+      "arquivo_ficha": "clara/personagem.json"
     },
     "teo": {
       "nome": "Téo",
@@ -224,7 +236,13 @@
           ],
           "sha256": "3a0f380b59662e4f9803f796982bd00cf7311e9f0fd4272aa486d10c6b681172"
         }
-      }
+      },
+      "composicao": {
+        "referencia_escala": "teo/teo_neutro_v1",
+        "escala_relativa": 1,
+        "direcao_original": "direita"
+      },
+      "arquivo_ficha": "teo/personagem.json"
     },
     "amanha": {
       "nome": "Lucas de Amanhã",
@@ -243,7 +261,13 @@
           ],
           "sha256": "94a8c9d6bda2b24e2f30512be286f699cc4b6d05002a15076bdc892095ab9f6d"
         }
-      }
+      },
+      "composicao": {
+        "referencia_escala": "amanha/amanha_neutro_v1",
+        "escala_relativa": 1,
+        "direcao_original": "frente"
+      },
+      "arquivo_ficha": "amanha/personagem.json"
     },
     "mimico": {
       "nome": "Mímico",
@@ -274,7 +298,72 @@
           ],
           "sha256": "05e69ea731f77d752049b0950f795d347e25f03c932a1c8830ba2e58fe7a7286"
         }
-      }
+      },
+      "composicao": {
+        "referencia_escala": "mimico/mimico_neutro_v1",
+        "escala_relativa": 1,
+        "direcao_original": "direita"
+      },
+      "ciclos": {
+        "aproximando": {
+          "cycle_s": 1.2,
+          "frames": [
+            {
+              "img": "mimico/mimico_andando_frente_01_v1",
+              "ancora": [
+                0.5,
+                0.99
+              ],
+              "pixels": [
+                981,
+                1604
+              ],
+              "sha256": "abc13c3ba1a3422eb86cbf835de46f688c8725c8004bffd53e88b0c6040195b0",
+              "direcao_original": "frente"
+            },
+            {
+              "img": "mimico/mimico_andando_frente_02_v1",
+              "ancora": [
+                0.5,
+                0.99
+              ],
+              "pixels": [
+                1002,
+                1570
+              ],
+              "sha256": "7bedd8ab3f347ab674b4fac0353295977d2be00058401ea21bbc4fdce6e9598c",
+              "direcao_original": "frente"
+            },
+            {
+              "img": "mimico/mimico_andando_frente_03_v1",
+              "ancora": [
+                0.5,
+                0.99
+              ],
+              "pixels": [
+                981,
+                1604
+              ],
+              "sha256": "7a0cb92e6d84f9d632ad95272003e3cdf7cac42c11cfe51ecf89b6d0bf32d768",
+              "direcao_original": "frente"
+            },
+            {
+              "img": "mimico/mimico_andando_frente_04_v1",
+              "ancora": [
+                0.5,
+                0.99
+              ],
+              "pixels": [
+                1002,
+                1569
+              ],
+              "sha256": "1251813ce2a36fc65bfa74f4d85d6f92dfa3a6cee26c8bfce7a6136a7449fcbc",
+              "direcao_original": "frente"
+            }
+          ]
+        }
+      },
+      "arquivo_ficha": "mimico/personagem.json"
     }
   },
   "cenarios": {
@@ -283,7 +372,130 @@
       "descricao": "Entrada do abrigo, paredes azul-escuras e luz âmbar",
       "ligacoes": [
         "corredor"
-      ]
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.035,
+              0.965
+            ],
+            "chao": 0.94,
+            "altura": 0.5,
+            "altura_minima": 0.32
+          },
+          "porta": {
+            "x": [
+              0.46,
+              0.78
+            ],
+            "chao": 0.7,
+            "altura": 0.34,
+            "altura_minima": 0.22
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+        "interacoes": {
+          "macaneta": [
+            0.75,
+            0.499
+          ]
+        },
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+        "portais": {
+          "porta": {
+            "poligono": [
+              [
+                0.449,
+                0.26
+              ],
+              [
+                0.791,
+                0.26
+              ],
+              [
+                0.722,
+                0.283
+              ],
+              [
+                0.722,
+                0.69
+              ],
+              [
+                0.449,
+                0.69
+              ]
+            ],
+            "descricao": "Abertura visível do corredor; parede, batente e folha aberta ficam à frente"
+          }
+        }
+      },
+      "cameras": {
+        "esquerda": "entrada_esquerda",
+        "direita": "entrada_direita",
+        "baixo": "entrada_baixo"
+      },
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          },
+          {
+            "id": "corredor",
+            "tipo": "pontual",
+            "posicao": [
+              0.64,
+              0.63
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.23,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      }
     },
     "corredor": {
       "img": "fundo_corredor_v1",
@@ -291,14 +503,492 @@
       "ligacoes": [
         "entrada",
         "floresta"
-      ]
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.035,
+              0.965
+            ],
+            "chao": 0.94,
+            "altura": 0.7
+          },
+          "fundo": {
+            "x": [
+              0.36,
+              0.67
+            ],
+            "chao": 0.67,
+            "altura": 0.3,
+            "altura_minima": 0.2
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+        "interacoes": {},
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor."
+      },
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.22,
+        "piso": [
+          [
+            0,
+            0.76
+          ],
+          [
+            0.44,
+            0.57
+          ],
+          [
+            0.62,
+            0.57
+          ],
+          [
+            1,
+            0.76
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "teto",
+            "tipo": "pontual",
+            "posicao": [
+              0.51,
+              0.86
+            ],
+            "altura_m": 3.0,
+            "intensidade": 1,
+            "suavidade": 0.6
+          }
+        ]
+      }
     },
     "floresta": {
       "img": "fundo_floresta_v1",
       "descricao": "Trilha na floresta ao luar com luz do abrigo ao fundo",
       "ligacoes": [
+        "corredor",
+        "trilha_lateral"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.035,
+              0.965
+            ],
+            "chao": 0.94,
+            "altura": 0.7
+          },
+          "fundo": {
+            "x": [
+              0.33,
+              0.69
+            ],
+            "chao": 0.67,
+            "altura": 0.33,
+            "altura_minima": 0.2
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "manual sobre o PNG completo; projeção acompanha cover do fundo",
+        "interacoes": {},
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor."
+      },
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.55,
+        "piso": [
+          [
+            0,
+            0.69
+          ],
+          [
+            1,
+            0.69
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luar",
+            "tipo": "direcional",
+            "direcao": [
+              0.72,
+              0.46
+            ],
+            "comprimento": 0.56,
+            "intensidade": 0.65,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Luz lateral do luar; vetor descreve a direção da sombra no piso"
+      }
+    },
+    "trilha_lateral": {
+      "img": "fundo_trilha_lateral_v1",
+      "descricao": "A trilha da floresta vista de lado, em panorama para travelling",
+      "ligacoes": [
+        "floresta"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.02,
+              0.98
+            ],
+            "chao": 0.83,
+            "altura": 0.68
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Caminho horizontal em panorama lateral"
+      },
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.55,
+        "piso": [
+          [
+            0,
+            0.79
+          ],
+          [
+            1,
+            0.79
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "luar",
+            "tipo": "direcional",
+            "direcao": [
+              0.72,
+              0.46
+            ],
+            "comprimento": 0.56,
+            "intensidade": 0.65,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Luz lateral do luar; vetor descreve a direção da sombra no piso"
+      }
+    },
+    "entrada_esquerda": {
+      "img": "fundo_entrada_esquerda_v2",
+      "descricao": "Mesmo abrigo; câmera esquerda",
+      "ligacoes": [
+        "entrada",
         "corredor"
-      ]
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.46,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Zona frontal revisada; porta precisa de polígono próprio antes de atravessar",
+        "interacoes": {},
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor."
+      },
+      "ambiente": "entrada",
+      "camera": "esquerda",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.76,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          },
+          {
+            "id": "corredor",
+            "tipo": "pontual",
+            "posicao": [
+              0.64,
+              0.63
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.23,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      }
+    },
+    "entrada_direita": {
+      "img": "fundo_entrada_direita_v2",
+      "descricao": "Mesmo abrigo; câmera direita",
+      "ligacoes": [
+        "entrada",
+        "corredor"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.48,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Zona frontal revisada; porta precisa de polígono próprio antes de atravessar",
+        "interacoes": {},
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor."
+      },
+      "ambiente": "entrada",
+      "camera": "direita",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.48,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          },
+          {
+            "id": "corredor",
+            "tipo": "pontual",
+            "posicao": [
+              0.64,
+              0.63
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.23,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      }
+    },
+    "entrada_baixo": {
+      "img": "fundo_entrada_baixo_v2",
+      "descricao": "Mesmo abrigo; câmera baixo",
+      "ligacoes": [
+        "entrada",
+        "corredor"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.46,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Zona frontal revisada; porta precisa de polígono próprio antes de atravessar",
+        "interacoes": {},
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor."
+      },
+      "ambiente": "entrada",
+      "camera": "baixo",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.58,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          },
+          {
+            "id": "corredor",
+            "tipo": "pontual",
+            "posicao": [
+              0.64,
+              0.63
+            ],
+            "altura_m": 2.7,
+            "intensidade": 0.23,
+            "suavidade": 0.85
+          }
+        ],
+        "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      }
+    }
+  },
+  "escala_referencia_m": 1.7,
+  "objetos": {
+    "bau": {
+      "img": "objetos/bau_v2",
+      "altura": 0.4,
+      "x": 0.5,
+      "y": 0.74
+    },
+    "armario_baixo": {
+      "img": "objetos/armario_baixo_v2",
+      "altura": 0.4,
+      "x": 0.5,
+      "y": 0.74
+    },
+    "batente": {
+      "img": "objetos/batente_v2",
+      "altura": 0.4,
+      "x": 0.5,
+      "y": 0.74
+    },
+    "arvore": {
+      "img": "objetos/arvore_v2",
+      "altura": 0.4,
+      "x": 0.5,
+      "y": 0.74
     }
   }
 }

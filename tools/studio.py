@@ -29,7 +29,7 @@ def main(argv=None):
     if args.command == 'ambiente': out = detect_capabilities()
     elif args.command == 'iniciar': out = initialize_series(args.series_dir, args.title, visual_style=args.profile, duration_profile=args.duration_profile, render_mode=args.render_mode)
     elif args.command == 'modo': out = configure_render_mode(args.series_dir, args.render_mode)
-    elif args.command == 'planejar': out = plan_episode(Path(args.story).read_text(encoding='utf-8'), series_dir=args.series_dir, episode_number=args.episode, branch=args.branch, actor=args.actor, scene=args.scene, mode=args.mode, duration=args.duration, duration_profile=args.duration_profile, opening=args.opening, elenco=carregar_elenco(args.cast) if args.cast else None, render_mode=args.render_mode)
+    elif args.command == 'planejar': out = plan_episode(Path(args.story).read_text(encoding='utf-8'), series_dir=args.series_dir, episode_number=args.episode, branch=args.branch, actor=args.actor, scene=args.scene, mode=args.mode, duration=args.duration, duration_profile=args.duration_profile, opening=args.opening, elenco=carregar_elenco(args.cast) if args.cast else None, render_mode=args.render_mode, pasta_audio=Path(args.story).resolve().parent)
     elif args.command == 'abertura':
         from lofi.aberturas import exportar
         out = exportar(args.episode, args.output, args.opening)

@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "id": "teo",
+  "nome": "Téo",
+  "altura_m": 1.6,
+  "origem_altura": "sugestão aprovada pelo autor em 2026-11-06",
+  "puppets": {
+    "teo/teo_neutro_v1": "teo/puppet_neutro_v1.json",
+    "teo/teo_neutro_piscando_v1": "teo/puppet_neutro_v1.json"
+  },
+  "margem_puppet": 0.025,
+  "piscadas_locais": {
+    "teo/teo_neutro_v1": [
+      {
+        "destino": [
+          0.503,
+          0.123,
+          0.562,
+          0.164
+        ],
+        "origem": [
+          0.482,
+          0.128,
+          0.56,
+          0.166
+        ]
+      },
+      {
+        "destino": [
+          0.577,
+          0.123,
+          0.622,
+          0.162
+        ],
+        "origem": [
+          0.573,
+          0.123,
+          0.626,
+          0.162
+        ]
+      }
+    ]
+  },
+  "bocas_locais": {
+    "teo/teo_neutro_v1": {
+      "atlas": "lucas/bocas_atlas_v1",
+      "formas": {
+        "M": [
+          0.4283854166666667,
+          0.2099609375,
+          0.5716145833333334,
+          0.3564453125
+        ],
+        "A": [
+          0.76171875,
+          0.2099609375,
+          0.9049479166666666,
+          0.3564453125
+        ],
+        "E": [
+          0.09505208333333333,
+          0.7080078125,
+          0.23828125,
+          0.8544921875
+        ],
+        "O": [
+          0.4283854166666667,
+          0.7080078125,
+          0.5716145833333334,
+          0.8544921875
+        ],
+        "U": [
+          0.76171875,
+          0.7080078125,
+          0.9049479166666666,
+          0.8544921875
+        ]
+      },
+      "regiao": [
+        0.52,
+        0.165,
+        0.61,
+        0.205
+      ],
+      "igualar_pele": true
+    }
+  },
+  "preferencia_animacao": "quadros",
+  "grupo_animacao": "personagens",
+  "ciclos_quadros": {
+    "andar": "teo/andar_corpo_v2.json",
+    "correr": "teo/correr_corpo_v2.json",
+    "levantar_braco": "teo/levantar_braco_corpo_v2.json",
+    "agachar": "teo/agachar_corpo_v2.json",
+    "levantar": "teo/levantar_corpo_v2.json",
+    "abaixar": "teo/agachar_corpo_v2.json",
+    "se_esconder": "teo/agachar_corpo_v2.json",
+    "parado": "teo/parado_ligacoes_v1.json",
+    "interagir": "teo/interagir_v1.json",
+    "alcancar": "teo/interagir_v1.json"
+  },
+  "marcos_camera": {
+    "cintura": 0.55,
+    "joelhos": 0.79,
+    "ombros": 0.3,
+    "centro_rosto": 0.11,
+    "largura_rosto": 0.27
+  },
+  "transicoes": {
+    "parado>andar": {
+      "ciclo": "teo/iniciar_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>parado": {
+      "ciclo": "teo/frear_andar_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "andar>correr": {
+      "ciclo": "teo/acelerar_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 1.0
+    },
+    "correr>parado": {
+      "ciclo": "teo/frear_corrida_v1.json",
+      "duracao": 0.5,
+      "periodo_origem": 0.8
+    }
+  }
+}

@@ -9,6 +9,7 @@ import sys, os, json, math, subprocess
 if "--deitado" in sys.argv: os.environ["LOFI_DEITADO"] = "1"     # versão 16:9 (YouTube): antes de carregar o motor
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageEnhance
+from .sincronia import ffmpeg as _ffmpeg
 from .core import W, H, W_D, H_D, XO, HW, DEITADO, RED, CREAM, font, text_center, ease, ease_out, c01, lerp, keyframe, fast_blur, crop_zoom, duracao
 from . import fx, scenes, text, audio, particles, detail, placar, ondas, partes, mente, pes, regra
 from .visual_profiles import resolve_profile, apply_profile
@@ -622,7 +623,7 @@ class Episode:
         if shot.get("imagens"):                         # estilo "imagens": cena montada com imagens geradas fora (lofi/imagens.py)
             from .imagens import quadro
             nv = None if self.narrado else (lambda v, tt: self.level(v, tt, smooth=2) * 1.3)
-            return quadro(shot, t, self.base, (W, H), nv)
+            return quadro(shot, t, self.base, (W, H), nv, None if self.narrado else self.viseme, permitir_falas=not self.narrado)
         if self.spec.get('visual_mode') == 'DESENHO' and shot.get('image_scene') is not None:
             from .drawing_mode import draw_shot          # modo DESENHO (imagens prontas em camadas; docs/desenho)
             return draw_shot(shot, t, self.base, (W, H))
@@ -1146,10 +1147,10 @@ class Episode:
         if not os.path.exists(self.vertical):
             raise RuntimeError(f"versão deitada: renderize antes o vídeo em pé ({self.vertical})")
         ww, hh = int(round(H * W_D / H_D / 2) * 2), H
-        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.4f}", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
+        r = subprocess.run([_ffmpeg(), "-v", "error", "-ss", f"{t:.4f}", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
                             "-pix_fmt", "rgb24", "-s", f"{ww}x{hh}", "-"], capture_output=True)
         if len(r.stdout) < ww * hh * 3:
-            r = subprocess.run(["ffmpeg", "-v", "error", "-sseof", "-0.1", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
+            r = subprocess.run([_ffmpeg(), "-v", "error", "-sseof", "-0.1", "-i", self.vertical, "-frames:v", "1", "-f", "rawvideo",
                                 "-pix_fmt", "rgb24", "-s", f"{ww}x{hh}", "-"], capture_output=True)
         q = Image.frombytes("RGB", (ww, hh), r.stdout[:ww * hh * 3])
         fundo = q.resize((96, int(96 * hh / ww))).crop((0, int((96 * hh / ww - 54) / 2), 96, int((96 * hh / ww - 54) / 2) + 54))
@@ -1162,7 +1163,7 @@ class Episode:
 
     # ---------------- saída ----------------
     def _ffmpeg_video(self, out, with_audio):
-        cmd = ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(self.fps), "-i", "-"]
+        cmd = [_ffmpeg(), "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(self.fps), "-i", "-"]
         if with_audio: cmd += ["-i", self.mix_path, "-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-shortest"]
         cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", str(self.spec.get("crf", 28)), "-pix_fmt", "yuv420p", "-movflags", "+faststart", out]
         return subprocess.Popen(cmd, stdin=subprocess.PIPE)
@@ -1239,7 +1240,7 @@ class Episode:
             os.replace(tmp, os.path.join(cache, k + ".mp4"))
         lst = os.path.join(self.base, "_partes.txt")
         open(lst, "w").write("".join(f"file '{os.path.join(cache, k + '.mp4')}'\n" for k, a, b in chaves))
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,
+        subprocess.run([_ffmpeg(), "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,
                         "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
                         "-shortest", "-movflags", "+faststart", out], check=True)
         os.remove(lst)
@@ -1271,7 +1272,7 @@ class Episode:
                 if abs(got - want) > 0.5: raise RuntimeError(f"bloco {k} continua incompleto ({got:.1f}s de {want:.1f}s)")
         lst = os.path.join(self.base, "_partes.txt")
         open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,
+        subprocess.run([_ffmpeg(), "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", self.mix_path,
                         "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
                         "-shortest", "-movflags", "+faststart", out], check=True)
         for p in parts + [lst]:
