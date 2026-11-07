@@ -1,0 +1,824 @@
+{
+ "version": 1,
+ "titulo": "VOZ EMPRESTADA",
+ "perfil": "tradicional",
+ "duracao": 162,
+ "narrador": "lucas",
+ "escolhas": {
+  "A": {
+   "label": "RESPONDER À VOZ",
+   "texto": "Responder à voz",
+   "ganha": "a voz para de bater",
+   "perde": "a coisa aprende a voz do Lucas",
+   "motivo": "descobrir quem está lá fora"
+  },
+  "B": {
+   "label": "FICAR EM SILÊNCIO",
+   "texto": "Ficar em silêncio",
+   "ganha": "tempo e uma pista pela janela",
+   "perde": "a luz do lampião",
+   "motivo": "não dar nada para ela copiar"
+  }
+ },
+ "cenas": [
+  {
+   "n": 1,
+   "cenario": "entrada",
+   "camera": {
+    "angulo": "baixo",
+    "alvo": [
+     "lucas",
+     "clara"
+    ]
+   },
+   "plano": "conjunto",
+   "acontecimento": "Gancho: a voz da Clara pede para entrar, e a Clara está do lado do Lucas",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "medo",
+     "pos": 0.32
+    },
+    {
+     "id": "clara",
+     "pose": "medo",
+     "pos": 0.66
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Lu, abre. Tá frio aqui.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      0.0,
+      2.61
+     ],
+     "inicio": 0.4
+    }
+   ],
+   "consequencia": "Gancho: a voz da Clara pede para entrar, e a Clara está do lado do Lucas",
+   "direcao_narrativa": false
+  },
+  {
+   "n": 2,
+   "cenario": "entrada",
+   "plano": "medio",
+   "acontecimento": "Lucas sem sinal no abrigo; a Clara foi buscar lenha",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "celular",
+     "pos": 0.4
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Três dias sem o Seu Nonato. Duas horas sem sinal. E uma barreira caída entre a gente e a vila. A Cla foi buscar lenha no telheiro.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      0.0,
+      8.29
+     ],
+     "inicio": 0.6
+    }
+   ],
+   "causa": {
+    "cena": 1,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Lucas sem sinal no abrigo; a Clara foi buscar lenha"
+  },
+  {
+   "n": 3,
+   "cenario": "entrada",
+   "camera": "esquerda",
+   "plano": "conjunto",
+   "acontecimento": "Três batidas; a Clara pede para entrar e o Lucas abre",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "macaneta",
+     "pos": 0.36
+    },
+    {
+     "id": "clara",
+     "pose": "neutro",
+     "pos": 0.7
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Lu, abre. Tá frio aqui.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      0.0,
+      2.61
+     ],
+     "inicio": 1.4
+    },
+    {
+     "personagem": "lucas",
+     "texto": "Cla, você tá encharcada.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      8.7,
+      10.18
+     ],
+     "inicio": 5.6,
+     "intencao": "afirmar"
+    }
+   ],
+   "causa": {
+    "cena": 2,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Três batidas; a Clara pede para entrar e o Lucas abre"
+  },
+  {
+   "n": 4,
+   "cenario": "entrada",
+   "plano": "auto",
+   "acontecimento": "A Clara pergunta do moletom; o Lucas mente",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "falando",
+     "pos": 0.32
+    },
+    {
+     "id": "clara",
+     "pose": "neutro",
+     "pos": 0.68
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "clara",
+     "texto": "Cadê o seu moletom reserva? Não tava no varal.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      3.23,
+      5.96
+     ],
+     "intencao": "perguntar"
+    },
+    {
+     "personagem": "lucas",
+     "texto": "Guardei na mochila.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      10.41,
+      11.18
+     ],
+     "intencao": "esconder"
+    },
+    {
+     "personagem": "narrador",
+     "texto": "Mentira. Eu deixei lá fora. E agora ele não tá mais lá.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      11.53,
+      14.99
+     ]
+    }
+   ],
+   "causa": {
+    "cena": 3,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A Clara pergunta do moletom; o Lucas mente"
+  },
+  {
+   "n": 5,
+   "cenario": "corredor",
+   "plano": "aberto",
+   "acontecimento": "Lembrança: o moletom no varal ao entardecer e a regra do Nonato",
+   "personagens": [],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Regra do Seu Nonato. Roupa pra dentro antes de escurecer. Eu esqueci... e não contei pra ninguém.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      15.35,
+      20.68
+     ],
+     "inicio": 0.5
+    }
+   ],
+   "causa": {
+    "cena": 4,
+    "texto": "continua a cena anterior"
+   },
+   "insercao": "floresta",
+   "consequencia": "Lembrança: o moletom no varal ao entardecer e a regra do Nonato"
+  },
+  {
+   "n": 6,
+   "cenario": "corredor",
+   "plano": "conjunto",
+   "acontecimento": "Lucas chega ao corredor; o Téo tenta o rádio",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "costas",
+     "pos": 0.3
+    },
+    {
+     "id": "teo",
+     "pose": "neutro",
+     "pos": 0.68
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "teo",
+     "texto": "Nada, baixinho. Nem a Defesa Civil. Só chiado.",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      0.0,
+      3.75
+     ],
+     "inicio": 0.6,
+     "intencao": "negar"
+    },
+    {
+     "personagem": "lucas",
+     "texto": "Tenta o canal do Seu Nonato.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      21.0,
+      22.15
+     ]
+    }
+   ],
+   "causa": {
+    "cena": 5,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Lucas chega ao corredor; o Téo tenta o rádio"
+  },
+  {
+   "n": 7,
+   "cenario": "corredor",
+   "plano": "close",
+   "camera": {
+    "alvo": "teo"
+   },
+   "acontecimento": "A voz do Nonato no rádio",
+   "personagens": [
+    {
+     "id": "teo",
+     "pose": "neutro",
+     "pos": 0.55
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Tô voltando. Deixa a porta destrancada.",
+     "audio": "ep01/nonato.mp3",
+     "src": [
+      0.0,
+      3.3
+     ],
+     "inicio": 0.6
+    },
+    {
+     "personagem": "teo",
+     "texto": "Seu Nonato! Eu sabia, baixinho. Eu sabia!",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      3.97,
+      8.3
+     ],
+     "intencao": "afirmar"
+    }
+   ],
+   "causa": {
+    "cena": 6,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A voz do Nonato no rádio"
+  },
+  {
+   "n": 8,
+   "cenario": "corredor",
+   "plano": "auto",
+   "acontecimento": "O rádio repete a mesma frase, com o mesmo chiado",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "neutro",
+     "pos": 0.3
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.68
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "teo",
+     "texto": "Seu Nonato, onde o senhor tá?",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      8.66,
+      10.16
+     ],
+     "inicio": 0.4,
+     "intencao": "perguntar"
+    },
+    {
+     "personagem": "narrador",
+     "texto": "Tô voltando. Deixa a porta destrancada.",
+     "audio": "ep01/nonato.mp3",
+     "src": [
+      0.0,
+      3.3
+     ],
+     "inicio": 3.0
+    },
+    {
+     "personagem": "narrador",
+     "texto": "A mesma frase. O chiado no mesmo lugar. Igual à última chamada dele, três dias atrás.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      22.56,
+      27.95
+     ]
+    }
+   ],
+   "causa": {
+    "cena": 7,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "O rádio repete a mesma frase, com o mesmo chiado"
+  },
+  {
+   "n": 9,
+   "cenario": "corredor",
+   "plano": "auto",
+   "acontecimento": "Clara e Téo discutem; o Téo tosse quando mente",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "neutro",
+     "pos": 0.2
+    },
+    {
+     "id": "clara",
+     "pose": "neutro",
+     "pos": 0.48
+    },
+    {
+     "id": "teo",
+     "pose": "neutro",
+     "pos": 0.78
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "clara",
+     "texto": "Ninguém abre essa porta. Vou trancar.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      6.38,
+      8.51
+     ],
+     "inicio": 0.4,
+     "intencao": "alertar"
+    },
+    {
+     "personagem": "teo",
+     "texto": "E se for ele mesmo? Velho, sozinho, nesse frio?",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      10.57,
+      13.49
+     ],
+     "intencao": "provocar"
+    },
+    {
+     "personagem": "clara",
+     "texto": "Se for ele... ele tem a chave.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      8.99,
+      11.05
+     ],
+     "intencao": "negar"
+    },
+    {
+     "personagem": "teo",
+     "texto": "Ele tá bem. Ele conhece a mata.",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      14.07,
+      17.05
+     ],
+     "intencao": "esconder"
+    },
+    {
+     "personagem": "narrador",
+     "texto": "O Téo tosse quando mente.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      28.26,
+      29.7
+     ]
+    }
+   ],
+   "causa": {
+    "cena": 8,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Clara e Téo discutem; o Téo tosse quando mente"
+  },
+  {
+   "n": 10,
+   "cenario": "entrada",
+   "camera": "direita",
+   "plano": "conjunto",
+   "acontecimento": "A Clara tranca a porta; o tempo passa até 23:46",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "celular",
+     "pos": 0.28
+    },
+    {
+     "id": "teo",
+     "pose": "neutro",
+     "pos": 0.52
+    },
+    {
+     "id": "clara",
+     "pose": "neutro",
+     "pos": 0.76
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "A Clara passa a tranca. Vinte e três e quarenta e seis. Ninguém fala nada.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      30.01,
+      34.75
+     ],
+     "inicio": 1.0
+    }
+   ],
+   "causa": {
+    "cena": 9,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A Clara tranca a porta; o tempo passa até 23:46"
+  },
+  {
+   "n": 11,
+   "cenario": "entrada",
+   "plano": "conjunto",
+   "acontecimento": "Três batidas na porta trancada",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "medo",
+     "pos": 0.26
+    },
+    {
+     "id": "clara",
+     "pose": "medo",
+     "pos": 0.52
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.78
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Três batidas. Ninguém anda até aqui nessa chuva.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      35.16,
+      38.26
+     ],
+     "inicio": 3.4
+    }
+   ],
+   "causa": {
+    "cena": 10,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Três batidas na porta trancada"
+  },
+  {
+   "n": 12,
+   "cenario": "entrada",
+   "camera": "baixo",
+   "plano": "auto",
+   "acontecimento": "A voz da Clara vem de fora, e a Clara está dentro",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "medo",
+     "pos": 0.3
+    },
+    {
+     "id": "clara",
+     "pose": "medo",
+     "pos": 0.6
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.84
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Lu, abre. Tá frio aqui.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      0.0,
+      2.61
+     ],
+     "inicio": 1.2
+    },
+    {
+     "personagem": "narrador",
+     "texto": "É a voz da Cla. Mas a Cla... tá aqui. Do meu lado.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      38.62,
+      41.97
+     ],
+     "inicio": 4.6
+    }
+   ],
+   "causa": {
+    "cena": 11,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A voz da Clara vem de fora, e a Clara está dentro"
+  },
+  {
+   "n": 13,
+   "cenario": "entrada",
+   "plano": "close",
+   "camera": {
+    "alvo": "lucas"
+   },
+   "acontecimento": "Lucas encosta o rosto na porta para olhar pelo olho mágico",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "macaneta",
+     "pos": 0.5
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Pelo olho mágico...",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      42.27,
+      43.13
+     ],
+     "inicio": 0.5
+    }
+   ],
+   "causa": {
+    "cena": 12,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Lucas encosta o rosto na porta para olhar pelo olho mágico"
+  },
+  {
+   "n": 14,
+   "cenario": "corredor",
+   "plano": "aberto",
+   "acontecimento": "Do lado de fora, só chuva e as pegadas da Clara; nada na altura do olho",
+   "personagens": [],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Só chuva e as pegadas da Cla. Se tem alguém... tá colado na porta. Embaixo.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      43.44,
+      48.57
+     ],
+     "inicio": 0.3
+    }
+   ],
+   "causa": {
+    "cena": 13,
+    "texto": "continua a cena anterior"
+   },
+   "insercao": "floresta",
+   "consequencia": "Do lado de fora, só chuva e as pegadas da Clara; nada na altura do olho"
+  },
+  {
+   "n": 15,
+   "cenario": "entrada",
+   "plano": "auto",
+   "acontecimento": "Os três percebem que a voz é a frase da Clara, palavra por palavra",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "falando",
+     "pos": 0.26
+    },
+    {
+     "id": "clara",
+     "pose": "medo",
+     "pos": 0.54
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.8
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "clara",
+     "texto": "Não responde. Ninguém responde.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      11.61,
+      14.101
+     ],
+     "inicio": 0.4,
+     "intencao": "alertar"
+    },
+    {
+     "personagem": "teo",
+     "texto": "Clara... é a tua voz.",
+     "audio": "ep01/teo.mp3",
+     "src": [
+      17.59,
+      19.482
+     ],
+     "intencao": "afirmar"
+    },
+    {
+     "personagem": "lucas",
+     "texto": "É a frase que você disse. Palavra por palavra.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      48.94,
+      51.67
+     ],
+     "intencao": "afirmar"
+    }
+   ],
+   "causa": {
+    "cena": 14,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Os três percebem que a voz é a frase da Clara, palavra por palavra"
+  },
+  {
+   "n": 16,
+   "cenario": "entrada",
+   "camera": "esquerda",
+   "plano": "auto",
+   "acontecimento": "A voz de fora e o rádio pedem a mesma coisa ao mesmo tempo",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "medo",
+     "pos": 0.3
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.7
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Lu, abre. Tá frio aqui.",
+     "audio": "ep01/clara.mp3",
+     "src": [
+      0.0,
+      2.61
+     ],
+     "inicio": 0.8
+    },
+    {
+     "personagem": "narrador",
+     "texto": "Tô voltando. Deixa a porta destrancada.",
+     "audio": "ep01/nonato.mp3",
+     "src": [
+      0.0,
+      3.3
+     ]
+    },
+    {
+     "personagem": "narrador",
+     "texto": "As duas vozes... começam e param juntas.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      52.06,
+      54.95
+     ]
+    }
+   ],
+   "causa": {
+    "cena": 15,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A voz de fora e o rádio pedem a mesma coisa ao mesmo tempo"
+  },
+  {
+   "n": 17,
+   "cenario": "entrada",
+   "plano": "close",
+   "camera": {
+    "alvo": "lucas"
+   },
+   "acontecimento": "A maçaneta gira por fora; a coisa espera alguém abrir",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "macaneta",
+     "pos": 0.5
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Ela não força a porta. Ela espera. Espera alguém de dentro deixar.",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      55.15,
+      58.72
+     ],
+     "inicio": 1.4
+    }
+   ],
+   "causa": {
+    "cena": 16,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "A maçaneta gira por fora; a coisa espera alguém abrir"
+  },
+  {
+   "n": 18,
+   "cenario": "entrada",
+   "plano": "close",
+   "acontecimento": "Lucas se põe entre a porta e a irmã e decide",
+   "personagens": [
+    {
+     "id": "lucas",
+     "pose": "neutro",
+     "pos": 0.3
+    },
+    {
+     "id": "clara",
+     "pose": "medo",
+     "pos": 0.6
+    },
+    {
+     "id": "teo",
+     "pose": "medo",
+     "pos": 0.84
+    }
+   ],
+   "falas": [
+    {
+     "personagem": "narrador",
+     "texto": "Eu sou o menor aqui. Mas é a minha porta. Se eu responder, ela vai embora... ou aprende a minha voz? Se eu ficar quieto... ela bate até alguém abrir?",
+     "audio": "ep01/lucas.mp3",
+     "src": [
+      59.09,
+      67.861
+     ],
+     "inicio": 0.6
+    }
+   ],
+   "causa": {
+    "cena": 17,
+    "texto": "continua a cena anterior"
+   },
+   "consequencia": "Lucas se põe entre a porta e a irmã e decide",
+   "camera": {
+    "alvo": "lucas"
+   }
+  }
+ ]
+}
