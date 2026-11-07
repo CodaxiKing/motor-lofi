@@ -1,29 +1,89 @@
 {
  "lugares": {
-  "abrigo": {"cenarios": ["entrada", "entrada_esquerda", "entrada_direita", "entrada_baixo", "corredor", "pov_abrigo"],
-             "nota": "Abrigo Cambuí: entrada com a porta da frente e a janela, corredor com a porta dos fundos para a trilha, depósito do gerador"},
-  "mata": {"cenarios": ["floresta", "trilha_lateral", "pov_floresta"],
-           "nota": "trilha da Serra do Breu entre o abrigo e a capela; o varal fica na beira da mata"},
-  "capela": {"cenarios": ["pov_igreja"],
-             "nota": "capela em ruínas no alto da trilha, com o sino rachado na torre e a sacristia onde está o caderno do Nonato"},
-  "galeria": {"cenarios": ["pov_esgoto"],
-              "nota": "galeria subterrânea que sai de baixo do altar da capela até o porão do sanatório"},
-  "sanatorio": {"cenarios": ["pov_hospital", "pov_escadaria"],
-                "nota": "sanatório desativado ao lado da capela: ala dos leitos (leito 9) e escadaria de emergência com luz vermelha"}
+  "abrigo": {
+   "cenarios": [
+    "entrada",
+    "entrada_esquerda",
+    "entrada_direita",
+    "entrada_baixo",
+    "corredor",
+    "pov_abrigo"
+   ],
+   "nota": "Abrigo Cambuí: entrada com a porta da frente e a janela, corredor com a porta dos fundos para a trilha, depósito do gerador"
+  },
+  "mata": {
+   "cenarios": [
+    "floresta",
+    "trilha_lateral",
+    "pov_floresta"
+   ],
+   "nota": "trilha da Serra do Breu entre o abrigo e a capela; o varal fica na beira da mata"
+  },
+  "capela": {
+   "cenarios": [
+    "pov_igreja"
+   ],
+   "nota": "capela em ruínas no alto da trilha, com o sino rachado na torre e a sacristia onde está o caderno do Nonato"
+  },
+  "galeria": {
+   "cenarios": [
+    "pov_esgoto"
+   ],
+   "nota": "galeria subterrânea que sai de baixo do altar da capela até o porão do sanatório"
+  },
+  "sanatorio": {
+   "cenarios": [
+    "pov_hospital",
+    "pov_escadaria"
+   ],
+   "nota": "sanatório desativado ao lado da capela: ala dos leitos (leito 9) e escadaria de emergência com luz vermelha"
+  }
  },
  "ligacoes": [
-  ["abrigo", "mata", "pela porta dos fundos, no fim do corredor, ou pela porta da frente até o varal"],
-  ["mata", "capela", "subindo a trilha até a capela em ruínas"],
-  ["capela", "galeria", "pelo alçapão debaixo do altar"],
-  ["galeria", "sanatorio", "pela escada do porão do sanatório"],
-  ["sanatorio", "mata", "pela porta de emergência no alto da escadaria, que dá para a trilha"]
+  [
+   "abrigo",
+   "mata",
+   "pela porta dos fundos, no fim do corredor, ou pela porta da frente até o varal"
+  ],
+  [
+   "mata",
+   "capela",
+   "subindo a trilha até a capela em ruínas"
+  ],
+  [
+   "capela",
+   "galeria",
+   "pelo alçapão debaixo do altar"
+  ],
+  [
+   "galeria",
+   "sanatorio",
+   "pela escada do porão do sanatório"
+  ],
+  [
+   "sanatorio",
+   "mata",
+   "pela porta de emergência no alto da escadaria, que dá para a trilha"
+  ]
  ],
  "inicio": {
   "lugar": "abrigo",
   "dia": 0,
   "hora": "23:10",
-  "inventario": {"lucas": ["celular", "mochila"], "clara": ["lampiao"], "teo": ["radio", "chave_gerador"]},
-  "nota": "os três presos no abrigo pela tempestade; o Seu Nonato sumiu há três dias; o moletom reserva do Lucas sumiu do varal"
+  "inventario": {
+   "lucas": [
+    "celular",
+    "mochila"
+   ],
+   "clara": [
+    "lanterna"
+   ],
+   "teo": [
+    "radio",
+    "chave_gerador"
+   ]
+  },
+  "nota": "os três presos no abrigo pela tempestade; o Seu Nonato sumiu há três dias; o moletom reserva do Lucas sumiu do varal; a 'lanterna' da Clara é o lampião a querosene do abrigo"
  },
  "fim": {}
 }

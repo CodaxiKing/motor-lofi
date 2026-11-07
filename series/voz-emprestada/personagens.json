@@ -2,7 +2,7 @@
  "_leia": "Fichas travadas da série Voz Emprestada. Aparência vem da biblioteca ilustrada (_biblioteca = id do recorte em biblioteca/ilustrada/v1/imagens/); os campos do guarda-roupa são o equivalente no rig, para planos de detalhe e prévia. Mude só aqui, de propósito.",
  "lucas": {"_nome": "Lucas", "_biblioteca": "lucas", "_altura_m": 1.45,
            "skin": "medio", "top_style": "hoodie", "top": [214, 158, 42], "inner": [30, 32, 38], "legs": [40, 52, 82], "shoes": [26, 26, 30],
-           "hair": "short", "hair_color": [28, 22, 20], "hat": "beanie", "hat_color": [26, 26, 30], "backpack": true, "body": "thin", "scale": 0.88},
+           "hair": "short", "hair_color": [28, 22, 20], "hat": "beanie", "hat_color": [26, 26, 30], "backpack": [34, 34, 38], "body": "thin", "scale": 0.88},
  "clara": {"_nome": "Clara", "_biblioteca": "clara", "_altura_m": 1.75,
            "skin": "medio", "top_style": "scrubs", "top": [130, 168, 210], "legs": [130, 168, 210], "shoes": [236, 232, 224],
            "hair": "curly", "hair_color": [52, 32, 24], "acc": ["necklace"], "body": "tall"},

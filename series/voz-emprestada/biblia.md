@@ -62,7 +62,7 @@ O que nunca se explica: por que a coisa conhece a música de ninar do pai de Luc
 ## Episódios
 | Nº | Dia | Fase | Status | Pergunta | Voto | Placar |
 |---|---|---|---|---|---|---|
-| 1 | 0 | início | planejado | A) Responder à voz · B) Ficar em silêncio | | |
+| 1 | 0 | início | roteiro | A) Responder à voz · B) Ficar em silêncio | | |
 | 2 | 1 | complicação | planejado | A) Sair para buscar o Téo · B) Esperar trancados | | |
 | 3 | 1 | complicação | planejado | A) Tocar o sino agora · B) Achar o nome dele primeiro | | |
 | 4 | 1 | reviravolta / clímax | planejado | A) Desmascarar a Clara agora · B) Fingir e segui-la | | |
@@ -111,7 +111,7 @@ O que nunca se explica: por que a coisa conhece a música de ninar do pai de Luc
 - Cenas `pov_*` com `personagens: []` ou só com quem está à frente do observador (ver `PRIMEIRA_PESSOA.md`).
 
 ## Resumos
-- EP 1:
+- EP 1: Presos no abrigo pela tempestade, Lucas, Clara e Téo ouvem o rádio repetir, igual, a voz do Seu Nonato sumido. O moletom reserva do Lucas sumiu do varal, e ele mentiu sobre isso. Às 23:47, três batidas e a voz da Clara pedindo para entrar, enquanto a Clara está do lado dele.
 - EP 2:
 - EP 3:
 - EP 4:
