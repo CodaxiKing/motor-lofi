@@ -1,0 +1,44 @@
+{
+  "ferramenta": "image_gen integrado",
+  "biblioteca": "ilustrada/v1",
+  "personagens": [
+    "Clara",
+    "Téo",
+    "Lucas",
+    "Lucas de Amanhã",
+    "Mímico"
+  ],
+  "origem_geracao": "exec-e7ccafe7-9c27-4b19-acf5-4c4aa3346781.png",
+  "origem_final": "exec-2dfa02cd-31fa-4dca-ae54-e10f5cc69f90.png",
+  "referencias": [
+    "C:/Users/Diego/Jogo/Repo/motor-lofi/biblioteca/ilustrada/v1/imagens/lucas/lucas_34_neutro_recorte_v1.png",
+    "C:/Users/Diego/Jogo/Repo/motor-lofi/biblioteca/ilustrada/v1/imagens/clara/clara_neutro_v1.png",
+    "C:/Users/Diego/Jogo/Repo/motor-lofi/biblioteca/ilustrada/v1/imagens/teo/teo_neutro_v1.png",
+    "C:/Users/Diego/Jogo/Repo/motor-lofi/biblioteca/ilustrada/v1/imagens/amanha/amanha_neutro_v1.png",
+    "C:/Users/Diego/Jogo/Repo/motor-lofi/biblioteca/ilustrada/v1/imagens/mimico/mimico_neutro_v1.png"
+  ],
+  "prompt_geracao": "Use case: illustration-story. Create a finished 16:9 cinematic YouTube banner for DARKTALE. All five attached images are exact character identity references from the user's existing illustrated story library. Include all five; preserve round gray heads, simple black oval eyes, minimal mouths, distinctive hairstyles, clothes, proportions, painted texture and outlines. Keep them illustrated, not realistic humans. Scene: cold midnight forest, huge dark tree framing the far left, distant abandoned house far right with a faint red window, low silver mist, a moon through cloud, navy-charcoal painted shadows. Premium dark suspense channel identity.\nCharacter mapping: Image 1 = Lucas, dark straight bowl haircut, mustard-yellow unhooded jacket/hoodie with the hood DOWN, dark backpack and navy trousers; wary expression. Image 2 = Clara, short wavy curly brown bob, small silver pendant and pale-blue medical scrubs. Image 3 = Téo, short dense black curls, orange T-shirt, black over-ear headphones resting around his neck. Image 4 = Lucas de Amanhã, mustard hood UP around straight black hair, dark gloves, serious straight mouth and determined eyebrows. Image 5 = Mímico, bald round gray head, enormous thin unsettling smile, black eye sockets with tiny amber pinpoints, very dark ragged long coat with tattered feather-like shoulders and long fingers. Retain every one of these identity distinctions; four humans plus the Mímico, exactly five figures, no additional people.\nRecompose the CENTRAL SAFE AREA as a polished cinematic story ensemble poster: the five illustrated heads and shoulders arranged in a shallow arc just above the wordmark, left to right Clara, Téo, Lucas, Lucas de Amanhã, Mímico. Each head clearly separated and fully visible. Heads occupy approximately x=.25 to .75 and y=.375 to .50 of the WHOLE 16:9 canvas, with subtle depth and the Mímico leaning ominously behind the right pair without obscuring faces. Busts and upper torsos extend behind the lower lettering and dissolve naturally into atmospheric mist; do not show a tiny full-body lineup. Restrained moon-blue and amber rim lighting integrates the figures, but preserves their exact painted illustrated aesthetics and the original clothing colors. The five faces are the focus, not a collage with hard pasted borders.\nMove the DARKTALE wordmark just BELOW their faces, centered horizontally around y=.565. Exact text: DARKTALE, one word, uppercase, clean correctly spelled, aged ivory serif with subtle muted crimson reflected along the letter bases. Full wordmark must fit between x=.29 and .71, y=.525 and .615; no lettering over faces. All essential heads and the entire name MUST remain inside x=.20 to .80, y=.353 to .647, the YouTube mobile-safe center band. Outer top/bottom and far sides contain only expendable dark forest atmosphere. Keep legibility on a phone, coherent original character identity and high production quality. No extra writing, labels, watermark, HUD, clock, subscribe buttons, borders or guides. Opaque final 16:9 artwork, target 2560 x 1440 px. This is the banner itself, not a YouTube mockup.",
+  "prompt_ajuste_area_segura": "Precise layout edit for a YouTube channel banner. Preserve this exact painted forest background, all FIVE existing character identities, their faces, hairstyles, clothes, expressions and the spelling/serif design of DARKTALE. The current ensemble is too tall: YouTube's mobile crop would cut off their heads. Change ONLY the SIZE AND POSITION of the entire existing five-character + DARKTALE ensemble AS ONE INTACT GROUP. Reduce that whole ensemble uniformly to approximately 58–60% of its present size, then reposition it at the exact center of the full canvas. Do not make faces larger again. Do not spread the title away from the figures. The COMPLETE ensemble, from the TOP of the tallest head/hood/hair to the BOTTOM of DARKTALE, must now lie entirely within y=0.36 through y=0.64 of the FULL 16:9 canvas, and x=0.23 through x=0.77. This is a SHALLOW CENTRAL HORIZONTAL BAND; the characters' heads MUST NOT extend into the upper third of the image. Keep the group proportional, with FIVE small but recognizable heads in one row above the name; the full group's height should be under 28% of the total image height. The wordmark is immediately below the heads and shoulders, not overlapping faces. Feather lower torso edges into fog. Fill all surrounding space naturally with the same uninterrupted dark forest and mist; the top and bottom are mostly atmosphere with no important features, as they are cropped on mobile. No guide boxes, frames, labels, extra writing, duplicate characters, extra figures or changes to the character design. Full bleed 16:9 finished banner, opaque, target 2560x1440.",
+  "arquivo": "banner_personagens_youtube_v2.jpg",
+  "canvas_exportacao": [
+    2560,
+    1440
+  ],
+  "limite_bytes": 6000000,
+  "area_segura": [
+    508,
+    509,
+    2052,
+    931
+  ],
+  "exportacao": "Redimensionamento técnico Lanczos e JPEG. A composição foi gerada e corrigida com image_gen; preservar rostos e palavra dentro do recorte central.",
+  "pixels_origem": [
+    1672,
+    941
+  ],
+  "pixels_final": [
+    2560,
+    1440
+  ],
+  "bytes": 562066
+}

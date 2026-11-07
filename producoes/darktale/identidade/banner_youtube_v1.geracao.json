@@ -1,0 +1,21 @@
+{
+  "ferramenta": "image_gen integrado",
+  "prompt": "Use case: ads-marketing. Asset type: final YouTube channel banner, wide 16:9, exact target canvas 2560 x 1440 pixels, high resolution suitable for upload, opaque PNG with compressed file size under 6 MB if possible. Primary request: Create a striking, premium cinematic horror storytelling channel banner with the exact channel name DARKTALE. Only text in the whole image: \"DARKTALE\" spelled exactly, uppercase, one word. A refined original illustrated night scene: deep charcoal and cold midnight navy forest, worn tree silhouettes framing the far left, a distant abandoned rural house barely visible on the far right, restrained low silver mist across the middle, faint muted crimson light seeping from a distant window, textured painterly shadows and subtle film grain. Sophisticated atmospheric narrative horror, sober 2D painted volume with delicate drawn edges, akin to a beautifully painted suspense graphic novel, not glossy 3D. The name DARKTALE is the visual hero: monumental elegant bold cinematic serif typography, off-white aged ivory, extremely legible clean letterforms with only very fine distressed texture and a restrained dark red reflected accent. No drips on letters, no decorative illegibility. Place the full wordmark precisely in the CENTER: its bounding box MUST remain between x=0.27 and x=0.73 and y=0.44 and y=0.56 of the entire image. All essential meaning must fit in the central mobile-safe rectangle x=0.20 to 0.80, y=0.353 to 0.647. Keep atmospheric landscape continuing above and below that strip for TV; those outer areas should be dark, quiet and expendable when cropped. Strong contrast behind the letters, refined breathing room, no busy texture through the title. No subtitle, tagline, schedule, subscribe button, social icons, HUD, clocks, guide lines, safe-area box, watermarks, border, extra words, monsters, gore or faces. This is the banner itself, NOT a mockup or a screenshot of YouTube. Produce the finished art filling the whole 16:9 canvas.",
+  "origem": "exec-aac2d680-aa02-495e-9d60-b0f9967c9f98.png",
+  "arquivo": "banner_youtube_v1.jpg",
+  "canvas_exportacao": [
+    2560,
+    1440
+  ],
+  "limite_bytes": 6000000,
+  "exportacao": "Redimensionamento técnico Lanczos e JPEG, preservando a composição gerada. Não é geração nativa em 2560 × 1440.",
+  "pixels_origem": [
+    1672,
+    941
+  ],
+  "pixels_final": [
+    2560,
+    1440
+  ],
+  "bytes": 463865
+}
