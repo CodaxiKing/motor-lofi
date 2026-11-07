@@ -93,6 +93,12 @@ Não substitua poses ausentes por uma figura genérica nem declare animação de
 porta ou objeto quando a arte disponível não a representa. Posicione as mãos de
 acordo com a geometria do cenário e confira em quadros reais.
 
+Para cômodos com porta aberta ou fechada, consulte `biblioteca/ilustrada/v1/PORTAS.md`.
+Há quatro ângulos fechados do abrigo e um em primeira pessoa. Selecione o cenário
+correspondente, preserve o estado ao trocar a câmera e use os pontos próprios da
+maçaneta. Não aplique a máscara de passagem aberta ao fundo fechado nem declare
+animação da folha por haver somente dois estados estáticos.
+
 ## Entrega
 
 O pacote inclui história JSON, roteiro, texto de narração, episódio técnico e

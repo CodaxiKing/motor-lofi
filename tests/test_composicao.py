@@ -71,6 +71,19 @@ def test_renderer_aplica_mapa_sem_mutar_spec(biblioteca):
     assert im.size==(108,192) and shot==original
 
 
+def test_fundo_em_subpasta_usa_mesma_projecao_e_render(biblioteca):
+    pasta=biblioteca/'imagens/cenarios/portas';pasta.mkdir(parents=True)
+    (pasta/'fundo_sala.png').write_bytes((biblioteca/'imagens/fundo_sala.png').read_bytes())
+    original=config();aninhado=copy.deepcopy(original)
+    aninhado['fundo']='cenarios/portas/fundo_sala'
+    a,_=planejar(original,biblioteca,(108,192))
+    b,_=planejar(aninhado,biblioteca,(108,192))
+    assert a['personagens']==b['personagens']
+    a=imagens.quadro({'start':0,'end':2,'imagens':original},1,biblioteca,(108,192))
+    b=imagens.quadro({'start':0,'end':2,'imagens':aninhado},1,biblioteca,(108,192))
+    assert a.tobytes()==b.tobytes()
+
+
 def test_rejeita_zona_desconhecida_e_mapa_invalido(biblioteca):
     cfg=config();cfg['personagens'][0]['zona']='teto'
     with pytest.raises(ValueError,match='Zona inexistente'):planejar(cfg,biblioteca,(432,768))

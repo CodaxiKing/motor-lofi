@@ -1,0 +1,93 @@
+{
+  "cenarios": [
+    {
+      "cenario": "entrada_porta_fechada",
+      "origem": "entrada",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "21f48d131cb5f92adbac793d6017c8c5e0798f0adf5517653c3071f4a7304dbd",
+      "origem_sha256": "f903697724350870bd540967dbbcf5d93be79f44a7b0291e31a931089cd155c3",
+      "estado_porta": "fechada",
+      "portal_aberto": false,
+      "macaneta": [
+        0.493,
+        0.5
+      ],
+      "revisao_visual": "Conferidos câmera, batente, móveis, maçaneta e ausência de abertura."
+    },
+    {
+      "cenario": "entrada_esquerda_porta_fechada",
+      "origem": "entrada_esquerda",
+      "pixels": [
+        941,
+        1670
+      ],
+      "sha256": "b2442f5b51b176032c8763513b7f79a11a58c24323e2d4e7f6315ca637ad7e80",
+      "origem_sha256": "2eb0d9a837bfc1c9ebd9cc7546c713fdc13308421f2b1fed7ee719e49976e995",
+      "estado_porta": "fechada",
+      "portal_aberto": false,
+      "macaneta": [
+        0.566,
+        0.485
+      ],
+      "revisao_visual": "Conferidos câmera, batente, móveis, maçaneta e ausência de abertura."
+    },
+    {
+      "cenario": "entrada_direita_porta_fechada",
+      "origem": "entrada_direita",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "39ce3412a1038b29e9ee31e46575f8f864ccafc891b42c8ab784e0c6f5133b16",
+      "origem_sha256": "a735602d2f6481a2ccdd1938abd69e5032408eb2a96857948bca9f1d6d2b39d5",
+      "estado_porta": "fechada",
+      "portal_aberto": false,
+      "macaneta": [
+        0.442,
+        0.48
+      ],
+      "revisao_visual": "Conferidos câmera, batente, móveis, maçaneta e ausência de abertura."
+    },
+    {
+      "cenario": "entrada_baixo_porta_fechada",
+      "origem": "entrada_baixo",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "15311d9952483a7c6e9bc160df290a4274e399b6a5c074ad5d30e0b3b179b062",
+      "origem_sha256": "49b45402f962e3d00aa7e5de2ec45ef3189cc23f9d9438d2f6ed82d3965f71b5",
+      "estado_porta": "fechada",
+      "portal_aberto": false,
+      "macaneta": [
+        0.493,
+        0.475
+      ],
+      "revisao_visual": "Conferidos câmera, batente, móveis, maçaneta e ausência de abertura."
+    },
+    {
+      "cenario": "pov_abrigo_porta_fechada",
+      "origem": "pov_abrigo",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "0e4a4a7ba0c2900dde02bf7af6b66c9e634ac8417c4992622aca33222a010d7f",
+      "origem_sha256": "3ffc9d921e55792782da6401e801436cade24ae15b55145145a13d5c898c4568",
+      "estado_porta": "fechada",
+      "portal_aberto": false,
+      "macaneta": [
+        0.384,
+        0.433
+      ],
+      "revisao_visual": "Conferidos câmera, batente, móveis, maçaneta e ausência de abertura."
+    }
+  ],
+  "catalogo_valido": true,
+  "originais_preservados": true,
+  "cenas_estaticas": true,
+  "animacao_da_porta": false
+}

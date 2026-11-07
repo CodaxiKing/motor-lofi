@@ -36,6 +36,10 @@ e `baixo`; a câmera original continua sendo o padrão. São novas imagens do
 mesmo ambiente, com mapas próprios. Não reutilize o polígono da porta frontal
 em outro ângulo. Para passar pelo batente, calibre sua abertura nesse ângulo.
 
+Os quatro ângulos do cômodo do abrigo também têm variantes com porta fechada;
+consulte [PORTAS.md](PORTAS.md). Selecione a variante fechada pelo cenário. Os
+mapas dela não reaproveitam a abertura do portal da imagem com porta aberta.
+
 Objetos: baú, armário baixo, batente e árvore. `altura` dimensiona o objeto
 em relação à tela; `x`/`y` indicam seu centro. Ajuste à perspectiva e à altura
 física do personagem e confira se o objeto cobre a posição agachada inteira.

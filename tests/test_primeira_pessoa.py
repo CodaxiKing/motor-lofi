@@ -13,7 +13,7 @@ BASE = Path(__file__).resolve().parents[1]/'biblioteca/ilustrada/v1'
 def test_fundos_pov_tem_arte_opaca_e_compilam_sem_corpo_do_observador():
     cat = H.carregar()
     ids = H.inventario()['primeira_pessoa']
-    assert len(ids) == 8
+    assert len(ids) >= 8  # Vistas adicionais, como porta fechada, também são fundos POV.
     for identidade in ids:
         c = cat['cenarios'][identidade]
         arquivo = H.arquivo(H.CATALOGO, c['img'])

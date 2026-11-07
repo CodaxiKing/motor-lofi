@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "ferramenta": "image_gen integrado",
+  "tipo": "precise-object-edit",
+  "nota": "Cinco estados estáticos de porta fechada; não são animações de abertura/fechamento.",
+  "cenarios": [
+    {
+      "id": "entrada_porta_fechada",
+      "base": "entrada",
+      "nome": "Abrigo frontal — porta fechada",
+      "img": "cenarios/portas_fechadas/fundo_entrada_porta_fechada_v1",
+      "referencia": "fundo_entrada_v1.png",
+      "source": "exec-520d4a18-1e90-4f6e-9c64-3b631399ae14.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied illustrated background into the matching DOOR FULLY CLOSED state. This is a reusable scene variant, NOT a new design. Preserve the exact canvas, camera, perspective, composition, frame and threshold coordinates, architecture, visible furniture, wall/ceiling/floor textures, props, colors and detailed painted 2D style. Change ONLY the visible open door leaf and the view through its opening, plus the localized light spill that physically disappears when that door shuts. Keep the door in its existing frame and on its existing hinges. The hinge side is RIGHT in the reference: swing that very same leaf shut into its frame, so the latch/handle is now near the LEFT edge of the closed panel. Do not move the frame, widen the opening, put a second door behind the first, or leave a slit or visible corridor/outdoor scene. The result must show ONE fully closed opaque wooden door in place of the OPEN foreground doorway. Reuse the same wooden material, panel design, brass handle/knob and hardware. The door panel must obey the original camera's perspective, not pasted frontally. Outside that doorway, keep the original scene as faithfully unchanged as possible. Preserve all room light sources and their position, but remove only light cast directly through the formerly open doorway. Opaque PNG, full original vertical 9:16 composition, high resolution. No people, monsters, extra furniture, text, UI, watermark, blur, guides or borders.\nSPECIFIC SCENE: frontal camera of the navy-blue entrance room. Shut the wooden paneled door that currently opens onto the warmly lit corridor. The corridor, its pendant, rug and far door must no longer be visible at all. Keep the near room's pendant, plant on narrow stool, coat hooks, forest painting, light switch and floorboard layout unchanged. The closed leaf must align exactly within the existing jambs.",
+      "macaneta": [
+        0.493,
+        0.5
+      ]
+    },
+    {
+      "id": "entrada_esquerda_porta_fechada",
+      "base": "entrada_esquerda",
+      "nome": "Abrigo, câmera esquerda — porta fechada",
+      "img": "cenarios/portas_fechadas/fundo_entrada_esquerda_porta_fechada_v1",
+      "referencia": "fundo_entrada_esquerda_v2.png",
+      "source": "exec-7f62030b-4471-43eb-b959-d237f3d95850.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied illustrated background into the matching DOOR FULLY CLOSED state. This is a reusable scene variant, NOT a new design. Preserve the exact canvas, camera, perspective, composition, frame and threshold coordinates, architecture, visible furniture, wall/ceiling/floor textures, props, colors and detailed painted 2D style. Change ONLY the visible open door leaf and the view through its opening, plus the localized light spill that physically disappears when that door shuts. Keep the door in its existing frame and on its existing hinges. The hinge side is RIGHT in the reference: swing that very same leaf shut into its frame, so the latch/handle is now near the LEFT edge of the closed panel. Do not move the frame, widen the opening, put a second door behind the first, or leave a slit or visible corridor/outdoor scene. The result must show ONE fully closed opaque wooden door in place of the OPEN foreground doorway. Reuse the same wooden material, panel design, brass handle/knob and hardware. The door panel must obey the original camera's perspective, not pasted frontally. Outside that doorway, keep the original scene as faithfully unchanged as possible. Preserve all room light sources and their position, but remove only light cast directly through the formerly open doorway. Opaque PNG, full original vertical 9:16 composition, high resolution. No people, monsters, extra furniture, text, UI, watermark, blur, guides or borders.\nSPECIFIC SCENE: left oblique camera of the navy-blue entrance room. Shut the wooden paneled door that currently opens onto the warmly lit corridor. The corridor, its pendant, rug and far door must no longer be visible at all. Keep the near room's pendant, plant on narrow stool, coat hooks, forest painting, light switch and floorboard layout unchanged. The closed leaf must align exactly within the existing jambs.",
+      "macaneta": [
+        0.566,
+        0.485
+      ]
+    },
+    {
+      "id": "entrada_direita_porta_fechada",
+      "base": "entrada_direita",
+      "nome": "Abrigo, câmera direita — porta fechada",
+      "img": "cenarios/portas_fechadas/fundo_entrada_direita_porta_fechada_v1",
+      "referencia": "fundo_entrada_direita_v2.png",
+      "source": "exec-5ebbdd4f-0c79-4446-8557-63f334385796.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied illustrated background into the matching DOOR FULLY CLOSED state. This is a reusable scene variant, NOT a new design. Preserve the exact canvas, camera, perspective, composition, frame and threshold coordinates, architecture, visible furniture, wall/ceiling/floor textures, props, colors and detailed painted 2D style. Change ONLY the visible open door leaf and the view through its opening, plus the localized light spill that physically disappears when that door shuts. Keep the door in its existing frame and on its existing hinges. The hinge side is RIGHT in the reference: swing that very same leaf shut into its frame, so the latch/handle is now near the LEFT edge of the closed panel. Do not move the frame, widen the opening, put a second door behind the first, or leave a slit or visible corridor/outdoor scene. The result must show ONE fully closed opaque wooden door in place of the OPEN foreground doorway. Reuse the same wooden material, panel design, brass handle/knob and hardware. The door panel must obey the original camera's perspective, not pasted frontally. Outside that doorway, keep the original scene as faithfully unchanged as possible. Preserve all room light sources and their position, but remove only light cast directly through the formerly open doorway. Opaque PNG, full original vertical 9:16 composition, high resolution. No people, monsters, extra furniture, text, UI, watermark, blur, guides or borders.\nSPECIFIC SCENE: right oblique camera of the navy-blue entrance room. Shut the wooden paneled door that currently opens onto the warmly lit corridor. The corridor, its pendant, rug and far door must no longer be visible at all. Keep the near room's pendant, plant on narrow stool, coat hooks, forest painting, light switch and floorboard layout unchanged. The closed leaf must align exactly within the existing jambs.",
+      "macaneta": [
+        0.442,
+        0.48
+      ]
+    },
+    {
+      "id": "entrada_baixo_porta_fechada",
+      "base": "entrada_baixo",
+      "nome": "Abrigo, câmera baixa — porta fechada",
+      "img": "cenarios/portas_fechadas/fundo_entrada_baixo_porta_fechada_v1",
+      "referencia": "fundo_entrada_baixo_v2.png",
+      "source": "exec-2e45990d-26df-400f-9f3d-d498a14f42a1.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied illustrated background into the matching DOOR FULLY CLOSED state. This is a reusable scene variant, NOT a new design. Preserve the exact canvas, camera, perspective, composition, frame and threshold coordinates, architecture, visible furniture, wall/ceiling/floor textures, props, colors and detailed painted 2D style. Change ONLY the visible open door leaf and the view through its opening, plus the localized light spill that physically disappears when that door shuts. Keep the door in its existing frame and on its existing hinges. The hinge side is RIGHT in the reference: swing that very same leaf shut into its frame, so the latch/handle is now near the LEFT edge of the closed panel. Do not move the frame, widen the opening, put a second door behind the first, or leave a slit or visible corridor/outdoor scene. The result must show ONE fully closed opaque wooden door in place of the OPEN foreground doorway. Reuse the same wooden material, panel design, brass handle/knob and hardware. The door panel must obey the original camera's perspective, not pasted frontally. Outside that doorway, keep the original scene as faithfully unchanged as possible. Preserve all room light sources and their position, but remove only light cast directly through the formerly open doorway. Opaque PNG, full original vertical 9:16 composition, high resolution. No people, monsters, extra furniture, text, UI, watermark, blur, guides or borders.\nSPECIFIC SCENE: low angle camera of the navy-blue entrance room. Shut the wooden paneled door that currently opens onto the warmly lit corridor. The corridor, its pendant, rug and far door must no longer be visible at all. Keep the near room's pendant, plant on narrow stool, coat hooks, forest painting, light switch and floorboard layout unchanged. The closed leaf must align exactly within the existing jambs.",
+      "macaneta": [
+        0.493,
+        0.475
+      ]
+    },
+    {
+      "id": "pov_abrigo_porta_fechada",
+      "base": "pov_abrigo",
+      "nome": "Abrigo em primeira pessoa — porta fechada",
+      "img": "cenarios/portas_fechadas/fundo_pov_abrigo_porta_fechada_v1",
+      "referencia": "cenarios/primeira_pessoa/fundo_pov_abrigo_v1.png",
+      "source": "exec-299348b4-c0ad-4036-a7dc-c30f68c3dc7a.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied illustrated background into the matching DOOR FULLY CLOSED state. This is a reusable scene variant, NOT a new design. Preserve the exact canvas, camera, perspective, composition, frame and threshold coordinates, architecture, visible furniture, wall/ceiling/floor textures, props, colors and detailed painted 2D style. Change ONLY the visible open door leaf and the view through its opening, plus the localized light spill that physically disappears when that door shuts. Keep the door in its existing frame and on its existing hinges. The hinge side is RIGHT in the reference: swing that very same leaf shut into its frame, so the latch/handle is now near the LEFT edge of the closed panel. Do not move the frame, widen the opening, put a second door behind the first, or leave a slit or visible corridor/outdoor scene. The result must show ONE fully closed opaque wooden door in place of the OPEN foreground doorway. Reuse the same wooden material, panel design, brass handle/knob and hardware. The door panel must obey the original camera's perspective, not pasted frontally. Outside that doorway, keep the original scene as faithfully unchanged as possible. Preserve all room light sources and their position, but remove only light cast directly through the formerly open doorway. Opaque PNG, full original vertical 9:16 composition, high resolution. No people, monsters, extra furniture, text, UI, watermark, blur, guides or borders.\nSPECIFIC SCENE: This is the weathered timber shelter. Fully shut the rough wooden exterior door at the back, eliminating the forest view. Keep the left wall's burning lantern, planks over side windows, ropes, shelves, bags, tablecloth, mug and tins exactly as shown. The knob stays the same round metal knob, relocated to the closed leaf's latch edge. Cool moonlight still enters through the boarded side window gaps.",
+      "macaneta": [
+        0.384,
+        0.433
+      ]
+    }
+  ]
+}

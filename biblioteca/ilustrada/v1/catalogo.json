@@ -371,7 +371,11 @@
       "img": "fundo_entrada_v1",
       "descricao": "Entrada do abrigo, paredes azul-escuras e luz âmbar",
       "ligacoes": [
-        "corredor"
+        "corredor",
+        "entrada_porta_fechada",
+        "entrada_esquerda_porta_fechada",
+        "entrada_direita_porta_fechada",
+        "entrada_baixo_porta_fechada"
       ],
       "mapa_composicao": {
         "version": 1,
@@ -495,6 +499,11 @@
           }
         ],
         "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      },
+      "estado_porta": "aberta",
+      "variantes_porta": {
+        "aberta": "entrada",
+        "fechada": "entrada_porta_fechada"
       }
     },
     "corredor": {
@@ -502,7 +511,11 @@
       "descricao": "Corredor do mesmo abrigo com saída para a trilha",
       "ligacoes": [
         "entrada",
-        "floresta"
+        "floresta",
+        "entrada_porta_fechada",
+        "entrada_esquerda_porta_fechada",
+        "entrada_direita_porta_fechada",
+        "entrada_baixo_porta_fechada"
       ],
       "mapa_composicao": {
         "version": 1,
@@ -762,7 +775,8 @@
       "descricao": "Mesmo abrigo; câmera esquerda",
       "ligacoes": [
         "entrada",
-        "corredor"
+        "corredor",
+        "entrada_esquerda_porta_fechada"
       ],
       "mapa_composicao": {
         "version": 1,
@@ -842,6 +856,11 @@
           }
         ],
         "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      },
+      "estado_porta": "aberta",
+      "variantes_porta": {
+        "aberta": "entrada_esquerda",
+        "fechada": "entrada_esquerda_porta_fechada"
       }
     },
     "entrada_direita": {
@@ -849,7 +868,8 @@
       "descricao": "Mesmo abrigo; câmera direita",
       "ligacoes": [
         "entrada",
-        "corredor"
+        "corredor",
+        "entrada_direita_porta_fechada"
       ],
       "mapa_composicao": {
         "version": 1,
@@ -929,6 +949,11 @@
           }
         ],
         "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      },
+      "estado_porta": "aberta",
+      "variantes_porta": {
+        "aberta": "entrada_direita",
+        "fechada": "entrada_direita_porta_fechada"
       }
     },
     "entrada_baixo": {
@@ -936,7 +961,8 @@
       "descricao": "Mesmo abrigo; câmera baixo",
       "ligacoes": [
         "entrada",
-        "corredor"
+        "corredor",
+        "entrada_baixo_porta_fechada"
       ],
       "mapa_composicao": {
         "version": 1,
@@ -1016,6 +1042,11 @@
           }
         ],
         "calibracao": "Lâmpada do teto e luz do corredor; posição é a projeção da fonte no piso, em coordenadas do cenário"
+      },
+      "estado_porta": "aberta",
+      "variantes_porta": {
+        "aberta": "entrada_baixo",
+        "fechada": "entrada_baixo_porta_fechada"
       }
     },
     "pov_rua_quarentena": {
@@ -1169,7 +1200,8 @@
       "img": "cenarios/primeira_pessoa/fundo_pov_abrigo_v1",
       "descricao": "Abrigo barricado — primeira pessoa",
       "ligacoes": [
-        "pov_floresta"
+        "pov_floresta",
+        "pov_abrigo_porta_fechada"
       ],
       "categoria": "dark_cinematic_pov",
       "perspectiva": "primeira_pessoa",
@@ -1235,6 +1267,11 @@
         ],
         "espaco": "cenario",
         "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
+      },
+      "estado_porta": "aberta",
+      "variantes_porta": {
+        "aberta": "pov_abrigo",
+        "fechada": "pov_abrigo_porta_fechada"
       }
     },
     "pov_floresta": {
@@ -1242,7 +1279,8 @@
       "descricao": "Trilha macabra — primeira pessoa",
       "ligacoes": [
         "pov_rua_quarentena",
-        "pov_abrigo"
+        "pov_abrigo",
+        "pov_abrigo_porta_fechada"
       ],
       "categoria": "dark_cinematic_pov",
       "perspectiva": "primeira_pessoa",
@@ -1563,6 +1601,527 @@
         "espaco": "cenario",
         "calibracao": "Manual sobre a ilustração: piso visível e projeção das fontes; revisar blocking ao adicionar atores."
       }
+    },
+    "entrada_porta_fechada": {
+      "img": "cenarios/portas_fechadas/fundo_entrada_porta_fechada_v1",
+      "descricao": "Abrigo frontal — porta fechada",
+      "ligacoes": [
+        "corredor",
+        "entrada_esquerda_porta_fechada",
+        "entrada_direita_porta_fechada",
+        "entrada_baixo_porta_fechada",
+        "entrada"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.035,
+              0.965
+            ],
+            "chao": 0.94,
+            "altura": 0.5,
+            "altura_minima": 0.32
+          },
+          "porta": {
+            "x": [
+              0.46,
+              0.78
+            ],
+            "chao": 0.7,
+            "altura": 0.34,
+            "altura_minima": 0.22
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Mesmo piso do estado aberto; maçaneta recalibrada manualmente no PNG fechado.",
+        "interacoes": {
+          "macaneta": [
+            0.493,
+            0.5
+          ]
+        },
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+        "portais": {}
+      },
+      "cameras": {
+        "frontal": "entrada_porta_fechada",
+        "esquerda": "entrada_esquerda_porta_fechada",
+        "direita": "entrada_direita_porta_fechada",
+        "baixo": "entrada_baixo_porta_fechada"
+      },
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.6,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          }
+        ],
+        "calibracao": "Piso e fontes do próprio cômodo preservados; removida a luz que atravessava a abertura."
+      },
+      "estado_porta": "fechada",
+      "variantes_porta": {
+        "aberta": "entrada",
+        "fechada": "entrada_porta_fechada"
+      },
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "21f48d131cb5f92adbac793d6017c8c5e0798f0adf5517653c3071f4a7304dbd",
+      "variante_de": "entrada",
+      "pontos_interacao": {
+        "macaneta": [
+          0.493,
+          0.5
+        ]
+      },
+      "nota_porta": "Estado estático. Para mostrar travessia, selecionar a variante aberta primeiro."
+    },
+    "entrada_esquerda_porta_fechada": {
+      "img": "cenarios/portas_fechadas/fundo_entrada_esquerda_porta_fechada_v1",
+      "descricao": "Abrigo, câmera esquerda — porta fechada",
+      "ligacoes": [
+        "entrada",
+        "corredor",
+        "entrada_esquerda",
+        "entrada_porta_fechada",
+        "entrada_direita_porta_fechada",
+        "entrada_baixo_porta_fechada"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.46,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Mesmo piso do estado aberto; maçaneta recalibrada manualmente no PNG fechado.",
+        "interacoes": {
+          "macaneta": [
+            0.566,
+            0.485
+          ]
+        },
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+        "portais": {}
+      },
+      "ambiente": "entrada",
+      "camera": "esquerda",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.76,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          }
+        ],
+        "calibracao": "Piso e fontes do próprio cômodo preservados; removida a luz que atravessava a abertura."
+      },
+      "estado_porta": "fechada",
+      "variantes_porta": {
+        "aberta": "entrada_esquerda",
+        "fechada": "entrada_esquerda_porta_fechada"
+      },
+      "pixels": [
+        941,
+        1670
+      ],
+      "sha256": "b2442f5b51b176032c8763513b7f79a11a58c24323e2d4e7f6315ca637ad7e80",
+      "variante_de": "entrada_esquerda",
+      "pontos_interacao": {
+        "macaneta": [
+          0.566,
+          0.485
+        ]
+      },
+      "nota_porta": "Estado estático. Para mostrar travessia, selecionar a variante aberta primeiro.",
+      "cameras": {
+        "frontal": "entrada_porta_fechada",
+        "esquerda": "entrada_esquerda_porta_fechada",
+        "direita": "entrada_direita_porta_fechada",
+        "baixo": "entrada_baixo_porta_fechada"
+      }
+    },
+    "entrada_direita_porta_fechada": {
+      "img": "cenarios/portas_fechadas/fundo_entrada_direita_porta_fechada_v1",
+      "descricao": "Abrigo, câmera direita — porta fechada",
+      "ligacoes": [
+        "entrada",
+        "corredor",
+        "entrada_direita",
+        "entrada_porta_fechada",
+        "entrada_esquerda_porta_fechada",
+        "entrada_baixo_porta_fechada"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.48,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Mesmo piso do estado aberto; maçaneta recalibrada manualmente no PNG fechado.",
+        "interacoes": {
+          "macaneta": [
+            0.442,
+            0.48
+          ]
+        },
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+        "portais": {}
+      },
+      "ambiente": "entrada",
+      "camera": "direita",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.48,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          }
+        ],
+        "calibracao": "Piso e fontes do próprio cômodo preservados; removida a luz que atravessava a abertura."
+      },
+      "estado_porta": "fechada",
+      "variantes_porta": {
+        "aberta": "entrada_direita",
+        "fechada": "entrada_direita_porta_fechada"
+      },
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "39ce3412a1038b29e9ee31e46575f8f864ccafc891b42c8ab784e0c6f5133b16",
+      "variante_de": "entrada_direita",
+      "pontos_interacao": {
+        "macaneta": [
+          0.442,
+          0.48
+        ]
+      },
+      "nota_porta": "Estado estático. Para mostrar travessia, selecionar a variante aberta primeiro.",
+      "cameras": {
+        "frontal": "entrada_porta_fechada",
+        "esquerda": "entrada_esquerda_porta_fechada",
+        "direita": "entrada_direita_porta_fechada",
+        "baixo": "entrada_baixo_porta_fechada"
+      }
+    },
+    "entrada_baixo_porta_fechada": {
+      "img": "cenarios/portas_fechadas/fundo_entrada_baixo_porta_fechada_v1",
+      "descricao": "Abrigo, câmera baixa — porta fechada",
+      "ligacoes": [
+        "entrada",
+        "corredor",
+        "entrada_baixo",
+        "entrada_porta_fechada",
+        "entrada_esquerda_porta_fechada",
+        "entrada_direita_porta_fechada"
+      ],
+      "mapa_composicao": {
+        "version": 1,
+        "zonas": {
+          "frente": {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "chao": 0.94,
+            "altura": 0.46,
+            "altura_minima": 0.32
+          }
+        },
+        "altura_minima": 0.48,
+        "calibracao": "Mesmo piso do estado aberto; maçaneta recalibrada manualmente no PNG fechado.",
+        "interacoes": {
+          "macaneta": [
+            0.493,
+            0.475
+          ]
+        },
+        "notas": "Mesma zona = mesma escala física por padrão. Fundo usa perspectiva menor.",
+        "portais": {}
+      },
+      "ambiente": "entrada",
+      "camera": "baixo",
+      "iluminacao": {
+        "espaco": "cenario",
+        "ambiente": 0.25,
+        "piso": [
+          [
+            0,
+            0.72
+          ],
+          [
+            0.4,
+            0.69
+          ],
+          [
+            0.62,
+            0.59
+          ],
+          [
+            0.81,
+            0.69
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "luzes": [
+          {
+            "id": "pendente",
+            "tipo": "pontual",
+            "posicao": [
+              0.58,
+              0.89
+            ],
+            "altura_m": 3.2,
+            "intensidade": 0.9,
+            "suavidade": 0.65
+          }
+        ],
+        "calibracao": "Piso e fontes do próprio cômodo preservados; removida a luz que atravessava a abertura."
+      },
+      "estado_porta": "fechada",
+      "variantes_porta": {
+        "aberta": "entrada_baixo",
+        "fechada": "entrada_baixo_porta_fechada"
+      },
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "15311d9952483a7c6e9bc160df290a4274e399b6a5c074ad5d30e0b3b179b062",
+      "variante_de": "entrada_baixo",
+      "pontos_interacao": {
+        "macaneta": [
+          0.493,
+          0.475
+        ]
+      },
+      "nota_porta": "Estado estático. Para mostrar travessia, selecionar a variante aberta primeiro.",
+      "cameras": {
+        "frontal": "entrada_porta_fechada",
+        "esquerda": "entrada_esquerda_porta_fechada",
+        "direita": "entrada_direita_porta_fechada",
+        "baixo": "entrada_baixo_porta_fechada"
+      }
+    },
+    "pov_abrigo_porta_fechada": {
+      "img": "cenarios/portas_fechadas/fundo_pov_abrigo_porta_fechada_v1",
+      "descricao": "Abrigo em primeira pessoa — porta fechada",
+      "ligacoes": [
+        "pov_floresta",
+        "pov_abrigo"
+      ],
+      "categoria": "dark_cinematic_pov",
+      "perspectiva": "primeira_pessoa",
+      "periodo": "noite",
+      "pixels": [
+        941,
+        1672
+      ],
+      "sha256": "0e4a4a7ba0c2900dde02bf7af6b66c9e634ac8417c4992622aca33222a010d7f",
+      "camera_altura_m": 1.6,
+      "composicao_observacao": "POV sem corpo do observador; atores externos precisam de blocking próprio.",
+      "iluminacao": {
+        "piso": [
+          [
+            0.23,
+            1
+          ],
+          [
+            0.3,
+            0.67
+          ],
+          [
+            0.65,
+            0.67
+          ],
+          [
+            0.66,
+            0.79
+          ],
+          [
+            0.48,
+            0.85
+          ],
+          [
+            0.46,
+            1
+          ]
+        ],
+        "ambiente": 0.18,
+        "luzes": [
+          {
+            "id": "lanternim",
+            "tipo": "pontual",
+            "posicao": [
+              0.28,
+              0.76
+            ],
+            "altura_m": 1.8,
+            "intensidade": 0.7,
+            "suavidade": 0.7
+          }
+        ],
+        "espaco": "cenario",
+        "calibracao": "Piso e fontes do próprio cômodo preservados; removida a luz que atravessava a abertura."
+      },
+      "estado_porta": "fechada",
+      "variantes_porta": {
+        "aberta": "pov_abrigo",
+        "fechada": "pov_abrigo_porta_fechada"
+      },
+      "variante_de": "pov_abrigo",
+      "pontos_interacao": {
+        "macaneta": [
+          0.384,
+          0.433
+        ]
+      },
+      "nota_porta": "Estado estático. Para mostrar travessia, selecionar a variante aberta primeiro."
     }
   },
   "escala_referencia_m": 1.7,

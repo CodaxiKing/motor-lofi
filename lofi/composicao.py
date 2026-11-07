@@ -82,8 +82,8 @@ def validar_mapa(mapa):
 def _projetar(cfg, base, size):
     """Mesmo cover, margem 3% e deslocamento do fundo usados no renderer."""
     W, H = size
-    nome = cfg['fundo']
-    if not nome.startswith('fundo_'): nome = 'fundo_' + nome
+    from .imagens import nome_fundo
+    nome = nome_fundo(cfg['fundo'])
     (w, h), _ = medida(base, nome)
     scale = max(W/w, H/h) * 1.03
     ox = (W-w*scale)/2; oy = (H-h*scale)*cfg.get('fundo_y', .5)

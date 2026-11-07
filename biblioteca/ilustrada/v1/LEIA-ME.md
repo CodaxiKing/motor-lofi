@@ -3,13 +3,14 @@
 Passada calibrada, atuação pela voz, cenários em camadas e prévia por cena:
 [FLUIDEZ.md](FLUIDEZ.md).
 
-Modo opcional do Motor Lo-Fi: 5 identidades, recortes, ciclos completos e 15 fundos/ângulos.
+Modo opcional do Motor Lo-Fi: 5 identidades, recortes, ciclos completos e 20 fundos/ângulos.
 Lucas mantém as cinco poses iniciais e ganha perfil, costas e uma pose de corrida.
 Clara e Téo têm poses de atenção e medo. Lucas de Amanhã tem uma pose de ameaça
 encapuzada. O Mímico tem poses de presença e chamado; é uma criatura ficcional
 inspirada em skinwalker. Os ambientes originais são entrada, corredor e floresta.
 O catálogo também inclui ângulos do abrigo e oito ambientes dark cinematic em
 [primeira pessoa](PRIMEIRA_PESSOA.md).
+Cinco vistas do abrigo também têm [porta fechada](PORTAS.md), preservando as abertas.
 
 Novas criações seguem o [padrão do motor](PADRAO_CRIACAO.md): dez vistas,
 repertório obrigatório, transições e coreografias próprias para monstros.
