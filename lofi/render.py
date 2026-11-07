@@ -799,55 +799,95 @@ class Episode:
         return img
 
     def choice_frame(self, shot, t):
+        """Tela A/B: dois painéis iguais, botões do mesmo tamanho centralizados em cada metade, selo "OU" no meio,
+        pergunta no alto e chamada final centralizada (dentro da área segura das redes)."""
         img = Image.new("RGB", (W, H), (10, 10, 14))
+        gap = 8; pw = W // 2 - gap // 2
         for i, key in enumerate(("a", "b")):
             opt = shot[key]
             o = dict(opt, start=shot["start"], end=shot["end"])
-            o.setdefault("camera", {}); o["camera"] = dict({"plano": "aberto"}, **o["camera"])   # o recorte já aproxima
+            o.setdefault("camera", {}); o["camera"] = dict({"plano": "aberto"}, **o["camera"])
             f = self.scene_frame(o, t)
-            cx = opt.get("crop_x", 270)
-            py0, py1 = (190, 1680) if self.redes else (300, 1450)        # modo redes: painéis na altura toda, sem faixas pretas
-            ch = int((py1 - py0) * (W // 2) / (W // 2 - 6)); cy0 = max(0, min(H - ch, opt.get("crop_y", (H - ch) // 2 + 40)))
-            part = f.crop((cx, cy0, cx + W // 2, cy0 + ch)).resize((W // 2 - 6, py1 - py0))
-            img.paste(part, (0 if i == 0 else W // 2 + 6, py0))
+            cx = opt.get("crop_x", 270); ch = H; cy0 = 0
+            part = f.crop((cx, cy0, cx + W // 2, cy0 + ch)).resize((pw, H))
+            img.paste(part, (0 if i == 0 else W - pw, 0))
+        rel = t - shot["start"]
+        cores = {"a": (240, 236, 225), "b": RED}
+        tintas = {"a": (20, 20, 22), "b": (255, 255, 255)}
+        # véu escuro em cima e embaixo + leve cor de cada lado
+        veu = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dv = ImageDraw.Draw(veu)
+        for y in range(H):
+            a = 0
+            if y < 520: a = int(200 * (1 - y / 520) ** 1.4)
+            if y > 820: a = max(a, int(185 * min(1, (y - 820) / 420)))
+            dv.line([(0, y), (W, y)], fill=(6, 6, 10, a))
+        dv.rectangle([0, 0, pw, H], fill=cores["a"] + (14,)); dv.rectangle([W - pw, 0, W, H], fill=cores["b"] + (26,))
+        img = Image.alpha_composite(img.convert("RGBA"), veu)
         d = ImageDraw.Draw(img)
-        d.rectangle([W // 2 - 6, py0, W // 2 + 6, py1], fill=(235, 232, 225))
-        p = ease_out(c01((t - shot["start"]) / 0.4))
-        # modo redes: botões e chamada acima da descrição do TikTok e fora da coluna de botões da direita
-        y = lerp(py1 + 110, 1090, p) if self.redes else lerp(py1 + 110, py1 - 120, p)
-        xb1 = W - 170 if self.redes else W - 40
-        caixas = ((40, W // 2 - 20, shot["a"]["label"], (20, 20, 20), (235, 232, 225)), (W // 2 + 20, xb1, shot["b"]["label"], (255, 255, 255), RED))
-        for k, (x0, x1, lab, col, fundo) in enumerate(caixas):
-            d.rounded_rectangle([x0, y - 64, x1, y + 64], 26, fill=fundo)
-            text_center(d, "AB"[k], x0 + 54, y, font("title", 84), col)
-            lx0 = x0 + 104; larg = x1 - lx0 - 18; tam = 70
-            while tam > 30 and d.textlength(lab, font=font("title", tam)) > larg: tam -= 2
-            text_center(d, lab, (lx0 + x1 - 18) / 2, y, font("title", tam), col)
+        d.rectangle([pw, 0, W - pw, H], fill=(235, 232, 225))
+        # pergunta no alto
+        perg = shot.get("pergunta", self.spec.get("pergunta_escolha", "VOCÊ DECIDE"))
+        kq = ease_out(c01(rel / 0.35))
+        if perg and kq > 0:
+            fq = font("title", 64); wq = d.textlength(perg, font=fq); yq = 330 - (1 - kq) * 40
+            d.rounded_rectangle([W / 2 - wq / 2 - 44, yq - 50, W / 2 + wq / 2 + 44, yq + 50], 50, fill=(12, 12, 16), outline=(235, 232, 225), width=4)
+            text_center(d, perg, W / 2, yq, fq, (255, 255, 255))
+        # botões iguais, centralizados em cada metade
+        bw, bh = pw - 76, 236; yc = 1150
+        labs = [shot["a"]["label"], shot["b"]["label"]]
+        def linhas_de(lab):
+            ws = lab.split()
+            if len(ws) < 2: return [lab]
+            melhor = min(range(1, len(ws)), key=lambda k: abs(len(" ".join(ws[:k])) - len(" ".join(ws[k:]))))
+            return [" ".join(ws[:melhor]), " ".join(ws[melhor:])]
+        blocos = [linhas_de(l) for l in labs]
+        tam = 78
+        while tam > 34 and max(d.textlength(l, font=font("title", tam)) for b in blocos for l in b) > bw - 56: tam -= 2
+        ft = font("title", tam)
+        for i, key in enumerate(("a", "b")):
+            k = ease_out(c01((rel - 0.15 - 0.12 * i) / 0.4))
+            if k <= 0: continue
+            cx = pw / 2 if i == 0 else W - pw / 2; y = yc + (1 - k) * 120
+            x0, x1 = cx - bw / 2, cx + bw / 2
+            sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            ImageDraw.Draw(sombra).rounded_rectangle([x0 + 6, y - bh / 2 + 14, x1 + 6, y + bh / 2 + 14], 34, fill=(0, 0, 0, int(150 * k)))
+            img = Image.alpha_composite(img, fast_blur(sombra, 10)); d = ImageDraw.Draw(img)
+            d.rounded_rectangle([x0, y - bh / 2, x1, y + bh / 2], 34, fill=(14, 14, 18), outline=cores[key], width=6)
+            r = 62
+            d.ellipse([cx - r - 7, y - bh / 2 - r - 7, cx + r + 7, y - bh / 2 + r + 7], fill=(14, 14, 18))
+            d.ellipse([cx - r, y - bh / 2 - r, cx + r, y - bh / 2 + r], fill=cores[key])
+            text_center(d, key.upper(), cx, y - bh / 2, font("title", 92), tintas[key])
+            ls = blocos[i]; lh = int(tam * 1.08); y0 = y + 26 - lh * (len(ls) - 1) / 2
+            for n, l in enumerate(ls):
+                text_center(d, l, cx, y0 + n * lh, ft, (255, 255, 255))
+        ko = ease_out(c01((rel - 0.35) / 0.3))
+        if ko > 0:
+            r = 58 * ko
+            d.ellipse([W / 2 - r - 6, yc - r - 6, W / 2 + r + 6, yc + r + 6], fill=(235, 232, 225))
+            d.ellipse([W / 2 - r, yc - r, W / 2 + r, yc + r], fill=(14, 14, 18))
+            text_center(d, "OU", W / 2, yc, font("title", int(54 * ko) or 1), (255, 214, 60))
         seg = shot.get("seguir", self.spec.get("seguir", "SIGA PARA ACOMPANHAR AS HISTÓRIAS"))
-        if seg:      # chamada para seguir o perfil, fixa no alto da escolha (fora da área dos botões das redes)
-            ks = ease_out(c01((t - shot["start"] - 0.5) / 0.35))
+        if seg:
+            ks = ease_out(c01((rel - 0.5) / 0.35))
             if ks > 0:
-                f = font("title", 58); bb = d.textbbox((0, 0), seg, font=f); w = bb[2] - bb[0]
-                yc = (py0 + 120) - (1 - ks) * 40; x0 = W / 2 - w / 2 - 92
-                d.rounded_rectangle([x0, yc - 52, W / 2 + w / 2 + 36, yc + 52], 52, fill=(14, 14, 18), outline=(235, 232, 225), width=4)
-                d.ellipse([x0 + 18, yc - 34, x0 + 86, yc + 34], fill=RED)
-                d.line([(x0 + 52, yc - 18), (x0 + 52, yc + 18)], fill=(255, 255, 255), width=9)
-                d.line([(x0 + 34, yc), (x0 + 70, yc)], fill=(255, 255, 255), width=9)
-                d.text((x0 + 108 - bb[0], yc), seg, font=f, fill=(255, 255, 255), anchor="lm")
+                f = font("title", 44); w = d.textlength(seg, font=f); yc2 = 200 - (1 - ks) * 30
+                x0 = W / 2 - (w + 76) / 2
+                d.rounded_rectangle([x0, yc2 - 40, x0 + w + 76 + 28, yc2 + 40], 40, fill=(14, 14, 18), outline=(235, 232, 225), width=3)
+                d.ellipse([x0 + 14, yc2 - 26, x0 + 66, yc2 + 26], fill=RED)
+                d.line([(x0 + 40, yc2 - 14), (x0 + 40, yc2 + 14)], fill=(255, 255, 255), width=7)
+                d.line([(x0 + 26, yc2), (x0 + 54, yc2)], fill=(255, 255, 255), width=7)
+                d.text((x0 + 82, yc2), seg, font=f, fill=(255, 255, 255), anchor="lm")
         ec = shot.get("end_card")
         if ec and t >= ec["t"]:
-            k = c01((t - ec["t"]) / 0.4)
-            if self.redes:   # quebra na " · " e ajusta o tamanho: nunca sai da tela nem entra na área dos botões
-                linhas = [l.strip() for l in ec["text"].split("·") if l.strip()]; cx = (40 + W - 170) / 2; larg = W - 270; tam = 80
-                while tam > 34 and max(d.textlength(l, font=font("title", tam)) for l in linhas) > larg: tam -= 2
-                h = int(tam * 1.18) * len(linhas) + 44; y0 = 1190
-                d.rounded_rectangle([40, y0, W - 170, y0 + h], 28, fill=(int(200 * k), int(40 * k), int(35 * k)))
-                for n, l in enumerate(linhas):
-                    text_center(d, l, cx, y0 + 22 + int(tam * 1.18) * (n + 0.5), font("title", tam), tuple(int(v * k) for v in CREAM))
-            else:
-                d.rectangle([0, 1690, W, 1880], fill=(int(200 * k), int(40 * k), int(35 * k)))
-                text_center(d, ec["text"], W / 2, 1785, font("title", 80), tuple(int(v * k) for v in CREAM))
-        return img
+            k = ease_out(c01((t - ec["t"]) / 0.4))
+            linhas = [l.strip() for l in ec["text"].split("·") if l.strip()]
+            larg = W - 240; tam = 74
+            while tam > 34 and max(d.textlength(l, font=font("title", tam)) for l in linhas) > larg - 60: tam -= 2
+            lh = int(tam * 1.16); h = lh * len(linhas) + 48; y0 = 1345 + (1 - k) * 60
+            d.rounded_rectangle([W / 2 - larg / 2, y0, W / 2 + larg / 2, y0 + h], 30, fill=RED)
+            for n, l in enumerate(linhas):
+                text_center(d, l, W / 2, y0 + 24 + lh * (n + 0.5), font("title", tam), (255, 255, 255) if n == 0 else (255, 226, 150))
+        return img.convert("RGB")
 
     def pausa_frame(self, shot, t):
         """Pausa para seguir: congela o último quadro do plano anterior, escurece e chama para seguir o perfil."""
@@ -1118,7 +1158,7 @@ class Episode:
         self.draw_comments(img, shot, t)
         if self.redes: self.draw_redes(img, shot, t)
         hs = self.hud_state(t)
-        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano", "pes", "regra") and not shot.get("hook")):
+        if hs and shot.get("hud", typ not in ("title", "recap", "detail", "plano", "pes", "regra", "choice") and not shot.get("hook")):
             text.hud(img, t, hs[0], hs[1], hs[2], hs[3])
             if self.spec["hud"].get("barras"): text.barras(img, t, self.spec["hud"]["barras"])
         if typ in ("scene", "detail"):
