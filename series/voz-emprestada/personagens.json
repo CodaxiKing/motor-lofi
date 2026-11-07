@@ -1,0 +1,18 @@
+{
+ "_leia": "Fichas travadas da série Voz Emprestada. Aparência vem da biblioteca ilustrada (_biblioteca = id do recorte em biblioteca/ilustrada/v1/imagens/); os campos do guarda-roupa são o equivalente no rig, para planos de detalhe e prévia. Mude só aqui, de propósito.",
+ "lucas": {"_nome": "Lucas", "_biblioteca": "lucas", "_altura_m": 1.45,
+           "skin": "medio", "top_style": "hoodie", "top": [214, 158, 42], "inner": [30, 32, 38], "legs": [40, 52, 82], "shoes": [26, 26, 30],
+           "hair": "short", "hair_color": [28, 22, 20], "hat": "beanie", "hat_color": [26, 26, 30], "backpack": true, "body": "thin", "scale": 0.88},
+ "clara": {"_nome": "Clara", "_biblioteca": "clara", "_altura_m": 1.75,
+           "skin": "medio", "top_style": "scrubs", "top": [130, 168, 210], "legs": [130, 168, 210], "shoes": [236, 232, 224],
+           "hair": "curly", "hair_color": [52, 32, 24], "acc": ["necklace"], "body": "tall"},
+ "teo": {"_nome": "Téo", "_biblioteca": "teo", "_altura_m": 1.6,
+         "skin": "moreno", "top_style": "tshirt", "top": [226, 104, 34], "legs": [30, 30, 34], "shoes": [22, 22, 24],
+         "hair": "afro", "hair_color": [24, 18, 16], "acc": ["headphones"]},
+ "amanha": {"_nome": "O Encapuzado", "_biblioteca": "amanha", "_altura_m": 1.7, "_nota": "a criatura vestindo o moletom reserva do Lucas; nunca pisca",
+            "skin": [150, 140, 136], "top_style": "hoodie", "top": [176, 128, 36], "inner": [20, 20, 24], "legs": [32, 38, 54], "shoes": [60, 48, 40],
+            "hair": "short", "hair_color": [28, 22, 20], "hat": "hood", "hat_color": [176, 128, 36], "body": "tall"},
+ "mimico": {"_nome": "O Mímico", "_biblioteca": "mimico", "_altura_m": 2.1, "_nota": "forma verdadeira; rosto redondo sorrindo, dedos compridos, descalço",
+            "skin": [168, 156, 150], "top_style": "trench", "top": [74, 58, 44], "inner": [36, 30, 26], "legs": [44, 36, 30], "shoes": [168, 156, 150],
+            "hair": "bald", "body": "tall", "scale": 1.3}
+}
