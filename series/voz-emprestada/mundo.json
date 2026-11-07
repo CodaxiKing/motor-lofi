@@ -85,5 +85,26 @@
   },
   "nota": "os três presos no abrigo pela tempestade; o Seu Nonato sumiu há três dias; o moletom reserva do Lucas sumiu do varal; a 'lanterna' da Clara é o lampião a querosene do abrigo"
  },
- "fim": {}
+ "fim": {
+  "1": {
+   "lugar": "abrigo",
+   "inventario": {
+    "lucas": [
+     "celular",
+     "mochila"
+    ],
+    "clara": [
+     "lanterna"
+    ],
+    "teo": [
+     "radio",
+     "chave_gerador"
+    ]
+   },
+   "dia": 0,
+   "hora": "23:48",
+   "rotulo": "DIA",
+   "nota": "os três na entrada do abrigo, porta trancada; a coisa colada do lado de fora pedindo para entrar com a voz da Clara; o rádio do Téo repete o Nonato"
+  }
+ }
 }
